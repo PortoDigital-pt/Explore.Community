@@ -3,12 +3,9 @@ import React from 'react';
 import { graphql } from 'react-relay';
 import Route from 'found/Route';
 import Redirect from 'found/Redirect';
-import queryMiddleware from 'farce/queryMiddleware';
-import createRender from 'found/createRender';
-import Error404 from './component/404';
-import TopLevel from './component/TopLevel';
-import { prepareWeekDays } from './util/dateParamUtils';
-import { isBrowser } from './util/browser';
+import Error404 from '../../component/404';
+import { prepareWeekDays } from '../../util/dateParamUtils';
+import { isBrowser } from '../../util/browser';
 import {
   PREFIX_ITINERARY_SUMMARY,
   PREFIX_NEARYOU,
@@ -20,29 +17,25 @@ import {
   TAB_NEARBY,
   TAB_FAVOURITES,
   EMBEDDED_SEARCH_PATH,
-} from './util/path';
+} from '../../util/path';
 import {
   getDefault,
   errorLoading,
   getComponentOrLoadingRenderer,
   getComponentOrNullRenderer,
-} from './util/routerUtils';
+} from '../../util/routerUtils';
 
 import getStopRoutes from './stopRoutes';
 import routeRoutes from './routeRoutes';
-
-export const historyMiddlewares = [queryMiddleware];
-
-export const render = createRender({});
 
 export default config => {
   const indexPageComponents = {
     title: (
       <Route
         getComponent={() =>
-          import(/* webpackChunkName: "itinerary" */ './component/Title').then(
-            getDefault,
-          )
+          import(
+            /* webpackChunkName: "itinerary" */ '../../component/Title'
+          ).then(getDefault)
         }
       />
     ),
@@ -50,7 +43,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ './component/IndexPage'
+            /* webpackChunkName: "itinerary" */ '../../component/IndexPage'
           ).then(getDefault)
         }
       />
@@ -59,7 +52,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ './component/IndexPageMeta'
+            /* webpackChunkName: "itinerary" */ '../../component/IndexPageMeta'
           ).then(getDefault)
         }
       />
@@ -69,7 +62,7 @@ export default config => {
         disableMapOnMobile={false}
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ './component/map/IndexPageMap.js'
+            /* webpackChunkName: "itinerary" */ '../../component/map/IndexPageMap.js'
           ).then(getDefault)
         }
       />
@@ -78,9 +71,9 @@ export default config => {
 
   const itineraryPageGeolocatorProps = {
     getComponent: () =>
-      import(/* webpackChunkName: "itinerary" */ './component/Geolocator').then(
-        getDefault,
-      ),
+      import(
+        /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
+      ).then(getDefault),
     render: ({ Component, props }) => {
       if (Component) {
         return (
@@ -100,7 +93,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "vehiclepark" */ './component/ParkContainer'
+            /* webpackChunkName: "vehiclepark" */ '../../component/ParkContainer'
           )
             .then(getDefault)
             .catch(errorLoading)
@@ -131,7 +124,7 @@ export default config => {
         path="(.*)?"
         getComponent={() =>
           import(
-            /* webpackChunkName: "vehiclepark" */ './component/VehicleParkMapContainer'
+            /* webpackChunkName: "vehiclepark" */ '../../component/VehicleParkMapContainer'
           ).then(getDefault)
         }
         // TODO remove prepareVariables after hsl.fi has updated its vehicle parking addresses
@@ -149,7 +142,7 @@ export default config => {
   };
 
   return (
-    <Route Component={TopLevel}>
+    <>
       {getStopRoutes()}
       {getStopRoutes(true) /* terminals */}
       {routeRoutes(config)}
@@ -159,7 +152,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/VehicleRentalStationContent'
+                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationContent'
                 ).then(getDefault)
               }
               query={graphql`
@@ -187,7 +180,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/VehicleRentalStationMapContainer'
+                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationMapContainer'
                 ).then(getDefault)
               }
               query={graphql`
@@ -224,7 +217,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "nearyou" */ './component/nearyou/NearYouPage'
+                  /* webpackChunkName: "nearyou" */ '../../component/nearyou/NearYouPage'
                 ).then(getDefault)
               }
               render={({ Component, props, error }) => {
@@ -244,7 +237,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/nearyou/NearYouPageMeta'
+                  /* webpackChunkName: "itinerary" */ '../../component/nearyou/NearYouPageMeta'
                 ).then(getDefault)
               }
             />
@@ -256,7 +249,7 @@ export default config => {
           content: (
             <Route
               getComponent={() =>
-                import('./component/RentalVehicleContent').then(getDefault)
+                import('../../component/RentalVehicleContent').then(getDefault)
               }
               query={graphql`
                 query routes_RentalVehicle_Query($id: String!) {
@@ -282,7 +275,7 @@ export default config => {
             <Route
               path="(.*)?"
               getComponent={() =>
-                import('./component/RentalVehiclePageMapContainer').then(
+                import('../../component/RentalVehiclePageMapContainer').then(
                   getDefault,
                 )
               }
@@ -326,7 +319,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/itinerary/ItineraryPageTitle'
+                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageTitle'
                 ).then(getDefault)
               }
             />
@@ -336,10 +329,10 @@ export default config => {
               getComponent={() =>
                 isBrowser
                   ? import(
-                      /* webpackChunkName: "itinerary" */ './component/itinerary/ItineraryPageContainer'
+                      /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageContainer'
                     ).then(getDefault)
                   : import(
-                      /* webpackChunkName: "loading" */ './component/Loading'
+                      /* webpackChunkName: "loading" */ '../../component/Loading'
                     ).then(getDefault)
               }
               render={getComponentOrNullRenderer}
@@ -351,7 +344,7 @@ export default config => {
                     <Route
                       getComponent={() =>
                         import(
-                          /* webpackChunkName: "itinerary" */ './component/itinerary/ItineraryDetails'
+                          /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryDetails'
                         ).then(getDefault)
                       }
                       render={getComponentOrLoadingRenderer}
@@ -366,7 +359,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/itinerary/ItineraryPageMeta'
+                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageMeta'
                 ).then(getDefault)
               }
             />
@@ -376,16 +369,16 @@ export default config => {
       <Route
         path="/tietoja-palvelusta"
         getComponent={() =>
-          import(/* webpackChunkName: "about" */ './component/AboutPage').then(
-            getDefault,
-          )
+          import(
+            /* webpackChunkName: "about" */ '../../component/AboutPage'
+          ).then(getDefault)
         }
       />
       <Route
         path={config.URL.EMBEDDED_SEARCH_GENERATION}
         getComponent={() =>
           import(
-            /* webpackChunkName: "embedded-search-generator" */ './component/embedded/EmbeddedSearchGenerator'
+            /* webpackChunkName: "embedded-search-generator" */ '../../component/embedded/EmbeddedSearchGenerator'
           ).then(getDefault)
         }
       />
@@ -393,14 +386,11 @@ export default config => {
         path={EMBEDDED_SEARCH_PATH}
         getComponent={() =>
           import(
-            /* webpackChunkName: "embedded-search" */ './component/embedded/EmbeddedSearchContainer'
+            /* webpackChunkName: "embedded-search" */ '../../component/embedded/EmbeddedSearchContainer'
           ).then(getDefault)
         }
         topBarOptions={{ hidden: true }}
       />
-      <Route path="/js/*" Component={Error404} />
-      <Route path="/css/*" Component={Error404} />
-      <Route path="/assets/*" Component={Error404} />
       <Redirect
         from={`/:from/:to/${TAB_NEARBY}`}
         to={`${
@@ -423,7 +413,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/Geolocator'
+                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
                 ).then(getDefault)
               }
               render={({ Component, props }) => {
@@ -452,7 +442,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/Geolocator'
+                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
                 ).then(getDefault)
               }
               render={({ Component, props }) => {
@@ -507,7 +497,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/Title'
+                  /* webpackChunkName: "itinerary" */ '../../component/Title'
                 ).then(getDefault)
               }
             >
@@ -518,7 +508,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ './component/IndexPage'
+                  /* webpackChunkName: "itinerary" */ '../../component/IndexPage'
                 ).then(getDefault)
               }
             />
@@ -528,8 +518,6 @@ export default config => {
       {config.indexPath !== '' && (
         <Redirect from="/" to={`/${config.indexPath}`} />
       )}
-      {/* For all the rest render 404 */}
-      <Route path="*" Component={Error404} />
-    </Route>
+    </>
   );
 };

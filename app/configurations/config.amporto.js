@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { number } from 'prop-types';
 import { BIKEAVL_WITHMAX } from '../util/vehicleRentalUtils';
 
 const CONFIG = process.env.CONFIG || 'amporto';
@@ -53,7 +52,7 @@ export default {
     ROOTLINK: rootLink,
   },
 
-  indexPath: 'amporto',
+  //indexPath: 'amporto',
 
   title: APP_TITLE,
 
