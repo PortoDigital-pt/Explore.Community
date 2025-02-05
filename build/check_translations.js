@@ -35,3 +35,8 @@ const difference = keys_from.filter(x => !keys_to.includes(x));
 
 console.log("The following keys are missing in translation: '" + lang2 + "'");
 console.log(difference);
+
+process.stderr.write('\ufeff');
+difference.forEach((item) => {
+  process.stderr.write('\"'+item+'\",\"'+lang_from[item]+'\"\n', 'utf-8');
+})

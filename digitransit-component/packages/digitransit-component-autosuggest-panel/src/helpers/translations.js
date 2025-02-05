@@ -58,6 +58,21 @@ const translations = {
     'via-point-index': 'Punkt pośredni {{index}}',
     'viapoint-slack-amount': 'Czas postoju',
   },
+  pt: {
+    'add-via-button-label': 'Adicionar ponto de passagem',
+    'add-via-duration-button-label':
+      'Definir a duração da paragem no ponto de passagem {{index}}',
+    'add-via-duration-button-label-close':
+      'Fechar o selector de duração da paragem no ponto de passagem {{index}}',
+    'add-via-duration-button-label-open':
+      'Abrir seletor de duração de paragem no ponto de passagem {{index}}',
+    'minute-short': 'min',
+    'remove-via-button-label': 'Remover via ponto {{index}}',
+    'swap-order-button-label': 'Inverter origem e destino',
+    'via-point': 'ponto de passagem',
+    'via-point-index': 'Através do ponto {{index}}',
+    'viapoint-slack-amount': 'Duração da paragem',
+  },
   sv: {
     'add-via-button-label': 'Lägg till viapunkt',
     'add-via-duration-button-label':

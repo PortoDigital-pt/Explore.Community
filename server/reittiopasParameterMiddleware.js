@@ -87,7 +87,7 @@ export default function reittiopasParameterMiddleware(req, res, next) {
       req.query.to_in
     ) {
       oldParamParser(req.query, config).then(url => res.redirect(url));
-    } else if (['fi', 'en', 'sv', 'ru', 'slangi'].includes(lang)) {
+    } else if (['pt', 'fi', 'en', 'sv', 'ru', 'slangi'].includes(lang)) {
       dropPathLanguageAndRedirect(req, res, lang);
     } else {
       const { locale } = req.query;

@@ -77,6 +77,27 @@ const translations = {
     'nearby-stops-teaser-content':
       'Rozkłady jazdy w czasie rzeczywistym dla pobliskich przystanków i pojazdów na mapie.',
   },
+  pt: {
+    'close-teaser-modal': 'Fechar',
+    'pick-mode': 'Selecione um modo de transporte',
+    'pick-mode-airplane': 'Voo',
+    'pick-mode-bus': 'Autocarro',
+    'pick-mode-citybike': 'Citybike',
+    'pick-mode-ferry': 'Balsa',
+    'pick-mode-rail': 'Rail',
+    'pick-mode-subway': 'Metro',
+    'pick-mode-tram': 'Eléctrico',
+    'placeholder-destination': 'Inserir destino',
+    'placeholder-origin': 'Introduza a origem',
+    'placeholder-route-stop-station': 'Introduza a rota, paragem ou estação',
+    'title-route-stop-station': 'Paragens e percursos próximos',
+    'title-origin-to-destination': 'Para onde?',
+    'use-own-position': 'Usar localização atual',
+    'nearby-stops-teaser-header':
+      'Experimente as novas visualizações de mapas que mostram as paragens próximas',
+    'nearby-stops-teaser-content':
+      'Horários em tempo real para paragens e veículos próximos no mapa.',
+  },
   sv: {
     'close-teaser-modal': 'Stäng',
     'pick-mode': 'Välj ett transportläge',

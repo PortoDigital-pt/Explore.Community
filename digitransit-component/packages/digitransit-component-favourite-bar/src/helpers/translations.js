@@ -45,6 +45,18 @@ const translations = {
     home: 'Dom',
     work: 'Praca',
   },
+  pt: {
+    'add-destination': 'Definir como destino',
+    'add-favourite': 'Adicionar favorito',
+    'add-home': 'Adicionar casa',
+    'add-place': 'Adicionar local',
+    'add-work': 'Adicionar trabalho',
+    'favourites-list': 'Lista de favoritos',
+    edit: 'Editar',
+    'open-favourites': 'Abrir favoritos',
+    home: 'Casa',
+    work: 'Trabalho',
+  },
   sv: {
     'add-destination': 'Ställa in som destination',
     'add-favourite': 'Lägg till favorit',

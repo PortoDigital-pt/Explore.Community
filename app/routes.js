@@ -66,7 +66,7 @@ export default config => {
     ),
     map: (
       <Route
-        disableMapOnMobile
+        disableMapOnMobile={false}
         getComponent={() =>
           import(
             /* webpackChunkName: "itinerary" */ './component/map/IndexPageMap.js'
