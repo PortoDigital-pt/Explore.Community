@@ -25,8 +25,8 @@ import {
   getComponentOrNullRenderer,
 } from '../../util/routerUtils';
 
-import getStopRoutes from './stopRoutes';
-import routeRoutes from './routeRoutes';
+import getStopRoutes from './stop.js';
+import getRouteRoutes from './route.js';
 
 export default config => {
   const indexPageComponents = {
@@ -145,7 +145,7 @@ export default config => {
     <>
       {getStopRoutes()}
       {getStopRoutes(true) /* terminals */}
-      {routeRoutes(config)}
+      {getRouteRoutes(config)}
       <Route path={`/${PREFIX_BIKESTATIONS}/:id`}>
         {{
           content: (

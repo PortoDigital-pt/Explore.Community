@@ -23,52 +23,49 @@ import { DATE_FORMAT } from '../../constants';
 const queries = {
   stop: {
     pageHeader: graphql`
-      query stopRoutes_StopPageHeaderContainer_Query($stopId: String!) {
+      query stop_StopPageHeaderContainer_Query($stopId: String!) {
         stop(id: $stopId) {
           ...StopPageHeaderContainer_stop
         }
       }
     `,
     pageMap: graphql`
-      query stopRoutes_StopPageMapContainer_Query($stopId: String!) {
+      query stop_StopPageMapContainer_Query($stopId: String!) {
         stop(id: $stopId) {
           ...StopPageMapContainer_stop
         }
       }
     `,
     pageMeta: graphql`
-      query stopRoutes_StopPageMeta_Query($stopId: String!) {
+      query stop_StopPageMeta_Query($stopId: String!) {
         stop(id: $stopId) {
           ...StopPageMeta_stop
         }
       }
     `,
     pageTab: graphql`
-      query stopRoutes_StopPageTab_Query($stopId: String!) {
+      query stop_StopPageTab_Query($stopId: String!) {
         stop(id: $stopId) {
           ...StopPageTabContainer_stop
         }
       }
     `,
     pageContent: graphql`
-      query stopRoutes_StopPageContent_Query($stopId: String!) {
+      query stop_StopPageContent_Query($stopId: String!) {
         stop(id: $stopId) {
           ...StopPageContentContainer_stop
         }
       }
     `,
     pageTimetable: graphql`
-      query stopRoutes_StopPageTimetable_Query(
-        $stopId: String!
-        $date: String!
-      ) {
+      query stop_StopPageTimetable_Query($stopId: String!, $date: String!) {
         stop(id: $stopId) {
           ...StopTimetablePage_stop @arguments(date: $date)
         }
       }
     `,
     pageAlerts: graphql`
-      query stopRoutes_StopAlertsContainer_Query(
+      query stop_StopAlertsContainer_Query(
         $stopId: String!
         $startTime: Long!
       ) {
@@ -80,42 +77,42 @@ const queries = {
   },
   station: {
     pageHeader: graphql`
-      query stopRoutes_TerminalPageHeaderContainer_Query($terminalId: String!) {
+      query stop_TerminalPageHeaderContainer_Query($terminalId: String!) {
         station(id: $terminalId) {
           ...TerminalPageHeaderContainer_station
         }
       }
     `,
     pageMap: graphql`
-      query stopRoutes_TerminalPageMapContainer_Query($terminalId: String!) {
+      query stop_TerminalPageMapContainer_Query($terminalId: String!) {
         station(id: $terminalId) {
           ...TerminalPageMapContainer_station
         }
       }
     `,
     pageMeta: graphql`
-      query stopRoutes_TerminalPageMeta_Query($terminalId: String!) {
+      query stop_TerminalPageMeta_Query($terminalId: String!) {
         station(id: $terminalId) {
           ...TerminalPageMeta_station
         }
       }
     `,
     pageTab: graphql`
-      query stopRoutes_TerminalPageTabContainer_Query($terminalId: String!) {
+      query stop_TerminalPageTabContainer_Query($terminalId: String!) {
         station(id: $terminalId) {
           ...TerminalPageTabContainer_station
         }
       }
     `,
     pageContent: graphql`
-      query stopRoutes_TerminalPageContent_Query($terminalId: String!) {
+      query stop_TerminalPageContent_Query($terminalId: String!) {
         station(id: $terminalId) {
           ...TerminalPageContentContainer_station
         }
       }
     `,
     pageTimetable: graphql`
-      query stopRoutes_TerminalPageTimetable_Query(
+      query stop_TerminalPageTimetable_Query(
         $terminalId: String!
         $date: String!
       ) {
@@ -125,7 +122,7 @@ const queries = {
       }
     `,
     pageAlerts: graphql`
-      query stopRoutes_TerminalAlertsContainer_Query(
+      query stop_TerminalAlertsContainer_Query(
         $terminalId: String!
         $startTime: Long!
       ) {
@@ -137,7 +134,7 @@ const queries = {
   },
 };
 
-export default function getStopRoutes(isTerminal = false) {
+export default function getstop(isTerminal = false) {
   const queryMap = isTerminal ? queries.station : queries.stop;
   return (
     <Route path={`/${isTerminal ? PREFIX_TERMINALS : PREFIX_STOPS}`}>

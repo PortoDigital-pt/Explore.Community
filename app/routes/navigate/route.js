@@ -22,7 +22,7 @@ import {
   prepareScheduleParamsWithTenWeeks,
 } from '../../util/scheduleParamUtils';
 
-export default function routeRoutes(config) {
+export default function route(config) {
   const showTenWeeks = config.showTenWeeksOnRouteSchedule || false;
   return (
     <Route path={`/${PREFIX_ROUTES}`}>
@@ -35,7 +35,7 @@ export default function routeRoutes(config) {
           ).then(getDefault)
         }
         query={graphql`
-          query routeRoutes_PatternRedirector_Query(
+          query route_PatternRedirector_Query(
             $routeId: String!
             $date: String!
           ) {
@@ -58,7 +58,7 @@ export default function routeRoutes(config) {
                 ).then(getDefault)
               }
               query={graphql`
-                query routeRoutes_RouteTitle_Query($routeId: String!) {
+                query route_RouteTitle_Query($routeId: String!) {
                   route(id: $routeId) {
                     ...RouteTitle_route
                   }
@@ -76,7 +76,7 @@ export default function routeRoutes(config) {
                 ).then(getDefault)
               }
               query={graphql`
-                query routeRoutes_RoutePageMeta_Query($routeId: String!) {
+                query route_RoutePageMeta_Query($routeId: String!) {
                   route(id: $routeId) {
                     ...RoutePageMeta_route
                   }
@@ -94,10 +94,7 @@ export default function routeRoutes(config) {
                 ).then(getDefault)
               }
               query={graphql`
-                query routeRoutes_RoutePage_Query(
-                  $routeId: String!
-                  $date: String!
-                ) {
+                query route_RoutePage_Query($routeId: String!, $date: String!) {
                   route(id: $routeId) {
                     ...RoutePage_route @arguments(date: $date)
                   }
@@ -121,7 +118,7 @@ export default function routeRoutes(config) {
                 ).then(getDefault)
               }
               query={graphql`
-                query routeRoutes_RoutePageMap_withTrip_Query(
+                query route_RoutePageMap_withTrip_Query(
                   $patternId: String!
                   $tripId: String!
                 ) {
@@ -148,7 +145,7 @@ export default function routeRoutes(config) {
                 ).then(getDefault)
               }
               query={graphql`
-                query routeRoutes_RoutePageMap_Query($patternId: String!) {
+                query route_RoutePageMap_Query($patternId: String!) {
                   pattern(id: $patternId) {
                     ...RoutePageMap_pattern
                   }
@@ -180,7 +177,7 @@ export default function routeRoutes(config) {
                   ).then(getDefault)
                 }
                 query={graphql`
-                  query routeRoutes_PatternStopsContainer_Query(
+                  query route_PatternStopsContainer_Query(
                     $patternId: String!
                     $routeId: String!
                     $date: String!
@@ -205,7 +202,7 @@ export default function routeRoutes(config) {
                   ).then(getDefault)
                 }
                 query={graphql`
-                  query routeRoutes_TripStopsContainer_Query(
+                  query route_TripStopsContainer_Query(
                     $patternId: String!
                     $tripId: String!
                     $routeId: String!
@@ -234,7 +231,7 @@ export default function routeRoutes(config) {
                 ).then(getDefault)
               }
               query={graphql`
-                query routeRoutes_ScheduleContainer_Query(
+                query route_ScheduleContainer_Query(
                   $showTenWeeks: Boolean!
                   $routeId: String!
                   $patternId: String!
@@ -411,7 +408,7 @@ export default function routeRoutes(config) {
                 ).then(getDefault)
               }
               query={graphql`
-                query routeRoutes_RouteAlertsContainer_Query(
+                query route_RouteAlertsContainer_Query(
                   $routeId: String!
                   $patternId: String!
                   $date: String!
