@@ -14,7 +14,6 @@ export const render = createRender({});
 
 export default config => (
   <Route Component={TopLevel}>
-    {getNavigateRoutes(config)}
     <Route
       path="/tietoja-palvelusta"
       getComponent={() =>
@@ -26,6 +25,7 @@ export default config => (
     <Route path="/js/*" Component={Error404} />
     <Route path="/css/*" Component={Error404} />
     <Route path="/assets/*" Component={Error404} />
+    {getNavigateRoutes(config)}
     {/* For all the rest render 404 */}
     <Route path="*" Component={Error404} />
   </Route>
