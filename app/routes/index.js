@@ -7,6 +7,7 @@ import Error404 from '../component/404';
 import TopLevel from '../component/TopLevel';
 import { getDefault } from '../util/routerUtils';
 import getNavigateRoutes from './navigate';
+import getExploreRoutes from './explore';
 
 export const historyMiddlewares = [queryMiddleware];
 
@@ -25,6 +26,7 @@ export default config => (
     <Route path="/js/*" Component={Error404} />
     <Route path="/css/*" Component={Error404} />
     <Route path="/assets/*" Component={Error404} />
+    {getExploreRoutes()}
     {getNavigateRoutes(config)}
     {/* For all the rest render 404 */}
     <Route path="*" Component={Error404} />
