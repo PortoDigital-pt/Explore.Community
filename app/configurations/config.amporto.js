@@ -101,17 +101,17 @@ export default {
     'boundary.rect.min_lon': minLon,
     'boundary.rect.max_lon': maxLon,
   },
-  feedIds: FEED_IDS.split(',') || ['1', '2'],
+  feedIds: FEED_IDS?.split(',') || ['1', '2'],
 
   realTime: realtime,
 
-  searchSources: SEARCH_SOURCES.split(',') || ['oa', 'osm', 'custom'],
+  searchSources: SEARCH_SOURCES?.split(',') || ['oa', 'osm', 'custom'],
   search: {
-    peliasLayer: PELIAS_LAYER.split(',') || ['address', 'stop', 'venue_ropi'],
+    peliasLayer: PELIAS_LAYER?.split(',') || ['address', 'stop', 'venue_ropi'],
     minimalRegexp: new RegExp(MINIMAL_REGEXP),
   },
 
-  availableLanguages: AVAILABLE_LANGUAGES.split(',') || ['pt', 'en'],
+  availableLanguages: AVAILABLE_LANGUAGES?.split(',') || ['pt', 'en'],
   defaultLanguage: DEFAULT_LANGUAGE || 'pt',
 
   timezoneData: TIME_ZONE_DATA,
@@ -177,8 +177,8 @@ export default {
       defaultValue: MODES_FERRY_DEFAULT === 'true',
     },
     citybike: {
-      availableForSelection: MODES_CITY_BYKE_AVAILABLE_SELECTION === true,
-      defaultValue: MODES_CITY_BYKE_DEFAULT === true,
+      availableForSelection: MODES_CITY_BYKE_AVAILABLE_SELECTION === 'true',
+      defaultValue: MODES_CITY_BYKE_DEFAULT === 'true',
     },
   },
   hideWeatherLabel: HIDE_WEATHER_LABEL === 'true',
@@ -216,7 +216,7 @@ export default {
     lon: -8.6046909,
   },
 
-  useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === true,
+  useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
 
   aboutThisService: {
     en: [
