@@ -2,6 +2,8 @@
 
 'use strict';
 
+require('dotenv')?.config();
+
 /* ********* Polyfills (for node) ********* */
 const path = require('path');
 const fs = require('fs');
@@ -25,7 +27,7 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 /* ********* Server ********* */
-require('dotenv').config();
+
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const cookieParser = require('cookie-parser');
