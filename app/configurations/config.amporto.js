@@ -1,22 +1,56 @@
-/* eslint-disable */
 import { BIKEAVL_WITHMAX } from '../util/vehicleRentalUtils';
 
-const CONFIG = process.env.CONFIG || 'amporto';
-const API_URL = process.env.API_URL || 'https://dev-api.digitransit.fi';
-const OTP_URL = process.env.OTP_URL || `${API_URL}/routing/v2/routers/waltti/`;
-const MAP_URL =
-  process.env.MAP_URL || 'https://digitransit-dev-cdn-origin.azureedge.net';
-const POI_MAP_PREFIX =
-  process.env.POI_MAP_PREFIX || `${MAP_URL}/map/v3/finland`;
+require('dotenv')?.config();
 
-const APP_TITLE = 'Explore.Communities';
-const APP_DESCRIPTION = 'Explore.Communities';
+const {
+  CONFIG,
+  API_URL,
+  OTP_URL,
+  MAP_URL,
+  POI_MAP_PREFIX,
+  APP_TITLE,
+  APP_DESCRIPTION,
+  BOUNDING_BOX,
+  TIME_ZONE,
+  TIME_ZONE_DATA,
+  ROOTLINK,
+  INDEX_PATH,
+  TEXT_LOGO,
+  LOGO,
+  CONTACT_NAME,
+  USE_SEARCH_POLYGON,
+  FEED_IDS,
+  SEARCH_SOURCES,
+  PELIAS_LAYER,
+  MINIMAL_REGEXP,
+  AVAILABLE_LANGUAGES,
+  DEFAULT_LANGUAGE,
+  MAP_ATTRIBUTION,
+  APP_BAR_LINK_NAME,
+  APP_BAR_LINK_HREF,
+  MODES_FERRY_AVAILABLE_SELECTION,
+  MODES_FERRY_DEFAULT,
+  MODES_CITY_BYKE_AVAILABLE_SELECTION,
+  MODES_CITY_BYKE_DEFAULT,
+  HIDE_WEATHER_LABEL,
+  ALWAYS_SHOW_DISTANCE_IN_KM,
+  ALLOW_LOGIN,
+  HOST_NAMES,
+  USE_REALTIME_TRAVELLER_CAPACITIES,
+  VEHICLES,
+  SHOW_VEHICLES_ON_STOP_PAGE,
+  SHOW_VEHICLES_ON_SUMMARY_PAGE,
+  SHOW_WEATHER_INFORMATION,
+  INCLUDE_PUBLIC_WITH_BIKE_PLAN,
+  REDIRECT_REITTIOPAS_PARAMS,
+  SHOW_NEAR_YOU_BUTTONS,
+  NEAR_YOU_MODES,
+  NARROW_NEAR_YOU_BUTTONS,
+  MESSAGE_BAR_ALERTS,
+  SHOW_CO2_IN_ITINERARY_SUMMARY,
+} = process.env;
 
 const YEAR = 1900 + new Date().getYear();
-
-const BOUNDING_BOX =
-  process.env.BOUNDING_BOX || '-9.010822,40.859282,-7.659503,41.461013';
-
 
 const minLat = Number(BOUNDING_BOX.split(',')[1]);
 const maxLat = Number(BOUNDING_BOX.split(',')[3]);
@@ -25,14 +59,14 @@ const maxLon = Number(BOUNDING_BOX.split(',')[2]);
 
 const realtime = require('./realtimeUtils.amporto').default;
 
-const rootLink = process.env.ROOTLINK || 'https://test.hslfi.hsldev.com';
-
 export default {
   CONFIG,
   URL: {
+    ROOTLINK,
+    API_URL,
     MAP: {
-      default: `${MAP_URL}/`,
-      en: `${MAP_URL}/`,
+      default: MAP_URL,
+      en: MAP_URL,
     },
     STOP_MAP: {
       default: `${OTP_URL}routers/default/vectorTiles/stops,stations/`,
@@ -44,26 +78,22 @@ export default {
       default: `${OTP_URL}routers/default/vectorTiles/realtimeRentalStations/`,
     },
     PARK_AND_RIDE_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParking/`
+      default: `${POI_MAP_PREFIX}/en/vehicleParking/`,
     },
     PARK_AND_RIDE_GROUP_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`
+      default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`,
     },
-    ROOTLINK: rootLink,
   },
 
-  //indexPath: 'amporto',
-
-  title: APP_TITLE,
-
-  textLogo: false,
-  logo: 'amporto/logo_porto.svg',
+  indexPath: INDEX_PATH,
+  textLogo: TEXT_LOGO === 'true',
+  logo: LOGO,
 
   contactName: {
-    default: '',
+    default: CONTACT_NAME,
   },
 
-  useSearchPolygon: true,
+  useSearchPolygon: USE_SEARCH_POLYGON === 'true',
   searchParams: {
     'boundary.country': 'PRT',
     'boundary.rect.min_lat': minLat,
@@ -71,27 +101,24 @@ export default {
     'boundary.rect.min_lon': minLon,
     'boundary.rect.max_lon': maxLon,
   },
-  feedIds: [ "1", "2" ],
+  feedIds: FEED_IDS.split(',') || ['1', '2'],
 
   realTime: realtime,
 
-  searchSources: ['oa', 'osm', 'custom'],
+  searchSources: SEARCH_SOURCES.split(',') || ['oa', 'osm', 'custom'],
   search: {
-    peliasLayer: ['address', 'stop', 'venue_ropi'],
-    minimalRegexp: new RegExp('.+'),
+    peliasLayer: PELIAS_LAYER.split(',') || ['address', 'stop', 'venue_ropi'],
+    minimalRegexp: new RegExp(MINIMAL_REGEXP),
   },
 
-  availableLanguages: ['pt', 'en'],
-  defaultLanguage: 'pt',
+  availableLanguages: AVAILABLE_LANGUAGES.split(',') || ['pt', 'en'],
+  defaultLanguage: DEFAULT_LANGUAGE || 'pt',
 
-  timezoneData:
-    'Europe/Lisbon|LMT WET WEST WEMT CET CEST|A.J 0 -10 -20 -10 -20|012121212121212121212121212121212121212121212321232123212321212121212121212121212121212121212121214121212121212121212121212121212124545454212121212121212121212121212121212121212121212121212121212121212121212121212121212121|-2le00 aPX0 Sp0 LX0 1vc0 Tc0 1uM0 SM0 1vc0 Tc0 1vc0 SM0 1vc0 6600 1co0 3E00 17c0 1fA0 1a00 1io0 1a00 1io0 17c0 3I00 17c0 1cM0 1cM0 3Fc0 1cM0 1a00 1fA0 1io0 17c0 1cM0 1cM0 1a00 1fA0 1io0 1qM0 Dc0 1tA0 1cM0 1dc0 1400 gL0 IM0 s10 U00 dX0 Rc0 pd0 Rc0 gL0 Oo0 pd0 Rc0 gL0 Oo0 pd0 14o0 1cM0 1cP0 1cM0 1cM0 1cM0 1cM0 1cM0 3Co0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 pvy0 1cM0 1cM0 1fA0 1cM0 1cM0 1cN0 1cL0 1cN0 1cM0 1cM0 1cM0 1cM0 1cN0 1cL0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|27e5',
-  timeZone: 'Europe/Lisbon',
-
+  timezoneData: TIME_ZONE_DATA,
+  timeZone: TIME_ZONE,
 
   map: {
-    attribution:
-    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>', // DT-3470, DT-3397
+    attribution: MAP_ATTRIBUTION,
     areaBounds: {
       corner1: [minLat, minLon],
       corner2: [maxLat, maxLon],
@@ -118,11 +145,14 @@ export default {
           sv: 'https://www.hsl.fi/sv/stadscyklar/helsingfors',
           en: 'https://www.hsl.fi/en/citybikes/helsinki',
         },
-      }
+      },
     },
   },
 
-  appBarLink: { name: 'Portal do Munícipe', href: 'https://portaldomunicipe.cm-porto.pt' },
+  appBarLink: {
+    name: APP_BAR_LINK_NAME,
+    href: APP_BAR_LINK_HREF,
+  },
 
   colors: {
     primary: '#243E8B',
@@ -143,28 +173,16 @@ export default {
 
   transportModes: {
     ferry: {
-      availableForSelection: false,
-      defaultValue: false,
+      availableForSelection: MODES_FERRY_AVAILABLE_SELECTION === 'true',
+      defaultValue: MODES_FERRY_DEFAULT === 'true',
     },
-    /*
-    funicular: {
-      availableForSelection: true,
-      defaultValue: true,
-    },
-    */
     citybike: {
-      availableForSelection: true,
-      defaultValue: false, // always false
+      availableForSelection: MODES_CITY_BYKE_AVAILABLE_SELECTION === true,
+      defaultValue: MODES_CITY_BYKE_DEFAULT === true,
     },
-    /*
-    car: {
-      availableForSelection: true,
-      default: false,
-    },
-    */
   },
-  hideWeatherLabel: true,
-  alwaysShowDistanceInKm: true,
+  hideWeatherLabel: HIDE_WEATHER_LABEL === 'true',
+  alwaysShowDistanceInKm: ALWAYS_SHOW_DISTANCE_IN_KM === 'true',
 
   areaPolygon: [
     [minLon, minLat],
@@ -183,22 +201,14 @@ export default {
       },
       {
         name: 'accessibility-statement',
-        href:
-          'https://kauppa.waltti.fi/media/authority/154/files/Saavutettavuusseloste_Waltti-reittiopas_JyQfJhC.htm',
+        href: 'https://kauppa.waltti.fi/media/authority/154/files/Saavutettavuusseloste_Waltti-reittiopas_JyQfJhC.htm',
       },
     ],
   },
 
-  allowLogin: true,
+  allowLogin: ALLOW_LOGIN === 'true',
   /* depends on https://github.com/HSLdevcom/fav-service */
-  // allowFavouritesFromLocalstorage: !process.env.OIDC_CLIENT_ID,
-  hostnames: [
-    // DEV hostnames
-    'http://localhost:8080',
-    'http://localhost:8081',
-    'https://ui-dtv3.services.dev.portodigital.pt',
-    // PROD hostnames
-  ],
+  hostnames: HOST_NAMES?.split(','),
 
   defaultEndpoint: {
     address: 'Porto - Portugal',
@@ -206,7 +216,7 @@ export default {
     lon: -8.6046909,
   },
 
-  useRealtimeTravellerCapacities: true,
+  useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === true,
 
   aboutThisService: {
     en: [
@@ -233,65 +243,30 @@ export default {
   },
 
   geoJson: {
-    layers: [
-      /*
-      {
-        name: {
-          pt: 'Ciclovias',
-          en: 'Bike routes',
-        },
-        url: 'https://servergeo.cm-porto.pt/arcgis/rest/services/PUBLICO/Portal_da_Mobilidade_ext/MapServer/11/query?where=2<3&text=&objectIds=&time=&timeRelation=esriTimeRelationOverlaps&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&distance=&units=esriSRUnit_Foot&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&sqlFormat=none&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=geojson',
-        isOffByDefault: true,
-      },
-      */
-      /*
-      {
-        name: {
-          en: 'Zones',
-        },
-        url: '/assets/geojson/lpr_zone_lines_20220113.geojson',
-        isOffByDefault: true,
-      },
-      Example from jyvaskyla (no in code; producion environment onyl):
-      {
-
-          "name": {
-              "fi": "Myyntipisteet",
-              "sv": "Servicekontorer",
-              "en": "Service points"
-          },
-          "url": "https://jakoon.jkl.fi/reittiopas/Asiakaspalvelupisteet/myyntipisteet.geojson"
-      },
-      */
-    ],
+    layers: [],
   },
 
-  vehicles: true,
-  showVehiclesOnStopPage: true,
-  showVehiclesOnSummaryPage: true,
+  vehicles: VEHICLES === 'true',
+  showVehiclesOnStopPage: SHOW_VEHICLES_ON_STOP_PAGE === 'true',
+  showVehiclesOnSummaryPage: SHOW_VEHICLES_ON_SUMMARY_PAGE === 'true',
 
   /* no WFS compatible data for Portugal, so hideWeatherLabel: true */
-  showWeatherInformation: false,
+  showWeatherInformation: SHOW_WEATHER_INFORMATION === 'true',
 
-  includePublicWithBikePlan: true,
+  includePublicWithBikePlan: INCLUDE_PUBLIC_WITH_BIKE_PLAN === 'true',
 
-  redirectReittiopasParams: true,
+  redirectReittiopasParams: REDIRECT_REITTIOPAS_PARAMS === 'true',
 
-  showNearYouButtons: true,
-  nearYouModes: [
-    'favorite',
-    'bus',
-    'tram',
-    'subway',
-    'citybike',
-  ],
-  narrowNearYouButtons: true,
+  showNearYouButtons: SHOW_NEAR_YOU_BUTTONS === 'true',
+  nearYouModes: NEAR_YOU_MODES?.split(',') || [],
+  narrowNearYouButtons: NARROW_NEAR_YOU_BUTTONS === 'true',
 
-  messageBarAlerts: true,
+  messageBarAlerts: MESSAGE_BAR_ALERTS === 'true',
 
   stopCard: {
     header: {
-      virtualMonitorBaseUrl: 'https://virtualmonitor.services.dev.portodigital.pt/',
+      virtualMonitorBaseUrl:
+        'https://virtualmonitor.services.dev.portodigital.pt/',
     },
   },
   mainMenu: {
@@ -301,15 +276,13 @@ export default {
     },
   },
 
-
   zones: {
     stops: true,
     itinerary: true,
   },
 
   // Notice! Turning on this setting forces the search for car routes (for the CO2 comparison only).
-  showCO2InItinerarySummary: true,
+  showCO2InItinerarySummary: SHOW_CO2_IN_ITINERARY_SUMMARY === 'true',
 
-  availableTickets: null
-
+  availableTickets: null,
 };
