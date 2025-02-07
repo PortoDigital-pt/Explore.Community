@@ -85,6 +85,7 @@ export default {
     },
   },
 
+  title: APP_TITLE,
   indexPath: INDEX_PATH,
   textLogo: TEXT_LOGO === 'true',
   logo: LOGO,
