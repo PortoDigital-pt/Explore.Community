@@ -18,6 +18,7 @@ import DesktopView from './DesktopView';
 import ErrorBoundary from './ErrorBoundary';
 import { DesktopOrMobile } from '../util/withBreakpoint';
 import { addAnalyticsEvent, handleUserAnalytics } from '../util/analyticsUtils';
+import { MobileNavigationBar } from './amporto/mobile-navigation-bar';
 
 class TopLevel extends React.Component {
   static propTypes = {
@@ -152,6 +153,7 @@ class TopLevel extends React.Component {
       this.props.origin,
       this.context.config.indexPath,
     );
+
     if (this.props.children || !(this.props.map || this.props.header)) {
       content = this.props.children || this.props.content;
     } else {
@@ -202,6 +204,7 @@ class TopLevel extends React.Component {
             }
           >
             {content}
+            <MobileNavigationBar />
           </ErrorBoundary>
         </section>
       </Fragment>

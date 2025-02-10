@@ -10,7 +10,6 @@ import { matchShape } from 'found';
 import MapBottomsheetContext from './map/MapBottomsheetContext';
 import MobileFooter from './MobileFooter';
 import { isBrowser } from '../util/browser';
-import { MobileNavigationBar } from './amporto/mobile-navigation-bar';
 
 import {
   PREFIX_ROUTES,
@@ -187,7 +186,6 @@ const MobileView = forwardRef(
             <MobileFooter />
           </div>
         )}
-        <MobileNavigationBar />
       </div>
     );
   },

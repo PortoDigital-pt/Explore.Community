@@ -1,10 +1,14 @@
 import React from 'react';
+import classnames from 'classnames';
+import { string } from 'prop-types';
+// import { useRouter } from 'found';
 import { NavButton } from './button';
+import withBreakpoint from '../../../util/withBreakpoint';
 
 const NAVIGATION_PATHS = {
   EXPLORE: 'explore',
   NAVIGATE: 'navigate',
-  ITENERARIES: 'iteneraries',
+  ITINERARIES: 'itineraries',
   BLOCKS: 'blocks',
   FAVOURITES: 'favourites',
 };
@@ -14,13 +18,26 @@ const NAVIGATION_PATHS = {
 // need to match route for active
 // need to translate PT/EN
 
+const NavigationBar = ({ breakpoint }) => {
+  // const { match, router } = useRouter();
 
-export const MobileNavigationBar = () => (
-  <div className="navbar">
-    <div>
-      {Object.values(NAVIGATION_PATHS).map(path => (
-        <NavButton key={path} path={path} description={path} />
-      ))}
+  return (
+    <div
+      className={classnames('navbar', {
+        hide: breakpoint === 'large',
+      })}
+    >
+      <div>
+        {Object.values(NAVIGATION_PATHS).map(path => (
+          <NavButton key={path} path={path} description={path} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
+NavigationBar.propTypes = {
+  breakpoint: string.isRequired
+};
+
+export const MobileNavigationBar = withBreakpoint(NavigationBar);
