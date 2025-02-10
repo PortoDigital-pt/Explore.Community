@@ -2,9 +2,9 @@ const productionPlugins = [
   [
     'babel-plugin-transform-react-remove-prop-types',
     {
-      mode: 'unsafe-wrap',
-    },
-  ],
+      mode: 'unsafe-wrap'
+    }
+  ]
 ];
 
 module.exports = function bbl(api) {
@@ -14,16 +14,16 @@ module.exports = function bbl(api) {
       '@babel/preset-env',
       {
         bugfixes: true,
-        modules: 'auto',
-      },
+        modules: 'auto'
+      }
     ],
     [
       '@babel/preset-react',
       {
         development: process.env.NODE_ENV === 'development',
-        useBuiltIns: true,
-      },
-    ],
+        useBuiltIns: true
+      }
+    ]
   ];
   const plugins = [
     'relay',
@@ -35,16 +35,16 @@ module.exports = function bbl(api) {
       {
         helpers: true,
         regenerator: true,
-        useESModules: true,
-      },
+        useESModules: true
+      }
     ],
-    ['inline-react-svg'],
+    ['inline-react-svg']
   ];
   if (process.env.NODE_ENV === 'production') {
     plugins.push(...productionPlugins);
   }
   return {
     presets,
-    plugins,
+    plugins
   };
 };

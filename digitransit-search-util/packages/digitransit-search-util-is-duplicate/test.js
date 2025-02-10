@@ -13,9 +13,9 @@ describe('Testing @digitransit-util/digitransit-util-is-duplicate module', () =>
         label: 'TestLabel',
         address: 'TestAddress',
         geometry: {
-          coordinates: [33, 33],
-        },
-      },
+          coordinates: [33, 33]
+        }
+      }
     };
 
     const param2 = {
@@ -26,9 +26,9 @@ describe('Testing @digitransit-util/digitransit-util-is-duplicate module', () =>
         label: 'TestLabel',
         address: 'TestAddress',
         geometry: {
-          coordinates: [33, 33],
-        },
-      },
+          coordinates: [33, 33]
+        }
+      }
     };
     const retValue = isDuplicate(param1, param2);
     expect(retValue).to.be.equal(true);
@@ -43,9 +43,9 @@ describe('Testing @digitransit-util/digitransit-util-is-duplicate module', () =>
         label: 'TestLabel',
         address: 'TestAddress',
         geometry: {
-          coordinates: [33, 33],
-        },
-      },
+          coordinates: [33, 33]
+        }
+      }
     };
 
     const param2 = {
@@ -56,9 +56,9 @@ describe('Testing @digitransit-util/digitransit-util-is-duplicate module', () =>
         label: 'TestLabel',
         address: 'TestAddress',
         geometry: {
-          coordinates: [33, 33],
-        },
-      },
+          coordinates: [33, 33]
+        }
+      }
     };
     const retValue = isDuplicate(param1, param2);
     expect(retValue).to.be.equal(true);

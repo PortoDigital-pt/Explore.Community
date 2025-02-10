@@ -14,10 +14,10 @@ export default function Message({ labelId, defaultMessage }) {
 
 Message.propTypes = {
   labelId: PropTypes.string,
-  defaultMessage: PropTypes.string,
+  defaultMessage: PropTypes.string
 };
 
 Message.defaultProps = {
   labelId: undefined,
-  defaultMessage: undefined,
+  defaultMessage: undefined
 };

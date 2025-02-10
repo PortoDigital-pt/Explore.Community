@@ -21,5 +21,5 @@ export default function ItineraryPageTitle(props) {
 }
 
 ItineraryPageTitle.propTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };

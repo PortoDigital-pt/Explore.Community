@@ -25,7 +25,7 @@ function TripStopsContainer({ breakpoint, match, trip, route }) {
   }
 
   const tripStartTime = getStartTime(
-    trip.stoptimesForDate[0].scheduledDeparture,
+    trip.stoptimesForDate[0].scheduledDeparture
   );
 
   const handleScroll = () => {
@@ -37,7 +37,7 @@ function TripStopsContainer({ breakpoint, match, trip, route }) {
   return (
     <ScrollableWrapper
       className={cx('route-page-content', {
-        'bp-large': breakpoint === 'large',
+        'bp-large': breakpoint === 'large'
       })}
       id="trip-route-page-content"
       onScroll={debounce(handleScroll, 100, { leading: true })}
@@ -65,18 +65,18 @@ TripStopsContainer.propTypes = {
   trip: PropTypes.shape({
     stoptimesForDate: PropTypes.arrayOf(
       PropTypes.shape({
-        scheduledDeparture: PropTypes.number.isRequired,
-      }).isRequired,
-    ).isRequired,
+        scheduledDeparture: PropTypes.number.isRequired
+      }).isRequired
+    ).isRequired
   }),
   match: matchShape.isRequired,
   breakpoint: PropTypes.string.isRequired,
-  route: routeShape,
+  route: routeShape
 };
 
 TripStopsContainer.defaultProps = {
   trip: undefined,
-  route: undefined,
+  route: undefined
 };
 
 const pureComponent = pure(withBreakpoint(TripStopsContainer));
@@ -147,7 +147,7 @@ const containerComponent = createFragmentContainer(pureComponent, {
         }
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, TripStopsContainer as Component };

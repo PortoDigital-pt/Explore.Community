@@ -23,20 +23,20 @@ export default class Line extends React.Component {
     geometry: PropTypes.arrayOf(
       PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.arrayOf(PropTypes.number),
-      ]),
-    ).isRequired,
+        PropTypes.arrayOf(PropTypes.number)
+      ])
+    ).isRequired
   };
 
   static defaultProps = {
     thin: false,
     opaque: false,
     passive: false,
-    color: undefined,
+    color: undefined
   };
 
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   componentDidMount() {
@@ -71,14 +71,14 @@ export default class Line extends React.Component {
       this.props.mode,
       { thin: this.props.thin },
       { opaque: this.props.opaque },
-      'map-line',
+      'map-line'
     ]);
     let filteredPoints;
     if (this.props.geometry) {
       filteredPoints = this.props.geometry.filter(
         point =>
           (typeof point.lat === 'number' && typeof point.lon === 'number') ||
-          (typeof point[0] === 'number' && typeof point[1] === 'number'),
+          (typeof point[0] === 'number' && typeof point[1] === 'number')
       );
     }
 

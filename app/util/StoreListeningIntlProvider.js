@@ -12,7 +12,7 @@ export default connectToStores(
 
     return {
       locale: language,
-      messages: props.translations[language],
+      messages: props.translations[language]
     };
-  },
+  }
 );

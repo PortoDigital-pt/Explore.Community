@@ -17,31 +17,31 @@ class FilterTimeTableModal extends React.Component {
     setRoutes: PropTypes.func.isRequired,
     showFilterModal: PropTypes.func.isRequired,
     showRoutesList: PropTypes.arrayOf(PropTypes.string).isRequired,
-    breakpoint: PropTypes.string.isRequired,
+    breakpoint: PropTypes.string.isRequired
   };
 
   static contextTypes = {
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   constructor(props) {
     super(props);
     this.state = {
       showRoutes: this.props.showRoutesList,
-      allRoutes: this.props.showRoutesList.length === 0 && true,
+      allRoutes: this.props.showRoutesList.length === 0 && true
     };
   }
 
   toggleAllRoutes = () => {
     if (this.state.allRoutes === true) {
       this.setState({
-        allRoutes: false,
+        allRoutes: false
       });
       this.updateParent({ showRoutes: [] });
     } else {
       this.setState({
         allRoutes: true,
-        showRoutes: [],
+        showRoutes: []
       });
       this.updateParent({ showRoutes: [] });
     }
@@ -80,8 +80,8 @@ class FilterTimeTableModal extends React.Component {
             shortName: o.pattern.route.shortName,
             mode: o.pattern.route.mode,
             type: o.pattern.route.type,
-            agency: o.pattern.route.agency.name,
-          },
+            agency: o.pattern.route.agency.name
+          }
       )
       .filter(o => o)
       .sort(routeCompare);
@@ -97,15 +97,15 @@ class FilterTimeTableModal extends React.Component {
                 {
                   id: 'select-route',
                   defaultMessage:
-                    'Select {mode} route {shortName} to {headsign}',
+                    'Select {mode} route {shortName} to {headsign}'
                 },
                 {
                   mode: this.context.intl.formatMessage({
-                    id: mode.toLowerCase(),
+                    id: mode.toLowerCase()
                   }),
                   shortName: o.shortName,
-                  headsign: o.headsign,
-                },
+                  headsign: o.headsign
+                }
               )}
               checked={intersection(this.state.showRoutes, [o.code]).length > 0}
               aria-checked={
@@ -147,13 +147,13 @@ class FilterTimeTableModal extends React.Component {
             className={`route-number ${mode.toLowerCase()} ${cx({
               'overflow-fade':
                 (o.shortName ? o.shortName : o.agency) &&
-                (o.shortName ? o.shortName : o.agency).length > LONG_LINE_NAME,
+                (o.shortName ? o.shortName : o.agency).length > LONG_LINE_NAME
             })}`}
           >
             {o.shortName ? o.shortName : o.agency}
           </div>
           <div className="route-headsign">{o.headsign}</div>
-        </div>,
+        </div>
       );
     });
     return routeDivs;
@@ -165,7 +165,7 @@ class FilterTimeTableModal extends React.Component {
 
   updateParent(newOptions) {
     this.props.setRoutes({
-      showRoutes: newOptions.showRoutes,
+      showRoutes: newOptions.showRoutes
     });
   }
 
@@ -197,7 +197,7 @@ class FilterTimeTableModal extends React.Component {
               id="input-all-routes"
               aria-label={intl.formatMessage({
                 id: 'select-all-routes',
-                defaultMessage: 'Select all routes',
+                defaultMessage: 'Select all routes'
               })}
               checked={this.state.allRoutes}
               aria-checked={this.state.allRoutes}

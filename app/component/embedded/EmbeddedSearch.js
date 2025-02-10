@@ -9,13 +9,13 @@ import { configShape } from '../../util/shapes';
 import { getRefPoint } from '../../util/apiUtils';
 import {
   withSearchContext,
-  getLocationSearchTargets,
+  getLocationSearchTargets
 } from '../WithSearchContext';
 import {
   buildQueryString,
   buildURL,
   getPathWithEndpointObjects,
-  PREFIX_ITINERARY_SUMMARY,
+  PREFIX_ITINERARY_SUMMARY
 } from '../../util/path';
 import Icon from '../Icon';
 import Loading from '../Loading';
@@ -33,7 +33,7 @@ const translations = {
     'find-walk-route': 'Löydä kävelyreitti',
     'find-route': 'Löydä reitti',
     'search-fields-sr-instructions': '',
-    'search-route': 'Hae reitti',
+    'search-route': 'Hae reitti'
   },
   en: {
     'own-position': 'Your current location',
@@ -41,7 +41,7 @@ const translations = {
     'find-walk-route': 'Find a walking route',
     'find-route': 'Find a route',
     'search-fields-sr-instructions': '',
-    'search-route': 'Search routes',
+    'search-route': 'Search routes'
   },
   sv: {
     'own-position': 'Min position',
@@ -49,7 +49,7 @@ const translations = {
     'find-walk-route': 'Sök promenadrutt',
     'find-route': 'Sök rutt',
     'search-fields-sr-instructions': '',
-    'search-route': 'Söka rutter',
+    'search-route': 'Söka rutter'
   },
   pl: {
     'own-position': 'Twoja obecna lokalizacja',
@@ -57,16 +57,16 @@ const translations = {
     'find-walk-route': 'Znajdź trasę pieszo',
     'find-route': 'Znajdź trasę',
     'search-fields-sr-instructions': '',
-    'search-route': 'Znajdź trasę',
-  },
+    'search-route': 'Znajdź trasę'
+  }
 };
 
 i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 // test case: http://localhost:8080/haku?address2=Opastinsilta%206%20A,%20Helsinki&lat2=60.199118&lon2=24.940652&bikeOnly=1
@@ -95,7 +95,7 @@ const EmbeddedSearch = (props, context) => {
       i18next.addResourceBundle(
         language,
         'translation',
-        translations[language],
+        translations[language]
       );
     });
   });
@@ -105,7 +105,7 @@ const EmbeddedSearch = (props, context) => {
     lat: Number(query.lat1),
     lon: Number(query.lon1),
     address: query.address1,
-    name: query.address1,
+    name: query.address1
   };
   const useOriginLocation = query?.originLoc;
   const defaultDestinationExists = query.lat2 && query.lon2;
@@ -113,7 +113,7 @@ const EmbeddedSearch = (props, context) => {
     lat: Number(query.lat2),
     lon: Number(query.lon2),
     address: query.address2,
-    name: query.address2,
+    name: query.address2
   };
   const useDestinationLocation = query?.destinationLoc;
   const [logo, setLogo] = useState();
@@ -122,22 +122,22 @@ const EmbeddedSearch = (props, context) => {
       ? {
           type: 'CurrentLocation',
           status: 'no-location',
-          address: i18next.t('own-position'),
+          address: i18next.t('own-position')
         }
       : defaultOriginExists
         ? defaultOrigin
-        : {},
+        : {}
   );
   const [destination, setDestination] = useState(
     useDestinationLocation
       ? {
           type: 'CurrentLocation',
           status: 'no-location',
-          address: i18next.t('own-position'),
+          address: i18next.t('own-position')
         }
       : defaultDestinationExists
         ? defaultDestination
-        : {},
+        : {}
   );
   const [loading, setLoading] = useState(true);
 
@@ -147,22 +147,22 @@ const EmbeddedSearch = (props, context) => {
         ? {
             type: 'CurrentLocation',
             status: 'no-location',
-            address: i18next.t('own-position'),
+            address: i18next.t('own-position')
           }
         : defaultOriginExists
           ? defaultOrigin
-          : {},
+          : {}
     );
     setDestination(
       useDestinationLocation
         ? {
             type: 'CurrentLocation',
             status: 'no-location',
-            address: i18next.t('own-position'),
+            address: i18next.t('own-position')
           }
         : defaultDestinationExists
           ? defaultDestination
-          : {},
+          : {}
     );
   }, [query]);
 
@@ -190,7 +190,7 @@ const EmbeddedSearch = (props, context) => {
         category: 'EmbeddedSearch',
         action: 'setOrigin',
         name: url,
-        origin: item.address,
+        origin: item.address
       });
       setOrigin(item);
     } else {
@@ -198,7 +198,7 @@ const EmbeddedSearch = (props, context) => {
         category: 'EmbeddedSearch',
         action: 'setDestination',
         name: url,
-        destination: item.address,
+        destination: item.address
       });
       setDestination(item);
       if (origin) {
@@ -227,7 +227,7 @@ const EmbeddedSearch = (props, context) => {
     modeSet: config.iconModeSet,
     isMobile: true,
     showScroll: true,
-    isEmbedded: true,
+    isEmbedded: true
   };
 
   const mode = bikeOnly ? 'bike' : walkOnly ? 'walk' : 'all';
@@ -235,7 +235,7 @@ const EmbeddedSearch = (props, context) => {
   const utmCampaignParams = useUTMCampaignParams({
     mode,
     hasOrigin: Boolean(defaultOriginExists),
-    hasDest: Boolean(defaultDestinationExists),
+    hasDest: Boolean(defaultDestinationExists)
   });
 
   const executeSearch = () => {
@@ -244,7 +244,7 @@ const EmbeddedSearch = (props, context) => {
     const targetUrl = buildURL([
       lang,
       getPathWithEndpointObjects(origin, destination, PREFIX_ITINERARY_SUMMARY),
-      urlEnd,
+      urlEnd
     ]);
 
     targetUrl.search += buildQueryString(utmCampaignParams);
@@ -255,7 +255,7 @@ const EmbeddedSearch = (props, context) => {
       name: url,
       mode,
       origin: origin?.address,
-      destination: destination?.address,
+      destination: destination?.address
     });
     window.open(targetUrl.href, '_blank');
   };
@@ -351,11 +351,11 @@ const EmbeddedSearch = (props, context) => {
 };
 
 EmbeddedSearch.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 EmbeddedSearch.propTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 export default EmbeddedSearch;

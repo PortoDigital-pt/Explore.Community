@@ -7,23 +7,23 @@ const events = {
   timeout: {
     type: 'info',
     persistence: 'repeat',
-    priority: 2,
+    priority: 2
   },
   denied: {
     type: 'info',
     persistence: 'repeat', // TODO: enabled for testing. Probably to be shown only once.
-    priority: 3,
+    priority: 3
   },
   failed: {
     type: 'error',
     persistence: 'repeat',
-    priority: 4,
+    priority: 4
   },
   prompt: {
     type: 'info',
     persistence: 'repeat',
-    priority: 2,
-  },
+    priority: 2
+  }
 };
 
 Object.keys(events).forEach(e => {
@@ -33,7 +33,7 @@ Object.keys(events).forEach(e => {
     icon: 'caution_white_exclamation',
     iconColor: '#dc0451',
     backgroundColor: '#fdf0f5',
-    content: {},
+    content: {}
   };
 
   // assemble multilanguage contents
@@ -48,7 +48,7 @@ Object.keys(events).forEach(e => {
       if (section) {
         message.content[lang].push({
           type: s,
-          content: section,
+          content: section
         });
       }
     });

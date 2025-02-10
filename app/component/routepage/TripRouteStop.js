@@ -31,7 +31,7 @@ const TripRouteStop = (props, { config }) => {
     keepTracking,
     first,
     last,
-    prevStop,
+    prevStop
   } = props;
 
   const getVehiclePatternLink = vehicle => {
@@ -42,7 +42,7 @@ const TripRouteStop = (props, { config }) => {
     const vehicleTime = vehicle.timestamp * 1000;
     const distanceToStop = estimateItineraryDistance(stop, {
       lat: vehicle.lat,
-      lon: vehicle.long,
+      lon: vehicle.long
     });
 
     const vehicleState = getVehicleState(
@@ -52,15 +52,15 @@ const TripRouteStop = (props, { config }) => {
       arrivalTimeToStop,
       departureTimeFromStop,
       first,
-      last,
+      last
     );
     const vehicleWithParsedShortname = {
       ...vehicle,
       shortName:
         vehicle.shortName &&
         config.realTime[vehicle.route?.split(':')[0]].vehicleNumberParser(
-          vehicle.shortName,
-        ),
+          vehicle.shortName
+        )
     };
     const linkProps = {
       stopName: vehicleState === 'arriving' ? prevStop?.name : stop.name,
@@ -74,7 +74,7 @@ const TripRouteStop = (props, { config }) => {
       color: !stopPassed ? vehicle.color : '',
       setHumanScrolling,
       keepTracking,
-      vehicleState,
+      vehicleState
     };
     return (
       <div className={cx('route-stop-now', vehicleState)} key={vehicle.id}>
@@ -98,15 +98,14 @@ const TripRouteStop = (props, { config }) => {
   const vehicles =
     props.vehicles &&
     props.vehicles.map(
-      vehicle =>
-        vehicle.route === props.route && getVehiclePatternLink(vehicle),
+      vehicle => vehicle.route === props.route && getVehiclePatternLink(vehicle)
     );
   return (
     <div
       className={cx(
         'route-stop location-details_container',
         { passed: stopPassed },
-        className,
+        className
       )}
     >
       {vehicles}
@@ -148,7 +147,7 @@ const TripRouteStop = (props, { config }) => {
                     className="inline-icon"
                     severityLevel={getActiveAlertSeverityLevel(
                       stop.alerts,
-                      currentTime,
+                      currentTime
                     )}
                   />
                 </div>
@@ -189,18 +188,18 @@ TripRouteStop.propTypes = {
     desc: PropTypes.string,
     gtfsId: PropTypes.string,
     alerts: PropTypes.arrayOf(alertShape),
-    zoneId: PropTypes.string,
+    zoneId: PropTypes.string
   }).isRequired,
   nextStop: PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.string
   }),
   prevStop: PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.string
   }),
   stoptime: PropTypes.shape({
     realtimeDeparture: PropTypes.number,
     realtimeArrival: PropTypes.number,
-    serviceDay: PropTypes.number,
+    serviceDay: PropTypes.number
   }).isRequired,
   currentTime: PropTypes.number.isRequired,
   pattern: PropTypes.string.isRequired,
@@ -211,7 +210,7 @@ TripRouteStop.propTypes = {
   setHumanScrolling: PropTypes.func.isRequired,
   keepTracking: PropTypes.bool,
   first: PropTypes.bool,
-  last: PropTypes.bool,
+  last: PropTypes.bool
 };
 
 TripRouteStop.defaultProps = {
@@ -224,11 +223,11 @@ TripRouteStop.defaultProps = {
   nextStop: null,
   prevStop: null,
   shortName: undefined,
-  selectedVehicle: undefined,
+  selectedVehicle: undefined
 };
 
 TripRouteStop.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 TripRouteStop.displayName = 'TripRouteStop';

@@ -41,7 +41,7 @@ const InterlineInfo = ({ legs, leg, usingOwnCarWholeTrip }) => {
                 <span className="bold no-wrap">
                   {durationToString(totalWait)}
                 </span>
-              ),
+              )
             }}
           />
         </>
@@ -61,7 +61,7 @@ const InterlineInfo = ({ legs, leg, usingOwnCarWholeTrip }) => {
                 <span className="bold">
                   {Array.from(new Set(routes)).join(', ')}
                 </span>
-              ),
+              )
             }}
           />
         </>
@@ -73,6 +73,6 @@ const InterlineInfo = ({ legs, leg, usingOwnCarWholeTrip }) => {
 InterlineInfo.propTypes = {
   leg: legShape.isRequired,
   legs: PropTypes.arrayOf(legShape).isRequired,
-  usingOwnCarWholeTrip: PropTypes.bool.isRequired,
+  usingOwnCarWholeTrip: PropTypes.bool.isRequired
 };
 export default InterlineInfo;

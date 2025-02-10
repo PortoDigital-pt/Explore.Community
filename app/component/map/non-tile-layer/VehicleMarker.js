@@ -5,7 +5,7 @@ import { TransportMode } from '../../../constants';
 import {
   vehicleRentalStationShape,
   rentalVehicleShape,
-  configShape,
+  configShape
 } from '../../../util/shapes';
 import Icon from '../../Icon';
 import GenericMarker from '../GenericMarker';
@@ -13,12 +13,12 @@ import {
   BIKEAVL_UNKNOWN,
   getRentalNetworkConfig,
   getRentalNetworkIcon,
-  getVehicleCapacity,
+  getVehicleCapacity
 } from '../../../util/vehicleRentalUtils';
 import { isBrowser } from '../../../util/browser';
 import {
   getVehicleAvailabilityIndicatorColor,
-  getVehicleAvailabilityTextColor,
+  getVehicleAvailabilityTextColor
 } from '../../../util/legUtils';
 
 import { PREFIX_BIKESTATIONS, PREFIX_RENTALVEHICLES } from '../../../util/path';
@@ -49,17 +49,17 @@ export default class VehicleMarker extends React.Component {
     rental: PropTypes.oneOfType([vehicleRentalStationShape, rentalVehicleShape])
       .isRequired,
     transit: PropTypes.bool,
-    mode: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired
   };
 
   static contextTypes = {
     config: configShape.isRequired,
-    router: routerShape.isRequired,
+    router: routerShape.isRequired
   };
 
   static defaultProps = {
     showBikeAvailability: false,
-    transit: false,
+    transit: false
   };
 
   handleClick = (id, prefix) => {
@@ -71,14 +71,14 @@ export default class VehicleMarker extends React.Component {
     const { config } = this.context;
     const vehicleCapacity = getVehicleCapacity(config, rental?.network);
     const iconName = `${getRentalNetworkIcon(
-      getRentalNetworkConfig(rental.network, config),
+      getRentalNetworkConfig(rental.network, config)
     )}-lollipop`;
 
     return !transit && zoom <= config.stopsSmallMaxZoom
       ? L.divIcon({
           html: smallIconSvg,
           iconSize: [8, 8],
-          className: 'citybike cursor-pointer',
+          className: 'citybike cursor-pointer'
         })
       : L.divIcon({
           iconAnchor: [15, 40],
@@ -88,23 +88,23 @@ export default class VehicleMarker extends React.Component {
                 className: 'city-bike-medium-size',
                 badgeFill: getVehicleAvailabilityIndicatorColor(
                   rental?.availableVehicles?.total,
-                  config,
+                  config
                 ),
                 badgeTextFill: getVehicleAvailabilityTextColor(
                   rental?.availableVehicles?.total,
-                  config,
+                  config
                 ),
                 badgeText:
                   vehicleCapacity !== BIKEAVL_UNKNOWN
                     ? rental?.availableVehicles?.total
-                    : null,
+                    : null
               })
             : Icon.asString({
                 img: iconName,
-                className: 'city-bike-medium-size',
+                className: 'city-bike-medium-size'
               }),
           iconSize: [20, 20],
-          className: 'citybike cursor-pointer',
+          className: 'citybike cursor-pointer'
         });
   };
 
@@ -116,14 +116,14 @@ export default class VehicleMarker extends React.Component {
       <GenericMarker
         position={{
           lat: this.props.rental?.lat,
-          lon: this.props.rental?.lon,
+          lon: this.props.rental?.lon
         }}
         onClick={() =>
           this.handleClick(
             this.props.rental.id,
             this.props.mode === TransportMode.Scooter
               ? PREFIX_RENTALVEHICLES
-              : PREFIX_BIKESTATIONS,
+              : PREFIX_BIKESTATIONS
           )
         }
         getIcon={this.getIcon}

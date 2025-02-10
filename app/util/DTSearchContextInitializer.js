@@ -3,7 +3,7 @@ import {
   getRoutesQuery,
   getStopAndStationsQuery,
   getFavouriteRoutesQuery,
-  getFavouriteVehicleRentalStationsQuery,
+  getFavouriteVehicleRentalStationsQuery
   // getAllVehicleRentalStations,  // Bike stations are fetched from Geocoding
 } from '@digitransit-search-util/digitransit-search-util-query-utils';
 import {
@@ -16,7 +16,7 @@ import {
   clearOldSearches,
   getFutureRoutes,
   clearFutureRoutes,
-  getFavouriteVehicleRentalStations,
+  getFavouriteVehicleRentalStations
 } from './storeUtils';
 import { startLocationWatch } from '../action/PositionActions';
 import { saveSearch } from '../action/SearchActions';
@@ -40,7 +40,7 @@ export default function intializeSearchContext(context, searchContext) {
   searchContext.feedIDs = config.feedIds;
   searchContext.cityBikeNetworks = useCitybikes(
     config.vehicleRental.networks,
-    config,
+    config
   )
     ? getDefaultNetworks(config).map(t => `citybikes${t}`)
     : [];

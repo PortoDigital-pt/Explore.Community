@@ -15,7 +15,7 @@ export default function CarLeg(props, { config, intl }) {
   const distance = displayDistance(
     parseInt(props.leg.distance, 10),
     config,
-    intl.formatNumber,
+    intl.formatNumber
   );
   const duration = durationToString(props.leg.duration * 1000);
   const firstLegClassName = props.index === 0 ? 'first' : '';
@@ -49,7 +49,7 @@ export default function CarLeg(props, { config, intl }) {
             to: legDestination(intl, props.leg),
             origin: props.leg.from ? props.leg.from.name : '',
             destination: props.leg.to ? props.leg.to.name : '',
-            duration,
+            duration
           }}
         />
       </span>
@@ -93,7 +93,7 @@ export default function CarLeg(props, { config, intl }) {
             className={cx(
               'itinerary-leg-action',
               'car',
-              'itinerary-leg-action-content',
+              'itinerary-leg-action-content'
             )}
           >
             <FormattedMessage
@@ -103,7 +103,7 @@ export default function CarLeg(props, { config, intl }) {
                   <FormattedMessage
                     id={`from-${props.carBoardingLeg.from.stop.vehicleMode.toLowerCase()}`}
                   />
-                ),
+                )
               }}
             />
             <ItineraryMapAction
@@ -132,7 +132,7 @@ export default function CarLeg(props, { config, intl }) {
             className={cx(
               'itinerary-leg-action',
               'car',
-              'itinerary-leg-action-content',
+              'itinerary-leg-action-content'
             )}
           >
             <FormattedMessage
@@ -142,7 +142,7 @@ export default function CarLeg(props, { config, intl }) {
                   <FormattedMessage
                     id={`to-${props.carBoardingLeg.to.stop?.vehicleMode.toLowerCase()}`}
                   />
-                ),
+                )
               }}
             />
             <ItineraryMapAction
@@ -162,12 +162,12 @@ CarLeg.propTypes = {
   focusAction: PropTypes.func.isRequired,
   focusToLeg: PropTypes.func.isRequired,
   children: PropTypes.node,
-  carBoardingLeg: legShape,
+  carBoardingLeg: legShape
 };
 
 CarLeg.defaultProps = { children: undefined, carBoardingLeg: undefined };
 
 CarLeg.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };

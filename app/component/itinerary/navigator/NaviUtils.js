@@ -104,7 +104,7 @@ export function pathProgress(pos, geom) {
   const { dx, dy } = vSub(geom[minI + 1], geom[minI]);
   const projected = {
     x: geom[minI].x + minF * dx,
-    y: geom[minI].y + minF * dy,
+    y: geom[minI].y + minF * dy
   };
 
   return { projected, distance: dst, traversed };
@@ -149,7 +149,7 @@ function findTransferProblems(legs, time, position, origin) {
           fromLeg: prev,
           toLeg: leg,
           duration,
-          slack: duration,
+          slack: duration
         });
       }
     }
@@ -166,7 +166,7 @@ function findTransferProblems(legs, time, position, origin) {
           transfers.push({
             severity: 'ALERT',
             fromLeg: prev,
-            toLeg: next,
+            toLeg: next
           });
         } else {
           const legDuration = leg.duration * 1000; // this is original duration
@@ -200,7 +200,7 @@ function findTransferProblems(legs, time, position, origin) {
               severity,
               fromLeg: prev,
               toLeg: next,
-              duration,
+              duration
             });
           } else {
             if (atStop) {
@@ -211,7 +211,7 @@ function findTransferProblems(legs, time, position, origin) {
               fromLeg: prev,
               toLeg: next,
               duration,
-              slack,
+              slack
             });
           }
         }
@@ -224,14 +224,14 @@ function findTransferProblems(legs, time, position, origin) {
 export const getLocalizedMode = (mode, intl) => {
   return intl.formatMessage({
     id: `${mode.toLowerCase()}`,
-    defaultMessage: `${mode}`,
+    defaultMessage: `${mode}`
   });
 };
 
 export const getToLocalizedMode = (mode, intl) => {
   return intl.formatMessage({
     id: `to-${mode.toLowerCase()}`,
-    defaultMessage: `${mode}`,
+    defaultMessage: `${mode}`
   });
 };
 
@@ -241,7 +241,7 @@ export const getAdditionalMessages = (
   firstLeg,
   time,
   config,
-  messages,
+  messages
 ) => {
   const msgs = [];
   const closed = messages.get('ticket')?.closed;
@@ -265,7 +265,7 @@ export const getAdditionalMessages = (
             </span>
           </div>
         ),
-        id: 'ticket',
+        id: 'ticket'
       });
     }
   }
@@ -321,7 +321,7 @@ export const getTransitLegState = (leg, intl, messages, time) => {
           values={{
             route: shortName,
             time: timeStr(scheduledTime),
-            mode: localizedMode,
+            mode: localizedMode
           }}
         />
       </div>
@@ -350,7 +350,7 @@ export const getTransitLegState = (leg, intl, messages, time) => {
           values={{
             time: <span className="realtime">{timeStr(estimated.time)}</span>,
             stopOrStation,
-            stopName: name,
+            stopName: name
           }}
         />
       </div>
@@ -364,7 +364,7 @@ export function itinerarySearchPath(time, leg, nextLeg, position, to) {
   let from;
   if (leg?.transitLeg) {
     from = leg.intermediatePlaces.find(
-      p => legTime(p.arrival) > time + TRANSFER_SLACK,
+      p => legTime(p.arrival) > time + TRANSFER_SLACK
     );
     if (!from) {
       from = leg.to;
@@ -404,7 +404,7 @@ export const getItineraryAlerts = (
   origin,
   intl,
   messages,
-  itinerarySearchCallback,
+  itinerarySearchCallback
 ) => {
   const alerts = [];
   legs.forEach(leg => {
@@ -429,7 +429,7 @@ export const getItineraryAlerts = (
                 </span>
               </div>
             ),
-            id,
+            id
           });
         }
       }
@@ -437,7 +437,7 @@ export const getItineraryAlerts = (
   });
 
   const canceled = legs.filter(
-    leg => leg.realtimeState === 'CANCELED' && legTime(leg.start) > time,
+    leg => leg.realtimeState === 'CANCELED' && legTime(leg.start) > time
   );
 
   if (canceled.length) {
@@ -470,7 +470,7 @@ export const getItineraryAlerts = (
           content,
           id: `canceled-${legId}`,
           hideClose: true,
-          expiresOn: alert.effectiveEndDate * 1000,
+          expiresOn: alert.effectiveEndDate * 1000
         });
       }
     });
@@ -492,11 +492,11 @@ export const getItineraryAlerts = (
                   id="navigation-transfer-problem"
                   values={{
                     route1: prob.fromLeg.route.shortName,
-                    route2: prob.toLeg.route.shortName,
+                    route2: prob.toLeg.route.shortName
                   }}
                 />
               </span>,
-              itinerarySearchCallback,
+              itinerarySearchCallback
             );
           } else {
             content = (
@@ -508,7 +508,7 @@ export const getItineraryAlerts = (
                   id="navigation-hurry-transfer-value"
                   values={{
                     transfer: `${prob.fromLeg.route.shortName} - ${prob.toLeg.route.shortName}`,
-                    time: durationToString(prob.duration),
+                    time: durationToString(prob.duration)
                   }}
                 />
               </div>
@@ -520,7 +520,7 @@ export const getItineraryAlerts = (
             content,
             id: transferId,
             hideClose: prob.severity === 'ALERT',
-            expiresOn: legTime(prob.toLeg.start),
+            expiresOn: legTime(prob.toLeg.start)
           });
         }
       }
@@ -542,13 +542,13 @@ export const getItineraryAlerts = (
                     id="navigation-hurry-transfer-solved-details"
                     values={{
                       transfer: `${tr.fromLeg.route.shortName} - ${tr.toLeg.route.shortName}`,
-                      time: durationToString(tr.duration),
+                      time: durationToString(tr.duration)
                     }}
                   />
                 </div>
               ),
               id,
-              expiresOn: legTime(tr.toLeg.start),
+              expiresOn: legTime(tr.toLeg.start)
             });
           }
         }
@@ -567,7 +567,7 @@ export const getDestinationProperties = (
   vehicleParking,
   vehicleRentalStation,
   stop,
-  config,
+  config
 ) => {
   const { routes, vehicleMode } = stop;
   let destination = {};
@@ -594,48 +594,48 @@ export const getDestinationProperties = (
       case 'TRAM,BUS':
         iconProps = {
           iconId: 'icon-icon_bustram-stop-lollipop',
-          className: 'tram-stop',
+          className: 'tram-stop'
         };
         break;
       case 'SUBWAY':
         iconProps = {
           iconId: 'icon-icon_subway',
-          className: 'subway-stop',
+          className: 'subway-stop'
         };
         break;
       case 'RAIL':
         iconProps = {
           iconId: 'icon-icon_rail-stop-lollipop',
-          className: 'rail-stop',
+          className: 'rail-stop'
         };
 
         break;
       case 'FERRY':
         iconProps = {
           iconId: 'icon-icon_ferry',
-          className: 'ferry-stop',
+          className: 'ferry-stop'
         };
         break;
       case 'bus-express':
         iconProps = {
           iconId: 'icon-icon_bus-stop-express-lollipop',
-          className: 'bus-stop',
+          className: 'bus-stop'
         };
         break;
       case 'speedtram':
         iconProps = {
           iconId: 'icon-icon_speedtram-stop-lollipop',
-          className: 'speedtram-stop',
+          className: 'speedtram-stop'
         };
         break;
       default:
         iconProps = {
-          iconId: `icon-icon_${mode.toLowerCase()}-stop-lollipop`,
+          iconId: `icon-icon_${mode.toLowerCase()}-stop-lollipop`
         };
     }
     destination = {
       ...iconProps,
-      name: stop.name,
+      name: stop.name
     };
   }
 
@@ -648,5 +648,5 @@ export const LEGTYPE = {
   TRANSIT: 'TRANSIT',
   PENDING: 'PENDING',
   END: 'END',
-  WAIT_IN_VEHICLE: 'WAIT_IN_VEHICLE',
+  WAIT_IN_VEHICLE: 'WAIT_IN_VEHICLE'
 };

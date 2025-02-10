@@ -9,7 +9,7 @@ const secondaryButton = (props, context) => {
   const className = cx([
     'secondary-button',
     props.buttonName,
-    { small: props.smallSize },
+    { small: props.smallSize }
   ]);
   return (
     <button
@@ -17,7 +17,7 @@ const secondaryButton = (props, context) => {
       className={className}
       aria-label={context.intl.formatMessage({
         id: props.ariaLabel,
-        defaultMessage: props.ariaLabel,
+        defaultMessage: props.ariaLabel
       })}
       onClick={e => props.buttonClickAction(e)}
     >
@@ -35,11 +35,11 @@ secondaryButton.propTypes = {
   buttonName: PropTypes.string.isRequired,
   buttonClickAction: PropTypes.func.isRequired,
   buttonIcon: PropTypes.string,
-  smallSize: PropTypes.bool,
+  smallSize: PropTypes.bool
 };
 
 secondaryButton.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default secondaryButton;

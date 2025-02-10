@@ -12,7 +12,7 @@ function handleSecurityError(error, logMessage) {
 
 export const getLocalStorage = (
   runningInBrowser,
-  errorHandler = handleSecurityError,
+  errorHandler = handleSecurityError
 ) => {
   if (runningInBrowser) {
     try {
@@ -36,13 +36,13 @@ function setItem(key, value) {
         // eslint-disable-next-line no-console
         console.log(
           '[localStorage]' + // eslint-disable-line no-console
-            ' Unable to save state; localStorage is not available in Safari private mode',
+            ' Unable to save state; localStorage is not available in Safari private mode'
         );
       } else {
         handleSecurityError(
           error,
           '[localStorage]' +
-            ' Unable to save state; access to localStorage denied by browser settings',
+            ' Unable to save state; access to localStorage denied by browser settings'
         );
       }
     }
@@ -87,7 +87,7 @@ export function getCustomizedSettings() {
   // remove outdated settings
   if (settings.modes) {
     settings.modes = settings.modes.filter(
-      mode => mode !== 'CITYBIKE' && mode !== 'SCOOTER',
+      mode => mode !== 'CITYBIKE' && mode !== 'SCOOTER'
     );
   }
   return settings;
@@ -106,53 +106,53 @@ export function setCustomizedSettings(data) {
   const newSettings = {
     accessibilityOption: getNumberValueOrDefault(
       data.accessibilityOption,
-      oldSettings.accessibilityOption,
+      oldSettings.accessibilityOption
     ),
     bikeSpeed: getNumberValueOrDefault(data.bikeSpeed, oldSettings.bikeSpeed),
     modes: getValueOrDefault(data.modes, oldSettings.modes),
     ticketTypes: getValueOrDefault(data.ticketTypes, oldSettings.ticketTypes),
     walkBoardCost: getNumberValueOrDefault(
       data.walkBoardCost,
-      oldSettings.walkBoardCost,
+      oldSettings.walkBoardCost
     ),
     transferPenalty: getNumberValueOrDefault(
       data.transferPenalty,
-      oldSettings.transferPenalty,
+      oldSettings.transferPenalty
     ),
     walkReluctance: getNumberValueOrDefault(
       data.walkReluctance,
-      oldSettings.walkReluctance,
+      oldSettings.walkReluctance
     ),
     walkSpeed: getNumberValueOrDefault(data.walkSpeed, oldSettings.walkSpeed),
     allowedBikeRentalNetworks: getValueOrDefault(
       data.allowedBikeRentalNetworks,
-      oldSettings.allowedBikeRentalNetworks,
+      oldSettings.allowedBikeRentalNetworks
     ),
     scooterNetworks: getValueOrDefault(
       data.scooterNetworks,
-      oldSettings.scooterNetworks,
+      oldSettings.scooterNetworks
     ),
     includeBikeSuggestions: getValueOrDefault(
       data.includeBikeSuggestions,
-      oldSettings.includeBikeSuggestions,
+      oldSettings.includeBikeSuggestions
     ),
     includeCarSuggestions: getValueOrDefault(
       data.includeCarSuggestions,
-      oldSettings.includeCarSuggestions,
+      oldSettings.includeCarSuggestions
     ),
     includeParkAndRideSuggestions: getValueOrDefault(
       data.includeParkAndRideSuggestions,
-      oldSettings.includeParkAndRideSuggestions,
+      oldSettings.includeParkAndRideSuggestions
     ),
     showBikeAndParkItineraries: getValueOrDefault(
       data.showBikeAndParkItineraries,
-      oldSettings.showBikeAndParkItineraries,
-    ),
+      oldSettings.showBikeAndParkItineraries
+    )
   };
   if (newSettings.modes) {
     // cleanup
     newSettings.modes = newSettings.modes.filter(
-      mode => mode !== 'CITYBIKE' && mode !== 'SCOOTER',
+      mode => mode !== 'CITYBIKE' && mode !== 'SCOOTER'
     );
   }
   setItem('customizedSettings', newSettings);
@@ -206,8 +206,8 @@ export function getOldSearchesStorage() {
   return {
     ...storage,
     items: storage.items.filter(
-      search => search.item.address !== 'SelectFromMap',
-    ),
+      search => search.item.address !== 'SelectFromMap'
+    )
   };
 }
 
@@ -283,7 +283,7 @@ export function setSavedGeolocationPermission(key, value) {
   const geolocationPermissions = getSavedGeolocationPermission();
   setItem('geolocationPermission', {
     ...geolocationPermissions,
-    [key]: value,
+    [key]: value
   });
 }
 

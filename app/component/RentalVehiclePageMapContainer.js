@@ -18,11 +18,11 @@ const RentalVehiclePageMapContainer = ({ rentalVehicle }) => {
 };
 
 RentalVehiclePageMapContainer.propTypes = {
-  rentalVehicle: rentalVehicleShape,
+  rentalVehicle: rentalVehicleShape
 };
 
 RentalVehiclePageMapContainer.defaultProps = {
-  rentalVehicle: undefined,
+  rentalVehicle: undefined
 };
 
 const containerComponent = createFragmentContainer(
@@ -34,11 +34,11 @@ const containerComponent = createFragmentContainer(
         lon
         name
       }
-    `,
-  },
+    `
+  }
 );
 
 export {
   containerComponent as default,
-  RentalVehiclePageMapContainer as Component,
+  RentalVehiclePageMapContainer as Component
 };

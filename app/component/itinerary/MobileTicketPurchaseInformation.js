@@ -8,7 +8,7 @@ import { addAnalyticsEvent } from '../../util/analyticsUtils';
 
 export default function MobileTicketPurchaseInformation(
   { fares, zones },
-  { config, intl },
+  { config, intl }
 ) {
   if (fares.length === 0) {
     return null;
@@ -17,7 +17,7 @@ export default function MobileTicketPurchaseInformation(
   const alternativeFares = getAlternativeFares(
     zones,
     !fare.isUnknown,
-    config.availableTickets,
+    config.availableTickets
   );
   const price =
     config.showTicketPrice && fare.price > 0 ? formatFare(fare) : '';
@@ -25,7 +25,7 @@ export default function MobileTicketPurchaseInformation(
   const faresInfo = () => {
     const header = `${intl.formatMessage({
       id: 'itinerary-ticket.title',
-      defaultMessage: 'Required ticket',
+      defaultMessage: 'Required ticket'
     })}:`;
     return (
       <div className="ticket-container">
@@ -34,7 +34,7 @@ export default function MobileTicketPurchaseInformation(
             id="mobile-ticket-purchase-aria"
             values={{
               ticketName: fare.ticketName,
-              price,
+              price
             }}
             defaultMessage="Mobile ticket purchase information. Buy {ticketName} for {price}"
           />
@@ -74,17 +74,17 @@ export default function MobileTicketPurchaseInformation(
 }
 MobileTicketPurchaseInformation.propTypes = {
   fares: PropTypes.arrayOf(fareShape),
-  zones: PropTypes.arrayOf(PropTypes.string),
+  zones: PropTypes.arrayOf(PropTypes.string)
 };
 
 MobileTicketPurchaseInformation.defaultProps = {
   fares: [],
-  zones: [],
+  zones: []
 };
 
 MobileTicketPurchaseInformation.contextTypes = {
   config: configShape,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 MobileTicketPurchaseInformation.displayName = 'TicketInformation';

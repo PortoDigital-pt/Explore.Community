@@ -6,14 +6,14 @@ import { ReactRelayContext } from 'react-relay';
 
 import {
   shallowWithIntl,
-  mountWithIntl,
+  mountWithIntl
 } from '../../../helpers/mock-intl-enzyme';
 import {
   mockChildContextTypes,
-  mockContext,
+  mockContext
 } from '../../../helpers/mock-context';
 import TileLayerContainer, {
-  Component,
+  Component
 } from '../../../../../app/component/map/tile-layer/TileLayerContainer';
 import * as analytics from '../../../../../app/util/analyticsUtils';
 
@@ -23,7 +23,7 @@ describe('<TileLayerContainer />', () => {
       tileSize: 512,
       zoomOffset: -1,
       mapLayers: { stop: {}, terminal: {} },
-      lang: 'fi',
+      lang: 'fi'
     };
     const wrapper = mountWithIntl(
       <LeafletProvider
@@ -36,10 +36,10 @@ describe('<TileLayerContainer />', () => {
             openPopup: () => {},
             options: {
               maxZoom: 16,
-              minZoom: 10,
+              minZoom: 10
             },
-            removeEventParent: () => {},
-          },
+            removeEventParent: () => {}
+          }
         }}
       >
         <ReactRelayContext.Provider value={{ environment: {} }}>
@@ -54,17 +54,17 @@ describe('<TileLayerContainer />', () => {
             getCurrentTime: () => ({ unix: () => 123457890 }),
             getMapLayers: () => ({
               stop: {},
-              terminal: {},
+              terminal: {}
             }),
             getLanguage: () => 'fi',
-            on: () => {},
-          }),
+            on: () => {}
+          })
         },
         childContextTypes: {
           ...mockChildContextTypes,
-          leaflet: PropTypes.func,
-        },
-      },
+          leaflet: PropTypes.func
+        }
+      }
     );
     wrapper.find(Component).setState({
       selectableTargets: [
@@ -80,20 +80,20 @@ describe('<TileLayerContainer />', () => {
               patterns:
                 '"[{"headsign":"Otaniemi","type":"BUS","shortName":"552"}]"',
               platform: 'null',
-              type: 'BUS',
-            },
+              type: 'BUS'
+            }
           },
           coords: {
             lat: 60.192229421528765,
-            lng: 24.87814038991928,
+            lng: 24.87814038991928
           },
-          showSpinner: true,
-        },
-      ],
+          showSpinner: true
+        }
+      ]
     });
 
     expect(wrapper.find('.popup').at(0).prop('onClose')).to.not.equal(
-      undefined,
+      undefined
     );
   });
   it('should call addAnalyticsEvent on open', () => {
@@ -107,10 +107,10 @@ describe('<TileLayerContainer />', () => {
           addEventParent: () => null,
           closePopup: () => null,
           removeEventParent: () => null,
-          options: { maxZoom: null, minZoom: null },
-        },
+          options: { maxZoom: null, minZoom: null }
+        }
       },
-      lang: 'fi',
+      lang: 'fi'
     };
     const spy = sinon.spy(analytics, 'addAnalyticsEvent');
     const wrapper = shallowWithIntl(
@@ -123,13 +123,13 @@ describe('<TileLayerContainer />', () => {
             getCurrentTime: () => ({ unix: () => 123457890 }),
             getMapLayers: () => ({
               stop: {},
-              terminal: {},
+              terminal: {}
             }),
-            on: () => {},
+            on: () => {}
           }),
-          config: { CONFIG: 'default', vehicleRental: {} },
-        },
-      },
+          config: { CONFIG: 'default', vehicleRental: {} }
+        }
+      }
     );
     wrapper.setState({ selectableTargets: [{ feature: { properties: {} } }] });
     wrapper.prop('onOpen')();

@@ -14,7 +14,7 @@ const SplitBars = ({ children }) => {
 SplitBars.displayName = 'SplitBars';
 
 SplitBars.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default SplitBars;

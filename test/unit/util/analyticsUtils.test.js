@@ -1,7 +1,7 @@
 import {
   addAnalyticsEvent,
   getAnalyticsInitCode,
-  initAnalyticsClientSide,
+  initAnalyticsClientSide
 } from '../../../app/util/analyticsUtils';
 
 describe('analytics utils', () => {
@@ -35,14 +35,14 @@ describe('analytics utils', () => {
     it('should return an empty string when null GTMid and no analyticsScript is given', () => {
       const res = getAnalyticsInitCode(
         { GTMid: null, analyticsScript: '' },
-        'hostname',
+        'hostname'
       );
       expect(res.length).to.equal(0);
     });
     it('should return a nonempty string when analyticsScript and hostname are given', () => {
       const res = getAnalyticsInitCode(
         { analyticsScript: () => 'test' },
-        'hostname',
+        'hostname'
       );
       expect(res.length > 0).to.equal(true);
     });

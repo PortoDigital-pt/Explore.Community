@@ -3,7 +3,7 @@ import { matchShape } from 'found';
 import LazilyLoad, { importLazy } from '../LazilyLoad';
 
 const modules = {
-  EmbeddedSearch: () => importLazy(import('./EmbeddedSearch')),
+  EmbeddedSearch: () => importLazy(import('./EmbeddedSearch'))
 };
 
 const EmbeddedSearchContainer = props => {
@@ -15,7 +15,7 @@ const EmbeddedSearchContainer = props => {
 };
 
 EmbeddedSearchContainer.propTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 export default EmbeddedSearchContainer;

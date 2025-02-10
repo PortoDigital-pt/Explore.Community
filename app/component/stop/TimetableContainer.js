@@ -5,7 +5,7 @@ import Timetable from './Timetable';
 
 export default createFragmentContainer(
   connectToStores(Timetable, ['PreferencesStore'], context => ({
-    language: context.getStore('PreferencesStore').getLanguage(),
+    language: context.getStore('PreferencesStore').getLanguage()
   })),
   {
     stop: graphql`
@@ -40,6 +40,6 @@ export default createFragmentContainer(
           }
         }
       }
-    `,
-  },
+    `
+  }
 );

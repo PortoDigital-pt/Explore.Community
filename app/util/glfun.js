@@ -67,7 +67,7 @@ export default function glfun(parameters) {
       input,
       base,
       parameters.stops[index][0],
-      parameters.stops[index + 1][0],
+      parameters.stops[index + 1][0]
     );
 
     const outputLower = parameters.stops[index][1];

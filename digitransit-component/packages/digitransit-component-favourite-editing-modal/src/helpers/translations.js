@@ -11,7 +11,7 @@ const translations = {
     'close-modal': 'Schließe den Dialog',
     'input-placeholder': 'Wählen Sie einen Name für diesen Ort (optional)',
     save: 'Speichern',
-    'save-place': 'Favorit speichern',
+    'save-place': 'Favorit speichern'
   },
   en: {
     cancel: 'Cancel',
@@ -27,7 +27,7 @@ const translations = {
     save: 'Save',
     'save-place': 'Save place',
     up: 'Move favourite up',
-    down: 'Move favourite down',
+    down: 'Move favourite down'
   },
   fi: {
     cancel: 'Peruuta',
@@ -43,7 +43,7 @@ const translations = {
     save: 'Tallenna',
     'save-place': 'Tallenna paikka',
     up: 'Siirrä suosikkisijaintia ylöpäin',
-    down: 'Siirrä suosikkisijaintia alaspäin',
+    down: 'Siirrä suosikkisijaintia alaspäin'
   },
   pl: {
     cancel: 'Anuluj',
@@ -59,7 +59,7 @@ const translations = {
     save: 'Zapisz',
     'save-place': 'Zapisz miejsce',
     up: 'Przenieś ulubione wyżej',
-    down: 'Przenieś ulubione niżej',
+    down: 'Przenieś ulubione niżej'
   },
   pt: {
     cancel: 'Cancelar',
@@ -75,7 +75,7 @@ const translations = {
     save: 'Guardar',
     'save-place': 'Guardar local',
     up: 'Mover favorito para cima',
-    down: 'Mover favorito para baixo',
+    down: 'Mover favorito para baixo'
   },
   sv: {
     cancel: 'Avbryt',
@@ -91,8 +91,8 @@ const translations = {
     save: 'Spara',
     'save-place': 'Spara plats',
     up: 'Flytta favoriten uppåt',
-    down: 'Flytta favoriten nedåt',
-  },
+    down: 'Flytta favoriten nedåt'
+  }
 };
 
 export default translations;

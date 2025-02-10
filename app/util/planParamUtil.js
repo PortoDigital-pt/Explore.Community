@@ -16,7 +16,7 @@ export const PLANTYPE = {
   BIKEPARK: 'BIKEPARK',
   BIKETRANSIT: 'BIKETRANSIT',
   PARKANDRIDE: 'PARKANDRIDE',
-  SCOOTERTRANSIT: 'SCOOTERTRANSIT',
+  SCOOTERTRANSIT: 'SCOOTERTRANSIT'
 };
 
 const directModes = [PLANTYPE.WALK, PLANTYPE.BIKE, PLANTYPE.CAR];
@@ -58,7 +58,7 @@ export function getDefaultSettings(config) {
     allowedBikeRentalNetworks: config.transportModes?.citybike?.defaultValue
       ? getDefaultNetworks(config)
       : [],
-    scooterNetworks: [],
+    scooterNetworks: []
   };
 }
 
@@ -73,7 +73,7 @@ export function getSettings(config) {
   const allNetworks = getDefaultNetworks(config);
   const allScooterNetworks = getAllNetworksOfType(
     config,
-    TransportMode.Scooter,
+    TransportMode.Scooter
   );
 
   // const allScooterNetworks = getAllScooterNetworks(config);
@@ -83,29 +83,29 @@ export function getSettings(config) {
     modes: userSettings?.modes // filter modes to configured allowed values
       ? [
           ...userSettings.modes.filter(mode =>
-            isTransportModeAvailable(config, mode),
-          ),
+            isTransportModeAvailable(config, mode)
+          )
         ].sort()
       : defaultSettings.modes,
     // filter networks to configured allowed values
     allowedBikeRentalNetworks:
       userSettings.allowedBikeRentalNetworks?.length > 0
         ? userSettings.allowedBikeRentalNetworks.filter(network =>
-            allNetworks.includes(network),
+            allNetworks.includes(network)
           )
         : defaultSettings.allowedBikeRentalNetworks,
     scooterNetworks:
       userSettings.scooterNetworks?.length > 0
         ? userSettings.scooterNetworks.filter(network =>
-            allScooterNetworks.includes(network),
+            allScooterNetworks.includes(network)
           )
-        : defaultSettings.scooterNetworks,
+        : defaultSettings.scooterNetworks
   };
   const { defaultOptions } = config;
   return {
     ...settings,
     walkSpeed: findNearestOption(settings.walkSpeed, defaultOptions.walkSpeed),
-    bikeSpeed: findNearestOption(settings.bikeSpeed, defaultOptions.bikeSpeed),
+    bikeSpeed: findNearestOption(settings.bikeSpeed, defaultOptions.bikeSpeed)
   };
 }
 
@@ -130,11 +130,11 @@ export function planQueryNeeded(
   {
     params: { from, to },
     location: {
-      query: { intermediatePlaces, arriveBy, time },
-    },
+      query: { intermediatePlaces, arriveBy, time }
+    }
   },
   planType,
-  relaxSettings,
+  relaxSettings
 ) {
   if (!from || !to || from === '-' || to === '-') {
     return false;
@@ -142,7 +142,7 @@ export function planQueryNeeded(
   const fromLocation = otpToLocation(from);
   const toLocation = otpToLocation(to);
   const intermediateLocations = getIntermediatePlaces({
-    intermediatePlaces,
+    intermediatePlaces
   });
 
   // not needed if origin is destination an no via points
@@ -155,13 +155,13 @@ export function planQueryNeeded(
   const transitModes = filterTransitModes(
     relaxSettings ? defaultSettings.modes : settings.modes,
     planType,
-    config,
+    config
   );
   const wheelchair = !!settings.accessibilityOption;
   const distance = estimateItineraryDistance(
     fromLocation,
     toLocation,
-    intermediateLocations,
+    intermediateLocations
   );
 
   switch (planType) {
@@ -241,18 +241,18 @@ function getLocation(str) {
   if (loc.gtfsId) {
     return {
       location: {
-        stopLocation: { stopLocationId: loc.gtfsId },
-      },
+        stopLocation: { stopLocationId: loc.gtfsId }
+      }
     };
   }
   return {
     location: {
       coordinate: {
         latitude: loc.lat,
-        longitude: loc.lon,
-      },
+        longitude: loc.lon
+      }
     },
-    label: loc.address,
+    label: loc.address
   };
 }
 
@@ -261,11 +261,11 @@ export function getPlanParams(
   {
     params: { from, to },
     location: {
-      query: { arriveBy, time, intermediatePlaces },
-    },
+      query: { arriveBy, time, intermediatePlaces }
+    }
   },
   planType,
-  relaxSettings,
+  relaxSettings
   // forceScooters = false,
 ) {
   const fromPlace = getLocation(from);
@@ -275,17 +275,17 @@ export function getPlanParams(
   const fromLocation = otpToLocation(from);
   const toLocation = otpToLocation(to);
   const intermediateLocations = getIntermediatePlaces({
-    intermediatePlaces,
+    intermediatePlaces
   });
   const via = intermediateLocations.map(loc => ({
     passThrough: {
-      stopLocationIds: [loc.gtfsId],
-    },
+      stopLocationIds: [loc.gtfsId]
+    }
   }));
   const distance = estimateItineraryDistance(
     fromLocation,
     toLocation,
-    intermediateLocations,
+    intermediateLocations
   );
   const shortTrip = distance < SHORT_TRIP_METERS;
 
@@ -299,7 +299,7 @@ export function getPlanParams(
   const transitModes = filterTransitModes(
     relaxSettings ? defaultSettings.modes : settings.modes,
     planType,
-    config,
+    config
   );
 
   let otpModes = transitModes.map(mode => {
@@ -388,8 +388,8 @@ export function getPlanParams(
       access,
       transfer,
       egress,
-      transit: otpModes.length === 0 ? null : otpModes,
-    },
+      transit: otpModes.length === 0 ? null : otpModes
+    }
   };
 
   const walkReluctance = relaxSettings
@@ -427,6 +427,6 @@ export function getPlanParams(
     modes,
     planType,
     noIterationsForShortTrips,
-    via,
+    via
   };
 }

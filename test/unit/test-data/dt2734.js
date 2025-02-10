@@ -7,7 +7,7 @@ export default {
       stop: {
         __dataID__: 'U3RvcDpLdW9waW86MjAxNDgw',
         code: '1214',
-        platformCode: null,
+        platformCode: null
       },
       realtime: true,
       pattern: {
@@ -22,10 +22,10 @@ export default {
           alerts: [],
           agency: {
             __dataID__: 'QWdlbmN5OjQ0NTE3',
-            name: 'Kuopion Liikenne Oy',
-          },
+            name: 'Kuopion Liikenne Oy'
+          }
         },
-        code: 'Kuopio:21:0:04',
+        code: 'Kuopio:21:0:04'
       },
       headsign: null,
       trip: {
@@ -45,20 +45,20 @@ export default {
             alerts: [],
             agency: {
               __dataID__: 'QWdlbmN5OjQ0NTE3',
-              name: 'Kuopion Liikenne Oy',
-            },
+              name: 'Kuopion Liikenne Oy'
+            }
           },
-          code: 'Kuopio:21:0:04',
-        },
+          code: 'Kuopio:21:0:04'
+        }
       },
-      pickupType: 'SCHEDULED',
+      pickupType: 'SCHEDULED'
     },
     currentTime: 1536745165,
     hasDisruption: false,
     className: 'padding-normal border-bottom',
     canceled: false,
     isArrival: false,
-    showPlatformCode: true,
+    showPlatformCode: true
   },
   departureWithStopHeadsign: {
     departure: {
@@ -68,7 +68,7 @@ export default {
       stop: {
         __dataID__: 'U3RvcDpLdW9waW86MjAxMjgy',
         code: '1909',
-        platformCode: null,
+        platformCode: null
       },
       realtime: false,
       pattern: {
@@ -83,10 +83,10 @@ export default {
           alerts: [],
           agency: {
             __dataID__: 'QWdlbmN5OjQ0NTE3',
-            name: 'Kuopion Liikenne Oy',
-          },
+            name: 'Kuopion Liikenne Oy'
+          }
         },
-        code: 'Kuopio:20:0:01',
+        code: 'Kuopio:20:0:01'
       },
       headsign: 'Keskusta',
       trip: {
@@ -106,20 +106,20 @@ export default {
             alerts: [],
             agency: {
               __dataID__: 'QWdlbmN5OjQ0NTE3',
-              name: 'Kuopion Liikenne Oy',
-            },
+              name: 'Kuopion Liikenne Oy'
+            }
           },
-          code: 'Kuopio:20:0:01',
-        },
+          code: 'Kuopio:20:0:01'
+        }
       },
-      pickupType: 'SCHEDULED',
+      pickupType: 'SCHEDULED'
     },
     currentTime: 1536745465,
     hasDisruption: false,
     className: 'padding-normal border-bottom',
     canceled: false,
     isArrival: false,
-    showPlatformCode: true,
+    showPlatformCode: true
   },
   departureWithRouteLongName: {
     departure: {
@@ -129,7 +129,7 @@ export default {
       stop: {
         __dataID__: 'U3RvcDpLdW9waW86MjAxNDgw',
         code: '1214',
-        platformCode: null,
+        platformCode: null
       },
       realtime: true,
       pattern: {
@@ -144,10 +144,10 @@ export default {
           alerts: [],
           agency: {
             __dataID__: 'QWdlbmN5OjQ0NTE3',
-            name: 'Kuopion Liikenne Oy',
-          },
+            name: 'Kuopion Liikenne Oy'
+          }
         },
-        code: 'Kuopio:21:0:04',
+        code: 'Kuopio:21:0:04'
       },
       headsign: null,
       trip: {
@@ -167,19 +167,19 @@ export default {
             alerts: [],
             agency: {
               __dataID__: 'QWdlbmN5OjQ0NTE3',
-              name: 'Kuopion Liikenne Oy',
-            },
+              name: 'Kuopion Liikenne Oy'
+            }
           },
-          code: 'Kuopio:21:0:04',
-        },
+          code: 'Kuopio:21:0:04'
+        }
       },
-      pickupType: 'SCHEDULED',
+      pickupType: 'SCHEDULED'
     },
     currentTime: 1536745165,
     hasDisruption: false,
     className: 'padding-normal border-bottom',
     canceled: false,
     isArrival: false,
-    showPlatformCode: true,
-  },
+    showPlatformCode: true
+  }
 };

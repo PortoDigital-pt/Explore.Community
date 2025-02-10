@@ -8,7 +8,7 @@ function Availability({
   fewAvailableCount,
   fewerAvailableCount,
   text,
-  showStatusBar,
+  showStatusBar
 }) {
   let availablepct = (available / total) * 100;
   if (availablepct > 100) {
@@ -66,12 +66,12 @@ Availability.propTypes = {
   fewAvailableCount: PropTypes.number,
   fewerAvailableCount: PropTypes.number,
   text: PropTypes.node.isRequired,
-  showStatusBar: PropTypes.bool.isRequired,
+  showStatusBar: PropTypes.bool.isRequired
 };
 
 Availability.defaultProps = {
   fewAvailableCount: undefined,
-  fewerAvailableCount: undefined,
+  fewerAvailableCount: undefined
 };
 
 export default Availability;

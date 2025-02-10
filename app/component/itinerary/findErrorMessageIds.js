@@ -57,9 +57,9 @@ const findRoutingErrors = routingErrors => {
   const errorLookup = routingErrors.reduce(
     (acc, { code, inputField }) => ({
       ...acc,
-      [code]: { ...acc[code], [inputField]: true },
+      [code]: { ...acc[code], [inputField]: true }
     }),
-    {},
+    {}
   );
 
   const msgIds = Object.entries(errorLookup).map(([code, inputFields]) => {
@@ -136,7 +136,7 @@ const getOutsideBoundsNumerator = (polygon, from, to) => {
 const distanceTooShortMessage = (
   query,
   locationState,
-  minDistanceBetweenFromAndTo,
+  minDistanceBetweenFromAndTo
 ) => {
   const hasLocation = locationState && locationState.hasLocation;
   const userNearOrigin =
@@ -185,7 +185,7 @@ const findQueryError = (query, queryContext) => {
     minDistanceBetweenFromAndTo = 0.0,
     error,
     currentTime,
-    areaPolygon,
+    areaPolygon
   } = queryContext;
 
   if (error) {
@@ -197,7 +197,7 @@ const findQueryError = (query, queryContext) => {
     const outsideNumerator = getOutsideBoundsNumerator(
       areaPolygon,
       query.from,
-      query.to,
+      query.to
     );
 
     if (outsideNumerator > 0) {
@@ -213,7 +213,7 @@ const findQueryError = (query, queryContext) => {
     return distanceTooShortMessage(
       query,
       locationState,
-      minDistanceBetweenFromAndTo,
+      minDistanceBetweenFromAndTo
     );
   }
   const yesterday = currentTime - 24 * 60 * 60 * 1000;
@@ -244,7 +244,7 @@ const findQueryError = (query, queryContext) => {
 const findErrorMessageIds = (
   routingErrors = [],
   query = {},
-  queryContext = {},
+  queryContext = {}
 ) => {
   const routingErrorMessages = findRoutingErrors(routingErrors);
   let queryErrorMessage = findQueryError(query, queryContext);

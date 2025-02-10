@@ -86,7 +86,7 @@ const containerComponent = createFragmentContainer(TerminalAlertsContainer, {
         }
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, TerminalAlertsContainer as Component };

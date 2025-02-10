@@ -12,26 +12,26 @@ describe('<AboutPage />', () => {
           {
             header: 'header1',
             paragraphs: ['foo1'],
-            link: 'foo1.com',
+            link: 'foo1.com'
           },
           {
             header: 'header2',
-            paragraphs: ['foo2'],
-          },
+            paragraphs: ['foo2']
+          }
         ],
         sv: [
           {
             header: 'sv_header1',
             paragraphs: ['sv_foo1'],
-            link: 'sv_foo1.com',
+            link: 'sv_foo1.com'
           },
           {
             header: 'sv_header2',
-            paragraphs: ['sv_foo2'],
-          },
-        ],
-      },
-    },
+            paragraphs: ['sv_foo2']
+          }
+        ]
+      }
+    }
   };
 
   const props = { currentLanguage: 'fi' };
@@ -40,7 +40,7 @@ describe('<AboutPage />', () => {
   it('should render all defined headers and paragraph texts in given order', () => {
     const wrapper = mountWithIntl(<AboutPage {...props} />, {
       context,
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(wrapper.find('p').first().text()).to.equal('foo1'); //eslint-disable-line
     expect(wrapper.find('p').last().text()).to.equal('foo2'); //eslint-disable-line
@@ -51,7 +51,7 @@ describe('<AboutPage />', () => {
   it('should render external links', () => {
     const wrapper = mountWithIntl(<AboutPage {...props} />, {
       context,
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(wrapper.find('a').first().prop('href')).to.equal('foo1.com'); //eslint-disable-line
   });
@@ -59,7 +59,7 @@ describe('<AboutPage />', () => {
   it('should obey language selection', () => {
     const wrapper = mountWithIntl(<AboutPage {...svprops} />, {
       context,
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(wrapper.find('.about-header').first().text()).to.equal('sv_header1'); //eslint-disable-line
     expect(wrapper.find('p').first().text()).to.equal('sv_foo1'); //eslint-disable-line

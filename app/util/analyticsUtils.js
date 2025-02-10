@@ -43,7 +43,7 @@ export function getAnalyticsInitCode(config, hostname) {
   ) {
     return config.analyticsScript(
       hostname,
-      config.sendAnalyticsCustomEventGoals,
+      config.sendAnalyticsCustomEventGoals
     );
   }
 
@@ -74,7 +74,7 @@ export function initAnalyticsClientSide(config) {
     window.addEventListener(
       'CookieInformationConsentGiven',
       handleChange,
-      false,
+      false
     );
   }
 }
@@ -88,7 +88,7 @@ export function handleUserAnalytics(user, config) {
   if (config.loginAnalyticsEventName && user?.sub) {
     addAnalyticsEvent({
       event: config.loginAnalyticsEventName,
-      [config.loginAnalyticsKey]: user.sub,
+      [config.loginAnalyticsKey]: user.sub
     });
   }
 }

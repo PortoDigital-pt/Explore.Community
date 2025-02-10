@@ -15,7 +15,7 @@ import CapacityModal from '../CapacityModal';
 
 const StopNearYou = (
   { stop, desc, stopId, currentTime, currentMode, relay },
-  { config, intl },
+  { config, intl }
 ) => {
   if (!stop.stoptimesWithoutPatterns) {
     return null;
@@ -45,7 +45,7 @@ const StopNearYou = (
   const { locale } = intl;
   const isConstantOperation = constantOperationStops[stop.gtfsId];
   const filteredAlerts = stop.alerts.filter(alert =>
-    hasEntitiesOfType(alert, AlertEntityType.Stop),
+    hasEntitiesOfType(alert, AlertEntityType.Stop)
   );
   return (
     <span role="listitem">
@@ -128,9 +128,9 @@ const connectedComponent = connectToStores(
   (context, props) => {
     return {
       ...props,
-      currentTime: context.getStore('TimeStore').getCurrentTime(),
+      currentTime: context.getStore('TimeStore').getCurrentTime()
     };
-  },
+  }
 );
 
 StopNearYou.propTypes = {
@@ -139,18 +139,18 @@ StopNearYou.propTypes = {
   currentTime: PropTypes.number.isRequired,
   currentMode: PropTypes.string.isRequired,
   desc: PropTypes.string,
-  relay: relayShape,
+  relay: relayShape
 };
 
 StopNearYou.defaultProps = {
   stopId: undefined,
   desc: undefined,
-  relay: undefined,
+  relay: undefined
 };
 
 StopNearYou.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default connectedComponent;

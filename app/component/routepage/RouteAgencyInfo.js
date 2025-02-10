@@ -20,11 +20,11 @@ function RouteAgencyInfo({ route }, { config }) {
 }
 
 RouteAgencyInfo.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 RouteAgencyInfo.propTypes = {
-  route: routeShape.isRequired,
+  route: routeShape.isRequired
 };
 
 export default createFragmentContainer(RouteAgencyInfo, {
@@ -36,5 +36,5 @@ export default createFragmentContainer(RouteAgencyInfo, {
         fareUrl
       }
     }
-  `,
+  `
 });

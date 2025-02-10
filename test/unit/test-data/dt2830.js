@@ -24,16 +24,16 @@ const dt2830 = {
         lat: 60.218765,
         lon: 24.968244,
         stop: null,
-        vehicleRentalStation: null,
+        vehicleRentalStation: null
       },
       to: {
         __dataID__: 'client:-65662218113',
         stop: {
           __dataID__: 'U3RvcDpIU0w6MTI2MDE4MA==',
           gtfsId: 'HSL:1260180',
-          zoneId: '01',
-        },
-      },
+          zoneId: '01'
+        }
+      }
     },
     {
       __dataID__: 'client:-6566221819',
@@ -51,135 +51,135 @@ const dt2830 = {
           __dataID__: 'client:-65662218139',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTI2MDEwNA==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218140',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTI3MDEwNQ==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218141',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTI3MDEwMg==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218142',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIzMDEwMQ==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218143',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIzMDEwMw==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218144',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIzMDExNA==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218145',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIzMDExMg==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218146',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTI0MDEwMg==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218147',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIxMDE2Mw==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218148',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIxMDExMA==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218149',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIxMDExNA==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218150',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTIxMDExMg==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218151',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTEwMDExOQ==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218152',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTEwMDEwNw==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218153',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTEwMDEyMg==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218154',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTEwMDEwMw==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218155',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTEwMDE0OQ==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218156',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTExMTE4MA==',
-            zoneId: '01',
-          },
+            zoneId: '01'
+          }
         },
         {
           __dataID__: 'client:-65662218157',
           stop: {
             __dataID__: 'U3RvcDpIU0w6MTAyMDEwNg==',
-            zoneId: '01',
-          },
-        },
+            zoneId: '01'
+          }
+        }
       ],
       route: {
         __dataID__: 'Um91dGU6SFNMOjEwNTU=',
@@ -188,8 +188,8 @@ const dt2830 = {
         color: null,
         agency: {
           __dataID__: 'QWdlbmN5OkhTTA==',
-          name: 'Helsingin seudun liikenne',
-        },
+          name: 'Helsingin seudun liikenne'
+        }
       },
       trip: {
         __dataID__: 'VHJpcDpIU0w6MTA1NV8yMDE5MDIyNl9LZV8yXzE0NTM=',
@@ -199,179 +199,179 @@ const dt2830 = {
             __dataID__: 'client:-65662218117',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI2MDEwOA==',
-              gtfsId: 'HSL:1260108',
+              gtfsId: 'HSL:1260108'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218118',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI2MDE4MA==',
-              gtfsId: 'HSL:1260180',
+              gtfsId: 'HSL:1260180'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218119',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI2MDEwNA==',
-              gtfsId: 'HSL:1260104',
+              gtfsId: 'HSL:1260104'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218120',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI3MDEwNQ==',
-              gtfsId: 'HSL:1270105',
+              gtfsId: 'HSL:1270105'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218121',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI3MDEwMg==',
-              gtfsId: 'HSL:1270102',
+              gtfsId: 'HSL:1270102'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218122',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIzMDEwMQ==',
-              gtfsId: 'HSL:1230101',
+              gtfsId: 'HSL:1230101'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218123',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIzMDEwMw==',
-              gtfsId: 'HSL:1230103',
+              gtfsId: 'HSL:1230103'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218124',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIzMDExNA==',
-              gtfsId: 'HSL:1230114',
+              gtfsId: 'HSL:1230114'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218125',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIzMDExMg==',
-              gtfsId: 'HSL:1230112',
+              gtfsId: 'HSL:1230112'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218126',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI0MDEwMg==',
-              gtfsId: 'HSL:1240102',
+              gtfsId: 'HSL:1240102'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218127',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIxMDE2Mw==',
-              gtfsId: 'HSL:1210163',
+              gtfsId: 'HSL:1210163'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218128',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIxMDExMA==',
-              gtfsId: 'HSL:1210110',
+              gtfsId: 'HSL:1210110'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218129',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIxMDExNA==',
-              gtfsId: 'HSL:1210114',
+              gtfsId: 'HSL:1210114'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218130',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTIxMDExMg==',
-              gtfsId: 'HSL:1210112',
+              gtfsId: 'HSL:1210112'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218131',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTEwMDExOQ==',
-              gtfsId: 'HSL:1100119',
+              gtfsId: 'HSL:1100119'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218132',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTEwMDEwNw==',
-              gtfsId: 'HSL:1100107',
+              gtfsId: 'HSL:1100107'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218133',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTEwMDEyMg==',
-              gtfsId: 'HSL:1100122',
+              gtfsId: 'HSL:1100122'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218134',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTEwMDEwMw==',
-              gtfsId: 'HSL:1100103',
+              gtfsId: 'HSL:1100103'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218135',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTEwMDE0OQ==',
-              gtfsId: 'HSL:1100149',
+              gtfsId: 'HSL:1100149'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218136',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTExMTE4MA==',
-              gtfsId: 'HSL:1111180',
+              gtfsId: 'HSL:1111180'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218137',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTAyMDEwNg==',
-              gtfsId: 'HSL:1020106',
+              gtfsId: 'HSL:1020106'
             },
-            pickupType: 'SCHEDULED',
+            pickupType: 'SCHEDULED'
           },
           {
             __dataID__: 'client:-65662218138',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTAyMDIwMQ==',
-              gtfsId: 'HSL:1020201',
+              gtfsId: 'HSL:1020201'
             },
-            pickupType: 'NONE',
-          },
-        ],
+            pickupType: 'NONE'
+          }
+        ]
       },
       from: {
         __dataID__: 'client:-65662218115',
@@ -392,13 +392,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNTU=',
                   shortName: '55',
-                  gtfsId: 'HSL:1055',
-                },
+                  gtfsId: 'HSL:1055'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTI2MDE4MA==',
-                gtfsId: 'HSL:1260180',
-              },
+                gtfsId: 'HSL:1260180'
+              }
             },
             {
               __dataID__: 'client:-656622181256',
@@ -410,13 +410,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjE2MDM=',
                   shortName: '603',
-                  gtfsId: 'HSL:1603',
-                },
+                  gtfsId: 'HSL:1603'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTI2MDE4MA==',
-                gtfsId: 'HSL:1260180',
-              },
+                gtfsId: 'HSL:1260180'
+              }
             },
             {
               __dataID__: 'client:-656622181257',
@@ -428,13 +428,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNTU=',
                   shortName: '55',
-                  gtfsId: 'HSL:1055',
-                },
+                  gtfsId: 'HSL:1055'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTI2MDE4MA==',
-                gtfsId: 'HSL:1260180',
-              },
+                gtfsId: 'HSL:1260180'
+              }
             },
             {
               __dataID__: 'client:-656622181258',
@@ -446,13 +446,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNTU=',
                   shortName: '55',
-                  gtfsId: 'HSL:1055',
-                },
+                  gtfsId: 'HSL:1055'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTI2MDE4MA==',
-                gtfsId: 'HSL:1260180',
-              },
+                gtfsId: 'HSL:1260180'
+              }
             },
             {
               __dataID__: 'client:-656622181259',
@@ -464,27 +464,27 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNTU=',
                   shortName: '55',
-                  gtfsId: 'HSL:1055',
-                },
+                  gtfsId: 'HSL:1055'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTI2MDE4MA==',
-                gtfsId: 'HSL:1260180',
-              },
-            },
+                gtfsId: 'HSL:1260180'
+              }
+            }
           ],
-          zoneId: '01',
+          zoneId: '01'
         },
-        vehicleRentalStation: null,
+        vehicleRentalStation: null
       },
       to: {
         __dataID__: 'client:-65662218116',
         stop: {
           __dataID__: 'U3RvcDpIU0w6MTAyMDIwMQ==',
           gtfsId: 'HSL:1020201',
-          zoneId: '01',
-        },
-      },
+          zoneId: '01'
+        }
+      }
     },
     {
       __dataID__: 'client:-65662218110',
@@ -519,13 +519,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNzc=',
                   shortName: '77',
-                  gtfsId: 'HSL:1077',
-                },
+                  gtfsId: 'HSL:1077'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDIwMQ==',
-                gtfsId: 'HSL:1020201',
-              },
+                gtfsId: 'HSL:1020201'
+              }
             },
             {
               __dataID__: 'client:-656622181261',
@@ -537,13 +537,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNjQ=',
                   shortName: '64',
-                  gtfsId: 'HSL:1064',
-                },
+                  gtfsId: 'HSL:1064'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDIwMQ==',
-                gtfsId: 'HSL:1020201',
-              },
+                gtfsId: 'HSL:1020201'
+              }
             },
             {
               __dataID__: 'client:-656622181262',
@@ -555,13 +555,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNzg=',
                   shortName: '78',
-                  gtfsId: 'HSL:1078',
-                },
+                  gtfsId: 'HSL:1078'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDIwMQ==',
-                gtfsId: 'HSL:1020201',
-              },
+                gtfsId: 'HSL:1020201'
+              }
             },
             {
               __dataID__: 'client:-656622181263',
@@ -573,13 +573,13 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwMjM=',
                   shortName: '23',
-                  gtfsId: 'HSL:1023',
-                },
+                  gtfsId: 'HSL:1023'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDIwMQ==',
-                gtfsId: 'HSL:1020201',
-              },
+                gtfsId: 'HSL:1020201'
+              }
             },
             {
               __dataID__: 'client:-656622181264',
@@ -591,25 +591,25 @@ const dt2830 = {
                 route: {
                   __dataID__: 'Um91dGU6SFNMOjEwNjY=',
                   shortName: '66',
-                  gtfsId: 'HSL:1066',
-                },
+                  gtfsId: 'HSL:1066'
+                }
               },
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDIwMQ==',
-                gtfsId: 'HSL:1020201',
-              },
-            },
+                gtfsId: 'HSL:1020201'
+              }
+            }
           ],
-          zoneId: '01',
+          zoneId: '01'
         },
-        vehicleRentalStation: null,
+        vehicleRentalStation: null
       },
       to: {
         __dataID__: 'client:-65662218160',
-        stop: null,
-      },
-    },
-  ],
+        stop: null
+      }
+    }
+  ]
 };
 
 export default dt2830;

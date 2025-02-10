@@ -13,7 +13,7 @@ function walttiTopicResolver(
   headsign,
   feedId,
   tripId,
-  geoHash,
+  geoHash
 ) {
   return (
     '/gtfsrt/vp/' +
@@ -46,7 +46,7 @@ function elyTopicResolver(
   headsign,
   feedId,
   tripId,
-  geoHash,
+  geoHash
 ) {
   return (
     '/gtfsrt/vp/' +
@@ -79,7 +79,7 @@ const walttiMqtt = {
   gtfsrt: true,
   routeSelector: defaultRouteSelector,
   active: true,
-  vehicleNumberParser: defaulVehicleNumberParser,
+  vehicleNumberParser: defaulVehicleNumberParser
 };
 
 function elyMqtt(ignoreHeadsign) {
@@ -90,7 +90,7 @@ function elyMqtt(ignoreHeadsign) {
     routeSelector: defaultRouteSelector,
     active: true,
     vehicleNumberParser: defaulVehicleNumberParser,
-    ignoreHeadsign,
+    ignoreHeadsign
   };
 }
 
@@ -103,7 +103,7 @@ export default {
       headsign, // eslint-disable-line no-unused-vars
       feedId, // eslint-disable-line no-unused-vars
       tripId, // eslint-disable-line no-unused-vars
-      geoHash, // eslint-disable-line no-unused-vars
+      geoHash // eslint-disable-line no-unused-vars
     ) {
       let direction = hslDirection;
       if (Number.isInteger(direction)) {
@@ -124,7 +124,7 @@ export default {
     routeSelector: defaultRouteSelector,
     active: true,
     useFuzzyTripMatching: true,
-    vehicleNumberParser: defaulVehicleNumberParser,
+    vehicleNumberParser: defaulVehicleNumberParser
   },
   tampere: walttiMqtt,
   LINKKI: walttiMqtt,
@@ -155,7 +155,7 @@ export default {
       headsign, // eslint-disable-line no-unused-vars
       feedId,
       tripId,
-      geoHash,
+      geoHash
     ) {
       return (
         '/gtfsrt/vp/' +
@@ -183,7 +183,7 @@ export default {
     gtfsrt: true,
     routeSelector: defaultRouteSelector,
     active: true,
-    vehicleNumberParser: defaulVehicleNumberParser,
+    vehicleNumberParser: defaulVehicleNumberParser
   },
   digitraffic: {
     mqttTopicResolver: function mqttTopicResolver(
@@ -193,7 +193,7 @@ export default {
       headsign,
       feedId,
       tripId,
-      geoHash,
+      geoHash
     ) {
       return (
         '/gtfsrt/vp/' +
@@ -221,6 +221,6 @@ export default {
       return vehicleNumber.indexOf(' ') !== -1
         ? vehicleNumber.split(' ')[1]
         : vehicleNumber;
-    },
-  },
+    }
+  }
 };

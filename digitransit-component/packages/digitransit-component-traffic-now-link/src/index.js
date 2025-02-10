@@ -14,8 +14,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 /**
@@ -40,16 +40,16 @@ class TrafficNowLink extends React.Component {
     /** Optional. */
     fontWeights: PropTypes.shape({
       /** Default value is 500. */
-      medium: PropTypes.number,
-    }),
+      medium: PropTypes.number
+    })
   };
 
   static defaultProps = {
     lang: 'fi',
     href: undefined,
     fontWeights: {
-      medium: 500,
-    },
+      medium: 500
+    }
   };
 
   constructor(props) {

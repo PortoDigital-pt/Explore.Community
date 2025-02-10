@@ -59,7 +59,7 @@ function MarkerSelectPopup(props, { intl }) {
             id={option.feature.properties.scooterId}
             desc={intl.formatMessage({
               id: 'e-scooter',
-              defaultMessage: 'scooter',
+              defaultMessage: 'scooter'
             })}
             isScooter
           />
@@ -74,7 +74,7 @@ function MarkerSelectPopup(props, { intl }) {
             prefix={PREFIX_RENTALVEHICLES}
             desc={intl.formatMessage({
               id: 'e-scooter',
-              defaultMessage: 'scooter',
+              defaultMessage: 'scooter'
             })}
             icon="icon-icon_scooter-lollipop"
           />
@@ -140,20 +140,20 @@ MarkerSelectPopup.displayName = 'MarkerSelectPopup';
 MarkerSelectPopup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      layer: PropTypes.string,
-    }),
+      layer: PropTypes.string
+    })
   ).isRequired,
   selectRow: PropTypes.func.isRequired,
   colors: popupColorShape.isRequired,
-  zoom: PropTypes.number,
+  zoom: PropTypes.number
 };
 
 MarkerSelectPopup.defaultProps = {
-  zoom: undefined,
+  zoom: undefined
 };
 
 MarkerSelectPopup.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default MarkerSelectPopup;

@@ -21,17 +21,17 @@ const PopupHeader = ({ header, subHeader, children }, { intl }) => {
 PopupHeader.propTypes = {
   header: PropTypes.string,
   subHeader: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 PopupHeader.defaultProps = {
   header: undefined,
   subHeader: undefined,
-  children: undefined,
+  children: undefined
 };
 
 PopupHeader.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default PopupHeader;

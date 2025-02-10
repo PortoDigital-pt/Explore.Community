@@ -11,7 +11,7 @@ import { isBrowser } from '../util/browser';
 import {
   stopRealTimeClient,
   startRealTimeClient,
-  changeRealTimeClientTopics,
+  changeRealTimeClientTopics
 } from '../action/realTimeClientAction';
 import { getHeadsignFromRouteLongName } from '../util/legUtils';
 
@@ -67,7 +67,7 @@ const asDepartures = stoptimes =>
           headsign: stoptime.headsign,
           trip: stoptime.trip,
           pickupType: stoptime.pickupType,
-          serviceDay: stoptime.serviceDay,
+          serviceDay: stoptime.serviceDay
         };
       });
 
@@ -80,7 +80,7 @@ class DepartureListContainer extends Component {
     infiniteScroll: PropTypes.bool,
     className: PropTypes.string,
     isTerminal: PropTypes.bool,
-    showVehicles: PropTypes.bool,
+    showVehicles: PropTypes.bool
   };
 
   static defaultProps = {
@@ -89,11 +89,11 @@ class DepartureListContainer extends Component {
     className: undefined,
     isTerminal: false,
     showVehicles: false,
-    mode: 'BUS',
+    mode: 'BUS'
   };
 
   static contextTypes = {
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   constructor(props) {
@@ -106,7 +106,7 @@ class DepartureListContainer extends Component {
       this.pageLoadedAlertRef.current.innerHTML =
         this.context.intl.formatMessage({
           id: 'stop-page.right-now.loaded',
-          defaultMessage: 'Right now stop page loaded',
+          defaultMessage: 'Right now stop page loaded'
         });
       setTimeout(() => {
         if (this.pageLoadedAlertRef?.current) {
@@ -149,10 +149,10 @@ class DepartureListContainer extends Component {
         departure =>
           departure.pattern.stops
             .map(stop => stop.code)
-            .indexOf(departure.stop.code) >= 0,
+            .indexOf(departure.stop.code) >= 0
       )
       .map(departure => ({
-        tripId: departure.trip.gtfsId.split(':')[1],
+        tripId: departure.trip.gtfsId.split(':')[1]
       }));
 
     const { config } = this.context;
@@ -170,7 +170,7 @@ class DepartureListContainer extends Component {
       return {
         ...source,
         feedId,
-        options: trips,
+        options: trips
       };
     }
     return null;
@@ -185,7 +185,7 @@ class DepartureListContainer extends Component {
 
   updateClient = departures => {
     const { client, topics } = this.context.getStore(
-      'RealTimeInformationStore',
+      'RealTimeInformationStore'
     );
     if (client) {
       const clientConfig = this.configClient(departures);
@@ -193,7 +193,7 @@ class DepartureListContainer extends Component {
         this.context.executeAction(changeRealTimeClientTopics, {
           ...clientConfig,
           client,
-          oldTopics: topics,
+          oldTopics: topics
         });
       }
     }
@@ -211,14 +211,14 @@ class DepartureListContainer extends Component {
       if (departure.isLastStop) {
         return this.context.intl.formatMessage({
           id: 'route-destination-endpoint',
-          defaultMessage: 'Arrives / Terminus',
+          defaultMessage: 'Arrives / Terminus'
         });
       }
       return (
         departure.trip?.tripHeadsign ||
         this.context.intl.formatMessage({
           id: 'route-destination-arrives',
-          defaultMessage: 'Drop-off only',
+          defaultMessage: 'Drop-off only'
         })
       );
     }
@@ -302,7 +302,7 @@ class DepartureListContainer extends Component {
                 {moment.unix(departure.time).format('dddd D.M.YYYY')}
               </div>
             </td>
-          </tr>,
+          </tr>
         );
       } else if (departure.addServiceDayDivider) {
         departureObjs.push(
@@ -310,14 +310,14 @@ class DepartureListContainer extends Component {
             <td colSpan={isTerminal ? 4 : 3}>
               <div className="departure-day-divider" />
             </td>
-          </tr>,
+          </tr>
         );
       }
 
       const id = `${departure.pattern.code}:${departure.time}:${departure.trip.gtfsId}`;
       const dropoffMessage = getDropoffMessage(
         departure.hasOnlyDropoff,
-        departure.hasNoStop,
+        departure.hasNoStop
       );
       const row = {
         headsign: this.getHeadsign(departure),
@@ -335,7 +335,7 @@ class DepartureListContainer extends Component {
               defaultMessage="Drop-off only"
             />
           </div>
-        ) : null,
+        ) : null
       };
 
       const nextDeparture = departuresWithDayDividers[index + 1];
@@ -409,7 +409,7 @@ DepartureListContainer.contextTypes = {
   executeAction: PropTypes.func.isRequired,
   getStore: PropTypes.func.isRequired,
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const containerComponent = createFragmentContainer(DepartureListContainer, {
@@ -462,7 +462,7 @@ const containerComponent = createFragmentContainer(DepartureListContainer, {
         }
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, DepartureListContainer as Component };

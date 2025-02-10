@@ -10,7 +10,7 @@ import { getDialogState, setDialogState } from '../store/localStorage';
 import {
   getIsBrowser,
   isBrowser,
-  isKeyboardSelectionEvent,
+  isKeyboardSelectionEvent
 } from '../util/browser';
 import withBreakpoint from '../util/withBreakpoint';
 
@@ -25,7 +25,7 @@ class BubbleDialog extends React.Component {
     const isDialogOpen = this.getDialogState(context);
     this.state = {
       isOpen: isDialogOpen,
-      isTooltipOpen: !isDialogOpen && !getDialogState(`${id}_tooltip`),
+      isTooltipOpen: !isDialogOpen && !getDialogState(`${id}_tooltip`)
     };
   }
 
@@ -45,8 +45,8 @@ class BubbleDialog extends React.Component {
         ...location,
         state: {
           ...location.state,
-          [this.props.id]: isOpen,
-        },
+          [this.props.id]: isOpen
+        }
       });
       callback();
     });
@@ -158,24 +158,24 @@ BubbleDialog.propTypes = {
   onDialogOpen: PropTypes.func,
   tooltip: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
+  setOpen: PropTypes.func.isRequired
 };
 
 BubbleDialog.defaultProps = {
   breakpoint: 'small',
   isFullscreenOnMobile: false,
   onDialogOpen: undefined,
-  tooltip: undefined,
+  tooltip: undefined
 };
 
 BubbleDialog.contextTypes = {
   intl: intlShape.isRequired,
   router: routerShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 const enhancedComponent = withOutsideClick(
-  withBreakpoint(BubbleDialog, { forwardRef: true }),
+  withBreakpoint(BubbleDialog, { forwardRef: true })
 );
 
 export { enhancedComponent as default, BubbleDialog as Component };

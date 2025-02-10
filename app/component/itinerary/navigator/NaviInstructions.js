@@ -10,14 +10,14 @@ import {
   LEGTYPE,
   getLocalizedMode,
   getToLocalizedMode,
-  getRemainingTraversal,
+  getRemainingTraversal
 } from './NaviUtils';
 import { durationToString } from '../../../util/timeUtils';
 import { getRouteMode } from '../../../util/modeUtils';
 
 export default function NaviInstructions(
   { leg, nextLeg, instructions, legType, time, position, origin },
-  { intl, config },
+  { intl, config }
 ) {
   const withRealTime = (rt, children) => (
     <span className={cx('bold', { realtime: rt })}>{children}</span>
@@ -28,7 +28,7 @@ export default function NaviInstructions(
       leg,
       position,
       origin,
-      time,
+      time
     );
     const distance = remainingTraversal * leg.distance;
 
@@ -53,12 +53,12 @@ export default function NaviInstructions(
 
     const remainingDuration = Math.max(
       Math.ceil((legTime(start) - time) / 60000),
-      0,
+      0
     ); // ms to minutes, >= 0
     const rt = nextLeg.realtimeState === 'UPDATED';
     const values = {
       duration: withRealTime(rt, remainingDuration),
-      legTime: withRealTime(rt, legTimeStr(start)),
+      legTime: withRealTime(rt, legTimeStr(start))
     };
     const routeMode = getRouteMode(route, config);
     const iconColor =
@@ -114,8 +114,8 @@ export default function NaviInstructions(
             values={{
               duration: withRealTime(
                 nextLeg.realtimeState === 'UPDATED',
-                durationToString(totalWait),
-              ),
+                durationToString(totalWait)
+              )
             }}
           />
         </div>
@@ -140,7 +140,7 @@ export default function NaviInstructions(
       stopOrStation,
       stop: leg.to.stop.name,
       duration: withRealTime(rt, remainingDuration),
-      legTime: withRealTime(rt, legTimeStr(leg.end)),
+      legTime: withRealTime(rt, legTimeStr(leg.end))
     };
     const translationId = nextLeg?.interlineWithPreviousLeg
       ? 'navileg-in-transit-interline'
@@ -175,21 +175,21 @@ NaviInstructions.propTypes = {
   time: PropTypes.number.isRequired,
   position: PropTypes.shape({
     lat: PropTypes.number,
-    lon: PropTypes.number,
+    lon: PropTypes.number
   }),
   origin: PropTypes.shape({
     x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-  }).isRequired,
+    y: PropTypes.number.isRequired
+  }).isRequired
 };
 
 NaviInstructions.defaultProps = {
   legType: '',
   leg: undefined,
   nextLeg: undefined,
-  position: undefined,
+  position: undefined
 };
 NaviInstructions.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

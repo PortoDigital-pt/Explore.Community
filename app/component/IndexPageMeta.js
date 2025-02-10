@@ -17,10 +17,10 @@ export default compose(
         {
           rel: 'manifest',
           href: generateManifestUrl(config, window.location, {
-            ignorePathname: true,
-          }),
-        },
-      ],
+            ignorePathname: true
+          })
+        }
+      ]
     };
-  }),
+  })
 )(Helmet);

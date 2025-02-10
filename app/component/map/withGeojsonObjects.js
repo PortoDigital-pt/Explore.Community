@@ -40,8 +40,8 @@ function withGeojsonObjects(Component) {
             layers.map(async ({ url, name, isOffByDefault, metadata }) => ({
               url: Array.isArray(url) ? url[0] : url,
               isOffByDefault,
-              data: await getGeoJsonData(url, name, metadata),
-            })),
+              data: await getGeoJsonData(url, name, metadata)
+            }))
           );
           const newGeoJson = {};
           json.forEach(({ url, data, isOffByDefault }) => {
@@ -62,11 +62,11 @@ function withGeojsonObjects(Component) {
     geoJson: PropTypes.shape({
       layers: PropTypes.arrayOf(
         PropTypes.shape({
-          url: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-        }),
+          url: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+        })
       ),
-      layerConfigUrl: PropTypes.string,
-    }),
+      layerConfigUrl: PropTypes.string
+    })
   });
 
   GeojsonWrapper.propTypes = {
@@ -75,17 +75,17 @@ function withGeojsonObjects(Component) {
     leafletObjs: PropTypes.arrayOf(PropTypes.node),
     config: configShape.isRequired,
     locationPopup: PropTypes.string,
-    onSelectLocation: PropTypes.func,
+    onSelectLocation: PropTypes.func
   };
 
   GeojsonWrapper.defaultProps = {
     leafletObjs: [],
     locationPopup: undefined,
-    onSelectLocation: undefined,
+    onSelectLocation: undefined
   };
 
   const WithContext = getContext({
-    config: configShape,
+    config: configShape
   })(GeojsonWrapper);
 
   return connectToStores(WithContext, [GeoJsonStore], ({ getStore }) => {

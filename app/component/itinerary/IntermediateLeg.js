@@ -25,9 +25,9 @@ function IntermediateLeg(
     nextZoneId,
     isViaPoint,
     isCanceled,
-    isLastPlace,
+    isLastPlace
   },
-  { config },
+  { config }
 ) {
   const modeClassName = mode.toLowerCase();
   const isDualZone = currentZoneId && (previousZoneId || nextZoneId);
@@ -69,8 +69,8 @@ function IntermediateLeg(
         showZoneLimits && {
           'zone-dual': isDualZone && !isTripleZone,
           'zone-triple': isTripleZone,
-          'zone-previous': currentZoneId && previousZoneId,
-        },
+          'zone-previous': currentZoneId && previousZoneId
+        }
       )}
       onClick={e => focusFunction(e)}
     >
@@ -86,7 +86,7 @@ function IntermediateLeg(
                 className={cx({
                   'zone-delimiter':
                     showCurrentZoneDelimiter ||
-                    (previousZoneId && currentZoneId),
+                    (previousZoneId && currentZoneId)
                 })}
                 showUnknown
               />
@@ -186,7 +186,7 @@ IntermediateLeg.propTypes = {
   isViaPoint: PropTypes.bool,
   isLastPlace: PropTypes.bool,
   gtfsId: PropTypes.string,
-  isCanceled: PropTypes.bool,
+  isCanceled: PropTypes.bool
 };
 
 IntermediateLeg.defaultProps = {
@@ -201,11 +201,11 @@ IntermediateLeg.defaultProps = {
   isLastPlace: false,
   isViaPoint: false,
   gtfsId: undefined,
-  color: undefined,
+  color: undefined
 };
 
 IntermediateLeg.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default IntermediateLeg;

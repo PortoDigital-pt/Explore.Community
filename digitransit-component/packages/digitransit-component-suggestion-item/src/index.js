@@ -40,7 +40,7 @@ function getIconProperties(
   modeSet,
   stopCode,
   getIcons,
-  modes = undefined,
+  modes = undefined
 ) {
   let iconId;
   let iconColor = '#888888';
@@ -128,39 +128,39 @@ function getIconProperties(
     ['BUS-default', { icon: 'search-bus-stop-default', color: 'mode-bus' }],
     [
       'BUS-EXPRESS-default',
-      { icon: 'search-bus-stop-express-default', color: 'mode-bus-express' },
+      { icon: 'search-bus-stop-express-default', color: 'mode-bus-express' }
     ],
     [
       'SPEEDTRAM-default',
-      { icon: 'search-speedtram-stop-default', color: 'mode-speedtram' },
+      { icon: 'search-speedtram-stop-default', color: 'mode-speedtram' }
     ],
     [
       'BUS-digitransit',
-      { icon: 'search-bus-stop-digitransit', color: 'mode-bus' },
+      { icon: 'search-bus-stop-digitransit', color: 'mode-bus' }
     ],
     ['BUS-STATION-default', { icon: 'mode-bus', color: 'mode-bus' }],
     [
       'BUS-STATION-digitransit',
-      { icon: 'search-bus-station-digitransit', color: 'mode-bus' },
+      { icon: 'search-bus-station-digitransit', color: 'mode-bus' }
     ],
     [
       'FUNICULAR-digitransit',
-      { icon: 'search-funicular-stop-digitransit', color: 'mode-funicular' },
+      { icon: 'search-funicular-stop-digitransit', color: 'mode-funicular' }
     ],
     ['RAIL-default', { icon: 'search-rail-stop-default', color: 'mode-rail' }],
     [
       'RAIL-digitransit',
-      { icon: 'search-rail-stop-digitransit', color: 'mode-rail' },
+      { icon: 'search-rail-stop-digitransit', color: 'mode-rail' }
     ],
     ['RAIL-STATION-default', { icon: 'mode-rail', color: 'mode-rail' }],
     [
       'RAIL-STATION-digitransit',
-      { icon: 'search-rail-station-digitransit', color: 'mode-rail' },
+      { icon: 'search-rail-station-digitransit', color: 'mode-rail' }
     ],
     ['TRAM-default', { icon: 'search-tram-stop-default', color: 'mode-tram' }],
     [
       'TRAM-digitransit',
-      { icon: 'search-tram-stop-digitransit', color: 'mode-tram' },
+      { icon: 'search-tram-stop-digitransit', color: 'mode-tram' }
     ],
     ['SUBWAY-default', { icon: 'subway', color: 'mode-metro' }],
     ['SUBWAY-digitransit', { icon: 'subway', color: 'mode-metro' }],
@@ -168,32 +168,32 @@ function getIconProperties(
     ['SUBWAY-STATION-digitransit', { icon: 'subway', color: 'mode-metro' }],
     [
       'FERRY-STATION-default',
-      { icon: 'search-ferry-default', color: 'mode-ferry' },
+      { icon: 'search-ferry-default', color: 'mode-ferry' }
     ],
     [
       'FERRY-STATION-digitransit',
-      { icon: 'search-ferry-digitransit', color: 'mode-ferry' },
+      { icon: 'search-ferry-digitransit', color: 'mode-ferry' }
     ],
     [
       'FERRY-default',
-      { icon: 'search-ferry-stop-default', color: 'mode-ferry-pier' },
+      { icon: 'search-ferry-stop-default', color: 'mode-ferry-pier' }
     ],
     [
       'FERRY-digitransit',
-      { icon: 'search-ferry-stop-digitransit', color: 'mode-ferry-pier' },
+      { icon: 'search-ferry-stop-digitransit', color: 'mode-ferry-pier' }
     ],
 
     [
       'AIRPLANE-digitransit',
-      { icon: 'search-airplane-digitransit', color: 'mode-airplane' },
+      { icon: 'search-airplane-digitransit', color: 'mode-airplane' }
     ],
     [
       'BUS-TRAM-STATION-digitransit',
       {
         icon: 'search-bustram-stop-digitransit',
-        color: 'mode-tram',
-      },
-    ],
+        color: 'mode-tram'
+      }
+    ]
   ]);
   const defaultIcon = 'place';
   // Use more accurate icons in stop/station search, depending on mode from geocoding
@@ -202,7 +202,7 @@ function getIconProperties(
     let iconStr;
     if (item.properties.layer === 'station' || (mode === 'FERRY' && stopCode)) {
       const iconProperties = layerIcon.get(
-        mode.concat('-STATION').concat('-').concat(modeSet),
+        mode.concat('-STATION').concat('-').concat(modeSet)
       );
       if (iconProperties) {
         iconStr = [iconProperties]; // layerIcon.get(mode.concat('-STATION').concat('-').concat(modeSet)),
@@ -274,7 +274,7 @@ const SuggestionItem = pure(
     fontWeights,
     modeIconColors,
     getAutoSuggestIcons,
-    modeSet = 'default',
+    modeSet = 'default'
   }) => {
     const [suggestionType, name, label, stopCode, modes, platform] =
       content || ['', item.name, item.address];
@@ -284,7 +284,7 @@ const SuggestionItem = pure(
       modeSet,
       stopCode,
       getAutoSuggestIcons,
-      modes,
+      modes
     );
     const modeIconColor = modeIconColors[iconColor] || modeIconColors[iconId];
     // Arrow clicked is for street. Instead of selecting item when a user clicks on arrow,
@@ -323,7 +323,7 @@ const SuggestionItem = pure(
     const labelWithLocationType =
       isVehicleRentalStation || isParkingArea
         ? suggestionType.concat(
-            item.properties.localadmin ? `, ${item.properties.localadmin}` : '',
+            item.properties.localadmin ? `, ${item.properties.localadmin}` : ''
           )
         : label;
     const ri = (
@@ -332,11 +332,11 @@ const SuggestionItem = pure(
         className={cx(
           styles['search-result'],
           {
-            loading,
+            loading
           },
           {
-            [styles.futureroute]: isFutureRoute,
-          },
+            [styles.futureroute]: isFutureRoute
+          }
         )}
       >
         <span aria-label={suggestionType} className={styles['suggestion-icon']}>
@@ -344,7 +344,7 @@ const SuggestionItem = pure(
         </span>
         <div
           className={cx(styles['suggestion-result'], {
-            [styles.futureroute]: isFutureRoute,
+            [styles.futureroute]: isFutureRoute
           })}
         >
           {iconId !== 'future-route' &&
@@ -366,7 +366,7 @@ const SuggestionItem = pure(
                     stopCode !== name) ||
                     (isVehicleRentalStation &&
                       hasVehicleStationCode(
-                        stopCode || item.properties.id,
+                        stopCode || item.properties.id
                       ))) && (
                     <span className={styles['stop-code']}>
                       {stopCode || item.properties.id}
@@ -394,7 +394,7 @@ const SuggestionItem = pure(
                 className={cx(
                   styles['suggestion-name'],
                   styles.futureroute,
-                  styles[className],
+                  styles[className]
                 )}
               >
                 {item.properties.origin.name}
@@ -403,7 +403,7 @@ const SuggestionItem = pure(
                     styles['suggestion-name'],
                     styles.futureroute,
                     styles.normal,
-                    styles[className],
+                    styles[className]
                   )}
                 >
                   {item.properties.origin.locality
@@ -415,7 +415,7 @@ const SuggestionItem = pure(
                 className={cx(
                   styles['suggestion-name'],
                   styles.futureroute,
-                  styles[className],
+                  styles[className]
                 )}
               >
                 {item.properties.destination.name}
@@ -424,7 +424,7 @@ const SuggestionItem = pure(
                     styles['suggestion-name'],
                     styles.futureroute,
                     styles.normal,
-                    styles[className],
+                    styles[className]
                   )}
                 >
                   {item.properties.destination.locality
@@ -434,7 +434,7 @@ const SuggestionItem = pure(
               </div>
               <div
                 className={cx(styles['suggestion-label'], {
-                  [styles.futureroute]: isFutureRoute,
+                  [styles.futureroute]: isFutureRoute
                 })}
               >
                 {item.translatedText}
@@ -448,7 +448,7 @@ const SuggestionItem = pure(
             arrowClicked) && (
             <span
               className={cx(styles['arrow-icon'], {
-                [styles.mobile]: isMobile,
+                [styles.mobile]: isMobile
               })}
             >
               <Icon img="arrow" color={iconColor} />
@@ -462,7 +462,7 @@ const SuggestionItem = pure(
             <span
               className={cx(styles['arrow-icon'], {
                 [styles.mobile]: isMobile,
-                [styles['fill-input']]: !arrowClicked,
+                [styles['fill-input']]: !arrowClicked
               })}
               onClick={() => {
                 // Input is already filled for this item, no need
@@ -486,23 +486,23 @@ const SuggestionItem = pure(
         className={cx(
           styles['suggestion-item-container'],
           {
-            [styles.mobile]: isMobile,
+            [styles.mobile]: isMobile
           },
           styles[item.type],
           {
-            [styles.futureroute]: isFutureRoute,
-          },
+            [styles.futureroute]: isFutureRoute
+          }
         )}
         style={{
           '--font-weight-medium': fontWeights.medium,
-          '--accessible-primary-color': accessiblePrimaryColor,
+          '--accessible-primary-color': accessiblePrimaryColor
         }}
       >
         {acri}
         {ri}
       </div>
     );
-  },
+  }
 );
 
 SuggestionItem.propTypes = {
@@ -511,7 +511,7 @@ SuggestionItem.propTypes = {
     type: PropTypes.string,
     address: PropTypes.string,
     selectedIconId: PropTypes.string,
-    iconColor: PropTypes.string,
+    iconColor: PropTypes.string
   }),
   // eslint-disable-next-line
   content: PropTypes.array,
@@ -520,11 +520,11 @@ SuggestionItem.propTypes = {
   color: PropTypes.string,
   accessiblePrimaryColor: PropTypes.string,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number,
+    medium: PropTypes.number
   }),
   getAutoSuggestIcons: PropTypes.objectOf(PropTypes.func),
   modeIconColors: PropTypes.objectOf(PropTypes.string),
-  modeSet: PropTypes.string,
+  modeSet: PropTypes.string
 };
 
 SuggestionItem.defaultProps = {
@@ -533,7 +533,7 @@ SuggestionItem.defaultProps = {
   color: '#007ac9',
   accessiblePrimaryColor: '#0074be',
   fontWeights: {
-    medium: 500,
+    medium: 500
   },
   modeIconColors: {
     'mode-bus': '#007ac9',
@@ -545,7 +545,7 @@ SuggestionItem.defaultProps = {
     'mode-funicular': '#ff00ff',
     'mode-citybike': '#f2b62d',
     'mode-bus-express': '#CA4000',
-    'mode-bus-local': '#007ac9',
+    'mode-bus-local': '#007ac9'
   },
   getAutoSuggestIcons: {
     citybikes: station => {
@@ -556,9 +556,9 @@ SuggestionItem.defaultProps = {
         return ['citybike-stop-default-secondary', '#f2b62d'];
       }
       return ['citybike-stop-default', '#f2b62d'];
-    },
+    }
   },
-  modeSet: undefined,
+  modeSet: undefined
 };
 
 export default SuggestionItem;

@@ -7,7 +7,7 @@ import { isBrowser } from '../../../util/browser';
 import {
   getMapIconScale,
   drawCitybikeIcon,
-  drawSmallVehicleRentalMarker,
+  drawSmallVehicleRentalMarker
 } from '../../../util/mapIconUtils';
 import { showCitybikeNetwork } from '../../../util/modeUtils';
 
@@ -15,7 +15,7 @@ import {
   getRentalNetworkConfig,
   getRentalNetworkIcon,
   getVehicleCapacity,
-  BIKEAVL_UNKNOWN,
+  BIKEAVL_UNKNOWN
 } from '../../../util/vehicleRentalUtils';
 import { fetchWithLanguageAndSubscription } from '../../../util/fetchUtils';
 import { getLayerBaseUrl } from '../../../util/mapLayerUtils';
@@ -83,7 +83,7 @@ class VehicleRentalStations {
                 if (
                   this.shouldShowStation(
                     feature.properties.id,
-                    feature.properties.network,
+                    feature.properties.network
                   )
                 ) {
                   this.features.push(pick(feature, ['geom', 'properties']));
@@ -100,7 +100,7 @@ class VehicleRentalStations {
               this.features.forEach(feature => this.draw(feature, zoomedIn));
             }
           },
-          err => console.log(err), // eslint-disable-line no-console
+          err => console.log(err) // eslint-disable-line no-console
         );
       })
       .catch(err => {
@@ -113,7 +113,7 @@ class VehicleRentalStations {
     const { id, network, formFactors } = feature.properties;
 
     const iconName = getRentalNetworkIcon(
-      getRentalNetworkConfig(network, this.config),
+      getRentalNetworkConfig(network, this.config)
     );
     const isHilighted = this.tile.hilightedStops?.includes(id);
 
@@ -130,7 +130,7 @@ class VehicleRentalStations {
   drawLargeIcon = (
     { geom, properties: { network, operative, vehiclesAvailable } },
     iconName,
-    isHilighted,
+    isHilighted
   ) => {
     const citybikeCapacity = getVehicleCapacity(this.config, network);
 
@@ -141,7 +141,7 @@ class VehicleRentalStations {
       vehiclesAvailable,
       iconName,
       citybikeCapacity !== BIKEAVL_UNKNOWN,
-      isHilighted,
+      isHilighted
     );
   };
 
@@ -156,7 +156,7 @@ class VehicleRentalStations {
           result.availableVehicles.total,
           iconName,
           citybikeCapacity !== BIKEAVL_UNKNOWN,
-          true,
+          true
         );
       }
       return this;

@@ -15,7 +15,7 @@ class ItineraryCircleLineWithIcon extends React.Component {
     color: PropTypes.string,
     appendClass: PropTypes.string,
     icon: PropTypes.string,
-    style: PropTypes.shape({}),
+    style: PropTypes.shape({})
   };
 
   static defaultProps = {
@@ -25,11 +25,11 @@ class ItineraryCircleLineWithIcon extends React.Component {
     carPark: false,
     appendClass: undefined,
     icon: undefined,
-    style: {},
+    style: {}
   };
 
   state = {
-    imageUrl: 'none',
+    imageUrl: 'none'
   };
 
   isFirstChild = () => {
@@ -119,7 +119,7 @@ class ItineraryCircleLineWithIcon extends React.Component {
       <div
         className={cx('leg-before', this.props.modeClassName, {
           via: this.props.isVia,
-          'first-leg': this.props.index === 0,
+          'first-leg': this.props.index === 0
         })}
         aria-hidden="true"
       >
@@ -130,7 +130,7 @@ class ItineraryCircleLineWithIcon extends React.Component {
           className={cx(
             'leg-before-line',
             this.props.modeClassName,
-            this.props.appendClass,
+            this.props.appendClass
           )}
         />
         <RouteNumber
@@ -145,7 +145,7 @@ class ItineraryCircleLineWithIcon extends React.Component {
             'leg-before-line',
             this.props.modeClassName,
             'bottom',
-            this.props.appendClass,
+            this.props.appendClass
           )}
         />
         {this.props.modeClassName === 'scooter' && bottomMarker}

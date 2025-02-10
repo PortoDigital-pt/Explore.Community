@@ -46,10 +46,10 @@ const AlertBanner = ({ alerts, linkAddress }, { config }) => {
 
 AlertBanner.propTypes = {
   alerts: PropTypes.arrayOf(alertShape).isRequired,
-  linkAddress: PropTypes.string.isRequired,
+  linkAddress: PropTypes.string.isRequired
 };
 
 AlertBanner.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 export default AlertBanner;

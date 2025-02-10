@@ -34,7 +34,7 @@ function RouteNumber(props, context) {
   ) {
     filteredText = `${filteredText.substring(
       0,
-      context.config.shortenLongTextThreshold - 3,
+      context.config.shortenLongTextThreshold - 3
     )}...`;
   }
   const longText =
@@ -57,7 +57,7 @@ function RouteNumber(props, context) {
     hasDisruption,
     badgeFill,
     badgeText,
-    badgeTextFill,
+    badgeTextFill
   ) => {
     if (isCallAgency) {
       return (
@@ -105,7 +105,7 @@ function RouteNumber(props, context) {
             [['secondary']]:
               mode === 'citybike' &&
               props.icon &&
-              props.icon.includes('secondary'), // Vantaa citybike station
+              props.icon.includes('secondary') // Vantaa citybike station
           })}
           img={icon || `icon-icon_${mode}`}
           subIcon=""
@@ -130,14 +130,14 @@ function RouteNumber(props, context) {
   const rNumber = (
     <span
       className={cx('route-number', {
-        vertical: props.vertical,
+        vertical: props.vertical
       })}
     >
       <span
         className={cx('vcenter-children', props.className)}
         aria-label={context.intl.formatMessage({
           id: mode,
-          defaultMessage: 'Vehicle',
+          defaultMessage: 'Vehicle'
         })}
         role="img"
       >
@@ -153,7 +153,7 @@ function RouteNumber(props, context) {
               props.hasDisruption,
               props.badgeFill,
               props.badgeText,
-              props.badgeTextFill,
+              props.badgeTextFill
             )}
           </div>
         ) : (
@@ -164,7 +164,7 @@ function RouteNumber(props, context) {
               props.hasDisruption,
               props.badgeFill,
               props.badgeText,
-              props.badgeTextFill,
+              props.badgeTextFill
             )}
           </div>
         )}
@@ -173,8 +173,8 @@ function RouteNumber(props, context) {
             className={cx(
               'vehicle-number-container-v'.concat(props.card ? '-map' : ''),
               {
-                long: hasNoShortName,
-              },
+                long: hasNoShortName
+              }
             )}
           >
             <span
@@ -182,7 +182,7 @@ function RouteNumber(props, context) {
               className={cx(
                 'vehicle-number'.concat(props.card ? '-map' : ''),
                 mode,
-                { long: longText },
+                { long: longText }
               )}
               style={{ color: !props.withBar && getColor() }}
             >
@@ -250,7 +250,7 @@ RouteNumber.propTypes = {
   card: PropTypes.bool,
   appendClass: PropTypes.string,
   occupancyStatus: PropTypes.string,
-  shortenLongText: PropTypes.bool,
+  shortenLongText: PropTypes.bool
 };
 
 RouteNumber.defaultProps = {
@@ -274,12 +274,12 @@ RouteNumber.defaultProps = {
   color: undefined,
   duration: undefined,
   occupancyStatus: undefined,
-  shortenLongText: false,
+  shortenLongText: false
 };
 
 RouteNumber.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default RouteNumber;

@@ -21,18 +21,18 @@ describe('<TripRouteStop />', () => {
         alerts: [
           {
             alertSeverityLevel: AlertSeverityLevelType.Warning,
-            effectiveStartDate: 1471515615,
-          },
-        ],
+            effectiveStartDate: 1471515615
+          }
+        ]
       },
       stoptime: {},
       stopPassed: false,
       vehicles: [],
-      setHumanScrolling: () => {},
+      setHumanScrolling: () => {}
     };
     const wrapper = mountWithIntl(<TripRouteStop {...props} />, {
       context: { config: { CONFIG: 'default', zones: { stops: true } } },
-      childContextTypes: { config: PropTypes.object },
+      childContextTypes: { config: PropTypes.object }
     });
     expect(wrapper.find(ServiceAlertIcon).isEmptyRender()).to.equal(true);
   });

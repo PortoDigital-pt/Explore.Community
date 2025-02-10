@@ -26,7 +26,7 @@ export const parseFeedMQTT = (feedParser, data, topic) => {
     geoHashDeg3,
     geoHashDeg4,
     shortName,
-    color,
+    color
   ] = topic.split('/');
   const messages = [];
   feed.entity.forEach(entity => {
@@ -52,7 +52,7 @@ export const parseFeedMQTT = (feedParser, data, topic) => {
           tripId: tripId === '' ? undefined : `${feedId}:${tripId}`,
           geoHash: [geoHashDeg1, geoHashDeg2, geoHashDeg3, geoHashDeg4],
           shortName: shortName === '' ? undefined : shortName,
-          color: color === '' ? undefined : color,
+          color: color === '' ? undefined : color
         };
         messages.push(message);
       }

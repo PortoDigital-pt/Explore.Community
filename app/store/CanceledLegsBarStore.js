@@ -16,7 +16,7 @@ class CanceledLegsBarStore extends Store {
 
   static handlers = {
     updateShowCanceledLegsBannerState: 'updateShowCanceledLegsBannerState',
-    getShowCanceledLegsBanner: 'getShowCanceledLegsBanner',
+    getShowCanceledLegsBanner: 'getShowCanceledLegsBanner'
   };
 }
 

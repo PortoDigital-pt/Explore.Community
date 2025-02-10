@@ -14,7 +14,7 @@ import {
   urlMiddleware,
   retryMiddleware,
   errorMiddleware,
-  cacheMiddleware,
+  cacheMiddleware
 } from 'react-relay-network-modern';
 import RelayClientSSR from 'react-relay-network-modern-ssr/lib/client';
 import OfflinePlugin from 'offline-plugin/runtime';
@@ -37,14 +37,14 @@ import { isIOSApp } from './util/browser';
 import {
   initAnalyticsClientSide,
   addAnalyticsEvent,
-  handleUserAnalytics,
+  handleUserAnalytics
 } from './util/analyticsUtils';
 import { configureCountry } from './util/configureCountry';
 import { getUser } from './util/apiUtils';
 import setUser from './action/userActions';
 import {
   fetchFavourites,
-  fetchFavouritesComplete,
+  fetchFavouritesComplete
 } from './action/FavouriteActions';
 
 window.debug = debug; // Allow _debug.enable('*') in browser console
@@ -73,14 +73,14 @@ async function init() {
   // Guard againist Samsung et.al. which are not properly polyfilled by polyfill-service
   if (typeof window.Intl === 'undefined') {
     const modules = [
-      import(/* webpackChunkName: "intl",  webpackMode: "lazy" */ 'intl'),
+      import(/* webpackChunkName: "intl",  webpackMode: "lazy" */ 'intl')
     ];
 
     config.availableLanguages.forEach(language => {
       modules.push(
         import(
           /* webpackChunkName: "intl",  webpackMode: "lazy-once" */ `intl/locale-data/jsonp/${language}`
-        ),
+        )
       );
     });
     await Promise.all(modules);
@@ -137,26 +137,26 @@ async function init() {
     relaySSRMiddleware.getMiddleware(),
     cacheMiddleware({
       size: 200,
-      ttl: 60 * 60 * 1000,
+      ttl: 60 * 60 * 1000
     }),
     urlMiddleware({
-      url: () => Promise.resolve(`${config.URL.OTP}gtfs/v1${queryParameters}`),
+      url: () => Promise.resolve(`${config.URL.OTP}gtfs/v1${queryParameters}`)
     }),
     errorMiddleware(),
     retryMiddleware({
-      fetchTimeout: config.OTPTimeout + 1000,
+      fetchTimeout: config.OTPTimeout + 1000
     }),
     next => async req => {
       // eslint-disable-next-line no-param-reassign
       req.fetchOpts.headers.OTPTimeout = config.OTPTimeout;
       req.fetchOpts.headers['Accept-Language'] = language;
       return next(req);
-    },
+    }
   ]);
 
   const environment = new Environment({
     network,
-    store: new Store(new RecordSource()),
+    store: new Store(new RecordSource())
   });
 
   environment.relaySSRMiddleware = relaySSRMiddleware;
@@ -172,12 +172,12 @@ async function init() {
   const store = createFarceStore({
     historyProtocol,
     historyMiddlewares,
-    routeConfig,
+    routeConfig
   });
 
   await getStoreRenderArgs({
     store,
-    resolver,
+    resolver
   });
 
   const Router = await createInitialFarceRouter({
@@ -185,7 +185,7 @@ async function init() {
     historyMiddlewares,
     routeConfig,
     resolver,
-    render,
+    render
   });
 
   context
@@ -202,7 +202,7 @@ async function init() {
 
     if (query.from || query.to || query.from_in || query.to_in) {
       oldParamParser(query, config).then(redirectUrl =>
-        window.location.replace(redirectUrl),
+        window.location.replace(redirectUrl)
       );
     } else if (['/fi/', '/en/', '/sv/', '/ru/', '/slangi/'].includes(path)) {
       window.location.replace('/');
@@ -212,7 +212,7 @@ async function init() {
   // tracking page changes is done in TopLevel component
   addAnalyticsEvent({
     event: 'Pageview',
-    url: path,
+    url: path
   });
 
   // fetch Userdata and favourites
@@ -220,7 +220,7 @@ async function init() {
     getUser()
       .then(user => {
         context.executeAction(setUser, {
-          ...user,
+          ...user
         });
         handleUserAnalytics(user, config);
         context.executeAction(fetchFavourites);
@@ -234,7 +234,7 @@ async function init() {
   const ContextProvider = provideContext(StoreListeningIntlProvider, {
     /* eslint-disable-next-line */
     config: configShape,
-    headers: PropTypes.objectOf(PropTypes.string),
+    headers: PropTypes.objectOf(PropTypes.string)
   });
 
   const root = document.getElementById('app');
@@ -260,7 +260,7 @@ async function init() {
                   context.getStore('PreferencesStore').getLanguage(),
                   window.location.host,
                   window.location.href,
-                  config,
+                  config
                 )}
               />
               <Router resolver={resolver} />
@@ -275,7 +275,7 @@ async function init() {
     // Run only in production mode and when built in a docker container
     if (process.env.NODE_ENV === 'production' && BUILD_TIME !== 'unset') {
       OfflinePlugin.install({
-        onUpdateReady: () => OfflinePlugin.applyUpdate(),
+        onUpdateReady: () => OfflinePlugin.applyUpdate()
       });
     }
   });
@@ -286,7 +286,7 @@ async function init() {
       event: 'sendMatomoEvent',
       category: 'installprompt',
       action: 'fired',
-      name: 'fired',
+      name: 'fired'
     });
     // e.userChoice will return a Promise. (Only in chrome, not IE)
     if (e.userChoice) {
@@ -295,8 +295,8 @@ async function init() {
           event: 'sendMatomoEvent',
           category: 'installprompt',
           action: 'result',
-          name: choiceResult.outcome,
-        }),
+          name: choiceResult.outcome
+        })
       );
     }
   });

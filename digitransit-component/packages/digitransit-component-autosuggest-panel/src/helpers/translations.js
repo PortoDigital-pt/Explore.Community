@@ -12,7 +12,7 @@ const translations = {
     'swap-order-button-label': 'Tausche Start mit Ziel',
     'via-point': 'Zwischenziel',
     'via-point-index': 'Zwischenziel {{index}}',
-    'viapoint-slack-amount': 'Umsteigezeit',
+    'viapoint-slack-amount': 'Umsteigezeit'
   },
   en: {
     'add-via-button-label': 'Add via point',
@@ -26,7 +26,7 @@ const translations = {
     'swap-order-button-label': 'Reverse origin and destination',
     'via-point': 'Via point',
     'via-point-index': 'Via point {{index}}',
-    'viapoint-slack-amount': 'Stop duration',
+    'viapoint-slack-amount': 'Stop duration'
   },
   fi: {
     'add-via-button-label': 'Lisää välipiste',
@@ -41,7 +41,7 @@ const translations = {
     'swap-order-button-label': 'Käännä reitin suunta vastakkaiseksi',
     'via-point': 'Välipiste',
     'via-point-index': 'Välipiste {{index}}',
-    'viapoint-slack-amount': 'Pysähdyksen kesto',
+    'viapoint-slack-amount': 'Pysähdyksen kesto'
   },
   pl: {
     'add-via-button-label': 'Dodaj punkt pośredni',
@@ -56,7 +56,7 @@ const translations = {
     'swap-order-button-label': 'Odwróć początek i cel',
     'via-point': 'Punkt pośredni',
     'via-point-index': 'Punkt pośredni {{index}}',
-    'viapoint-slack-amount': 'Czas postoju',
+    'viapoint-slack-amount': 'Czas postoju'
   },
   pt: {
     'add-via-button-label': 'Adicionar ponto de passagem',
@@ -71,7 +71,7 @@ const translations = {
     'swap-order-button-label': 'Inverter origem e destino',
     'via-point': 'ponto de passagem',
     'via-point-index': 'Através do ponto {{index}}',
-    'viapoint-slack-amount': 'Duração da paragem',
+    'viapoint-slack-amount': 'Duração da paragem'
   },
   sv: {
     'add-via-button-label': 'Lägg till viapunkt',
@@ -86,8 +86,8 @@ const translations = {
     'swap-order-button-label': 'Sväng ruttens riktning till den motsatta',
     'via-point': 'Via punkt',
     'via-point-index': 'Via punkt {{index}}',
-    'viapoint-slack-amount': 'Stoppets varaktighet',
-  },
+    'viapoint-slack-amount': 'Stoppets varaktighet'
+  }
 };
 
 export default translations;

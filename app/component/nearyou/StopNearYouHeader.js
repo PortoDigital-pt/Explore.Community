@@ -10,7 +10,7 @@ import { getZoneLabel } from '../../util/legUtils';
 
 const StopNearYouHeader = (
   { stop, desc, isStation, linkAddress },
-  { config },
+  { config }
 ) => {
   return (
     <div className="stop-near-you-header-container">
@@ -53,16 +53,16 @@ StopNearYouHeader.propTypes = {
   stop: stopShape.isRequired,
   linkAddress: PropTypes.string.isRequired,
   desc: PropTypes.string,
-  isStation: PropTypes.bool,
+  isStation: PropTypes.bool
 };
 
 StopNearYouHeader.defaultProps = {
   isStation: false,
-  desc: undefined,
+  desc: undefined
 };
 
 StopNearYouHeader.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default StopNearYouHeader;

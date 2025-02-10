@@ -17,9 +17,9 @@ export default function Favourite(
     className,
     requireLoggedIn,
     isLoggedIn,
-    language,
+    language
   },
-  context,
+  context
 ) {
   const [disable, handleDisable] = useState(false);
   const [showLoginModal, setLoginModalVisibility] = useState(false);
@@ -40,11 +40,11 @@ export default function Favourite(
         appElement="#app"
         headerText={intl.formatMessage({
           id: 'login-header',
-          defautlMessage: 'Log in first',
+          defautlMessage: 'Log in first'
         })}
         dialogContent={intl.formatMessage({
           id: 'login-content',
-          defautlMessage: 'Log in first',
+          defautlMessage: 'Log in first'
         })}
         handleClose={() => {
           isModalClosed = true;
@@ -52,14 +52,14 @@ export default function Favourite(
           addAnalyticsEvent({
             category: 'Favourite',
             action: 'login cancelled',
-            name: null,
+            name: null
           });
         }}
         lang={language}
         isModalOpen={showLoginModal}
         primaryButtonText={intl.formatMessage({
           id: 'login',
-          defaultMessage: 'Log in',
+          defaultMessage: 'Log in'
         })}
         href={`/login?url=${url}`}
         primaryButtonOnClick={() => {
@@ -67,12 +67,12 @@ export default function Favourite(
           addAnalyticsEvent({
             category: 'Favourite',
             action: 'login',
-            name: null,
+            name: null
           });
         }}
         secondaryButtonText={intl.formatMessage({
           id: 'cancel',
-          defaultMessage: 'cancel',
+          defaultMessage: 'cancel'
         })}
         secondaryButtonOnClick={() => {
           isModalClosed = true;
@@ -80,7 +80,7 @@ export default function Favourite(
           addAnalyticsEvent({
             category: 'Favourite',
             action: 'login cancelled',
-            name: null,
+            name: null
           });
         }}
       />
@@ -111,17 +111,17 @@ export default function Favourite(
         favourite && (!requireLoggedIn || isLoggedIn)
           ? context.intl.formatMessage({
               id: 'remove-favourite',
-              defautlMessage: 'Remove favourite selection',
+              defautlMessage: 'Remove favourite selection'
             })
           : context.intl.formatMessage({
               id: 'add-to-favourites',
-              defautlMessage: 'Set favourite',
+              defautlMessage: 'Set favourite'
             })
       }
     >
       <Icon
         className={cx('favourite', {
-          selected: favourite && (!requireLoggedIn || isLoggedIn),
+          selected: favourite && (!requireLoggedIn || isLoggedIn)
         })}
         img={
           favourite && (!requireLoggedIn || isLoggedIn)
@@ -136,7 +136,7 @@ export default function Favourite(
 
 Favourite.contextTypes = {
   match: matchShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 Favourite.propTypes = {
@@ -147,7 +147,7 @@ Favourite.propTypes = {
   className: PropTypes.string,
   requireLoggedIn: PropTypes.bool.isRequired,
   isLoggedIn: PropTypes.bool,
-  language: PropTypes.string,
+  language: PropTypes.string
 };
 
 Favourite.defaultProps = {
@@ -155,7 +155,7 @@ Favourite.defaultProps = {
   isFetching: false,
   className: undefined,
   isLoggedIn: false,
-  language: undefined,
+  language: undefined
 };
 
 Favourite.displayName = 'Favourite';

@@ -10,12 +10,12 @@ function ScheduleHeader({
   from,
   to,
   onFromSelectChange,
-  onToSelectChange,
+  onToSelectChange
 }) {
   const options = stops.map((stop, index) => {
     const option = {
       label: stop.name,
-      value: index,
+      value: index
     };
     return option;
   });
@@ -25,14 +25,14 @@ function ScheduleHeader({
   const toOptions = options.slice(from + 1);
   const fromDisplayName = fromOptions.filter(o => o.value === from)[0].label;
   const toDisplayName = toOptions.filter(
-    o => o.value === (to > maxOptions ? maxOptions : to),
+    o => o.value === (to > maxOptions ? maxOptions : to)
   )[0].label;
 
   const headerLineStyle = {};
   if (isBrowser) {
     // eslint-disable-next-line global-require
     headerLineStyle.backgroundImage = `url(${require(
-      `../../configurations/images/default/dotted-line-bg2.png`,
+      `../../configurations/images/default/dotted-line-bg2.png`
     )})`;
   }
 
@@ -82,7 +82,7 @@ ScheduleHeader.propTypes = {
   from: PropTypes.number.isRequired,
   to: PropTypes.number.isRequired,
   onFromSelectChange: PropTypes.func.isRequired,
-  onToSelectChange: PropTypes.func.isRequired,
+  onToSelectChange: PropTypes.func.isRequired
 };
 
 ScheduleHeader.displayName = 'ScheduleHeader';

@@ -8,7 +8,7 @@ const translations = {
     'favourite-modal-on-edit': 'Favorit bearbeiten: {{favourite.name}}',
     'input-placeholder': 'Einen Namen für Ort setzen (optional)',
     save: 'Speichern',
-    'save-place': 'Favorit speichern',
+    'save-place': 'Favorit speichern'
   },
   en: {
     cancel: 'Cancel',
@@ -27,7 +27,7 @@ const translations = {
     sport: 'sport',
     school: 'school',
     shopping: 'shopping',
-    'required-text': 'required field',
+    'required-text': 'required field'
   },
   fi: {
     cancel: 'Peruuta',
@@ -47,7 +47,7 @@ const translations = {
     sport: 'urheilu',
     school: 'koulu',
     shopping: 'ostokset',
-    'required-text': 'pakollinen kenttä',
+    'required-text': 'pakollinen kenttä'
   },
   pl: {
     cancel: 'Anuluj',
@@ -66,7 +66,7 @@ const translations = {
     sport: 'sport',
     school: 'szkoła',
     shopping: 'zakupy',
-    'required-text': 'pole wymagane',
+    'required-text': 'pole wymagane'
   },
   pt: {
     cancel: 'Cancelar',
@@ -85,7 +85,7 @@ const translations = {
     sport: 'desporto',
     school: 'escola',
     shopping: 'compras',
-    'required-text': 'campo obrigatório',
+    'required-text': 'campo obrigatório'
   },
   sv: {
     cancel: 'Avbryt',
@@ -105,8 +105,8 @@ const translations = {
     sport: 'sport',
     school: 'skola',
     shopping: 'shoppa',
-    'required-field': 'obligatoriskt fält',
-  },
+    'required-field': 'obligatoriskt fält'
+  }
 };
 
 export default translations;

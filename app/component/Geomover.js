@@ -67,7 +67,7 @@ export default function withGeomover(WrappedComponent) {
                 // rev geocoding failed
                 target.address = context.intl.formatMessage({
                   id: 'own-position',
-                  defaultMessage: 'Own Location',
+                  defaultMessage: 'Own Location'
                 });
               }
               target.lat = locationState.lat;
@@ -77,13 +77,13 @@ export default function withGeomover(WrappedComponent) {
           }
         }
       }
-    },
+    }
   );
 
   geomover.contextTypes = {
     intl: intlShape.isRequired,
     executeAction: PropTypes.func.isRequired,
-    getStore: PropTypes.func.isRequired,
+    getStore: PropTypes.func.isRequired
   };
 
   return geomover;

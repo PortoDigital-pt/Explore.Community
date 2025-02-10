@@ -18,18 +18,18 @@ class LegMarker extends React.Component {
     color: PropTypes.string,
     zIndexOffset: PropTypes.number,
     wide: PropTypes.bool,
-    style: PropTypes.string,
+    style: PropTypes.string
   };
 
   static defaultProps = {
     color: 'currentColor',
     zIndexOffset: undefined,
     wide: false,
-    style: undefined,
+    style: undefined
   };
 
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   // An arrow marker will be displayed if the normal marker can't fit
@@ -53,7 +53,7 @@ class LegMarker extends React.Component {
         key={`${this.props.leg.name}_text`}
         position={{
           lat: this.props.leg.lat,
-          lng: this.props.leg.lon,
+          lng: this.props.leg.lon
         }}
         interactive={false}
         icon={L.divIcon({
@@ -62,14 +62,14 @@ class LegMarker extends React.Component {
             ${Icon.asString({
               img: `icon-icon_${this.props.mode}`,
               className: 'map-route-icon',
-              color,
+              color
             })}
               ${routeNumber}
             </div>`,
           className: `${
             this.props.style ? `arrow-${this.props.style}` : 'legmarker'
           } ${this.props.mode} ${displayRouteNumber ? '' : 'only-icon'}`,
-          iconSize: null,
+          iconSize: null
         })}
         zIndexOffset={this.props.zIndexOffset}
         keyboard={false}

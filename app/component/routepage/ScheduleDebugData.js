@@ -36,106 +36,106 @@ const data1 = {
   wk1tue: [],
   wk1wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1sat: [],
   wk1sun: [],
   wk2mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2sat: [],
   wk2sun: [],
   wk3mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3sat: [],
   wk3sun: [],
   wk4mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4sat: [],
   wk4sun: [],
   wk5mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5sat: [],
-  wk5sun: [],
+  wk5sun: []
 };
 
 const data2 = {
@@ -143,107 +143,107 @@ const data2 = {
   wk1mon: [],
   wk1tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1sat: [],
   wk1sun: [],
   wk2mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2thu: [],
   wk2fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2sat: [],
   wk2sun: [],
   wk3mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3sat: [],
   wk3sun: [],
   wk4mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4sat: [],
   wk4sun: [],
   wk5mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5sat: [],
-  wk5sun: [],
+  wk5sun: []
 };
 
 const data3 = {
@@ -251,122 +251,122 @@ const data3 = {
   wk1mon: [],
   wk1tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk1sun: [],
   wk2mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2thu: [],
   wk2fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk2sun: [],
   wk3mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk3sun: [],
   wk4mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk4sun: [],
   wk5mon: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5tue: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
-  wk5sun: [],
+  wk5sun: []
 };
 
 const data4 = {
@@ -375,94 +375,94 @@ const data4 = {
   wk1tue: [],
   wk1wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk1sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk1sun: [],
   wk2mon: [],
   wk2tue: [],
   wk2wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2thu: [],
   wk2fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk2sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk2sun: [],
   wk3mon: [],
   wk3tue: [],
   wk3wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk3sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk3sun: [],
   wk4mon: [],
   wk4tue: [],
   wk4wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk4sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
   wk4sun: [],
   wk5mon: [],
   wk5tue: [],
   wk5wed: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5thu: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5fri: [
     { departureStoptime: { scheduledDeparture: 54540 } },
-    { departureStoptime: { scheduledDeparture: 56400 } },
+    { departureStoptime: { scheduledDeparture: 56400 } }
   ],
   wk5sat: [
     { departureStoptime: { scheduledDeparture: 57540 } },
-    { departureStoptime: { scheduledDeparture: 59400 } },
+    { departureStoptime: { scheduledDeparture: 59400 } }
   ],
-  wk5sun: [],
+  wk5sun: []
 };
 
 const getTestData = testNumber => {

@@ -11,10 +11,10 @@ export default {
       vehicleRentalStation: {
         __dataID__: 'QmlrZVJlbnRhbFN0YXRpb246MTEz',
         __fragments__: {
-          '7::client': [{}],
-        },
+          '7::client': [{}]
+        }
       },
-      stop: null,
+      stop: null
     },
     to: {
       __dataID__: 'client:-29383293215',
@@ -23,12 +23,12 @@ export default {
       name: 'Opastinsilta 7, Helsinki',
       vertexType: 'NORMAL',
       vehicleRentalStation: null,
-      stop: null,
+      stop: null
     },
     legGeometry: {
       __dataID__: 'client:-29383293213',
       length: 18,
-      points: 'ewlnJadewCEGl@{@r@WFCLELGDAEu@Eq@KwAGeA?CCi@U}DAUKgC?I',
+      points: 'ewlnJadewCEGl@{@r@WFCLELGDAEu@Eq@KwAGeA?CCi@U}DAUKgC?I'
     },
     intermediateStops: {},
     realTime: false,
@@ -42,8 +42,8 @@ export default {
     route: null,
     trip: null,
     __fragments__: {
-      '8::client': [{}],
-    },
+      '8::client': [{}]
+    }
   },
   index: 2,
   originalLegs: [
@@ -57,7 +57,7 @@ export default {
         name: 'Helsingin rautatieasema, Helsinki',
         vertexType: 'NORMAL',
         vehicleRentalStation: null,
-        stop: null,
+        stop: null
       },
       to: {
         __dataID__: 'client:-2938329329',
@@ -68,15 +68,15 @@ export default {
         vehicleRentalStation: {
           __dataID__: 'QmlrZVJlbnRhbFN0YXRpb246MDIw',
           __fragments__: {
-            '7::client': {},
-          },
+            '7::client': {}
+          }
         },
-        stop: null,
+        stop: null
       },
       legGeometry: {
         __dataID__: 'client:-2938329327',
         length: 10,
-        points: 'uegnJakfwCBg@MiA_BHsAFi@Bo@BW@MwAEwB',
+        points: 'uegnJakfwCBg@MiA_BHsAFi@Bo@BW@MwAEwB'
       },
       intermediateStops: [],
       realTime: false,
@@ -90,8 +90,8 @@ export default {
       route: null,
       trip: null,
       __fragments__: {
-        '8::client': [{}],
-      },
+        '8::client': [{}]
+      }
     },
     {
       __dataID__: 'client:-2938329325',
@@ -105,10 +105,10 @@ export default {
         vehicleRentalStation: {
           __dataID__: 'QmlrZVJlbnRhbFN0YXRpb246MDIw',
           __fragments__: {
-            '7::client': {},
-          },
+            '7::client': {}
+          }
         },
-        stop: null,
+        stop: null
       },
       to: {
         __dataID__: 'client:-29383293212',
@@ -119,16 +119,16 @@ export default {
         vehicleRentalStation: {
           __dataID__: 'QmlrZVJlbnRhbFN0YXRpb246MTEz',
           __fragments__: {
-            '7::client': {},
-          },
+            '7::client': {}
+          }
         },
-        stop: null,
+        stop: null
       },
       legGeometry: {
         __dataID__: 'client:-29383293210',
         length: 167,
         points:
-          'yognJgtfwCAs@AYIDQBqANc@F[@I@UDKBKHUXw@|@a@TWHg@Fo@FeARc@Po@`@i@b@s@x@M@CNGX_@p@qA`@c@XMBe@LUFw@PWN}IlCMDYHI?GCEGUH]@YGe@FIBYLWBYIOASLOPMJCYSDOFQBQMGQULQFW@MAOEQKKKMQSa@w@sACJm@bAkAzB]XSv@[tAkAvCS^a@RaBh@E@gBl@GBs@VwCdAeC|@SHUN}@ZODq@J{CnAUF]Bc@Da@HgAZmBb@iANWNe@^c@T_@H[@]Jy@VCGGASDWBm@@SASLEOEOCIGSKa@G`@Su@Qa@K]KYKUMSMKUO_@MWIi@KOC_AIc@Go@Uu@MIAYCYCe@CW@UD]HMDSFYLcBl@sAf@mBr@GBUHUFWFoDtAm@TIBGBs@VAO?CAOFC?MAGFC@NDAOuBLGDF',
+          'yognJgtfwCAs@AYIDQBqANc@F[@I@UDKBKHUXw@|@a@TWHg@Fo@FeARc@Po@`@i@b@s@x@M@CNGX_@p@qA`@c@XMBe@LUFw@PWN}IlCMDYHI?GCEGUH]@YGe@FIBYLWBYIOASLOPMJCYSDOFQBQMGQULQFW@MAOEQKKKMQSa@w@sACJm@bAkAzB]XSv@[tAkAvCS^a@RaBh@E@gBl@GBs@VwCdAeC|@SHUN}@ZODq@J{CnAUF]Bc@Da@HgAZmBb@iANWNe@^c@T_@H[@]Jy@VCGGASDWBm@@SASLEOEOCIGSKa@G`@Su@Qa@K]KYKUMSMKUO_@MWIi@KOC_AIc@Go@Uu@MIAYCYCe@CW@UD]HMDSFYLcBl@sAf@mBr@GBUHUFWFoDtAm@TIBGBs@VAO?CAOFC?MAGFC@NDAOuBLGDF'
       },
       intermediateStops: [],
       realTime: false,
@@ -142,8 +142,8 @@ export default {
       route: null,
       trip: null,
       __fragments__: {
-        '8::client': [{}],
-      },
+        '8::client': [{}]
+      }
     },
     {
       __dataID__: 'client:-2938329326',
@@ -157,10 +157,10 @@ export default {
         vehicleRentalStation: {
           __dataID__: 'QmlrZVJlbnRhbFN0YXRpb246MTEz',
           __fragments__: {
-            '7::client': {},
-          },
+            '7::client': {}
+          }
         },
-        stop: null,
+        stop: null
       },
       to: {
         __dataID__: 'client:-29383293215',
@@ -169,12 +169,12 @@ export default {
         name: 'Opastinsilta 7, Helsinki',
         vertexType: 'NORMAL',
         vehicleRentalStation: null,
-        stop: null,
+        stop: null
       },
       legGeometry: {
         __dataID__: 'client:-29383293213',
         length: 18,
-        points: 'ewlnJadewCEGl@{@r@WFCLELGDAEu@Eq@KwAGeA?CCi@U}DAUKgC?I',
+        points: 'ewlnJadewCEGl@{@r@WFCLELGDAEu@Eq@KwAGeA?CCi@U}DAUKgC?I'
       },
       intermediateStops: [],
       realTime: false,
@@ -188,8 +188,8 @@ export default {
       route: null,
       trip: null,
       __fragments__: {
-        '8::client': [{}],
-      },
-    },
-  ],
+        '8::client': [{}]
+      }
+    }
+  ]
 };

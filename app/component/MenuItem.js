@@ -28,7 +28,7 @@ const mapToRoute = (router, route, children, onClick) => (
 
 export default function MenuItem(
   { name, href, label, route, onClick },
-  { router, intl },
+  { router, intl }
 ) {
   const displayLabel = label || (
     <FormattedMessage id={name} defaultMessage={name} />
@@ -52,11 +52,11 @@ MenuItem.propTypes = {
   name: PropTypes.string,
   href: PropTypes.oneOfType([
     PropTypes.objectOf(PropTypes.string),
-    PropTypes.string,
+    PropTypes.string
   ]),
   route: PropTypes.string,
   label: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 MenuItem.defaultProps = {
@@ -64,12 +64,12 @@ MenuItem.defaultProps = {
   href: undefined,
   route: undefined,
   label: undefined,
-  onClick: undefined,
+  onClick: undefined
 };
 
 MenuItem.contextTypes = {
   router: routerShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 MenuItem.displayName = 'MenuItem';

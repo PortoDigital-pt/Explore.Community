@@ -44,7 +44,7 @@ const MobileSearch = ({
   accessiblePrimaryColor,
   searchOpen,
   fontWeights,
-  showScroll,
+  showScroll
 }) => {
   const styles = showScroll ? mobileStyles : mobileNoScrollStyles;
 
@@ -170,9 +170,9 @@ const MobileSearch = ({
               className: cx(
                 `${styles.input} ${styles[id] || ''} ${
                   inputProps.value ? styles.hasValue : ''
-                }`,
+                }`
               ),
-              autoFocus: true,
+              autoFocus: true
             }}
             renderInputComponent={p => (
               <>
@@ -206,7 +206,7 @@ const MobileSearch = ({
           '--color': `${color}`,
           '--accessible-primary-color': accessiblePrimaryColor,
           '--hover-color': `${hoverColor}`,
-          '--font-weight-medium': fontWeights.medium,
+          '--font-weight-medium': fontWeights.medium
         }}
       >
         {renderContent()}
@@ -230,7 +230,7 @@ MobileSearch.propTypes = {
     onBlur: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired
   }).isRequired,
   fetchFunction: PropTypes.func.isRequired,
   getSuggestionValue: PropTypes.func.isRequired,
@@ -248,9 +248,9 @@ MobileSearch.propTypes = {
   accessiblePrimaryColor: PropTypes.string.isRequired,
   searchOpen: PropTypes.bool.isRequired,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number.isRequired,
+    medium: PropTypes.number.isRequired
   }).isRequired,
-  showScroll: PropTypes.bool,
+  showScroll: PropTypes.bool
 };
 
 MobileSearch.defaultProps = {
@@ -262,7 +262,7 @@ MobileSearch.defaultProps = {
   focusInput: false,
   color: undefined,
   hoverColor: undefined,
-  showScroll: undefined,
+  showScroll: undefined
 };
 
 export default MobileSearch;

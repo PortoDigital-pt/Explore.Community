@@ -10,7 +10,7 @@ export default {
         headsign: 'Eira',
         longName: 'Eira-Lauttasaari(M)-Vattuniemi',
         duplicate: false,
-        mode: 'BUS',
+        mode: 'BUS'
       },
       {
         id: 'HSL:1021B:1:01',
@@ -20,7 +20,7 @@ export default {
         headsign: 'Lauttasaari (M)',
         longName: 'Lauttasaari (M)-Vattuniemi',
         duplicate: false,
-        mode: 'BUS',
+        mode: 'BUS'
       },
       {
         id: 'HSL:1021:1:01',
@@ -30,7 +30,7 @@ export default {
         headsign: 'Eira',
         longName: 'Eira-Lauttasaari(M)-Vattuniemi',
         duplicate: false,
-        mode: 'BUS',
+        mode: 'BUS'
       },
       {
         id: 'HSL:1021B:1:01',
@@ -40,11 +40,11 @@ export default {
         headsign: 'Lauttasaari (M)',
         longName: 'Lauttasaari (M)-Vattuniemi',
         duplicate: false,
-        mode: 'BUS',
-      },
+        mode: 'BUS'
+      }
     ],
     showRoutes: ['HSL:1021B:1:01'],
-    timerows: ['05', '05'],
+    timerows: ['05', '05']
   },
   nonMatchingFilteredRoutes: {
     title: '00',
@@ -57,7 +57,7 @@ export default {
         headsign: 'Lauttasaari',
         longName: 'Asema-aukio-Lauttasaari',
         duplicate: false,
-        mode: 'BUS',
+        mode: 'BUS'
       },
       {
         id: 'HSL:1020N:0:01',
@@ -67,7 +67,7 @@ export default {
         headsign: 'Lauttasaari',
         longName: 'Asema-aukio-Lauttasaari',
         duplicate: false,
-        mode: 'BUS',
+        mode: 'BUS'
       },
       {
         id: 'HSL:1020N:0:01',
@@ -77,10 +77,10 @@ export default {
         headsign: 'Lauttasaari',
         longName: 'Asema-aukio-Lauttasaari',
         duplicate: false,
-        mode: 'BUS',
-      },
+        mode: 'BUS'
+      }
     ],
     showRoutes: ['HSL:1021:1:01'],
-    timerows: [],
-  },
+    timerows: []
+  }
 };

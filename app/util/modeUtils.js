@@ -60,7 +60,7 @@ export function useCitybikes(networks, config) {
   return Object.values(networks).some(
     network =>
       network.type === TransportMode.Citybike.toLowerCase() &&
-      networkIsActive(network, config),
+      networkIsActive(network, config)
   );
 }
 
@@ -70,7 +70,7 @@ export function useScooters(networks) {
   }
   return Object.values(networks).some(
     network =>
-      network.type === TransportMode.Scooter.toLowerCase() && network.enabled,
+      network.type === TransportMode.Scooter.toLowerCase() && network.enabled
   );
 }
 
@@ -82,7 +82,7 @@ export function showRentalVehiclesOfType(networks, config, type) {
     network =>
       network.type === type.toLowerCase() &&
       network.enabled &&
-      (network.showRentalVehicles || showCitybikeNetwork(network, config)),
+      (network.showRentalVehicles || showCitybikeNetwork(network, config))
   );
 }
 
@@ -110,7 +110,7 @@ export function getTransportModes(config) {
   return {
     ...config.transportModes,
     ...citybikeConfig,
-    ...scooterConfig,
+    ...scooterConfig
   };
 }
 
@@ -147,7 +147,7 @@ export function getAvailableTransportModeConfigs(config) {
 export function getTransitModes(config) {
   return getAvailableTransportModeConfigs(config)
     .filter(
-      tm => tm.defaultValue && tm.name !== 'scooter' && tm.name !== 'citybike',
+      tm => tm.defaultValue && tm.name !== 'scooter' && tm.name !== 'citybike'
     )
     .map(tm => tm.name)
     .sort();
@@ -225,11 +225,11 @@ export function filterModes(config, modes, from, to, intermediatePlaces) {
         isModeAvailableInsidePolygons(config, mode, [
           from,
           to,
-          ...intermediatePlaces,
-        ]),
+          ...intermediatePlaces
+        ])
       )
       .filter(mode => !!mode)
-      .sort(),
+      .sort()
   );
 }
 
@@ -256,7 +256,7 @@ export function getModes(config) {
   const { modes } = getCustomizedSettings();
   if (showModeSettings(config) && Array.isArray(modes)) {
     const transportModes = modes.filter(mode =>
-      isTransportModeAvailable(config, mode),
+      isTransportModeAvailable(config, mode)
     );
     return transportModes;
   }
@@ -280,7 +280,7 @@ export function toggleTransportMode(transportMode, config) {
   addAnalyticsEvent({
     action: actionName,
     category: 'ItinerarySettings',
-    name: transportMode,
+    name: transportMode
   });
   const modes = xor(getModes(config), [transportMode.toUpperCase()]);
   return modes;

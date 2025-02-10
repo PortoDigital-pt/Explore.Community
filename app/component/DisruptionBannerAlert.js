@@ -10,7 +10,7 @@ import { mapAlertSource } from '../util/alertUtils';
 
 const DisruptionBannerAlert = (
   { language, alert, openAllAlerts, truncate, onClose },
-  { intl, config },
+  { intl, config }
 ) => {
   const [renderLink, setRenderLink] = useState(false);
 
@@ -86,13 +86,13 @@ const DisruptionBannerAlert = (
         <button
           title={intl.formatMessage({
             id: 'messagebar-label-close-message-bar',
-            defaultMessage: 'Close banner',
+            defaultMessage: 'Close banner'
           })}
           onClick={() => onClose()}
           className={cx(
             'noborder',
             'disruption-close-button',
-            'cursor-pointer',
+            'cursor-pointer'
           )}
           type="button"
         >
@@ -108,17 +108,17 @@ DisruptionBannerAlert.propTypes = {
   language: PropTypes.string.isRequired,
   truncate: PropTypes.bool,
   openAllAlerts: PropTypes.func,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 DisruptionBannerAlert.defaultProps = {
   truncate: false,
-  openAllAlerts: () => {},
+  openAllAlerts: () => {}
 };
 
 DisruptionBannerAlert.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default DisruptionBannerAlert;

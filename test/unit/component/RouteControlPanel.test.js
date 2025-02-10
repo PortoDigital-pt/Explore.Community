@@ -27,42 +27,42 @@ describe('<RouteControlPanel />', () => {
               {
                 trip: {
                   pattern: {
-                    code: 'HSL:1063:0:01',
-                  },
-                },
-              },
+                    code: 'HSL:1063:0:01'
+                  }
+                }
+              }
             ],
             code: 'HSL:1063:0:01',
             trips: [
               {
                 stoptimes: [
                   {
-                    realtimeState: 'SCHEDULED',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+                    realtimeState: 'SCHEDULED'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       router: mockRouter,
       match: {
         ...mockMatch,
         location: {
           ...mockMatch.location,
-          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`,
+          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`
         },
         params: {
           routeId: 'HSL:1063',
-          patternId: 'HSL:1063:0:01',
-        },
-      },
+          patternId: 'HSL:1063:0:01'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<RouteControlPanel {...props} />, {
       context: {
         ...mockContext,
-        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} },
-      },
+        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} }
+      }
     });
     expect(wrapper.find('.activeAlert')).to.have.lengthOf(1);
   });
@@ -84,27 +84,27 @@ describe('<RouteControlPanel />', () => {
               {
                 stoptimes: [
                   {
-                    realtimeState: 'CANCELED',
-                  },
-                ],
-              },
-            ],
-          },
+                    realtimeState: 'CANCELED'
+                  }
+                ]
+              }
+            ]
+          }
         ],
         agency: { name: 'mock' },
-        type: 3,
+        type: 3
       },
       router: mockRouter,
       match: {
         ...mockMatch,
         location: {
           ...mockMatch.location,
-          pathname: `/${PREFIX_ROUTES}/tampere:32/${PREFIX_STOPS}/tampere:32:1:01`,
+          pathname: `/${PREFIX_ROUTES}/tampere:32/${PREFIX_STOPS}/tampere:32:1:01`
         },
         params: {
-          patternId: 'tampere:32:1:01',
-        },
-      },
+          patternId: 'tampere:32:1:01'
+        }
+      }
     };
     const context = {
       ...mockContext,
@@ -114,17 +114,17 @@ describe('<RouteControlPanel />', () => {
           tampere: {
             gtfsRt: 'foobar',
             routeSelector: () => '32',
-            active: true,
-          },
+            active: true
+          }
         },
         colors: { primary: '#00AFFF' },
-        URL: {},
+        URL: {}
       },
-      executeAction: sinon.stub(),
+      executeAction: sinon.stub()
     };
 
     shallowWithIntl(<RouteControlPanel {...props} />, {
-      context,
+      context
     });
 
     expect(context.executeAction.callCount).to.equal(1);
@@ -138,19 +138,19 @@ describe('<RouteControlPanel />', () => {
         gtfsId: 'tampere:32',
         mode: 'BUS',
         type: 3,
-        agency: { name: 'mock' },
+        agency: { name: 'mock' }
       },
       router: mockRouter,
       match: {
         ...mockMatch,
         location: {
           ...mockMatch.location,
-          pathname: `/${PREFIX_ROUTES}/tampere:32/${PREFIX_STOPS}/tampere:32:1:01`,
+          pathname: `/${PREFIX_ROUTES}/tampere:32/${PREFIX_STOPS}/tampere:32:1:01`
         },
         params: {
-          patternId: 'tampere:32:1:01',
-        },
-      },
+          patternId: 'tampere:32:1:01'
+        }
+      }
     };
     const context = {
       ...mockContext,
@@ -160,17 +160,17 @@ describe('<RouteControlPanel />', () => {
           tampere: {
             gtfsRt: 'foobar',
             routeSelector: () => '32',
-            active: false,
-          },
+            active: false
+          }
         },
         colors: { primary: '#00AFFF' },
-        URL: {},
+        URL: {}
       },
-      executeAction: sinon.stub(),
+      executeAction: sinon.stub()
     };
 
     shallowWithIntl(<RouteControlPanel {...props} />, {
-      context,
+      context
     });
 
     expect(context.executeAction.callCount).to.equal(0);
@@ -190,34 +190,34 @@ describe('<RouteControlPanel />', () => {
               {
                 stoptimes: [
                   {
-                    realtimeState: 'CANCELED',
-                  },
-                ],
-              },
-            ],
-          },
+                    realtimeState: 'CANCELED'
+                  }
+                ]
+              }
+            ]
+          }
         ],
         type: 3,
-        agency: { name: 'mock' },
+        agency: { name: 'mock' }
       },
       router: mockRouter,
       match: {
         ...mockMatch,
         location: {
           ...mockMatch.location,
-          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`,
+          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`
         },
         params: {
           routeId: 'HSL:1063',
-          patternId: 'HSL:1063:0:01',
-        },
-      },
+          patternId: 'HSL:1063:0:01'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<RouteControlPanel {...props} />, {
       context: {
         ...mockContext,
-        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} },
-      },
+        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} }
+      }
     });
     expect(wrapper.find('.activeAlert')).to.have.lengthOf(1);
   });
@@ -231,24 +231,24 @@ describe('<RouteControlPanel />', () => {
           mode: 'BUS',
           patterns: [
             {
-              code: 'HSL:1063:0:01',
-            },
+              code: 'HSL:1063:0:01'
+            }
           ],
           type: 3,
-          agency: { name: 'mock' },
+          agency: { name: 'mock' }
         },
         router: mockRouter,
         match: {
           ...mockMatch,
           location: {
             ...mockMatch.location,
-            pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:02`,
+            pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:02`
           },
           params: {
             routeId: 'HSL:1063',
-            patternId: 'HSL:1063:0:02',
-          },
-        },
+            patternId: 'HSL:1063:0:02'
+          }
+        }
       };
       const wrapper = shallowWithIntl(<RouteControlPanel {...props} />, {
         context: {
@@ -257,9 +257,9 @@ describe('<RouteControlPanel />', () => {
             CONFIG: 'default',
             realTime: { HSL: { active: true } },
             colors: { primary: '#00AFFF' },
-            URL: {},
-          },
-        },
+            URL: {}
+          }
+        }
       });
       wrapper.instance().componentDidMount();
     });
@@ -274,24 +274,24 @@ describe('<RouteControlPanel />', () => {
           mode: 'BUS',
           patterns: [
             {
-              code: 'HSL:1063:0:01',
-            },
+              code: 'HSL:1063:0:01'
+            }
           ],
           type: 3,
-          agency: { name: 'mock' },
+          agency: { name: 'mock' }
         },
         router: mockRouter,
         match: {
           ...mockMatch,
           location: {
             ...mockMatch.location,
-            pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:02`,
+            pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:02`
           },
           params: {
             routeId: 'HSL:1063',
-            patternId: 'HSL:1063:0:01',
-          },
-        },
+            patternId: 'HSL:1063:0:01'
+          }
+        }
       };
       const wrapper = shallowWithIntl(<RouteControlPanel {...props} />, {
         context: {
@@ -300,10 +300,10 @@ describe('<RouteControlPanel />', () => {
             CONFIG: 'default',
             realTime: { HSL: { active: true, routeSelector: () => '63' } },
             colors: { primary: '#00AFFF' },
-            URL: {},
+            URL: {}
           },
-          getStore: () => ({ client: {} }),
-        },
+          getStore: () => ({ client: {} })
+        }
       });
       wrapper.instance().onPatternChange('foobar');
     });
@@ -320,30 +320,30 @@ describe('<RouteControlPanel />', () => {
         patterns: [
           {
             alerts: [
-              { id: 'foobar', alertSeverityLevel: AlertSeverityLevelType.Info },
+              { id: 'foobar', alertSeverityLevel: AlertSeverityLevelType.Info }
             ],
-            code: 'HSL:1063:0:01',
-          },
-        ],
+            code: 'HSL:1063:0:01'
+          }
+        ]
       },
       router: mockRouter,
       match: {
         ...mockMatch,
         location: {
           ...mockMatch.location,
-          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`,
+          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`
         },
         params: {
           routeId: 'HSL:1063',
-          patternId: 'HSL:1063:0:01',
-        },
-      },
+          patternId: 'HSL:1063:0:01'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<RouteControlPanel {...props} />, {
       context: {
         ...mockContext,
-        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} },
-      },
+        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} }
+      }
     });
     expect(wrapper.find('.active-service-alert')).to.have.lengthOf(1);
   });
@@ -352,11 +352,11 @@ describe('<RouteControlPanel />', () => {
     const props = {
       breakpoint: 'large',
       location: {
-        pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`,
+        pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`
       },
       params: {
         routeId: 'HSL:1063',
-        patternId: 'HSL:1063:0:01',
+        patternId: 'HSL:1063:0:01'
       },
       route: {
         gtfsId: 'HSL:1063',
@@ -368,31 +368,31 @@ describe('<RouteControlPanel />', () => {
             alerts: [
               {
                 id: 'foobar',
-                alertSeverityLevel: AlertSeverityLevelType.Warning,
-              },
+                alertSeverityLevel: AlertSeverityLevelType.Warning
+              }
             ],
-            code: 'HSL:1063:0:01',
-          },
-        ],
+            code: 'HSL:1063:0:01'
+          }
+        ]
       },
       router: mockRouter,
       match: {
         ...mockMatch,
         location: {
           ...mockMatch.location,
-          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`,
+          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`
         },
         params: {
           routeId: 'HSL:1063',
-          patternId: 'HSL:1063:0:01',
-        },
-      },
+          patternId: 'HSL:1063:0:01'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<RouteControlPanel {...props} />, {
       context: {
         ...mockContext,
-        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} },
-      },
+        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} }
+      }
     });
     expect(wrapper.find('.active-disruption-alert')).to.have.lengthOf(1);
   });
@@ -401,11 +401,11 @@ describe('<RouteControlPanel />', () => {
     const props = {
       breakpoint: 'large',
       location: {
-        pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`,
+        pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`
       },
       params: {
         routeId: 'HSL:1063',
-        patternId: 'HSL:1063:0:01',
+        patternId: 'HSL:1063:0:01'
       },
       route: {
         gtfsId: 'HSL:1063',
@@ -417,31 +417,31 @@ describe('<RouteControlPanel />', () => {
             alerts: [
               {
                 id: 'foobar',
-                alertSeverityLevel: AlertSeverityLevelType.Severe,
-              },
+                alertSeverityLevel: AlertSeverityLevelType.Severe
+              }
             ],
-            code: 'HSL:1063:0:01',
-          },
-        ],
+            code: 'HSL:1063:0:01'
+          }
+        ]
       },
       router: mockRouter,
       match: {
         ...mockMatch,
         location: {
           ...mockMatch.location,
-          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`,
+          pathname: `/${PREFIX_ROUTES}/HSL:1063/${PREFIX_STOPS}/HSL:1063:0:01`
         },
         params: {
           routeId: 'HSL:1063',
-          patternId: 'HSL:1063:0:01',
-        },
-      },
+          patternId: 'HSL:1063:0:01'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<RouteControlPanel {...props} />, {
       context: {
         ...mockContext,
-        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} },
-      },
+        config: { CONFIG: 'default', colors: { primary: '#00AFFF' }, URL: {} }
+      }
     });
     expect(wrapper.find('.active-disruption-alert')).to.have.lengthOf(1);
   });

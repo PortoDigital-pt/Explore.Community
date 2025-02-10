@@ -38,7 +38,7 @@ const fetchServiceAlerts = async (feedids, relayEnvironment) => {
   `;
 
   const result = await fetchQuery(relayEnvironment, query, {
-    feedids,
+    feedids
   }).toPromise();
   return result && Array.isArray(result.alerts) ? result.alerts : [];
 };
@@ -50,7 +50,7 @@ export const getServiceAlertId = alert =>
      ${alert.alertSeverityLevel}
      ${alert.effectiveEndDate}
      ${alert.effectiveStartDate}
-     ${alert.feed}`,
+     ${alert.feed}`
   );
 
 const toMessage = (alert, intl, config, lang) => {
@@ -61,14 +61,14 @@ const toMessage = (alert, intl, config, lang) => {
       type: 'heading',
       content: source
         ? source.concat(alert.alertHeaderText)
-        : alert.alertHeaderText,
+        : alert.alertHeaderText
     },
     { type: 'text', content: alert.alertDescriptionText },
     {
       type: 'a',
       content: intl.formatMessage({ id: 'extra-info' }),
-      href: alert.alertUrl,
-    },
+      href: alert.alertUrl
+    }
   ];
 
   return {
@@ -76,7 +76,7 @@ const toMessage = (alert, intl, config, lang) => {
     icon: 'caution',
     id: getServiceAlertId(alert),
     persistence: 'repeat',
-    type: 'disruption',
+    type: 'disruption'
   };
 };
 
@@ -85,7 +85,7 @@ class MessageBar extends Component {
     getStore: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
     executeAction: PropTypes.func.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -96,17 +96,17 @@ class MessageBar extends Component {
     messages: PropTypes.arrayOf(PropTypes.object).isRequired,
     relayEnvironment: relayShape.isRequired,
     duplicateMessageCounter: PropTypes.number.isRequired,
-    breakpoint: PropTypes.string,
+    breakpoint: PropTypes.string
   };
 
   static defaultProps = {
     getServiceAlertsAsync: fetchServiceAlerts,
-    breakpoint: undefined,
+    breakpoint: undefined
   };
 
   state = {
     slideIndex: 0,
-    allAlertsOpen: false,
+    allAlertsOpen: false
   };
 
   onSwipe = e => {
@@ -134,22 +134,22 @@ class MessageBar extends Component {
               alerts.filter(
                 alert =>
                   alert.effectiveStartDate <= currentTime &&
-                  alert.effectiveEndDate >= currentTime,
+                  alert.effectiveEndDate >= currentTime
               ),
-              alert => alert.alertHash,
-            ),
+              alert => alert.alertHash
+            )
           });
         })
         .catch(() => {
           this.setState({
             ready: true,
-            serviceAlerts: [],
+            serviceAlerts: []
           });
         });
     } else {
       this.setState({
         ready: true,
-        serviceAlerts: [],
+        serviceAlerts: []
       });
     }
   }
@@ -176,14 +176,14 @@ class MessageBar extends Component {
 
     const readMessageIds = getReadMessageIds();
     const filteredServiceAlerts = serviceAlerts.filter(
-      alert => readMessageIds.indexOf(getServiceAlertId(alert)) === -1,
+      alert => readMessageIds.indexOf(getServiceAlertId(alert)) === -1
     );
     const { lang, messages } = this.props;
     return [
       ...filteredServiceAlerts.map(alert =>
-        toMessage(alert, intl, config, lang),
+        toMessage(alert, intl, config, lang)
       ),
-      ...messages,
+      ...messages
     ].filter(el => {
       if (
         Array.isArray(el.content[lang]) &&
@@ -239,7 +239,7 @@ class MessageBar extends Component {
       <>
         <span className="sr-only" role="alert">
           {messages.map(el =>
-            ariaContent(el.content[this.props.lang] || el.content.fi, el.id),
+            ariaContent(el.content[this.props.lang] || el.content.fi, el.id)
           )}
         </span>
         <section
@@ -250,7 +250,7 @@ class MessageBar extends Component {
         >
           <div
             className={cx('banner-container', {
-              'banner-disruption': isDisruption,
+              'banner-disruption': isDisruption
             })}
           >
             <Icon
@@ -264,7 +264,7 @@ class MessageBar extends Component {
                 <div className="message-bar-container">
                   <div
                     style={{
-                      background: isDisruption ? 'inherit' : backgroundColor,
+                      background: isDisruption ? 'inherit' : backgroundColor
                     }}
                   >
                     {this.validMessages().length > 1 ? (
@@ -291,7 +291,7 @@ class MessageBar extends Component {
                 id="close-message-bar"
                 title={this.context.intl.formatMessage({
                   id: 'messagebar-label-close-message-bar',
-                  defaultMessage: 'Close banner',
+                  defaultMessage: 'Close banner'
                 })}
                 onClick={this.handleClose}
                 onKeyDown={e => {
@@ -327,8 +327,8 @@ const connectedComponent = connectToStores(
     currentTime: context.getStore('TimeStore').getCurrentTime(),
     duplicateMessageCounter: context
       .getStore('MessageStore')
-      .getDuplicateMessageCounter(),
-  }),
+      .getDuplicateMessageCounter()
+  })
 );
 
 export { connectedComponent as default, MessageBar as Component };

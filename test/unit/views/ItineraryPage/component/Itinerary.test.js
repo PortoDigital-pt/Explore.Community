@@ -6,17 +6,17 @@ import {
   component as Itinerary,
   ModeLeg,
   RouteLeg,
-  ViaLeg,
+  ViaLeg
 } from '../../../../../app/component/itinerary/Itinerary';
 import RouteNumberContainer from '../../../../../app/component/RouteNumberContainer';
 import { AlertSeverityLevelType } from '../../../../../app/constants';
 import {
   mockChildContextTypes,
-  mockContext,
+  mockContext
 } from '../../../helpers/mock-context';
 import {
   mountWithIntl,
-  shallowWithIntl,
+  shallowWithIntl
 } from '../../../helpers/mock-intl-enzyme';
 import dcw12 from '../../../test-data/dcw12';
 
@@ -25,7 +25,7 @@ const defaultProps = {
   hash: 1,
   onSelect: () => {},
   onSelectImmediately: () => {},
-  refTime: 0,
+  refTime: 0
 };
 
 describe('<Itinerary />', () => {
@@ -36,10 +36,10 @@ describe('<Itinerary />', () => {
       intermediatePlaces:
         dcw12.walkingRouteWithIntermediatePlace.intermediatePlaces,
       passive: false,
-      refTime: dcw12.walkingRouteWithIntermediatePlace.refTime,
+      refTime: dcw12.walkingRouteWithIntermediatePlace.refTime
     };
     const wrapper = shallowWithIntl(<Itinerary {...props} />, {
-      context: { config: { CONFIG: 'default' } },
+      context: { config: { CONFIG: 'default' } }
     });
 
     expect(wrapper.find('.itinerary-legs').children()).to.have.lengthOf(3);
@@ -54,14 +54,14 @@ describe('<Itinerary />', () => {
       intermediatePlaces:
         dcw12.cityBikeRouteWithIntermediatePlaces.intermediatePlaces,
       passive: false,
-      refTime: dcw12.cityBikeRouteWithIntermediatePlaces.refTime,
+      refTime: dcw12.cityBikeRouteWithIntermediatePlaces.refTime
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: {
         ...mockContext,
-        config: { CONFIG: 'default', vehicleRental: { fewAvailableCount: 3 } },
+        config: { CONFIG: 'default', vehicleRental: { fewAvailableCount: 3 } }
       },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     const legs = wrapper.find('.itinerary-legs');
     expect(legs.find(ModeLeg)).to.have.lengthOf.above(3);
@@ -75,11 +75,11 @@ describe('<Itinerary />', () => {
       intermediatePlaces:
         dcw12.bikingRouteWithIntermediatePlaces.intermediatePlaces,
       passive: false,
-      refTime: dcw12.bikingRouteWithIntermediatePlaces.refTime,
+      refTime: dcw12.bikingRouteWithIntermediatePlaces.refTime
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     const legs = wrapper.find('.itinerary-legs');
@@ -99,11 +99,11 @@ describe('<Itinerary />', () => {
         dcw12.transitRouteWithWalkConnectingIntermediatePlaces
           .intermediatePlaces,
       passive: false,
-      refTime: dcw12.transitRouteWithWalkConnectingIntermediatePlaces.refTime,
+      refTime: dcw12.transitRouteWithWalkConnectingIntermediatePlaces.refTime
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     expect(wrapper.find(ViaLeg)).to.have.lengthOf(2);
@@ -121,11 +121,11 @@ describe('<Itinerary />', () => {
           .intermediatePlaces,
       passive: false,
       refTime:
-        dcw12.transitRouteWithShortWalkAtEndAfterIntermediatePlace.refTime,
+        dcw12.transitRouteWithShortWalkAtEndAfterIntermediatePlace.refTime
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     const legs = wrapper.find('.itinerary-legs');
@@ -144,11 +144,11 @@ describe('<Itinerary />', () => {
           .intermediatePlaces,
       passive: false,
       refTime:
-        dcw12.transitRouteWithShortWalkAtStartBeforeIntermediatePlace.refTime,
+        dcw12.transitRouteWithShortWalkAtStartBeforeIntermediatePlace.refTime
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     const legs = wrapper.find('.itinerary-legs');
@@ -164,11 +164,11 @@ describe('<Itinerary />', () => {
       intermediatePlaces:
         dcw12.transitRouteWithIntermediatePlaceAtStop.intermediatePlaces,
       passive: false,
-      refTime: dcw12.transitRouteWithIntermediatePlaceAtStop.refTime,
+      refTime: dcw12.transitRouteWithIntermediatePlaceAtStop.refTime
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     expect(wrapper.find(ViaLeg)).to.have.lengthOf(1);
@@ -181,11 +181,11 @@ describe('<Itinerary />', () => {
       intermediatePlaces:
         dcw12.shortWalkingFirstLegWithMultipleViaPoints.intermediatePlaces,
       passive: false,
-      refTime: dcw12.shortWalkingFirstLegWithMultipleViaPoints.refTime,
+      refTime: dcw12.shortWalkingFirstLegWithMultipleViaPoints.refTime
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     expect(wrapper.find(ViaLeg)).to.have.lengthOf(3);
@@ -209,31 +209,31 @@ describe('<Itinerary />', () => {
                 {
                   alertSeverityLevel: AlertSeverityLevelType.Warning,
                   effectiveEndDate: alertEffectiveEndDate,
-                  effectiveStartDate: 1553754595,
-                },
+                  effectiveStartDate: 1553754595
+                }
               ],
-              mode: 'RAIL',
+              mode: 'RAIL'
             },
             start: {
               scheduledTime: new Date(
-                (alertEffectiveEndDate + 1) * 1000,
-              ).toISOString(),
+                (alertEffectiveEndDate + 1) * 1000
+              ).toISOString()
             },
             end: {
               scheduledTime: new Date(
-                (alertEffectiveEndDate + 100) * 1000,
-              ).toISOString(),
-            },
-          },
-        ],
-      },
+                (alertEffectiveEndDate + 100) * 1000
+              ).toISOString()
+            }
+          }
+        ]
+      }
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(
-      wrapper.find(RouteNumberContainer).props().alertSeverityLevel,
+      wrapper.find(RouteNumberContainer).props().alertSeverityLevel
     ).to.equal(undefined);
   });
 
@@ -255,30 +255,30 @@ describe('<Itinerary />', () => {
                   effectiveStartDate: 1553754595,
                   trip: {
                     pattern: {
-                      code: 'HSL:3001I:0:01',
-                    },
-                  },
-                },
+                      code: 'HSL:3001I:0:01'
+                    }
+                  }
+                }
               ],
-              mode: 'RAIL',
+              mode: 'RAIL'
             },
             start: { scheduledTime: new Date(1553769600000).toISOString() },
             end: { scheduledTime: new Date(1553769601000).toISOString() },
             trip: {
               pattern: {
-                code: 'HSL:3001I:0:01',
-              },
-            },
-          },
-        ],
-      },
+                code: 'HSL:3001I:0:01'
+              }
+            }
+          }
+        ]
+      }
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(
-      wrapper.find(RouteNumberContainer).props().alertSeverityLevel,
+      wrapper.find(RouteNumberContainer).props().alertSeverityLevel
     ).to.equal(AlertSeverityLevelType.Warning);
   });
 
@@ -298,23 +298,23 @@ describe('<Itinerary />', () => {
                   alertSeverityLevel: AlertSeverityLevelType.Warning,
                   effectiveEndDate: 1553778000,
                   effectiveStartDate: 1553754595,
-                  trip: null,
-                },
+                  trip: null
+                }
               ],
-              mode: 'RAIL',
+              mode: 'RAIL'
             },
             start: { scheduledTime: new Date(1553769600000).toISOString() },
-            end: { scheduledTime: new Date(1553769601000).toISOString() },
-          },
-        ],
-      },
+            end: { scheduledTime: new Date(1553769601000).toISOString() }
+          }
+        ]
+      }
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(
-      wrapper.find(RouteNumberContainer).props().alertSeverityLevel,
+      wrapper.find(RouteNumberContainer).props().alertSeverityLevel
     ).to.equal(AlertSeverityLevelType.Warning);
   });
 
@@ -332,29 +332,29 @@ describe('<Itinerary />', () => {
                   {
                     alertSeverityLevel: AlertSeverityLevelType.Warning,
                     effectiveEndDate: 1553778000,
-                    effectiveStartDate: 1553754595,
-                  },
-                ],
-              },
+                    effectiveStartDate: 1553754595
+                  }
+                ]
+              }
             },
             mode: 'RAIL',
             route: {
               alerts: [],
-              mode: 'RAIL',
+              mode: 'RAIL'
             },
             start: { scheduledTime: new Date(1553769600000).toISOString() },
             end: { scheduledTime: new Date(1553769601000).toISOString() },
-            to: {},
-          },
-        ],
-      },
+            to: {}
+          }
+        ]
+      }
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(
-      wrapper.find(RouteNumberContainer).props().alertSeverityLevel,
+      wrapper.find(RouteNumberContainer).props().alertSeverityLevel
     ).to.equal(AlertSeverityLevelType.Warning);
   });
 
@@ -370,7 +370,7 @@ describe('<Itinerary />', () => {
             mode: 'RAIL',
             route: {
               alerts: [],
-              mode: 'RAIL',
+              mode: 'RAIL'
             },
             start: { scheduledTime: new Date(1553769600000).toISOString() },
             end: { scheduledTime: new Date(1553769601000).toISOString() },
@@ -380,21 +380,21 @@ describe('<Itinerary />', () => {
                   {
                     alertSeverityLevel: AlertSeverityLevelType.Warning,
                     effectiveEndDate: 1553778000,
-                    effectiveStartDate: 1553754595,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
+                    effectiveStartDate: 1553754595
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(
-      wrapper.find(RouteNumberContainer).props().alertSeverityLevel,
+      wrapper.find(RouteNumberContainer).props().alertSeverityLevel
     ).to.equal(AlertSeverityLevelType.Warning);
   });
 
@@ -410,8 +410,8 @@ describe('<Itinerary />', () => {
             intermediatePlaces: [
               {
                 stop: {
-                  alerts: [],
-                },
+                  alerts: []
+                }
               },
               {
                 stop: {
@@ -419,32 +419,32 @@ describe('<Itinerary />', () => {
                     {
                       alertSeverityLevel: AlertSeverityLevelType.Warning,
                       effectiveEndDate: 1553778000,
-                      effectiveStartDate: 1553754595,
-                    },
-                  ],
-                },
+                      effectiveStartDate: 1553754595
+                    }
+                  ]
+                }
               },
               {
-                stop: {},
-              },
+                stop: {}
+              }
             ],
             mode: 'RAIL',
             route: {
               alerts: [],
-              mode: 'RAIL',
+              mode: 'RAIL'
             },
             start: { scheduledTime: new Date(1553769600000).toISOString() },
-            end: { scheduledTime: new Date(1553769601000).toISOString() },
-          },
-        ],
-      },
+            end: { scheduledTime: new Date(1553769601000).toISOString() }
+          }
+        ]
+      }
     };
     const wrapper = mountWithIntl(<Itinerary {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(
-      wrapper.find(RouteNumberContainer).props().alertSeverityLevel,
+      wrapper.find(RouteNumberContainer).props().alertSeverityLevel
     ).to.equal(undefined);
   });
 });

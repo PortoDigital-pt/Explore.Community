@@ -63,11 +63,11 @@ const RouteNotification = (props, context) => {
             hideNote
               ? context.intl.formatMessage({
                   id: 'notification-open',
-                  defaultMessage: 'Open message',
+                  defaultMessage: 'Open message'
                 })
               : context.intl.formatMessage({
                   id: 'notification-minimize',
-                  defaultMessage: 'Close message',
+                  defaultMessage: 'Close message'
                 })
           }
         >
@@ -89,17 +89,17 @@ RouteNotification.propTypes = {
   content: PropTypes.arrayOf(PropTypes.string).isRequired,
   link: PropTypes.string,
   id: PropTypes.string.isRequired,
-  closeButtonLabel: PropTypes.string,
+  closeButtonLabel: PropTypes.string
 };
 
 RouteNotification.defaultProps = {
   link: '',
-  closeButtonLabel: undefined,
+  closeButtonLabel: undefined
 };
 
 RouteNotification.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default RouteNotification;

@@ -4,7 +4,7 @@ import routeNameCompare from '@digitransit-search-util/digitransit-search-util-r
 import {
   RealtimeStateType,
   AlertSeverityLevelType,
-  AlertEntityType,
+  AlertEntityType
 } from '../constants';
 
 import { legTime } from './legUtils';
@@ -104,7 +104,7 @@ export const DEFAULT_VALIDITY = 5 * 60;
 export const isAlertValid = (
   alert,
   referenceUnixTime,
-  { defaultValidity = DEFAULT_VALIDITY, isFutureValid = false } = {},
+  { defaultValidity = DEFAULT_VALIDITY, isFutureValid = false } = {}
 ) => {
   if (!alert) {
     return false;
@@ -132,15 +132,15 @@ export const isAlertValid = (
  */
 export const cancelationHasExpired = (
   referenceUnixTime,
-  { scheduledArrival, scheduledDeparture, serviceDay } = {},
+  { scheduledArrival, scheduledDeparture, serviceDay } = {}
 ) =>
   !isAlertValid(
     {
       effectiveStartDate: serviceDay + scheduledArrival,
-      effectiveEndDate: serviceDay + scheduledDeparture,
+      effectiveEndDate: serviceDay + scheduledDeparture
     },
     referenceUnixTime,
-    { isFutureValid: true },
+    { isFutureValid: true }
   );
 
 /**
@@ -155,7 +155,7 @@ export const getCancelationsForRoute = (
   route,
   patternId,
   currentTime,
-  validityPeriod,
+  validityPeriod
 ) => {
   if (!route || !Array.isArray(route.patterns)) {
     return [];
@@ -165,9 +165,9 @@ export const getCancelationsForRoute = (
     .map(pattern =>
       Array.isArray(pattern.trips)
         ? pattern.trips.filter(trip =>
-            tripHasCancelation(trip, currentTime, validityPeriod),
+            tripHasCancelation(trip, currentTime, validityPeriod)
           )
-        : [],
+        : []
     )
     .reduce((a, b) => a.concat(b), [])
     .map(trip => trip.stoptimes || [])
@@ -256,7 +256,7 @@ export const getActiveAlertSeverityLevel = (alerts, referenceUnixTime) => {
   return getMaximumAlertSeverityLevel(
     alerts
       .filter(alert => !!alert)
-      .filter(alert => isAlertValid(alert, referenceUnixTime)),
+      .filter(alert => isAlertValid(alert, referenceUnixTime))
   );
 };
 
@@ -270,11 +270,11 @@ export const getActiveAlertSeverityLevel = (alerts, referenceUnixTime) => {
 export const isAlertActive = (
   referenceUnixTime,
   cancelations = [],
-  alerts = [],
+  alerts = []
 ) => {
   if (
     cancelations.some(
-      cancelation => !cancelationHasExpired(referenceUnixTime, cancelation),
+      cancelation => !cancelationHasExpired(referenceUnixTime, cancelation)
     )
   ) {
     return true;
@@ -285,7 +285,7 @@ export const isAlertActive = (
   }
 
   const filteredAlerts = alerts.filter(alert =>
-    isAlertValid(alert, referenceUnixTime),
+    isAlertValid(alert, referenceUnixTime)
   );
   const alertSeverityLevel = getMaximumAlertSeverityLevel(filteredAlerts);
   return alertSeverityLevel
@@ -313,12 +313,12 @@ export const getActiveLegAlertSeverityLevel = leg => {
   const serviceAlerts = [
     ...getAlertsForObject(route),
     ...getAlertsForObject(leg?.from?.stop),
-    ...getAlertsForObject(leg?.to?.stop),
+    ...getAlertsForObject(leg?.to?.stop)
   ];
 
   return getActiveAlertSeverityLevel(
     serviceAlerts,
-    legTime(leg.start) / 1000, // this field is in ms format
+    legTime(leg.start) / 1000 // this field is in ms format
   );
 };
 
@@ -355,7 +355,7 @@ export const alertSeverityCompare = (a, b) => {
     AlertSeverityLevelType.Info,
     AlertSeverityLevelType.Unknown,
     AlertSeverityLevelType.Warning,
-    AlertSeverityLevelType.Severe,
+    AlertSeverityLevelType.Severe
   ];
 
   const severityLevelDifference =
@@ -387,7 +387,7 @@ export const alertCompare = (alertA, alertB) => {
   const bEntitiesSorted = [...alertB.entities].sort(entityCompare);
   const bestEntitiesCompared = entityCompare(
     aEntitiesSorted[0],
-    bEntitiesSorted[0],
+    bEntitiesSorted[0]
   );
   return bestEntitiesCompared === 0
     ? alertA.effectiveStartDate - alertB.effectiveStartDate
@@ -462,7 +462,7 @@ export const hasEntitiesOfType = (alert, entityType) =>
 export const hasEntitiesOfTypes = (alert, entityTypes) =>
   alert?.entities?.some(entity =>
     // eslint-disable-next-line no-underscore-dangle
-    entityTypes.includes(entity.__typename),
+    entityTypes.includes(entity.__typename)
   );
 
 /**
@@ -495,8 +495,8 @@ export const getActiveLegAlerts = (leg, legStartTime) => {
         entities: getEntitiesOfTypeFromAlert(
           alert,
           AlertEntityType.Route,
-          entity => entity.gtfsId === route.gtfsId,
-        ),
+          entity => entity.gtfsId === route.gtfsId
+        )
       };
     }),
     ...getAlertsForObject(leg?.from.stop).map(alert => {
@@ -505,8 +505,8 @@ export const getActiveLegAlerts = (leg, legStartTime) => {
         entities: getEntitiesOfTypeFromAlert(
           alert,
           AlertEntityType.Stop,
-          entity => entity.gtfsId === leg?.from.stop.gtfsId,
-        ),
+          entity => entity.gtfsId === leg?.from.stop.gtfsId
+        )
       };
     }),
     ...getAlertsForObject(leg?.to.stop).map(alert => {
@@ -515,10 +515,10 @@ export const getActiveLegAlerts = (leg, legStartTime) => {
         entities: getEntitiesOfTypeFromAlert(
           alert,
           AlertEntityType.Stop,
-          entity => entity.gtfsId === leg?.to.stop.gtfsId,
-        ),
+          entity => entity.gtfsId === leg?.to.stop.gtfsId
+        )
       };
-    }),
+    })
   ].filter(alert => isAlertActive(legStartTime, [{}], alert));
 
   return serviceAlerts;

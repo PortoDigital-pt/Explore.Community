@@ -23,7 +23,7 @@ const DesktopModal = ({
   savePlaceText,
   cantSaveText,
   requiredText,
-  fontWeights,
+  fontWeights
 }) => {
   return (
     <div
@@ -31,7 +31,7 @@ const DesktopModal = ({
       style={{
         '--color': `${color}`,
         '--hover-color': `${hoverColor}`,
-        '--font-weight-medium': fontWeights.medium,
+        '--font-weight-medium': fontWeights.medium
       }}
     >
       <div className={styles['favourite-modal-desktop-top']}>
@@ -68,7 +68,7 @@ const DesktopModal = ({
           className={cx(
             `${styles['favourite-modal-desktop-button']} ${styles.save} ${
               canSave() ? '' : styles.disabled
-            }`,
+            }`
           )}
           onClick={saveFavourite}
           aria-label={`${canSave() ? savePlaceText : cantSaveText}`}
@@ -82,7 +82,7 @@ const DesktopModal = ({
             className={cx(
               `${styles['favourite-modal-desktop-button']} ${styles.edit} ${
                 canSave() ? '' : styles.disabled
-              }`,
+              }`
             )}
             onClick={cancelSelected}
           >
@@ -114,13 +114,13 @@ DesktopModal.propTypes = {
   cantSaveText: PropTypes.string.isRequired,
   requiredText: PropTypes.string.isRequired,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number.isRequired,
-  }).isRequired,
+    medium: PropTypes.number.isRequired
+  }).isRequired
 };
 
 DesktopModal.defaultProps = {
   isEdit: false,
-  cancelSelected: () => ({}),
+  cancelSelected: () => ({})
 };
 
 export default DesktopModal;

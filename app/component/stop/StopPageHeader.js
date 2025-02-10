@@ -9,7 +9,7 @@ import withBreakpoint from '../../util/withBreakpoint';
 const StopPageHeader = compose(
   withBreakpoint,
   getContext({
-    executeAction: PropTypes.func.isRequired,
+    executeAction: PropTypes.func.isRequired
   }),
   mapProps(props => ({
     stop: props.stop || props.station,
@@ -17,8 +17,8 @@ const StopPageHeader = compose(
     headingStyle: 'h3',
     icons: [],
     breakpoint: props.breakpoint,
-    isTerminal: props.isTerminal,
-  })),
+    isTerminal: props.isTerminal
+  }))
 )(StopCardHeaderContainer);
 
 StopPageHeader.displayName = 'StopPageHeader';

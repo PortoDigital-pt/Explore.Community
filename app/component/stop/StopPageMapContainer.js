@@ -15,12 +15,12 @@ StopPageMapContainer.propTypes = {
   stop: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
-    platformCode: PropTypes.string,
-  }),
+    platformCode: PropTypes.string
+  })
 };
 
 StopPageMapContainer.defaultProps = {
-  stop: undefined,
+  stop: undefined
 };
 
 const containerComponent = createFragmentContainer(StopPageMapContainer, {
@@ -35,7 +35,7 @@ const containerComponent = createFragmentContainer(StopPageMapContainer, {
       vehicleMode
       locationType
     }
-  `,
+  `
 });
 
 export { containerComponent as default, StopPageMapContainer as Component };

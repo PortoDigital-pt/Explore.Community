@@ -27,15 +27,15 @@ export function getServerBreakpoint(userAgent) {
 export class ClientProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    serverGuessedBreakpoint: PropTypes.string,
+    serverGuessedBreakpoint: PropTypes.string
   };
 
   static defaultProps = {
-    serverGuessedBreakpoint: null,
+    serverGuessedBreakpoint: null
   };
 
   state = {
-    breakpoint: this.props.serverGuessedBreakpoint || getClientBreakpoint(),
+    breakpoint: this.props.serverGuessedBreakpoint || getClientBreakpoint()
   };
 
   componentDidMount() {
@@ -44,9 +44,9 @@ export class ClientProvider extends React.Component {
         this.setState(({ breakpoint }) =>
           getClientBreakpoint() !== breakpoint
             ? { breakpoint: getClientBreakpoint() }
-            : null,
+            : null
         ),
-      100,
+      100
     );
     this.updateBreakpoint();
     window.addEventListener('resize', this.updateBreakpoint);
@@ -78,7 +78,7 @@ export function DesktopOrMobile({ desktop, mobile }) {
 
 DesktopOrMobile.propTypes = {
   desktop: PropTypes.func.isRequired,
-  mobile: PropTypes.func.isRequired,
+  mobile: PropTypes.func.isRequired
 };
 
 function getDisplayName(Component) {

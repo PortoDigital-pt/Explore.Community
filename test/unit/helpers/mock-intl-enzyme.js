@@ -16,7 +16,7 @@ import translations from '../../../app/translations';
 const getIntl = locale => {
   const intlProvider = new IntlProvider(
     { locale, messages: translations[locale] },
-    {},
+    {}
   );
   const { intl } = intlProvider.getChildContext();
   return intl;
@@ -25,7 +25,7 @@ const getIntl = locale => {
 const providers = {
   en: getIntl('en'),
   fi: getIntl('fi'),
-  sv: getIntl('sv'),
+  sv: getIntl('sv')
 };
 
 /**
@@ -37,23 +37,23 @@ const nodeWithIntlProp = (node, locale) =>
 export const shallowWithIntl = (
   node,
   { context, ...additionalOptions } = {},
-  locale = 'en',
+  locale = 'en'
 ) =>
   shallow(nodeWithIntlProp(node, locale), {
     context: { ...context, intl: providers[locale] },
-    ...additionalOptions,
+    ...additionalOptions
   });
 
 export const mountWithIntl = (
   node,
   { context, childContextTypes, ...additionalOptions } = {},
-  locale = 'en',
+  locale = 'en'
 ) =>
   mount(nodeWithIntlProp(node, locale), {
     context: { ...context, intl: providers[locale] },
     childContextTypes: {
       intl: intlShape,
-      ...childContextTypes,
+      ...childContextTypes
     },
-    ...additionalOptions,
+    ...additionalOptions
   });

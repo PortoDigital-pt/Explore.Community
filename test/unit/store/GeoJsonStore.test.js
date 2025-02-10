@@ -3,7 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import GeoJsonStore, {
   MapJSON,
-  styleFeatures,
+  styleFeatures
 } from '../../../app/store/GeoJsonStore';
 
 describe('GeoJsonStore', () => {
@@ -69,7 +69,7 @@ describe('GeoJsonStore', () => {
   describe('getGeoJsonData', () => {
     it('should return undefined if the url is falsey', async () => {
       expect(await store.getGeoJsonData(undefined, 'foo', {})).to.equal(
-        undefined,
+        undefined
       );
     });
 
@@ -77,7 +77,7 @@ describe('GeoJsonStore', () => {
       const url = 'https://localhost/data';
       const response = {
         type: 'FeatureCollection',
-        features: [],
+        features: []
       };
       fetchMock.get(url, response);
 
@@ -91,7 +91,7 @@ describe('GeoJsonStore', () => {
       const url = 'https://localhost/data';
       const response = {
         type: 'FeatureCollection',
-        features: [],
+        features: []
       };
       fetchMock.get(url, response);
 
@@ -103,7 +103,7 @@ describe('GeoJsonStore', () => {
       const url = 'https://localhost/data';
       const response = {
         type: 'FeatureCollection',
-        features: [],
+        features: []
       };
       fetchMock.get(url, response);
 
@@ -119,22 +119,22 @@ describe('GeoJsonStore', () => {
           {
             type: 'Feature',
             properties: {
-              foo: 'bar',
+              foo: 'bar'
             },
             geometry: {
               type: 'Point',
-              coordinates: [60, 25],
-            },
-          },
-        ],
+              coordinates: [60, 25]
+            }
+          }
+        ]
       };
       fetchMock.get(url, response);
 
       const result = await store.getGeoJsonData(url, undefined, {
-        name: 'foo',
+        name: 'foo'
       });
       expect(result.data.features[0].properties.name).to.equal(
-        response.features[0].properties.foo,
+        response.features[0].properties.foo
       );
     });
   });
@@ -147,24 +147,24 @@ describe('GeoJsonStore', () => {
           {
             type: 'Feature',
             properties: {
-              tekstielementti: 'this-text-is-visible',
+              tekstielementti: 'this-text-is-visible'
             },
             geometry: {
               type: 'Point',
-              coordinates: [24, 60],
-            },
+              coordinates: [24, 60]
+            }
           },
           {
             type: 'Feature',
             properties: {
-              tiedot: 'ponnahdusvalikko',
+              tiedot: 'ponnahdusvalikko'
             },
             geometry: {
               type: 'Point',
-              coordinates: [24.5, 60.1],
-            },
-          },
-        ],
+              coordinates: [24.5, 60.1]
+            }
+          }
+        ]
       };
       const dataClone = cloneDeep(data);
 
@@ -179,7 +179,7 @@ describe('GeoJsonStore', () => {
       const geoJsonSource = [
         {
           name: {
-            en: 'external map data source',
+            en: 'external map data source'
           },
           url: '/home.com',
           metadata: {
@@ -188,9 +188,9 @@ describe('GeoJsonStore', () => {
             // the visible label comes from 'tekstielementti' too
             name: 'tekstielementti',
             // add a popup if feature has 'tiedot'
-            popupContent: 'tiedot',
-          },
-        },
+            popupContent: 'tiedot'
+          }
+        }
       ];
 
       const geoJsonResponse = {
@@ -199,24 +199,24 @@ describe('GeoJsonStore', () => {
           {
             type: 'Feature',
             properties: {
-              tekstielementti: 'this-text-is-visible',
+              tekstielementti: 'this-text-is-visible'
             },
             geometry: {
               type: 'Point',
-              coordinates: [24, 60],
-            },
+              coordinates: [24, 60]
+            }
           },
           {
             type: 'Feature',
             properties: {
-              tiedot: 'ponnahdusvalikko',
+              tiedot: 'ponnahdusvalikko'
             },
             geometry: {
               type: 'Point',
-              coordinates: [24.5, 60.1],
-            },
-          },
-        ],
+              coordinates: [24.5, 60.1]
+            }
+          }
+        ]
       };
       MapJSON(geoJsonResponse, geoJsonSource[0].metadata);
       const p0 = geoJsonResponse.features[0].properties;
@@ -239,49 +239,49 @@ describe('GeoJsonStore', () => {
                 [1, 1],
                 [2, 2],
                 [3, 3],
-                [4, 4],
+                [4, 4]
               ],
-              type: 'LineString',
+              type: 'LineString'
             },
             styles: [
               {
                 color: 'black',
-                weight: 1,
+                weight: 1
               },
               {
                 color: 'gray',
-                weight: 5,
-              },
+                weight: 5
+              }
             ],
-            type: 'Feature',
+            type: 'Feature'
           },
           {
             style: {
               color: 'green',
-              weight: 4,
-            },
-          },
-        ],
+              weight: 4
+            }
+          }
+        ]
       };
 
       const output = styleFeatures(input);
       expect(output).to.not.equal(input);
       expect(output.features.length).to.equal(3);
       expect(
-        output.features.filter(feature => feature.styles),
+        output.features.filter(feature => feature.styles)
       ).to.have.lengthOf(0);
       expect(output.features[0].geometry).to.deep.equal(
-        output.features[1].geometry,
+        output.features[1].geometry
       );
       expect(output.features[0].style).to.deep.equal({
         color: 'black',
         type: 'line',
-        weight: 1,
+        weight: 1
       });
       expect(output.features[1].style).to.deep.equal({
         color: 'gray',
         type: 'halo',
-        weight: 5,
+        weight: 5
       });
       expect(output.features[0]).to.not.equal(output.features[1]);
     });
@@ -293,10 +293,10 @@ describe('GeoJsonStore', () => {
           {
             style: {
               color: 'green',
-              weight: 4,
-            },
-          },
-        ],
+              weight: 4
+            }
+          }
+        ]
       };
       const output = styleFeatures(input);
       expect(output).to.equal(input);

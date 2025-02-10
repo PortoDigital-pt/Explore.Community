@@ -66,7 +66,7 @@ const ItineraryCircleLineLong = props => {
   return (
     <div
       className={cx('leg-before long', props.modeClassName, {
-        first: props.index === 0,
+        first: props.index === 0
       })}
       aria-hidden="true"
     >
@@ -76,14 +76,14 @@ const ItineraryCircleLineLong = props => {
         className={cx(
           'leg-before-line top',
           positionRelativeToTransit,
-          firstModeClassName,
+          firstModeClassName
         )}
       />
       <div
         className={cx(
           'itinerary-route-number',
           'first',
-          positionRelativeToTransit,
+          positionRelativeToTransit
         )}
       >
         {props.modeClassName === 'bicycle' ? (
@@ -98,14 +98,14 @@ const ItineraryCircleLineLong = props => {
         className={cx(
           'leg-before-line middle',
           positionRelativeToTransit,
-          props.modeClassName,
+          props.modeClassName
         )}
       />
       <div
         className={cx(
           'itinerary-route-number',
           'second',
-          positionRelativeToTransit,
+          positionRelativeToTransit
         )}
       >
         {props.modeClassName === 'bicycle' ? (
@@ -122,7 +122,7 @@ const ItineraryCircleLineLong = props => {
           className={cx(
             'leg-before-line second-middle',
             positionRelativeToTransit,
-            props.modeClassName,
+            props.modeClassName
           )}
         />
       )}
@@ -132,7 +132,7 @@ const ItineraryCircleLineLong = props => {
             className={cx(
               'itinerary-route-number',
               'third',
-              positionRelativeToTransit,
+              positionRelativeToTransit
             )}
           >
             <RouteNumber mode={firstModeClassName} vertical />
@@ -146,7 +146,7 @@ const ItineraryCircleLineLong = props => {
           positionRelativeToTransit,
           positionRelativeToTransit === 'between-transit'
             ? firstModeClassName
-            : secondModeClassName,
+            : secondModeClassName
         )}
       />
       {props.renderBottomMarker && bottomMarker}
@@ -159,12 +159,12 @@ ItineraryCircleLineLong.propTypes = {
   color: PropTypes.string,
   renderBottomMarker: PropTypes.bool,
   modeClassName: PropTypes.string.isRequired,
-  boardingLeg: legShape.isRequired,
+  boardingLeg: legShape.isRequired
 };
 
 ItineraryCircleLineLong.defaultProps = {
   color: undefined,
-  renderBottomMarker: false,
+  renderBottomMarker: false
 };
 
 export default ItineraryCircleLineLong;

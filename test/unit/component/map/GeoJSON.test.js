@@ -5,7 +5,7 @@ import LeafletGeoJson from 'react-leaflet/es/GeoJSON';
 
 import GeoJSON, {
   getIcons,
-  getMarker,
+  getMarker
 } from '../../../../app/component/map/GeoJSON';
 import { shallowWithIntl } from '../../helpers/mock-intl-enzyme';
 import PointFeatureMarker from '../../../../app/component/map/PointFeatureMarker';
@@ -15,10 +15,10 @@ const context = { config: { CONFIG: 'default' } };
 describe('<GeoJSON />', () => {
   it('should render empty if there are no features', () => {
     const props = {
-      data: {},
+      data: {}
     };
     const wrapper = shallowWithIntl(<GeoJSON {...props} />, {
-      context,
+      context
     });
     expect(wrapper.isEmptyRender()).to.equal(true);
   });
@@ -30,14 +30,14 @@ describe('<GeoJSON />', () => {
           {
             geometry: {
               coordinates: [60, 25],
-              type: 'MultiPoint',
-            },
-          },
-        ],
-      },
+              type: 'MultiPoint'
+            }
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<GeoJSON {...props} />, {
-      context,
+      context
     });
     expect(wrapper.find(LeafletGeoJson)).to.have.lengthOf(1);
   });
@@ -50,14 +50,14 @@ describe('<GeoJSON />', () => {
             id: '1',
             geometry: {
               coordinates: [60, 25],
-              type: 'Point',
-            },
-          },
-        ],
-      },
+              type: 'Point'
+            }
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<GeoJSON {...props} />, {
-      context,
+      context
     });
     expect(wrapper.find(PointFeatureMarker)).to.have.lengthOf(1);
   });
@@ -74,15 +74,15 @@ describe('<GeoJSON />', () => {
           properties: {
             icon: {
               id: 'test',
-              svg: '#<foobar>#',
-            },
-          },
-        },
+              svg: '#<foobar>#'
+            }
+          }
+        }
       ];
 
       const icons = getIcons(features);
       expect(icons.test).to.equal(
-        'data:image/svg+xml;charset=utf-8,%23%3Cfoobar%3E%23',
+        'data:image/svg+xml;charset=utf-8,%23%3Cfoobar%3E%23'
       );
     });
   });
@@ -92,16 +92,16 @@ describe('<GeoJSON />', () => {
       const feature = {
         properties: {
           icon: {
-            id: 'test',
-          },
-        },
+            id: 'test'
+          }
+        }
       };
       const latLng = L.latLng({
         lat: 60.45065,
-        lng: 22.267,
+        lng: 22.267
       });
       const icons = {
-        test: 'foobar',
+        test: 'foobar'
       };
 
       const marker = getMarker(feature, latLng, icons);
@@ -114,7 +114,7 @@ describe('<GeoJSON />', () => {
       const feature = {};
       const latLng = L.latLng({
         lat: 60.45065,
-        lng: 22.267,
+        lng: 22.267
       });
 
       const marker = getMarker(feature, latLng);
@@ -125,12 +125,12 @@ describe('<GeoJSON />', () => {
     it('should use a circleMarker and a tooltip for textOnly', () => {
       const feature = {
         properties: {
-          textOnly: 'Test',
-        },
+          textOnly: 'Test'
+        }
       };
       const latLng = L.latLng({
         lat: 60.45065,
-        lng: 22.267,
+        lng: 22.267
       });
 
       const marker = getMarker(feature, latLng);

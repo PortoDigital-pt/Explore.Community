@@ -6,7 +6,7 @@ export default function ExternalLink({
   children,
   href,
   className,
-  onClick,
+  onClick
 }) {
   return (
     (name || children !== undefined) && (
@@ -37,7 +37,7 @@ ExternalLink.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string,
   className: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 ExternalLink.defaultProps = {
@@ -45,7 +45,7 @@ ExternalLink.defaultProps = {
   children: undefined,
   href: undefined,
   onClick: undefined,
-  className: '',
+  className: ''
 };
 
 ExternalLink.displayName = 'ExternalLink';

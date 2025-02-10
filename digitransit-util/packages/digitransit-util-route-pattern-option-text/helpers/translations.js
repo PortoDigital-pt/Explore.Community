@@ -20,7 +20,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Tirs.)',
     'route-pattern-select-range-to-to': ' (Tors.)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} indtil {{day}})',
+    'route-pattern-select-until': ' ({{range}} indtil {{day}})'
   },
   de: {
     'route-pattern-select-from': ' ({{range}} von {{day}})',
@@ -43,7 +43,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Di)',
     'route-pattern-select-range-to-to': ' (Do)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} bis {{day}})',
+    'route-pattern-select-until': ' ({{range}} bis {{day}})'
   },
   en: {
     'route-pattern-select-from': ' ({{range}} from {{day}})',
@@ -66,7 +66,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Tue)',
     'route-pattern-select-range-to-to': ' (Thu)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} until {{day}})',
+    'route-pattern-select-until': ' ({{range}} until {{day}})'
   },
   pt: {
     'route-pattern-select-from': ' ({{range}} a partir de {{day}})',
@@ -89,7 +89,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Ter)',
     'route-pattern-select-range-to-to': ' (Qui)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} até {{day}})',
+    'route-pattern-select-until': ' ({{range}} até {{day}})'
   },
   es: {
     'route-pattern-select-from': ' ({{range}} de {{day}})',
@@ -112,7 +112,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Mar)',
     'route-pattern-select-range-to-to': ' (Jue)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} hasta {{day}})',
+    'route-pattern-select-until': ' ({{range}} hasta {{day}})'
   },
   fi: {
     'route-pattern-select-from': ' ({{range}} {{day}} lähtien)',
@@ -135,7 +135,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (ti)',
     'route-pattern-select-range-to-to': ' (to)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} {{day}} saakka)',
+    'route-pattern-select-until': ' ({{range}} {{day}} saakka)'
   },
   fr: {
     'route-pattern-select-from': ' ({{range}} de {{day}})',
@@ -158,7 +158,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Ma)',
     'route-pattern-select-range-to-to': ' (Je)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} avant {{day}})',
+    'route-pattern-select-until': ' ({{range}} avant {{day}})'
   },
   nb: {
     'route-pattern-select-from': ' ({{range}} fra {{day}})',
@@ -181,7 +181,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Ti)',
     'route-pattern-select-range-to-to': ' (To)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} før {{day}})',
+    'route-pattern-select-until': ' ({{range}} før {{day}})'
   },
   pl: {
     'route-pattern-select-from': ' ({{range}} od {{day}})',
@@ -204,7 +204,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (wt.)',
     'route-pattern-select-range-to-to': ' (czw.)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} do {{day}})',
+    'route-pattern-select-until': ' ({{range}} do {{day}})'
   },
   ro: {
     'route-pattern-select-from': ' ({{range}} din {{day}})',
@@ -227,7 +227,7 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (Ma)',
     'route-pattern-select-range-to-to': ' (Jo)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} până {{day}})',
+    'route-pattern-select-until': ' ({{range}} până {{day}})'
   },
   sv: {
     'route-pattern-select-from': ' ({{range}} från {{day}})',
@@ -250,8 +250,8 @@ const translations = {
     'route-pattern-select-range-ti-ti': ' (tis)',
     'route-pattern-select-range-to-to': ' (tor)',
     'route-pattern-select-range-undefined': ' ',
-    'route-pattern-select-until': ' ({{range}} till {{day}})',
-  },
+    'route-pattern-select-until': ' ({{range}} till {{day}})'
+  }
 };
 
 export default translations;

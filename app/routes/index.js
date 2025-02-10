@@ -19,7 +19,7 @@ export default config => (
       path="/tietoja-palvelusta"
       getComponent={() =>
         import(/* webpackChunkName: "about" */ '../component/AboutPage').then(
-          getDefault,
+          getDefault
         )
       }
     />

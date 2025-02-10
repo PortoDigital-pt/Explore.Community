@@ -22,15 +22,15 @@ class TileContainer {
     vehicles,
     stopsToShow,
     objectsToHide,
-    lang,
+    lang
   ) {
     const markersMinZoom = Math.min(
       getVehicleMinZoomOnStopsNearYou(
         config,
-        props.mapLayers.citybikeOverrideMinZoom,
+        props.mapLayers.citybikeOverrideMinZoom
       ),
       config.stopsMinZoom,
-      config.terminalStopsMinZoom,
+      config.terminalStopsMinZoom
     );
     this.coords = coords;
     this.mergeStops = mergeStops;
@@ -56,7 +56,7 @@ class TileContainer {
       !hilightedStops.every(stop => stop === '');
     if (vehicles && vehicles.length > 0) {
       ignoreMinZoomLevel = vehicles.every(
-        v => v.mode === 'ferry' && v.mode === 'rail' && v.mode === 'subway',
+        v => v.mode === 'ferry' && v.mode === 'rail' && v.mode === 'subway'
       );
     }
 
@@ -93,7 +93,7 @@ class TileContainer {
           this.coords.z >=
             getVehicleMinZoomOnStopsNearYou(
               config,
-              props.mapLayers.citybikeOverrideMinZoom,
+              props.mapLayers.citybikeOverrideMinZoom
             )
         ) {
           return isEnabled;
@@ -115,14 +115,14 @@ class TileContainer {
             config,
             this.props.mapLayers,
             relayEnvironment,
-            mergeStops,
-          ),
+            mergeStops
+          )
       );
 
     this.el.layers = this.layers.map(layer => omit(layer, 'tile'));
 
     Promise.all(this.layers.map(layer => layer.getPromise(lang))).then(() =>
-      done(null, this.el),
+      done(null, this.el)
     );
   }
 
@@ -140,7 +140,7 @@ class TileContainer {
     const y1 = 180 - ((point.y + y0) * 360) / size;
     return {
       lon: ((point.x + x0) * 360) / size - 180,
-      lat: (360 / Math.PI) * Math.atan(Math.exp(y1 * (Math.PI / 180))) - 90,
+      lat: (360 / Math.PI) * Math.atan(Math.exp(y1 * (Math.PI / 180))) - 90
     };
   };
 
@@ -182,14 +182,14 @@ class TileContainer {
       const pointGeom = this.latLngToPoint(vehicle.lat, vehicle.long);
       return {
         layer: 'realTimeVehicle',
-        feature: { geom: pointGeom, vehicle, properties: {} },
+        feature: { geom: pointGeom, vehicle, properties: {} }
       };
     });
 
     if (this.layers) {
       localPoint = [
         (point[0] * this.scaleratio) % this.tileSize,
-        (point[1] * this.scaleratio) % this.tileSize,
+        (point[1] * this.scaleratio) % this.tileSize
       ];
 
       features = flatten(
@@ -198,9 +198,9 @@ class TileContainer {
             layer.features &&
             layer.features.map(feature => ({
               layer: layer.constructor.getName(),
-              feature,
-            })),
-        ),
+              feature
+            }))
+        )
       );
       features = projectedVehicles.concat(features);
 
@@ -256,14 +256,14 @@ class TileContainer {
           }
         }
         let dist = Math.sqrt(
-          (localPoint[0] - featureX) ** 2 + (localPoint[1] - featureY) ** 2,
+          (localPoint[0] - featureX) ** 2 + (localPoint[1] - featureY) ** 2
         );
         if (isCombo) {
           dist = Math.min(
             dist,
             Math.sqrt(
-              (localPoint[0] - featureX) ** 2 + (localPoint[1] - secondY) ** 2,
-            ),
+              (localPoint[0] - featureX) ** 2 + (localPoint[1] - secondY) ** 2
+            )
           );
         }
         if (dist < 22 * this.scaleratio) {

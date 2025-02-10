@@ -9,33 +9,33 @@ const TestLocation = {
   Outside: {
     lat: 10.0,
     lon: 10.0,
-    address: 'Atlantic',
+    address: 'Atlantic'
   },
 
   Rautatientori: {
     address: 'Rautatientori',
     lat: 60.170384,
-    lon: 24.939846,
+    lon: 24.939846
   },
 
   Mannerheimintie_89: {
     lat: 60.194445473775644,
     lon: 24.904975891113285,
-    address: 'Mannerheimintie89, Helsinki',
+    address: 'Mannerheimintie89, Helsinki'
   },
 
   Lappers: {
     address: 'Lappers',
     lat: 60.20342859480837,
-    lon: 24.039373397827152,
-  },
+    lon: 24.039373397827152
+  }
 };
 
 const HelsinkiRegionBounds = [
   [24.0049, 59.78402],
   [24.0049, 60.5806],
   [25.5345, 60.5806],
-  [25.5345, 59.78402],
+  [25.5345, 59.78402]
 ];
 
 mockContext.config = {
@@ -45,17 +45,17 @@ mockContext.config = {
   nationalServiceLink: {
     fi: {
       name: 'matka.fi',
-      href: 'https://opas.matka.fi/',
+      href: 'https://opas.matka.fi/'
     },
     sv: {
       name: 'matka.fi',
-      href: 'https://opas.matka.fi/sv/',
+      href: 'https://opas.matka.fi/sv/'
     },
     en: {
       name: 'matka.fi',
-      href: 'https://opas.matka.fi/en/',
-    },
-  },
+      href: 'https://opas.matka.fi/en/'
+    }
+  }
 };
 
 const defaultProps = {
@@ -67,13 +67,13 @@ const defaultProps = {
     hasLocation: false,
     isLocationingInProgress: false,
     isReverseGeocodingInProgress: false,
-    locationingFailed: false,
+    locationingFailed: false
   },
   error: undefined,
   from: {},
   to: {},
   searchTime: 123456780,
-  currentTime: 1656580024206,
+  currentTime: 1656580024206
 };
 
 const matchElement = (componentName, propName, propValue) => enzymeWrapper =>
@@ -90,18 +90,18 @@ const expectElementWithId = (
   props,
   expectComponent,
   expectPropName,
-  expectPropValue,
+  expectPropValue
 ) => {
   const wrapper = shallowWithIntl(<NoItinerariesNote {...props} />, {
     context: mockContext,
-    childContextTypes: mockChildContextTypes,
+    childContextTypes: mockChildContextTypes
   });
 
   const assertErrorMessage = `<${expectComponent} ${expectPropName}="${expectPropValue}" .../> not found.`;
   expect(
     wrapper.findWhere(
-      matchElement(expectComponent, expectPropName, expectPropValue),
-    ),
+      matchElement(expectComponent, expectPropName, expectPropValue)
+    )
   ).to.have.length(1, assertErrorMessage);
 };
 
@@ -116,7 +116,7 @@ const expectElementWithId = (
 const expectElement = (props, componentName, mountMethod = 'shallow') => {
   const opts = {
     context: mockContext,
-    childContextTypes: mockChildContextTypes,
+    childContextTypes: mockChildContextTypes
   };
 
   const wrapper =
@@ -126,7 +126,7 @@ const expectElement = (props, componentName, mountMethod = 'shallow') => {
 
   const assertErrorMessage = `<${componentName} .../> not found.`;
   expect(
-    wrapper.findWhere(enzymeWrapper => enzymeWrapper.name() === componentName),
+    wrapper.findWhere(enzymeWrapper => enzymeWrapper.name() === componentName)
   ).to.have.length(1, assertErrorMessage);
 };
 
@@ -136,7 +136,7 @@ describe('<NoItinerariesNote />', () => {
       <div>
         <NoItinerariesNote {...defaultProps} />
       </div>,
-      { context: mockContext, childContextTypes: mockChildContextTypes },
+      { context: mockContext, childContextTypes: mockChildContextTypes }
     );
 
     expect(wrapper.isEmptyRender()).to.equal(false);
@@ -151,11 +151,11 @@ describe('<NoItinerariesNote />', () => {
         routingErrors: [
           {
             code: PlannerMessageType.OutsideBounds,
-            inputField: 'FROM',
-          },
+            inputField: 'FROM'
+          }
         ],
         from: TestLocation.Outside,
-        to: TestLocation.Rautatientori,
+        to: TestLocation.Rautatientori
       };
       expectElement(props, 'NationalServiceLink', false);
     });
@@ -167,12 +167,12 @@ describe('<NoItinerariesNote />', () => {
           from: TestLocation.Outside,
           to: TestLocation.Rautatientori,
           routingErrors: [
-            { code: PlannerMessageType.OutsideBounds, inputField: 'FROM' },
-          ],
+            { code: PlannerMessageType.OutsideBounds, inputField: 'FROM' }
+          ]
         },
         'ErrorCard',
         'msgId',
-        'origin-outside-service',
+        'origin-outside-service'
       );
     });
 
@@ -183,12 +183,12 @@ describe('<NoItinerariesNote />', () => {
           from: TestLocation.Rautatientori,
           to: TestLocation.Outside,
           routingErrors: [
-            { code: PlannerMessageType.OutsideBounds, inputField: 'TO' },
-          ],
+            { code: PlannerMessageType.OutsideBounds, inputField: 'TO' }
+          ]
         },
         'ErrorCard',
         'msgId',
-        'destination-outside-service',
+        'destination-outside-service'
       );
     });
 
@@ -200,12 +200,12 @@ describe('<NoItinerariesNote />', () => {
           to: TestLocation.Outside,
           routingErrors: [
             { code: PlannerMessageType.OutsideBounds, inputField: 'TO' },
-            { code: PlannerMessageType.OutsideBounds, inputField: 'FROM' },
-          ],
+            { code: PlannerMessageType.OutsideBounds, inputField: 'FROM' }
+          ]
         },
         'ErrorCard',
         'msgId',
-        'router-outside-bounds-3',
+        'router-outside-bounds-3'
       );
     });
 
@@ -219,13 +219,13 @@ describe('<NoItinerariesNote />', () => {
           routingErrors: [
             {
               code: PlannerMessageType.OutsideServicePeriod,
-              inputField: 'DATE_TIME',
-            },
-          ],
+              inputField: 'DATE_TIME'
+            }
+          ]
         },
         'ErrorCard',
         'msgId',
-        'router-outside-service-period',
+        'router-outside-service-period'
       );
     });
 
@@ -239,11 +239,11 @@ describe('<NoItinerariesNote />', () => {
           routingErrors: [
             {
               code: PlannerMessageType.OutsideServicePeriod,
-              inputField: 'DATE_TIME',
-            },
-          ],
+              inputField: 'DATE_TIME'
+            }
+          ]
         },
-        'PastLink',
+        'PastLink'
       );
     });
 
@@ -254,11 +254,11 @@ describe('<NoItinerariesNote />', () => {
           searchTime: Date.now() - 2 * DAY,
           from: TestLocation.Rautatientori,
           to: TestLocation.Mannerheimintie_89,
-          walking: true,
+          walking: true
         },
         'ErrorCard',
         'msgId',
-        'itinerary-in-the-past',
+        'itinerary-in-the-past'
       );
     });
   });

@@ -23,12 +23,12 @@ const iconMap = {
   'BUS-EXPRESS': 'icon-icon_bus-express',
   'BUS-LOCAL': 'icon-icon_bus-local',
   SPEEDTRAM: 'icon-icon_speedtram',
-  WAIT_IN_VEHICLE: 'icon-icon_wait',
+  WAIT_IN_VEHICLE: 'icon-icon_wait'
 };
 
 export default function NaviCard(
   { leg, nextLeg, legType, cardExpanded, startTime, time, position, origin },
-  { config },
+  { config }
 ) {
   let mainCardContent;
   if (legType === LEGTYPE.PENDING) {
@@ -114,21 +114,21 @@ NaviCard.propTypes = {
   time: PropTypes.number.isRequired,
   position: PropTypes.shape({
     lat: PropTypes.number,
-    lon: PropTypes.number,
+    lon: PropTypes.number
   }),
   origin: PropTypes.shape({
     x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-  }).isRequired,
+    y: PropTypes.number.isRequired
+  }).isRequired
 };
 NaviCard.defaultProps = {
   cardExpanded: false,
   leg: undefined,
   nextLeg: undefined,
   startTime: '',
-  position: undefined,
+  position: undefined
 };
 
 NaviCard.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

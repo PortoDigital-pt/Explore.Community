@@ -21,7 +21,7 @@ class ViaPointStore extends Store {
 
   static handlers = {
     addViaPoint: 'addViaPoint',
-    setViaPoints: 'setViaPoints',
+    setViaPoints: 'setViaPoints'
   };
 }
 

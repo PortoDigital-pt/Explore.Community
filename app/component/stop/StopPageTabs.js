@@ -8,7 +8,7 @@ import {
   getCancelationsForStop,
   getAlertsForObject,
   getServiceAlertsForStation,
-  getActiveAlertSeverityLevel,
+  getActiveAlertSeverityLevel
 } from '../../util/alertUtils';
 import withBreakpoint from '../../util/withBreakpoint';
 import { addAnalyticsEvent } from '../../util/analyticsUtils';
@@ -18,7 +18,7 @@ import {
   PREFIX_ROUTES,
   PREFIX_STOPS,
   PREFIX_TERMINALS,
-  PREFIX_TIMETABLE,
+  PREFIX_TIMETABLE
 } from '../../util/path';
 import Icon from '../Icon';
 
@@ -26,7 +26,7 @@ const Tab = {
   Disruptions: PREFIX_DISRUPTION,
   RightNow: 'right-now',
   RoutesAndPlatforms: PREFIX_ROUTES,
-  Timetable: PREFIX_TIMETABLE,
+  Timetable: PREFIX_TIMETABLE
 };
 
 const getActiveTab = pathname => {
@@ -60,7 +60,7 @@ function StopPageTabs({ stop }, { match }) {
   const urlBase = `/${
     isTerminal ? PREFIX_TERMINALS : PREFIX_STOPS
   }/${encodeURIComponent(
-    match.params.terminalId ? match.params.terminalId : match.params.stopId,
+    match.params.terminalId ? match.params.terminalId : match.params.stopId
   )}`;
 
   const currentTime = unixTime();
@@ -69,7 +69,7 @@ function StopPageTabs({ stop }, { match }) {
 
   const maxAlertSeverity = getActiveAlertSeverityLevel(
     isTerminal ? getServiceAlertsForStation(stop) : getAlertsForObject(stop),
-    currentTime,
+    currentTime
   );
 
   let disruptionClassName;
@@ -127,14 +127,14 @@ function StopPageTabs({ stop }, { match }) {
         <button
           type="button"
           className={cx('stop-tab-singletab', {
-            active: activeTab === Tab.RightNow,
+            active: activeTab === Tab.RightNow
           })}
           onClick={() => {
             router.replace(`${urlBase}${search}`);
             addAnalyticsEvent({
               category: 'Stop',
               action: 'OpenRightNowTab',
-              name: null,
+              name: null
             });
           }}
           role="tab"
@@ -151,14 +151,14 @@ function StopPageTabs({ stop }, { match }) {
         <button
           type="button"
           className={cx('stop-tab-singletab', {
-            active: activeTab === Tab.Timetable,
+            active: activeTab === Tab.Timetable
           })}
           onClick={() => {
             router.replace(`${urlBase}/${Tab.Timetable}${search}`);
             addAnalyticsEvent({
               category: 'Stop',
               action: 'OpenTimetableTab',
-              name: null,
+              name: null
             });
           }}
           role="tab"
@@ -178,14 +178,14 @@ function StopPageTabs({ stop }, { match }) {
             active: activeTab === Tab.Disruptions,
             'alert-active': disruptionClassName === 'active-disruption-alert',
             'service-alert-active':
-              disruptionClassName === 'active-service-alert',
+              disruptionClassName === 'active-service-alert'
           })}
           onClick={() => {
             router.replace(`${urlBase}/${Tab.Disruptions}${search}`);
             addAnalyticsEvent({
               category: 'Stop',
               action: 'OpenDisruptionsTab',
-              name: null,
+              name: null
             });
           }}
           role="tab"

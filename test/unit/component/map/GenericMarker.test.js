@@ -11,13 +11,13 @@ describe('<GenericMarker />', () => {
         map: {
           getZoom: () => {},
           off: () => {},
-          on: () => {},
-        },
+          on: () => {}
+        }
       },
       position: {
         lat: 60,
-        lon: 25,
-      },
+        lon: 25
+      }
     };
     const wrapper = shallowWithIntl(<GenericMarker {...props} />, {
       context: {
@@ -25,11 +25,11 @@ describe('<GenericMarker />', () => {
           CONFIG: 'default',
           map: {
             genericMarker: {
-              popup: {},
-            },
-          },
-        },
-      },
+              popup: {}
+            }
+          }
+        }
+      }
     });
     expect(wrapper.isEmptyRender()).to.equal(false);
   });
@@ -41,14 +41,14 @@ describe('<GenericMarker />', () => {
         map: {
           getZoom: () => 10,
           off: () => {},
-          on: () => {},
-        },
+          on: () => {}
+        }
       },
       position: {
         lat: 60,
-        lon: 25,
+        lon: 25
       },
-      shouldRender: zoom => zoom !== 10,
+      shouldRender: zoom => zoom !== 10
     };
     const wrapper = shallowWithIntl(<GenericMarker {...props} />, {
       context: {
@@ -56,11 +56,11 @@ describe('<GenericMarker />', () => {
           CONFIG: 'default',
           map: {
             genericMarker: {
-              popup: {},
-            },
-          },
-        },
-      },
+              popup: {}
+            }
+          }
+        }
+      }
     });
     expect(wrapper.isEmptyRender()).to.equal(true);
   });

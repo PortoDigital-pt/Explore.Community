@@ -42,11 +42,11 @@ ItineraryTabs.propTypes = {
   tabIndex: PropTypes.number.isRequired,
   isMobile: PropTypes.bool.isRequired,
   planEdges: PropTypes.arrayOf(planEdgeShape).isRequired,
-  changeHash: PropTypes.func,
+  changeHash: PropTypes.func
 };
 
 ItineraryTabs.defaultProps = {
-  changeHash: undefined,
+  changeHash: undefined
 };
 
 export default ItineraryTabs;

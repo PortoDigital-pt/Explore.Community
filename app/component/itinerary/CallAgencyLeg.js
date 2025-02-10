@@ -17,7 +17,7 @@ const CallAgencyLeg = ({ leg, ...props }) => {
             values={{
               routeName: (
                 <span className="route-name">{leg.route.longName}</span>
-              ),
+              )
             }}
             defaultMessage="Only on demand: {routeName}, which needs to be booked in advance."
           />
@@ -41,7 +41,7 @@ const CallAgencyLeg = ({ leg, ...props }) => {
 
 CallAgencyLeg.propTypes = {
   leg: legShape.isRequired,
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default CallAgencyLeg;

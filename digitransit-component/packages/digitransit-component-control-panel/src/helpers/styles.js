@@ -1,6 +1,6 @@
 export function getStyleInput() {
   return {
-    width: 200,
+    width: 200
   };
 }
 
@@ -15,7 +15,7 @@ export function getStyleMain() {
     width: 'calc(100% - 2em)',
     maxWidth: 400,
     zIndex: 20,
-    margin: '0 auto',
+    margin: '0 auto'
   };
 }
 
@@ -24,7 +24,7 @@ export function getStyleMainBottom() {
     backgroundColor: '#ffffff',
     width: 'calc(100% - 2em)',
     margin: '0 auto',
-    paddingBottom: 32,
+    paddingBottom: 32
   };
 }
 
@@ -35,7 +35,7 @@ export function getStyleSeparatorDiv() {
     width: '100%',
     // marginTop: 20,
     marginBottom: 19,
-    paddingBottom: 29,
+    paddingBottom: 29
   };
 }
 
@@ -46,7 +46,7 @@ export function getStyleSeparatorDiv2() {
     width: '100%',
     // marginTop: 20,
     marginBottom: 19,
-    paddingBottom: 20,
+    paddingBottom: 20
   };
 }
 
@@ -59,6 +59,6 @@ export function getStyleSeparatorLine() {
     position: 'absolute',
     bottom: 0,
     right: -5,
-    left: -5,
+    left: -5
   };
 }

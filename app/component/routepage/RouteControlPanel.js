@@ -16,20 +16,20 @@ import { DATE_FORMAT } from '../../constants';
 import {
   startRealTimeClient,
   stopRealTimeClient,
-  changeRealTimeClientTopics,
+  changeRealTimeClientTopics
 } from '../../action/realTimeClientAction';
 import {
   getCancelationsForRoute,
   getAlertsForObject,
   isAlertActive,
-  getActiveAlertSeverityLevel,
+  getActiveAlertSeverityLevel
 } from '../../util/alertUtils';
 import { isActiveDate } from '../../util/patternUtils';
 import {
   PREFIX_DISRUPTION,
   PREFIX_ROUTES,
   PREFIX_STOPS,
-  PREFIX_TIMETABLE,
+  PREFIX_TIMETABLE
 } from '../../util/path';
 import { addAnalyticsEvent } from '../../util/analyticsUtils';
 import { isIOS } from '../../util/browser';
@@ -40,7 +40,7 @@ import Icon from '../Icon';
 const Tab = {
   Disruptions: PREFIX_DISRUPTION,
   Stops: PREFIX_STOPS,
-  Timetable: PREFIX_TIMETABLE,
+  Timetable: PREFIX_TIMETABLE
 };
 
 const getActiveTab = pathname => {
@@ -62,7 +62,7 @@ class RouteControlPanel extends React.Component {
     executeAction: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
     router: routerShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -74,26 +74,26 @@ class RouteControlPanel extends React.Component {
       patterns: PropTypes.arrayOf(PropTypes.shape({})),
       type: PropTypes.number.isRequired,
       agency: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      }).isRequired,
+        name: PropTypes.string.isRequired
+      }).isRequired
     }).isRequired,
     match: matchShape.isRequired,
     breakpoint: PropTypes.string.isRequired,
     noInitialServiceDay: PropTypes.bool,
     language: PropTypes.string,
-    tripStartTime: PropTypes.string,
+    tripStartTime: PropTypes.string
   };
 
   static defaultProps = {
     language: 'fi',
     noInitialServiceDay: false,
-    tripStartTime: undefined,
+    tripStartTime: undefined
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      focusedTab: getActiveTab(props.match.location.pathname),
+      focusedTab: getActiveTab(props.match.location.pathname)
     };
     this.stopTabRef = React.createRef();
     this.timetableTabRef = React.createRef();
@@ -101,7 +101,7 @@ class RouteControlPanel extends React.Component {
     this.tabRefs = [
       this.stopTabRef,
       this.timetableTabRef,
-      this.disruptionTabRef,
+      this.disruptionTabRef
     ];
   }
 
@@ -129,11 +129,11 @@ class RouteControlPanel extends React.Component {
             shortName: route.shortName,
             layer: `route-${route.mode}`,
             link: location.pathname,
-            agency: { name: route.agency.name },
+            agency: { name: route.agency.name }
           },
-          type: 'Route',
+          type: 'Route'
         },
-        type: 'search',
+        type: 'search'
       });
     }
 
@@ -143,7 +143,7 @@ class RouteControlPanel extends React.Component {
     if (tripsExists) {
       sortedPatternsByCountOfTrips = sortBy(
         sortBy(route.patterns, 'code').reverse(),
-        'trips.length',
+        'trips.length'
       ).reverse();
     }
     const pattern =
@@ -156,14 +156,14 @@ class RouteControlPanel extends React.Component {
     }
 
     const selectedPattern = sortedPatternsByCountOfTrips?.find(
-      sorted => sorted.code === match.params.patternId,
+      sorted => sorted.code === match.params.patternId
     );
 
     if (match.params.type === PREFIX_TIMETABLE) {
       const enrichedPattern = enrichPatterns(
         [selectedPattern],
         false,
-        this.context.config.itinerary.serviceTimeRange,
+        this.context.config.itinerary.serviceTimeRange
       );
       const isSameWeek =
         moment(enrichedPattern[0].minAndMaxDate[0])
@@ -180,13 +180,13 @@ class RouteControlPanel extends React.Component {
           router.replace(
             `${decodeURIComponent(match.location.pathname)}?serviceDay=${
               enrichedPattern[0].minAndMaxDate[0]
-            }`,
+            }`
           );
         } else {
           router.replace(
             `${decodeURIComponent(match.location.pathname)}?serviceDay=${
               enrichedPattern[0].activeDates[0]
-            }`,
+            }`
           );
         }
       }
@@ -220,7 +220,7 @@ class RouteControlPanel extends React.Component {
     addAnalyticsEvent({
       category: 'Route',
       action: 'ToggleDirection',
-      name: null,
+      name: null
     });
     const { match, route } = this.props;
     const { config, executeAction, getStore, router } = this.context;
@@ -232,7 +232,7 @@ class RouteControlPanel extends React.Component {
         ? enrichPatterns(
             route.patterns.filter(x => x.code === newPattern),
             false,
-            this.context.config.itinerary.serviceTimeRange,
+            this.context.config.itinerary.serviceTimeRange
           )
         : route.patterns.filter(x => x.code === newPattern);
     const isActivePattern = isActiveDate(pattern[0]);
@@ -255,11 +255,11 @@ class RouteControlPanel extends React.Component {
               feedId,
               mode: route.mode.toLowerCase(),
               gtfsId: routeParts[1],
-              headsign: pattern[0].headsign,
-            },
+              headsign: pattern[0].headsign
+            }
           ],
           oldTopics: topics,
-          client,
+          client
         });
       } else {
         //  Close MQTT, we don't want to show vehicles when pattern is in future / past
@@ -271,7 +271,7 @@ class RouteControlPanel extends React.Component {
 
     let newPathname = decodeURIComponent(match.location.pathname).replace(
       new RegExp(`${match.params.patternId}(.*)`),
-      newPattern,
+      newPattern
     );
     if (type === PREFIX_TIMETABLE) {
       const today = unixToYYYYMMDD(unixTime(), config);
@@ -320,9 +320,9 @@ class RouteControlPanel extends React.Component {
           gtfsId: routeParts[1],
           headsign: pattern.headsign,
           direction,
-          tripStartTime,
-        },
-      ],
+          tripStartTime
+        }
+      ]
     });
   }
 
@@ -349,7 +349,7 @@ class RouteControlPanel extends React.Component {
     addAnalyticsEvent({
       category: 'Route',
       action,
-      name: null,
+      name: null
     });
   };
 
@@ -376,7 +376,7 @@ class RouteControlPanel extends React.Component {
               link={notification.link[language]}
               id={notification.id}
               closeButtonLabel={notification.closeButtonLabel[language]}
-            />,
+            />
           );
         }
       }
@@ -385,7 +385,7 @@ class RouteControlPanel extends React.Component {
     const activeTab = getActiveTab(match.location.pathname);
     const currentTime = unixTime();
     const selectedPattern = route?.patterns?.find(
-      pattern => pattern.code === patternId,
+      pattern => pattern.code === patternId
     );
     const hasActiveAlert = isAlertActive(
       currentTime,
@@ -393,14 +393,14 @@ class RouteControlPanel extends React.Component {
         route,
         patternId,
         currentTime,
-        config.routeCancelationAlertValidity,
+        config.routeCancelationAlertValidity
       ),
-      getAlertsForObject(selectedPattern),
+      getAlertsForObject(selectedPattern)
     );
 
     const hasActiveServiceAlerts = getActiveAlertSeverityLevel(
       getAlertsForObject(selectedPattern),
-      currentTime,
+      currentTime
     );
 
     const disruptionClassName =
@@ -428,7 +428,7 @@ class RouteControlPanel extends React.Component {
     return (
       <div
         className={cx('route-page-control-panel-container', activeTab, {
-          'bp-large': breakpoint === 'large',
+          'bp-large': breakpoint === 'large'
         })}
       >
         <div className="header-for-printing">
@@ -441,7 +441,7 @@ class RouteControlPanel extends React.Component {
         {route.type === 715 && <CallAgencyWarning route={route} />}
         <div
           className={cx('route-control-panel', {
-            'bp-large': breakpoint === 'large',
+            'bp-large': breakpoint === 'large'
           })}
           aria-live="polite"
         >
@@ -494,7 +494,7 @@ class RouteControlPanel extends React.Component {
               ref={this.stopTabRef}
               aria-selected={activeTab === Tab.Stops}
               style={{
-                '--totalCount': `${countOfButtons}`,
+                '--totalCount': `${countOfButtons}`
               }}
             >
               <div>
@@ -512,7 +512,7 @@ class RouteControlPanel extends React.Component {
               ref={this.timetableTabRef}
               aria-selected={activeTab === Tab.Timetable}
               style={{
-                '--totalCount': `${countOfButtons}`,
+                '--totalCount': `${countOfButtons}`
               }}
             >
               <div>
@@ -523,7 +523,7 @@ class RouteControlPanel extends React.Component {
               type="button"
               className={cx({
                 activeAlert: hasActiveAlert,
-                'is-active': activeTab === Tab.Disruptions,
+                'is-active': activeTab === Tab.Disruptions
               })}
               onClick={() => {
                 this.changeTab(Tab.Disruptions);
@@ -533,7 +533,7 @@ class RouteControlPanel extends React.Component {
               ref={this.disruptionTabRef}
               aria-selected={activeTab === Tab.Disruptions}
               style={{
-                '--totalCount': `${countOfButtons}`,
+                '--totalCount': `${countOfButtons}`
               }}
             >
               <div
@@ -566,8 +566,8 @@ const connectedComponent = connectToStores(
   RouteControlPanel,
   ['PreferencesStore'],
   context => ({
-    language: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    language: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export { connectedComponent as default, RouteControlPanel as Component };

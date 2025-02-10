@@ -18,7 +18,7 @@ export function getComponentOrLoadingRenderer({
   Component,
   props,
   error,
-  retry,
+  retry
 }) {
   if (error) {
     if (isRelayNetworkError(error.message)) {

@@ -22,15 +22,15 @@ const locationMarkerWithPermanentTooltipModules = {
     importLazy(
       import(
         /* webpackChunkName: "map" */ './LocationMarkerWithPermanentTooltip'
-      ),
-    ),
+      )
+    )
 };
 
 const confirmLocationFromMapButtonModules = {
   ConfirmLocationFromMapButton: () =>
     importLazy(
-      import(/* webpackChunkName: "map" */ './ConfirmLocationFromMapButton'),
-    ),
+      import(/* webpackChunkName: "map" */ './ConfirmLocationFromMapButton')
+    )
 };
 
 const markLocation = (markerType, position) => {
@@ -58,7 +58,7 @@ class SelectFromMap extends React.Component {
   static contextTypes = {
     match: matchShape,
     config: configShape,
-    intl: intlShape,
+    intl: intlShape
   };
 
   static propTypes = {
@@ -66,12 +66,12 @@ class SelectFromMap extends React.Component {
     language: PropTypes.string,
     type: PropTypes.string.isRequired,
     onConfirm: PropTypes.func.isRequired,
-    mapLayers: mapLayerShape.isRequired,
+    mapLayers: mapLayerShape.isRequired
   };
 
   static defaultProps = {
     breakpoint: undefined,
-    language: undefined,
+    language: undefined
   };
 
   constructor(props) {
@@ -93,7 +93,7 @@ class SelectFromMap extends React.Component {
       lang: this.props.language,
       size: 1,
       layers: 'address',
-      zones: 1,
+      zones: 1
     };
     if (this.context.config.searchParams['boundary.country']) {
       searchParams['boundary.country'] =
@@ -110,8 +110,8 @@ class SelectFromMap extends React.Component {
               address: getLabel(match),
               lat,
               lon,
-              onlyCoordinates: false,
-            },
+              onlyCoordinates: false
+            }
           }));
         } else {
           this.setState(prevState => ({
@@ -119,12 +119,12 @@ class SelectFromMap extends React.Component {
               ...prevState.mapCenter,
               address: intl.formatMessage({
                 id: 'location-from-map',
-                defaultMessage: 'Selected location',
+                defaultMessage: 'Selected location'
               }), // + ', ' + JSON.stringify(centerOfMap.lat).match(/[0-9]{1,3}.[0-9]{6}/) + ' ' + JSON.stringify(centerOfMap.lng).match(/[0-9]{1,3}.[0-9]{6}/),
               lat,
               lon,
-              onlyCoordinates: true,
-            },
+              onlyCoordinates: true
+            }
           }));
         }
       },
@@ -133,14 +133,14 @@ class SelectFromMap extends React.Component {
           mapCenter: {
             address: intl.formatMessage({
               id: 'location-from-map',
-              defaultMessage: 'Selected location',
+              defaultMessage: 'Selected location'
             }), // + ', ' + JSON.stringify(centerOfMap.lat).match(/[0-9]{1,3}.[0-9]{6}/) + ' ' + JSON.stringify(centerOfMap.lng).match(/[0-9]{1,3}.[0-9]{6}/),
             lat,
             lon,
-            onlyCoordinates: true,
-          },
+            onlyCoordinates: true
+          }
         });
-      },
+      }
     );
   };
 
@@ -154,8 +154,8 @@ class SelectFromMap extends React.Component {
       mapCenter: {
         address: '',
         lat: e.latlng.lat,
-        lon: e.latlng.lng,
-      },
+        lon: e.latlng.lng
+      }
     });
 
     this.setAddress(e.latlng.lat, e.latlng.lng);
@@ -186,7 +186,7 @@ class SelectFromMap extends React.Component {
         strippedAddress = `${strippedAddress}, ${newAddress[1]}`;
       }
       strippedAddress = `${strippedAddress}::${JSON.stringify(
-        position.lat,
+        position.lat
       )},${JSON.stringify(position.lon)}`;
       return strippedAddress;
     }
@@ -205,13 +205,13 @@ class SelectFromMap extends React.Component {
               isEnabled
                 ? this.createAddress(
                     mapCenter.address,
-                    positionSelectingFromMap,
+                    positionSelectingFromMap
                   )
                 : undefined
             }
             title={intl.formatMessage({
               id: 'location-from-map-confirm',
-              defaultMessage: 'Confirm selection',
+              defaultMessage: 'Confirm selection'
             })}
             type={this.props.type}
             onConfirm={this.props.onConfirm}
@@ -242,7 +242,7 @@ class SelectFromMap extends React.Component {
           position={defaultLocation}
           type="from"
           disabled
-        />,
+        />
       );
     }
 
@@ -253,7 +253,7 @@ class SelectFromMap extends React.Component {
           position={defaultLocation}
           type="to"
           disabled
-        />,
+        />
       );
     }
 
@@ -266,7 +266,7 @@ class SelectFromMap extends React.Component {
               <LocationMarker
                 key={`via_${i}`} // eslint-disable-line react/no-array-index-key
                 position={markerLocation}
-              />,
+              />
             );
           });
       } else {
@@ -274,7 +274,7 @@ class SelectFromMap extends React.Component {
           <LocationMarker
             key="via"
             position={otpToLocation(match.location.query.intermediatePlaces)}
-          />,
+          />
         );
       }
     }
@@ -296,16 +296,16 @@ class SelectFromMap extends React.Component {
               text={mapCenter.address}
             />
           )}
-        </LazilyLoad>,
+        </LazilyLoad>
       );
       leafletObjs.push(
-        this.confirmButton(true, mapCenter, positionSelectingFromMap),
+        this.confirmButton(true, mapCenter, positionSelectingFromMap)
       );
     }
     const eventHooks = {};
     if (isDesktop) {
       eventHooks.leafletEvents = {
-        onClick: this.onClick,
+        onClick: this.onClick
       };
     } else {
       eventHooks.onEndNavigation = this.setMapLocation;
@@ -332,8 +332,8 @@ export default connectToStores(
   ['MapLayerStore'],
   ({ getStore }) => {
     const mapLayers = getStore('MapLayerStore').getMapLayers({
-      notThese: ['vehicles'],
+      notThese: ['vehicles']
     });
     return { mapLayers };
-  },
+  }
 );

@@ -153,7 +153,7 @@ const CapacityModal = ({ config }) => {
 };
 
 CapacityModal.propTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 CapacityModal.defaultProps = {};

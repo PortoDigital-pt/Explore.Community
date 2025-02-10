@@ -12,7 +12,7 @@ export default function PopupHeader({
   pattern,
   card,
   startTime,
-  className,
+  className
 }) {
   const mode = getRouteMode(route);
 
@@ -58,17 +58,17 @@ PopupHeader.propTypes = {
     gtfsId: PropTypes.string.isRequired,
     mode: PropTypes.string.isRequired,
     shortName: PropTypes.string,
-    color: PropTypes.string,
+    color: PropTypes.string
   }).isRequired,
   startTime: PropTypes.string,
   pattern: PropTypes.shape({ code: PropTypes.string.isRequired }),
   className: PropTypes.string,
-  card: PropTypes.bool,
+  card: PropTypes.bool
 };
 
 PopupHeader.defaultProps = {
   startTime: undefined,
   pattern: undefined,
   className: undefined,
-  card: false,
+  card: false
 };

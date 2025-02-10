@@ -31,12 +31,12 @@ const StartNavi = ({ startNavigation }, context) => {
 };
 
 StartNavi.propTypes = {
-  startNavigation: PropTypes.func.isRequired,
+  startNavigation: PropTypes.func.isRequired
 };
 
 StartNavi.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default StartNavi;

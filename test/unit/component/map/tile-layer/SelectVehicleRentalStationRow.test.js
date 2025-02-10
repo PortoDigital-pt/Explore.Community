@@ -11,10 +11,10 @@ describe('<SelectVehicleRentalRow />', () => {
       name: 'foobar',
       network: 'some_network',
       id: '001',
-      prefix: 'citybike',
+      prefix: 'citybike'
     };
     const wrapper = shallowWithIntl(<SelectVehicleRentalRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find(Icon).first().prop('img')).to.contain('citybike');
   });
@@ -24,14 +24,14 @@ describe('<SelectVehicleRentalRow />', () => {
       name: 'foobar',
       network: 'scooter_network',
       id: '001',
-      prefix: 'citybike',
+      prefix: 'citybike'
     };
     const wrapper = shallowWithIntl(<SelectVehicleRentalRow {...props} />, {
       context: {
         config: {
-          vehicleRental: { networks: { scooter_network: { icon: 'scooter' } } },
-        },
-      },
+          vehicleRental: { networks: { scooter_network: { icon: 'scooter' } } }
+        }
+      }
     });
     expect(wrapper.find(Icon).first().prop('img')).to.contain('scooter');
   });

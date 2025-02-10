@@ -10,7 +10,7 @@ import {
   PREFIX_STOPS,
   PREFIX_ROUTES,
   PREFIX_TERMINALS,
-  PREFIX_BIKESTATIONS,
+  PREFIX_BIKESTATIONS
 } from '../util/path';
 import AppBarContainer from './AppBarContainer';
 import MobileView from './MobileView';
@@ -32,12 +32,12 @@ class TopLevel extends React.Component {
     origin: locationShape,
     user: userShape,
     router: routerShape.isRequired,
-    selectFromMapHeader: PropTypes.node,
+    selectFromMapHeader: PropTypes.node
   };
 
   static contextTypes = {
     config: configShape.isRequired,
-    executeAction: PropTypes.func.isRequired,
+    executeAction: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -49,18 +49,18 @@ class TopLevel extends React.Component {
     title: undefined,
     meta: undefined,
     user: undefined,
-    selectFromMapHeader: undefined,
+    selectFromMapHeader: undefined
   };
 
   static childContextTypes = {
     router: routerShape,
-    match: matchShape,
+    match: matchShape
   };
 
   getChildContext() {
     return {
       match: this.props.match,
-      router: this.props.router,
+      router: this.props.router
     };
   }
 
@@ -84,7 +84,7 @@ class TopLevel extends React.Component {
       handleUserAnalytics(this.props.user, this.context.config);
       addAnalyticsEvent({
         event: 'Pageview',
-        url: newLocation,
+        url: newLocation
       });
     }
 
@@ -101,7 +101,7 @@ class TopLevel extends React.Component {
           addAnalyticsEvent({
             category: 'Route',
             action: 'OpenRoute',
-            name: this.props.match.params.routeId,
+            name: this.props.match.params.routeId
           });
         }
         break;
@@ -128,7 +128,7 @@ class TopLevel extends React.Component {
             name:
               this.props.match.params.stopId ||
               this.props.match.params.terminalId ||
-              this.props.match.params.id,
+              this.props.match.params.id
           });
         }
         break;
@@ -140,18 +140,18 @@ class TopLevel extends React.Component {
   render() {
     this.topBarOptions = Object.assign(
       {},
-      ...this.props.match.routes.map(route => route.topBarOptions),
+      ...this.props.match.routes.map(route => route.topBarOptions)
     );
     this.disableMapOnMobile = some(
       this.props.match.routes,
-      route => route.disableMapOnMobile,
+      route => route.disableMapOnMobile
     );
 
     let content;
 
     const homeUrl = getHomeUrl(
       this.props.origin,
-      this.context.config.indexPath,
+      this.context.config.indexPath
     );
 
     if (this.props.children || !(this.props.map || this.props.header)) {
@@ -217,6 +217,6 @@ export default connectToStores(
   ['OriginStore', 'UserStore'],
   ({ getStore }) => ({
     origin: getStore('OriginStore').getOrigin(),
-    user: getStore('UserStore').getUser(),
-  }),
+    user: getStore('UserStore').getUser()
+  })
 );

@@ -14,7 +14,7 @@ class Slider extends React.Component {
     minText: PropTypes.string,
     maxText: PropTypes.string,
     writtenValue: PropTypes.string,
-    value: PropTypes.number,
+    value: PropTypes.number
   };
 
   static defaultProps = {
@@ -27,14 +27,14 @@ class Slider extends React.Component {
     minText: '',
     maxText: '',
     writtenValue: undefined,
-    value: undefined,
+    value: undefined
   };
 
   // eslint-disable-next-line
   defaultValue = Math.floor((this.props.min + this.props.max) / 2);
 
   state = {
-    modified: false,
+    modified: false
   };
 
   // eslint-disable-next-line camelcase
@@ -86,7 +86,7 @@ class Slider extends React.Component {
         className={cx(
           'slider-container',
           this.props.className,
-          this.state.modified ? 'modified' : '',
+          this.state.modified ? 'modified' : ''
         )}
       >
         <div className="slider-container-headers">

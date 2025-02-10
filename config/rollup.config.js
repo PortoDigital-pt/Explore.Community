@@ -49,7 +49,7 @@ const globals = {
   'lodash/uniq': 'uniq',
   'lodash/compact': 'compact',
   moment: 'moment',
-  'react-relay': 'reactRelay',
+  'react-relay': 'reactRelay'
 };
 
 async function getSortedPackages() {
@@ -58,7 +58,7 @@ async function getSortedPackages() {
   const ignored = [
     '@digitransit-component/digitransit-component',
     '@digitransit-component/digitransit-component-with-breakpoint',
-    ignore,
+    ignore
   ];
   const packages = await getPackages(__dirname);
   const filtered = filterPackages(packages, scope, ignored, false);
@@ -85,7 +85,7 @@ export default async () => {
           sourcemap: true,
           inlineDynamicImports: true,
           exports: 'named',
-          globals,
+          globals
         },
         {
           name: pkg.name,
@@ -94,37 +94,37 @@ export default async () => {
           sourcemap: 'inline',
           inlineDynamicImports: true,
           exports: 'named',
-          globals,
-        },
+          globals
+        }
       ],
       context: 'self',
       plugins: [
         peerDepsExternal({
-          packageJsonPath: path.join(__dirname, basePath, 'package.json'),
+          packageJsonPath: path.join(__dirname, basePath, 'package.json')
         }),
         nodeResolve(),
         babel({
           runtimeHelpers: true,
           configFile: './config/babel.config.js',
-          exclude: /node_modules/,
+          exclude: /node_modules/
         }),
         commonjs({
           ignoreGlobal: true,
           include: /node_modules/,
           sourceMap: true,
           namedExports: {
-            './node_modules/react-is/index.js': ['isValidElementType'],
-          },
+            './node_modules/react-is/index.js': ['isValidElementType']
+          }
         }),
         postcss({
           extract: false,
           plugins: [autoprefixer()],
           modules: true,
           use: ['sass'],
-          config: false,
+          config: false
         }),
-        json(),
-      ],
+        json()
+      ]
     };
     if (process.env.NODE_ENV === 'production') {
       buildConfig.plugins.push(terser());

@@ -15,13 +15,13 @@ export const generateManifestIcons = (config, protocol, host) =>
   ICON_SIZES.map(size => ({
     sizes: `${size}x${size}`,
     src: getIconUrl(config, protocol, host, size),
-    type: 'image/png',
+    type: 'image/png'
   }));
 
 export const generateManifest = (
   config,
   { host, pathname, protocol },
-  { title, description } = {},
+  { title, description } = {}
 ) => ({
   background_color: config.colors.primary,
   description: description || config.meta.description,
@@ -32,7 +32,7 @@ export const generateManifest = (
   orientation: 'portrait',
   short_name: title || config.title,
   start_url: `${protocol}//${host}${pathname}?homescreen=1`,
-  theme_color: config.colors.primary,
+  theme_color: config.colors.primary
 });
 
 /**
@@ -43,7 +43,7 @@ export const generateManifest = (
  */
 export const jsonToBlob = json =>
   new Blob([JSON.stringify(json)], {
-    type: 'application/json',
+    type: 'application/json'
   });
 
 /**
@@ -57,14 +57,14 @@ export const jsonToBlob = json =>
 export const generateManifestUrl = (
   config,
   { host, pathname, protocol },
-  { title, description, ignorePathname } = {},
+  { title, description, ignorePathname } = {}
 ) =>
   URL.createObjectURL(
     jsonToBlob(
       generateManifest(
         config,
         { host, pathname: ignorePathname ? '/' : pathname, protocol },
-        { title, description },
-      ),
-    ),
+        { title, description }
+      )
+    )
   );

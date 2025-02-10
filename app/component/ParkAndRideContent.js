@@ -12,7 +12,7 @@ import { isBrowser } from '../util/browser';
 
 function ParkAndRideContent(
   { vehicleParking, error, currentLanguage },
-  { config, intl, router, match },
+  { config, intl, router, match }
 ) {
   const [isClient, setClient] = useState(false);
   useEffect(() => {
@@ -56,7 +56,7 @@ function ParkAndRideContent(
     getServices,
     isFree,
     isPaid,
-    getOpeningHours,
+    getOpeningHours
   } = config.parkAndRide.pageContent.default;
 
   useEffect(() => {
@@ -80,7 +80,7 @@ function ParkAndRideContent(
         openingHour =>
           openingHour?.timeSpans.from ===
             filteredOpeningHours[0]?.timeSpans.from &&
-          openingHour?.timeSpans.to === filteredOpeningHours[0]?.timeSpans.to,
+          openingHour?.timeSpans.to === filteredOpeningHours[0]?.timeSpans.to
       );
       if (
         sameOpeningHoursEveryday &&
@@ -117,19 +117,19 @@ function ParkAndRideContent(
         const day = date.toLocaleString(currentLanguage, { weekday: 'short' });
         if (i === j - 1) {
           hoursAsText.push(
-            `${day.charAt(0).toUpperCase() + day.slice(1)} ${from}-${to}`,
+            `${day.charAt(0).toUpperCase() + day.slice(1)} ${from}-${to}`
           );
         } else {
           const until = openingHoursDates[j - 1].date.toLocaleString(
             currentLanguage,
             {
-              weekday: 'short',
-            },
+              weekday: 'short'
+            }
           );
           hoursAsText.push(
             `${day.charAt(0).toUpperCase() + day.slice(1)}-${
               until.charAt(0).toUpperCase() + until.slice(1)
-            } ${from}-${to}`,
+            } ${from}-${to}`
           );
         }
         i = j;
@@ -185,14 +185,14 @@ function ParkAndRideContent(
               {parkIsPaid && intl.formatMessage({ id: 'paid' })}
               {authenticationMethods.length > 0 &&
                 `, ${intl.formatMessage({
-                  id: 'access_with',
+                  id: 'access_with'
                 })} `}
               {authenticationMethods.map(
                 (method, i) =>
                   `
                 ${intl.formatMessage({ id: method })}
                 ${i < authenticationMethods.length - 1 ? ' | ' : ''}
-              `,
+              `
               )}
             </span>
           )}
@@ -203,7 +203,7 @@ function ParkAndRideContent(
                   `
                 ${intl.formatMessage({ id: service })}
                 ${i < services.length - 1 ? ' | ' : ''}
-              `,
+              `
               )}
             </span>
           )}
@@ -239,27 +239,27 @@ function ParkAndRideContent(
 ParkAndRideContent.propTypes = {
   vehicleParking: parkShape,
   error: errorShape,
-  currentLanguage: PropTypes.string.isRequired,
+  currentLanguage: PropTypes.string.isRequired
 };
 
 ParkAndRideContent.defaultProps = {
   vehicleParking: undefined,
-  error: undefined,
+  error: undefined
 };
 
 ParkAndRideContent.contextTypes = {
   config: configShape.isRequired,
   intl: intlShape.isRequired,
   router: routerShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 const connectedComponent = connectToStores(
   ParkAndRideContent,
   ['PreferencesStore'],
   context => ({
-    currentLanguage: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    currentLanguage: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export { connectedComponent as default, ParkAndRideContent as Component };

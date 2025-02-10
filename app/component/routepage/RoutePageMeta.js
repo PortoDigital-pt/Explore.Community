@@ -17,25 +17,25 @@ const RoutePageMeta = compose(
     const title = intl.formatMessage(
       {
         id: 'route-page.title',
-        defaultMessage: 'Route - {shortName}',
+        defaultMessage: 'Route - {shortName}'
       },
-      route,
+      route
     );
     const description = intl.formatMessage(
       {
         id: 'route-page.description',
-        defaultMessage: 'Route - {shortName}, {longName}',
+        defaultMessage: 'Route - {shortName}, {longName}'
       },
-      route,
+      route
     );
     return generateMetaData(
       {
         description,
-        title,
+        title
       },
-      config,
+      config
     );
-  }),
+  })
 )(Helmet);
 
 export default createFragmentContainer(RoutePageMeta, {
@@ -44,5 +44,5 @@ export default createFragmentContainer(RoutePageMeta, {
       shortName
       longName
     }
-  `,
+  `
 });

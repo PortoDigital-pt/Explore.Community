@@ -22,11 +22,11 @@ function RelativeDuration(props) {
 }
 
 RelativeDuration.contextTypes = {
-  intl: intlShape.isRequired, // eslint-disable-line react/no-typos
+  intl: intlShape.isRequired // eslint-disable-line react/no-typos
 };
 
 RelativeDuration.propTypes = {
-  duration: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired
 };
 
 export default RelativeDuration;

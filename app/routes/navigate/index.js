@@ -16,13 +16,13 @@ import {
   createReturnPath,
   TAB_NEARBY,
   TAB_FAVOURITES,
-  EMBEDDED_SEARCH_PATH,
+  EMBEDDED_SEARCH_PATH
 } from '../../util/path';
 import {
   getDefault,
   errorLoading,
   getComponentOrLoadingRenderer,
-  getComponentOrNullRenderer,
+  getComponentOrNullRenderer
 } from '../../util/routerUtils';
 
 import getStopRoutes from './stop.js';
@@ -66,7 +66,7 @@ export default config => {
           ).then(getDefault)
         }
       />
-    ),
+    )
   };
 
   const itineraryPageGeolocatorProps = {
@@ -85,7 +85,7 @@ export default config => {
         );
       }
       return undefined;
-    },
+    }
   };
 
   const vehicleParkingProps = {
@@ -114,7 +114,7 @@ export default config => {
             Component,
             props,
             error,
-            retry,
+            retry
           });
         }}
       />
@@ -138,7 +138,7 @@ export default config => {
         `}
         render={getComponentOrNullRenderer}
       />
-    ),
+    )
   };
 
   return (
@@ -170,7 +170,7 @@ export default config => {
                   Component,
                   props,
                   error,
-                  retry,
+                  retry
                 });
               }}
             />
@@ -194,14 +194,14 @@ export default config => {
               `}
               render={getComponentOrNullRenderer}
             />
-          ),
+          )
         }}
       </Route>
       <Route path={`/${PREFIX_BIKEPARK}`}>
         <Route Component={Error404} />
         <Route path=":id">
           {{
-            ...vehicleParkingProps,
+            ...vehicleParkingProps
           }}
         </Route>
       </Route>
@@ -209,7 +209,7 @@ export default config => {
         <Route Component={Error404} />
         <Route path=":id">
           {{
-            ...vehicleParkingProps,
+            ...vehicleParkingProps
           }}
         </Route>
       </Route>
@@ -243,7 +243,7 @@ export default config => {
                 ).then(getDefault)
               }
             />
-          ),
+          )
         }}
       </Route>
       <Route path={`/${PREFIX_RENTALVEHICLES}/:id/:networks?`}>
@@ -268,7 +268,7 @@ export default config => {
                   Component,
                   props,
                   error,
-                  retry,
+                  retry
                 });
               }}
             />
@@ -278,7 +278,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import('../../component/RentalVehiclePageMapContainer').then(
-                  getDefault,
+                  getDefault
                 )
               }
               query={graphql`
@@ -290,7 +290,7 @@ export default config => {
               `}
               render={getComponentOrNullRenderer}
             />
-          ),
+          )
         }}
       </Route>
 
@@ -351,8 +351,8 @@ export default config => {
                       }
                       render={getComponentOrLoadingRenderer}
                     />
-                  </Route>,
-                ],
+                  </Route>
+                ]
               }}
             </Route>
           ),
@@ -365,7 +365,7 @@ export default config => {
                 ).then(getDefault)
               }
             />
-          ),
+          )
         }}
       </Route>
       <Route
@@ -423,7 +423,7 @@ export default config => {
                 return undefined;
               }}
             />
-          ),
+          )
         }}
       </Route>
       <Route
@@ -452,7 +452,7 @@ export default config => {
                 return undefined;
               }}
             />
-          ),
+          )
         }}
       </Route>
       <Route path={config.indexPath === '' ? '/' : `/${config.indexPath}`}>
@@ -506,7 +506,7 @@ export default config => {
                 ).then(getDefault)
               }
             />
-          ),
+          )
         }}
       </Route>
       {config.indexPath !== '' && (

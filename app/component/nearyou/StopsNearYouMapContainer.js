@@ -15,18 +15,18 @@ const StopsNearYouMapWithStores = connectToStores(
         ? new Set(
             getStore('FavouriteStore')
               .getVehicleRentalStations()
-              .map(station => station.stationId),
+              .map(station => station.stationId)
           )
         : new Set(
             getStore('FavouriteStore')
               .getStopsAndStations()
-              .map(stop => stop.gtfsId),
+              .map(stop => stop.gtfsId)
           );
     return {
       language,
-      favouriteIds,
+      favouriteIds
     };
-  },
+  }
 );
 
 const containerComponent = createPaginationContainer(
@@ -156,7 +156,7 @@ const containerComponent = createPaginationContainer(
           scheduledArrival
         }
       }
-    `,
+    `
   },
   {
     direction: 'forward',
@@ -166,14 +166,14 @@ const containerComponent = createPaginationContainer(
     getFragmentVariables(prevVars, totalCount) {
       return {
         ...prevVars,
-        first: totalCount,
+        first: totalCount
       };
     },
     getVariables(_, pagevars, fragmentVariables) {
       return {
         ...fragmentVariables,
         first: pagevars.count,
-        after: pagevars.cursor,
+        after: pagevars.cursor
       };
     },
     query: graphql`
@@ -207,8 +207,8 @@ const containerComponent = createPaginationContainer(
             )
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export default containerComponent;

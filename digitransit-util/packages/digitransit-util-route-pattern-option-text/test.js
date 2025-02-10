@@ -37,10 +37,10 @@ const tests = [
     expected: [
       'Helsinki ➔ Kirkkonummi',
       'Helsinki ➔ Kirkkonummi',
-      'Helsinki ➔ Kirkkonummi',
+      'Helsinki ➔ Kirkkonummi'
     ],
     tripsForDate: [],
-    dayString: 'ma-su',
+    dayString: 'ma-su'
   },
   {
     title: "Togglable: 'pe-la'",
@@ -48,10 +48,10 @@ const tests = [
     expected: [
       'Helsinki ➔ Kirkkonummi (pe-la)',
       'Helsinki ➔ Kirkkonummi (Fri-Sat)',
-      'Helsinki ➔ Kirkkonummi (fre-lör)',
+      'Helsinki ➔ Kirkkonummi (fre-lör)'
     ],
     tripsForDate: [],
-    dayString: 'pe-la',
+    dayString: 'pe-la'
   },
   {
     title: `Opt #1: only ${fd2[4]}`,
@@ -59,7 +59,7 @@ const tests = [
     expected: [
       `Helsinki ➔ Kirkkonummi (vain ${fd2[4]})`,
       `Helsinki ➔ Kirkkonummi (only ${fd2[4]})`,
-      `Helsinki ➔ Kirkkonummi (bara ${fd2[4]})`,
+      `Helsinki ➔ Kirkkonummi (bara ${fd2[4]})`
     ],
     tripsForDate: [],
     activeDates: [fd3[4]],
@@ -67,7 +67,7 @@ const tests = [
     dayString: 'pe-pe',
     allowedDiff: 1,
     fromDate: fd3[4],
-    untilDate: fd3[4],
+    untilDate: fd3[4]
   },
   {
     title: `Opt #1: range ${fd1[4]}-${fd2[5]}`,
@@ -75,7 +75,7 @@ const tests = [
     expected: [
       `Helsinki ➔ Kirkkonummi (${fd1[4]}-${fd2[5]})`,
       `Helsinki ➔ Kirkkonummi (${fd1[4]}-${fd2[5]})`,
-      `Helsinki ➔ Kirkkonummi (${fd1[4]}-${fd2[5]})`,
+      `Helsinki ➔ Kirkkonummi (${fd1[4]}-${fd2[5]})`
     ],
     tripsForDate: [],
     activeDates: [fd3[4], fd3[5]],
@@ -83,7 +83,7 @@ const tests = [
     dayString: 'pe-la',
     allowedDiff: 1,
     fromDate: fd3[4],
-    untilDate: fd3[5],
+    untilDate: fd3[5]
   },
   {
     title: `Opt #2: ranges ${fd1[2]}-${fd2[3]}, ${fd1[6]}-${fd2[7]}`,
@@ -91,18 +91,18 @@ const tests = [
     expected: [
       `Helsinki ➔ Kirkkonummi (${fd1[2]}-${fd2[3]}, ${fd1[6]}-${fd2[7]})`,
       `Helsinki ➔ Kirkkonummi (${fd1[2]}-${fd2[3]}, ${fd1[6]}-${fd2[7]})`,
-      `Helsinki ➔ Kirkkonummi (${fd1[2]}-${fd2[3]}, ${fd1[6]}-${fd2[7]})`,
+      `Helsinki ➔ Kirkkonummi (${fd1[2]}-${fd2[3]}, ${fd1[6]}-${fd2[7]})`
     ],
     tripsForDate: [],
     activeDates: [fd3[2], fd3[3], fd3[6], fd3[7]],
     rangeFollowingDays: [
       [fd3[2], fd3[3]],
-      [fd3[6], fd3[7]],
+      [fd3[6], fd3[7]]
     ],
     dayString: '-',
     allowedDiff: 1,
     fromDate: fd3[2],
-    untilDate: fd3[7],
+    untilDate: fd3[7]
   },
   {
     title: 'Opt #3a: empty',
@@ -110,13 +110,13 @@ const tests = [
     expected: [
       'Helsinki ➔ Kirkkonummi',
       'Helsinki ➔ Kirkkonummi',
-      'Helsinki ➔ Kirkkonummi',
+      'Helsinki ➔ Kirkkonummi'
     ],
     activeDates: [first, fd3[0], fd3[1], last],
     rangeFollowingDays: [[first, last]],
     dayString: 'ma-su',
     fromDate: '-',
-    untilDate: '-',
+    untilDate: '-'
   },
   {
     title: "Opt #3b: 'Fri-Sat'",
@@ -124,13 +124,13 @@ const tests = [
     expected: [
       'Helsinki ➔ Kirkkonummi (pe-la)',
       'Helsinki ➔ Kirkkonummi (Fri-Sat)',
-      'Helsinki ➔ Kirkkonummi (fre-lör)',
+      'Helsinki ➔ Kirkkonummi (fre-lör)'
     ],
     activeDates: [first, fd3[0], fd3[1], last],
     rangeFollowingDays: [[first, last]],
     dayString: 'pe-la',
     fromDate: '-',
-    untilDate: '-',
+    untilDate: '-'
   },
   {
     title: `Opt #4a: until ${fd2[5]}`,
@@ -138,7 +138,7 @@ const tests = [
     expected: [
       `Helsinki ➔ Kirkkonummi (${fd2[5]} saakka)`,
       `Helsinki ➔ Kirkkonummi (until ${fd2[5]})`,
-      `Helsinki ➔ Kirkkonummi (till ${fd2[5]})`,
+      `Helsinki ➔ Kirkkonummi (till ${fd2[5]})`
     ],
     activeDates: [
       fd3[0],
@@ -149,12 +149,12 @@ const tests = [
       fd3[5],
       fd3[6],
       fd3[7],
-      fd3[8],
+      fd3[8]
     ],
     rangeFollowingDays: [[fd3[0], fd3[5]]],
     dayString: 'ma-su',
     fromDate: '-',
-    untilDate: fd3[5],
+    untilDate: fd3[5]
   },
   {
     title: `Opt #4b: 'Fri-Sat' until ${fd2[5]}`,
@@ -162,7 +162,7 @@ const tests = [
     expected: [
       `Helsinki ➔ Kirkkonummi (pe-la ${fd2[5]} saakka)`,
       `Helsinki ➔ Kirkkonummi (Fri-Sat until ${fd2[5]})`,
-      `Helsinki ➔ Kirkkonummi (fre-lör till ${fd2[5]})`,
+      `Helsinki ➔ Kirkkonummi (fre-lör till ${fd2[5]})`
     ],
     activeDates: [
       fd3[0],
@@ -173,12 +173,12 @@ const tests = [
       fd3[5],
       fd3[6],
       fd3[7],
-      fd3[8],
+      fd3[8]
     ],
     rangeFollowingDays: [[fd3[0], fd3[5]]],
     dayString: 'pe-la',
     fromDate: '-',
-    untilDate: fd3[5],
+    untilDate: fd3[5]
   },
   {
     title: `Opt #5a: from ${fd2[2]}`,
@@ -186,13 +186,13 @@ const tests = [
     expected: [
       `Helsinki ➔ Kirkkonummi (${fd2[2]} lähtien)`,
       `Helsinki ➔ Kirkkonummi (from ${fd2[2]})`,
-      `Helsinki ➔ Kirkkonummi (från ${fd2[2]})`,
+      `Helsinki ➔ Kirkkonummi (från ${fd2[2]})`
     ],
     activeDates: [fd3[2], fd3[3], fd3[4], fd3[5], fd3[6], fd3[7], fd3[8]],
     rangeFollowingDays: [[fd3[2], fd3[8]]],
     dayString: 'ma-su',
     fromDate: fd3[2],
-    untilDate: '-',
+    untilDate: '-'
   },
   {
     title: `Opt #5b: 'Fri-Sat' from ${fd2[2]}`,
@@ -200,14 +200,14 @@ const tests = [
     expected: [
       `Helsinki ➔ Kirkkonummi (pe-la ${fd2[2]} lähtien)`,
       `Helsinki ➔ Kirkkonummi (Fri-Sat from ${fd2[2]})`,
-      `Helsinki ➔ Kirkkonummi (fre-lör från ${fd2[2]})`,
+      `Helsinki ➔ Kirkkonummi (fre-lör från ${fd2[2]})`
     ],
     activeDates: [fd3[2], fd3[3], fd3[4], fd3[5], fd3[6], fd3[7], fd3[8]],
     rangeFollowingDays: [[fd3[2], fd3[8]]],
     dayString: 'pe-la',
     fromDate: fd3[2],
-    untilDate: '-',
-  },
+    untilDate: '-'
+  }
 ];
 
 const defPattern = {
@@ -216,7 +216,7 @@ const defPattern = {
   stops: [{ name: 'Helsinki' }, { name: 'Kirkkonummi' }],
   tripsForDate: [],
   lastRangeDate: moment('20200330').format('YYYYMMDD'),
-  currentDate: moment('20200220').format('YYYYMMDD'),
+  currentDate: moment('20200220').format('YYYYMMDD')
 };
 
 describe('Testing @digitransit-util/digitransit-util-route-pattern-option-text module', () => {
@@ -233,7 +233,7 @@ describe('Testing @digitransit-util/digitransit-util-route-pattern-option-text m
           const retValue = routePatternOptionText(
             language,
             pattern,
-            test.togglable,
+            test.togglable
           );
           expect(retValue).to.be.equal(test.expected[index]);
         });

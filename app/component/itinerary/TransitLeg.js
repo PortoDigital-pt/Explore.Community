@@ -20,12 +20,12 @@ import {
   getMaximumAlertSeverityLevel,
   hasEntitiesOfType,
   legHasCancelation,
-  tripHasCancelationForStop,
+  tripHasCancelationForStop
 } from '../../util/alertUtils';
 import {
   PREFIX_DISRUPTION,
   PREFIX_ROUTES,
-  PREFIX_STOPS,
+  PREFIX_STOPS
 } from '../../util/path';
 import { durationToString } from '../../util/timeUtils';
 import { addAnalyticsEvent } from '../../util/analyticsUtils';
@@ -36,7 +36,7 @@ import {
   showBikeBoardingNote,
   showCarBoardingNote,
   legTimeStr,
-  legTime,
+  legTime
 } from '../../util/legUtils';
 import { shouldShowFareInfo } from '../../util/fareUtils';
 import { AlertEntityType, AlertSeverityLevelType } from '../../constants';
@@ -59,7 +59,7 @@ const filterNextLegs = leg => {
     return [];
   }
   return leg.nextLegs.filter(
-    nextLeg => legTime(nextLeg.start) - legTime(leg.start) < 12 * 3600 * 1000, // 12 hours
+    nextLeg => legTime(nextLeg.start) - legTime(leg.start) < 12 * 3600 * 1000 // 12 hours
   );
 };
 
@@ -71,10 +71,10 @@ class TransitLeg extends React.Component {
         props.interliningLegs.length >= 1
           ? props.interliningLegs.reduce(
               (sum, leg) => sum + leg.intermediatePlaces.length,
-              0,
+              0
             ) < 2
           : props.leg.intermediatePlaces.length < 2,
-      showAlternativeLegs: false,
+      showAlternativeLegs: false
     };
   }
 
@@ -94,11 +94,11 @@ class TransitLeg extends React.Component {
       action: this.state.showIntermediateStops
         ? 'HideIntermediateStops'
         : 'ShowIntermediateStops',
-      name: null,
+      name: null
     });
 
     this.setState(prevState => ({
-      showIntermediateStops: !prevState.showIntermediateStops,
+      showIntermediateStops: !prevState.showIntermediateStops
     }));
   };
 
@@ -159,7 +159,7 @@ class TransitLeg extends React.Component {
         interliningLegs.forEach(iLeg => {
           places.push(
             { ...previousLeg.to, arrival: previousLeg.end },
-            ...iLeg.intermediatePlaces,
+            ...iLeg.intermediatePlaces
           );
           previousLeg = iLeg;
         });
@@ -195,7 +195,7 @@ class TransitLeg extends React.Component {
             stopCode={place.stop.code}
             focusFunction={this.context.focusFunction({
               lat: place.stop.lat,
-              lon: place.stop.lon,
+              lon: place.stop.lon
             })}
             showZoneLimits={this.context.config.zones.itinerary}
             showCurrentZoneDelimiter={previousZoneIdDiffers}
@@ -237,7 +237,7 @@ class TransitLeg extends React.Component {
       lang,
       omitDivider,
       interliningLegs,
-      usingOwnCarWholeTrip,
+      usingOwnCarWholeTrip
     } = this.props;
     const { config, intl } = this.context;
     const startMs = legTime(leg.start);
@@ -250,7 +250,7 @@ class TransitLeg extends React.Component {
         id="itinerary-details.transit-leg-part-1"
         values={{
           time,
-          realtime: leg.realTime ? intl.formatMessage({ id: 'realtime' }) : '',
+          realtime: leg.realTime ? intl.formatMessage({ id: 'realtime' }) : ''
         }}
       />
     );
@@ -261,11 +261,11 @@ class TransitLeg extends React.Component {
           startStop: leg.from.name,
           startZoneInfo: intl.formatMessage(
             { id: 'zone-info' },
-            { zone: leg.from.stop.zoneId },
+            { zone: leg.from.stop.zoneId }
           ),
           endZoneInfo: intl.formatMessage(
             { id: 'zone-info' },
-            { zone: leg.to.stop.zoneId },
+            { zone: leg.to.stop.zoneId }
           ),
           endStop: leg.to.name,
           duration: durationToString(leg.duration * 1000),
@@ -277,7 +277,7 @@ class TransitLeg extends React.Component {
                 modeClassName === 'rail' || modeClassName === 'subway'
               }
             />
-          ),
+          )
         }}
       />
     );
@@ -325,7 +325,7 @@ class TransitLeg extends React.Component {
     if (interliningLegs) {
       intermediateStopCount = interliningLegs.reduce(
         (prev, curr) => prev + curr.intermediatePlaces.length + 1,
-        leg.intermediatePlaces.length,
+        leg.intermediatePlaces.length
       );
     }
     const { showBikeBoardingInformation, showCarBoardingInformation } = leg;
@@ -341,7 +341,7 @@ class TransitLeg extends React.Component {
           </div>
           <div
             className={cx('info-notification', {
-              'no-header': !notification.header,
+              'no-header': !notification.header
             })}
           >
             {notification.header && (
@@ -349,7 +349,7 @@ class TransitLeg extends React.Component {
             )}
             <div
               className={cx('info-content', {
-                'no-header': !notification.header,
+                'no-header': !notification.header
               })}
             >
               {notification.content[lang].join(' ')}
@@ -396,14 +396,14 @@ class TransitLeg extends React.Component {
           routeNotifications.push(
             <div
               className={cx('disruption', {
-                'no-header': !notification.header,
+                'no-header': !notification.header
               })}
               key={`note-${index}`}
             >
               {notification.link
                 ? createNotificationWithLink(notification)
                 : createNotification(notification)}
-            </div>,
+            </div>
           );
         }
       }
@@ -418,7 +418,7 @@ class TransitLeg extends React.Component {
               id={`${this.props.mode}-with-route-number`}
               values={{
                 routeNumber: leg.route?.shortName,
-                headSign: leg.trip?.tripHeadsign,
+                headSign: leg.trip?.tripHeadsign
               }}
               defaultMessage={`${this.props.mode} {routeNumber} {headSign}`}
             />
@@ -446,12 +446,12 @@ class TransitLeg extends React.Component {
         />
         <div
           style={{
-            color: leg.route ? `#${leg.route.color}` : 'currentColor',
+            color: leg.route ? `#${leg.route.color}` : 'currentColor'
           }}
           className={cx(
             'small-9 columns itinerary-instruction-column',
             { first: index === 0 },
-            modeClassName,
+            modeClassName
           )}
         >
           <span className="sr-only">
@@ -462,7 +462,7 @@ class TransitLeg extends React.Component {
           </span>
           <div
             className={cx('itinerary-leg-first-row', 'transit', {
-              first: index === 0,
+              first: index === 0
             })}
           >
             <div className="itinerary-leg-row">
@@ -473,7 +473,7 @@ class TransitLeg extends React.Component {
                   addAnalyticsEvent({
                     category: 'Itinerary',
                     action: 'OpenRouteFromItinerary',
-                    name: mode,
+                    name: mode
                   });
                 }}
                 to={`/${PREFIX_STOPS}/${leg.from.stop.gtfsId}`}
@@ -495,7 +495,7 @@ class TransitLeg extends React.Component {
                 className="inline-icon"
                 severityLevel={getActiveAlertSeverityLevel(
                   leg.from.stop && leg.from.stop.alerts,
-                  startMs / 1000,
+                  startMs / 1000
                 )}
               />
               <div className="stop-code-container">
@@ -537,7 +537,7 @@ class TransitLeg extends React.Component {
                 isAlternativeLeg
                 alertSeverityLevel={getActiveLegAlertSeverityLevel(
                   l,
-                  l.start / 1000,
+                  l.start / 1000
                 )}
                 displayTime
                 isCallAgency={mode === 'call'}
@@ -550,7 +550,7 @@ class TransitLeg extends React.Component {
               toggle={() =>
                 this.setState(prevState => ({
                   ...prevState,
-                  showAlternativeLegs: !prevState.showAlternativeLegs,
+                  showAlternativeLegs: !prevState.showAlternativeLegs
                 }))
               }
             />
@@ -613,7 +613,7 @@ class TransitLeg extends React.Component {
                   duration={
                     interliningLegs.length > 0
                       ? legTime(
-                          interliningLegs[interliningLegs.length - 1].end,
+                          interliningLegs[interliningLegs.length - 1].end
                         ) - legTime(leg.start)
                       : leg.duration * 1000
                   }
@@ -691,7 +691,7 @@ TransitLeg.propTypes = {
   omitDivider: PropTypes.bool,
   changeHash: PropTypes.func,
   tabIndex: PropTypes.number,
-  usingOwnCarWholeTrip: PropTypes.bool,
+  usingOwnCarWholeTrip: PropTypes.bool
 };
 
 TransitLeg.defaultProps = {
@@ -700,21 +700,21 @@ TransitLeg.defaultProps = {
   changeHash: undefined,
   tabIndex: undefined,
   children: undefined,
-  usingOwnCarWholeTrip: false,
+  usingOwnCarWholeTrip: false
 };
 
 TransitLeg.contextTypes = {
   focusFunction: PropTypes.func.isRequired,
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const connectedComponent = connectToStores(
   TransitLeg,
   ['PreferencesStore'],
   context => ({
-    lang: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    lang: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export { connectedComponent as default, TransitLeg as Component };

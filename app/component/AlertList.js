@@ -9,7 +9,7 @@ import AlertRow from './AlertRow';
 import {
   alertCompare,
   getEntitiesOfType,
-  isAlertValid,
+  isAlertValid
 } from '../util/alertUtils';
 import { alertShape } from '../util/shapes';
 import withBreakpoint from '../util/withBreakpoint';
@@ -22,13 +22,13 @@ const AlertList = ({
   serviceAlerts,
   showLinks,
   breakpoint,
-  onClickLink,
+  onClickLink
 }) => {
   const validAlerts = serviceAlerts.filter(alert =>
-    isAlertValid(alert, currentTime),
+    isAlertValid(alert, currentTime)
   );
   const validCancelations = cancelations.filter(cancelation =>
-    isAlertValid(cancelation, currentTime),
+    isAlertValid(cancelation, currentTime)
   );
 
   if (validAlerts.length === 0 && validCancelations.length === 0) {
@@ -50,20 +50,20 @@ const AlertList = ({
     ...validCancelations.sort(alertCompare),
     ...validAlerts
       .filter(alert => alert.alertSeverityLevel === AlertSeverityLevelType.Info)
-      .sort(alertCompare),
+      .sort(alertCompare)
   ];
 
   return (
     <div className="alerts-content-wrapper">
       <div
         className={cx('alerts-list-wrapper', {
-          'bp-large': breakpoint === 'large',
+          'bp-large': breakpoint === 'large'
         })}
         aria-live="polite"
       >
         <div
           className={cx('alerts-list', {
-            'momentum-scroll': !disableScrolling,
+            'momentum-scroll': !disableScrolling
           })}
         >
           {alertsSorted.map(
@@ -76,9 +76,9 @@ const AlertList = ({
                 alertUrl,
                 effectiveStartDate,
                 effectiveEndDate,
-                feed,
+                feed
               },
-              i,
+              i
             ) => {
               const entityType =
                 getEntitiesOfType(entities, AlertEntityType.Stop).length > 0
@@ -102,7 +102,7 @@ const AlertList = ({
                   onClickLink={onClickLink}
                 />
               );
-            },
+            }
           )}
         </div>
       </div>
@@ -117,7 +117,7 @@ AlertList.propTypes = {
   serviceAlerts: PropTypes.arrayOf(alertShape),
   showLinks: PropTypes.bool,
   breakpoint: PropTypes.string,
-  onClickLink: PropTypes.func,
+  onClickLink: PropTypes.func
 };
 
 AlertList.defaultProps = {
@@ -126,15 +126,15 @@ AlertList.defaultProps = {
   serviceAlerts: [],
   showLinks: false,
   breakpoint: undefined,
-  onClickLink: undefined,
+  onClickLink: undefined
 };
 
 const connectedComponent = connectToStores(
   withBreakpoint(AlertList),
   ['TimeStore', 'PreferencesStore'],
   context => ({
-    currentTime: context.getStore('TimeStore').getCurrentTime(),
-  }),
+    currentTime: context.getStore('TimeStore').getCurrentTime()
+  })
 );
 
 export { connectedComponent as default, AlertList as Component };

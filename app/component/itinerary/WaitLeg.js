@@ -13,7 +13,7 @@ import { legTimeStr } from '../../util/legUtils';
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 function WaitLeg(
   { children, leg, start, waitTime, focusAction, index, icon },
-  { config },
+  { config }
 ) {
   const modeClassName = 'wait';
   return (
@@ -22,7 +22,7 @@ function WaitLeg(
         <FormattedMessage
           id="wait-amount-of-time"
           values={{
-            duration: durationToString(waitTime),
+            duration: durationToString(waitTime)
           }}
         />
       </span>
@@ -89,16 +89,16 @@ WaitLeg.propTypes = {
   children: PropTypes.node,
   waitTime: PropTypes.number.isRequired,
   leg: legShape.isRequired,
-  icon: PropTypes.string,
+  icon: PropTypes.string
 };
 
 WaitLeg.defaultProps = {
   children: undefined,
-  icon: undefined,
+  icon: undefined
 };
 
 WaitLeg.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default WaitLeg;

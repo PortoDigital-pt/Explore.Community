@@ -16,9 +16,9 @@ const IconWithIcon = (
     subIcon,
     subIconClassName,
     subIconShape,
-    mode,
+    mode
   },
-  { intl },
+  { intl }
 ) => (
   <span id={id} className={className}>
     <span>
@@ -55,11 +55,11 @@ IconWithIcon.propTypes = {
   subIcon: PropTypes.string,
   subIconClassName: PropTypes.string,
   subIconShape: PropTypes.string,
-  mode: PropTypes.string,
+  mode: PropTypes.string
 };
 
 IconWithIcon.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 IconWithIcon.defaultProps = {
@@ -72,7 +72,7 @@ IconWithIcon.defaultProps = {
   subIconClassName: '',
   subIconShape: undefined,
   mode: undefined,
-  color: undefined,
+  color: undefined
 };
 
 export default IconWithIcon;

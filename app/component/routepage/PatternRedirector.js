@@ -16,19 +16,19 @@ const PatternRedirector = ({ router, match, route }, context) => {
     const oldItem = oldSearchItems.filter(
       s =>
         s.item.properties.layer.startsWith('route-') &&
-        s.item.properties.link === match.location.pathname,
+        s.item.properties.link === match.location.pathname
     );
     if (oldItem && oldItem.length !== 0) {
       const error = {
         id: 'no-route-found',
         values: {
           shortName: oldItem[0].item.properties.shortName,
-          longName: oldItem[0].item.properties.longName,
-        },
+          longName: oldItem[0].item.properties.longName
+        }
       };
       context.executeAction(
         saveSearchItems,
-        oldSearchItems.filter(s => s !== oldItem[0]),
+        oldSearchItems.filter(s => s !== oldItem[0])
       );
       return <Error404 error={error} />;
     }
@@ -39,7 +39,7 @@ const PatternRedirector = ({ router, match, route }, context) => {
   if (tripsExists) {
     sortedPatternsByCountOfTrips = sortBy(
       sortBy(route.patterns, 'code').reverse(),
-      'trips.length',
+      'trips.length'
     ).reverse();
   }
   let pattern;
@@ -68,13 +68,13 @@ const PatternRedirector = ({ router, match, route }, context) => {
 
 PatternRedirector.contextTypes = {
   executeAction: PropTypes.func.isRequired,
-  getStore: PropTypes.func.isRequired,
+  getStore: PropTypes.func.isRequired
 };
 
 PatternRedirector.propTypes = {
   router: routerShape.isRequired,
   match: matchShape.isRequired,
-  route: routeShape,
+  route: routeShape
 };
 
 PatternRedirector.defaultProps = { route: undefined };
@@ -90,7 +90,7 @@ const containerComponent = createFragmentContainer(PatternRedirector, {
         }
       }
     }
-  `,
+  `
 });
 
 export default containerComponent;

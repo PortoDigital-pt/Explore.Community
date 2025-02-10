@@ -7,12 +7,12 @@ const ParkAndRideUtils = {
         const allowedAuthenticationMethods = [
           'liipi:AUTHENTICATION_METHOD_HSL_TICKET',
           'liipi:AUTHENTICATION_METHOD_VR_TICKET',
-          'liipi:AUTHENTICATION_METHOD_HSL_TRAVEL_CARD',
+          'liipi:AUTHENTICATION_METHOD_HSL_TRAVEL_CARD'
         ];
         return tags
           .filter(tag => allowedAuthenticationMethods.includes(tag))
           .map(tag =>
-            tag.replace('liipi:AUTHENTICATION_METHOD_', '').toLowerCase(),
+            tag.replace('liipi:AUTHENTICATION_METHOD_', '').toLowerCase()
           );
       }
       return [];
@@ -35,7 +35,7 @@ const ParkAndRideUtils = {
           'liipi:SERVICE_SURVEILLANCE_CAMERAS',
           'liipi:SERVICE_PAYMENT_AT_GATE',
           'liipi:SERVICE_ENGINE_IGNITION_AID',
-          'liipi:SERVICE_BICYCLE_FRAME_LOCK',
+          'liipi:SERVICE_BICYCLE_FRAME_LOCK'
         ];
         return tags
           .filter(tag => allowedServices.includes(tag))
@@ -53,7 +53,7 @@ const ParkAndRideUtils = {
           const day = dateString.substring(6, 8);
           return {
             date: new Date(year, month - 1, day),
-            timeSpans: openingHour?.timeSpans && openingHour?.timeSpans[0],
+            timeSpans: openingHour?.timeSpans && openingHour?.timeSpans[0]
           };
         });
         return openingHoursByDay;
@@ -65,7 +65,7 @@ const ParkAndRideUtils = {
     },
     isPaid: pricingMethods => {
       return pricingMethods.some(method => method.includes('paid'));
-    },
+    }
   },
   default: {
     getAuthenticationMethods: park => {
@@ -79,8 +79,8 @@ const ParkAndRideUtils = {
     },
     getOpeningHours: park => {
       return [];
-    },
-  },
+    }
+  }
 };
 
 export default ParkAndRideUtils;

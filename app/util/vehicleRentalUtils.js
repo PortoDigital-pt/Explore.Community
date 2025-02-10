@@ -17,23 +17,23 @@ export const RentalNetworkType = {
   /** The network uses bikes. */
   CityBike: 'citybike',
   /** The network uses scooters. */
-  Scooter: 'scooter',
+  Scooter: 'scooter'
 };
 
 export const defaultNetworkConfig = {
   icon: 'citybike',
   name: {},
-  type: RentalNetworkType.CityBike,
+  type: RentalNetworkType.CityBike
 };
 
 export const getRentalNetworkName = (
   networkConfig = defaultNetworkConfig,
-  language = 'en',
+  language = 'en'
 ) => (networkConfig.name && networkConfig.name[language]) || undefined;
 
 export const getRentalNetworkIcon = (
   networkConfig = defaultNetworkConfig,
-  disabled = false,
+  disabled = false
 ) => `icon-icon_${networkConfig.icon || 'citybike'}${disabled ? '_off' : ''}`;
 
 export const getRentalNetworkId = networks => {
@@ -89,7 +89,7 @@ export const mapDefaultNetworkProperties = config => {
     if (networkIsActive(config.vehicleRental.networks[key])) {
       mappedNetworks.push({
         networkName: key,
-        ...config.vehicleRental.networks[key],
+        ...config.vehicleRental.networks[key]
       });
     }
   });
@@ -123,7 +123,7 @@ const addAnalytics = (action, name) => {
   addAnalyticsEvent({
     category: 'ItinerarySettings',
     action,
-    name,
+    name
   });
 };
 
@@ -191,7 +191,7 @@ export const mapVehicleRentalFromStore = vehicleRentalStation => {
   const newStation = {
     ...vehicleRentalStation,
     network,
-    stationId,
+    stationId
   };
   delete newStation.networks;
   return newStation;
@@ -202,7 +202,7 @@ export const mapVehicleRentalToStore = vehicleRentalStation => {
   const newStation = {
     ...vehicleRentalStation,
     networks: [network],
-    stationId: getIdWithoutFeed(vehicleRentalStation.stationId),
+    stationId: getIdWithoutFeed(vehicleRentalStation.stationId)
   };
   delete newStation.network;
   return newStation;

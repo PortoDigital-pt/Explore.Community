@@ -11,7 +11,7 @@ describe('timetableConfigUtils', () => {
       const route = { gtfsId: 'HSL:2550' };
       const url = timetableHandler.timetableUrlResolver(
         baseTimetableURL,
-        route,
+        route
       );
       expect(url.href).to.equal(`${baseTimetableURL}2550.pdf`);
     });
@@ -22,7 +22,7 @@ describe('timetableConfigUtils', () => {
         baseTimetableURL,
         route,
         'foo',
-        'bar',
+        'bar'
       );
       expect(url.href).to.equal(`${baseTimetableURL}2550.pdf?foo=bar`);
     });
@@ -31,7 +31,7 @@ describe('timetableConfigUtils', () => {
       const route = { shortName: '11C', mode: 'BUS' };
       const url = timetableHandler.timetableUrlResolver(
         baseTimetableURL,
-        route,
+        route
       );
       expect(url.href).to.equal(`${baseTimetableURL}11.html`);
     });
@@ -47,10 +47,10 @@ describe('timetableConfigUtils', () => {
         hslStopTimetableURL,
         stop,
         date,
-        lang,
+        lang
       );
       expect(url.href).to.equal(
-        `${hslStopTimetableURL}&props%5BisSummerTimetable%5D=false&props%5BprintTimetablesAsA4%5D=true&props%5BprintTimetablesAsGreyscale%5D=false&props%5Btemplate%5D=default&props%5BshowAddressInfo%5D=false&props%5BshowPrintButton%5D=true&props%5Bredirect%5D=false&template=default&props%5BstopId%5D=1122127&props%5Bdate%5D=2023-10-31&props%5Blang%5D=en`,
+        `${hslStopTimetableURL}&props%5BisSummerTimetable%5D=false&props%5BprintTimetablesAsA4%5D=true&props%5BprintTimetablesAsGreyscale%5D=false&props%5Btemplate%5D=default&props%5BshowAddressInfo%5D=false&props%5BshowPrintButton%5D=true&props%5Bredirect%5D=false&template=default&props%5BstopId%5D=1122127&props%5Bdate%5D=2023-10-31&props%5Blang%5D=en`
       );
     });
     it('should resolve correctly for tampere instance', () => {

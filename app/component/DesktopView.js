@@ -12,7 +12,7 @@ export default function DesktopView({
   settingsDrawer,
   scrollable,
   bckBtnVisible,
-  bckBtnFallback,
+  bckBtnFallback
 }) {
   return (
     <div className="desktop">
@@ -50,7 +50,7 @@ DesktopView.propTypes = {
   settingsDrawer: PropTypes.node,
   scrollable: PropTypes.bool,
   bckBtnVisible: PropTypes.bool,
-  bckBtnFallback: PropTypes.string,
+  bckBtnFallback: PropTypes.string
 };
 
 DesktopView.defaultProps = {
@@ -61,5 +61,5 @@ DesktopView.defaultProps = {
   settingsDrawer: undefined,
   scrollable: false,
   bckBtnVisible: true,
-  bckBtnFallback: undefined,
+  bckBtnFallback: undefined
 };

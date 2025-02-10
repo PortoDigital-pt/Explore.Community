@@ -17,13 +17,13 @@ function VehicleParkMapContainer({ vehicleParking }, context) {
 }
 
 VehicleParkMapContainer.contextTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 VehicleParkMapContainer.propTypes = { vehicleParking: parkShape };
 
 VehicleParkMapContainer.defaultProps = {
-  vehicleParking: undefined,
+  vehicleParking: undefined
 };
 
 const containerComponent = createFragmentContainer(VehicleParkMapContainer, {
@@ -34,7 +34,7 @@ const containerComponent = createFragmentContainer(VehicleParkMapContainer, {
       lon
       name
     }
-  `,
+  `
 });
 
 export { containerComponent as default, VehicleParkMapContainer as Component };

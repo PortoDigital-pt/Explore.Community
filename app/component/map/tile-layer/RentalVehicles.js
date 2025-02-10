@@ -7,12 +7,12 @@ import { isBrowser } from '../../../util/browser';
 import {
   getMapIconScale,
   drawScooterIcon,
-  drawSmallVehicleRentalMarker,
+  drawSmallVehicleRentalMarker
 } from '../../../util/mapIconUtils';
 
 import {
   getRentalNetworkConfig,
-  getRentalNetworkIcon,
+  getRentalNetworkIcon
 } from '../../../util/vehicleRentalUtils';
 import { fetchWithLanguageAndSubscription } from '../../../util/fetchUtils';
 import { getLayerBaseUrl } from '../../../util/mapLayerUtils';
@@ -40,7 +40,7 @@ class RentalVehicles {
       this.tile.coords.z > this.config.vehicleRental.cityBikeSmallIconZoom;
     const baseUrl = getLayerBaseUrl(
       this.config.URL.REALTIME_RENTAL_VEHICLE_MAP,
-      lang,
+      lang
     );
     const tileUrl = `${baseUrl}${
       this.tile.coords.z + (this.tile.props.zoomOffset || 0)
@@ -76,7 +76,7 @@ class RentalVehicles {
                     feature.properties.id,
                     feature.properties.network,
                     feature.properties.pickupAllowed,
-                    feature.properties.formFactor,
+                    feature.properties.formFactor
                   )
                 ) {
                   this.features.push(pick(feature, ['geom', 'properties']));
@@ -98,7 +98,7 @@ class RentalVehicles {
               }
             }
           },
-          err => console.log(err), // eslint-disable-line no-console
+          err => console.log(err) // eslint-disable-line no-console
         );
       })
       .catch(err => {
@@ -116,7 +116,7 @@ class RentalVehicles {
       minZoom: 13,
       map: featureProps => ({
         networks: [featureProps.network],
-        scooterId: featureProps.id, // an id of a vehicle to zoom into when a cluster is clicked
+        scooterId: featureProps.id // an id of a vehicle to zoom into when a cluster is clicked
       }),
       reduce: (accumulated, featureProps) => {
         if (
@@ -126,7 +126,7 @@ class RentalVehicles {
           accumulated.networks.push(featureProps.network);
         }
         return accumulated;
-      },
+      }
     });
 
     index.load(this.pointsInSuperclusterFormat());
@@ -162,7 +162,7 @@ class RentalVehicles {
       this.tile,
       geom,
       iconColor,
-      TransportMode.Scooter,
+      TransportMode.Scooter
     );
   };
 
@@ -183,7 +183,7 @@ class RentalVehicles {
       // Convert the feature's x/y to lat/lon for clustering
       const latLon = this.tile.project({
         x: feature.geom.x,
-        y: feature.geom.y,
+        y: feature.geom.y
       });
       return {
         type: 'Feature',
@@ -191,8 +191,8 @@ class RentalVehicles {
         geom: { ...feature.geom },
         geometry: {
           type: 'Point',
-          coordinates: [latLon.lat, latLon.lon],
-        },
+          coordinates: [latLon.lat, latLon.lon]
+        }
       };
     });
   };
@@ -201,14 +201,14 @@ class RentalVehicles {
     // Convert the cluster's lat/lon to x/y
     const point = this.tile.latLngToPoint(
       clusterFeature.geometry.coordinates[0],
-      clusterFeature.geometry.coordinates[1],
+      clusterFeature.geometry.coordinates[1]
     );
     return {
       ...clusterFeature,
       geom: {
         x: point.x,
-        y: point.y,
-      },
+        y: point.y
+      }
     };
   };
 }

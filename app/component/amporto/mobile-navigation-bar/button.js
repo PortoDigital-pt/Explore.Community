@@ -12,7 +12,7 @@ export const NavButton = ({ active, path, description }) => (
     </div>
     <div
       className={classnames('nav-button-active-indicator', {
-        hide: !active,
+        hide: !active
       })}
     />
   </div>

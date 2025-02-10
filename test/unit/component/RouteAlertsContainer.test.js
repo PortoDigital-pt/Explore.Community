@@ -14,7 +14,7 @@ describe('<RouteAlertsContainer />', () => {
       route: {
         gtfsId: 'HSL:1063',
         mode: 'BUS',
-        shortName: '63',
+        shortName: '63'
       },
       pattern: {
         alerts: [],
@@ -28,24 +28,24 @@ describe('<RouteAlertsContainer />', () => {
                 headsign: 'Kamppi',
                 realtimeState: 'SCHEDULED',
                 stop: {
-                  name: 'Saramäentie',
-                },
-              },
-            ],
-          },
-        ],
-      },
+                  name: 'Saramäentie'
+                }
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<RouteAlertsContainer {...props} />, {
       context: {
         ...mockContext,
-        match: { params: { patternId: 'HSL:1063:0:01' } },
-      },
+        match: { params: { patternId: 'HSL:1063:0:01' } }
+      }
     });
     expect(wrapper.find(AlertList).props()).to.deep.equal({
       cancelations: [],
       serviceAlerts: [],
-      showLinks: false,
+      showLinks: false
     });
   });
 
@@ -55,7 +55,7 @@ describe('<RouteAlertsContainer />', () => {
       route: {
         gtfsId: 'HSL:1063',
         mode: 'BUS',
-        shortName: '63',
+        shortName: '63'
       },
       pattern: {
         alerts: [],
@@ -69,10 +69,10 @@ describe('<RouteAlertsContainer />', () => {
                 scheduledDeparture: 600,
                 realtimeState: 'CANCELED',
                 stop: {
-                  name: 'Saramäentie',
-                },
-              },
-            ],
+                  name: 'Saramäentie'
+                }
+              }
+            ]
           },
           {
             stoptimes: [
@@ -82,19 +82,19 @@ describe('<RouteAlertsContainer />', () => {
                 headsign: 'Kamppi',
                 realtimeState: 'SCHEDULED',
                 stop: {
-                  name: 'Saramäentie',
-                },
-              },
-            ],
-          },
-        ],
-      },
+                  name: 'Saramäentie'
+                }
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<RouteAlertsContainer {...props} />, {
       context: {
         ...mockContext,
-        match: { params: { patternId: 'HSL:1063:0:01' } },
-      },
+        match: { params: { patternId: 'HSL:1063:0:01' } }
+      }
     });
     expect(wrapper.find(AlertList).prop('cancelations')).to.have.lengthOf(1);
   });
@@ -108,10 +108,10 @@ describe('<RouteAlertsContainer />', () => {
         mode: 'BUS',
         patterns: [
           {
-            code: 'HSL:2335:0:01',
-          },
+            code: 'HSL:2335:0:01'
+          }
         ],
-        shortName: '335',
+        shortName: '335'
       },
       pattern: {
         code: 'HSL:2335:0:01',
@@ -119,14 +119,14 @@ describe('<RouteAlertsContainer />', () => {
           {
             alertHeaderText: null,
             alertDescriptionText:
-              'Vantaan sisäisen liikenteen linja 335 Linnaisista, klo 11:59 peruttu. Syy: tilapäinen häiriö.',
-          },
+              'Vantaan sisäisen liikenteen linja 335 Linnaisista, klo 11:59 peruttu. Syy: tilapäinen häiriö.'
+          }
         ],
-        trips: [],
-      },
+        trips: []
+      }
     };
     const wrapper = shallowWithIntl(<RouteAlertsContainer {...props} />, {
-      context: { ...mockContext },
+      context: { ...mockContext }
     });
     expect(wrapper.find(AlertList).prop('serviceAlerts')).to.have.lengthOf(1);
   });
@@ -137,7 +137,7 @@ describe('<RouteAlertsContainer />', () => {
       route: {
         gtfsId: 'HSL:1063',
         mode: 'BUS',
-        shortName: '63',
+        shortName: '63'
       },
       pattern: {
         alerts: [],
@@ -153,22 +153,22 @@ describe('<RouteAlertsContainer />', () => {
                 scheduledDeparture: 2,
                 serviceDay: 3,
                 stop: {
-                  name: 'Saramäentie 11',
-                },
-              },
-            ],
-          },
-        ],
-      },
+                  name: 'Saramäentie 11'
+                }
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<RouteAlertsContainer {...props} />, {
       context: {
         ...mockContext,
-        match: { params: { patternId: 'HSL:1063:0:01' } },
-      },
+        match: { params: { patternId: 'HSL:1063:0:01' } }
+      }
     });
     expect(
-      wrapper.find(AlertList).prop('cancelations')[0].alertDescriptionText,
+      wrapper.find(AlertList).prop('cancelations')[0].alertDescriptionText
     ).to.include('foobar');
   });
 });

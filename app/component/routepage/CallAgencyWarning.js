@@ -30,11 +30,11 @@ const CallAgencyWarning = ({ route }) => (
 );
 
 CallAgencyWarning.propTypes = {
-  route: routeShape.isRequired,
+  route: routeShape.isRequired
 };
 
 CallAgencyWarning.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default CallAgencyWarning;

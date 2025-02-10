@@ -252,7 +252,7 @@ const translations = {
       'Kun bestillingstransport. Afgangen må forudbestilles af operatør.',
     'weather-at-destination': 'Vejret på destinationen',
     yesterday: 'I går',
-    zones: 'Zoner',
+    zones: 'Zoner'
   },
 
   de: {
@@ -818,7 +818,7 @@ const translations = {
     where: 'Wohin?',
     yesterday: 'Gestern',
     zone: 'Tarifzone',
-    zones: 'Tarifzonen',
+    zones: 'Tarifzonen'
   },
 
   en: {
@@ -1815,7 +1815,7 @@ const translations = {
     zone: 'Zone',
     'zone-info': 'Zone {zone}',
     'zone-unknown': 'Unknown zone',
-    zones: 'Fare zones',
+    zones: 'Fare zones'
   },
 
   es: {
@@ -2110,7 +2110,7 @@ const translations = {
       'Sólo bajo demanda, necesita ser reservado con antelación.',
     'weather-at-destination': 'Tiempo en destino',
     yesterday: 'Ayer',
-    zones: 'Zonas tarifarias',
+    zones: 'Zonas tarifarias'
   },
 
   fi: {
@@ -3106,7 +3106,7 @@ const translations = {
     zone: 'Vyöhyke',
     'zone-info': 'Vyöhyke {zone}',
     'zone-unknown': 'Tuntematon vyöhyke',
-    zones: 'Lippuvyöhykkeet',
+    zones: 'Lippuvyöhykkeet'
   },
 
   fr: {
@@ -3439,7 +3439,7 @@ const translations = {
       "Uniquement à la demande. Doit être réservé à l'avance",
     'weather-at-destination': 'Météo à destination',
     yesterday: 'Hier',
-    zones: 'Zones tarifaires',
+    zones: 'Zones tarifaires'
   },
 
   nb: {
@@ -3693,7 +3693,7 @@ const translations = {
       'Kun bestillingsrute. Avgangen må forhåndsbestilles fra operatør.',
     'weather-at-destination': 'Været på destinasjonen',
     yesterday: 'I går',
-    zones: 'Billettsoner',
+    zones: 'Billettsoner'
   },
 
   pl: {
@@ -4582,7 +4582,7 @@ const translations = {
     zone: 'Strefa',
     'zone-info': 'Strefa {zone}',
     'zone-unknown': 'Nieznana strefa',
-    zones: 'Strefy taryfowe',
+    zones: 'Strefy taryfowe'
   },
 
   ro: {
@@ -5058,7 +5058,7 @@ const translations = {
     where: 'Where to?',
     yesterday: 'Ieri',
     zone: 'Zone',
-    zones: 'Zone tarifare',
+    zones: 'Zone tarifare'
   },
 
   pt: {
@@ -6224,7 +6224,7 @@ const translations = {
     'weather-icon-92': 'Neblina',
     where: 'Para onde?',
     'zone-info': 'Zona {zone}',
-    'zone-unknown': 'Zona desconhecida',
+    'zone-unknown': 'Zona desconhecida'
   },
 
   sv: {
@@ -7219,8 +7219,8 @@ const translations = {
     zone: 'Zon',
     'zone-info': 'Zon {zone}',
     'zone-unknown': 'Okänd zon',
-    zones: 'Biljettzoner',
-  },
+    zones: 'Biljettzoner'
+  }
 };
 
 export default translations;

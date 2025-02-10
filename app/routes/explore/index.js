@@ -25,7 +25,7 @@ export default () => (
     <Route path="map">
       {{
         content: <Route getComponent={() => ExploreMapContent} />,
-        map: <Route getComponent={() => ExploreMapMap} />,
+        map: <Route getComponent={() => ExploreMapMap} />
       }}
     </Route>
   </Route>

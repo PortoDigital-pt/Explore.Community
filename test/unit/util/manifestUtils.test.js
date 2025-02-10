@@ -4,7 +4,7 @@ import {
   ICON_SIZES,
   getIconUrl,
   generateManifestIcons,
-  generateManifest,
+  generateManifest
 } from '../../../app/util/manifestUtils';
 
 describe('manifestUtils', () => {
@@ -13,8 +13,8 @@ describe('manifestUtils', () => {
       const config = {
         iconPath: 'bar',
         URL: {
-          ASSET_URL: 'https://foo',
-        },
+          ASSET_URL: 'https://foo'
+        }
       };
       const protocol = 'https:';
       const host = 'localhost:8080';
@@ -25,8 +25,8 @@ describe('manifestUtils', () => {
     it('should use config.URL.ASSET_URL and default iconPath', () => {
       const config = {
         URL: {
-          ASSET_URL: 'https://foobar',
-        },
+          ASSET_URL: 'https://foobar'
+        }
       };
       const protocol = 'http:';
       const host = 'localhost:8080';
@@ -37,7 +37,7 @@ describe('manifestUtils', () => {
     it('should use the current host as a fallback', () => {
       const config = {
         iconPath: 'baz/',
-        URL: {},
+        URL: {}
       };
       const protocol = 'https:';
       const host = 'foobar';
@@ -47,13 +47,13 @@ describe('manifestUtils', () => {
 
     it('should use the given protocol', () => {
       const config = {
-        URL: {},
+        URL: {}
       };
       const protocol = 'foobar:';
       const host = 'localhost:8080';
       const result = getIconUrl(config, protocol, host, 32);
       expect(result).to.equal(
-        'foobar://localhost:8080/icons/android-chrome-32x32.png',
+        'foobar://localhost:8080/icons/android-chrome-32x32.png'
       );
     });
   });
@@ -61,7 +61,7 @@ describe('manifestUtils', () => {
   describe('generateManifestIcons', () => {
     it('should return an array of icons with type "image/png"', () => {
       const config = {
-        URL: {},
+        URL: {}
       };
       const protocol = 'https:';
       const host = 'localhost:8080';
@@ -71,7 +71,7 @@ describe('manifestUtils', () => {
 
     it('should return an array of icons with predefined sizes', () => {
       const config = {
-        URL: {},
+        URL: {}
       };
       const protocol = 'https:';
       const host = 'localhost:8080';
@@ -80,9 +80,9 @@ describe('manifestUtils', () => {
       ICON_SIZES.map(size => `${size}x${size}`).forEach(size =>
         expect(
           result.some(
-            icon => icon.sizes === size && icon.src.indexOf(size) > -1,
-          ),
-        ),
+            icon => icon.sizes === size && icon.src.indexOf(size) > -1
+          )
+        )
       );
     });
   });
@@ -91,21 +91,21 @@ describe('manifestUtils', () => {
     const emptyConfig = {
       colors: {},
       meta: {},
-      URL: {},
+      URL: {}
     };
 
     const emptyLocation = {
       host: '',
       pathname: '',
-      protocol: '',
+      protocol: ''
     };
 
     it('should use the configured primary color as background_color and theme_color', () => {
       const config = {
         ...emptyConfig,
         colors: {
-          primary: 'foo',
-        },
+          primary: 'foo'
+        }
       };
       const manifest = generateManifest(config, emptyLocation);
       expect(manifest.background_color).to.equal('foo');
@@ -114,7 +114,7 @@ describe('manifestUtils', () => {
 
     it('should use the given title as name and short_name', () => {
       const manifest = generateManifest(emptyConfig, emptyLocation, {
-        title: 'foo',
+        title: 'foo'
       });
       expect(manifest.name).to.equal('foo');
       expect(manifest.short_name).to.equal('foo');
@@ -123,7 +123,7 @@ describe('manifestUtils', () => {
     it('should use the configured title as name and short_name', () => {
       const config = {
         ...emptyConfig,
-        title: 'foo',
+        title: 'foo'
       };
       const manifest = generateManifest(config, emptyLocation);
       expect(manifest.name).to.equal('foo');
@@ -132,7 +132,7 @@ describe('manifestUtils', () => {
 
     it('should use the given description as description', () => {
       const manifest = generateManifest(emptyConfig, emptyLocation, {
-        description: 'foo',
+        description: 'foo'
       });
       expect(manifest.description).to.equal('foo');
     });
@@ -141,8 +141,8 @@ describe('manifestUtils', () => {
       const config = {
         ...emptyConfig,
         meta: {
-          description: 'foo',
-        },
+          description: 'foo'
+        }
       };
       const manifest = generateManifest(config, emptyLocation);
       expect(manifest.description).to.equal('foo');
@@ -152,11 +152,11 @@ describe('manifestUtils', () => {
       const location = {
         host: 'localhost:8080',
         pathname: '/',
-        protocol: 'https:',
+        protocol: 'https:'
       };
       const manifest = generateManifest(emptyConfig, location);
       expect(manifest.start_url).to.equal(
-        'https://localhost:8080/?homescreen=1',
+        'https://localhost:8080/?homescreen=1'
       );
     });
   });

@@ -7,17 +7,17 @@ export default function MenuDrawer({
   children,
   onRequestChange,
   breakpoint,
-  className,
+  className
 }) {
   const classNames = {
     base: `${className} ${breakpoint !== 'large' ? 'mobile' : ''} menu-content`,
     afterOpen: 'menu-content-open',
-    beforeClose: 'menu-content-close',
+    beforeClose: 'menu-content-close'
   };
   const overlayClassNames = {
     base: `${breakpoint !== 'large' ? 'mobile' : ''} menu-background`,
     afterOpen: 'menu-background-open',
-    beforeClose: 'menu-background-close',
+    beforeClose: 'menu-background-close'
   };
   return (
     <Modal
@@ -38,11 +38,11 @@ MenuDrawer.propTypes = {
   children: PropTypes.node,
   onRequestChange: PropTypes.func,
   breakpoint: PropTypes.string.isRequired,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 MenuDrawer.defaultProps = {
   children: undefined,
   onRequestChange: undefined,
-  className: '',
+  className: ''
 };

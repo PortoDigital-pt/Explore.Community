@@ -17,7 +17,7 @@ function MobileDatepicker({
   id,
   label,
   icon,
-  timeZone,
+  timeZone
 }) {
   moment.tz.setDefault(timeZone);
 
@@ -80,7 +80,7 @@ function MobileDatepicker({
             },
             'aria-labelledby': labelId,
             'aria-autocomplete': 'none',
-            readOnly: true,
+            readOnly: true
           }}
           focusInputOnSuggestionClick={false}
           onSuggestionsClearRequested={() => null}
@@ -115,13 +115,13 @@ MobileDatepicker.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.node,
   dateTimeCombined: PropTypes.bool,
-  timeZone: PropTypes.string,
+  timeZone: PropTypes.string
 };
 
 MobileDatepicker.defaultProps = {
   icon: null,
   dateTimeCombined: false,
-  timeZone: 'Europe/Helsinki',
+  timeZone: 'Europe/Helsinki'
 };
 
 export default MobileDatepicker;

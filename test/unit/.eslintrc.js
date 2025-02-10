@@ -1,9 +1,9 @@
 module.exports = {
   extends: '../../.eslintrc.js',
   env: {
-    mocha: true,
+    mocha: true
   },
   globals: {
-    expect: true,
-  },
+    expect: true
+  }
 };

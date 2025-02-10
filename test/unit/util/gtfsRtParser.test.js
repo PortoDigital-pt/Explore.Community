@@ -7,7 +7,7 @@ import { parseFeedMQTT } from '../../../app/util/gtfsRtParser';
 
 // Real arraybuffer data that was encoded into base64
 const arrayBuffer = converter.decode(
-  'Cg0KAzEuMBABGMa+6OQFEmgKBjEzMDIxMBAAIlwKKwoKNTY0NTkzNDY0NhIIMTQ6MzU6MDAaCDIwMTkwMzI2IAAqBTg2OTIxMAESFA1OCHZCFc1OvUEdKWNcQi1TCXM9KMW+6OQFMABCDwoGMTMwMjEwEgVBdGFsYQ==',
+  'Cg0KAzEuMBABGMa+6OQFEmgKBjEzMDIxMBAAIlwKKwoKNTY0NTkzNDY0NhIIMTQ6MzU6MDAaCDIwMTkwMzI2IAAqBTg2OTIxMAESFA1OCHZCFc1OvUEdKWNcQi1TCXM9KMW+6OQFMABCDwoGMTMwMjEwEgVBdGFsYQ=='
 );
 
 describe('gtfsRtParser', () => {
@@ -16,7 +16,7 @@ describe('gtfsRtParser', () => {
       const result = parseFeedMQTT(
         bindings.FeedMessage.read,
         arrayBuffer,
-        '/gtfsrt/vp/tampere///TRAM/8/1/Atala/5645934646/123456/14:35/130210/61;23/47/62/47/8/000000/',
+        '/gtfsrt/vp/tampere///TRAM/8/1/Atala/5645934646/123456/14:35/130210/61;23/47/62/47/8/000000/'
       );
 
       expect(result).to.deep.equal([
@@ -36,8 +36,8 @@ describe('gtfsRtParser', () => {
           tripId: 'tampere:5645934646',
           geoHash: ['61;23', '47', '62', '47'],
           shortName: '8',
-          color: '000000',
-        },
+          color: '000000'
+        }
       ]);
     });
 
@@ -45,7 +45,7 @@ describe('gtfsRtParser', () => {
       const result = parseFeedMQTT(
         bindings.FeedMessage.read,
         arrayBuffer,
-        '/gtfsrt/vp/tampere////15//////TKL_23/61;23/47/62/47//',
+        '/gtfsrt/vp/tampere////15//////TKL_23/61;23/47/62/47//'
       );
 
       expect(result).to.deep.equal([
@@ -65,8 +65,8 @@ describe('gtfsRtParser', () => {
           tripId: undefined,
           geoHash: ['61;23', '47', '62', '47'],
           shortName: undefined,
-          color: undefined,
-        },
+          color: undefined
+        }
       ]);
     });
   });

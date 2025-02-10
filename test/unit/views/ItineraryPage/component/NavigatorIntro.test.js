@@ -5,12 +5,12 @@ import React from 'react';
 import NavigatorIntro from '../../../../../app/component/itinerary/navigator/navigatorintro/NavigatorIntro';
 import {
   mockChildContextTypes,
-  mockContext,
+  mockContext
 } from '../../../helpers/mock-context';
 import { mountWithIntl } from '../../../helpers/mock-intl-enzyme';
 
 const defaultProps = {
-  onClose: () => {},
+  onClose: () => {}
 };
 
 describe('<NavigatorIntro />', () => {
@@ -19,10 +19,10 @@ describe('<NavigatorIntro />', () => {
       <NavigatorIntro logo="foobar" {...defaultProps} />,
       {
         context: {
-          ...mockContext,
+          ...mockContext
         },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
 
     expect(wrapper.find('div.intro-body img')).to.have.lengthOf(1);
@@ -31,9 +31,9 @@ describe('<NavigatorIntro />', () => {
   it('should not render logo if prop is missing', () => {
     const wrapper = mountWithIntl(<NavigatorIntro {...defaultProps} />, {
       context: {
-        ...mockContext,
+        ...mockContext
       },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     assert(wrapper.find('div.intro-body img'), undefined);

@@ -8,7 +8,7 @@ import { mountWithIntl } from '../../helpers/mock-intl-enzyme';
 import {
   Component as VehicleMarkerContainer,
   shouldShowVehicle,
-  getVehicleIcon,
+  getVehicleIcon
 } from '../../../../app/component/map/VehicleMarkerContainer';
 import { mockChildContextTypes } from '../../helpers/mock-context';
 
@@ -30,10 +30,10 @@ const defaultProps = {
       operationDay: '20190322',
       route: 'tampere:2',
       timestamp: 1553260781,
-      tripStartTime: '1514',
-    },
+      tripStartTime: '1514'
+    }
   },
-  setVisibleVehicles: () => {},
+  setVisibleVehicles: () => {}
 };
 
 describe('<VehicleMarkerContainer />', () => {
@@ -52,14 +52,14 @@ describe('<VehicleMarkerContainer />', () => {
             config: {
               CONFIG: 'default',
               realTime: {
-                tampere: {},
-              },
-            },
+                tampere: {}
+              }
+            }
           },
           childContextTypes: {
-            ...mockChildContextTypes,
-          },
-        },
+            ...mockChildContextTypes
+          }
+        }
       );
       expect(wrapper.children.length).to.equal(1);
       expect(addLayer.callCount).to.equal(1);
@@ -70,7 +70,7 @@ describe('<VehicleMarkerContainer />', () => {
     it('should return false when lat is missing', () => {
       const message = {
         long: 23.77416,
-        route: 'tampere:2',
+        route: 'tampere:2'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -78,7 +78,7 @@ describe('<VehicleMarkerContainer />', () => {
         undefined,
         undefined,
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(false);
     });
@@ -86,7 +86,7 @@ describe('<VehicleMarkerContainer />', () => {
     it('should return false when long is missing', () => {
       const message = {
         lat: 61.50639,
-        route: 'tampere:2',
+        route: 'tampere:2'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -94,7 +94,7 @@ describe('<VehicleMarkerContainer />', () => {
         undefined,
         undefined,
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(false);
     });
@@ -103,7 +103,7 @@ describe('<VehicleMarkerContainer />', () => {
       const message = {
         lat: 61.50639,
         long: 23.77416,
-        route: 'tampere:3',
+        route: 'tampere:3'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -111,7 +111,7 @@ describe('<VehicleMarkerContainer />', () => {
         undefined,
         undefined,
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(false);
     });
@@ -120,7 +120,7 @@ describe('<VehicleMarkerContainer />', () => {
       const message = {
         lat: 61.50639,
         long: 23.77416,
-        route: 'tampere:2',
+        route: 'tampere:2'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -128,7 +128,7 @@ describe('<VehicleMarkerContainer />', () => {
         undefined,
         undefined,
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(true);
     });
@@ -140,7 +140,7 @@ describe('<VehicleMarkerContainer />', () => {
         route: 'tampere:2',
         direction: 0,
         tripStartTime: '1514',
-        headsign: 'Tampere',
+        headsign: 'Tampere'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -148,7 +148,7 @@ describe('<VehicleMarkerContainer />', () => {
         0,
         '1514',
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(false);
     });
@@ -160,7 +160,7 @@ describe('<VehicleMarkerContainer />', () => {
         route: 'tampere:2',
         direction: 1,
         tripStartTime: '1514',
-        headsign: 'Pyynikintori',
+        headsign: 'Pyynikintori'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -168,7 +168,7 @@ describe('<VehicleMarkerContainer />', () => {
         2,
         '1514',
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(false);
     });
@@ -180,7 +180,7 @@ describe('<VehicleMarkerContainer />', () => {
         route: 'tampere:2',
         direction: 1,
         tripStartTime: '1650',
-        headsign: 'Pyynikintori',
+        headsign: 'Pyynikintori'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -188,7 +188,7 @@ describe('<VehicleMarkerContainer />', () => {
         2,
         '1514',
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(false);
     });
@@ -200,7 +200,7 @@ describe('<VehicleMarkerContainer />', () => {
         route: 'tampere:2',
         direction: 0,
         tripStartTime: '1514',
-        headsign: 'Pyynikintori',
+        headsign: 'Pyynikintori'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -208,7 +208,7 @@ describe('<VehicleMarkerContainer />', () => {
         0,
         '1514',
         'tampere:2:0:02',
-        'Pyynikintori',
+        'Pyynikintori'
       );
       expect(shouldShow).to.equal(true);
     });
@@ -220,7 +220,7 @@ describe('<VehicleMarkerContainer />', () => {
         route: 'tampere:2',
         direction: 0,
         tripStartTime: '1514',
-        headsign: 'Pyynikintori',
+        headsign: 'Pyynikintori'
       };
 
       const shouldShow = shouldShowVehicle(
@@ -228,7 +228,7 @@ describe('<VehicleMarkerContainer />', () => {
         undefined,
         undefined,
         undefined,
-        undefined,
+        undefined
       );
       expect(shouldShow).to.equal(true);
     });
@@ -240,7 +240,7 @@ describe('<VehicleMarkerContainer />', () => {
         const icon = getVehicleIcon(null, 180, '32', undefined, false);
         const wrapper = mountWithIntl(icon.element);
         expect(wrapper.find('use').prop('xlinkHref')).to.equal(
-          '#icon-icon_all-vehicles-small',
+          '#icon-icon_all-vehicles-small'
         );
         expect(icon.className).to.contain('bus');
       });
@@ -249,7 +249,7 @@ describe('<VehicleMarkerContainer />', () => {
         const icon = getVehicleIcon('bus', 180, '32', undefined, true);
         const wrapper = mountWithIntl(icon.element);
         expect(wrapper.find('use').prop('xlinkHref')).to.equal(
-          '#icon-icon_vehicle-live-marker',
+          '#icon-icon_vehicle-live-marker'
         );
         expect(icon.className).to.contain('bus');
       });

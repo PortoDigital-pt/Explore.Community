@@ -21,7 +21,7 @@ ToggleMapTracking.propTypes = {
   handleClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
-  ariaLabel: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string.isRequired
 };
 
 export default ToggleMapTracking;

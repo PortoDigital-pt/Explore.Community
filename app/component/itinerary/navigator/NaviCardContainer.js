@@ -13,7 +13,7 @@ import {
   getTransitLegState,
   itinerarySearchPath,
   LEGTYPE,
-  DESTINATION_RADIUS,
+  DESTINATION_RADIUS
 } from './NaviUtils';
 import { updateClient, getTopics } from '../ItineraryPageUtils';
 
@@ -32,7 +32,7 @@ const getLegType = (
   firstLeg,
   time,
   countAtLegEnd,
-  interlineWithPreviousLeg,
+  interlineWithPreviousLeg
 ) => {
   let legType;
   if (time < legTime(firstLeg.start)) {
@@ -66,9 +66,9 @@ function NaviCardContainer(
     firstLeg,
     lastLeg,
     previousLeg,
-    isJourneyCompleted,
+    isJourneyCompleted
   },
-  context,
+  context
 ) {
   const [cardExpanded, setCardExpanded] = useState(false);
   // All notifications including those user has dismissed.
@@ -96,7 +96,7 @@ function NaviCardContainer(
   const getNaviTopics = () =>
     getTopics(
       legs.filter(leg => legTime(leg.end) >= time),
-      config,
+      config
     );
 
   const makeNewItinerarySearch = () => {
@@ -105,7 +105,7 @@ function NaviCardContainer(
       currentLeg,
       nextLeg,
       position,
-      match.params.to,
+      match.params.to
     );
     router.push(path);
   };
@@ -134,8 +134,8 @@ function NaviCardContainer(
         origin,
         intl,
         messages,
-        makeNewItinerarySearch,
-      ),
+        makeNewItinerarySearch
+      )
     );
 
     if (
@@ -157,8 +157,8 @@ function NaviCardContainer(
               <span>{info3}</span>
             </div>
           ),
-          id: 'debug',
-        },
+          id: 'debug'
+        }
       ]);
     }
 
@@ -172,8 +172,8 @@ function NaviCardContainer(
           firstLeg,
           time,
           config,
-          messages,
-        ),
+          messages
+        )
       ]);
     }
     let timeoutId;
@@ -199,7 +199,7 @@ function NaviCardContainer(
 
       // handle messages that are updated.
       const keptMessages = previousValidMessages.filter(
-        msg => !incomingMessages.get(msg.id),
+        msg => !incomingMessages.get(msg.id)
       );
       const newMessages = Array.from(incomingMessages.values());
       setActiveMessages([...keptMessages, ...newMessages]);
@@ -241,7 +241,7 @@ function NaviCardContainer(
     firstLeg,
     time,
     legEndRef.current,
-    nextLeg?.interlineWithPreviousLeg,
+    nextLeg?.interlineWithPreviousLeg
   );
 
   const containerTopPosition =
@@ -292,20 +292,20 @@ NaviCardContainer.propTypes = {
     lon: PropTypes.number,
     status: PropTypes.string,
     locationCount: PropTypes.number,
-    watchId: PropTypes.string,
+    watchId: PropTypes.string
   }),
   mapLayerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     .isRequired,
   origin: PropTypes.shape({
     x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired
   }).isRequired,
   currentLeg: legShape,
   nextLeg: legShape,
   firstLeg: legShape,
   lastLeg: legShape,
   previousLeg: legShape,
-  isJourneyCompleted: PropTypes.bool,
+  isJourneyCompleted: PropTypes.bool
 };
 
 NaviCardContainer.defaultProps = {
@@ -316,7 +316,7 @@ NaviCardContainer.defaultProps = {
   firstLeg: undefined,
   lastLeg: undefined,
   previousLeg: undefined,
-  isJourneyCompleted: false,
+  isJourneyCompleted: false
 };
 
 NaviCardContainer.contextTypes = {
@@ -325,7 +325,7 @@ NaviCardContainer.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
   executeAction: PropTypes.func.isRequired,
-  getStore: PropTypes.func.isRequired,
+  getStore: PropTypes.func.isRequired
 };
 
 export default NaviCardContainer;

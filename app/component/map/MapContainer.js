@@ -6,7 +6,7 @@ import withGeojsonObjects from './withGeojsonObjects';
 import LazilyLoad, { importLazy } from '../LazilyLoad';
 
 const mapModules = {
-  Map: () => importLazy(import(/* webpackChunkName: "map" */ './Map')),
+  Map: () => importLazy(import(/* webpackChunkName: "map" */ './Map'))
 };
 
 function MapContainer({ className, children, ...props }) {
@@ -25,18 +25,18 @@ function MapContainer({ className, children, ...props }) {
 
 MapContainer.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 MapContainer.defaultProps = {
   className: '',
-  children: undefined,
+  children: undefined
 };
 
 export default connectToStores(
   withGeojsonObjects(MapContainer),
   ['PreferencesStore'],
   context => ({
-    lang: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    lang: context.getStore('PreferencesStore').getLanguage()
+  })
 );

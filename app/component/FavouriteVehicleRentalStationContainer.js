@@ -20,14 +20,14 @@ const FavouriteVehicleRentalStationContainer = connectToStores(
         network: vehicleRentalStation.rentalNetwork.networkId,
         name: vehicleRentalStation.name,
         stationId: vehicleRentalStation.stationId,
-        type: 'bikeStation',
+        type: 'bikeStation'
       });
       addAnalyticsEvent({
         category: 'BikeRentalStation',
         action: 'MarkBikeRentalStationAsFavourite',
         name: !context
           .getStore('FavouriteStore')
-          .isFavourite(vehicleRentalStation.stationId, 'bikeStation'),
+          .isFavourite(vehicleRentalStation.stationId, 'bikeStation')
       });
     },
     deleteFavourite: () => {
@@ -35,7 +35,7 @@ const FavouriteVehicleRentalStationContainer = connectToStores(
         .getStore('FavouriteStore')
         .getByStationIdAndNetworks(
           vehicleRentalStation.stationId,
-          vehicleRentalStation.rentalNetwork.networkId,
+          vehicleRentalStation.rentalNetwork.networkId
         );
       context.executeAction(deleteFavourite, vehicleRentalStationToDelete);
       addAnalyticsEvent({
@@ -43,21 +43,21 @@ const FavouriteVehicleRentalStationContainer = connectToStores(
         action: 'MarkBikeRentalStationAsFavourite',
         name: !context
           .getStore('FavouriteStore')
-          .isFavourite(vehicleRentalStation.stationId, 'bikeStation'),
+          .isFavourite(vehicleRentalStation.stationId, 'bikeStation')
       });
     },
     requireLoggedIn: !context.config.allowFavouritesFromLocalstorage,
     isLoggedIn:
       context.config.allowLogin &&
       context.getStore('UserStore').getUser().sub !== undefined,
-    language: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    language: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 FavouriteVehicleRentalStationContainer.contextTypes = {
   getStore: PropTypes.func.isRequired,
   executeAction: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default FavouriteVehicleRentalStationContainer;

@@ -26,7 +26,7 @@ function getAllPossibleLanguages() {
     .reduce((languages, languages2) => languages.concat(languages2)) // TODO use Set
     .filter(
       (language, position, languages) =>
-        languages.indexOf(language) === position,
+        languages.indexOf(language) === position
     );
 }
 
@@ -39,29 +39,29 @@ function getEntries(theme, sprites = null) {
     [`${theme}_theme`]: themeCss,
     ...(sprites !== null
       ? {
-          [sprites]: `./static/${sprites}`,
+          [sprites]: `./static/${sprites}`
         }
-      : {}),
+      : {})
   };
 }
 
 function getAllThemeEntries() {
   if (process.env.CONFIG && process.env.CONFIG !== '') {
     const config = require('../app/config').getNamedConfiguration(
-      process.env.CONFIG,
+      process.env.CONFIG
     );
 
     return {
       ...getEntries('default'),
-      ...getEntries(process.env.CONFIG, config.sprites),
+      ...getEntries(process.env.CONFIG, config.sprites)
     };
   }
   return getAllConfigs().reduce(
     (prev, config) => ({
       ...prev,
-      ...getEntries(config.CONFIG, config.sprites),
+      ...getEntries(config.CONFIG, config.sprites)
     }),
-    {},
+    {}
   );
 }
 
@@ -101,8 +101,8 @@ function faviconPluginFromConfig(config) {
       opengraph: false,
       twitter: false,
       yandex: false,
-      windows: false,
-    },
+      windows: false
+    }
   });
 }
 
@@ -113,5 +113,5 @@ function getAllFaviconPlugins() {
 module.exports = {
   languages: getAllPossibleLanguages(),
   themeEntries: getAllThemeEntries(),
-  faviconPlugins: getAllFaviconPlugins(),
+  faviconPlugins: getAllFaviconPlugins()
 };

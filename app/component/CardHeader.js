@@ -26,9 +26,9 @@ export default function CardHeader(
     showBackButton,
     headerConfig,
     favouriteContainer,
-    isTerminal,
+    isTerminal
   },
-  { config },
+  { config }
 ) {
   const headerTitle = stop.name ? stop.name : name;
   return (
@@ -103,7 +103,7 @@ CardHeader.propTypes = {
   headerConfig: PropTypes.bool,
   favouriteContainer: PropTypes.element,
   name: PropTypes.string,
-  isTerminal: PropTypes.bool,
+  isTerminal: PropTypes.bool
 };
 
 CardHeader.defaultProps = {
@@ -121,9 +121,9 @@ CardHeader.defaultProps = {
   showBackButton: false,
   headerConfig: false,
   name: undefined,
-  isTerminal: false,
+  isTerminal: false
 };
 
 CardHeader.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

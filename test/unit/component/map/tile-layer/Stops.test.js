@@ -6,17 +6,17 @@ describe('Stops', () => {
   after(() => fetchMock.unmockGlobal());
   const config = {
     URL: {
-      STOP_MAP: { default: 'https://localhost/stopmap/' },
-    },
+      STOP_MAP: { default: 'https://localhost/stopmap/' }
+    }
   };
 
   const tile = {
     coords: {
       x: 1,
       y: 2,
-      z: 3,
+      z: 3
     },
-    props: {},
+    props: {}
   };
 
   describe('fetchStatusAndDrawStop', () => {
@@ -24,9 +24,9 @@ describe('Stops', () => {
       fetchMock.get(
         'end:3/1/2.pbf',
         {
-          status: 200,
+          status: 200
         },
-        { repeat: 1 },
+        { repeat: 1 }
       );
       new Stops(tile, config, []).getPromise(); // eslint-disable-line no-new
       expect(fetchMock.callHistory.called('end:/3/1/2.pbf')).to.equal(true);
@@ -36,9 +36,9 @@ describe('Stops', () => {
       fetchMock.get(
         'end:/4/1/2.pbf',
         {
-          status: 200,
+          status: 200
         },
-        { repeat: 1 },
+        { repeat: 1 }
       );
       new Stops({ ...tile, props: { zoomOffset: 1 } }, config, []).getPromise(); // eslint-disable-line no-new
       expect(fetchMock.callHistory.called('end:/4/1/2.pbf')).to.equal(true);

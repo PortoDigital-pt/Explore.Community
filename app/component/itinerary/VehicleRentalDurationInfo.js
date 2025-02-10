@@ -7,7 +7,7 @@ import Icon from '../Icon';
 import {
   getRentalNetworkConfig,
   getRentalNetworkIcon,
-  getRentalNetworkId,
+  getRentalNetworkId
 } from '../../util/vehicleRentalUtils';
 
 function VehicleRentalDurationInfo(props) {
@@ -15,7 +15,7 @@ function VehicleRentalDurationInfo(props) {
   if (networks.length === 1) {
     const vehicleRentalStationNetwork = getRentalNetworkId(networks);
     const vehicleIcon = getRentalNetworkIcon(
-      getRentalNetworkConfig(vehicleRentalStationNetwork, config),
+      getRentalNetworkConfig(vehicleRentalStationNetwork, config)
     );
     const vehicleRentalStationNetworkDurationInfoLink =
       config.vehicleRental.networks[vehicleRentalStationNetwork]
@@ -57,7 +57,7 @@ function VehicleRentalDurationInfo(props) {
     );
   }
   const citybikeicon = getRentalNetworkIcon(
-    getRentalNetworkConfig(networks[0], config),
+    getRentalNetworkConfig(networks[0], config)
   );
   const durationInfoLinks = {};
   for (let i = 0; i < networks.length; i++) {
@@ -106,18 +106,18 @@ function VehicleRentalDurationInfo(props) {
 
 VehicleRentalDurationInfo.propTypes = {
   networks: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.array])
   ).isRequired,
   lang: PropTypes.string.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const connectedComponent = connectToStores(
   VehicleRentalDurationInfo,
   ['UserStore', 'PreferencesStore'],
   context => ({
-    lang: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    lang: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export default connectedComponent;

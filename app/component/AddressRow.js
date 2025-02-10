@@ -28,13 +28,13 @@ const AddressRow = props => (
 AddressRow.propTypes = {
   desc: PropTypes.string,
   code: PropTypes.string,
-  isTerminal: PropTypes.bool,
+  isTerminal: PropTypes.bool
 };
 
 AddressRow.defaultProps = {
   desc: undefined,
   code: undefined,
-  isTerminal: false,
+  isTerminal: false
 };
 
 export default AddressRow;

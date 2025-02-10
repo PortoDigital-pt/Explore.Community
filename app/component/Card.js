@@ -10,7 +10,7 @@ Card.displayName = 'Card';
 
 Card.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 Card.defaultProps = { className: undefined };

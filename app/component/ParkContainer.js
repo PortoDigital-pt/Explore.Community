@@ -17,7 +17,7 @@ const containerComponent = createFragmentContainer(ParkAndRideContent, {
       tags
       realtime
     }
-  `,
+  `
 });
 
 export { containerComponent as default, ParkAndRideContent as Component };

@@ -23,13 +23,13 @@ function aboutMerger(objValue, srcValue) {
         srcByHdr[val.header]
           ? {
               ...val,
-              ...srcByHdr[val.header],
+              ...srcByHdr[val.header]
             }
-          : val,
+          : val
       )
       .concat(
         // insert unmatching items from src
-        srcValue.filter(val => !objByHdr[val.header]),
+        srcValue.filter(val => !objByHdr[val.header])
       );
   }
   return undefined; // Otherwise use default customizer

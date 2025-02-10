@@ -13,8 +13,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 Object.keys(translations).forEach(lang => {
   i18next.addResourceBundle(lang, 'translation', translations[lang]);
@@ -52,7 +52,7 @@ const DialogModal = ({
   modalAriaLabel,
   color,
   hoverColor,
-  fontWeights,
+  fontWeights
 }) => {
   i18next.changeLanguage(lang);
   return (
@@ -68,7 +68,7 @@ const DialogModal = ({
         style={{
           '--color': `${color}`,
           '--hover-color': `${hoverColor}`,
-          '--font-weight-medium': fontWeights.medium,
+          '--font-weight-medium': fontWeights.medium
         }}
       >
         <div className={styles['digitransit-dialog-modal-top']}>
@@ -88,7 +88,7 @@ const DialogModal = ({
             tabIndex="0"
             className={cx(
               styles['digitransit-dialog-modal-button'],
-              styles.primary,
+              styles.primary
             )}
             href={href}
             onKeyDown={e => {
@@ -110,7 +110,7 @@ const DialogModal = ({
               tabIndex="0"
               className={cx(
                 styles['digitransit-dialog-modal-button'],
-                styles.secondary,
+                styles.secondary
               )}
               onClick={() => secondaryButtonOnClick()}
             >
@@ -139,8 +139,8 @@ DialogModal.propTypes = {
   color: PropTypes.string,
   hoverColor: PropTypes.string,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number,
-  }),
+    medium: PropTypes.number
+  })
 };
 
 DialogModal.defaultProps = {
@@ -154,12 +154,12 @@ DialogModal.defaultProps = {
   color: '#007ac9',
   hoverColor: '#0062a1',
   fontWeights: {
-    medium: 500,
-  },
+    medium: 500
+  }
 };
 
 DialogModal.contextTypes = {
-  config: PropTypes.object,
+  config: PropTypes.object
 };
 
 export default DialogModal;

@@ -9,7 +9,7 @@ describe('<PlatformNumber />', () => {
   it('should be empty if number is undefined', () => {
     const props = {
       short: false,
-      isRailOrSubway: false,
+      isRailOrSubway: false
     };
     const wrapper = shallowWithIntl(<PlatformNumber {...props} />);
     // eslint-disable-next-line no-unused-expressions
@@ -20,7 +20,7 @@ describe('<PlatformNumber />', () => {
     const props = {
       number: '12',
       short: false,
-      isRailOrSubway: false,
+      isRailOrSubway: false
     };
     const wrapper = shallowWithIntl(<PlatformNumber {...props} />);
     expect(wrapper.find(FormattedMessage).props().id).to.equal('platform');
@@ -30,7 +30,7 @@ describe('<PlatformNumber />', () => {
     const props = {
       number: '12',
       short: false,
-      isRailOrSubway: true,
+      isRailOrSubway: true
     };
     const wrapper = shallowWithIntl(<PlatformNumber {...props} />);
     expect(wrapper.find(FormattedMessage).props().id).to.equal('track');
@@ -40,11 +40,11 @@ describe('<PlatformNumber />', () => {
     const props = {
       number: '12',
       short: true,
-      isRailOrSubway: false,
+      isRailOrSubway: false
     };
     const wrapper = shallowWithIntl(<PlatformNumber {...props} />);
     expect(wrapper.find('FormattedMessage').props().id).to.equal(
-      'platform-short-no-num',
+      'platform-short-no-num'
     );
   });
 });

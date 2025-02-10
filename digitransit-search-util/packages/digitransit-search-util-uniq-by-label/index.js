@@ -48,7 +48,7 @@ export const formatFavouritePlaceLabel = (name, address) => [
   name || (address && address.split(',')[0]),
   typeof address === 'string'
     ? address.replace(new RegExp(`${escapeRegExp(name)}([ ,]|$)+`), '')
-    : '',
+    : ''
 ];
 
 /**
@@ -86,12 +86,12 @@ export const getNameLabel = memoize(
           ? [
               suggestion.gtfsId,
               suggestion.mode.toLowerCase(),
-              suggestion.longName,
+              suggestion.longName
             ]
           : [
               suggestion.shortName,
               suggestion.longName,
-              suggestion.agency ? suggestion.agency.name : undefined,
+              suggestion.agency ? suggestion.agency.name : undefined
             ];
       case 'venue':
       case 'address':
@@ -100,8 +100,8 @@ export const getNameLabel = memoize(
           suggestion.name,
           suggestion.label.replace(
             new RegExp(`${escapeRegExp(suggestion.name)}(,)?( )?`),
-            '',
-          ),
+            ''
+          )
         ];
       case 'favouriteStop':
       case 'stop':
@@ -110,13 +110,13 @@ export const getNameLabel = memoize(
               suggestion.name ||
                 suggestion.label ||
                 (suggestion.address && suggestion.address.split(',')[0]),
-              getLocality(suggestion),
+              getLocality(suggestion)
             ]
           : [
               suggestion.name,
               suggestion.id,
               getStopCode(suggestion),
-              getLocality(suggestion),
+              getLocality(suggestion)
             ];
       case 'favouriteStation':
       case 'station':
@@ -125,7 +125,7 @@ export const getNameLabel = memoize(
           suggestion.name ||
             suggestion.label ||
             (suggestion.address && suggestion.address.split(',')[0]),
-          getLocality(suggestion),
+          getLocality(suggestion)
         ];
     }
   },
@@ -133,7 +133,7 @@ export const getNameLabel = memoize(
     const i = cloneDeep(item);
     i.plain = plain;
     return i;
-  },
+  }
 );
 
 /**

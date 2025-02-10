@@ -4,7 +4,7 @@ import { intlShape } from 'react-intl';
 import { saveRoutingSettings } from '../../../action/SearchSettingsActions';
 import { addAnalyticsEvent } from '../../../util/analyticsUtils';
 import SearchSettingsDropdown, {
-  getFiveStepOptions,
+  getFiveStepOptions
 } from './SearchSettingsDropdown';
 import Toggle from '../../Toggle';
 import { findNearestOption } from '../../../util/planParamUtil';
@@ -15,13 +15,13 @@ const WalkingOptionsSection = (
   { intl, executeAction },
   options = getFiveStepOptions(walkSpeedOptions),
   currentSelection = options.find(
-    option => option.value === currentSettings.walkSpeed,
+    option => option.value === currentSettings.walkSpeed
   ) ||
     options.find(
       option =>
         option.value ===
-        findNearestOption(currentSettings.walkSpeed, walkSpeedOptions),
-    ),
+        findNearestOption(currentSettings.walkSpeed, walkSpeedOptions)
+    )
 ) => (
   <div className="walk-options-container">
     <SearchSettingsDropdown
@@ -29,12 +29,12 @@ const WalkingOptionsSection = (
       defaultValue={defaultSettings.walkSpeed}
       onOptionSelected={value => {
         executeAction(saveRoutingSettings, {
-          walkSpeed: value,
+          walkSpeed: value
         });
         addAnalyticsEvent({
           category: 'ItinerarySettings',
           action: 'ChangeWalkingSpeed',
-          name: value,
+          name: value
         });
       }}
       options={options}
@@ -63,12 +63,12 @@ const WalkingOptionsSection = (
             executeAction(saveRoutingSettings, {
               walkReluctance: avoid
                 ? walkReluctanceOptions.least
-                : defaultSettings.walkReluctance,
+                : defaultSettings.walkReluctance
             });
             addAnalyticsEvent({
               category: 'ItinerarySettings',
               action: 'ChangeAmountOfWalking',
-              name: avoid ? 'avoid' : 'default',
+              name: avoid ? 'avoid' : 'default'
             });
           }}
         />
@@ -82,12 +82,12 @@ WalkingOptionsSection.propTypes = {
   walkSpeedOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
   currentSettings: settingsShape.isRequired,
   walkReluctanceOptions: PropTypes.shape({ least: PropTypes.number.isRequired })
-    .isRequired,
+    .isRequired
 };
 
 WalkingOptionsSection.contextTypes = {
   intl: intlShape.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default WalkingOptionsSection;

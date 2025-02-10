@@ -46,14 +46,14 @@ Distance.propTypes = {
   icon: PropTypes.string,
   className: PropTypes.string,
   duration: PropTypes.number.isRequired,
-  mode: PropTypes.string.isRequired,
+  mode: PropTypes.string.isRequired
 };
 
 Distance.defaultProps = { className: '', icon: undefined };
 
 Distance.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 Distance.displayName = 'Distance';

@@ -8,7 +8,7 @@ import { settingsShape } from '../../../util/shapes';
 
 const TransferOptionsSection = (
   { defaultSettings, transferPenaltyHigh, currentSettings },
-  { executeAction },
+  { executeAction }
 ) => {
   const avoidTransfers =
     currentSettings.transferPenalty !== defaultSettings.transferPenalty;
@@ -26,12 +26,12 @@ const TransferOptionsSection = (
             executeAction(saveRoutingSettings, {
               transferPenalty: avoidTransfers
                 ? defaultSettings.transferPenalty
-                : transferPenaltyHigh,
+                : transferPenaltyHigh
             });
             addAnalyticsEvent({
               category: 'ItinerarySettings',
               action: 'changeNumberOfTransfers',
-              name: avoidTransfers,
+              name: avoidTransfers
             });
           }}
           title="transfers"
@@ -44,11 +44,11 @@ const TransferOptionsSection = (
 TransferOptionsSection.propTypes = {
   defaultSettings: settingsShape.isRequired,
   currentSettings: settingsShape.isRequired,
-  transferPenaltyHigh: PropTypes.number.isRequired,
+  transferPenaltyHigh: PropTypes.number.isRequired
 };
 
 TransferOptionsSection.contextTypes = {
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default TransferOptionsSection;

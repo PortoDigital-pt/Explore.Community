@@ -10,7 +10,7 @@ import { getAlternativeFares, formatFare } from '../../util/fareUtils';
 
 export default function TicketInformation(
   { fares, zones, legs },
-  { config, intl },
+  { config, intl }
 ) {
   if (fares.length === 0) {
     return null;
@@ -19,7 +19,7 @@ export default function TicketInformation(
   const alternativeFares = getAlternativeFares(
     zones,
     fares.filter(fare => !fare.isUnknown),
-    config.availableTickets,
+    config.availableTickets
   );
 
   const getRouteName = fare => {
@@ -40,13 +40,13 @@ export default function TicketInformation(
                 fares.length > 1
                   ? 'itinerary-tickets.title'
                   : 'itinerary-ticket.title',
-              defaultMessage: 'Required tickets',
+              defaultMessage: 'Required tickets'
             })}:`}
           </div>
         )}
         <div
           className={cx('ticket-type-zone', {
-            'multi-component': fares.length > 1,
+            'multi-component': fares.length > 1
           })}
           key={i} // eslint-disable-line react/no-array-index-key
         >
@@ -100,18 +100,18 @@ export default function TicketInformation(
 TicketInformation.propTypes = {
   legs: PropTypes.arrayOf(legShape),
   fares: PropTypes.arrayOf(fareShape),
-  zones: PropTypes.arrayOf(PropTypes.string),
+  zones: PropTypes.arrayOf(PropTypes.string)
 };
 
 TicketInformation.defaultProps = {
   fares: [],
   zones: [],
-  legs: [],
+  legs: []
 };
 
 TicketInformation.contextTypes = {
   config: configShape,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 TicketInformation.displayName = 'TicketInformation';

@@ -7,7 +7,7 @@ import SunCalc from 'suncalc';
 import {
   changeRealTimeClientTopics,
   startRealTimeClient,
-  stopRealTimeClient,
+  stopRealTimeClient
 } from '../../action/realTimeClientAction';
 import { PlannerMessageType } from '../../constants';
 import { addAnalyticsEvent } from '../../util/analyticsUtils';
@@ -29,7 +29,7 @@ import { getStartTimeWithColon } from '../../util/timeUtils';
  */
 export function getSelectedItineraryIndex(
   { pathname, state } = {},
-  edges = [],
+  edges = []
 ) {
   // path defines the selection in detail view
   const lastURLSegment = pathname?.split('/').pop();
@@ -71,7 +71,7 @@ export function reportError(error) {
     action: 'ErrorLoading',
     name: 'ItineraryPage',
     message: error.message || error,
-    stack: error.stack || null,
+    stack: error.stack || null
   });
 }
 
@@ -101,7 +101,7 @@ export function getTopics(legs, config) {
           const routeProps = {
             route: leg.route.gtfsId.split(':')[1],
             shortName: leg.route.shortName,
-            type: leg.route.type,
+            type: leg.route.type
           };
           if (realTime[feedId]?.useFuzzyTripMatching) {
             topic = {
@@ -110,14 +110,14 @@ export function getTopics(legs, config) {
               mode: leg.mode.toLowerCase(),
               direction: Number(leg.trip.directionId),
               tripStartTime: getStartTimeWithColon(
-                leg.trip.stoptimesForDate[0].scheduledDeparture,
-              ),
+                leg.trip.stoptimesForDate[0].scheduledDeparture
+              )
             };
           } else if (realTime[feedId]) {
             topic = {
               ...routeProps,
               feedId,
-              tripId: leg.trip.gtfsId.split(':')[1],
+              tripId: leg.trip.gtfsId.split(':')[1]
             };
           }
         }
@@ -135,7 +135,7 @@ export function getBounds(edges, from, to, viaPoints) {
   // and concatenate into one big latlong array
   const bounds = [
     [from.lat, from.lon],
-    [to.lat, to.lon],
+    [to.lat, to.lon]
   ];
   viaPoints.forEach(p => bounds.push([p.lat, p.lon]));
   return boundWithMinimumArea(
@@ -143,11 +143,11 @@ export function getBounds(edges, from, to, viaPoints) {
       .concat(
         ...edges.map(e =>
           [].concat(
-            ...e.node.legs.map(leg => polyline.decode(leg.legGeometry.points)),
-          ),
-        ),
+            ...e.node.legs.map(leg => polyline.decode(leg.legGeometry.points))
+          )
+        )
       )
-      .filter(a => a[0] && a[1]),
+      .filter(a => a[0] && a[1])
   );
 }
 
@@ -165,7 +165,7 @@ const legProperties = [
   'to.lon',
   'from.stop.gtfsId',
   'to.stop.gtfsId',
-  'trip.gtfsId',
+  'trip.gtfsId'
 ];
 
 export function isEqualItineraries(itins, itins2) {
@@ -183,7 +183,7 @@ export function isEqualItineraries(itins, itins2) {
       if (
         !isEqual(
           pick(itins[i].node.legs[j], legProperties),
-          pick(itins2[i].node.legs[j], legProperties),
+          pick(itins2[i].node.legs[j], legProperties)
         )
       ) {
         return false;
@@ -237,8 +237,8 @@ export function setCurrentTimeToURL(config, match) {
       ...match.location,
       query: {
         ...match.location.query,
-        time: Math.floor(Date.now() / 1000).toString(),
-      },
+        time: Math.floor(Date.now() / 1000).toString()
+      }
     };
     match.router.replace(newLocation);
   }
@@ -247,7 +247,7 @@ export function setCurrentTimeToURL(config, match) {
 function configClient(itineraryTopics, config) {
   const { realTime } = config;
   const feedIds = Array.from(
-    new Set(itineraryTopics.map(topic => topic.feedId)),
+    new Set(itineraryTopics.map(topic => topic.feedId))
   );
   let feedId;
   /* handle multiple feedid case */
@@ -261,7 +261,7 @@ function configClient(itineraryTopics, config) {
     return {
       ...source,
       feedId,
-      options: itineraryTopics.length ? itineraryTopics : null,
+      options: itineraryTopics.length ? itineraryTopics : null
     };
   }
   return null;
@@ -294,7 +294,7 @@ export function updateClient(itineraryTopics, context) {
       context.executeAction(changeRealTimeClientTopics, {
         ...clientConfig,
         client,
-        oldTopics: topics,
+        oldTopics: topics
       });
       return;
     }
@@ -306,7 +306,7 @@ export function updateClient(itineraryTopics, context) {
 export function addBikeStationMapForRentalVehicleItineraries() {
   return getMapLayerOptions({
     lockedMapLayers: ['vehicles', 'citybike', 'stop'],
-    selectedMapLayers: ['vehicles', 'citybike'],
+    selectedMapLayers: ['vehicles', 'citybike']
   });
 }
 
@@ -319,7 +319,7 @@ export function addBikeStationMapForRentalVehicleItineraries() {
  */
 export function getRentalStationsToHideOnMap(
   hasVehicleRentalStation,
-  selectedItinerary,
+  selectedItinerary
 ) {
   const objectsToHide = { vehicleRentalStations: [] };
   if (hasVehicleRentalStation) {
@@ -355,7 +355,7 @@ export function transitEdges(edges) {
     return [];
   }
   return edges.filter(
-    edge => !edge.node.legs.every(leg => STREET_LEG_MODES.includes(leg.mode)),
+    edge => !edge.node.legs.every(leg => STREET_LEG_MODES.includes(leg.mode))
   );
 }
 
@@ -409,7 +409,7 @@ export function filterWalk(edges) {
     return [];
   }
   return edges.filter(
-    edge => !edge.node.legs.every(leg => leg.mode === 'WALK'),
+    edge => !edge.node.legs.every(leg => leg.mode === 'WALK')
   );
 }
 
@@ -421,7 +421,7 @@ export function filterItineraries(edges, modes) {
     return [];
   }
   return edges.filter(edge =>
-    edge.node.legs.some(leg => modes.includes(leg.mode)),
+    edge.node.legs.some(leg => modes.includes(leg.mode))
   );
 }
 
@@ -431,10 +431,10 @@ export function filterItineraries(edges, modes) {
 export function mergeBikeTransitPlans(bikeParkPlan, bikeTransitPlan) {
   // filter plain walking / biking away, and also no biking
   const bikeParkEdges = transitEdges(bikeParkPlan?.edges).filter(
-    i => getTotalBikingDistance(i.node) > 0,
+    i => getTotalBikingDistance(i.node) > 0
   );
   const bikePublicEdges = transitEdges(bikeTransitPlan?.edges).filter(
-    i => getTotalBikingDistance(i.node) > 0,
+    i => getTotalBikingDistance(i.node) > 0
   );
 
   // show 6 bike + transit itineraries, preferably 3 of both kind.
@@ -457,13 +457,13 @@ export function mergeBikeTransitPlans(bikeParkPlan, bikeTransitPlan) {
           ...edge,
           node: {
             ...edge.node,
-            legs: compressLegs(edge.node.legs),
-          },
+            legs: compressLegs(edge.node.legs)
+          }
         };
-      },
+      }
     ),
     bikeParkItineraryCount: n1,
-    bikePublicItineraryCount: n2,
+    bikePublicItineraryCount: n2
   };
 }
 
@@ -478,7 +478,7 @@ export function mergeCarDirectAndTransitPlans(carDirectPlan, carTransitPlan) {
   if (carDirectPlanEdges.length === 1) {
     carPublicEdges = carPublicEdges.filter(
       itinerary =>
-        itinerary.node.duration <= carDirectPlanEdges[0].node.duration,
+        itinerary.node.duration <= carDirectPlanEdges[0].node.duration
     );
   }
 
@@ -486,7 +486,7 @@ export function mergeCarDirectAndTransitPlans(carDirectPlan, carTransitPlan) {
     searchDateTime: carTransitPlan.searchDateTime,
     edges: [...carDirectPlanEdges, ...carPublicEdges],
     carDirectItineraryCount: carDirectPlanEdges.length,
-    carPublicItineraryCount: carPublicEdges.length,
+    carPublicItineraryCount: carPublicEdges.length
   };
 }
 
@@ -496,12 +496,12 @@ export function mergeCarDirectAndTransitPlans(carDirectPlan, carTransitPlan) {
 export function mergeScooterTransitPlan(
   scooterPlan,
   transitPlan,
-  allowDirectScooterJourneys,
+  allowDirectScooterJourneys
 ) {
   const transitPlanEdges = transitPlan.edges || [];
   const scooterTransitEdges = scooterEdges(
     scooterPlan.edges,
-    allowDirectScooterJourneys,
+    allowDirectScooterJourneys
   );
   const maxTransitEdges =
     scooterTransitEdges.length > 0 ? 4 : transitPlanEdges.length;
@@ -518,7 +518,7 @@ export function mergeScooterTransitPlan(
   return {
     edges: [
       ...scooterTransitEdges.slice(0, 1),
-      ...transitPlanEdges.slice(0, maxTransitEdges),
+      ...transitPlanEdges.slice(0, maxTransitEdges)
     ]
       .sort((a, b) => {
         return a.node.end > b.node.end;
@@ -528,10 +528,10 @@ export function mergeScooterTransitPlan(
           ...edge,
           node: {
             ...edge.node,
-            legs: compressLegs(edge.node.legs),
-          },
+            legs: compressLegs(edge.node.legs)
+          }
         };
-      }),
+      })
   };
 }
 
@@ -547,7 +547,7 @@ export function quitIteration(plan, newPlan, planParams, startTime) {
   }
   if (
     plan.routingErrors?.some(
-      err => err.code === PlannerMessageType.WalkingBetterThanTransit,
+      err => err.code === PlannerMessageType.WalkingBetterThanTransit
     )
   ) {
     return true;

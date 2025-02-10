@@ -22,11 +22,11 @@ export default function SelectedStopPopup({ lat, lon, children }, { config }) {
 SelectedStopPopup.propTypes = {
   lat: PropTypes.number.isRequired,
   lon: PropTypes.number.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 SelectedStopPopup.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 SelectedStopPopup.displayName = 'SelectedStopLabel';

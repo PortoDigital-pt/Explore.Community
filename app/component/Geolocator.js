@@ -41,7 +41,7 @@ const GeolocatorWithPosition = connectToStores(
 
       const newLocation = {
         ...props.match.location,
-        pathname: returnPath,
+        pathname: returnPath
       };
       if (save) {
         newLocation.query.save = save;
@@ -68,16 +68,16 @@ const GeolocatorWithPosition = connectToStores(
       }
     }
     return {};
-  },
+  }
 );
 
 GeolocatorWithPosition.contextTypes = {
   ...GeolocatorWithPosition.contextTypes,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 GeolocatorWithPosition.propTypes = {
   path: PropTypes.string.isRequired,
-  createReturnPath: PropTypes.func.isRequired,
+  createReturnPath: PropTypes.func.isRequired
 };
 
 export default GeolocatorWithPosition;

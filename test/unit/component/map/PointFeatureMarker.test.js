@@ -8,7 +8,7 @@ import {
   CUSTOM_ICON_SIZE,
   getCustomIcon,
   getPropertyValueOrDefault,
-  getRoundIcon,
+  getRoundIcon
 } from '../../../../app/component/map/PointFeatureMarker';
 
 describe('<PointFeatureMarker />', () => {
@@ -17,15 +17,15 @@ describe('<PointFeatureMarker />', () => {
       feature: {
         geometry: {
           coordinates: [60, 25],
-          type: 'Point',
+          type: 'Point'
         },
         properties: {
           address: 'Foostreet 11',
           city: 'Baz',
-          name: 'Foobar',
-        },
+          name: 'Foobar'
+        }
       },
-      language: 'fi',
+      language: 'fi'
     };
     const wrapper = shallowWithIntl(<PointFeatureMarker {...props} />);
     expect(wrapper.isEmptyRender()).to.equal(false);
@@ -37,13 +37,13 @@ describe('<PointFeatureMarker />', () => {
         geometry: {
           coordinates: [
             [1, 2],
-            [2, 3],
+            [2, 3]
           ],
-          type: 'MultiPoint',
+          type: 'MultiPoint'
         },
-        properties: {},
+        properties: {}
       },
-      language: 'fi',
+      language: 'fi'
     };
     const wrapper = shallowWithIntl(<PointFeatureMarker {...props} />);
     expect(wrapper.isEmptyRender()).to.equal(true);
@@ -54,14 +54,14 @@ describe('<PointFeatureMarker />', () => {
       feature: {
         geometry: {
           coordinates: [60, 25],
-          type: 'Point',
+          type: 'Point'
         },
         properties: {
           address: 'baz',
-          name: 'foobar',
-        },
+          name: 'foobar'
+        }
       },
-      language: 'fi',
+      language: 'fi'
     };
     const wrapper = shallowWithIntl(<PointFeatureMarker {...props} />);
     expect(wrapper.find(PopupHeader).props().header).to.equal('foobar');
@@ -72,14 +72,14 @@ describe('<PointFeatureMarker />', () => {
       feature: {
         geometry: {
           coordinates: [60, 25],
-          type: 'Point',
+          type: 'Point'
         },
         properties: {
           address: 'foo',
-          city: 'bar',
-        },
+          city: 'bar'
+        }
       },
-      language: 'fi',
+      language: 'fi'
     };
     const wrapper = shallowWithIntl(<PointFeatureMarker {...props} />);
     expect(wrapper.find(PopupHeader).props().header).to.equal('foo, bar');
@@ -90,15 +90,15 @@ describe('<PointFeatureMarker />', () => {
       feature: {
         geometry: {
           coordinates: [60, 25],
-          type: 'Point',
+          type: 'Point'
         },
         properties: {
           address: 'foo',
           city: 'bar',
-          name: 'baz',
-        },
+          name: 'baz'
+        }
       },
-      language: 'fi',
+      language: 'fi'
     };
     const wrapper = shallowWithIntl(<PointFeatureMarker {...props} />);
     expect(wrapper.find(PopupHeader).props().subHeader).to.equal('foo, bar');
@@ -107,31 +107,31 @@ describe('<PointFeatureMarker />', () => {
   describe('getPropertyValueOrDefault', () => {
     it('should return the defaultValue if properties is falsey', () => {
       expect(getPropertyValueOrDefault(undefined, 'foo', 'fi', 'bar')).to.equal(
-        'bar',
+        'bar'
       );
     });
 
     it('should return the defaultValue if propertyName is falsey', () => {
       expect(
-        getPropertyValueOrDefault({ foo: 'bar' }, undefined, 'fi', 'baz'),
+        getPropertyValueOrDefault({ foo: 'bar' }, undefined, 'fi', 'baz')
       ).to.equal('baz');
     });
 
     it('should return the value of the non-translated property if it exists and the language is falsey', () => {
       expect(
-        getPropertyValueOrDefault({ foo: 'bar' }, 'foo', undefined, 'baz'),
+        getPropertyValueOrDefault({ foo: 'bar' }, 'foo', undefined, 'baz')
       ).to.equal('bar');
     });
 
     it('should return the value of the translated property if it exists for the given language', () => {
       expect(
-        getPropertyValueOrDefault({ foo_fi: 'bar' }, 'foo', 'fi', 'baz'),
+        getPropertyValueOrDefault({ foo_fi: 'bar' }, 'foo', 'fi', 'baz')
       ).to.equal('bar');
     });
 
     it('should return the defaultValue if the property has no value', () => {
       expect(
-        getPropertyValueOrDefault({ foo_fi: undefined }, 'foo', 'fi', 'baz'),
+        getPropertyValueOrDefault({ foo_fi: undefined }, 'foo', 'fi', 'baz')
       ).to.equal('baz');
     });
   });
@@ -148,7 +148,7 @@ describe('<PointFeatureMarker />', () => {
     it('should return a scaled custom icon', () => {
       const icon = getCustomIcon(CUSTOM_ICON_MIN_ZOOM, 'foobar', 20);
       expect(icon.options.iconAnchor[0]).to.equal(
-        (icon.options.iconSize[0] * 1) / 2,
+        (icon.options.iconSize[0] * 1) / 2
       );
       expect(icon.options.iconAnchor[0]).to.equal(icon.options.iconAnchor[1]);
       expect(icon.options.iconSize[0]).to.be.at.least(CUSTOM_ICON_SIZE);

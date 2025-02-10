@@ -15,28 +15,28 @@ describe('findErrorMessageIds', () => {
   describe('routerErrors', () => {
     it('should return no-transit-connection', async () => {
       const msgIds = findErrorMessageIds([
-        { code: 'NO_TRANSIT_CONNECTION', inputField: null },
+        { code: 'NO_TRANSIT_CONNECTION', inputField: null }
       ]);
       expectSingleValue(msgIds, 'no-transit-connection');
     });
 
     it('should return no-transit-connection-in-search-window', async () => {
       const msgIds = findErrorMessageIds([
-        { code: 'NO_TRANSIT_CONNECTION_IN_SEARCH_WINDOW', inputField: null },
+        { code: 'NO_TRANSIT_CONNECTION_IN_SEARCH_WINDOW', inputField: null }
       ]);
       expectSingleValue(msgIds, 'no-transit-connection-in-search-window');
     });
 
     it('should return outside-bounds-1', async () => {
       const msgIds = findErrorMessageIds([
-        { code: 'OUTSIDE_BOUNDS', inputField: 'TO' },
+        { code: 'OUTSIDE_BOUNDS', inputField: 'TO' }
       ]);
       expectSingleValue(msgIds, 'outside-bounds-1');
     });
 
     it('should return outside-bounds-2', async () => {
       const msgIds = findErrorMessageIds([
-        { code: 'OUTSIDE_BOUNDS', inputField: 'FROM' },
+        { code: 'OUTSIDE_BOUNDS', inputField: 'FROM' }
       ]);
       expectSingleValue(msgIds, 'outside-bounds-2');
     });
@@ -44,7 +44,7 @@ describe('findErrorMessageIds', () => {
     it('should return outside-bounds-3', async () => {
       const msgIds = findErrorMessageIds([
         { code: 'OUTSIDE_BOUNDS', inputField: 'FROM' },
-        { code: 'OUTSIDE_BOUNDS', inputField: 'TO' },
+        { code: 'OUTSIDE_BOUNDS', inputField: 'TO' }
       ]);
       expectSingleValue(msgIds, 'outside-bounds-3');
     });
@@ -52,7 +52,7 @@ describe('findErrorMessageIds', () => {
     it('should return multiple message ids', () => {
       const msgIds = findErrorMessageIds([
         { code: 'OUTSIDE_BOUNDS', inputField: 'FROM' },
-        { code: 'NO_STOPS_IN_RANGE', inputField: 'TO' },
+        { code: 'NO_STOPS_IN_RANGE', inputField: 'TO' }
       ]);
 
       expect(msgIds.length).to.equal(2);
@@ -67,16 +67,16 @@ describe('findErrorMessageIds', () => {
         [],
         {
           from: { lat: 60, lon: 25 },
-          to: { lat: 60.00001, lon: 25.00001 },
+          to: { lat: 60.00001, lon: 25.00001 }
         },
         {
           minDistanceBetweenFromAndTo: 10.0,
           locationState: {
             hasLocation: true,
             lat: 60,
-            lon: 25,
-          },
-        },
+            lon: 25
+          }
+        }
       );
       expectSingleValue(msgIds1, 'no-route-already-at-destination');
 
@@ -84,16 +84,16 @@ describe('findErrorMessageIds', () => {
         [],
         {
           from: { lat: 60, lon: 25 },
-          to: { lat: 60.00001, lon: 25.00001 },
+          to: { lat: 60.00001, lon: 25.00001 }
         },
         {
           minDistanceBetweenFromAndTo: 10.0,
           locationState: {
             hasLocation: true,
             lat: 65,
-            lon: 30,
-          },
-        },
+            lon: 30
+          }
+        }
       );
       expect(msgIds2).to.not.equal('no-route-already-at-destination');
     });
@@ -103,16 +103,16 @@ describe('findErrorMessageIds', () => {
         [],
         {
           from: { lat: 60, lon: 25 },
-          to: { lat: 60, lon: 25 },
+          to: { lat: 60, lon: 25 }
         },
         {
           minDistanceBetweenFromAndTo: 10.0,
           locationState: {
             hasLocation: true,
             lat: 65,
-            lon: 25,
-          },
-        },
+            lon: 25
+          }
+        }
       );
       expectSingleValue(msgIds, 'no-route-origin-same-as-destination');
     });
@@ -122,11 +122,11 @@ describe('findErrorMessageIds', () => {
         [],
         {
           walking: true,
-          searchTime: new Date('2022-01-01').getTime(),
+          searchTime: new Date('2022-01-01').getTime()
         },
         {
-          currentTime: new Date('2022-01-03').getTime(),
-        },
+          currentTime: new Date('2022-01-03').getTime()
+        }
       );
       expectSingleValue(msgIds, 'itinerary-in-the-past');
     });
@@ -136,7 +136,7 @@ describe('findErrorMessageIds', () => {
         [0, 0],
         [50, 0],
         [50, 50],
-        [0, 50],
+        [0, 50]
       ];
 
       it('should return outside-bounds-1 if destination is outside areaPolygon', () => {
@@ -144,11 +144,11 @@ describe('findErrorMessageIds', () => {
           [],
           {
             from: { lat: 25, lon: 25 },
-            to: { lat: 100, lon: 100 },
+            to: { lat: 100, lon: 100 }
           },
           {
-            areaPolygon,
-          },
+            areaPolygon
+          }
         );
         expectSingleValue(msgIds, 'outside-bounds-1');
       });
@@ -158,11 +158,11 @@ describe('findErrorMessageIds', () => {
           [],
           {
             from: { lat: 100, lon: 100 },
-            to: { lat: 25, lon: 25 },
+            to: { lat: 25, lon: 25 }
           },
           {
-            areaPolygon,
-          },
+            areaPolygon
+          }
         );
         expectSingleValue(msgIds, 'outside-bounds-2');
       });
@@ -172,11 +172,11 @@ describe('findErrorMessageIds', () => {
           [],
           {
             from: { lat: 110, lon: 110 },
-            to: { lat: 100, lon: 100 },
+            to: { lat: 100, lon: 100 }
           },
           {
-            areaPolygon,
-          },
+            areaPolygon
+          }
         );
         expectSingleValue(msgIds, 'outside-bounds-3');
       });

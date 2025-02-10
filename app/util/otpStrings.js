@@ -13,7 +13,7 @@ export function parseLatLon(coords) {
     if (!Number.isNaN(lat) && !Number.isNaN(lon)) {
       return {
         lat,
-        lon,
+        lon
       };
     }
   }
@@ -35,7 +35,7 @@ export function otpToLocation(otpString) {
   if (coords) {
     return {
       ...location,
-      ...parseLatLon(coords),
+      ...parseLatLon(coords)
     };
   }
 

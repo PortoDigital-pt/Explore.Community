@@ -5,7 +5,7 @@ import { mockContext } from '../helpers/mock-context';
 import { shallowWithIntl } from '../helpers/mock-intl-enzyme';
 import {
   AlertSeverityLevelType,
-  AlertEntityType,
+  AlertEntityType
 } from '../../../app/constants';
 import AlertList from '../../../app/component/AlertList';
 import StopAlerts from '../../../app/component/stop/StopAlerts';
@@ -29,25 +29,25 @@ describe('<StopAlerts />', () => {
                 gtfsId: 'feed:63',
                 alerts: [],
                 mode: 'BUS',
-                shortName: '63',
+                shortName: '63'
               },
               stops: [
                 {
-                  name: 'Saramäentie',
-                },
-              ],
-            },
-          },
-        ],
-      },
+                  name: 'Saramäentie'
+                }
+              ]
+            }
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<StopAlerts {...props} />, {
-      context: { ...mockContext },
+      context: { ...mockContext }
     });
     expect(wrapper.find(AlertList).props()).to.deep.equal({
       cancelations: [],
       serviceAlerts: [],
-      showLinks: false,
+      showLinks: false
     });
   });
 
@@ -62,21 +62,21 @@ describe('<StopAlerts />', () => {
             entities: [
               {
                 __typename: AlertEntityType.Route,
-                gtfsId: 'feed:101',
-              },
-            ],
-          },
+                gtfsId: 'feed:101'
+              }
+            ]
+          }
         ],
         stoptimes: [],
         routes: [
           {
-            gtfsId: 'feed:101',
-          },
-        ],
-      },
+            gtfsId: 'feed:101'
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<StopAlerts {...props} />, {
-      context: { ...mockContext },
+      context: { ...mockContext }
     });
     expect(wrapper.find(AlertList).prop('serviceAlerts')).to.have.lengthOf(1);
   });
@@ -99,20 +99,20 @@ describe('<StopAlerts />', () => {
                 gtfsId: 'feed:63',
                 alerts: [],
                 mode: 'BUS',
-                shortName: '63',
+                shortName: '63'
               },
               stops: [
                 {
-                  name: 'Saramäentie',
-                },
-              ],
-            },
-          },
-        ],
-      },
+                  name: 'Saramäentie'
+                }
+              ]
+            }
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<StopAlerts {...props} />, {
-      context: { ...mockContext },
+      context: { ...mockContext }
     });
     expect(wrapper.find(AlertList).prop('cancelations')).to.have.lengthOf(1);
   });
@@ -129,17 +129,17 @@ describe('<StopAlerts />', () => {
             entities: [
               {
                 __typename: AlertEntityType.Stop,
-                gtfsId: 'feed:bar',
-              },
-            ],
-          },
+                gtfsId: 'feed:bar'
+              }
+            ]
+          }
         ],
         routes: [],
-        stoptimes: [],
-      },
+        stoptimes: []
+      }
     };
     const wrapper = shallowWithIntl(<StopAlerts {...props} />, {
-      context: { ...mockContext },
+      context: { ...mockContext }
     });
     expect(wrapper.find(AlertList).prop('serviceAlerts')).to.have.lengthOf(1);
   });

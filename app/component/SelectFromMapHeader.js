@@ -9,7 +9,7 @@ export default function SelectFromMapHeaderComponent(props, { config, intl }) {
     props.titleId !== undefined
       ? intl.formatMessage({
           id: props.titleId,
-          defaultMessage: 'Select viaPoint',
+          defaultMessage: 'Select viaPoint'
         })
       : '';
 
@@ -28,7 +28,7 @@ export default function SelectFromMapHeaderComponent(props, { config, intl }) {
         onClick={props.hideBackBtn ? undefined : props.onBackBtnClick}
         aria-label={intl.formatMessage({
           id: 'back-button-title',
-          defaultMessage: 'Go back to previous page',
+          defaultMessage: 'Go back to previous page'
         })}
       >
         {!props.hideBackBtn && (
@@ -51,7 +51,7 @@ export default function SelectFromMapHeaderComponent(props, { config, intl }) {
         onClick={props.hideCloseBtn ? undefined : props.onCloseBtnClick}
         aria-label={intl.formatMessage({
           id: 'back-button-title',
-          defaultMessage: 'Go back to previous page',
+          defaultMessage: 'Go back to previous page'
         })}
       >
         {!props.hideCloseBtn && (
@@ -75,7 +75,7 @@ SelectFromMapHeaderComponent.propTypes = {
   hideBackBtn: PropTypes.bool,
   hideCloseBtn: PropTypes.bool,
   titleClassName: PropTypes.string,
-  iconClassName: PropTypes.string,
+  iconClassName: PropTypes.string
 };
 
 SelectFromMapHeaderComponent.defaultProps = {
@@ -87,10 +87,10 @@ SelectFromMapHeaderComponent.defaultProps = {
   hideBackBtn: false,
   hideCloseBtn: false,
   titleClassName: undefined,
-  iconClassName: undefined,
+  iconClassName: undefined
 };
 
 SelectFromMapHeaderComponent.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };

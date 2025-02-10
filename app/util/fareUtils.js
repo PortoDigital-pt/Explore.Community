@@ -20,13 +20,13 @@ export const getFaresFromLegs = (legs, config) => {
   const filteredLegs = legs.map(leg => ({
     ...leg,
     fareProducts: leg.fareProducts.filter(fp =>
-      availableTickets.includes(fp.product.id),
-    ),
+      availableTickets.includes(fp.product.id)
+    )
   }));
 
   const knownFareLegs = uniqBy(
     filteredLegs.filter(l => l.fareProducts.length > 0),
-    'fareProducts[0].id',
+    'fareProducts[0].id'
   ).map(leg => ({
     fareProducts: leg.fareProducts,
     agency: leg.route.agency,
@@ -35,7 +35,7 @@ export const getFaresFromLegs = (legs, config) => {
       // E2E-testing does not work without this check
       (config.NODE_ENV === 'test' &&
         leg.fareProducts[0].product.id.split(':')[1]) ||
-      config.fareMapping(leg.fareProducts[0].product.id),
+      config.fareMapping(leg.fareProducts[0].product.id)
   }));
 
   // Legs that have empty fares but still have a route, i.e. transit legs
@@ -45,11 +45,11 @@ export const getFaresFromLegs = (legs, config) => {
       agency: {
         fareUrl: leg.route.agency.fareUrl,
         gtfsId: leg.route.agency.gtfsId,
-        name: leg.route.agency.name,
+        name: leg.route.agency.name
       },
       isUnknown: true,
       routeGtfsId: leg.route.gtfsId,
-      routeName: leg.route.longName,
+      routeName: leg.route.longName
     }));
   return [...knownFareLegs, ...unknownFareLegs];
 };
@@ -93,7 +93,7 @@ export const getAlternativeFares = (zones, currentFares, allFares) => {
 export const shouldAllowTesting = config => {
   const settings = getSettings(config);
   return Object.keys(config.settingsForFeatureTesting).every(
-    key => config.settingsForFeatureTesting[key] === settings[key],
+    key => config.settingsForFeatureTesting[key] === settings[key]
   );
 };
 

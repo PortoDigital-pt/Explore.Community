@@ -9,11 +9,11 @@ import getCo2Value from '../../util/emissions';
 export default function Emissions({
   itinerary,
   carEmissions,
-  emissionsInfolink,
+  emissionsInfolink
 }) {
   const co2value = getCo2Value(itinerary);
   const itineraryIsCar = itinerary.legs.every(
-    leg => leg.mode === 'CAR' || leg.mode === 'WALK',
+    leg => leg.mode === 'CAR' || leg.mode === 'WALK'
   );
   const carCo2Value = itineraryIsCar ? null : carEmissions;
   const useCo2SimpleDesc = !carCo2Value || itineraryIsCar;
@@ -32,7 +32,7 @@ export default function Emissions({
               <Icon img="icon-icon_co2_leaf" className="co2-leaf" />
               <span
                 className={cx('itinerary-co2-description', {
-                  simple: useCo2SimpleDesc,
+                  simple: useCo2SimpleDesc
                 })}
               >
                 <span aria-hidden="true">
@@ -41,7 +41,7 @@ export default function Emissions({
                     defaultMessage={`CO₂ emissions for this route: ${co2value} g`}
                     values={{
                       co2value,
-                      carCo2Value,
+                      carCo2Value
                     }}
                   />
                 </span>
@@ -51,7 +51,7 @@ export default function Emissions({
                     defaultMessage={`Carbondioxide emissions for this route: ${co2value} g`}
                     values={{
                       co2value,
-                      carCo2Value,
+                      carCo2Value
                     }}
                   />
                 </span>
@@ -81,10 +81,10 @@ export default function Emissions({
 Emissions.propTypes = {
   itinerary: itineraryShape.isRequired,
   carEmissions: PropTypes.number,
-  emissionsInfolink: PropTypes.string,
+  emissionsInfolink: PropTypes.string
 };
 
 Emissions.defaultProps = {
   carEmissions: undefined,
-  emissionsInfolink: undefined,
+  emissionsInfolink: undefined
 };

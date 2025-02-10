@@ -4,7 +4,7 @@ import { describe, it } from 'mocha';
 import {
   getClosestPoint,
   isMultiPointTypeGeometry,
-  isPointTypeGeometry,
+  isPointTypeGeometry
 } from '../../../app/util/geo-utils';
 
 describe('geo-utils', () => {

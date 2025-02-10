@@ -26,7 +26,7 @@ import {
   PREFIX_TERMINALS,
   PREFIX_CARPARK,
   PREFIX_BIKEPARK,
-  PREFIX_RENTALVEHICLES,
+  PREFIX_RENTALVEHICLES
 } from '../../../util/path';
 import SelectVehicleContainer from './SelectVehicleContainer';
 
@@ -34,7 +34,7 @@ const initialState = {
   selectableTargets: undefined,
   coords: undefined,
   showSpinner: true,
-  zoom: undefined,
+  zoom: undefined
 };
 
 // TODO eslint doesn't know that TileLayerContainer is a react component,
@@ -56,16 +56,16 @@ class TileLayerContainer extends GridLayer {
         closePopup: PropTypes.func.isRequired,
         removeEventParent: PropTypes.func.isRequired,
         _popup: PropTypes.shape({
-          isOpen: PropTypes.func,
-        }),
-      }).isRequired,
+          isOpen: PropTypes.func
+        })
+      }).isRequired
     }).isRequired,
     relayEnvironment: relayShape.isRequired,
     hilightedStops: PropTypes.arrayOf(PropTypes.string),
     stopsToShow: PropTypes.arrayOf(PropTypes.string),
     objectsToHide: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
     vehicles: PropTypes.objectOf(vehicleShape),
-    lang: PropTypes.string.isRequired,
+    lang: PropTypes.string.isRequired
   };
 
   static defaultProps = {
@@ -76,7 +76,7 @@ class TileLayerContainer extends GridLayer {
     hilightedStops: undefined,
     stopsToShow: undefined,
     vehicles: undefined,
-    mergeStops: false,
+    mergeStops: false
   };
 
   static contextTypes = {
@@ -84,7 +84,7 @@ class TileLayerContainer extends GridLayer {
     intl: intlShape.isRequired,
     config: configShape.isRequired,
     match: matchShape.isRequired,
-    router: routerShape.isRequired,
+    router: routerShape.isRequired
   };
 
   PopupOptions = {
@@ -95,11 +95,11 @@ class TileLayerContainer extends GridLayer {
     onClose: () => this.setState({ ...initialState }),
     autoPan: false,
     onOpen: () => this.sendAnalytics(),
-    relayEnvironment: relayShape.isRequired,
+    relayEnvironment: relayShape.isRequired
   };
 
   merc = new SphericalMercator({
-    size: this.props.tileSize || 256,
+    size: this.props.tileSize || 256
   });
 
   constructor(props, context) {
@@ -107,7 +107,7 @@ class TileLayerContainer extends GridLayer {
     // Required as it is not passed upwards through the whole inherittance chain
     this.context = context;
     this.state = {
-      ...initialState,
+      ...initialState
     };
     this.leafletElement.createTile = this.createTile;
   }
@@ -143,7 +143,7 @@ class TileLayerContainer extends GridLayer {
       /* eslint-disable no-underscore-dangle */
       activeTiles = lodashFilter(
         this.leafletElement._tiles,
-        tile => tile.active,
+        tile => tile.active
       );
       /* eslint-enable no-underscore-dangle */
       activeTiles.forEach(
@@ -153,7 +153,7 @@ class TileLayerContainer extends GridLayer {
             if (layer.onTimeChange) {
               layer.onTimeChange(this.props.lang);
             }
-          }),
+          })
       );
     }
   };
@@ -168,9 +168,9 @@ class TileLayerContainer extends GridLayer {
           e,
           this.merc.px(
             [e.latlng.lng, e.latlng.lat],
-            Number(key.split(':')[2]) + this.props.zoomOffset,
-          ),
-        ),
+            Number(key.split(':')[2]) + this.props.zoomOffset
+          )
+        )
       );
     /* eslint-enable no-underscore-dangle */
   };
@@ -187,16 +187,16 @@ class TileLayerContainer extends GridLayer {
       this.props.vehicles,
       this.props.stopsToShow,
       this.props.objectsToHide,
-      this.props.lang,
+      this.props.lang
     );
     tile.onSelectableTargetClicked = (
       selectableTargets,
       coords,
-      forceOpen = false,
+      forceOpen = false
     ) => {
       const {
         leaflet: { map },
-        mapLayers,
+        mapLayers
       } = this.props;
       const { coords: prevCoords } = this.state;
       const popup = map._popup; // eslint-disable-line no-underscore-dangle
@@ -207,8 +207,8 @@ class TileLayerContainer extends GridLayer {
       ) {
         this.context.router.push(
           `/${PREFIX_BIKESTATIONS}/${encodeURIComponent(
-            selectableTargets[0].feature.properties.id,
-          )}`,
+            selectableTargets[0].feature.properties.id
+          )}`
         );
         return;
       }
@@ -221,7 +221,7 @@ class TileLayerContainer extends GridLayer {
         // Instead, the user is directed to the scooter cluster view or the first one in a group of singles.
       ) {
         const cluster = selectableTargets.find(
-          target => target.feature.properties.cluster,
+          target => target.feature.properties.cluster
         );
         const networks = cluster ? cluster.feature.properties.networks : '';
         const id = cluster
@@ -229,9 +229,7 @@ class TileLayerContainer extends GridLayer {
           : selectableTargets[0].feature.properties.id;
         // adding networks directs to scooter cluster view
         this.context.router.push(
-          `/${PREFIX_RENTALVEHICLES}/${encodeURIComponent(id)}/${[
-            ...networks,
-          ]}`,
+          `/${PREFIX_RENTALVEHICLES}/${encodeURIComponent(id)}/${[...networks]}`
         );
         return;
       }
@@ -245,8 +243,8 @@ class TileLayerContainer extends GridLayer {
           : PREFIX_STOPS;
         this.context.router.push(
           `/${prefix}/${encodeURIComponent(
-            selectableTargets[0].feature.properties.gtfsId,
-          )}`,
+            selectableTargets[0].feature.properties.gtfsId
+          )}`
         );
         return;
       }
@@ -265,7 +263,7 @@ class TileLayerContainer extends GridLayer {
               parking =>
                 layer === 'parkAndRide'
                   ? parking.carPlaces
-                  : parking.bicyclePlaces,
+                  : parking.bicyclePlaces
             );
           if (parksInHub.length === 1) {
             parkingId = parksInHub[0].id;
@@ -277,7 +275,7 @@ class TileLayerContainer extends GridLayer {
           this.context.router.push(
             `/${
               layer === 'parkAndRide' ? PREFIX_CARPARK : PREFIX_BIKEPARK
-            }/${encodeURIComponent(parkingId)}`,
+            }/${encodeURIComponent(parkingId)}`
           );
           return;
         }
@@ -296,10 +294,10 @@ class TileLayerContainer extends GridLayer {
         selectableTargets: selectableTargets.filter(
           target =>
             target.layer === 'realTimeVehicle' ||
-            isFeatureLayerEnabled(target.feature, target.layer, mapLayers),
+            isFeatureLayerEnabled(target.feature, target.layer, mapLayers)
         ),
         coords,
-        zoom: tile.coords.z,
+        zoom: tile.coords.z
       });
     };
 
@@ -345,7 +343,7 @@ class TileLayerContainer extends GridLayer {
       category: 'Map',
       name,
       type,
-      source: context,
+      source: context
     });
   }
 
@@ -366,11 +364,11 @@ class TileLayerContainer extends GridLayer {
         if (
           (this.state.selectableTargets[0].layer === 'parkAndRide' &&
             this.state.selectableTargets[0].feature.properties.vehicleParking?.filter(
-              parking => parking.carPlaces,
+              parking => parking.carPlaces
             ).length > 1) ||
           (this.state.selectableTargets[0].layer === 'parkAndRideForBikes' &&
             this.state.selectableTargets[0].feature.properties.vehicleParking?.filter(
-              parking => parking.bicyclePlaces,
+              parking => parking.bicyclePlaces
             ).length > 1)
         ) {
           id = `parkAndRide_${this.state.selectableTargets[0].feature.properties.vehicleParking[0].id}`;
@@ -389,7 +387,7 @@ class TileLayerContainer extends GridLayer {
           if (realTimeInfoVehicle) {
             latlng = {
               lat: realTimeInfoVehicle.lat,
-              lng: realTimeInfoVehicle.long,
+              lng: realTimeInfoVehicle.long
             };
           }
           this.PopupOptions.className = 'vehicle-popup';
@@ -478,9 +476,9 @@ const connectedComponent = withLeaflet(
     [RealTimeInformationStore, PreferencesStore],
     context => ({
       vehicles: context.getStore(RealTimeInformationStore).vehicles,
-      lang: context.getStore(PreferencesStore).getLanguage(),
-    }),
-  ),
+      lang: context.getStore(PreferencesStore).getLanguage()
+    })
+  )
 );
 
 export { connectedComponent as default, TileLayerContainer as Component };

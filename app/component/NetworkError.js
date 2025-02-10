@@ -25,7 +25,7 @@ const NetworkError = ({ retry }, { match }) => (
 
 NetworkError.propTypes = { retry: PropTypes.func.isRequired };
 NetworkError.contextTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 export default NetworkError;

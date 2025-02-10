@@ -7,7 +7,7 @@ import {
   configShape,
   itineraryShape,
   locationShape,
-  planEdgeShape,
+  planEdgeShape
 } from '../../util/shapes';
 import BackButton from '../BackButton';
 import CookieSettingsButton from '../CookieSettingsButton';
@@ -35,14 +35,14 @@ function ItineraryPageMap(
     isLocationPopupEnabled,
     ...rest
   },
-  { match, router, executeAction, config },
+  { match, router, executeAction, config }
 ) {
   const { hash } = match.params;
   const leafletObjs = [];
 
   if (showVehicles) {
     leafletObjs.push(
-      <VehicleMarkerContainer key="vehicles" useLargeIcon topics={topics} />,
+      <VehicleMarkerContainer key="vehicles" useLargeIcon topics={topics} />
     );
   }
 
@@ -56,7 +56,7 @@ function ItineraryPageMap(
         showTransferLabels={showActiveOnly}
         showIntermediateStops
         showDurationBubble={showDurationBubble}
-      />,
+      />
     );
   } else {
     if (!showActiveOnly) {
@@ -68,7 +68,7 @@ function ItineraryPageMap(
               hash={i}
               legs={edge.node.legs}
               passive
-            />,
+            />
           );
         }
       });
@@ -83,14 +83,14 @@ function ItineraryPageMap(
           showTransferLabels={showActiveOnly}
           showIntermediateStops
           showDurationBubble={showDurationBubble}
-        />,
+        />
       );
     }
   }
 
   if (from.lat && from.lon) {
     leafletObjs.push(
-      <LocationMarker key="fromMarker" position={from} type="from" />,
+      <LocationMarker key="fromMarker" position={from} type="from" />
     );
   }
   if (to.lat && to.lon) {
@@ -142,8 +142,8 @@ ItineraryPageMap.propTypes = {
     PropTypes.shape({
       feedId: PropTypes.string.isRequired,
       mode: PropTypes.string,
-      direction: PropTypes.number,
-    }),
+      direction: PropTypes.number
+    })
   ),
   active: PropTypes.number.isRequired,
   showActiveOnly: PropTypes.bool,
@@ -155,7 +155,7 @@ ItineraryPageMap.propTypes = {
   showDurationBubble: PropTypes.bool,
   itinerary: itineraryShape,
   showBackButton: PropTypes.bool,
-  isLocationPopupEnabled: PropTypes.bool,
+  isLocationPopupEnabled: PropTypes.bool
 };
 
 ItineraryPageMap.defaultProps = {
@@ -165,14 +165,14 @@ ItineraryPageMap.defaultProps = {
   showDurationBubble: false,
   itinerary: undefined,
   showBackButton: true,
-  isLocationPopupEnabled: false,
+  isLocationPopupEnabled: false
 };
 
 ItineraryPageMap.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
   config: configShape,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default ItineraryPageMap;

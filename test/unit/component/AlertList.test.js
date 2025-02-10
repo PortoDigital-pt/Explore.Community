@@ -10,7 +10,7 @@ describe('<AlertList />', () => {
     const props = {
       currentTime: 1547464412,
       cancelations: [],
-      serviceAlerts: [],
+      serviceAlerts: []
     };
     const wrapper = shallowWithIntl(<AlertList {...props} />);
     expect(wrapper.find('.no-alerts-container')).to.have.lengthOf(1);
@@ -30,9 +30,9 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'BUS',
               shortName: '37N',
-              gtfsId: 'foo:2037N',
-            },
-          ],
+              gtfsId: 'foo:2037N'
+            }
+          ]
         },
         {
           alertHeaderText: 'fourth',
@@ -44,10 +44,10 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'RAIL',
               shortName: 'A',
-              gtfsId: 'foo:2000A',
-            },
-          ],
-        },
+              gtfsId: 'foo:2000A'
+            }
+          ]
+        }
       ],
       serviceAlerts: [
         {
@@ -60,9 +60,9 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'BUS',
               shortName: '138',
-              gtfsId: 'foo:138',
-            },
-          ],
+              gtfsId: 'foo:138'
+            }
+          ]
         },
         {
           alertHeaderText: 'first',
@@ -74,11 +74,11 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'TRAM',
               shortName: '8A',
-              gtfsId: 'foo:8A',
-            },
-          ],
-        },
-      ],
+              gtfsId: 'foo:8A'
+            }
+          ]
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertList {...props} />);
     expect(wrapper.find(AlertRow).at(0).prop('header')).to.equal('first');
@@ -103,11 +103,11 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'TRAM',
               shortName: '8A',
-              gtfsId: 'foo:8A',
-            },
-          ],
-        },
-      ],
+              gtfsId: 'foo:8A'
+            }
+          ]
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertList {...props} />);
     expect(wrapper.find('.no-alerts-container')).to.have.lengthOf(1);
@@ -126,10 +126,10 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'TRAM',
               shortName: '8A',
-              gtfsId: 'foo:8A',
-            },
-          ],
-        },
+              gtfsId: 'foo:8A'
+            }
+          ]
+        }
       ],
       serviceAlerts: [
         {
@@ -143,11 +143,11 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'TRAM',
               shortName: '8A',
-              gtfsId: 'foo:8A',
-            },
-          ],
-        },
-      ],
+              gtfsId: 'foo:8A'
+            }
+          ]
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertList {...props} />);
     expect(wrapper.find(AlertRow)).to.have.lengthOf(2);
@@ -168,11 +168,11 @@ describe('<AlertList />', () => {
               __typename: AlertEntityType.Route,
               mode: 'TRAM',
               shortName: '8A',
-              gtfsId: 'foo:8A',
-            },
-          ],
-        },
-      ],
+              gtfsId: 'foo:8A'
+            }
+          ]
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertList {...props} />);
     expect(wrapper.find('.no-alerts-container')).to.have.lengthOf(1);

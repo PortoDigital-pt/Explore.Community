@@ -9,8 +9,8 @@ describe('<UserMenu />', () => {
     user: { given_name: 'Matti', family_name: 'Meikäläinen' },
     menuItems: [
       { key: '1', messageId: 'usermenu-item-1' },
-      { key: '2', messageId: 'usermenu-item-2' },
-    ],
+      { key: '2', messageId: 'usermenu-item-2' }
+    ]
   };
 
   it("should render initials of user's name", () => {

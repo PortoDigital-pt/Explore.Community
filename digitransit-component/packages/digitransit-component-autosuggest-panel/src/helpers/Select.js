@@ -11,7 +11,7 @@ const Select = ({
   viaPointIndex,
   id,
   label,
-  icon,
+  icon
 }) => {
   const [displayValue, changeDisplayValue] = useState(getDisplay(value));
   const [open, changeOpen] = useState(false);
@@ -70,7 +70,7 @@ const Select = ({
             id: inputId,
             'aria-labelledby': labelId,
             'aria-autocomplete': 'none',
-            readOnly: true,
+            readOnly: true
           }}
           renderSuggestionsContainer={({ containerProps, children }) => {
             // set refs for autosuggest library and scrollbar positioning
@@ -102,13 +102,13 @@ Select.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       displayName: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
-    }).isRequired,
+      value: PropTypes.number.isRequired
+    }).isRequired
   ).isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
   icon: PropTypes.node.isRequired,
-  viaPointIndex: PropTypes.number.isRequired,
+  viaPointIndex: PropTypes.number.isRequired
 };
 
 export default Select;

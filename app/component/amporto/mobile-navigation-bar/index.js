@@ -10,7 +10,7 @@ const NAVIGATION_PATHS = {
   NAVIGATE: 'navigate',
   ITINERARIES: 'itineraries',
   BLOCKS: 'blocks',
-  FAVOURITES: 'favourites',
+  FAVOURITES: 'favourites'
 };
 
 // WIP
@@ -24,7 +24,7 @@ const NavigationBar = ({ breakpoint }) => {
   return (
     <div
       className={classnames('navbar', {
-        hide: breakpoint === 'large',
+        hide: breakpoint === 'large'
       })}
     >
       <div>

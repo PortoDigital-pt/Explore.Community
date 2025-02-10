@@ -10,7 +10,7 @@ import { isBrowser } from '../../util/browser';
 import {
   parseLocation,
   PREFIX_ITINERARY_SUMMARY,
-  streetHash,
+  streetHash
 } from '../../util/path';
 import withBreakpoint from '../../util/withBreakpoint';
 import BackButton from '../BackButton';
@@ -20,16 +20,16 @@ class ItineraryPageControls extends React.Component {
     params: PropTypes.shape({
       from: PropTypes.string,
       to: PropTypes.string,
-      hash: PropTypes.string,
+      hash: PropTypes.string
     }).isRequired,
     breakpoint: PropTypes.string.isRequired,
-    toggleSettings: PropTypes.func.isRequired,
+    toggleSettings: PropTypes.func.isRequired
   };
 
   static contextTypes = {
     config: configShape.isRequired,
     router: routerShape,
-    match: matchShape.isRequired,
+    match: matchShape.isRequired
   };
 
   componentDidMount() {
@@ -45,8 +45,8 @@ class ItineraryPageControls extends React.Component {
           ...this.context.match.location,
           state: {
             ...this.context.match.location.state,
-            itinerarySettingsOpen: false,
-          },
+            itinerarySettingsOpen: false
+          }
         };
         setTimeout(() => this.context.router.replace(newLocation), 0);
       } else {

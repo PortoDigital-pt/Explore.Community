@@ -7,13 +7,13 @@ import {
   getRentalNetworkConfig,
   getVehicleCapacity,
   BIKEAVL_UNKNOWN,
-  BIKEAVL_WITHMAX,
+  BIKEAVL_WITHMAX
 } from '../util/vehicleRentalUtils';
 
 const VehicleRentalStation = ({ vehicleRentalStation }, { config }) => {
   const vehicleCapacity = getVehicleCapacity(
     config,
-    vehicleRentalStation.rentalNetwork.networkId,
+    vehicleRentalStation.rentalNetwork.networkId
   );
   if (vehicleCapacity === BIKEAVL_UNKNOWN) {
     return null;
@@ -33,7 +33,7 @@ const VehicleRentalStation = ({ vehicleRentalStation }, { config }) => {
   const disabled = !vehicleRentalStation.operative;
   const networkConfig = getRentalNetworkConfig(
     vehicleRentalStation.rentalNetwork.networkId,
-    config,
+    config
   );
   const vehicleIcon = getRentalNetworkIcon(networkConfig, disabled);
   return (
@@ -53,9 +53,9 @@ const VehicleRentalStation = ({ vehicleRentalStation }, { config }) => {
 };
 
 VehicleRentalStation.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 VehicleRentalStation.propTypes = {
-  vehicleRentalStation: vehicleRentalStationShape.isRequired,
+  vehicleRentalStation: vehicleRentalStationShape.isRequired
 };
 export default VehicleRentalStation;

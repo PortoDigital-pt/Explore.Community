@@ -18,9 +18,9 @@ const Checkbox = (
     defaultMessage,
     showLabel,
     title,
-    name,
+    name
   },
-  { intl },
+  { intl }
 ) => {
   const id = uniqueId('input-');
   return (
@@ -31,7 +31,7 @@ const Checkbox = (
           labelId
             ? intl.formatMessage({
                 id: labelId,
-                defaultMessage,
+                defaultMessage
               })
             : defaultMessage
         }
@@ -59,7 +59,7 @@ const Checkbox = (
               labelId
                 ? intl.formatMessage({
                     id: labelId,
-                    defaultMessage,
+                    defaultMessage
                   })
                 : defaultMessage
             }
@@ -88,7 +88,7 @@ Checkbox.propTypes = {
   showLabel: PropTypes.bool,
   title: PropTypes.string,
   name: PropTypes.string,
-  large: PropTypes.bool,
+  large: PropTypes.bool
 };
 
 Checkbox.defaultProps = {
@@ -99,11 +99,11 @@ Checkbox.defaultProps = {
   showLabel: true,
   title: undefined,
   name: undefined,
-  large: false,
+  large: false
 };
 
 Checkbox.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default Checkbox;

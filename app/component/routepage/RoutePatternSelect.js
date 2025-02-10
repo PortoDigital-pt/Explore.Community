@@ -7,7 +7,7 @@ import {
   createRefetchContainer,
   fetchQuery,
   graphql,
-  ReactRelayContext,
+  ReactRelayContext
 } from 'react-relay';
 import cx from 'classnames';
 import sortBy from 'lodash/sortBy';
@@ -62,7 +62,7 @@ function filterSimilarRoutes(routes, currentRoute) {
     routeBasename = routeBasename.replace(/\D/g, ''); // Delete all non-digits from the string
   }
   const onlyRelatedRoutes = withoutCurrent.filter(r =>
-    Number.isNaN(Number(r.shortName.replace(routeBasename, '')[0])),
+    Number.isNaN(Number(r.shortName.replace(routeBasename, '')[0]))
   );
   return sortBy(onlyRelatedRoutes, 'shortName');
 }
@@ -119,17 +119,17 @@ class RoutePatternSelect extends Component {
     super(props, context);
     this.state = {
       similarRoutes: [],
-      loadingSimilar: true,
+      loadingSimilar: true
     };
     this.fetchSimilarRoutes(
       this.props.route,
-      this.context.config.showSimilarRoutesOnRouteDropDown,
+      this.context.config.showSimilarRoutesOnRouteDropDown
     );
   }
 
   static propTypes = {
     params: PropTypes.shape({
-      patternId: PropTypes.string.isRequired,
+      patternId: PropTypes.string.isRequired
     }).isRequired,
     className: PropTypes.string.isRequired,
     route: routeShape.isRequired,
@@ -138,18 +138,18 @@ class RoutePatternSelect extends Component {
     gtfsId: PropTypes.string.isRequired,
     useCurrentTime: PropTypes.bool,
     lang: PropTypes.string.isRequired,
-    relayEnvironment: relayShape.isRequired,
+    relayEnvironment: relayShape.isRequired
   };
 
   static defaultProps = {
-    useCurrentTime: false,
+    useCurrentTime: false
   };
 
   static contextTypes = {
     router: routerShape.isRequired,
     config: configShape,
     getStore: PropTypes.func.isRequired,
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   fetchSimilarRoutes = (route, callFetch) => {
@@ -175,16 +175,16 @@ class RoutePatternSelect extends Component {
 
       const params = { name: searchSimilarTo };
       fetchQuery(this.props.relayEnvironment, query, params, {
-        force: true,
+        force: true
       })
         .toPromise()
         .then(results => {
           this.setState({
             similarRoutes: filterSimilarRoutes(
               results.routes,
-              this.props.route,
+              this.props.route
             ),
-            loadingSimilar: false,
+            loadingSimilar: false
           });
         });
     }
@@ -202,7 +202,7 @@ class RoutePatternSelect extends Component {
     const futureTrips = enrichPatterns(
       patterns,
       false,
-      this.context.config.itinerary.serviceTimeRange,
+      this.context.config.itinerary.serviceTimeRange
     );
 
     if (futureTrips.length === 0) {
@@ -211,16 +211,16 @@ class RoutePatternSelect extends Component {
 
     const options = sortBy(
       sortBy(futureTrips, 'inFuture').reverse(),
-      'countTripsForDate',
+      'countTripsForDate'
     ).reverse();
     if (options.every(o => o.code !== params.patternId)) {
       if (isBrowser) {
         router.replace(
-          `/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`,
+          `/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`
         );
       } else {
         throw new RedirectException(
-          `/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`,
+          `/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`
         );
       }
     }
@@ -231,7 +231,7 @@ class RoutePatternSelect extends Component {
     const { intl } = this.context;
     const options = this.getOptions();
     const currentPattern = options.find(
-      o => o.code === this.props.params.patternId,
+      o => o.code === this.props.params.patternId
     );
 
     const possibleMainRoutes = options.slice(0, 2).filter(o => !o.inFuture);
@@ -265,7 +265,7 @@ class RoutePatternSelect extends Component {
     const directionSwap = mainRoutes.length === 2;
     if (renderButtonOnly) {
       const otherPattern = mainRoutes.find(
-        o => o.code !== this.props.params.patternId,
+        o => o.code !== this.props.params.patternId
       );
       return (
         <div
@@ -306,16 +306,16 @@ class RoutePatternSelect extends Component {
       optionArray.push({
         options: specialRoutes,
         name: intl.formatMessage({
-          id: 'route-page.special-routes',
-        }),
+          id: 'route-page.special-routes'
+        })
       });
     }
     if (futureRoutes.length > 0) {
       optionArray.push({
         options: futureRoutes,
         name: intl.formatMessage({
-          id: 'route-page.future-routes',
-        }),
+          id: 'route-page.future-routes'
+        })
       });
     }
 
@@ -327,8 +327,8 @@ class RoutePatternSelect extends Component {
       optionArray.push({
         options: this.state.similarRoutes,
         name: intl.formatMessage({
-          id: 'route-page.similar-routes',
-        }),
+          id: 'route-page.similar-routes'
+        })
       });
     }
 
@@ -340,7 +340,7 @@ class RoutePatternSelect extends Component {
         className={cx('route-pattern-select', this.props.className)}
         aria-atomic="true"
         style={{
-          '--sectionTitleFontWeight': `${sectionTitleFontWeight}`,
+          '--sectionTitleFontWeight': `${sectionTitleFontWeight}`
         }}
       >
         {/* eslint-disable-next-line  jsx-a11y/label-has-associated-control */}
@@ -382,12 +382,12 @@ class RoutePatternSelect extends Component {
                 addAnalyticsEvent({
                   category: 'Route',
                   action: 'OpenDirectionMenu',
-                  name: null,
+                  name: null
                 });
               },
               id: 'select-route-pattern-input',
               'aria-autocomplete': 'none',
-              readOnly: true,
+              readOnly: true
             }}
             renderInputComponent={inputProps => {
               return (
@@ -424,15 +424,15 @@ const storeComponent = connectToStores(
   context => ({
     serviceDay: unixToYYYYMMDD(
       context.getStore('TimeStore').getCurrentTime(),
-      context.config,
+      context.config
     ),
-    lang: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    lang: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 storeComponent.contextTypes = {
   getStore: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const withStore = createRefetchContainer(
@@ -463,7 +463,7 @@ const withStore = createRefetchContainer(
           }
         }
       }
-    `,
+    `
   },
   graphql`
     query RoutePatternSelectQuery($routeId: String!, $date: String!) {
@@ -471,7 +471,7 @@ const withStore = createRefetchContainer(
         ...RoutePatternSelect_route @arguments(date: $date)
       }
     }
-  `,
+  `
 );
 
 export { withStore as default, RoutePatternSelect as Component };

@@ -8,7 +8,7 @@ import {
   getRentalNetworkConfig,
   getRentalNetworkIcon,
   getRentalVehicleLink,
-  useDeepLink,
+  useDeepLink
 } from '../../util/vehicleRentalUtils';
 
 import withBreakpoint from '../../util/withBreakpoint';
@@ -17,7 +17,7 @@ import ExternalLink from '../ExternalLink';
 
 function ScooterLinkContainer(
   { rentalVehicle, language, mobileReturn },
-  { config },
+  { config }
 ) {
   const network = rentalVehicle.rentalNetwork.networkId;
   const networkConfig = getRentalNetworkConfig(network, config);
@@ -26,7 +26,7 @@ function ScooterLinkContainer(
     <FormattedMessage
       id="open-operator-app"
       values={{
-        operator: networkConfig.name[language] || network,
+        operator: networkConfig.name[language] || network
       }}
       defaultMessage="Open the app to use a scooter"
     />
@@ -44,7 +44,7 @@ function ScooterLinkContainer(
             className={cx(
               'citybike-icon',
               { small: mobileReturn },
-              'scooter-icon',
+              'scooter-icon'
             )}
           >
             <Icon img={vehicleIcon} width={1.655} height={1.655} />
@@ -78,16 +78,16 @@ function ScooterLinkContainer(
 ScooterLinkContainer.propTypes = {
   rentalVehicle: rentalVehicleShape.isRequired,
   language: PropTypes.string.isRequired,
-  mobileReturn: PropTypes.bool,
+  mobileReturn: PropTypes.bool
 };
 
 ScooterLinkContainer.defaultProps = {
-  mobileReturn: false,
+  mobileReturn: false
 };
 
 ScooterLinkContainer.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 const ScooterLinkWithBreakpoint = withBreakpoint(ScooterLinkContainer);
 
@@ -97,7 +97,7 @@ const connectedComponent = connectToStores(
   ({ getStore }) => {
     const language = getStore('PreferencesStore').getLanguage();
     return { language };
-  },
+  }
 );
 
 export { connectedComponent as default, ScooterLinkContainer as Component };

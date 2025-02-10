@@ -22,7 +22,7 @@ function AgencyInfo({ agencyName, url }) {
 
 AgencyInfo.propTypes = {
   agencyName: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default AgencyInfo;

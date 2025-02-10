@@ -12,32 +12,32 @@ describe('<AppBarHsl />', () => {
       context: {
         match: {
           location: {
-            pathname: '/',
-          },
+            pathname: '/'
+          }
         },
         config: {
           allowLogin: false,
           URL: {
-            ROOTLINK: 'http://www.foo.com',
-          },
-        },
-      },
+            ROOTLINK: 'http://www.foo.com'
+          }
+        }
+      }
     });
     expect(wrapper.isEmptyRender()).to.equal(false);
   });
 
   it.skip("language should be 'fi'", () => {
     const props = {
-      lang: 'fi',
+      lang: 'fi'
     };
     const wrapper = shallowWithIntl(<AppBarHsl {...props} />, {
       context: {
         match: {
           location: {
-            pathname: '/',
-          },
-        },
-      },
+            pathname: '/'
+          }
+        }
+      }
     });
     expect(wrapper.name()).to.equal('ForwardRef');
     expect(wrapper.prop('searchPage')).to.equal('https://uusi.hsl.fi/haku');

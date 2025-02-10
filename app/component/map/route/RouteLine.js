@@ -27,7 +27,7 @@ function getSplitIndex(points, position) {
       const projectedToLine = getClosestPoint(
         points[i],
         points[i + 1],
-        position,
+        position
       );
       const distanceToLine = distance(projectedToLine, position);
       if (distanceToLine < bestDistance) {
@@ -56,7 +56,7 @@ function RouteLine(props) {
         key="from"
         position={props.pattern.stops[0]}
         type="from"
-      />,
+      />
     );
 
     objs.push(
@@ -64,7 +64,7 @@ function RouteLine(props) {
         key="to"
         position={props.pattern.stops[props.pattern.stops.length - 1]}
         type="to"
-      />,
+      />
     );
   }
 
@@ -109,7 +109,7 @@ function RouteLine(props) {
   const beforeSplitColor = '#888888';
   const stops = props.pattern.geometry || props.pattern.stops;
   const filteredPoints = stops.filter(
-    point => point.lat !== null && point.lon !== null,
+    point => point.lat !== null && point.lon !== null
   );
   const lineSplitIndex = getSplitIndex(filteredPoints, props.vehiclePosition);
 
@@ -122,7 +122,7 @@ function RouteLine(props) {
     const projectedPoint = getClosestPoint(
       lastBefore,
       firstAfter,
-      props.vehiclePosition,
+      props.vehiclePosition
     );
     beforeSplit.push(projectedPoint);
     afterSplit.unshift(projectedPoint);
@@ -130,7 +130,7 @@ function RouteLine(props) {
   // split stops markers into two in the same way
   const markerSplitIndex = getSplitIndex(
     props.pattern.stops,
-    props.vehiclePosition,
+    props.vehiclePosition
   );
   const markers = props.pattern
     ? props.pattern.stops
@@ -178,14 +178,14 @@ RouteLine.propTypes = {
   filteredStops: PropTypes.arrayOf(PropTypes.string.isRequired),
   vehiclePosition: PropTypes.shape({
     lat: PropTypes.number,
-    lon: PropTypes.number,
-  }),
+    lon: PropTypes.number
+  })
 };
 
 RouteLine.defaultProps = {
   thin: false,
   filteredStops: [],
-  vehiclePosition: null,
+  vehiclePosition: null
 };
 
 export default createFragmentContainer(RouteLine, {
@@ -211,5 +211,5 @@ export default createFragmentContainer(RouteLine, {
         ...StopCardHeaderContainer_stop
       }
     }
-  `,
+  `
 });

@@ -14,7 +14,7 @@ function walttiTopicResolver(
   headsign,
   feedId,
   tripId,
-  geoHash,
+  geoHash
 ) {
   return (
     '/gtfsrt/vp/' +
@@ -49,7 +49,7 @@ export default {
     gtfsrt: true,
     routeSelector: defaultRouteSelector,
     active: true,
-    vehicleNumberParser: defaulVehicleNumberParser,
+    vehicleNumberParser: defaulVehicleNumberParser
   },
   1: {
     mqttTopicResolver: walttiTopicResolver,
@@ -58,6 +58,6 @@ export default {
     gtfsrt: true,
     routeSelector: defaultRouteSelector,
     active: true,
-    vehicleNumberParser: defaulVehicleNumberParser,
-  },
+    vehicleNumberParser: defaulVehicleNumberParser
+  }
 };

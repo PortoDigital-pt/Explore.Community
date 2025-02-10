@@ -18,7 +18,7 @@ const ModalContent = ({ headerText, renderList }) => {
 
 ModalContent.propTypes = {
   headerText: PropTypes.string.isRequired,
-  renderList: PropTypes.func.isRequired,
+  renderList: PropTypes.func.isRequired
 };
 
 export default ModalContent;

@@ -17,9 +17,9 @@ export default function AlternativeItineraryBar(
     carPlan,
     carPublicPlan,
     parkRidePlan,
-    loading,
+    loading
   },
-  { config },
+  { config }
 ) {
   return (
     <div className="street-mode-selector-container">
@@ -103,9 +103,9 @@ AlternativeItineraryBar.propTypes = {
   weatherData: PropTypes.shape({
     temperature: PropTypes.number,
     windSpeed: PropTypes.number,
-    iconId: PropTypes.number,
+    iconId: PropTypes.number
   }),
-  loading: PropTypes.bool,
+  loading: PropTypes.bool
 };
 
 AlternativeItineraryBar.defaultProps = {
@@ -116,9 +116,9 @@ AlternativeItineraryBar.defaultProps = {
   parkRidePlan: undefined,
   carPlan: undefined,
   carPublicPlan: undefined,
-  loading: undefined,
+  loading: undefined
 };
 
 AlternativeItineraryBar.contextTypes = {
-  config: configShape,
+  config: configShape
 };

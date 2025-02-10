@@ -4,7 +4,7 @@ import { describe, it } from 'mocha';
 import sinon from 'sinon';
 
 import MessageStore, {
-  processStaticMessages,
+  processStaticMessages
 } from '../../../app/store/MessageStore';
 
 describe('MessageStore', () => {
@@ -28,12 +28,12 @@ describe('MessageStore', () => {
               en: [
                 {
                   type: 'text',
-                  content: 'foo',
-                },
-              ],
-            },
-          },
-        ],
+                  content: 'foo'
+                }
+              ]
+            }
+          }
+        ]
       });
       const store = new MessageStore();
       const config = {
@@ -44,14 +44,14 @@ describe('MessageStore', () => {
               en: [
                 {
                   type: 'text',
-                  content: 'bar',
-                },
-              ],
+                  content: 'bar'
+                }
+              ]
             },
-            priority: -1,
-          },
+            priority: -1
+          }
         ],
-        staticMessagesUrl,
+        staticMessagesUrl
       };
 
       await store.addConfigMessages(config);
@@ -59,17 +59,17 @@ describe('MessageStore', () => {
       expect(store.getMessages()).to.deep.equal([
         {
           content: {
-            en: [{ type: 'text', content: 'foo' }],
+            en: [{ type: 'text', content: 'foo' }]
           },
-          id: '2',
+          id: '2'
         },
         {
           content: {
-            en: [{ type: 'text', content: 'bar' }],
+            en: [{ type: 'text', content: 'bar' }]
           },
           id: '1',
-          priority: -1,
-        },
+          priority: -1
+        }
       ]);
 
       global.fetch = undefined;
@@ -86,25 +86,25 @@ describe('MessageStore', () => {
               {
                 type: 'text',
                 content:
-                  'Maanantaina 4.2. Leppävaaran A-junat ja Keravan K -junat liikennöivät 20 minuutin välein klo 14 saakka ',
-              },
+                  'Maanantaina 4.2. Leppävaaran A-junat ja Keravan K -junat liikennöivät 20 minuutin välein klo 14 saakka '
+              }
             ],
             en: [
               {
                 type: 'text',
                 content:
-                  'On Monday 4 February, A and K trains run every 20 minutes until 2pm',
-              },
+                  'On Monday 4 February, A and K trains run every 20 minutes until 2pm'
+              }
             ],
             sv: [
               {
                 type: 'text',
                 content:
-                  'A- och K-tågen går med 20 minuters mellanrum tills kl 14 ',
-              },
-            ],
-          },
-        },
+                  'A- och K-tågen går med 20 minuters mellanrum tills kl 14 '
+              }
+            ]
+          }
+        }
       ];
       const callback = sinon.spy();
       processStaticMessages({ staticMessages }, callback);
@@ -118,33 +118,33 @@ describe('MessageStore', () => {
           content: {
             fi: [],
             en: [],
-            sv: [],
-          },
+            sv: []
+          }
         },
         {
           id: '03022019_203612_18',
           content: {
             fi: [],
             en: [],
-            sv: [],
-          },
+            sv: []
+          }
         },
         {
           id: '03022019_203612_86',
           content: {
             fi: [],
             en: [],
-            sv: [],
-          },
+            sv: []
+          }
         },
         {
           id: '04022019_060821_65',
           content: {
             fi: [],
             en: [],
-            sv: [],
-          },
-        },
+            sv: []
+          }
+        }
       ];
       const callback = sinon.spy();
       processStaticMessages({ staticMessages }, callback);
@@ -160,12 +160,12 @@ describe('MessageStore', () => {
             en: [
               {
                 type: 'text',
-                content: 'Foo',
-              },
+                content: 'Foo'
+              }
             ],
-            sv: [],
-          },
-        },
+            sv: []
+          }
+        }
       ];
       const callback = sinon.spy();
       processStaticMessages({ staticMessages }, callback);
@@ -182,11 +182,11 @@ describe('MessageStore', () => {
           en: [
             {
               type: 'text',
-              content: 'bar',
-            },
-          ],
+              content: 'bar'
+            }
+          ]
         },
-        priority: -1,
+        priority: -1
       };
       await store.addMessage(message);
       expect(store.getMessages().length).to.equal(1);

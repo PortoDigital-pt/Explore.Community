@@ -21,7 +21,7 @@ const mockRoutes = async page => {
           headers: { 'access-control-allow-origin': '*' },
           status: 200,
           contentType: 'application/json',
-          body: JSON.stringify({ data: { routes: [] } }),
+          body: JSON.stringify({ data: { routes: [] } })
         });
       }
       if (request.postData().includes('MessageBarQuery')) {
@@ -29,7 +29,7 @@ const mockRoutes = async page => {
           headers: { 'access-control-allow-origin': '*' },
           status: 200,
           contentType: 'application/json',
-          body: JSON.stringify({ data: { alerts: [] } }),
+          body: JSON.stringify({ data: { alerts: [] } })
         });
       }
       if (request.postData().includes('RouteStopListContainerQuery')) {
@@ -41,7 +41,7 @@ const mockRoutes = async page => {
           headers: { 'access-control-allow-origin': '*' },
           status: 200,
           contentType: 'application/json',
-          body: JSON.stringify(mockData),
+          body: JSON.stringify(mockData)
         });
       }
     }
@@ -55,7 +55,7 @@ describe(`Route page with ${config} config`, () => {
   const paths = {
     hsl: '/linjat/HSL:6181/pysakit/HSL:6181:0:01',
     tampere: '/linjat/tampere:66A6957/pysakit/tampere:66A6957:0:01',
-    matka: '/linjat/HSL:6181/pysakit/HSL:6181:0:01',
+    matka: '/linjat/HSL:6181/pysakit/HSL:6181:0:01'
   };
   test(`stop list on ${platform}`, async () => {
     const snapshotName = `route-page-stop-list-${platform}`;
@@ -68,20 +68,20 @@ describe(`Route page with ${config} config`, () => {
     const snapshotConfig = getConfig(
       snapshotName,
       `${customSnapshotsDir}/${browserName}/${config}/`,
-      `${customDiffDir}/${browserName}/${config}/`,
+      `${customDiffDir}/${browserName}/${config}/`
     );
     let mainContent;
     if (!isMobile) {
       await page.waitForSelector(
-        '#mainContent > .desktop > .main-content > .scrollable-content-wrapper',
+        '#mainContent > .desktop > .main-content > .scrollable-content-wrapper'
       );
       mainContent = await page.$('#mainContent > .desktop > .main-content');
     } else {
       await page.waitForSelector(
-        '#app > #mainContent > .mobile > .drawer-container > .drawer-content',
+        '#app > #mainContent > .mobile > .drawer-container > .drawer-content'
       );
       mainContent = await page.$(
-        '#app > #mainContent > .mobile > .drawer-container > .drawer-content',
+        '#app > #mainContent > .mobile > .drawer-container > .drawer-content'
       );
     }
     const image = await mainContent.screenshot();

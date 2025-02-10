@@ -13,7 +13,7 @@ describe('<DateSelect />', () => {
     startDate: '20190101',
     selectedDate: '20190102',
     dateFormat: 'YYYYMMDD',
-    onDateChange: event => event.target.value,
+    onDateChange: event => event.target.value
   };
 
   after(() => {
@@ -44,12 +44,12 @@ describe('<DateSelect />', () => {
           minutes: 59,
           hours: 23,
           days: 26,
-          months: 11,
-        },
+          months: 11
+        }
       },
       timezoneData:
         'Europe/Helsinki|EET EEST|-20 -30|01010101010101010101010|1BWp0 1qM0 WM0 1qM0 ' +
-        'WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|35e5',
+        'WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|35e5'
     };
     configureMoment('fi', configWithMoment);
 

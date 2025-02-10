@@ -11,7 +11,7 @@ const populateData = (params, match, noOfWeeks) => {
     query.serviceDay &&
     date.isValid() &&
     !moment(date.clone().startOf('isoWeek').format(DATE_FORMAT)).isBefore(
-      moment(moment().startOf('isoWeek').format(DATE_FORMAT)),
+      moment(moment().startOf('isoWeek').format(DATE_FORMAT))
     )
       ? moment(query.serviceDay)
       : moment();
@@ -31,7 +31,7 @@ const populateData = (params, match, noOfWeeks) => {
     serviceDate: serviceDay.format(DATE_FORMAT),
     date: moment().format(DATE_FORMAT),
     showTenWeeks: noOfWeeks === 10,
-    ...weeks,
+    ...weeks
   };
 };
 

@@ -20,7 +20,7 @@ describe('path', () => {
     it('should join paths with slashes within segments', () => {
       expect(pathJoin(['my/path'])).to.equal('my/path');
       expect(pathJoin(['my', 'even/longer', 'path'])).to.equal(
-        'my/even/longer/path',
+        'my/even/longer/path'
       );
     });
 

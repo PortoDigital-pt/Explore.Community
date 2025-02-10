@@ -81,7 +81,7 @@ function addMetaData(config) {
   if (process.env.NOINDEX) {
     config.metaData.meta.push({
       name: 'robots',
-      content: 'noindex,nofollow',
+      content: 'noindex,nofollow'
     });
   }
 }
@@ -100,7 +100,7 @@ export function getNamedConfiguration(configName) {
     if (configName !== 'default') {
       // eslint-disable-next-line global-require, import/no-dynamic-require
       additionalConfig = require(
-        `./configurations/config.${configName}`,
+        `./configurations/config.${configName}`
       ).default;
     }
 
@@ -133,7 +133,7 @@ export function getNamedConfiguration(configName) {
     Object.keys(config.realTimePatch).forEach(realTimeKey => {
       config.realTime[realTimeKey] = {
         ...(config.realTime[realTimeKey] || {}),
-        ...config.realTimePatch[realTimeKey],
+        ...config.realTimePatch[realTimeKey]
       };
     });
 
@@ -154,7 +154,7 @@ export function getNamedConfiguration(configName) {
       const zoneLayer = {
         ...allZones,
         url: mapGeoJsonPaths(allZones.url, conf),
-        isOffByDefault: conf.useAssembledGeoJsonZones === 'isOffByDefault',
+        isOffByDefault: conf.useAssembledGeoJsonZones === 'isOffByDefault'
       };
       if (!conf.geoJson) {
         conf.geoJson = { layers: [zoneLayer] };
@@ -180,7 +180,7 @@ export function getNamedConfiguration(configName) {
       });
     } else {
       const seasonDefinitions = citybikeSeasonDefinitions.filter(
-        seasonDef => configName === seasonDef.configName,
+        seasonDef => configName === seasonDef.configName
       );
       seasonDefinitions.forEach(seasonDef => {
         const confCitybike = conf.vehicleRental.networks[seasonDef.networkName];
@@ -192,7 +192,7 @@ export function getNamedConfiguration(configName) {
   if (!process.env.OIDC_CLIENT_ID && conf.allowLogin) {
     return {
       ...conf,
-      allowLogin: false,
+      allowLogin: false
     };
   }
   return conf;

@@ -55,7 +55,7 @@ SelectTerminalRow.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   selectRow: PropTypes.func.isRequired,
-  routes: PropTypes.string.isRequired,
+  routes: PropTypes.string.isRequired
 };
 
 export default SelectTerminalRow;

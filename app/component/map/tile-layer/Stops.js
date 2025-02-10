@@ -5,12 +5,12 @@ import {
   drawTerminalIcon,
   drawStopIcon,
   drawHybridStopIcon,
-  drawHybridStationIcon,
+  drawHybridStationIcon
 } from '../../../util/mapIconUtils';
 import { ExtendedRouteTypes } from '../../../constants';
 import {
   isFeatureLayerEnabled,
-  getLayerBaseUrl,
+  getLayerBaseUrl
 } from '../../../util/mapLayerUtils';
 import { PREFIX_ITINERARY_SUMMARY, PREFIX_ROUTES } from '../../../util/path';
 import { fetchWithLanguageAndSubscription } from '../../../util/fetchUtils';
@@ -81,7 +81,7 @@ class Stops {
           feature.geom,
           isHilighted,
           this.config.colors.iconColors,
-          hasTrunkRoute,
+          hasTrunkRoute
         );
         return;
       }
@@ -106,7 +106,7 @@ class Stops {
           feature.properties.type === 'FERRY' &&
           !isNull(feature.properties.code)
         ),
-        this.config.colors.iconColors,
+        this.config.colors.iconColors
       );
     }
   }
@@ -128,7 +128,7 @@ class Stops {
         this.tile.coords.z + (this.tile.props.zoomOffset || 0)
       }/${this.tile.coords.x}/${this.tile.coords.y}.pbf`,
       this.config,
-      lang,
+      lang
     ).then(res => {
       if (res.status !== 200) {
         return undefined;
@@ -208,11 +208,11 @@ class Stops {
                     if (
                       this.tile.hilightedStops &&
                       this.tile.hilightedStops.includes(
-                        featWithoutBus.properties.gtfsId,
+                        featWithoutBus.properties.gtfsId
                       )
                     ) {
                       this.tile.hilightedStops = [
-                        featWithBus.properties.gtfsId,
+                        featWithBus.properties.gtfsId
                       ];
                     }
                   }
@@ -235,7 +235,7 @@ class Stops {
                     f,
                     !!hybridId,
                     this.tile.coords.z,
-                    this.config.stopsMinZoom,
+                    this.config.stopsMinZoom
                   );
                 }
               });
@@ -259,7 +259,7 @@ class Stops {
                   feature,
                   'terminal',
                   this.mapLayers,
-                  isHybridStation,
+                  isHybridStation
                 ) &&
                 this.stopsToShowCheck(feature, true)
               ) {
@@ -277,7 +277,7 @@ class Stops {
                     this.tile,
                     feature.geom,
                     isHilighted,
-                    this.config.colors.iconColors,
+                    this.config.colors.iconColors
                   );
                 }
                 if (
@@ -287,21 +287,21 @@ class Stops {
                   shouldRenderTerminalIcon(
                     feature.properties.type,
                     window.location.pathname,
-                    this.tile?.vehicles,
+                    this.tile?.vehicles
                   )
                 ) {
                   drawTerminalIcon(
                     this.tile,
                     feature.geom,
                     feature.properties.type,
-                    isHilighted,
+                    isHilighted
                   );
                 }
               }
             }
           }
         },
-        err => console.log(err), // eslint-disable-line no-console
+        err => console.log(err) // eslint-disable-line no-console
       );
     });
   }

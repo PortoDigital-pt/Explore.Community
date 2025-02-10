@@ -10,7 +10,7 @@ import { isIOS } from '../../util/browser';
 import LazilyLoad, { importLazy } from '../LazilyLoad';
 
 const modules = {
-  FavouriteStopContainer: () => importLazy(import('../FavouriteStopContainer')),
+  FavouriteStopContainer: () => importLazy(import('../FavouriteStopContainer'))
 };
 
 class StopCardHeader extends React.Component {
@@ -32,7 +32,7 @@ class StopCardHeader extends React.Component {
       'point.lat': stop.lat,
       'point.lon': stop.lon,
       'boundary.circle.radius': 0.2,
-      size: 1,
+      size: 1
     };
     if (this.context.config.searchParams['boundary.country']) {
       searchParams['boundary.country'] =
@@ -54,14 +54,14 @@ class StopCardHeader extends React.Component {
                 gid: `gtfs:${layer}:${id}`,
                 layer,
                 label: `${stop.name}, ${city}`,
-                localadmin: city,
+                localadmin: city
               },
-              type: 'Feature',
+              type: 'Feature'
             },
-            type: 'endpoint',
+            type: 'endpoint'
           });
         }
-      },
+      }
     );
   }
 
@@ -125,7 +125,7 @@ StopCardHeader.propTypes = {
   icons: PropTypes.arrayOf(PropTypes.node),
   isPopUp: PropTypes.bool,
   breakpoint: PropTypes.string,
-  isTerminal: PropTypes.bool,
+  isTerminal: PropTypes.bool
 };
 
 StopCardHeader.defaultProps = {
@@ -136,7 +136,7 @@ StopCardHeader.defaultProps = {
   headingStyle: undefined,
   icons: undefined,
   isPopUp: false,
-  breakpoint: undefined,
+  breakpoint: undefined
 };
 
 StopCardHeader.contextTypes = {
@@ -146,13 +146,13 @@ StopCardHeader.contextTypes = {
         showDescription: PropTypes.bool,
         showDistance: PropTypes.bool,
         showStopCode: PropTypes.bool,
-        virtualMonitorBaseUrl: PropTypes.string,
-      }).isRequired,
-    }).isRequired,
+        virtualMonitorBaseUrl: PropTypes.string
+      }).isRequired
+    }).isRequired
   }).isRequired,
   intl: intlShape.isRequired,
   executeAction: PropTypes.func.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 StopCardHeader.displayName = 'StopCardHeader';

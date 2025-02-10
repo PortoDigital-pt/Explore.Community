@@ -7,16 +7,16 @@ import { unixTime } from '../util/timeUtils';
 import {
   clearFavouriteStorage,
   getFavouriteStorage,
-  setFavouriteStorage,
+  setFavouriteStorage
 } from './localStorage';
 import {
   deleteFavourites,
   getFavourites,
-  updateFavourites,
+  updateFavourites
 } from '../util/apiUtils';
 import {
   mapVehicleRentalFromStore,
-  mapVehicleRentalToStore,
+  mapVehicleRentalToStore
 } from '../util/vehicleRentalUtils';
 
 // internal data model for vehicle rental stations has changed
@@ -25,7 +25,7 @@ function mapFromStore(favourites) {
   return favourites.map(favourite =>
     favourite.type === 'bikeStation'
       ? mapVehicleRentalFromStore(favourite)
-      : favourite,
+      : favourite
   );
 }
 
@@ -33,7 +33,7 @@ function mapToStore(favourites) {
   return favourites.map(favourite =>
     favourite.type === 'bikeStation'
       ? mapVehicleRentalToStore(favourite)
-      : favourite,
+      : favourite
   );
 }
 
@@ -130,7 +130,7 @@ export default class FavouriteStore extends Store {
   getByGtfsId(gtfsId, type) {
     return find(
       this.favourites,
-      favourite => gtfsId === favourite.gtfsId && type === favourite.type,
+      favourite => gtfsId === favourite.gtfsId && type === favourite.type
     );
   }
 
@@ -138,7 +138,7 @@ export default class FavouriteStore extends Store {
     return find(
       this.favourites,
       favourite =>
-        stationId === favourite.stationId && network === favourite.network,
+        stationId === favourite.stationId && network === favourite.network
     );
   }
 
@@ -150,7 +150,7 @@ export default class FavouriteStore extends Store {
 
   getStopsAndStations() {
     return this.favourites.filter(
-      favourite => favourite.type === 'stop' || favourite.type === 'station',
+      favourite => favourite.type === 'stop' || favourite.type === 'station'
     );
   }
 
@@ -164,7 +164,7 @@ export default class FavouriteStore extends Store {
 
   getVehicleRentalStations() {
     return this.favourites.filter(
-      favourite => favourite.type === 'bikeStation',
+      favourite => favourite.type === 'bikeStation'
     );
   }
 
@@ -213,18 +213,18 @@ export default class FavouriteStore extends Store {
     const newFavourites = mapToStore(this.favourites);
     const editIndex = findIndex(
       newFavourites,
-      item => data.favouriteId === item.favouriteId,
+      item => data.favouriteId === item.favouriteId
     );
     if (editIndex >= 0) {
       newFavourites[editIndex] = {
         ...data,
-        lastUpdated: unixTime(),
+        lastUpdated: unixTime()
       };
     } else {
       newFavourites.push({
         ...data,
         lastUpdated: unixTime(),
-        favouriteId: uuid(),
+        favouriteId: uuid()
       });
     }
     if (this.config.allowLogin) {
@@ -258,7 +258,7 @@ export default class FavouriteStore extends Store {
     if (!Array.isArray(newFavourites)) {
       onFail();
       throw new Error(
-        `New favourites is not an array:${JSON.stringify(newFavourites)}`,
+        `New favourites is not an array:${JSON.stringify(newFavourites)}`
       );
     }
     const mapped = mapToStore(newFavourites);
@@ -297,7 +297,7 @@ export default class FavouriteStore extends Store {
     }
     this.fetchingOrUpdating();
     const newFavourites = mapToStore(this.favourites).filter(
-      favourite => favourite.favouriteId !== data.favouriteId,
+      favourite => favourite.favouriteId !== data.favouriteId
     );
     if (this.config.allowLogin) {
       // Delete favourite from backend service
@@ -324,6 +324,6 @@ export default class FavouriteStore extends Store {
     UpdateFavourites: 'updateFavourites',
     DeleteFavourite: 'deleteFavourite',
     FetchFavourites: 'fetchFavourites',
-    FetchFavouritesComplete: 'fetchComplete',
+    FetchFavouritesComplete: 'fetchComplete'
   };
 }

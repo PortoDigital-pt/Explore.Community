@@ -7,14 +7,14 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import {
   configShape,
   vehicleRentalStationShape,
-  rentalVehicleShape,
+  rentalVehicleShape
 } from '../../util/shapes';
 import {
   BIKEAVL_UNKNOWN,
   getVehicleCapacity,
   getRentalNetworkConfig,
   getRentalNetworkIcon,
-  hasVehicleRentalCode,
+  hasVehicleRentalCode
 } from '../../util/vehicleRentalUtils';
 
 import withBreakpoint from '../../util/withBreakpoint';
@@ -22,7 +22,7 @@ import Icon from '../Icon';
 import { PREFIX_BIKESTATIONS } from '../../util/path';
 import {
   getVehicleAvailabilityTextColor,
-  getVehicleAvailabilityIndicatorColor,
+  getVehicleAvailabilityIndicatorColor
 } from '../../util/legUtils';
 import { getIdWithoutFeed } from '../../util/feedScopedIdUtils';
 import ScooterLinkContainer from './ScooterLinkContainer';
@@ -37,9 +37,9 @@ function VehicleRentalLeg(
     rentalVehicle,
     language,
     nextLegMode,
-    nearestScooters,
+    nearestScooters
   },
-  { config, intl },
+  { config, intl }
 ) {
   if (!vehicleRentalStation && !isScooter) {
     return null;
@@ -55,7 +55,7 @@ function VehicleRentalLeg(
     <span
       className={cx(
         'citybike-leg-header',
-        returnBike && isScooter && 'scooter-return',
+        returnBike && isScooter && 'scooter-return'
       )}
       aria-hidden={isScooter} // scooter screen reader message is already defined elsewhere
     >
@@ -67,13 +67,13 @@ function VehicleRentalLeg(
   const availabilityIndicatorColor = vehicleRentalStation
     ? getVehicleAvailabilityIndicatorColor(
         vehicleRentalStation.availableVehicles.total,
-        config,
+        config
       )
     : null;
   const availabilityTextColor = vehicleRentalStation
     ? getVehicleAvailabilityTextColor(
         vehicleRentalStation.availableVehicles.total,
-        config,
+        config
       )
     : null;
   const mobileReturn = breakpoint === 'small' && returnBike;
@@ -87,7 +87,7 @@ function VehicleRentalLeg(
         <div
           className={cx(
             'itinerary-leg-row-bike',
-            (!isScooter || !returnBike) && 'withPadding',
+            (!isScooter || !returnBike) && 'withPadding'
           )}
         >
           {legDescription}
@@ -100,7 +100,7 @@ function VehicleRentalLeg(
               className={cx(
                 'citybike-icon',
                 { small: mobileReturn },
-                isScooter && 'scooter-icon',
+                isScooter && 'scooter-icon'
               )}
             >
               <Icon
@@ -130,7 +130,7 @@ function VehicleRentalLeg(
               <span className="citybike-station-text">
                 {intl.formatMessage({
                   id: 'citybike-station-no-id',
-                  defaultMessage: 'Bike station',
+                  defaultMessage: 'Bike station'
                 })}
                 {vehicleRentalStation &&
                   hasVehicleRentalCode(vehicleRentalStation.stationId) && (
@@ -185,7 +185,7 @@ VehicleRentalLeg.propTypes = {
   rentalVehicle: rentalVehicleShape,
   language: PropTypes.string.isRequired,
   nextLegMode: PropTypes.string,
-  nearestScooters: PropTypes.arrayOf(rentalVehicleShape),
+  nearestScooters: PropTypes.arrayOf(rentalVehicleShape)
 };
 
 VehicleRentalLeg.defaultProps = {
@@ -196,12 +196,12 @@ VehicleRentalLeg.defaultProps = {
   rentalVehicle: undefined,
   stationName: undefined,
   nextLegMode: undefined,
-  nearestScooters: [],
+  nearestScooters: []
 };
 
 VehicleRentalLeg.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 const VehicleRentalLegWithBreakpoint = withBreakpoint(VehicleRentalLeg);
 
@@ -211,7 +211,7 @@ const connectedComponent = connectToStores(
   ({ getStore }) => {
     const language = getStore('PreferencesStore').getLanguage();
     return { language };
-  },
+  }
 );
 
 export { connectedComponent as default, VehicleRentalLeg as Component };

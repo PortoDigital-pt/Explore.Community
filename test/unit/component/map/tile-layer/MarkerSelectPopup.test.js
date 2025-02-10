@@ -25,9 +25,9 @@ describe('<MarkerSelectPopup />', () => {
               parentStation: 'null',
               type: 'BUS',
               patterns:
-                '[{"headsign":"Porvoo","type":"BUS","shortName":"848"},{"headsign":"Ilmala","type":"BUS","shortName":"23N"},{"headsign":"Jakomäki","type":"BUS","shortName":"69"},{"headsign":"Ruskeasuo","type":"BUS","shortName":"23"}]',
-            },
-          },
+                '[{"headsign":"Porvoo","type":"BUS","shortName":"848"},{"headsign":"Ilmala","type":"BUS","shortName":"23N"},{"headsign":"Jakomäki","type":"BUS","shortName":"69"},{"headsign":"Ruskeasuo","type":"BUS","shortName":"23"}]'
+            }
+          }
         },
         {
           layer: 'citybike',
@@ -36,37 +36,37 @@ describe('<MarkerSelectPopup />', () => {
             properties: {
               id: '114',
               name: 'Ratapihantie',
-              network: 'foobar',
-            },
-          },
+              network: 'foobar'
+            }
+          }
         },
         {
           layer: 'parkAndRide',
           feature: {
             geom: {
               x: 3270,
-              y: 2778,
+              y: 2778
             },
             properties: {
               name: '{"fi":"Tapiola Park","sv":"Tapiola Park","en":"Tapiola Park"}',
               id: 'liipi:990',
-              carPlaces: true,
-            },
-          },
+              carPlaces: true
+            }
+          }
         },
         {
           layer: 'parkAndRideForBikes',
           feature: {
             geom: {
               x: 3270,
-              y: 2778,
+              y: 2778
             },
             properties: {
               name: '{"fi":"Tapiola Bicycle Park","sv":"Tapiola Bicycle Park","en":"Tapiola Bicycle Park"}',
               id: 'liipi:995',
-              bicyclePlaces: true,
-            },
-          },
+              bicyclePlaces: true
+            }
+          }
         },
         {
           layer: 'realTimeVehicle',
@@ -86,25 +86,25 @@ describe('<MarkerSelectPopup />', () => {
               route: 'HSL:2550',
               shortName: '550',
               timestamp: 1610977447,
-              tripStartTime: '1530',
-            },
-          },
-        },
+              tripStartTime: '1530'
+            }
+          }
+        }
       ],
       selectRow: () => {},
       location: {
         lat: 60.169525626502484,
-        lng: 24.933235645294193,
+        lng: 24.933235645294193
       },
       colors: {
         primary: '#007ac9',
-        hover: '#0062a1',
-      },
+        hover: '#0062a1'
+      }
     };
     const wrapper = shallowWithIntl(<MarkerSelectPopup {...props} />, {
       context: {
-        match: mockMatch,
-      },
+        match: mockMatch
+      }
     });
     expect(wrapper.find(SelectStopRow)).to.have.lengthOf(1);
     expect(wrapper.find(SelectVehicleRentalRow)).to.have.lengthOf(1);
@@ -124,9 +124,9 @@ describe('<MarkerSelectPopup />', () => {
               name: 'Clustered vehicles should be shown',
               network: 'foobar',
               networks: ['foo', 'bar'],
-              cluster: true,
-            },
-          },
+              cluster: true
+            }
+          }
         },
         {
           layer: 'scooter',
@@ -135,25 +135,25 @@ describe('<MarkerSelectPopup />', () => {
             properties: {
               id: '115',
               name: 'Single vehicles should not be shown',
-              network: 'foobar',
-            },
-          },
-        },
+              network: 'foobar'
+            }
+          }
+        }
       ],
       selectRow: () => {},
       location: {
         lat: 60.169525626502484,
-        lng: 24.933235645294193,
+        lng: 24.933235645294193
       },
       colors: {
         primary: '#007ac9',
-        hover: '#0062a1',
-      },
+        hover: '#0062a1'
+      }
     };
     const wrapper = shallowWithIntl(<MarkerSelectPopup {...props} />, {
       context: {
-        match: mockMatch,
-      },
+        match: mockMatch
+      }
     });
     expect(wrapper.find(SelectRentalVehicleClusterRow)).to.have.lengthOf(1);
   });

@@ -14,7 +14,7 @@ const translations = {
     'choose-time': 'Zeit wählen',
     ready: 'Fertig',
     time: 'Zeit',
-    cancel: 'Abbrechen',
+    cancel: 'Abbrechen'
   },
   en: {
     today: 'Today',
@@ -34,7 +34,7 @@ const translations = {
     'choose-time': 'Choose time',
     ready: 'Ready',
     cancel: 'Cancel',
-    'invalid-input': 'The time you entered is invalid',
+    'invalid-input': 'The time you entered is invalid'
   },
   fi: {
     today: 'Tänään',
@@ -54,7 +54,7 @@ const translations = {
     'choose-time': 'Valitse aika',
     ready: 'Valmis',
     cancel: 'Peruuta',
-    'invalid-input': 'Syöttämäsi aika on virheellinen',
+    'invalid-input': 'Syöttämäsi aika on virheellinen'
   },
   pl: {
     today: 'Dziś',
@@ -74,7 +74,7 @@ const translations = {
     'choose-time': 'Wybierz godzinę',
     ready: 'Gotowe',
     cancel: 'Anuluj',
-    'invalid-input': 'Wprowadzona godzina jest nieprawidłowa',
+    'invalid-input': 'Wprowadzona godzina jest nieprawidłowa'
   },
   sv: {
     today: 'I dag',
@@ -94,7 +94,7 @@ const translations = {
     'choose-time': 'Välj tid',
     ready: 'Färdig',
     cancel: 'Avbryt',
-    'invalid-input': 'Tiden du angav är felaktig',
+    'invalid-input': 'Tiden du angav är felaktig'
   },
   pt: {
     today: 'Hoje',
@@ -114,8 +114,8 @@ const translations = {
     'choose-time': 'Escolher hora',
     ready: 'Pronto',
     cancel: 'Cancelar',
-    'invalid-input': 'A hora inserida é inválida',
-  },
+    'invalid-input': 'A hora inserida é inválida'
+  }
 };
 
 export default translations;

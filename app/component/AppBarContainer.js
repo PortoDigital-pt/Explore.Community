@@ -71,8 +71,8 @@ const AppBarContainer = ({
                     match.location.state &&
                     match.location.state.errorBoundaryKey
                       ? match.location.state.errorBoundaryKey + 1
-                      : 1,
-                },
+                      : 1
+                }
               })
             }
           />
@@ -91,14 +91,14 @@ AppBarContainer.propTypes = {
   favourites: PropTypes.arrayOf(favouriteShape),
   style: PropTypes.string.isRequired,
   lang: PropTypes.string,
-  breakpoint: PropTypes.string.isRequired,
+  breakpoint: PropTypes.string.isRequired
 };
 
 AppBarContainer.defaultProps = {
   logo: undefined,
   user: undefined,
   favourites: [],
-  lang: undefined,
+  lang: undefined
 };
 
 const AppBarContainerWithBreakpoint = withBreakpoint(AppBarContainer);
@@ -106,18 +106,18 @@ const AppBarContainerWithBreakpoint = withBreakpoint(AppBarContainer);
 const WithContext = connectToStores(
   getContext({
     match: matchShape.isRequired,
-    router: routerShape.isRequired,
+    router: routerShape.isRequired
   })(AppBarContainerWithBreakpoint),
   ['FavouriteStore', 'UserStore', 'PreferencesStore'],
   context => ({
     user: context.getStore('UserStore').getUser(),
     lang: context.getStore('PreferencesStore').getLanguage(),
-    favourites: context.getStore('FavouriteStore').getFavourites(),
-  }),
+    favourites: context.getStore('FavouriteStore').getFavourites()
+  })
 );
 
 WithContext.propTypes = {
-  title: PropTypes.node,
+  title: PropTypes.node
 };
 
 export default WithContext;
