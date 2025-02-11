@@ -3,11 +3,9 @@ import classnames from 'classnames';
 import Icon from '../../Icon';
 
 export const NavButton = ({ active, path, description }) => (
-  <div className="nav-button">
+  <button className="nav-button">
     <div className="content">
-      <div className="nav-icon">
-        <Icon img={`icon-${path}`} viewBox="0 0 24 24" />
-      </div>
+      <Icon img={`icon-${path}`} viewBox="0 0 24 24" />
       <span className="text-center">{description}</span>
     </div>
     <div
@@ -15,5 +13,5 @@ export const NavButton = ({ active, path, description }) => (
         hide: !active
       })}
     />
-  </div>
+  </button>
 );

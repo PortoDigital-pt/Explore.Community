@@ -14,25 +14,25 @@ const NAVIGATION_PATHS = {
 };
 
 // WIP
-// will depend on config - iteneraries + blocks
+// will depend on config - iteneraries + blocks. connect to store?
 // need to match route for active
-// need to translate PT/EN
+// need to translate PT/EN - connect to store?
+// define mixins for fonts/bolds/colors to use on active
+
 
 const NavigationBar = ({ breakpoint }) => {
   // const { match, router } = useRouter();
 
   return (
-    <div
+    <nav
       className={classnames('navbar', {
         hide: breakpoint === 'large'
       })}
     >
-      <div>
-        {Object.values(NAVIGATION_PATHS).map(path => (
-          <NavButton key={path} path={path} description={path} />
-        ))}
-      </div>
-    </div>
+      {Object.values(NAVIGATION_PATHS).map(path => (
+        <NavButton key={path} path={path} description={path} />
+      ))}
+    </nav>
   );
 };
 
