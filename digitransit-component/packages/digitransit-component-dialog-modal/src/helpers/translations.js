@@ -14,6 +14,9 @@ const translations = {
   sv: {
     'close-modal': 'Stäng modalen',
   },
+  pt: {
+    'close-modal': 'Fechar modal',
+  },
 };
 
 export default translations;

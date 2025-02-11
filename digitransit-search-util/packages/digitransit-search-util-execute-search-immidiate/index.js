@@ -234,7 +234,7 @@ const routeLayers = [
   'route-AIRPLANE',
   'route-FUNICULAR',
 ];
-const locationLayers = ['venue', 'address', 'street'];
+const locationLayers = ['venue', 'venue_ropi', 'address', 'street'];
 const parkingLayers = ['carpark', 'bikepark'];
 const stopLayers = ['stop', 'station'];
 
@@ -329,7 +329,7 @@ export function getSearchResults(
     }
 
     if (allSources || sources.includes('Datasource')) {
-      const geocodingLayers = ['venue', 'address', 'street'];
+      const geocodingLayers = ['venue', 'venue_ropi', 'address', 'street'];
       if (targets.includes('Stations')) {
         geocodingLayers.push('station'); // search stations from OSM
       }

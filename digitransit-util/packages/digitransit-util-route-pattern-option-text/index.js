@@ -22,6 +22,7 @@ i18next.addResourceBundle('nb', 'translation', translations.nb);
 i18next.addResourceBundle('pl', 'translation', translations.pl);
 i18next.addResourceBundle('ro', 'translation', translations.ro);
 i18next.addResourceBundle('sv', 'translation', translations.sv);
+i18next.addResourceBundle('pt', 'translation', translations.pt);
 
 function translateText(objectToTranslate) {
   if (

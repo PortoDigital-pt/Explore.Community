@@ -37,3 +37,7 @@ dump.rdb
 !.yarn/versions
 .pnp.*
 .npmrc
+.env
+amporto.sh
+amporto-create-patch.sh
+hsl.sh

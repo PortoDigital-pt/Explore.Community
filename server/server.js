@@ -2,6 +2,8 @@
 
 'use strict';
 
+require('dotenv')?.config();
+
 /* ********* Polyfills (for node) ********* */
 const path = require('path');
 const fs = require('fs');
@@ -25,6 +27,7 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 /* ********* Server ********* */
+
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const cookieParser = require('cookie-parser');
@@ -146,6 +149,7 @@ function setUpRoutes() {
     ['/', '/fi/', '/en/', '/sv/', '/ru/', '/slangi/'],
     require('./reittiopasParameterMiddleware').default,
   );
+
   app.use(require('../app/server').default);
 
   // Make sure req has the correct hostname extracted from the proxy info
@@ -344,7 +348,9 @@ function collectGeoJsonZones() {
 
 function startServer() {
   const server = app.listen(port, () =>
-    console.log('Digitransit-ui available on port %d', server.address().port),
+    console.log(
+      `\n   Digitransit-ui available on port=[${server.address().port}]. \n`,
+    ),
   );
 }
 
@@ -436,6 +442,13 @@ function fetchCitybikeConfigurations() {
   });
 }
 /* ********* Init ********* */
+
+// console.log('\n =======================[env]======================== \n', process.env);
+
+// console.log('\n ====================================================');
+
+// console.log('\n =======================[conf]======================= \n', config);
+// console.log('\n ====================================================');
 
 if (process.env.OIDC_CLIENT_ID) {
   setUpOpenId();

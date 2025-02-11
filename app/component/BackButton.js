@@ -67,7 +67,7 @@ export default class BackButton extends React.Component {
     let url;
     const { config, intl } = this.context;
     // apply rootlink only in production, it is annoying locally
-    if (!this.props.onBackBtnClick && config.NODE_ENV !== 'development') {
+    if (!this.props.onBackBtnClick /* && config.NODE_ENV !== 'development' */) {
       if (config.passLanguageToRootLink && intl.locale !== 'fi') {
         url = `${config.URL.ROOTLINK}/${intl.locale}`;
       } else {

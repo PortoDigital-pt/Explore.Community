@@ -36,11 +36,11 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       })
     : redis.createClient(RedisPort, RedisHost);
 
-  const redirectUris = hostnames.map(host => `${host}${callbackPath}`);
-  const postLogoutRedirectUris = hostnames.map(
+  const redirectUris = hostnames?.map(host => `${host}${callbackPath}`);
+  const postLogoutRedirectUris = hostnames?.map(
     host => `${host}${logoutCallbackPath}`,
   );
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' && postLogoutRedirectUris) {
     redirectUris.push(`http://localhost:${port}${callbackPath}`);
     postLogoutRedirectUris.push(
       `http://localhost:${port}${logoutCallbackPath}`,
@@ -265,6 +265,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
 
   /* GET the profile of the current authenticated user */
   app.get('/api/user', function (req, res) {
+    /*
     axios
       .get(`${OIDCHost}/openid/userinfo`, {
         headers: { Authorization: `Bearer ${req.user.token.access_token}` },
@@ -276,6 +277,12 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
           errorHandler(res);
         }
       })
+    */
+    oic.client
+      .userinfo(req.user.token.access_token)
+      .then(function (response) {
+        res.send(response);
+      })
       .catch(function (err) {
         errorHandler(res, err);
       });
@@ -283,10 +290,17 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
 
   // Temporary solution for checking if user is authenticated
   const userAuthenticated = function (req, res, next) {
+    /*
     axios
       .get(`${OIDCHost}/openid/userinfo`, {
         headers: { Authorization: `Bearer ${req.user.token.access_token}` },
       })
+      .then(function () {
+        next();
+      })
+    */
+    oic.client
+      .userinfo(req.user.token.access_token)
       .then(function () {
         next();
       })

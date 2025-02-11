@@ -330,8 +330,9 @@ module.exports = {
     'fbjs/lib/Map': 'var Map',
   },
   devServer: {
+    allowedHosts: 'all',
     compress: true,
-    host: '::1',
+    host: '0.0.0.0',
     hot: false,
     port: process.env.HOT_LOAD_PORT || 9000,
     devMiddleware: {

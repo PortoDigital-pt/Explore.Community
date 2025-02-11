@@ -11,6 +11,9 @@ const translations = {
   sv: {
     traffic: 'Störningar och ändringar',
   },
+  pt: {
+    traffic: 'Alterações e interrupções',
+  },
   fi: {
     traffic: 'Häiriöt ja muutokset',
   },

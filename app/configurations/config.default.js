@@ -2,6 +2,8 @@
 import safeJsonParse from '../util/safeJsonParser';
 import { BIKEAVL_WITHMAX } from '../util/vehicleRentalUtils';
 
+require('dotenv')?.config();
+
 const CONFIG = process.env.CONFIG || 'default';
 const API_URL = process.env.API_URL || 'https://dev-api.digitransit.fi';
 const GEOCODING_BASE_URL =
@@ -14,7 +16,6 @@ const STOP_TIMETABLES_URL =
   process.env.STOP_TIMETABLES_URL || 'https://dev.kartat.hsl.fi';
 const APP_PATH = process.env.APP_CONTEXT || '';
 const {
-  // AXE,
   NODE_ENV,
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME,
   API_SUBSCRIPTION_HEADER_NAME,
@@ -33,7 +34,6 @@ const REALTIME_PATCH = safeJsonParse(process.env.REALTIME_PATCH) || {};
 
 export default {
   PORT,
-  // AXE,
   CONFIG,
   NODE_ENV,
   OTPTimeout: OTP_TIMEOUT,

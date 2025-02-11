@@ -96,6 +96,26 @@ const translations = {
     cancel: 'Avbryt',
     'invalid-input': 'Tiden du angav är felaktig',
   },
+  pt: {
+    today: 'Hoje',
+    tomorrow: 'Amanhã',
+    'accessible-close': 'Fechar o seletor',
+    'accessible-closed': 'Seletor fechado',
+    'accessible-open': 'Abrir o seletor',
+    'accessible-opened': 'Seletor aberto',
+    'accessible-title': 'Seletor de data e hora',
+    'accessible-update-instructions':
+      'Alterar os parâmetros de hora iniciará uma nova pesquisa.',
+    arrival: 'Chegada',
+    date: 'Data',
+    departure: 'Partida',
+    'departure-now': 'Partindo agora',
+    time: 'Hora',
+    'choose-time': 'Escolher hora',
+    ready: 'Pronto',
+    cancel: 'Cancelar',
+    'invalid-input': 'A hora inserida é inválida',
+  },
 };
 
 export default translations;
