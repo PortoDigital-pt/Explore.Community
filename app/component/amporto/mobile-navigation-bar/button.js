@@ -3,6 +3,9 @@ import { string, bool, func } from 'prop-types';
 import classnames from 'classnames';
 import Icon from '../../Icon';
 
+// WIP
+// define mixins for fonts/bolds/colors to use on active
+
 export const NavButton = ({ item, onClick, description, active }) => (
   <button
     type="button"
@@ -23,8 +26,8 @@ export const NavButton = ({ item, onClick, description, active }) => (
 );
 
 NavButton.propTypes = {
-  onClick: func.isRequired,
   item: string.isRequired,
+  onClick: func.isRequired,
   description: string.isRequired,
-  active: bool.isRequired,
+  active: bool.isRequired
 };

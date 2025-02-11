@@ -38,17 +38,22 @@ const filterNavigationItems = ({ showItineraries, showBlocks }) => {
   return navToRender;
 };
 
-// WIP
-// need to match route for active
-// define mixins for fonts/bolds/colors to use on active
+const notNavigateExpression = new RegExp(
+  `^\/(?!(${NAVIGATION_ITEMS.EXPLORE}|${NAVIGATION_ITEMS.ITINERARIES}|${NAVIGATION_ITEMS.BLOCKS}|${NAVIGATION_ITEMS.FAVOURITES}))(\w*)`,
+  'i'
+);
+const isActive = ({ pathname, item }) =>
+  item === NAVIGATION_ITEMS.NAVIGATE
+    ? notNavigateExpression.test(pathname)
+    : pathname.startsWith(`/${item}`);
 
 const NavigationBar = (
   { breakpoint },
   { config: { showItineraries, showBlocks }, intl }
 ) => {
-  const { router } = useRouter();
+  const { match, router } = useRouter();
 
-  const NavigationItems = useMemo(
+  const navigationItems = useMemo(
     () => filterNavigationItems({ showItineraries, showBlocks }),
     [showItineraries, showBlocks]
   );
@@ -64,12 +69,13 @@ const NavigationBar = (
         hide: breakpoint === 'large'
       })}
     >
-      {Object.values(NavigationItems).map(item => (
+      {Object.values(navigationItems).map(item => (
         <NavButton
           key={item}
           item={item}
           onClick={() => onNavigation(item)}
           description={intl.messages[`nav-item-${item}`]}
+          active={isActive({ pathname: match.location.pathname, item })}
         />
       ))}
     </nav>
