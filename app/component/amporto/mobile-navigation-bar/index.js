@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
+import { useRouter } from 'found';
 import classnames from 'classnames';
 import { string } from 'prop-types';
 import getContext from 'recompose/getContext';
 import { intlShape } from 'react-intl';
 import { configShape } from '../../../util/shapes';
-// import { useRouter } from 'found';
 import { NavButton } from './button';
 import withBreakpoint from '../../../util/withBreakpoint';
 
-const NAVIGATION_PATHS = {
+const NAVIGATION_ITEMS = {
   EXPLORE: 'explore',
   NAVIGATE: 'navigate',
   ITINERARIES: 'itineraries',
@@ -16,8 +16,16 @@ const NAVIGATION_PATHS = {
   FAVOURITES: 'favourites'
 };
 
-const filterNavPaths = ({ showItineraries, showBlocks }) => {
-  const navToRender = { ...NAVIGATION_PATHS };
+const NAVIGATION_ITEMS_PATH_MAP = {
+  [NAVIGATION_ITEMS.EXPLORE]: `/${NAVIGATION_ITEMS.EXPLORE}`,
+  [NAVIGATION_ITEMS.NAVIGATE]: '/',
+  [NAVIGATION_ITEMS.ITINERARIES]: `/${NAVIGATION_ITEMS.ITINERARIES}`,
+  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`,
+  [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
+};
+
+const filterNavigationContent = ({ showItineraries, showBlocks }) => {
+  const navToRender = { ...NAVIGATION_ITEMS };
 
   if (!showItineraries) {
     delete navToRender.ITINERARIES;
@@ -38,11 +46,16 @@ const NavigationBar = (
   { breakpoint },
   { config: { showItineraries, showBlocks }, intl }
 ) => {
-  // const { match, router } = useRouter();
+  const { router } = useRouter();
 
-  const NavigationPaths = useMemo(
-    () => filterNavPaths({ showItineraries, showBlocks }),
+  const NavigationContent = useMemo(
+    () => filterNavigationContent({ showItineraries, showBlocks }),
     [showItineraries, showBlocks]
+  );
+
+  const onNavigation = useCallback(
+    path => router.push(NAVIGATION_ITEMS_PATH_MAP[path]),
+    [router.push]
   );
 
   return (
@@ -51,8 +64,9 @@ const NavigationBar = (
         hide: breakpoint === 'large'
       })}
     >
-      {Object.values(NavigationPaths).map(path => (
+      {Object.values(NavigationContent).map(path => (
         <NavButton
+          onClick={() => onNavigation(path)}
           key={path}
           path={path}
           description={intl.messages[`nav-item-${path}`]}
