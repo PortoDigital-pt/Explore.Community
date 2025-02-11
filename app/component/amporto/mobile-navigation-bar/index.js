@@ -24,7 +24,7 @@ const NAVIGATION_ITEMS_PATH_MAP = {
   [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
 };
 
-const filterNavigationContent = ({ showItineraries, showBlocks }) => {
+const filterNavigationItems = ({ showItineraries, showBlocks }) => {
   const navToRender = { ...NAVIGATION_ITEMS };
 
   if (!showItineraries) {
@@ -48,13 +48,13 @@ const NavigationBar = (
 ) => {
   const { router } = useRouter();
 
-  const NavigationContent = useMemo(
-    () => filterNavigationContent({ showItineraries, showBlocks }),
+  const NavigationItems = useMemo(
+    () => filterNavigationItems({ showItineraries, showBlocks }),
     [showItineraries, showBlocks]
   );
 
   const onNavigation = useCallback(
-    path => router.push(NAVIGATION_ITEMS_PATH_MAP[path]),
+    item => router.push(NAVIGATION_ITEMS_PATH_MAP[item]),
     [router.push]
   );
 
@@ -64,12 +64,12 @@ const NavigationBar = (
         hide: breakpoint === 'large'
       })}
     >
-      {Object.values(NavigationContent).map(path => (
+      {Object.values(NavigationItems).map(item => (
         <NavButton
-          onClick={() => onNavigation(path)}
-          key={path}
-          path={path}
-          description={intl.messages[`nav-item-${path}`]}
+          key={item}
+          item={item}
+          onClick={() => onNavigation(item)}
+          description={intl.messages[`nav-item-${item}`]}
         />
       ))}
     </nav>
