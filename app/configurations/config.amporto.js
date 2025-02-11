@@ -47,7 +47,9 @@ const {
   NEAR_YOU_MODES,
   NARROW_NEAR_YOU_BUTTONS,
   MESSAGE_BAR_ALERTS,
-  SHOW_CO2_IN_ITINERARY_SUMMARY
+  SHOW_CO2_IN_ITINERARY_SUMMARY,
+  SHOW_ITINERARIES,
+  SHOW_BLOCKS
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -89,6 +91,10 @@ export default {
   indexPath: INDEX_PATH,
   textLogo: TEXT_LOGO === 'true',
   logo: LOGO,
+
+  // navbar items
+  showItineraries: SHOW_ITINERARIES === 'true',
+  showBlocks: SHOW_BLOCKS === 'true',
 
   contactName: {
     default: CONTACT_NAME

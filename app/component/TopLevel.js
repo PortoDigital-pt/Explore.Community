@@ -18,7 +18,7 @@ import DesktopView from './DesktopView';
 import ErrorBoundary from './ErrorBoundary';
 import { DesktopOrMobile } from '../util/withBreakpoint';
 import { addAnalyticsEvent, handleUserAnalytics } from '../util/analyticsUtils';
-import { MobileNavigationBar } from './amporto/mobile-navigation-bar';
+import MobileNavigationBar from './amporto/mobile-navigation-bar';
 
 class TopLevel extends React.Component {
   static propTypes = {

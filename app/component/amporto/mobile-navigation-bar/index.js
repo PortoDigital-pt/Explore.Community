@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import { string } from 'prop-types';
+import getContext from 'recompose/getContext';
+import { intlShape } from 'react-intl';
+import { configShape } from '../../../util/shapes';
 // import { useRouter } from 'found';
 import { NavButton } from './button';
 import withBreakpoint from '../../../util/withBreakpoint';
@@ -13,15 +16,34 @@ const NAVIGATION_PATHS = {
   FAVOURITES: 'favourites'
 };
 
+const filterNavPaths = ({ showItineraries, showBlocks }) => {
+  const navToRender = { ...NAVIGATION_PATHS };
+
+  if (!showItineraries) {
+    delete navToRender.ITINERARIES;
+  }
+
+  if (!showBlocks) {
+    delete navToRender.BLOCKS;
+  }
+
+  return navToRender;
+};
+
 // WIP
-// will depend on config - iteneraries + blocks. connect to store?
 // need to match route for active
-// need to translate PT/EN - connect to store?
 // define mixins for fonts/bolds/colors to use on active
 
-
-const NavigationBar = ({ breakpoint }) => {
+const NavigationBar = (
+  { breakpoint },
+  { config: { showItineraries, showBlocks }, intl }
+) => {
   // const { match, router } = useRouter();
+
+  const NavigationPaths = useMemo(
+    () => filterNavPaths({ showItineraries, showBlocks }),
+    [showItineraries, showBlocks]
+  );
 
   return (
     <nav
@@ -29,8 +51,12 @@ const NavigationBar = ({ breakpoint }) => {
         hide: breakpoint === 'large'
       })}
     >
-      {Object.values(NAVIGATION_PATHS).map(path => (
-        <NavButton key={path} path={path} description={path} />
+      {Object.values(NavigationPaths).map(path => (
+        <NavButton
+          key={path}
+          path={path}
+          description={intl.messages[`nav-item-${path}`]}
+        />
       ))}
     </nav>
   );
@@ -40,4 +66,12 @@ NavigationBar.propTypes = {
   breakpoint: string.isRequired
 };
 
-export const MobileNavigationBar = withBreakpoint(NavigationBar);
+NavigationBar.contextTypes = {
+  config: configShape.isRequired,
+  intl: intlShape.isRequired
+};
+
+export default getContext({
+  config: configShape.isRequired,
+  intl: intlShape.isRequired
+})(withBreakpoint(NavigationBar));

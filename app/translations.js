@@ -883,7 +883,6 @@ const translations = {
     'set-time-now-button-label': 'Set travel time to current',
     'time-navigation-buttons': 'Time navigation buttons',
     'time-selector-form': 'Edit time',
-    // eslint-disable-next-line sort-keys
     address: 'Address',
     'address-or-stop': 'Address or stop',
     agency: 'Operator',
@@ -1013,7 +1012,6 @@ const translations = {
     'crushed-standing-room-only': 'Crushed standing room only',
     'cycle-distance-duration': 'Cycle {duration} ({distance})',
     'cyclewalk-distance-duration': 'Walk your bike {duration} ({distance})',
-    // eslint-disable-next-line sort-keys
     currentposition: 'Current position',
     datasources: 'Data sources',
     date: 'Date',
@@ -1815,7 +1813,12 @@ const translations = {
     zone: 'Zone',
     'zone-info': 'Zone {zone}',
     'zone-unknown': 'Unknown zone',
-    zones: 'Fare zones'
+    zones: 'Fare zones',
+    'nav-item-explore': 'Explore',
+    'nav-item-navigate': 'Navigate',
+    'nav-item-itineraries': 'Itineraries',
+    'nav-item-blocks': 'Blocks',
+    'nav-item-favourites': 'Favourites'
   },
 
   es: {
@@ -6224,7 +6227,12 @@ const translations = {
     'weather-icon-92': 'Neblina',
     where: 'Para onde?',
     'zone-info': 'Zona {zone}',
-    'zone-unknown': 'Zona desconhecida'
+    'zone-unknown': 'Zona desconhecida',
+    'nav-item-explore': 'Explorar',
+    'nav-item-navigate': 'Navegar',
+    'nav-item-itineraries': 'Roteiros',
+    'nav-item-blocks': 'Quarteirões',
+    'nav-item-favourites': 'Favoritos'
   },
 
   sv: {
