@@ -28,31 +28,20 @@
     row-gap: 4px;
     align-items: center;
     justify-content: center;
-
+    color: $primary-light;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-s;
 
     .icon {
       display: flex;
       position: relative;
       width: 24px;
       height: 24px;
-      color: $primary-light;
-
-      .active {
-        color: $primary-contrastText;
-      }
     }
 
-    span {
-      display: flex;
-      position: relative;
-      font-weight: $font-weight-regular;
-      font-size: $font-size-s;
-      color: $primary-light;
-
-      .active {
-        font-weight: $font-weight-bold;
-        color: $primary-contrastText;
-      }
+    &.active {
+      color: $primary-contrastText;
+      font-weight: $font-weight-bold;
     }
   }
 }
