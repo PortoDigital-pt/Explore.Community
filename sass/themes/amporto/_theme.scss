@@ -1,5 +1,11 @@
 @import '../default/theme';
 
+/* fonts */
+$font-family: 'Open Sans', arial, georgia, serif;
+$heading-font-family: $font-family;
+$button-font-family: $font-family;
+$font-family-narrow: $font-family;
+
 /* main theme colors */
 $primary-color: #00095f;
 $secondary-color: darken($primary-color, 20%);
