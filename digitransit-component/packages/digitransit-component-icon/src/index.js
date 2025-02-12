@@ -7,7 +7,7 @@ import Busstop from './assets/bus_stop.svg';
 import City from './assets/city.svg';
 import Edit from './assets/edit.svg';
 import Ferry from './assets/ferry.svg';
-import Home from './assets/home.svg';
+import Home from './assets/amporto/home.svg';
 import Locate from './assets/locate.svg';
 import Place from './assets/place.svg';
 import Rail from './assets/rail.svg';
@@ -18,11 +18,12 @@ import Star from './assets/star.svg';
 import Station from './assets/station.svg';
 import Subway from './assets/subway.svg';
 import Tram from './assets/tram.svg';
-import Work from './assets/work.svg';
+import Work from './assets/amporto/work.svg';
 import Map from './assets/map.svg';
 import Close from './assets/close.svg';
-import Mapmarker from './assets/mapmarker.svg';
+import Mapmarker from './assets/amporto/mapmarker.svg';
 import MapmarkerVia from './assets/mapmarker-via.svg';
+import MapPin from './assets/amporto/map-pin.svg';
 import Search from './assets/search.svg';
 import Plus from './assets/plus.svg';
 import Attention from './assets/attention.svg';
@@ -79,6 +80,7 @@ import SearchRailStopDigitransit from './assets/search-rail-stop-digitransit.svg
 import SearchRailStationDigitransit from './assets/search-rail-station-digitransit.svg';
 import SearchTramStopDigitransit from './assets/search-tram-stop-digitransit.svg';
 import Funicular from './assets/funicular.svg';
+import ClearLocation from './assets/amporto/clear-location.svg';
 
 const IconMap = style => {
   return {
@@ -187,6 +189,8 @@ const IconMap = style => {
     ),
     'search-tram-stop-digitransit': <SearchTramStopDigitransit style={style} />,
     funicular: <Funicular style={style} />,
+    mapPin: <MapPin style={style} />,
+    clearLocation: <ClearLocation style={style} />,
   };
 };
 

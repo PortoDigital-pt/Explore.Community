@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 import PropTypes from 'prop-types';
 import React from 'react';
 import cx from 'classnames';
@@ -9,7 +10,7 @@ import Shimmer from '@hsl-fi/shimmer';
 import SuggestionItem from '@digitransit-component/digitransit-component-suggestion-item';
 import Icon from '@digitransit-component/digitransit-component-icon';
 import { formatFavouritePlaceLabel } from '@digitransit-search-util/digitransit-search-util-uniq-by-label';
-import styles from './helpers/styles.scss';
+import styles from '../../../../sass/themes/amporto/digitransit-components/favourite-bar.scss';
 import translations from './helpers/translations';
 
 i18next.init({

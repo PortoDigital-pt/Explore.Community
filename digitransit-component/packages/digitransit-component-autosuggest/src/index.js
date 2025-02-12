@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-relative-packages */
 import PropTypes from 'prop-types';
 import React from 'react';
 import i18next from 'i18next';
@@ -20,7 +21,7 @@ import 'moment/locale/de';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import translations from './helpers/translations';
-import styles from './helpers/styles.scss';
+import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest.scss';
 import MobileSearch from './helpers/MobileSearch';
 import withScrollLock from './helpers/withScrollLock';
 
@@ -585,7 +586,7 @@ class DTAutosuggest extends React.Component {
         onClick={this.clearInput}
         aria-label={i18next.t('clear-button-label')}
       >
-        <Icon img="close" color={this.props.color} />
+        <Icon img="clearLocation" color={this.props.color} />
       </button>
     );
   };
