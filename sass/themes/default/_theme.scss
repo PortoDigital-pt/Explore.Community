@@ -10,6 +10,22 @@ $black: #333;
 $gray-blue: #78909c;
 $gray-blue-light: rgb(182, 193, 199);
 
+// Default
+$primary-main: #493E90;
+$primary-light: #E6F1F4;
+$primary-dark: #0C534A;
+$primary-contrastText: #FAFAFA;
+$gradient: linear-gradient(270deg, $primary-dark 0%, rgba(12, 83, 74, 0.75) 100%);
+
+$background-default: #FAFAFA;
+$background-light: #ECF1F6;
+
+$grey-light-up: #F4F4F4;
+$grey-light-down: #EAEAEA;
+$grey-medium: #C8C8C8;
+$grey-dark-up: #8E8E8E;
+$grey-dark-down: #212121;
+
 /* Operator palette */
 $livi-blue: #000f94;
 $livi-gold: rgb(233, 171, 0);
@@ -22,11 +38,11 @@ $livi-tram-green: rgb(106, 137, 37);
 $livi-funicular-pink: #f0f;
 
 /* Application palette */
-$background-color: #fff;
+$background-color: $background-default;
 $background-color-darker: #e0e5e8;
-$background-color-lighter: #f4f4f5;
-$primary-color: $livi-blue;
-$primary-font-color: $white;
+$background-color-lighter: $background-light;
+$primary-color: $primary-dark;
+$primary-font-color: $primary-contrastText;
 $secondary-color: #008bde;
 $favourite-color: $livi-gold;
 $hilight-color: $livi-blue;
@@ -112,6 +128,18 @@ $font-size-large: 1.25rem;
 $font-size-xlarge: 1.5rem;
 $disruption-message-font-weight: 200;
 $itinerary-co2-font-weight: 325;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-size-s: 12px;
+$font-size-base: 14px;
+$font-size-l: 16px;
+$font-size-label: 10px;
+$font-size-heading-s: 24px;
+$font-size-heading-base: 32px;
+$font-size-heading-l: 48px;
 
 /* Paddings */
 $padding-xxsmall: 0.125em;

@@ -6,26 +6,37 @@ import Icon from '../../Icon';
 // WIP
 // define mixins for fonts/bolds/colors to use on active
 
-export const NavButton = ({ item, onClick, description, active }) => (
-  <button
-    type="button"
-    className="nav-button"
+export const NavTab = ({ item, onClick, description, active }) => (
+  <div
+    className="nav-tab"
     aria-label={description}
     onClick={onClick}
+    role="button"
+    tabIndex={0}
   >
     <div className="content">
-      <Icon img={`icon-${item}`} viewBox="0 0 24 24" />
-      <span className="text-center">{description}</span>
+      <Icon
+        img={`icon-${item}`}
+        viewBox="0 0 24 24"
+        className={active ? 'active' : ''}
+      />
+      <span
+        className={classnames('text-center', {
+          active
+        })}
+      >
+        {description}
+      </span>
     </div>
     <div
-      className={classnames('nav-button-active-indicator', {
+      className={classnames('nav-tab-active-indicator', {
         hide: !active
       })}
     />
-  </button>
+  </div>
 );
 
-NavButton.propTypes = {
+NavTab.propTypes = {
   item: string.isRequired,
   onClick: func.isRequired,
   description: string.isRequired,

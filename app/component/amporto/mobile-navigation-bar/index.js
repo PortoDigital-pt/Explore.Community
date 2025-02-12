@@ -5,7 +5,7 @@ import { string } from 'prop-types';
 import getContext from 'recompose/getContext';
 import { intlShape } from 'react-intl';
 import { configShape } from '../../../util/shapes';
-import { NavButton } from './button';
+import { NavTab } from './tab';
 import withBreakpoint from '../../../util/withBreakpoint';
 
 const NAVIGATION_ITEMS = {
@@ -70,7 +70,7 @@ const NavigationBar = (
       })}
     >
       {Object.values(navigationItems).map(item => (
-        <NavButton
+        <NavTab
           key={item}
           item={item}
           onClick={() => onNavigation(item)}

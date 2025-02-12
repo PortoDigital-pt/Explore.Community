@@ -85,7 +85,7 @@ export default {
     PARK_AND_RIDE_GROUP_MAP: {
       default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`
     },
-    FONT: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800",
+    FONT: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800'
   },
 
   title: APP_TITLE,
