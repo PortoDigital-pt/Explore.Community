@@ -11,8 +11,8 @@ const MinTransferTimeSection = (
   { intl, executeAction },
   options = minTransferTimeOptions,
   currentSelection = options.find(
-    option => option.value === currentSettings.minTransferTime,
-  ),
+    option => option.value === currentSettings.minTransferTime
+  )
 ) => (
   <div className="walk-options-container">
     <SearchSettingsDropdown
@@ -20,12 +20,12 @@ const MinTransferTimeSection = (
       defaultValue={defaultSettings.minTransferTime}
       onOptionSelected={value => {
         executeAction(saveRoutingSettings, {
-          minTransferTime: value,
+          minTransferTime: value
         });
         addAnalyticsEvent({
           category: 'ItinerarySettings',
           action: 'ChangeMinTransferTime',
-          name: value,
+          name: value
         });
       }}
       options={options}
@@ -41,12 +41,12 @@ const MinTransferTimeSection = (
 MinTransferTimeSection.propTypes = {
   defaultSettings: settingsShape.isRequired,
   minTransferTimeOptions: minTransferTimeShape.isRequired,
-  currentSettings: settingsShape.isRequired,
+  currentSettings: settingsShape.isRequired
 };
 
 MinTransferTimeSection.contextTypes = {
   intl: intlShape.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default MinTransferTimeSection;

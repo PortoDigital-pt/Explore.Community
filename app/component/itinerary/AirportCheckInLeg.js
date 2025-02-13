@@ -71,13 +71,13 @@ AirportCheckInLeg.propTypes = {
   start: legTimeShape.isRequired,
   focusAction: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 AirportCheckInLeg.defaultProps = {
-  children: undefined,
+  children: undefined
 };
 
 AirportCheckInLeg.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

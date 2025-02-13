@@ -22,7 +22,7 @@ export const DATE_FORMAT3 = 'D.';
 export const getRangeInfo = (
   dayNumbers,
   sortedUniqueDayNumbers,
-  currentDateNumber,
+  currentDateNumber
 ) => {
   const returnArray = ['-', 1];
   switch (sortedUniqueDayNumbers.length) {
@@ -163,7 +163,7 @@ export const enrichPatterns = (patterns, onlyInFuture, serviceTimeRange) => {
   const currentDate = moment(moment().format(DATE_FORMAT));
   const lastRangeDate = moment(moment().format(DATE_FORMAT)).add(
     serviceTimeRange,
-    'days',
+    'days'
   );
 
   let futureTrips = cloneDeep(patterns);
@@ -175,7 +175,7 @@ export const enrichPatterns = (patterns, onlyInFuture, serviceTimeRange) => {
         o.tripsForDate.forEach(function (t) {
           if (t.stoptimes !== undefined) {
             t.stoptimes = t.stoptimes.filter(
-              s => s.serviceDay + s.scheduledDeparture >= wantedTime,
+              s => s.serviceDay + s.scheduledDeparture >= wantedTime
             );
           }
         });
@@ -209,7 +209,7 @@ export const enrichPatterns = (patterns, onlyInFuture, serviceTimeRange) => {
   });
 
   futureTrips = futureTrips.filter(
-    f => f.tripsForDate.length > 0 || f.activeDates.length > 0,
+    f => f.tripsForDate.length > 0 || f.activeDates.length > 0
   );
 
   for (let y = 0; y < futureTrips.length; y++) {
@@ -261,7 +261,7 @@ export const enrichPatterns = (patterns, onlyInFuture, serviceTimeRange) => {
     const dayInfo = getRangeInfo(
       futureTrips[y].dayJoin,
       Array.from(new Set(futureTrips[y].dayNumbers.sort())),
-      Number(currentDate.format('E')),
+      Number(currentDate.format('E'))
     );
     futureTrips[y].dayString = dayInfo[0];
     futureTrips[y].allowedDiff = dayInfo[1];
@@ -299,19 +299,19 @@ export const enrichPatterns = (patterns, onlyInFuture, serviceTimeRange) => {
         ? `${minAndMaxDate[0]}`
         : '-';
       futureTrips[y].untilDate = moment(minAndMaxDate[1]).isBefore(
-        lastRangeDate,
+        lastRangeDate
       )
         ? `${minAndMaxDate[1]}`
         : '-';
     }
 
     futureTrips[y].activeDates = futureTrips[y].activeDates.filter(
-      ad => moment(ad, DATE_FORMAT).isSameOrAfter(currentDate) === true,
+      ad => moment(ad, DATE_FORMAT).isSameOrAfter(currentDate) === true
     );
   }
 
   futureTrips = futureTrips.filter(
-    f => f.tripsForDate.length > 0 || f.activeDates.length > 0,
+    f => f.tripsForDate.length > 0 || f.activeDates.length > 0
   );
 
   // shows main routes (both directions) if there is no futureTrips
@@ -335,7 +335,7 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
   if (isTogglable) {
     if (pattern.dayString !== 'ma-su' && pattern.dayString !== '-') {
       retValue += formatMessage({
-        id: `route-pattern-select.range.${pattern.dayString}`,
+        id: `route-pattern-select.range.${pattern.dayString}`
       });
     }
     return retValue;
@@ -347,7 +347,7 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
     pattern.fromDate !== '-' &&
     pattern.fromDate !== 'Invalid date' &&
     moment(pattern.lastRangeDay).isAfter(
-      moment(pattern.rangeFollowingDays[0][1]),
+      moment(pattern.rangeFollowingDays[0][1])
     )
   ) {
     retValue += ' (';
@@ -356,7 +356,7 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
       pattern.rangeFollowingDays[0][1] === 0
     ) {
       retValue += formatMessage({
-        id: 'route-pattern-select.only',
+        id: 'route-pattern-select.only'
       });
     }
 
@@ -366,7 +366,7 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
         : (pattern.rangeFollowingDays[0][0] / 100) >> 0 ===
             (pattern.rangeFollowingDays[0][1] / 100) >> 0
           ? DATE_FORMAT3
-          : DATE_FORMAT2,
+          : DATE_FORMAT2
     );
 
     if (
@@ -375,7 +375,7 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
     ) {
       retValue += '-';
       retValue += moment(pattern.rangeFollowingDays[0][1], DATE_FORMAT).format(
-        DATE_FORMAT2,
+        DATE_FORMAT2
       );
     }
     retValue += ')';
@@ -395,12 +395,12 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
         (pattern.rangeFollowingDays[0][0] / 100) >> 0 ===
           (pattern.rangeFollowingDays[0][1] / 100) >> 0
         ? DATE_FORMAT3
-        : DATE_FORMAT2,
+        : DATE_FORMAT2
     );
     if (pattern.rangeFollowingDays[0][1] !== pattern.rangeFollowingDays[0][0]) {
       retValue += '-';
       retValue += moment(pattern.rangeFollowingDays[0][1], DATE_FORMAT).format(
-        DATE_FORMAT2,
+        DATE_FORMAT2
       );
       retValue += ', ';
       retValue += moment(pattern.rangeFollowingDays[1][0], DATE_FORMAT).format(
@@ -408,14 +408,14 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
           (pattern.rangeFollowingDays[1][0] / 100) >> 0 ===
             (pattern.rangeFollowingDays[1][1] / 100) >> 0
           ? DATE_FORMAT3
-          : DATE_FORMAT2,
+          : DATE_FORMAT2
       );
     }
 
     if (pattern.rangeFollowingDays[1][1] !== pattern.rangeFollowingDays[1][0]) {
       retValue += '-';
       retValue += moment(pattern.rangeFollowingDays[1][1], DATE_FORMAT).format(
-        DATE_FORMAT2,
+        DATE_FORMAT2
       );
     }
     if (pattern.rangeFollowingDays.length > 2) {
@@ -425,10 +425,10 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
           (pattern.rangeFollowingDays[2][0] / 100) >> 0 ===
             (pattern.rangeFollowingDays[2][1] / 100) >> 0 &&
           moment(pattern.lastRangeDay).isAfter(
-            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT),
+            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT)
           )
           ? DATE_FORMAT3
-          : DATE_FORMAT2,
+          : DATE_FORMAT2
       );
       if (
         pattern.rangeFollowingDays.length > 2 &&
@@ -437,10 +437,10 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
         retValue += '-';
         retValue +=
           moment(pattern.lastRangeDay).isAfter(
-            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT),
+            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT)
           ) || pattern.rangeFollowingDays.length > 3
             ? moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT).format(
-                DATE_FORMAT2,
+                DATE_FORMAT2
               )
             : '';
       }
@@ -459,7 +459,7 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
     pattern.dayString === 'ma-su'
   ) {
     retValue += formatMessage({
-      id: `route-pattern-select.range.${pattern.dayString}`,
+      id: `route-pattern-select.range.${pattern.dayString}`
     }).replace(/\(|\)| /gi, '');
     return retValue;
   }
@@ -472,7 +472,7 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
     pattern.dayString !== '-'
   ) {
     retValue += formatMessage({
-      id: `route-pattern-select.range.${pattern.dayString}`,
+      id: `route-pattern-select.range.${pattern.dayString}`
     });
     return retValue;
   }
@@ -487,14 +487,14 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
   ) {
     retValue += formatMessage(
       {
-        id: 'route-pattern-select.until',
+        id: 'route-pattern-select.until'
       },
       {
         range: formatMessage({
-          id: `route-pattern-select.range.${pattern.dayString}`,
+          id: `route-pattern-select.range.${pattern.dayString}`
         }).replace(/\(|\)| /gi, ''),
-        day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2),
-      },
+        day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2)
+      }
     ).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }
@@ -508,14 +508,14 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
   ) {
     retValue += formatMessage(
       {
-        id: 'route-pattern-select.until',
+        id: 'route-pattern-select.until'
       },
       {
         range: formatMessage({
-          id: `route-pattern-select.range.${pattern.dayString}`,
+          id: `route-pattern-select.range.${pattern.dayString}`
         }).replace(/\(|\)/gi, ''),
-        day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2),
-      },
+        day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2)
+      }
     ).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }
@@ -529,14 +529,14 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
   ) {
     retValue += formatMessage(
       {
-        id: 'route-pattern-select.from',
+        id: 'route-pattern-select.from'
       },
       {
         range: formatMessage({
-          id: `route-pattern-select.range.${pattern.dayString}`,
+          id: `route-pattern-select.range.${pattern.dayString}`
         }).replace(/\(|\)| /gi, ''),
-        day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2),
-      },
+        day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2)
+      }
     ).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }
@@ -550,14 +550,14 @@ export const getOptionText = (formatMessage, pattern, isTogglable) => {
   ) {
     retValue += formatMessage(
       {
-        id: 'route-pattern-select.from',
+        id: 'route-pattern-select.from'
       },
       {
         range: formatMessage({
-          id: `route-pattern-select.range.${pattern.dayString}`,
+          id: `route-pattern-select.range.${pattern.dayString}`
         }).replace(/\(|\)/gi, ''),
-        day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2),
-      },
+        day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2)
+      }
     ).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }

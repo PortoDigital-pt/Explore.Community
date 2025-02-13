@@ -15,7 +15,7 @@ const VehicleRentalStationNearYou = ({
   stop,
   relay,
   currentTime,
-  currentMode,
+  currentMode
 }) => {
   useEffect(() => {
     const { stationId } = stop;
@@ -26,7 +26,7 @@ const VehicleRentalStationNearYou = ({
         },
         null,
         null,
-        { force: true }, // query variables stay the same between refetches
+        { force: true } // query variables stay the same between refetches
       );
     }
   }, [currentTime]);
@@ -54,7 +54,7 @@ const VehicleRentalStationNearYou = ({
                 values={{
                   stationId: hasVehicleRentalCode(stop.stationId)
                     ? getIdWithoutFeed(stop.stationId)
-                    : '',
+                    : ''
                 }}
               />
             </div>
@@ -77,22 +77,22 @@ VehicleRentalStationNearYou.propTypes = {
     lon: PropTypes.number,
     name: PropTypes.string,
     rentalNetwork: PropTypes.shape({
-      networkId: PropTypes.string,
+      networkId: PropTypes.string
     }),
     operative: PropTypes.bool,
     stationId: PropTypes.string,
     type: PropTypes.string,
     availableVehicles: PropTypes.shape({ total: PropTypes.number }),
-    availableSpaces: PropTypes.shape({ total: PropTypes.number }),
+    availableSpaces: PropTypes.shape({ total: PropTypes.number })
   }).isRequired,
   currentTime: PropTypes.number,
   currentMode: PropTypes.string,
-  relay: relayShape.isRequired,
+  relay: relayShape.isRequired
 };
 
 VehicleRentalStationNearYou.defaultProps = {
   currentTime: undefined,
-  currentMode: undefined,
+  currentMode: undefined
 };
 
 const containerComponent = createRefetchContainer(
@@ -114,7 +114,7 @@ const containerComponent = createRefetchContainer(
         }
         operative
       }
-    `,
+    `
   },
   graphql`
     query VehicleRentalStationNearYouRefetchQuery($stopId: String!) {
@@ -122,10 +122,10 @@ const containerComponent = createRefetchContainer(
         ...VehicleRentalStationNearYou_stop
       }
     }
-  `,
+  `
 );
 
 export {
   containerComponent as default,
-  VehicleRentalStationNearYou as Component,
+  VehicleRentalStationNearYou as Component
 };

@@ -31,7 +31,7 @@ const onlyUpdateCoordChanges = onlyUpdateForKeys([
   'children',
   'leafletObjs',
   'bottomButtons',
-  'topButtons',
+  'topButtons'
 ]);
 
 const MapCont = onlyUpdateCoordChanges(MapContainer);
@@ -65,7 +65,7 @@ class MapWithTrackingStateHandler extends React.Component {
       hasLocation: PropTypes.bool.isRequired,
       locationingFailed: PropTypes.bool,
       lat: PropTypes.number.isRequired,
-      lon: PropTypes.number.isRequired,
+      lon: PropTypes.number.isRequired
     }).isRequired,
     bounds: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
     children: PropTypes.arrayOf(PropTypes.node),
@@ -86,7 +86,7 @@ class MapWithTrackingStateHandler extends React.Component {
     breakpoint: PropTypes.string.isRequired,
     lang: PropTypes.string.isRequired,
     topButtons: PropTypes.node,
-    bottomPadding: PropTypes.number,
+    bottomPadding: PropTypes.number
   };
 
   static defaultProps = {
@@ -108,14 +108,14 @@ class MapWithTrackingStateHandler extends React.Component {
     leafletEvents: {},
     mapLayerOptions: null,
     topButtons: null,
-    bottomPadding: undefined,
+    bottomPadding: undefined
   };
 
   constructor(props) {
     super(props);
     this.state = {
       mapTracking: props.mapTracking,
-      settingsOpen: false,
+      settingsOpen: false
     };
     this.naviProps = {};
   }
@@ -172,7 +172,7 @@ class MapWithTrackingStateHandler extends React.Component {
 
   disableMapTracking = () => {
     this.setState({
-      mapTracking: false,
+      mapTracking: false
     });
   };
 
@@ -206,7 +206,7 @@ class MapWithTrackingStateHandler extends React.Component {
     let forcedLayers;
     if (this.props.mapLayerOptions) {
       forcedLayers = getForcedLayersFromMapLayerOptions(
-        this.props.mapLayerOptions,
+        this.props.mapLayerOptions
       );
     }
     if (isEmpty(forcedLayers)) {
@@ -217,7 +217,7 @@ class MapWithTrackingStateHandler extends React.Component {
       ...forcedLayers,
       vehicles: !this.props.mapLayerOptions
         ? this.props.mapLayers.vehicles
-        : false,
+        : false
     };
     if (isEmpty(forcedLayers.stop)) {
       return merged;
@@ -226,8 +226,8 @@ class MapWithTrackingStateHandler extends React.Component {
       ...merged,
       stop: {
         ...this.props.mapLayers.stop,
-        ...forcedLayers.stop,
-      },
+        ...forcedLayers.stop
+      }
     };
   };
 
@@ -329,7 +329,7 @@ class MapWithTrackingStateHandler extends React.Component {
             onDragstart: this.startNavigation,
             onZoomstart: this.startNavigation,
             onZoomend: this.endNavigation,
-            onDragend: this.endNavigation,
+            onDragend: this.endNavigation
           }}
           {...this.naviProps}
           {...rest}
@@ -396,7 +396,7 @@ class MapWithTrackingStateHandler extends React.Component {
             >
               {this.context.intl.formatMessage({
                 id: 'close',
-                defaultMessage: 'Close',
+                defaultMessage: 'Close'
               })}
             </button>
           </MenuDrawer>
@@ -410,22 +410,22 @@ MapWithTrackingStateHandler.contextTypes = {
   executeAction: PropTypes.func,
   getStore: PropTypes.func,
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const MapWithTrackingStateHandlerapWithBreakpoint = withBreakpoint(
-  MapWithTrackingStateHandler,
+  MapWithTrackingStateHandler
 );
 
 const MapWithTracking = connectToStores(
   getContext({ config: configShape })(
-    MapWithTrackingStateHandlerapWithBreakpoint,
+    MapWithTrackingStateHandlerapWithBreakpoint
   ),
   [PositionStore, PreferencesStore],
   ({ getStore }) => ({
     position: getStore(PositionStore).getLocationState(),
-    lang: getStore(PreferencesStore).getLanguage(),
-  }),
+    lang: getStore(PreferencesStore).getLanguage()
+  })
 );
 
 export { MapWithTracking as default, MapWithTrackingStateHandler as Component };

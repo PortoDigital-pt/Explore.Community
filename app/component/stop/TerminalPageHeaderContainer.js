@@ -10,16 +10,16 @@ export default createFragmentContainer(
     ({ getStore }, { match }) => ({
       favourite: getStore('FavouriteStore').isFavourite(
         match.params.terminalId,
-        'station',
+        'station'
       ),
-      isTerminal: true,
-    }),
+      isTerminal: true
+    })
   ),
   {
     station: graphql`
       fragment TerminalPageHeaderContainer_station on Stop {
         ...StopCardHeaderContainer_stop
       }
-    `,
-  },
+    `
+  }
 );

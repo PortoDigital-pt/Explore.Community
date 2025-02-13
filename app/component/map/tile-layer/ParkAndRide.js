@@ -46,7 +46,7 @@ export default class ParkAndRide {
           this.tile.coords.z + (this.tile.props.zoomOffset || 0)
         }/${this.tile.coords.x}/${this.tile.coords.y}.pbf`,
         this.config,
-        lang,
+        lang
       ).then(res => {
         if (res.status !== 200) {
           return undefined;
@@ -72,13 +72,13 @@ export default class ParkAndRide {
                     this.tile,
                     feature.geom,
                     this.width,
-                    this.height,
+                    this.height
                   );
                 }
               }
             }
           },
-          err => console.log(err), // eslint-disable-line no-console
+          err => console.log(err) // eslint-disable-line no-console
         );
       });
     }
@@ -88,7 +88,7 @@ export default class ParkAndRide {
         this.tile.coords.z + (this.tile.props.zoomOffset || 0)
       }/${this.tile.coords.x}/${this.tile.coords.y}.pbf`,
       this.config,
-      lang,
+      lang
     ).then(res => {
       if (res.status !== 200) {
         return undefined;
@@ -114,13 +114,13 @@ export default class ParkAndRide {
                   feature.geom,
                   this.width,
                   this.height,
-                  isHilighted,
+                  isHilighted
                 );
               }
             }
           }
         },
-        err => console.log(err), // eslint-disable-line no-console
+        err => console.log(err) // eslint-disable-line no-console
       );
     });
   }

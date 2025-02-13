@@ -33,7 +33,7 @@ function translateText(objectToTranslate) {
   }
   return i18next.t(objectToTranslate.id, {
     range: objectToTranslate.range,
-    day: objectToTranslate.day,
+    day: objectToTranslate.day
   });
 }
 
@@ -60,7 +60,7 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
   if (isTogglable) {
     if (pattern.dayString !== 'ma-su' && pattern.dayString !== '-') {
       retValue += translateText({
-        id: `route-pattern-select-range-${pattern.dayString}`,
+        id: `route-pattern-select-range-${pattern.dayString}`
       });
     }
     return retValue;
@@ -75,10 +75,10 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     pattern.untilDate !== '-' &&
     pattern.untilDate !== 'Invalid date' &&
     ((moment(pattern.lastRangeDate).isAfter(
-      moment(pattern.rangeFollowingDays[0][1]),
+      moment(pattern.rangeFollowingDays[0][1])
     ) &&
       moment(pattern.currentDate).isBefore(
-        moment(pattern.rangeFollowingDays[0][1]),
+        moment(pattern.rangeFollowingDays[0][1])
       )) ||
       pattern.fromDate === pattern.untilDate)
   ) {
@@ -88,7 +88,7 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
       pattern.rangeFollowingDays[0][1] === 0
     ) {
       retValue += translateText({
-        id: 'route-pattern-select-only',
+        id: 'route-pattern-select-only'
       });
     }
 
@@ -98,7 +98,7 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
         : (pattern.rangeFollowingDays[0][0] / 100) >> 0 ===
             (pattern.rangeFollowingDays[0][1] / 100) >> 0
           ? DATE_FORMAT3
-          : DATE_FORMAT2,
+          : DATE_FORMAT2
     );
 
     if (
@@ -107,7 +107,7 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     ) {
       retValue += '-';
       retValue += moment(pattern.rangeFollowingDays[0][1], DATE_FORMAT).format(
-        DATE_FORMAT2,
+        DATE_FORMAT2
       );
     }
     retValue += ')';
@@ -128,12 +128,12 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
         (pattern.rangeFollowingDays[0][0] / 100) >> 0 ===
           (pattern.rangeFollowingDays[0][1] / 100) >> 0
         ? DATE_FORMAT3
-        : DATE_FORMAT2,
+        : DATE_FORMAT2
     );
     if (pattern.rangeFollowingDays[0][1] !== pattern.rangeFollowingDays[0][0]) {
       retValue += '-';
       retValue += moment(pattern.rangeFollowingDays[0][1], DATE_FORMAT).format(
-        DATE_FORMAT2,
+        DATE_FORMAT2
       );
       retValue += ', ';
       retValue += moment(pattern.rangeFollowingDays[1][0], DATE_FORMAT).format(
@@ -141,14 +141,14 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
           (pattern.rangeFollowingDays[1][0] / 100) >> 0 ===
             (pattern.rangeFollowingDays[1][1] / 100) >> 0
           ? DATE_FORMAT3
-          : DATE_FORMAT2,
+          : DATE_FORMAT2
       );
     }
 
     if (pattern.rangeFollowingDays[1][1] !== pattern.rangeFollowingDays[1][0]) {
       retValue += '-';
       retValue += moment(pattern.rangeFollowingDays[1][1], DATE_FORMAT).format(
-        DATE_FORMAT2,
+        DATE_FORMAT2
       );
     }
     if (pattern.rangeFollowingDays.length > 2) {
@@ -158,10 +158,10 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
           (pattern.rangeFollowingDays[2][0] / 100) >> 0 ===
             (pattern.rangeFollowingDays[2][1] / 100) >> 0 &&
           moment(pattern.lastRangeDate).isAfter(
-            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT),
+            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT)
           )
           ? DATE_FORMAT3
-          : DATE_FORMAT2,
+          : DATE_FORMAT2
       );
       if (
         pattern.rangeFollowingDays.length > 2 &&
@@ -170,10 +170,10 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
         retValue += '-';
         retValue +=
           moment(pattern.lastRangeDate).isAfter(
-            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT),
+            moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT)
           ) || pattern.rangeFollowingDays.length > 3
             ? moment(pattern.rangeFollowingDays[2][1], DATE_FORMAT).format(
-                DATE_FORMAT2,
+                DATE_FORMAT2
               )
             : '';
       }
@@ -192,7 +192,7 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     pattern.dayString === 'ma-su'
   ) {
     retValue += translateText({
-      id: `route-pattern-select-range-${pattern.dayString}`,
+      id: `route-pattern-select-range-${pattern.dayString}`
     }).replace(/\(|\)| /gi, '');
     return retValue;
   }
@@ -205,7 +205,7 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     pattern.dayString !== '-'
   ) {
     retValue += translateText({
-      id: `route-pattern-select-range-${pattern.dayString}`,
+      id: `route-pattern-select-range-${pattern.dayString}`
     });
     return retValue;
   }
@@ -221,9 +221,9 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     retValue += translateText({
       id: 'route-pattern-select-until',
       range: translateText({
-        id: `route-pattern-select-range-${pattern.dayString}`,
+        id: `route-pattern-select-range-${pattern.dayString}`
       }).replace(/\(|\)| /gi, ''),
-      day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2),
+      day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2)
     }).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }
@@ -239,9 +239,9 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     retValue += translateText({
       id: 'route-pattern-select-until',
       range: translateText({
-        id: `route-pattern-select-range-${pattern.dayString}`,
+        id: `route-pattern-select-range-${pattern.dayString}`
       }).replace(/\(|\)/gi, ''),
-      day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2),
+      day: moment(pattern.untilDate, DATE_FORMAT).format(DATE_FORMAT2)
     }).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }
@@ -256,9 +256,9 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     retValue += translateText({
       id: 'route-pattern-select-from',
       range: translateText({
-        id: `route-pattern-select-range-${pattern.dayString}`,
+        id: `route-pattern-select-range-${pattern.dayString}`
       }).replace(/\(|\)| /gi, ''),
-      day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2),
+      day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2)
     }).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }
@@ -273,9 +273,9 @@ export default function routePatternOptionText(language, pattern, isTogglable) {
     retValue += translateText({
       id: 'route-pattern-select-from',
       range: translateText({
-        id: `route-pattern-select-range-${pattern.dayString}`,
+        id: `route-pattern-select-range-${pattern.dayString}`
       }).replace(/\(|\)/gi, ''),
-      day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2),
+      day: moment(pattern.fromDate, DATE_FORMAT).format(DATE_FORMAT2)
     }).replace(/\( {2}|\( |\(/gi, '(');
     return retValue;
   }
@@ -286,11 +286,11 @@ export function getTranslatedDayString(language, dayString, clean) {
   i18next.changeLanguage(language);
   const splittedDayStr = dayString.split(',');
   let text = translateText({
-    id: `route-pattern-select-range-${splittedDayStr[0]}`,
+    id: `route-pattern-select-range-${splittedDayStr[0]}`
   });
   if (splittedDayStr.length > 1) {
     text += ` - ${translateText({
-      id: `route-pattern-select-range-${splittedDayStr[1]}`,
+      id: `route-pattern-select-range-${splittedDayStr[1]}`
     })}`;
   }
   if (clean) {

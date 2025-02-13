@@ -12,19 +12,19 @@ const VehicleRentalStationMapContainer = ({ vehicleRentalStation }) => {
 };
 
 VehicleRentalStationMapContainer.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 VehicleRentalStationMapContainer.propTypes = {
   vehicleRentalStation: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
-    name: PropTypes.string,
-  }),
+    name: PropTypes.string
+  })
 };
 
 VehicleRentalStationMapContainer.defaultProps = {
-  vehicleRentalStation: undefined,
+  vehicleRentalStation: undefined
 };
 
 const containerComponent = createFragmentContainer(
@@ -36,11 +36,11 @@ const containerComponent = createFragmentContainer(
         lon
         name
       }
-    `,
-  },
+    `
+  }
 );
 
 export {
   containerComponent as default,
-  VehicleRentalStationMapContainer as Component,
+  VehicleRentalStationMapContainer as Component
 };

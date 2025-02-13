@@ -12,7 +12,7 @@ describe('<RouteStopListContainer />', () => {
         code: 'feed:1',
         route: {
           mode: 'BUS',
-          color: null,
+          color: null
         },
         stops: [
           {
@@ -30,9 +30,9 @@ describe('<RouteStopListContainer />', () => {
                 realtimeDeparture: 57540,
                 realtimeState: 'SCHEDULED',
                 scheduledDeparture: 57540,
-                serviceDay: 1573077600,
-              },
-            ],
+                serviceDay: 1573077600
+              }
+            ]
           },
           {
             alerts: [],
@@ -49,11 +49,11 @@ describe('<RouteStopListContainer />', () => {
                 realtimeDeparture: 57234,
                 realtimeState: 'UPDATED',
                 scheduledDeparture: 56820,
-                serviceDay: 1573077600,
-              },
-            ],
-          },
-        ],
+                serviceDay: 1573077600
+              }
+            ]
+          }
+        ]
       },
       position: {
         address: undefined,
@@ -62,7 +62,7 @@ describe('<RouteStopListContainer />', () => {
         lat: 0,
         lon: 0,
         locationingFailed: false,
-        status: 'no-location',
+        status: 'no-location'
       },
       vehicles: {
         HSL_00494: {
@@ -78,7 +78,7 @@ describe('<RouteStopListContainer />', () => {
           route: 'HSL:1055',
           timestamp: 1573135114,
           tripStartTime: '1530',
-          shortName: '55',
+          shortName: '55'
         },
         HSL_00594: {
           direction: 0,
@@ -93,24 +93,24 @@ describe('<RouteStopListContainer />', () => {
           route: 'HSL:1055',
           timestamp: 1573135114,
           tripStartTime: '1530',
-          shortName: '55',
-        },
+          shortName: '55'
+        }
       },
       patternId: 'HSL:1055:0:01',
       breakpoint: 'large',
       relay: {
         refetch: () => {},
-        environment: {},
-      },
+        environment: {}
+      }
     };
     const wrapper = shallowWithIntl(<RouteStopListContainer {...props} />, {
       context: {
         config: {
           CONFIG: 'default',
-          nearestStopDistance: {},
+          nearestStopDistance: {}
         },
-        match: mockMatch,
-      },
+        match: mockMatch
+      }
     });
     expect(wrapper.find('.route-stop-list')).to.have.lengthOf(1);
   });

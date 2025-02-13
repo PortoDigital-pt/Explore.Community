@@ -18,7 +18,7 @@ const OICStrategy = function strategy(config) {
   this.tokenSet = null;
   this.init().then(() => {
     console.log(
-      'Initialization of OpenID Connect discovery process completed.',
+      'Initialization of OpenID Connect discovery process completed.'
     );
   });
 };
@@ -26,13 +26,13 @@ const OICStrategy = function strategy(config) {
 util.inherits(OICStrategy, Strategy);
 
 custom.setHttpOptionsDefaults({
-  timeout: 10000,
+  timeout: 10000
 });
 
 OICStrategy.prototype.init = function init() {
   if (!this.config.issuerHost) {
     throw new Error(
-      'Could not find requried config options issuerHost in openid-passport strategy initalization',
+      'Could not find requried config options issuerHost in openid-passport strategy initalization'
     );
   }
   console.log('OIDC: discover');
@@ -90,7 +90,7 @@ OICStrategy.prototype.callback = function cb(req, opts) {
   const redirectUri = this.createRedirectUrl(req);
   return this.client
     .callback(redirectUri, req.query, {
-      state: req.query.state,
+      state: req.query.state
     })
     .then(tokenSet => {
       req.session.ssoToken = null;
@@ -154,7 +154,7 @@ OICStrategy.prototype.refresh = function refresh(req) {
 OICStrategy.prototype.createAuthUrl = function createAuthUrl(
   redirectUri,
   lang,
-  ssoToken,
+  ssoToken
 ) {
   if (debugLogging) {
     console.log(`createAuthUrl, ssotoken=${JSON.stringify(ssoToken)}`);
@@ -165,13 +165,13 @@ OICStrategy.prototype.createAuthUrl = function createAuthUrl(
     redirect_uri: redirectUri,
     scope: this.config.scope,
     state: process.hrtime()[1],
-    ui_locales: lang,
+    ui_locales: lang
   };
   if (ssoToken) {
     return this.client.authorizationUrl({
       ...params,
       sso_token: ssoToken,
-      prompt: 'none',
+      prompt: 'none'
     });
   }
   return this.client.authorizationUrl(params);

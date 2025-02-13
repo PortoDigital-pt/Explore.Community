@@ -23,7 +23,7 @@ const Distance = props => {
 };
 
 Distance.propTypes = {
-  distance: PropTypes.number.isRequired,
+  distance: PropTypes.number.isRequired
 };
 
 export default Distance;

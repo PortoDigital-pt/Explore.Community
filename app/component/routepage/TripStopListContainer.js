@@ -20,18 +20,18 @@ class TripStopListContainer extends React.PureComponent {
     tripStart: PropTypes.string.isRequired,
     breakpoint: PropTypes.string.isRequired,
     keepTracking: PropTypes.bool,
-    setHumanScrolling: PropTypes.func,
+    setHumanScrolling: PropTypes.func
   };
 
   static defaultProps = {
     vehicles: {},
     className: undefined,
     keepTracking: false,
-    setHumanScrolling: () => {},
+    setHumanScrolling: () => {}
   };
 
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   getStops() {
@@ -40,16 +40,16 @@ class TripStopListContainer extends React.PureComponent {
       currentTime,
       trip,
       tripStart,
-      vehicles: propVehicles,
+      vehicles: propVehicles
     } = this.props;
 
     const mode = getRouteMode(trip.route);
 
     const vehicles = groupBy(
       values(propVehicles).filter(
-        vehicle => currentTime - vehicle.timestamp < 5 * 60,
+        vehicle => currentTime - vehicle.timestamp < 5 * 60
       ),
-      vehicle => vehicle.next_stop,
+      vehicle => vehicle.next_stop
     );
 
     const matchingVehicles = Object.keys(propVehicles)
@@ -59,16 +59,16 @@ class TripStopListContainer extends React.PureComponent {
           vehicle.direction === undefined ||
           trip.pattern.directionId === undefined ||
           trip.pattern.directionId === -1 ||
-          vehicle.direction === trip.pattern.directionId,
+          vehicle.direction === trip.pattern.directionId
       )
       .filter(
         vehicle =>
           vehicle.tripStartTime === undefined ||
-          vehicle.tripStartTime === tripStart,
+          vehicle.tripStartTime === tripStart
       )
       .filter(
         vehicle =>
-          vehicle.tripId === undefined || vehicle.tripId === trip.gtfsId,
+          vehicle.tripId === undefined || vehicle.tripId === trip.gtfsId
       );
 
     // selected vehicle
@@ -139,8 +139,8 @@ const connectedComponent = createFragmentContainer(
     ['RealTimeInformationStore', 'PositionStore', 'TimeStore'],
     ({ getStore }) => ({
       vehicles: getStore('RealTimeInformationStore').vehicles,
-      currentTime: getStore('TimeStore').getCurrentTime(),
-    }),
+      currentTime: getStore('TimeStore').getCurrentTime()
+    })
   ),
   {
     trip: graphql`
@@ -180,8 +180,8 @@ const connectedComponent = createFragmentContainer(
         }
         gtfsId
       }
-    `,
-  },
+    `
+  }
 );
 
 export { connectedComponent as default, TripStopListContainer as Component };

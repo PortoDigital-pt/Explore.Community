@@ -18,38 +18,38 @@ import { isKeyboardSelectionEvent } from '../../util/browser';
 import {
   showModeSettings,
   useCitybikes,
-  useScooters,
+  useScooters
 } from '../../util/modeUtils';
 import ScrollableWrapper from '../ScrollableWrapper';
 import { getDefaultSettings } from '../../util/planParamUtil';
 import {
   getCitybikeNetworks,
   getScooterNetworks,
-  RentalNetworkType,
+  RentalNetworkType
 } from '../../util/vehicleRentalUtils';
 
 class CustomizeSearch extends React.Component {
   static contextTypes = {
     intl: intlShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
     onToggleClick: PropTypes.func.isRequired,
     customizedSettings: settingsShape.isRequired,
-    mobile: PropTypes.bool,
+    mobile: PropTypes.bool
   };
 
   static defaultProps = {
-    mobile: false,
+    mobile: false
   };
 
   defaultSettings = getDefaultSettings(this.context.config);
 
   state = {
     showEScooterDisclaimer: !getReadMessageIds().includes(
-      'e_scooter_settings_disclaimer',
-    ),
+      'e_scooter_settings_disclaimer'
+    )
   };
 
   handleEScooterDisclaimerClose = () => {
@@ -69,7 +69,7 @@ class CustomizeSearch extends React.Component {
       Object.keys(config.availableTickets).forEach(key => {
         if (config.feedIds.indexOf(key) > -1) {
           ticketOptions = ticketOptions.concat(
-            Object.keys(config.availableTickets[key]),
+            Object.keys(config.availableTickets[key])
           );
         }
       });
@@ -87,14 +87,14 @@ class CustomizeSearch extends React.Component {
       <form className="customize-search">
         <button
           aria-label={intl.formatMessage({
-            id: 'close-settings',
+            id: 'close-settings'
           })}
           type="button"
           className="close-offcanvas"
           onClick={() => {
             // Move focus back to the button that opened settings window
             const openSettingsButton = document.querySelector(
-              '.open-advanced-settings-window-button',
+              '.open-advanced-settings-window-button'
             );
             if (openSettingsButton) {
               openSettingsButton.focus();
@@ -110,7 +110,7 @@ class CustomizeSearch extends React.Component {
           <h2>
             {intl.formatMessage({
               id: 'settings',
-              defaultMessage: 'Settings',
+              defaultMessage: 'Settings'
             })}
           </h2>
         </div>
@@ -153,7 +153,7 @@ class CustomizeSearch extends React.Component {
                       id="citybike-network-headers"
                       defaultMessage={intl.formatMessage({
                         id: 'citybike-network-headers',
-                        defaultMessage: 'Citybikes and scooters',
+                        defaultMessage: 'Citybikes and scooters'
                       })}
                     />
                   </legend>
@@ -197,7 +197,7 @@ class CustomizeSearch extends React.Component {
                       id="e-scooters"
                       defaultMessage={intl.formatMessage({
                         id: 'e-scooters',
-                        defaultMessage: 'Scooters',
+                        defaultMessage: 'Scooters'
                       })}
                     />
                   </legend>
@@ -210,7 +210,7 @@ class CustomizeSearch extends React.Component {
                             className="disclaimer-close"
                             aria-label={intl.formatMessage({
                               id: 'e-scooter-disclaimer-close',
-                              defaultMessage: 'close',
+                              defaultMessage: 'close'
                             })}
                             tabIndex="0"
                             onKeyDown={e => {
@@ -233,7 +233,7 @@ class CustomizeSearch extends React.Component {
                             values={{
                               paymentInfo: (
                                 <FormattedMessage id="payment-info-e-scooter" />
-                              ),
+                              )
                             }}
                           />
                         </div>
@@ -277,8 +277,8 @@ const withStore = connectToStores(
   context => ({
     customizedSettings: context
       .getStore('RoutingSettingsStore')
-      .getRoutingSettings(),
-  }),
+      .getRoutingSettings()
+  })
 );
 
 export { withStore as default, CustomizeSearch as component };

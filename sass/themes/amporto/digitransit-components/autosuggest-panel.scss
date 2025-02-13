@@ -1,7 +1,7 @@
 @import '~@hsl-fi/sass/colors';
 @import '~@hsl-fi/sass/mixins/screen';
 @import '~@hsl-fi/sass/mixins/text';
-@import '../main.scss';
+@import '../theme';
 
 $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
   context-panel, search-panel, search-overlay, stop-route-station-input,
@@ -14,16 +14,10 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
 }
 
 .autosuggest-searchpanel-text {
-  // font-size: 24px;
-  // font-weight: var(--font-weight-medium);
-  // letter-spacing: -0.8px;
-  color: $primary-color;
-  line-height: 1;
+  color: $primary-dark;
   margin-bottom: 17px;
   margin-top: unset;
-
-  font-family: 'Open Sans', 'Gotham Rounded A', 'Gotham Rounded B', Roboto,
-    Arial, Georgia;
+  font-family: $font-family;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -260,13 +254,13 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
 
   .rectangle {
     position: absolute;
-    width: 4px;
+    width: 0;
     height: 14px;
     background-color: transparent;
-    margin-left: 18px;
+    margin-left: 19px;
     margin-top: -7px;
     border-width: 0 0 20px 0;
-    border: 2px dotted $primary-color;
+    border-left: 2px dotted $primary-color;
 
     // border: 2px solid blueviolet;
     // padding: 10px;

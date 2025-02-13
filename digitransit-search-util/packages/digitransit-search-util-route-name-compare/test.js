@@ -7,23 +7,23 @@ const a = {
   shortName: 'hki',
   longName: 'Helsinki',
   agency: {
-    name: 'hsl',
-  },
+    name: 'hsl'
+  }
 };
 const b = {
   shortName: 'hki',
   longName: 'Helsinki',
   agency: {
-    name: 'hsl',
-  },
+    name: 'hsl'
+  }
 };
 
 const c = {
   shortName: 'VNT',
   longName: 'Vantaa',
   agency: {
-    name: 'hsl',
-  },
+    name: 'hsl'
+  }
 };
 describe('Testing @digitransit-search-util/digitransit-search-util-route-name-compare module', () => {
   it('Checking that same routes returns 0 ', () => {

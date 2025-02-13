@@ -10,14 +10,14 @@ import { addAnalyticsEvent } from '../../../util/analyticsUtils';
 
 const StreetModeSelectorPanel = (
   { currentSettings, defaultSettings },
-  { config, executeAction },
+  { config, executeAction }
 ) => {
   const onToggle = (propName, eventName) => {
     const state = currentSettings[propName] ? 'Disable' : 'Enable';
     addAnalyticsEvent({
       category: 'ItinerarySettings',
       action: `Settings${state}${eventName}`,
-      name: null,
+      name: null
     });
     const action = {};
     action[propName] = !currentSettings[propName];
@@ -193,12 +193,12 @@ const StreetModeSelectorPanel = (
 
 StreetModeSelectorPanel.propTypes = {
   currentSettings: settingsShape.isRequired,
-  defaultSettings: settingsShape.isRequired,
+  defaultSettings: settingsShape.isRequired
 };
 
 StreetModeSelectorPanel.contextTypes = {
   config: configShape.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default StreetModeSelectorPanel;

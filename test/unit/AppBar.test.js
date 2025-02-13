@@ -17,16 +17,16 @@ describe('<AppBar />', () => {
           config: {
             textLogo: false,
             mainMenu: {
-              show: true,
-            },
+              show: true
+            }
           },
           match: {
             location: {
-              pathname: '/',
-            },
-          },
-        },
-      },
+              pathname: '/'
+            }
+          }
+        }
+      }
     );
 
     expect(wrapper.find(LogoSmall)).to.have.lengthOf(1);
@@ -42,16 +42,16 @@ describe('<AppBar />', () => {
           config: {
             textLogo: true,
             mainMenu: {
-              show: true,
-            },
+              show: true
+            }
           },
           match: {
             location: {
-              pathname: '/',
-            },
-          },
-        },
-      },
+              pathname: '/'
+            }
+          }
+        }
+      }
     );
 
     expect(wrapper.find('section.title.title')).to.have.lengthOf(1);
@@ -65,16 +65,16 @@ describe('<AppBar />', () => {
           config: {
             textLogo: false,
             mainMenu: {
-              show: true,
-            },
+              show: true
+            }
           },
           match: {
             location: {
-              pathname: '/',
-            },
-          },
-        },
-      },
+              pathname: '/'
+            }
+          }
+        }
+      }
     );
 
     expect(wrapper.find(MainMenuContainer)).to.have.lengthOf(0);

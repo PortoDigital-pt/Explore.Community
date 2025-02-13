@@ -33,7 +33,7 @@ export const isFeatureLayerEnabled = (
   feature,
   layerName,
   mapLayers,
-  isHybridStation = false,
+  isHybridStation = false
 ) => {
   if (!feature || !layerName || !mapLayers) {
     return false;
@@ -45,7 +45,7 @@ export const isFeatureLayerEnabled = (
   if (isHybridStation) {
     const featureTypes = feature.properties.type.split(',');
     return featureTypes.some(type =>
-      Boolean(mapLayers[layerName][type.toLocaleLowerCase()]),
+      Boolean(mapLayers[layerName][type.toLocaleLowerCase()])
     );
   }
   if (featureType) {
@@ -61,56 +61,56 @@ export const getMapLayerOptions = (options = {}) => {
   const layerOptions = {
     parkAndRide: {
       isLocked: false,
-      isSelected: false,
+      isSelected: false
     },
     parkAndRideForBikes: {
       isLocked: false,
-      isSelected: false,
+      isSelected: false
     },
     stop: {
       bus: {
         isLocked: false,
-        isSelected: false,
+        isSelected: false
       },
       ferry: {
         isLocked: false,
-        isSelected: false,
+        isSelected: false
       },
       rail: {
         isLocked: false,
-        isSelected: false,
+        isSelected: false
       },
       subway: {
         isLocked: false,
-        isSelected: false,
+        isSelected: false
       },
       tram: {
         isLocked: false,
-        isSelected: false,
+        isSelected: false
       },
       funicular: {
         isLocked: false,
-        isSelected: false,
-      },
+        isSelected: false
+      }
     },
     vehicles: {
       isLocked: false,
-      isSelected: false,
+      isSelected: false
     },
     citybike: {
       isLocked: false,
-      isSelected: false,
+      isSelected: false
     },
     scooter: {
       isLocked: false,
-      isSelected: false,
-    },
+      isSelected: false
+    }
   };
   const allModes = ['bus', 'tram', 'rail', 'subway', 'ferry', 'funicular'];
   const { lockedMapLayers, selectedMapLayers } = {
     lockedMapLayers: [],
     selectedMapLayers: [],
-    ...options,
+    ...options
   };
   lockedMapLayers.forEach(key => {
     // Stop keyword locks every mode

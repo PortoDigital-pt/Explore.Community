@@ -12,7 +12,7 @@ const TimetableRow = ({ title, stoptimes, showRoutes, timerows }, { intl }) => (
       display:
         timerows.filter(o => o === title).length === 0 && showRoutes.length > 0
           ? 'none'
-          : undefined,
+          : undefined
     }}
   >
     <h3 className="title">{title}:</h3>
@@ -23,15 +23,15 @@ const TimetableRow = ({ title, stoptimes, showRoutes, timerows }, { intl }) => (
           time =>
             (showRoutes.filter(o => o === time.id).length > 0 &&
               showRoutes.length > 0) ||
-            showRoutes.length === 0,
+            showRoutes.length === 0
         )
         .sort(
-          (time1, time2) => time1.scheduledDeparture - time2.scheduledDeparture,
+          (time1, time2) => time1.scheduledDeparture - time2.scheduledDeparture
         )
         .map(time => (
           <div
             className={cx('timetablerow-linetime', {
-              canceled: time.isCanceled,
+              canceled: time.isCanceled
             })}
             key={`${time.id}-${time.name}-${time.scheduledDeparture}`}
           >
@@ -40,7 +40,7 @@ const TimetableRow = ({ title, stoptimes, showRoutes, timerows }, { intl }) => (
               {`${moment
                 .unix(time.serviceDay + time.scheduledDeparture)
                 .format('hh:mm')}, ${intl.formatMessage({
-                id: time.mode.toLowerCase(),
+                id: time.mode.toLowerCase()
               })} ${time.name}
               `}
             </div>
@@ -69,20 +69,20 @@ TimetableRow.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       serviceDay: PropTypes.number.isRequired,
-      scheduledDeparture: PropTypes.number.isRequired,
-    }),
+      scheduledDeparture: PropTypes.number.isRequired
+    })
   ).isRequired,
   showRoutes: PropTypes.arrayOf(PropTypes.string),
-  timerows: PropTypes.arrayOf(PropTypes.string),
+  timerows: PropTypes.arrayOf(PropTypes.string)
 };
 
 TimetableRow.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 TimetableRow.defaultProps = {
   showRoutes: [],
-  timerows: [],
+  timerows: []
 };
 
 export default TimetableRow;

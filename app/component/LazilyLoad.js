@@ -5,11 +5,11 @@ import React from 'react';
 
 class LazilyLoad extends React.Component {
   static propTypes = {
-    modules: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
+    modules: PropTypes.objectOf(PropTypes.func.isRequired).isRequired
   };
 
   state = {
-    isLoaded: false,
+    isLoaded: false
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class LazilyLoad extends React.Component {
 
   load({ modules }) {
     this.setState({
-      isLoaded: false,
+      isLoaded: false
     });
 
     const keys = Object.keys(modules);
@@ -41,7 +41,7 @@ class LazilyLoad extends React.Component {
         keys.reduce((agg, key, index) => {
           agg[key] = values[index]; // eslint-disable-line no-param-reassign
           return agg;
-        }, {}),
+        }, {})
       )
       .then(result => {
         if (!this.componentMounted) {
@@ -60,7 +60,7 @@ class LazilyLoad extends React.Component {
 }
 
 LazilyLoad.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired
 };
 
 export const LazilyLoadFactory = (Component, modules) => props => (

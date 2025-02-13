@@ -1,21 +1,21 @@
 const translations = {
   de: {
-    traffic: 'Aktuelle Verbindungen',
+    traffic: 'Aktuelle Verbindungen'
   },
   en: {
-    traffic: 'Changes and disruptions',
+    traffic: 'Changes and disruptions'
   },
   pl: {
-    traffic: 'Zmiany i zakłócenia',
+    traffic: 'Zmiany i zakłócenia'
   },
   sv: {
-    traffic: 'Störningar och ändringar',
+    traffic: 'Störningar och ändringar'
   },
   pt: {
-    traffic: 'Alterações e interrupções',
+    traffic: 'Alterações e interrupções'
   },
   fi: {
-    traffic: 'Häiriöt ja muutokset',
-  },
+    traffic: 'Häiriöt ja muutokset'
+  }
 };
 export default translations;

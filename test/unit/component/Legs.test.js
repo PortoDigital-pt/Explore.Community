@@ -12,10 +12,10 @@ const context = {
     ...mockContext.match,
     location: {
       ...mockContext.match.location,
-      state: {},
-    },
+      state: {}
+    }
   },
-  config: { itinerary: { waitThreshold: 5 }, CONFIG: 'default' },
+  config: { itinerary: { waitThreshold: 5 }, CONFIG: 'default' }
 };
 
 describe('<Legs />', () => {
@@ -23,16 +23,16 @@ describe('<Legs />', () => {
     const props = {
       itinerary: {
         endTime: 1542814001000,
-        legs: [],
+        legs: []
       },
       toggleCanceledLegsBanner: () => {},
       waitThreshold: 180,
       focusToPoint: () => {},
       focusToLeg: () => {},
-      openSettings: () => {},
+      openSettings: () => {}
     };
     const wrapper = shallowWithIntl(<Legs {...props} />, {
-      context,
+      context
     });
 
     expect(wrapper.isEmptyRender()).to.equal(true);

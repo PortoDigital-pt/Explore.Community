@@ -19,9 +19,9 @@ describe('RealtimeInformationStore', () => {
       const data = {
         client: {
           foo: 'bar',
-          end: () => {},
+          end: () => {}
         },
-        topics: ['/gtfsrt/vp/test/#'],
+        topics: ['/gtfsrt/vp/test/#']
       };
       store.storeClient(data);
       expect(store.client).to.deep.equal(data.client);
@@ -34,9 +34,9 @@ describe('RealtimeInformationStore', () => {
       store.storeClient({
         client: {
           foo: 'bar',
-          end: () => {},
+          end: () => {}
         },
-        topics: ['/gtfsrt/vp/test/#'],
+        topics: ['/gtfsrt/vp/test/#']
       });
       store.clearClient();
       expect(store.client).to.equal(undefined);
@@ -50,9 +50,9 @@ describe('RealtimeInformationStore', () => {
       store.storeClient({
         client: {
           foo: 'bar',
-          end: () => {},
+          end: () => {}
         },
-        topics: ['/gtfsrt/vp/test/#'],
+        topics: ['/gtfsrt/vp/test/#']
       });
       const { vehicles } = store;
       store.resetClient();
@@ -66,7 +66,7 @@ describe('RealtimeInformationStore', () => {
     it('should handle a single message', () => {
       const message = {
         id: 'foo',
-        bar: 'baz',
+        bar: 'baz'
       };
       store.handleMessage(message);
       const receivedAt = moment().unix();
@@ -77,12 +77,12 @@ describe('RealtimeInformationStore', () => {
       const messages = [
         {
           id: 'foo1',
-          bar: 'baz1',
+          bar: 'baz1'
         },
         {
           id: 'foo2',
-          bar: 'baz2',
-        },
+          bar: 'baz2'
+        }
       ];
       store.handleMessage(messages);
       const receivedAt = moment().unix();
@@ -95,7 +95,7 @@ describe('RealtimeInformationStore', () => {
     it('should return the given vehicle', () => {
       store.handleMessage({
         id: 'foo',
-        bar: 'baz',
+        bar: 'baz'
       });
 
       const vehicle = store.getVehicle('foo');
@@ -103,7 +103,7 @@ describe('RealtimeInformationStore', () => {
       expect(vehicle).to.deep.equal({
         id: 'foo',
         bar: 'baz',
-        receivedAt,
+        receivedAt
       });
     });
   });

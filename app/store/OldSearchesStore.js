@@ -30,7 +30,7 @@ class OldSearchesStore extends Store {
     ) {
       storage = {
         version: STORE_VERSION,
-        items: [],
+        items: []
       };
       setOldSearchesStorage(storage);
     }
@@ -42,7 +42,7 @@ class OldSearchesStore extends Store {
 
     const key = getNameLabel(search.item.properties, true);
     const found = find(items, oldItem =>
-      isEqual(key, getNameLabel(oldItem.item.properties, true)),
+      isEqual(key, getNameLabel(oldItem.item.properties, true))
     );
 
     const timestamp = unixTime();
@@ -54,13 +54,13 @@ class OldSearchesStore extends Store {
       items.push({
         count: 1,
         lastUpdated: timestamp,
-        ...search,
+        ...search
       });
     }
 
     setOldSearchesStorage({
       version: STORE_VERSION,
-      items: orderBy(items, 'count', 'desc'),
+      items: orderBy(items, 'count', 'desc')
     });
 
     this.emitChange();
@@ -76,7 +76,7 @@ class OldSearchesStore extends Store {
         items.splice(i, 1);
         setOldSearchesStorage({
           version: STORE_VERSION,
-          items: orderBy(items, 'count', 'desc'),
+          items: orderBy(items, 'count', 'desc')
         });
         this.emitChange();
         break;
@@ -93,7 +93,7 @@ class OldSearchesStore extends Store {
           (type ? item.type === type : true) &&
           (item.lastUpdated
             ? timestamp - item.lastUpdated < STORE_PERIOD
-            : true),
+            : true)
       )
       .map(item => item.item);
   }
@@ -101,7 +101,7 @@ class OldSearchesStore extends Store {
   clearOldSearches() {
     const storage = {
       version: STORE_VERSION,
-      items: [],
+      items: []
     };
     setOldSearchesStorage(storage);
     this.emitChange();
@@ -111,14 +111,14 @@ class OldSearchesStore extends Store {
     const { items } = this.getStorageObject();
     const timestamp = unixTime();
     return items.filter(item =>
-      item.lastUpdated ? timestamp - item.lastUpdated < STORE_PERIOD : true,
+      item.lastUpdated ? timestamp - item.lastUpdated < STORE_PERIOD : true
     );
   }
 
   saveOldSearchItems(items) {
     setOldSearchesStorage({
       version: STORE_VERSION,
-      items: orderBy(items, 'count', 'desc'),
+      items: orderBy(items, 'count', 'desc')
     });
     this.emitChange();
   }
@@ -126,7 +126,7 @@ class OldSearchesStore extends Store {
   static handlers = {
     SaveSearch: 'saveSearch',
     RemoveSearch: 'removeSearch',
-    SaveSearchItems: 'saveOldSearchItems',
+    SaveSearchItems: 'saveOldSearchItems'
   };
 }
 

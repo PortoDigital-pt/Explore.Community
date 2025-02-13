@@ -5,14 +5,14 @@ import AlertList from '../../../app/component/AlertList';
 import { Component as DisruptionListContainer } from '../../../app/component/DisruptionListContainer';
 import {
   AlertSeverityLevelType,
-  AlertEntityType,
+  AlertEntityType
 } from '../../../app/constants';
 
 describe('<DisruptionListContainer />', () => {
   it('should indicate that there are no alerts', () => {
     const props = {
       currentTime: 0,
-      viewer: {},
+      viewer: {}
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(wrapper.find('.no-alerts-container')).to.have.lengthOf(1);
@@ -34,9 +34,9 @@ describe('<DisruptionListContainer />', () => {
                 type: 200,
                 mode: 'BUS',
                 shortName: '63',
-                gtfsId: 'foo:bar',
-              },
-            ],
+                gtfsId: 'foo:bar'
+              }
+            ]
           },
           {
             alertHeaderText: 'servicealert2',
@@ -49,12 +49,12 @@ describe('<DisruptionListContainer />', () => {
                 gtfsId: 'foo:bar',
                 name: 'foo',
                 code: '123',
-                vehicleMode: 'BUS',
-              },
-            ],
-          },
-        ],
-      },
+                vehicleMode: 'BUS'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(wrapper.find(AlertList)).to.have.lengthOf(2);
@@ -76,9 +76,9 @@ describe('<DisruptionListContainer />', () => {
                 type: 200,
                 mode: 'BUS',
                 shortName: '63',
-                gtfsId: 'foo:bar',
-              },
-            ],
+                gtfsId: 'foo:bar'
+              }
+            ]
           },
           {
             alertHeaderText: 'servicealert2',
@@ -91,12 +91,12 @@ describe('<DisruptionListContainer />', () => {
                 gtfsId: 'foo:bar',
                 name: 'foo',
                 code: '123',
-                vehicleMode: 'BUS',
-              },
-            ],
-          },
-        ],
-      },
+                vehicleMode: 'BUS'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(wrapper.find(AlertList)).to.have.lengthOf(2);
@@ -118,19 +118,19 @@ describe('<DisruptionListContainer />', () => {
                 type: 200,
                 mode: 'BUS',
                 shortName: '63',
-                gtfsId: 'foo:bar',
+                gtfsId: 'foo:bar'
               },
               {
                 __typename: AlertEntityType.Stop,
                 gtfsId: 'foo:bar',
                 name: 'foo',
                 code: '123',
-                vehicleMode: 'BUS',
-              },
-            ],
-          },
-        ],
-      },
+                vehicleMode: 'BUS'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(wrapper.find(AlertList)).to.have.lengthOf(2);
@@ -152,23 +152,23 @@ describe('<DisruptionListContainer />', () => {
                 type: 200,
                 mode: 'BUS',
                 shortName: '63',
-                gtfsId: 'foo:bar',
+                gtfsId: 'foo:bar'
               },
               {
                 __typename: AlertEntityType.Route,
                 type: 300,
                 mode: 'TRAM',
                 shortName: '3',
-                gtfsId: 'foo:test',
-              },
-            ],
-          },
-        ],
-      },
+                gtfsId: 'foo:test'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(
-      wrapper.find(AlertList).at(0).prop('serviceAlerts'),
+      wrapper.find(AlertList).at(0).prop('serviceAlerts')
     ).to.have.lengthOf(2);
   });
 
@@ -189,7 +189,7 @@ describe('<DisruptionListContainer />', () => {
                 mode: 'BUS',
                 shortName: '63',
                 gtfsId: 'foo:bar',
-                color: 'ffffff',
+                color: 'ffffff'
               },
               {
                 __typename: AlertEntityType.Route,
@@ -197,16 +197,16 @@ describe('<DisruptionListContainer />', () => {
                 mode: 'BUS',
                 shortName: '75',
                 gtfsId: 'foo:test',
-                color: '000000',
-              },
-            ],
-          },
-        ],
-      },
+                color: '000000'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(
-      wrapper.find(AlertList).at(0).prop('serviceAlerts'),
+      wrapper.find(AlertList).at(0).prop('serviceAlerts')
     ).to.have.lengthOf(2);
   });
 
@@ -227,7 +227,7 @@ describe('<DisruptionListContainer />', () => {
                 mode: 'BUS',
                 shortName: '63',
                 gtfsId: 'foo:bar',
-                color: 'ffffff',
+                color: 'ffffff'
               },
               {
                 __typename: AlertEntityType.Route,
@@ -235,16 +235,16 @@ describe('<DisruptionListContainer />', () => {
                 mode: 'BUS',
                 shortName: '75',
                 gtfsId: 'foo:test',
-                color: 'ffffff',
-              },
-            ],
-          },
-        ],
-      },
+                color: 'ffffff'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(
-      wrapper.find(AlertList).at(0).prop('serviceAlerts'),
+      wrapper.find(AlertList).at(0).prop('serviceAlerts')
     ).to.have.lengthOf(1);
   });
 
@@ -260,15 +260,15 @@ describe('<DisruptionListContainer />', () => {
             effectiveStartDate: 0,
             entities: [
               {
-                __typename: AlertEntityType.Unknown,
+                __typename: AlertEntityType.Unknown
               },
               {
-                __typename: AlertEntityType.StopOnRoute,
-              },
-            ],
-          },
-        ],
-      },
+                __typename: AlertEntityType.StopOnRoute
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(wrapper.find('.no-alerts-container')).to.have.lengthOf(1);
@@ -289,9 +289,9 @@ describe('<DisruptionListContainer />', () => {
                 type: 200,
                 mode: 'BUS',
                 shortName: '63',
-                gtfsId: 'foo:bar',
-              },
-            ],
+                gtfsId: 'foo:bar'
+              }
+            ]
           },
           {
             alertSeverityLevel: AlertSeverityLevelType.Info,
@@ -303,12 +303,12 @@ describe('<DisruptionListContainer />', () => {
                 gtfsId: 'foo:bar',
                 name: 'foo',
                 code: '1234',
-                vehicleMode: 'RAIL',
-              },
-            ],
-          },
-        ],
-      },
+                vehicleMode: 'RAIL'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(wrapper.find('.stop-tab-container.collapsed')).to.have.lengthOf(1);
@@ -329,9 +329,9 @@ describe('<DisruptionListContainer />', () => {
                 type: 200,
                 mode: 'BUS',
                 shortName: '63',
-                gtfsId: 'foo:bar',
-              },
-            ],
+                gtfsId: 'foo:bar'
+              }
+            ]
           },
           {
             alertSeverityLevel: AlertSeverityLevelType.Warning,
@@ -343,12 +343,12 @@ describe('<DisruptionListContainer />', () => {
                 gtfsId: 'foo:bar',
                 name: 'foo',
                 code: '1234',
-                vehicleMode: 'RAIL',
-              },
-            ],
-          },
-        ],
-      },
+                vehicleMode: 'RAIL'
+              }
+            ]
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<DisruptionListContainer {...props} />);
     expect(wrapper.find('.stop-tab-container.collapsed')).to.have.lengthOf(0);

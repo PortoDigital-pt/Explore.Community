@@ -51,7 +51,7 @@ VectorTileLayerContainer.propTypes = {
   objectsToHide: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
   mergeStops: PropTypes.bool,
   locationPopup: PropTypes.string,
-  onSelectLocation: PropTypes.func,
+  onSelectLocation: PropTypes.func
 };
 
 VectorTileLayerContainer.defaultProps = {
@@ -60,9 +60,9 @@ VectorTileLayerContainer.defaultProps = {
   stopsToShow: undefined,
   mergeStops: false,
   onSelectLocation: undefined,
-  locationPopup: undefined,
+  locationPopup: undefined
 };
 
 VectorTileLayerContainer.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

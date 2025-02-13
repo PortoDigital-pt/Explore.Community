@@ -42,7 +42,7 @@ const UserMenu = ({ menuItems, user }, { intl }) => {
         onClick={toggleMenu}
         aria-label={intl.formatMessage({
           id: 'usermenu',
-          defaultMessage: 'User menu',
+          defaultMessage: 'User menu'
         })}
         aria-haspopup="true"
         aria-controls="userMenu"
@@ -70,7 +70,7 @@ const UserMenu = ({ menuItems, user }, { intl }) => {
                 >
                   {intl.formatMessage({
                     id: menuItem.messageId,
-                    defaultMessage: menuItem.messageId,
+                    defaultMessage: menuItem.messageId
                   })}
                 </a>
               </li>
@@ -88,18 +88,18 @@ UserMenu.propTypes = {
       key: PropTypes.string.isRequired,
       messageId: PropTypes.string.isRequired,
       href: PropTypes.string,
-      onClick: PropTypes.func,
-    }),
+      onClick: PropTypes.func
+    })
   ).isRequired,
-  user: userShape,
+  user: userShape
 };
 
 UserMenu.defaultProps = {
-  user: {},
+  user: {}
 };
 
 UserMenu.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default UserMenu;

@@ -8,12 +8,12 @@ describe('<VehicleIcon />', () => {
     const props = {
       rotate: 180,
       useLargeIcon: true,
-      vehicleNumber: 'P',
+      vehicleNumber: 'P'
     };
     const wrapper = shallowWithIntl(<VehicleIcon {...props} />);
 
     expect(wrapper.find('use').at(0).prop('xlinkHref')).to.equal(
-      '#icon-icon_vehicle-live-marker',
+      '#icon-icon_vehicle-live-marker'
     );
   });
 
@@ -22,12 +22,12 @@ describe('<VehicleIcon />', () => {
       const props = {
         rotate: 180,
         vehicleNumber: '32',
-        useLargeIcon: true,
+        useLargeIcon: true
       };
       const wrapper = shallowWithIntl(<VehicleIcon {...props} />);
 
       expect(wrapper.find('use').at(0).prop('xlinkHref')).to.equal(
-        '#icon-icon_vehicle-live-marker',
+        '#icon-icon_vehicle-live-marker'
       );
 
       expect(wrapper.find('tspan').text()).to.equal('32');
@@ -36,12 +36,12 @@ describe('<VehicleIcon />', () => {
     it('should use right image when useLargeIcon is false', () => {
       const props = {
         rotate: 180,
-        vehicleNumber: 'K',
+        vehicleNumber: 'K'
       };
       const wrapper = shallowWithIntl(<VehicleIcon {...props} />);
 
       expect(wrapper.find('use').prop('xlinkHref')).to.equal(
-        '#icon-icon_all-vehicles-small',
+        '#icon-icon_all-vehicles-small'
       );
     });
   });

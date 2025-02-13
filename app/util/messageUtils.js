@@ -5,7 +5,7 @@ export const favouriteTypes = [
   'station',
   'bikeStation',
   'place',
-  'route',
+  'route'
 ];
 
 /**
@@ -32,14 +32,14 @@ export function failedFavouriteMessage(type, isSave) {
     const heading = current[headingKey] || english[headingKey];
     content[lang].push({
       type: 'heading',
-      content: heading,
+      content: heading
     });
 
     const textKey = 'favourite-failed-text';
     const text = current[textKey] || english[textKey];
     content[lang].push({
       type: 'text',
-      content: text,
+      content: text
     });
   });
   return {
@@ -52,6 +52,6 @@ export function failedFavouriteMessage(type, isSave) {
     iconColor: '#dc0451',
     backgroundColor: '#fdf0f5',
     type: 'error',
-    content,
+    content
   };
 }

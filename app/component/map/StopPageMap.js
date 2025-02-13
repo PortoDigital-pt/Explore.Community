@@ -8,7 +8,7 @@ import ReactRelayContext from 'react-relay/lib/ReactRelayContext';
 import {
   configShape,
   locationShape,
-  mapLayerOptionsShape,
+  mapLayerOptionsShape
 } from '../../util/shapes';
 import { getSettings } from '../../util/planParamUtil';
 import PositionStore from '../../store/PositionStore';
@@ -48,7 +48,7 @@ const getModeFromProps = props => {
 
 function StopPageMap(
   { stop, breakpoint, locationState, mapLayers, mapLayerOptions, stopName },
-  { config, match },
+  { config, match }
 ) {
   if (!stop) {
     return false;
@@ -70,26 +70,26 @@ function StopPageMap(
               location: {
                 coordinate: {
                   latitude: locationState.lat,
-                  longitude: locationState.lon,
-                },
-              },
+                  longitude: locationState.lon
+                }
+              }
             },
             destination: {
               location: {
                 coordinate: {
                   latitude: targetStop.lat,
-                  longitude: targetStop.lon,
-                },
-              },
+                  longitude: targetStop.lon
+                }
+              }
             },
             walkSpeed: settings.walkSpeed,
-            wheelchair: !!settings.accessibilityOption,
+            wheelchair: !!settings.accessibilityOption
           };
           fetchQuery(environment, walkQuery, variables)
             .toPromise()
             .then(result => {
               setWalk(
-                result.plan.edges.length ? result.plan.edges?.[0].node : null,
+                result.plan.edges.length ? result.plan.edges?.[0].node : null
               );
             });
         }
@@ -108,8 +108,8 @@ function StopPageMap(
         [locationState.lat, locationState.lon],
         [
           stop.lat + (stop.lat - locationState.lat),
-          stop.lon + (stop.lon - locationState.lon),
-        ],
+          stop.lon + (stop.lon - locationState.lon)
+        ]
       ]);
     }
   }, [stop, locationState.status]);
@@ -128,7 +128,7 @@ function StopPageMap(
     leafletObjs.push(
       <SelectedStopPopup lat={stop.lat} lon={stop.lon} key="SelectedStopPopup">
         <SelectedStopPopupContent stop={stop} name={stopName} />
-      </SelectedStopPopup>,
+      </SelectedStopPopup>
     );
     if (config.useCookiesPrompt) {
       children.push(<CookieSettingsButton key="cookiesettings" />);
@@ -139,7 +139,7 @@ function StopPageMap(
         icon="icon-icon_arrow-collapse--left"
         iconClassName="arrow-icon"
         key="stop-page-back-button"
-      />,
+      />
     );
   }
 
@@ -151,7 +151,7 @@ function StopPageMap(
         passive={false}
         showIntermediateStops={false}
         streetMode="walk"
-      />,
+      />
     );
   }
   const id = match.params.stopId || match.params.terminalId || match.params.id;
@@ -183,27 +183,27 @@ StopPageMap.contextTypes = {
   config: configShape.isRequired,
   match: matchShape.isRequired,
   router: routerShape.isRequired,
-  getStore: PropTypes.func.isRequired,
+  getStore: PropTypes.func.isRequired
 };
 
 StopPageMap.propTypes = {
   stop: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
-    platformCode: PropTypes.string,
+    platformCode: PropTypes.string
   }),
   breakpoint: PropTypes.string.isRequired,
   locationState: locationShape.isRequired,
   mapLayers: mapLayerShape.isRequired,
   mapLayerOptions: mapLayerOptionsShape.isRequired,
   parkType: PropTypes.string,
-  stopName: PropTypes.node,
+  stopName: PropTypes.node
 };
 
 StopPageMap.defaultProps = {
   stop: undefined,
   parkType: undefined,
-  stopName: undefined,
+  stopName: undefined
 };
 
 const componentWithBreakpoint = withBreakpoint(StopPageMap);
@@ -225,20 +225,20 @@ const StopPageMapWithStores = connectToStores(
     const mode = getModeFromProps(props);
     const mapLayerOptions = getMapLayerOptions({
       lockedMapLayers: ['vehicles', mode],
-      selectedMapLayers: ['vehicles', mode],
+      selectedMapLayers: ['vehicles', mode]
     });
     return {
       locationState,
       mapLayers,
-      mapLayerOptions,
+      mapLayerOptions
     };
   },
   {
-    config: configShape,
-  },
+    config: configShape
+  }
 );
 
 export {
   StopPageMapWithStores as default,
-  componentWithBreakpoint as Component,
+  componentWithBreakpoint as Component
 };

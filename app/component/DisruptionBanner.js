@@ -16,7 +16,7 @@ class DisruptionBanner extends React.Component {
     this.state = {
       allAlertsOpen: false,
       tabIndex: 0,
-      isOpen: true,
+      isOpen: true
     };
   }
 
@@ -25,11 +25,11 @@ class DisruptionBanner extends React.Component {
     currentTime: PropTypes.number.isRequired,
     language: PropTypes.string.isRequired,
     mode: PropTypes.string.isRequired,
-    breakpoint: PropTypes.string.isRequired,
+    breakpoint: PropTypes.string.isRequired
   };
 
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   openAllAlerts = () => {
@@ -48,8 +48,7 @@ class DisruptionBanner extends React.Component {
         alert?.entities.some(
           e =>
             // eslint-disable-next-line no-underscore-dangle
-            e.__typename === AlertEntityType.Route &&
-            e.mode === this.props.mode,
+            e.__typename === AlertEntityType.Route && e.mode === this.props.mode
         ) &&
         !isEmpty(alert.alertDescriptionText) &&
         isAlertValid(alert, this.props.currentTime)
@@ -57,7 +56,7 @@ class DisruptionBanner extends React.Component {
         if (
           !activeAlerts.find(
             activeAlert =>
-              activeAlert.alertDescriptionText === alert.alertDescriptionText,
+              activeAlert.alertDescriptionText === alert.alertDescriptionText
           )
         ) {
           activeAlerts.push(alert);
@@ -117,8 +116,8 @@ const containerComponent = createFragmentContainer(
     ['TimeStore', 'PreferencesStore'],
     ({ getStore }) => ({
       currentTime: getStore('TimeStore').getCurrentTime(),
-      language: getStore('PreferencesStore').getLanguage(),
-    }),
+      language: getStore('PreferencesStore').getLanguage()
+    })
   ),
   {
     alerts: graphql`
@@ -140,8 +139,8 @@ const containerComponent = createFragmentContainer(
           }
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export { containerComponent as default, DisruptionBanner as Component };

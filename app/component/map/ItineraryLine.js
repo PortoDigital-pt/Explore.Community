@@ -9,7 +9,7 @@ import {
   getInterliningLegs,
   getRouteText,
   isCallAgencyLeg,
-  LegMode,
+  LegMode
 } from '../../util/legUtils';
 import { getRouteMode } from '../../util/modeUtils';
 import { configShape, legShape } from '../../util/shapes';
@@ -22,7 +22,7 @@ import SpeechBubble from './SpeechBubble';
 
 class ItineraryLine extends React.Component {
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -32,7 +32,7 @@ class ItineraryLine extends React.Component {
     showTransferLabels: PropTypes.bool,
     showIntermediateStops: PropTypes.bool,
     showDurationBubble: PropTypes.bool,
-    streetMode: PropTypes.string,
+    streetMode: PropTypes.string
   };
 
   static defaultProps = {
@@ -41,7 +41,7 @@ class ItineraryLine extends React.Component {
     streetMode: undefined,
     showTransferLabels: false,
     showIntermediateStops: false,
-    showDurationBubble: false,
+    showDurationBubble: false
   };
 
   checkStreetMode(leg) {
@@ -71,14 +71,14 @@ class ItineraryLine extends React.Component {
       let mode = getRouteMode(
         {
           mode: leg.mode,
-          type: leg.route?.type,
+          type: leg.route?.type
         },
-        this.context.config,
+        this.context.config
       );
 
       const [interliningLines, interliningLegs] = getInterliningLegs(
         this.props.legs,
-        i,
+        i
       );
 
       const interliningWithRoute = interliningLines.join(' / ');
@@ -120,7 +120,7 @@ class ItineraryLine extends React.Component {
           geometry={geometry}
           mode={isCallAgencyLeg(leg) ? 'call' : mode.toLowerCase()}
           passive={this.props.passive}
-        />,
+        />
       );
 
       if (
@@ -133,7 +133,7 @@ class ItineraryLine extends React.Component {
             key={`speech_${this.props.hash}_${i}_${mode}`}
             position={middle}
             text={duration}
-          />,
+          />
         );
       }
 
@@ -153,8 +153,8 @@ class ItineraryLine extends React.Component {
                   key={`intermediate-${place.stop.gtfsId}`}
                   mode={modePlusClass}
                   thin
-                />,
-              ),
+                />
+              )
             );
         }
 
@@ -169,17 +169,17 @@ class ItineraryLine extends React.Component {
                 lon: leg.from.lon,
                 network: rentalNetwork,
                 vehiclesAvailable:
-                  leg.from.vehicleRentalStation?.vehiclesAvailable,
+                  leg.from.vehicleRentalStation?.vehiclesAvailable
               }}
               mode={leg.mode}
               transit
-            />,
+            />
           );
         } else if (leg.transitLeg) {
           const name = getRouteText(
             leg.route,
             this.context.config,
-            interliningWithRoute,
+            interliningWithRoute
           );
 
           if (!leg?.interlineWithPreviousLeg) {
@@ -192,7 +192,7 @@ class ItineraryLine extends React.Component {
               mode: isCallAgencyLeg(leg) ? 'call' : mode.toLowerCase(),
               legName: name,
               zIndexOffset: 300,
-              interliningWithRoute,
+              interliningWithRoute
             });
           }
           objs.push(
@@ -204,11 +204,11 @@ class ItineraryLine extends React.Component {
                 gtfsId: leg.from.stop.gtfsId,
                 code: leg.from.stop.code,
                 platformCode: leg.from.stop.platformCode,
-                transfer: true,
+                transfer: true
               }}
               mode={isCallAgencyLeg(leg) ? 'call' : mode.toLowerCase()}
               renderText={leg.transitLeg && this.props.showTransferLabels}
-            />,
+            />
           );
           objs.push(
             <StopMarker
@@ -219,11 +219,11 @@ class ItineraryLine extends React.Component {
                 gtfsId: leg.to.stop.gtfsId,
                 code: leg.to.stop.code,
                 platformCode: leg.to.stop.platformCode,
-                transfer: true,
+                transfer: true
               }}
               mode={isCallAgencyLeg(leg) ? 'call' : mode.toLowerCase()}
               renderText={leg.transitLeg && this.props.showTransferLabels}
-            />,
+            />
           );
         }
       }
@@ -232,7 +232,7 @@ class ItineraryLine extends React.Component {
     // Add dynamic transit leg and transfer stop markers
     if (!this.props.passive) {
       objs.push(
-        <TransitLegMarkers key="transitlegmarkers" transitLegs={transitLegs} />,
+        <TransitLegMarkers key="transitlegmarkers" transitLegs={transitLegs} />
       );
     }
 

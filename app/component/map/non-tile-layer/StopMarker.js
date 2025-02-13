@@ -8,7 +8,7 @@ import Icon from '../../Icon';
 import {
   getCaseRadius,
   getStopRadius,
-  getHubRadius,
+  getHubRadius
 } from '../../../util/mapIconUtils';
 import { isBrowser } from '../../../util/browser';
 import { addAnalyticsEvent } from '../../../util/analyticsUtils';
@@ -33,7 +33,7 @@ class StopMarker extends React.Component {
     disableModeIcons: PropTypes.bool,
     limitZoom: PropTypes.number,
     selected: PropTypes.bool,
-    colorOverride: PropTypes.string,
+    colorOverride: PropTypes.string
   };
 
   static defaultProps = {
@@ -41,13 +41,13 @@ class StopMarker extends React.Component {
     disableModeIcons: false,
     limitZoom: undefined,
     selected: false,
-    colorOverride: undefined,
+    colorOverride: undefined
   };
 
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
     config: configShape.isRequired,
-    router: routerShape.isRequired,
+    router: routerShape.isRequired
   };
 
   redirectToStopPage = () => {
@@ -66,12 +66,12 @@ class StopMarker extends React.Component {
         category: 'Map',
         name: 'stop',
         type: this.props.mode.toUpperCase(),
-        context,
+        context
       });
     }
     const prefix = PREFIX_STOPS;
     this.context.router.push(
-      `/${prefix}/${encodeURIComponent(this.props.stop.gtfsId)}`,
+      `/${prefix}/${encodeURIComponent(this.props.stop.gtfsId)}`
     );
   };
 
@@ -92,8 +92,8 @@ class StopMarker extends React.Component {
       iconSize: [size, size],
       className: cx('cursor-pointer', this.props.mode, {
         small: size === this.context.config.stopsIconSize.small,
-        selected: this.props.selected,
-      }),
+        selected: this.props.selected
+      })
     });
   };
 
@@ -141,7 +141,7 @@ class StopMarker extends React.Component {
     return L.divIcon({
       html: iconSvg,
       iconSize: [radius * 2, radius * 2],
-      className: `${this.props.mode} cursor-pointer`,
+      className: `${this.props.mode} cursor-pointer`
     });
   };
 
@@ -154,7 +154,7 @@ class StopMarker extends React.Component {
       <GenericMarker
         position={{
           lat: this.props.stop.lat,
-          lon: this.props.stop.lon,
+          lon: this.props.stop.lon
         }}
         getIcon={
           this.context.config.map.useModeIconsInNonTileLayer &&

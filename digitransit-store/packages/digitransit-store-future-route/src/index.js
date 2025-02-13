@@ -88,14 +88,14 @@ function extractRoute(routeIn) {
     extractedRoute = {
       origin: {
         address: `${route.origin.name}${oLoc}`,
-        coordinates: route.origin.coordinates,
+        coordinates: route.origin.coordinates
       },
       destination: {
         address: `${route.destination.name}${dLoc}`,
-        coordinates: route.destination.coordinates,
+        coordinates: route.destination.coordinates
       },
       arriveBy: route.arriveBy ? route.arriveBy : false,
-      time: route.time,
+      time: route.time
     };
   }
   return extractedRoute;
@@ -125,11 +125,11 @@ export function createUrl(routeIn, pathOpts) {
     let url = `/${prefix}/`;
     // set origin
     url += `${encodeURIComponent(
-      `${route.origin.address}::${route.origin.coordinates.lat},${route.origin.coordinates.lon}`,
+      `${route.origin.address}::${route.origin.coordinates.lat},${route.origin.coordinates.lon}`
     )}/`;
     // set destination
     url += encodeURIComponent(
-      `${route.destination.address}::${route.destination.coordinates.lat},${route.destination.coordinates.lon}`,
+      `${route.destination.address}::${route.destination.coordinates.lat},${route.destination.coordinates.lon}`
     );
     // set arrive by and time
     if (route.arriveBy) {
@@ -167,21 +167,21 @@ export function addFutureRoute(newRoute, routeCollection, pathOpts) {
           locality: originLocality,
           coordinates: {
             lat: newRoute.origin.coordinates.lat,
-            lon: newRoute.origin.coordinates.lon,
-          },
+            lon: newRoute.origin.coordinates.lon
+          }
         },
         destination: {
           name: destinationName,
           locality: destinationLocality,
           coordinates: {
             lat: newRoute.destination.coordinates.lat,
-            lon: newRoute.destination.coordinates.lon,
-          },
+            lon: newRoute.destination.coordinates.lon
+          }
         },
         arriveBy: newRoute.arriveBy,
         time: newRoute.time,
-        url: createUrl(newRoute, pathOpts),
-      },
+        url: createUrl(newRoute, pathOpts)
+      }
     };
 
     const newRouteOriginAndDestination = `${routeToAdd.properties.origin.name}, ${routeToAdd.properties.origin.locality} - ${routeToAdd.properties.destination.name}, ${routeToAdd.properties.destination.locality}`;
@@ -190,7 +190,7 @@ export function addFutureRoute(newRoute, routeCollection, pathOpts) {
           r =>
             r.properties.time >= new Date().getTime() / 1000 &&
             `${r.properties.origin.name}, ${r.properties.origin.locality} - ${r.properties.destination.name}, ${r.properties.destination.locality}` !==
-              newRouteOriginAndDestination,
+              newRouteOriginAndDestination
         )
       : [];
     const sortedItems = sortBy(
@@ -198,8 +198,8 @@ export function addFutureRoute(newRoute, routeCollection, pathOpts) {
       [
         'properties.time',
         'properties.origin.name',
-        'properties.destination.name',
-      ],
+        'properties.destination.name'
+      ]
     );
     return sortedItems;
   }

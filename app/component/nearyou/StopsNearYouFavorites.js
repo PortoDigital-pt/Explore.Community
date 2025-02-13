@@ -7,7 +7,7 @@ import {
   relayShape,
   stopShape,
   stationShape,
-  vehicleRentalStationShape,
+  vehicleRentalStationShape
 } from '../../util/shapes';
 import StopsNearYouFavouritesContainer from './StopsNearYouFavouritesContainer';
 import withBreakpoint from '../../util/withBreakpoint';
@@ -21,7 +21,7 @@ function StopsNearYouFavorites({
   searchPosition,
   breakpoint,
   noFavorites,
-  favouritesFetched,
+  favouritesFetched
 }) {
   if (!favouritesFetched) {
     return <Loading />;
@@ -72,7 +72,7 @@ function StopsNearYouFavorites({
       variables={{
         stopIds: favoriteStops || [],
         stationIds: favoriteStations || [],
-        vehicleRentalStationIds: favoriteVehicleRentalStationIds || [],
+        vehicleRentalStationIds: favoriteVehicleRentalStationIds || []
       }}
       environment={relayEnvironment}
       render={({ props }) => {
@@ -102,7 +102,7 @@ StopsNearYouFavorites.propTypes = {
   vehicleStations: PropTypes.arrayOf(vehicleRentalStationShape),
   breakpoint: PropTypes.string,
   noFavorites: PropTypes.bool,
-  favouritesFetched: PropTypes.bool,
+  favouritesFetched: PropTypes.bool
 };
 
 StopsNearYouFavorites.defaultProps = {
@@ -114,7 +114,7 @@ StopsNearYouFavorites.defaultProps = {
   vehicleStations: undefined,
   breakpoint: undefined,
   noFavorites: false,
-  favouritesFetched: false,
+  favouritesFetched: false
 };
 
 const StopsNearYouFavoritesWithBreakpoint = withBreakpoint(props => (

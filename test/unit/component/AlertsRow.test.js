@@ -6,7 +6,7 @@ import AlertRow from '../../../app/component/AlertRow';
 import RouteNumber from '../../../app/component/RouteNumber';
 import {
   AlertSeverityLevelType,
-  AlertEntityType,
+  AlertEntityType
 } from '../../../app/constants';
 import { PREFIX_STOPS, PREFIX_ROUTES } from '../../../app/util/path';
 import { mockContext } from '../helpers/mock-context';
@@ -22,12 +22,12 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '1',
-          gtfsId: 'foo:1',
-        },
-      ],
+          gtfsId: 'foo:1'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.alert-row')).to.have.lengthOf(0);
   });
@@ -43,12 +43,12 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '1',
-          gtfsId: 'foo:1',
-        },
-      ],
+          gtfsId: 'foo:1'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.alert-header')).to.have.lengthOf(0);
   });
@@ -63,12 +63,12 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '1',
-          gtfsId: 'foo:1',
-        },
-      ],
+          gtfsId: 'foo:1'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.alert-body')).to.have.lengthOf(0);
   });
@@ -84,12 +84,12 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '1',
-          gtfsId: 'foo:1',
-        },
-      ],
+          gtfsId: 'foo:1'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find(RouteNumber)).to.have.lengthOf(1);
   });
@@ -100,14 +100,14 @@ describe('<AlertRow />', () => {
       entities: [
         {
           __typename: AlertEntityType.Stop,
-          gtfsId: 'foo:1',
-        },
+          gtfsId: 'foo:1'
+        }
       ],
       description: 'Lorem ipsum',
-      index: 0,
+      index: 0
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find(Icon)).to.have.lengthOf(1);
   });
@@ -124,12 +124,12 @@ describe('<AlertRow />', () => {
       entities: [
         {
           __typename: AlertEntityType.Stop,
-          gtfsId: 'foo:1',
-        },
-      ],
+          gtfsId: 'foo:1'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.alert-top-row').text()).to.contain('at');
   });
@@ -145,12 +145,12 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '97N',
-          gtfsId: 'foo:1',
-        },
-      ],
+          gtfsId: 'foo:1'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.bus')).to.have.lengthOf(1);
   });
@@ -166,15 +166,15 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '97N',
-          gtfsId: 'HSL:2097N',
-        },
-      ],
+          gtfsId: 'HSL:2097N'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.alert-row-link').get(0).props.to).to.equal(
-      `/${PREFIX_ROUTES}/HSL:2097N/${PREFIX_STOPS}`,
+      `/${PREFIX_ROUTES}/HSL:2097N/${PREFIX_STOPS}`
     );
   });
 
@@ -189,12 +189,12 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '97N',
-          gtfsId: 'HSL:2097N',
-        },
-      ],
+          gtfsId: 'HSL:2097N'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.alert-url')).to.have.lengthOf(1);
   });
@@ -210,15 +210,15 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '97N',
-          gtfsId: 'HSL:2097N',
-        },
-      ],
+          gtfsId: 'HSL:2097N'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find(RouteNumber).prop('alertSeverityLevel')).to.equal(
-      AlertSeverityLevelType.Warning,
+      AlertSeverityLevelType.Warning
     );
   });
   it("should add the http prefix to the url if it's missing", () => {
@@ -232,15 +232,15 @@ describe('<AlertRow />', () => {
           __typename: AlertEntityType.Route,
           mode: 'BUS',
           shortName: '97N',
-          gtfsId: 'HSL:2097N',
-        },
-      ],
+          gtfsId: 'HSL:2097N'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<AlertRow {...props} />, {
-      context: mockContext,
+      context: mockContext
     });
     expect(wrapper.find('.alert-url').prop('href')).to.equal(
-      'http://www.hsl.fi',
+      'http://www.hsl.fi'
     );
   });
 });

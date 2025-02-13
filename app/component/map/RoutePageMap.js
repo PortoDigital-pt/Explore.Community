@@ -8,7 +8,7 @@ import {
   configShape,
   mapLayerOptionsShape,
   patternShape,
-  errorShape,
+  errorShape
 } from '../../util/shapes';
 import MapWithTracking from './MapWithTracking';
 import RouteLine from './route/RouteLine';
@@ -26,7 +26,7 @@ class RoutePageMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trackVehicle: !!this.props.match.params.tripId, // map follows vehicle
+      trackVehicle: !!this.props.match.params.tripId // map follows vehicle
     };
   }
 
@@ -39,25 +39,25 @@ class RoutePageMap extends React.Component {
     mapLayers: mapLayerShape.isRequired,
     mapLayerOptions: mapLayerOptionsShape.isRequired,
     trip: PropTypes.shape({ gtfsId: PropTypes.string }),
-    error: errorShape,
+    error: errorShape
   };
 
   static defaultProps = {
     trip: null,
     lat: undefined,
     lon: undefined,
-    error: undefined,
+    error: undefined
   };
 
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.tripId !== this.tripId) {
       this.setState({
-        trackVehicle: !!nextProps.match.params.tripId,
+        trackVehicle: !!nextProps.match.params.tripId
       });
     }
     if (
@@ -118,11 +118,11 @@ class RoutePageMap extends React.Component {
         let filteredPoints;
         if (pattern.geometry) {
           filteredPoints = pattern.geometry.filter(
-            point => point.lat !== null && point.lon !== null,
+            point => point.lat !== null && point.lon !== null
           );
         }
         this.bounds = boundWithMinimumArea(
-          (filteredPoints || pattern.stops).map(p => [p.lat, p.lon]),
+          (filteredPoints || pattern.stops).map(p => [p.lat, p.lon])
         );
         this.code = pattern.code;
       }
@@ -142,7 +142,7 @@ class RoutePageMap extends React.Component {
         key="line"
         pattern={pattern}
         vehiclePosition={tripSelected ? { lat, lon } : null}
-      />,
+      />
     ];
     if (isActiveDate(pattern)) {
       leafletObjs.push(
@@ -153,7 +153,7 @@ class RoutePageMap extends React.Component {
           headsign={pattern.headsign}
           topics={[pattern.route]}
           tripStart={tripStart}
-        />,
+        />
       );
     }
 
@@ -186,32 +186,32 @@ const RoutePageMapWithVehicles = connectToStores(
   ['RealTimeInformationStore', 'MapLayerStore'],
   ({ getStore }, { trip }) => {
     const mapLayers = getStore('MapLayerStore').getMapLayers({
-      notThese: ['stop', 'citybike', 'vehicles', 'scooter'],
+      notThese: ['stop', 'citybike', 'vehicles', 'scooter']
     });
     const mapLayerOptions = getMapLayerOptions({
       lockedMapLayers: ['vehicles', 'stop', 'citybike', 'scooter'],
-      selectedMapLayers: ['vehicles'],
+      selectedMapLayers: ['vehicles']
     });
     if (trip) {
       const { vehicles } = getStore('RealTimeInformationStore');
       const tripStart = getStartTime(
-        trip.stoptimesForDate[0].scheduledDeparture,
+        trip.stoptimesForDate[0].scheduledDeparture
       );
       const matchingVehicles = Object.keys(vehicles)
         .map(key => vehicles[key])
         .filter(
           vehicle =>
             vehicle.tripStartTime === undefined ||
-            vehicle.tripStartTime === tripStart,
+            vehicle.tripStartTime === tripStart
         )
         .filter(
           vehicle =>
-            vehicle.tripId === undefined || vehicle.tripId === trip.gtfsId,
+            vehicle.tripId === undefined || vehicle.tripId === trip.gtfsId
         )
         .filter(
           vehicle =>
             vehicle.direction === undefined ||
-            vehicle.direction === Number(trip.directionId),
+            vehicle.direction === Number(trip.directionId)
         );
 
       if (matchingVehicles.length !== 1) {
@@ -223,11 +223,11 @@ const RoutePageMapWithVehicles = connectToStores(
         lat: selectedVehicle.lat,
         lon: selectedVehicle.long,
         mapLayers,
-        mapLayerOptions,
+        mapLayerOptions
       };
     }
     return { mapLayers, mapLayerOptions };
-  },
+  }
 );
 
 export default createFragmentContainer(RoutePageMapWithVehicles, {
@@ -266,5 +266,5 @@ export default createFragmentContainer(RoutePageMapWithVehicles, {
       gtfsId
       directionId
     }
-  `,
+  `
 });

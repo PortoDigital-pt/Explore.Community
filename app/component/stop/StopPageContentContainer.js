@@ -8,7 +8,7 @@ import {
   configShape,
   errorShape,
   relayShape,
-  stopShape,
+  stopShape
 } from '../../util/shapes';
 import DepartureListContainer from '../DepartureListContainer';
 import Loading from '../Loading';
@@ -24,16 +24,16 @@ class StopPageContent extends React.Component {
     currentTime: PropTypes.number.isRequired,
     error: errorShape,
     router: routerShape.isRequired,
-    match: matchShape.isRequired,
+    match: matchShape.isRequired
   };
 
   static defaultProps = {
-    error: undefined,
+    error: undefined
   };
 
   static contextTypes = {
     intl: intlShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   // eslint-disable-next-line camelcase
@@ -121,7 +121,7 @@ class StopPageContent extends React.Component {
 
 const connectedComponent = createRefetchContainer(
   connectToStores(StopPageContent, ['TimeStore'], ({ getStore }) => ({
-    currentTime: getStore('TimeStore').getCurrentTime(),
+    currentTime: getStore('TimeStore').getCurrentTime()
   })),
   {
     stop: graphql`
@@ -141,7 +141,7 @@ const connectedComponent = createRefetchContainer(
           ...DepartureListContainer_stoptimes
         }
       }
-    `,
+    `
   },
   graphql`
     query StopPageContentContainerQuery(
@@ -159,7 +159,7 @@ const connectedComponent = createRefetchContainer(
           )
       }
     }
-  `,
+  `
 );
 
 export { connectedComponent as default, StopPageContent as Component };

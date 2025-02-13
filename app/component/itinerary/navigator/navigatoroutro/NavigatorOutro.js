@@ -39,15 +39,15 @@ const NavigatorOutro = ({ onClose, destination, logo } /* ,context */) => {
 NavigatorOutro.propTypes = {
   onClose: PropTypes.func.isRequired,
   destination: PropTypes.string.isRequired,
-  logo: PropTypes.string,
+  logo: PropTypes.string
 };
 
 NavigatorOutro.defaultProps = {
-  logo: undefined,
+  logo: undefined
 };
 
 NavigatorOutro.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default NavigatorOutro;

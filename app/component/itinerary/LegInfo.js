@@ -24,9 +24,9 @@ export default function LegInfo(
     displayTime,
     changeHash,
     tabIndex,
-    isCallAgency,
+    isCallAgency
   },
-  { config, intl },
+  { config, intl }
 ) {
   const [capacityModalOpen, setCapacityModalOpen] = useState(false);
   const { constantOperationRoutes } = config;
@@ -36,7 +36,7 @@ export default function LegInfo(
     ? 'call'
     : getRouteMode(
         { mode: leg.mode, type: leg.route.type, gtfsId: leg.route?.gtfsId },
-        config,
+        config
       );
   const capacity = getCapacityForLeg(config, leg);
   let capacityTranslation;
@@ -49,7 +49,7 @@ export default function LegInfo(
     <div
       className={cx('itinerary-transit-leg-route', {
         'long-name': hasNoShortName,
-        'alternative-leg-suggestion': isAlternativeLeg,
+        'alternative-leg-suggestion': isAlternativeLeg
       })}
     >
       <Link
@@ -64,7 +64,7 @@ export default function LegInfo(
         }
         aria-label={`${intl.formatMessage({
           id: mode.toLowerCase(),
-          defaultMessage: 'Vehicle',
+          defaultMessage: 'Vehicle'
         })} ${leg.route && leg.route.shortName?.toLowerCase()}`}
       >
         <span aria-hidden="true">
@@ -92,7 +92,7 @@ export default function LegInfo(
           onClick={() => setCapacityModalOpen(true)}
           aria-label={intl.formatMessage({
             id: capacityTranslation,
-            defaultMessage: 'Capacity status',
+            defaultMessage: 'Capacity status'
           })}
         >
           <Icon
@@ -148,7 +148,7 @@ LegInfo.propTypes = {
   displayTime: PropTypes.bool.isRequired,
   changeHash: PropTypes.func,
   tabIndex: PropTypes.number,
-  isCallAgency: PropTypes.bool,
+  isCallAgency: PropTypes.bool
 };
 
 LegInfo.defaultProps = {
@@ -156,10 +156,10 @@ LegInfo.defaultProps = {
   tabIndex: undefined,
   alertSeverityLevel: undefined,
   hasNoShortName: undefined,
-  isCallAgency: false,
+  isCallAgency: false
 };
 
 LegInfo.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

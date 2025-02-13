@@ -17,7 +17,7 @@ describe('Testing @digitransit-component/digitransit-component-control-panel mod
         showTitle
         buttons={['bus', 'tram', 'subway', 'rail', 'ferry', 'citybike']}
       />
-    </CtrlPanel>,
+    </CtrlPanel>
   );
 
   it('should render', () => {

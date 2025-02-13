@@ -43,14 +43,14 @@ class PreferencesStore extends Store {
       maxAge: 365 * 24 * 60 * 60,
       path: '/',
       Secure: true,
-      SameSite: 'Strict',
+      SameSite: 'Strict'
     });
     this.language = language;
     this.emitChange();
   }
 
   static handlers = {
-    SetLanguage: 'setLanguage',
+    SetLanguage: 'setLanguage'
   };
 }
 

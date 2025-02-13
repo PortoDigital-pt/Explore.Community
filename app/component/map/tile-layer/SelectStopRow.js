@@ -13,7 +13,7 @@ function isNull(val) {
 
 function SelectStopRow(
   { code, type, desc, gtfsId, name, terminal, colors, routes, platform },
-  { config },
+  { config }
 ) {
   let mode = type;
   if (routes && type === 'BUS' && config.useExtendedRouteTypes) {
@@ -143,7 +143,7 @@ SelectStopRow.propTypes = {
   desc: PropTypes.string,
   terminal: PropTypes.bool,
   colors: popupColorShape,
-  platform: PropTypes.string,
+  platform: PropTypes.string
 };
 
 SelectStopRow.defaultProps = {
@@ -152,13 +152,13 @@ SelectStopRow.defaultProps = {
   desc: undefined,
   terminal: undefined,
   colors: undefined,
-  platform: undefined,
+  platform: undefined
 };
 
 SelectStopRow.contextTypes = {
   config: PropTypes.shape({
-    useExtendedRouteTypes: PropTypes.bool.isRequired,
-  }).isRequired,
+    useExtendedRouteTypes: PropTypes.bool.isRequired
+  }).isRequired
 };
 
 export default SelectStopRow;

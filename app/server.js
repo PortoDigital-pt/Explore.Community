@@ -14,7 +14,7 @@ import {
   urlMiddleware,
   retryMiddleware,
   errorMiddleware,
-  cacheMiddleware,
+  cacheMiddleware
 } from 'react-relay-network-modern';
 import RelayServerSSR from 'react-relay-network-modern-ssr/lib/server';
 import { ReactRelayContext } from 'react-relay';
@@ -60,16 +60,16 @@ if (process.env.NODE_ENV !== 'development') {
   assets = require('../manifest.json');
   // eslint-disable-next-line global-require, import/no-unresolved
   mainAssets = require('../stats.json').entrypoints.main.assets.filter(
-    asset => !asset.endsWith('.map'),
+    asset => !asset.endsWith('.map')
   );
 
   const manifestFiles = mainAssets.filter(asset =>
-    asset.startsWith('js/runtime'),
+    asset.startsWith('js/runtime')
   );
 
   manifest = manifestFiles
     .map(manifestFile =>
-      fs.readFileSync(path.join(appRoot, '_static', manifestFile)),
+      fs.readFileSync(path.join(appRoot, '_static', manifestFile))
     )
     .join('\n');
 
@@ -83,7 +83,7 @@ function getPolyfills(userAgent, config) {
   if (
     !userAgent ||
     /(IEMobile|LG-|GT-|SM-|SamsungBrowser|Google Page Speed Insights)/.test(
-      userAgent,
+      userAgent
     )
   ) {
     userAgent = ''; // eslint-disable-line no-param-reassign
@@ -106,12 +106,12 @@ function getPolyfills(userAgent, config) {
     fetch: { flags: ['gated'] },
     Intl: { flags: ['gated'] },
     'Object.assign': { flags: ['gated'] },
-    matchMedia: { flags: ['gated'] },
+    matchMedia: { flags: ['gated'] }
   };
 
   config.availableLanguages.forEach(language => {
     features[`Intl.~locale.${language}`] = {
-      flags: ['gated'],
+      flags: ['gated']
     };
   });
 
@@ -120,11 +120,11 @@ function getPolyfills(userAgent, config) {
       uaString: userAgent,
       features,
       minify: process.env.NODE_ENV !== 'development',
-      unknown: 'polyfill',
+      unknown: 'polyfill'
     })
     .then(polyfills =>
       // no sourcemaps for inlined js
-      polyfills.replace(/^\/\/# sourceMappingURL=.*$/gm, ''),
+      polyfills.replace(/^\/\/# sourceMappingURL=.*$/gm, '')
     );
 
   polyfillls.set(normalizedUA, polyfill);
@@ -134,7 +134,7 @@ function getPolyfills(userAgent, config) {
 const ContextProvider = provideContext(IntlProvider, {
   config: configShape,
   url: PropTypes.string,
-  headers: PropTypes.objectOf(PropTypes.string),
+  headers: PropTypes.objectOf(PropTypes.string)
 });
 
 const isRobotRequest = agent =>
@@ -159,21 +159,21 @@ function getEnvironment(config, agent, locale) {
     relaySSRMiddleware.getMiddleware(),
     cacheMiddleware({
       size: 200,
-      ttl: 60 * 60 * 1000,
+      ttl: 60 * 60 * 1000
     }),
     urlMiddleware({
-      url: () => Promise.resolve(`${config.URL.OTP}gtfs/v1${queryParameters}`),
+      url: () => Promise.resolve(`${config.URL.OTP}gtfs/v1${queryParameters}`)
     }),
     errorMiddleware(),
     retryMiddleware({
       fetchTimeout: isRobotRequest(agent) ? 10000 : RELAY_FETCH_TIMEOUT,
-      retryDelays: [],
-    }),
+      retryDelays: []
+    })
   ]);
 
   const environment = new Environment({
     network: layer,
-    store: new Store(new RecordSource()),
+    store: new Store(new RecordSource())
   });
   environment.relaySSRMiddleware = relaySSRMiddleware;
 
@@ -210,7 +210,7 @@ export default async function serve(req, res, next) {
       historyMiddlewares,
       routeConfig: makeRouteConfig(application.getComponent()),
       resolver,
-      render,
+      render
     });
 
     if (redirect) {
@@ -227,7 +227,7 @@ export default async function serve(req, res, next) {
         component =>
           component &&
           component.type &&
-          component.type.displayName === 'Error404',
+          component.type.displayName === 'Error404'
       ).length > 0
     ) {
       res.status(404);
@@ -236,7 +236,7 @@ export default async function serve(req, res, next) {
     const context = application.createContext({
       url: req.url,
       headers: req.headers,
-      config,
+      config
     });
 
     context
@@ -271,13 +271,13 @@ export default async function serve(req, res, next) {
                     context.getStore('PreferencesStore').getLanguage(),
                     req.hostname,
                     `https://${req.hostname}${req.originalUrl}`,
-                    config,
+                    config
                   )}
                 />
               </React.Fragment>
             </ReactRelayContext.Provider>
           </ContextProvider>
-        </BreakpointProvider>,
+        </BreakpointProvider>
       );
     } catch (e) {
       if (e.isFoundRedirectException) {
@@ -298,11 +298,11 @@ export default async function serve(req, res, next) {
                   context.getStore('PreferencesStore').getLanguage(),
                   req.hostname,
                   `https://${req.hostname}${req.originalUrl}`,
-                  config,
+                  config
                 )}
               />
             </>
-          </ContextProvider>,
+          </ContextProvider>
         );
       } catch (_) {
         content = '';
@@ -338,21 +338,21 @@ export default async function serve(req, res, next) {
           {
             as: 'style',
             href: `${ASSET_URL}/${assets[`${config.CONFIG}_theme.css`]}`,
-            crossorigin: true,
+            crossorigin: true
           },
           ...mainAssets.map(asset => ({
             as: asset.endsWith('.css') ? 'style' : 'script',
             href: `${ASSET_URL}/${asset}`,
-            crossorigin: true,
-          })),
+            crossorigin: true
+          }))
         ];
 
         preloads.forEach(({ as, href, crossorigin }) =>
           res.write(
             `<link rel="preload" as="${as}" ${
               crossorigin ? 'crossorigin' : ''
-            } href="${href}">\n`,
-          ),
+            } href="${href}">\n`
+          )
         );
 
         const preconnects = [config.URL.API_URL, config.URL.MAP_URL];
@@ -362,25 +362,25 @@ export default async function serve(req, res, next) {
         }
 
         preconnects.forEach(href =>
-          res.write(`<link rel="preconnect" crossorigin href="${href}">\n`),
+          res.write(`<link rel="preconnect" crossorigin href="${href}">\n`)
         );
 
         res.write(
           `<link rel="stylesheet" type="text/css" crossorigin href="${ASSET_URL}/${
             assets[`${config.CONFIG}_theme.css`]
-          }"/>\n`,
+          }"/>\n`
         );
         mainAssets
           .filter(asset => asset.endsWith('.css'))
           .forEach(asset =>
             res.write(
-              `<link rel="stylesheet" type="text/css" crossorigin href="${ASSET_URL}/${asset}"/>\n`,
-            ),
+              `<link rel="stylesheet" type="text/css" crossorigin href="${ASSET_URL}/${asset}"/>\n`
+            )
           );
       }
 
       res.write(
-        `<link rel="stylesheet" type="text/css" href="${config.URL.FONT}"/>\n`,
+        `<link rel="stylesheet" type="text/css" href="${config.URL.FONT}"/>\n`
       );
 
       res.write(`<script>\n${polyfills}\n</script>\n`);
@@ -411,7 +411,7 @@ export default async function serve(req, res, next) {
       } else {
         res.write('<div>\n');
         res.write(
-          fs.readFileSync(`${appRoot}_static/${spriteName}`).toString(),
+          fs.readFileSync(`${appRoot}_static/${spriteName}`).toString()
         );
         res.write('</div>\n');
       }
@@ -421,8 +421,8 @@ export default async function serve(req, res, next) {
 
     res.write(
       `<script>\nwindow.state=${serialize(
-        application.dehydrate(context),
-      )};\n</script>\n`,
+        application.dehydrate(context)
+      )};\n</script>\n`
     );
 
     // local storage emitter is used from a hidden iframe and it does not use relay
@@ -430,8 +430,8 @@ export default async function serve(req, res, next) {
       res.write('<script>\n');
       res.write(
         `window.__RELAY_PAYLOADS__ = ${serialize(JSON.stringify(relayData), {
-          isJSON: true,
-        })}`,
+          isJSON: true
+        })}`
       );
       res.write('\n</script>\n');
     }
@@ -441,7 +441,7 @@ export default async function serve(req, res, next) {
     } else {
       res.write('<script>');
       res.write(
-        manifest.replace(/\/\/# sourceMappingURL=/g, `$&${ASSET_URL}/js/`),
+        manifest.replace(/\/\/# sourceMappingURL=/g, `$&${ASSET_URL}/js/`)
       );
       res.write('\n</script>\n');
       res.write(`<script>window.ASSET_URL="${ASSET_URL}/"</script>\n`);
@@ -449,8 +449,8 @@ export default async function serve(req, res, next) {
         .filter(asset => !asset.endsWith('.css'))
         .forEach(asset =>
           res.write(
-            `<script src="${ASSET_URL}/${asset}" crossorigin defer></script>\n`,
-          ),
+            `<script src="${ASSET_URL}/${asset}" crossorigin defer></script>\n`
+          )
         );
     }
     res.write('</body>\n');

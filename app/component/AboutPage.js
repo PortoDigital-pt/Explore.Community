@@ -37,7 +37,7 @@ const AboutPage = ({ currentLanguage }, { config }) => {
             </div>
           ) : (
             false
-          ),
+          )
         )}
         <Link to="/">
           <div className="call-to-action-button">
@@ -53,19 +53,19 @@ const AboutPage = ({ currentLanguage }, { config }) => {
 };
 
 AboutPage.propTypes = {
-  currentLanguage: PropTypes.string.isRequired,
+  currentLanguage: PropTypes.string.isRequired
 };
 
 AboutPage.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const connectedComponent = connectToStores(
   AboutPage,
   ['PreferencesStore'],
   context => ({
-    currentLanguage: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    currentLanguage: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export { connectedComponent as default, AboutPage as Component };

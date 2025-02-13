@@ -6,7 +6,7 @@ import {
   getItem,
   getItemAsJson,
   removeItem,
-  setItem,
+  setItem
 } from '@digitransit-store/digitransit-store-common-functions';
 import './mock-localstorage';
 
@@ -29,8 +29,8 @@ describe('Testing @digitransit-store/digitransit-store-common-functions', () => 
     const newItem = {
       items: [
         { name: 'name1', value: 'value1' },
-        { name: 'name2', value: 'value2' },
-      ],
+        { name: 'name2', value: 'value2' }
+      ]
     };
     it('should add two items', () => {
       setItem('digitransit-store-test', newItem);

@@ -14,20 +14,20 @@ export default function SpeechBubble({
   position,
   text,
   zIndexOffset,
-  speechBubbleStyle,
+  speechBubbleStyle
 }) {
   return (
     <Marker
       key="_text"
       position={{
         lat: position.lat,
-        lng: position.lon,
+        lng: position.lon
       }}
       interactive={false}
       icon={L.divIcon({
         html: `<div>${text}</div>`,
         className: `legmarker speech-bubble-${speechBubbleStyle}`,
-        iconSize: null,
+        iconSize: null
       })}
       keyboard={false}
       zIndexOffset={zIndexOffset}
@@ -38,15 +38,15 @@ export default function SpeechBubble({
 SpeechBubble.propTypes = {
   position: PropTypes.shape({
     lat: PropTypes.number,
-    lon: PropTypes.number,
+    lon: PropTypes.number
   }).isRequired,
   text: PropTypes.string,
   speechBubbleStyle: PropTypes.string,
-  zIndexOffset: PropTypes.number,
+  zIndexOffset: PropTypes.number
 };
 
 SpeechBubble.defaultProps = {
   speechBubbleStyle: 'topRight',
   text: '',
-  zIndexOffset: 400,
+  zIndexOffset: 400
 };

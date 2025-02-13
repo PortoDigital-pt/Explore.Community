@@ -14,7 +14,7 @@ function parseGeocodingResults(results) {
   return locationToOTP({
     address: results[0].properties.label,
     lon: results[0].geometry.coordinates[0],
-    lat: results[0].geometry.coordinates[1],
+    lat: results[0].geometry.coordinates[1]
   });
 }
 
@@ -29,8 +29,8 @@ function parseLocation(location, input, config) {
         locationToOTP({
           address: parsedFrom[1],
           lon: coords[0],
-          lat: coords[1],
-        }),
+          lat: coords[1]
+        })
       );
     }
 
@@ -41,7 +41,7 @@ function parseLocation(location, input, config) {
       null,
       null,
       peliasUrl,
-      minimalRegexp,
+      minimalRegexp
     )
       .then(parseGeocodingResults)
       .catch(() => ' ');
@@ -55,7 +55,7 @@ function parseLocation(location, input, config) {
       null,
       null,
       peliasUrl,
-      minimalRegexp,
+      minimalRegexp
     )
       .then(parseGeocodingResults)
       .catch(() => ' ');
@@ -120,12 +120,12 @@ export default function oldParamParser(query, config) {
   return Promise.all([
     parseLocation(query.from, query.from_in, config),
     parseLocation(query.to, query.to_in, config),
-    parseTime(query, config),
+    parseTime(query, config)
   ])
     .then(([from, to, time]) => {
       const encoded = {
         from: (from && encodeURIComponent(from)) || '-',
-        to: (to && encodeURIComponent(to)) || '-',
+        to: (to && encodeURIComponent(to)) || '-'
       };
 
       if (from && from.length > 1 && to && to.length > 1) {

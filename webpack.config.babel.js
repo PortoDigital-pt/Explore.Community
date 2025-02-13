@@ -17,7 +17,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {
   languages,
   themeEntries,
-  faviconPlugins,
+  faviconPlugins
 } = require('./build/contextHelper');
 
 const mode = process.env.NODE_ENV;
@@ -30,7 +30,7 @@ const reactIntlExpression = /react-intl[/\\]locale-data$/;
 const intlExpression = /intl[/\\]locale-data[/\\]jsonp$/;
 const themeExpression = /sass[/\\]themes$/;
 const selectedTheme = new RegExp(
-  `^./(${process.env.CONFIG || 'default'})/main.scss$`,
+  `^./(${process.env.CONFIG || 'default'})/main.scss$`
 );
 
 const productionPlugins = [
@@ -47,7 +47,7 @@ const productionPlugins = [
       'js/*_theme.*.js',
       'js/*_sprite.*.js',
       'assets/iconstats-*.json',
-      'assets/icons-*/*',
+      'assets/icons-*/*'
     ],
     caches: {
       main: [':rest:'],
@@ -58,8 +58,8 @@ const productionPlugins = [
         'assets/*.svg',
         'emitter/*.js',
         'assets/geojson/*.geojson',
-        ':externals:',
-      ],
+        ':externals:'
+      ]
     },
     // src for google fonts might change so https://fonts.gstatic.com addresses might require
     // some maintenance in this list to still keep them cached by service worker in the future.
@@ -111,32 +111,32 @@ const productionPlugins = [
       'https://fonts.gstatic.com/s/robotocondensed/v19/ieVl2ZhZI2eCN5jzbjEETS9weq8-19y7DRs5.woff2',
       'https://fonts.gstatic.com/s/robotocondensed/v19/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2',
       'https://fonts.gstatic.com/s/robotocondensed/v19/ieVi2ZhZI2eCN5jzbjEETS9weq8-32meGCoYb8td.woff2',
-      'https://fonts.gstatic.com/s/robotocondensed/v19/ieVi2ZhZI2eCN5jzbjEETS9weq8-32meGCQYbw.woff2',
+      'https://fonts.gstatic.com/s/robotocondensed/v19/ieVi2ZhZI2eCN5jzbjEETS9weq8-32meGCQYbw.woff2'
     ],
     updateStrategy: 'changed',
     autoUpdate: 1000 * 60 * 5,
     safeToUseOptionalCaches: true,
     ServiceWorker: {
       entry: './app/util/font-sw.js',
-      events: true,
+      events: true
     },
-    version: '[hash]',
+    version: '[hash]'
   }),
   new MiniCssExtractPlugin({
     filename: 'css/[name].[contenthash].css',
-    chunkFilename: 'css/[name].[contenthash].css',
+    chunkFilename: 'css/[name].[contenthash].css'
   }),
   new CompressionPlugin({
     filename: '[path].gz[query]',
     test: /\.(js|css|html|svg|ico)$/,
     minRatio: 0.95,
-    algorithm: 'gzip',
+    algorithm: 'gzip'
   }),
   new CompressionPlugin({
     filename: '[path].br[query]',
     test: /\.(js|css|html|svg|ico)$/,
     minRatio: 0.95,
-    algorithm: 'brotliCompress',
+    algorithm: 'brotliCompress'
   }),
   new CopyWebpackPlugin({
     patterns: [
@@ -145,32 +145,32 @@ const productionPlugins = [
         transform: function minify(content) {
           return JSON.stringify(JSON.parse(content.toString()));
         },
-        to: path.join(__dirname, '_static/assets/geojson'),
-      },
-    ],
+        to: path.join(__dirname, '_static/assets/geojson')
+      }
+    ]
   }),
   new StatsPlugin('../stats.json', {
     // We use stats.json in app/server.js to know which assets to serve. We
     // only need `.entrypoints.main.assets` for that.
     // https://github.com/webpack/webpack/blob/v4.44.1/declarations/WebpackOptions.d.ts#L1250-L1458
     all: false,
-    entrypoints: true,
+    entrypoints: true
   }),
-  new WebpackAssetsManifest({ output: '../manifest.json' }),
+  new WebpackAssetsManifest({ output: '../manifest.json' })
 ];
 
 module.exports = {
   mode,
   entry: {
     main: ['./app/util/publicPath', './app/client'],
-    ...(isProduction ? themeEntries : {}),
+    ...(isProduction ? themeEntries : {})
   },
   output: {
     path: path.join(__dirname, '_static'),
     filename: isDevelopment ? 'js/[name].js' : 'js/[name].[chunkhash].js',
     chunkFilename: 'js/[chunkhash].js',
     publicPath: isDevelopment ? '/proxy/' : `${process.env.APP_PATH || ''}/`,
-    crossOriginLoading: 'anonymous',
+    crossOriginLoading: 'anonymous'
   },
   module: {
     rules: [
@@ -184,13 +184,13 @@ module.exports = {
             [
               '@babel/preset-env',
               {
-                modules: false,
-              },
+                modules: false
+              }
             ],
             [
               '@babel/preset-react',
-              { development: isDevelopment, useBuiltIns: true },
-            ],
+              { development: isDevelopment, useBuiltIns: true }
+            ]
           ],
           plugins: [
             'relay',
@@ -199,14 +199,14 @@ module.exports = {
               {
                 helpers: true,
                 regenerator: true,
-                useESModules: true,
-              },
+                useESModules: true
+              }
             ],
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-transform-class-properties',
-            '@babel/plugin-transform-json-strings',
-          ],
-        },
+            '@babel/plugin-transform-json-strings'
+          ]
+        }
       },
       {
         test: /\.scss$/,
@@ -214,23 +214,23 @@ module.exports = {
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'sass-loader',
-        ],
+          'sass-loader'
+        ]
       },
       {
         test: /\.css$/,
         use: [
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
-          'postcss-loader',
-        ],
+          'postcss-loader'
+        ]
       },
       {
         test: /\.(eot|png|ttf|woff|svg|jpeg|jpg)$/,
         loader: isDevelopment ? 'file-loader' : 'url-loader',
-        options: { limit: 10000, outputPath: 'assets' },
-      },
-    ],
+        options: { limit: 10000, outputPath: 'assets' }
+      }
+    ]
   },
   devtool:
     process.env.WEBPACK_DEVTOOL === 'false'
@@ -242,16 +242,16 @@ module.exports = {
     new webpack.ContextReplacementPlugin(intlExpression, languageExp),
     ...(isDevelopment
       ? [new webpack.ContextReplacementPlugin(themeExpression, selectedTheme)]
-      : productionPlugins),
+      : productionPlugins)
   ],
   optimization: {
     minimizer: [
       new TerserJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: !isProduction,
+        sourceMap: !isProduction
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      new OptimizeCSSAssetsPlugin({})
     ],
     moduleIds: 'named',
     chunkIds: 'named',
@@ -261,21 +261,21 @@ module.exports = {
         react: {
           name: 'react',
           test: /[\\/]node_modules[\\/](react|react-dom|react-relay|relay-runtime)[\\/]/,
-          reuseExistingChunk: false,
+          reuseExistingChunk: false
         },
         digitransitComponents: {
           name: 'digitransit-components',
           test: /[\\/]node_modules[\\/](@digitransit-component|@digitransit-search-util|@digitransit-util|@hsl-fi)[\\/]/,
-          reuseExistingChunk: false,
-        },
-      },
+          reuseExistingChunk: false
+        }
+      }
     },
-    runtimeChunk: isProduction,
+    runtimeChunk: isProduction
   },
   performance: { hints: false },
   node: {
     net: 'empty',
-    tls: 'empty',
+    tls: 'empty'
   },
   cache: true,
   resolve: {
@@ -286,13 +286,13 @@ module.exports = {
       moment$: 'moment/moment.js',
       'babel-runtime/helpers/slicedToArray': path.join(
         __dirname,
-        'app/util/slicedToArray',
+        'app/util/slicedToArray'
       ),
       'babel-runtime/core-js/get-iterator': path.join(
         __dirname,
-        'app/util/getIterator',
-      ),
-    },
+        'app/util/getIterator'
+      )
+    }
   },
   externals: {
     'babel-runtime/core-js/array/from': 'var Array.from',
@@ -327,7 +327,7 @@ module.exports = {
     'fbjs/lib/fetch': 'var fetch',
     './fetch': 'var fetch',
 
-    'fbjs/lib/Map': 'var Map',
+    'fbjs/lib/Map': 'var Map'
   },
   devServer: {
     allowedHosts: 'all',
@@ -336,14 +336,14 @@ module.exports = {
     hot: false,
     port: process.env.HOT_LOAD_PORT || 9000,
     devMiddleware: {
-      publicPath: '/',
+      publicPath: '/'
     },
     static: false,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': '*'
     },
     client: {
-      overlay: true,
-    },
-  },
+      overlay: true
+    }
+  }
 };

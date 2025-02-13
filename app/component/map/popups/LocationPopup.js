@@ -18,7 +18,7 @@ import PopupHeader from '../PopupHeader';
 class LocationPopup extends React.Component {
   static contextTypes = {
     config: configShape.isRequired,
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   static propTypes = {
@@ -26,12 +26,12 @@ class LocationPopup extends React.Component {
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
     locationPopup: PropTypes.string,
-    onSelectLocation: PropTypes.func,
+    onSelectLocation: PropTypes.func
   };
 
   static defaultProps = {
     locationPopup: undefined,
-    onSelectLocation: () => {},
+    onSelectLocation: () => {}
   };
 
   constructor(props) {
@@ -40,8 +40,8 @@ class LocationPopup extends React.Component {
       loading: true,
       location: {
         lat: this.props.lat,
-        lon: this.props.lon,
-      },
+        lon: this.props.lon
+      }
     };
   }
 
@@ -56,7 +56,7 @@ class LocationPopup extends React.Component {
       lang: this.props.language,
       size: 1,
       layers: 'address',
-      zones: 1,
+      zones: 1
     };
     if (config.searchParams['boundary.country']) {
       searchParams['boundary.country'] =
@@ -73,8 +73,8 @@ class LocationPopup extends React.Component {
             location: {
               ...prevState.location,
               address: getLabel(match),
-              zoneId: getZoneId(config, match.zones, data.zones),
-            },
+              zoneId: getZoneId(config, match.zones, data.zones)
+            }
           }));
           pointName = 'FreeAddress';
         } else {
@@ -84,10 +84,10 @@ class LocationPopup extends React.Component {
               ...prevState.location,
               address: this.context.intl.formatMessage({
                 id: 'location-from-map',
-                defaultMessage: 'Selected location',
+                defaultMessage: 'Selected location'
               }),
-              zoneId: getZoneId(config, data.zones),
-            },
+              zoneId: getZoneId(config, data.zones)
+            }
           }));
           pointName = 'NoAddress';
         }
@@ -102,7 +102,7 @@ class LocationPopup extends React.Component {
           category: 'Map',
           name: pointName,
           type: null,
-          context,
+          context
         });
       },
       () => {
@@ -111,11 +111,11 @@ class LocationPopup extends React.Component {
           location: {
             address: this.context.intl.formatMessage({
               id: 'location-from-map',
-              defaultMessage: 'Selected location',
-            }),
-          },
+              defaultMessage: 'Selected location'
+            })
+          }
         });
-      },
+      }
     );
   }
 
@@ -129,7 +129,7 @@ class LocationPopup extends React.Component {
     }
     const { zoneId } = this.state.location;
     const [address, place] = splitStringToAddressAndPlace(
-      this.state.location.address,
+      this.state.location.address
     );
     return (
       <Card>
@@ -157,7 +157,7 @@ const connectedComponent = connectToStores(
   ({ getStore }) => {
     const language = getStore(PreferencesStore).getLanguage();
     return { language };
-  },
+  }
 );
 
 export { connectedComponent as default, LocationPopup as Component };

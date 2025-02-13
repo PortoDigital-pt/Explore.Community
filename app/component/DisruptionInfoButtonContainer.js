@@ -16,7 +16,7 @@ function DisruptionInfoButtonContainer(outerProps, { config: { feedIds } }) {
       addAnalyticsEvent({
         category: 'Navigation',
         action: 'OpenDisruptions',
-        name: null,
+        name: null
       });
     };
 
@@ -46,15 +46,15 @@ function DisruptionInfoButtonContainer(outerProps, { config: { feedIds } }) {
 }
 
 DisruptionInfoButtonContainer.propTypes = {
-  setDisruptionInfoOpen: PropTypes.func.isRequired,
+  setDisruptionInfoOpen: PropTypes.func.isRequired
 };
 
 DisruptionInfoButtonContainer.contextTypes = {
   router: routerShape.isRequired,
   match: matchShape.isRequired,
   config: PropTypes.shape({
-    feedIds: PropTypes.arrayOf(PropTypes.string.isRequired),
-  }).isRequired,
+    feedIds: PropTypes.arrayOf(PropTypes.string.isRequired)
+  }).isRequired
 };
 
 export default DisruptionInfoButtonContainer;

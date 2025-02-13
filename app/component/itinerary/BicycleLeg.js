@@ -15,7 +15,7 @@ import ItineraryCircleLineLong from './ItineraryCircleLineLong';
 import { PREFIX_STOPS } from '../../util/path';
 import {
   getRentalNetworkConfig,
-  RentalNetworkType,
+  RentalNetworkType
 } from '../../util/vehicleRentalUtils';
 import ItineraryCircleLineWithIcon from './ItineraryCircleLineWithIcon';
 import { splitStringToAddressAndPlace } from '../../util/otpStrings';
@@ -35,16 +35,16 @@ export default function BicycleLeg(
     bicycleWalkLeg,
     openSettings,
     nextLegMode,
-    relayEnvironment,
+    relayEnvironment
   },
-  { config, intl },
+  { config, intl }
 ) {
   let stopsDescription;
   let circleLine;
   const distance = displayDistance(
     parseInt(leg.distance, 10),
     config,
-    intl.formatNumber,
+    intl.formatNumber
   );
   const duration = durationToString(leg.duration * 1000);
   const time = legTimeStr(leg.start); // hh:mm
@@ -67,11 +67,11 @@ export default function BicycleLeg(
   const scooterSettingsOn = settings.scooterNetworks?.length > 0;
   const LOADSTATE = {
     UNSET: 'unset',
-    DONE: 'done',
+    DONE: 'done'
   };
   const [nearestScooterState, setNearestScooterState] = useState({
     nearest: [],
-    loading: LOADSTATE.UNSET,
+    loading: LOADSTATE.UNSET
   });
 
   if (leg.mode === 'WALK' || leg.mode === 'BICYCLE_WALK') {
@@ -103,7 +103,7 @@ export default function BicycleLeg(
       <FormattedMessage
         id={isScooter ? 'rent-e-scooter-at' : 'rent-cycle-at'}
         values={{
-          station: leg.from.name,
+          station: leg.from.name
         }}
         defaultMessage="Fetch a bike"
       />
@@ -126,7 +126,7 @@ export default function BicycleLeg(
     const style = {
       '--scooter-amount': nearestScooterState.nearest?.length
         ? `${nearestScooterState.nearest?.length}%`
-        : '0%',
+        : '0%'
     };
 
     circleLine = (
@@ -172,7 +172,7 @@ export default function BicycleLeg(
       first: config.vehicleRental.maxNearbyRentalVehicleAmount,
       maxDistance: config.vehicleRental.maxDistanceToRentalVehiclesInMeters,
       filterByModes: ['SCOOTER'],
-      filterByPlaceTypes: ['VEHICLE_RENT'],
+      filterByPlaceTypes: ['VEHICLE_RENT']
     };
 
     try {
@@ -181,8 +181,8 @@ export default function BicycleLeg(
         nearestQuery,
         planParams,
         {
-          force: true,
-        },
+          force: true
+        }
       ).toPromise();
       if (!result) {
         setNearestScooterState({ loading: LOADSTATE.DONE });
@@ -193,7 +193,7 @@ export default function BicycleLeg(
           ?.filter(
             n =>
               n.node.place.__typename === 'RentalVehicle' && // eslint-disable-line no-underscore-dangle
-              n.node.place.rentalNetwork.networkId !== rentalVehicleNetwork,
+              n.node.place.rentalNetwork.networkId !== rentalVehicleNetwork
           )
           // show only one scooter from each network
           .filter(
@@ -201,13 +201,13 @@ export default function BicycleLeg(
               self.findIndex(
                 t =>
                   t.node.place.rentalNetwork.networkId ===
-                  n.node.place.rentalNetwork.networkId,
-              ) === i,
+                  n.node.place.rentalNetwork.networkId
+              ) === i
           );
 
         setNearestScooterState({
           nearest: filteredNearest,
-          loading: LOADSTATE.DONE,
+          loading: LOADSTATE.DONE
         });
       }
     } catch (error) {
@@ -238,7 +238,7 @@ export default function BicycleLeg(
               ? intl.formatMessage({ id: 'from-scooter-location' })
               : origin,
             destination,
-            duration,
+            duration
           }}
         />
       </span>
@@ -258,9 +258,9 @@ export default function BicycleLeg(
                 leg.from.name?.toLowerCase() === 'scooter'
                   ? intl.formatMessage({
                       id: 'e-scooter',
-                      defaultMessage: 'scooter',
+                      defaultMessage: 'scooter'
                     })
-                  : leg.from.name || '',
+                  : leg.from.name || ''
             }}
           />
         </span>
@@ -326,7 +326,7 @@ export default function BicycleLeg(
             className={cx(
               'itinerary-leg-action',
               'bicycle',
-              'itinerary-leg-action-content',
+              'itinerary-leg-action-content'
             )}
           >
             {bicycleWalkLeg.distance === -1 ? (
@@ -337,7 +337,7 @@ export default function BicycleLeg(
                     <FormattedMessage
                       id={`from-${bicycleWalkLeg.from.stop.vehicleMode.toLowerCase()}`}
                     />
-                  ),
+                  )
                 }}
               />
             ) : (
@@ -353,8 +353,8 @@ export default function BicycleLeg(
                   distance: displayDistance(
                     parseInt(bicycleWalkLeg.distance, 10),
                     config,
-                    intl.formatNumber,
-                  ),
+                    intl.formatNumber
+                  )
                 }}
               />
             )}
@@ -370,7 +370,7 @@ export default function BicycleLeg(
               className={cx(
                 'itinerary-leg-action',
                 'scooter',
-                'itinerary-leg-action-content',
+                'itinerary-leg-action-content'
               )}
             >
               <FormattedMessage
@@ -416,7 +416,7 @@ export default function BicycleLeg(
           className={cx(
             'itinerary-leg-action',
             'bike',
-            'itinerary-leg-action-content',
+            'itinerary-leg-action-content'
           )}
         >
           {stopsDescription}
@@ -431,7 +431,7 @@ export default function BicycleLeg(
             className={cx(
               'itinerary-leg-action',
               'bicycle',
-              'itinerary-leg-action-content',
+              'itinerary-leg-action-content'
             )}
           >
             {bicycleWalkLeg.distance === -1 ? (
@@ -442,7 +442,7 @@ export default function BicycleLeg(
                     <FormattedMessage
                       id={`to-${bicycleWalkLeg.to.stop?.vehicleMode.toLowerCase()}`}
                     />
-                  ),
+                  )
                 }}
               />
             ) : (
@@ -458,8 +458,8 @@ export default function BicycleLeg(
                   distance: displayDistance(
                     parseInt(bicycleWalkLeg.distance, 10),
                     config,
-                    intl.formatNumber,
-                  ),
+                    intl.formatNumber
+                  )
                 }}
               />
             )}
@@ -492,16 +492,16 @@ BicycleLeg.propTypes = {
   focusToLeg: PropTypes.func.isRequired,
   openSettings: PropTypes.func.isRequired,
   nextLegMode: PropTypes.string,
-  relayEnvironment: relayShape,
+  relayEnvironment: relayShape
 };
 
 BicycleLeg.defaultProps = {
   bicycleWalkLeg: undefined,
   nextLegMode: undefined,
-  relayEnvironment: undefined,
+  relayEnvironment: undefined
 };
 
 BicycleLeg.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };

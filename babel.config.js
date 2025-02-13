@@ -5,17 +5,17 @@ module.exports = {
       {
         targets: {
           node: 'current',
-          browsers: [],
-        },
-      },
+          browsers: []
+        }
+      }
     ],
-    '@babel/preset-react',
+    '@babel/preset-react'
   ],
   plugins: [
     'dynamic-import-node',
     'relay',
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-transform-class-properties',
-    '@babel/plugin-transform-json-strings',
-  ],
+    '@babel/plugin-transform-json-strings'
+  ]
 };

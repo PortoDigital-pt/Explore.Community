@@ -21,90 +21,90 @@ export function getStopIconStyles(type, zoom, isHilighted) {
       13: {
         style: 'small',
         width: 10,
-        height: 10,
+        height: 10
       },
       14: {
         style: 'large',
         width: 16,
-        height: 22,
+        height: 22
       },
       15: {
         style: 'large',
         width: 20,
-        height: 27,
+        height: 27
       },
       16: {
         style: 'large',
         width: 24,
-        height: 33,
-      },
+        height: 33
+      }
     },
     hybrid: {
       13: {
         style: 'small',
         width: 10,
-        height: 10,
+        height: 10
       },
       14: {
         style: 'large',
         width: 17,
-        height: 37,
+        height: 37
       },
       15: {
         style: 'large',
         width: 21,
-        height: 45,
+        height: 45
       },
       16: {
         style: 'large',
         width: 25,
-        height: 55,
-      },
+        height: 55
+      }
     },
     citybike: {
       13: {
         style: 'small',
         width: 10,
-        height: 10,
+        height: 10
       },
       14: {
         style: 'medium',
         width: 16,
-        height: 22,
+        height: 22
       },
       15: {
         style: 'medium',
         width: 20,
-        height: 27,
+        height: 27
       },
       16: {
         style: 'large',
         width: 34,
-        height: 43,
-      },
+        height: 43
+      }
     },
     scooter: {
       13: {
         style: 'small',
         width: 10,
-        height: 10,
+        height: 10
       },
       14: {
         style: 'medium',
         width: 16,
-        height: 22,
+        height: 22
       },
       15: {
         style: 'medium',
         width: 20,
-        height: 27,
+        height: 27
       },
       16: {
         style: 'large',
         width: 35,
-        height: 43,
-      },
-    },
+        height: 43
+      }
+    }
   };
 
   if (!styles[type]) {
@@ -135,24 +135,24 @@ export function getTerminalIconStyles(zoom) {
   const styles = {
     12: {
       width: 12,
-      height: 12,
+      height: 12
     },
     13: {
       width: 16,
-      height: 16,
+      height: 16
     },
     14: {
       width: 20,
-      height: 20,
+      height: 20
     },
     15: {
       width: 24,
-      height: 24,
+      height: 24
     },
     16: {
       width: 30,
-      height: 30,
-    },
+      height: 30
+    }
   };
 
   if (zoom < 12) {
@@ -170,9 +170,9 @@ export const getCaseRadius = memoize(
     stops: [
       [11.9, 0],
       [12, 1.5],
-      [22, 26],
-    ],
-  }),
+      [22, 26]
+    ]
+  })
 );
 
 export const getStopRadius = memoize(
@@ -181,9 +181,9 @@ export const getStopRadius = memoize(
     stops: [
       [11.9, 0],
       [12, 1],
-      [22, 24],
-    ],
-  }),
+      [22, 24]
+    ]
+  })
 );
 
 export const getHubRadius = memoize(
@@ -192,9 +192,9 @@ export const getHubRadius = memoize(
     stops: [
       [14, 0],
       [14.1, 2],
-      [22, 20],
-    ],
-  }),
+      [22, 20]
+    ]
+  })
 );
 
 export const getMapIconScale = memoize(
@@ -202,9 +202,9 @@ export const getMapIconScale = memoize(
     base: 1,
     stops: [
       [13, 0.8],
-      [20, 1.6],
-    ],
-  }),
+      [20, 1.6]
+    ]
+  })
 );
 
 const getStyleOrDefault = (selector, defaultValue = {}) => {
@@ -246,7 +246,7 @@ function getImageFromSpriteSync(icon, width, height, fill) {
   }
   const image = new Image(width, height);
   image.src = `data:image/svg+xml;base64,${btoa(
-    new XMLSerializer().serializeToString(svg),
+    new XMLSerializer().serializeToString(svg)
   )}`;
   return image;
 }
@@ -261,14 +261,14 @@ function getImageFromSpriteAsync(icon, width, height, fill) {
 
 const getImageFromSpriteCache = memoize(
   getImageFromSpriteAsync,
-  (icon, w, h, fill) => `${icon}_${w}_${h}_${fill}`,
+  (icon, w, h, fill) => `${icon}_${w}_${h}_${fill}`
 );
 
 function drawIconImage(image, tile, geom, width, height) {
   tile.ctx.drawImage(
     image,
     geom.x / tile.ratio - width / 2,
-    geom.y / tile.ratio - height / 2,
+    geom.y / tile.ratio - height / 2
   );
 }
 
@@ -277,7 +277,7 @@ function calculateIconBadgePosition(
   tile,
   imageSize,
   badgeSize,
-  scaleratio,
+  scaleratio
 ) {
   return coord / tile.ratio - imageSize / 2 - badgeSize / 2 + 2 * scaleratio;
 }
@@ -288,12 +288,12 @@ function drawIconImageBadge(
   geom,
   imageSize,
   badgeSize,
-  scaleratio,
+  scaleratio
 ) {
   tile.ctx.drawImage(
     image,
     calculateIconBadgePosition(geom.x, tile, imageSize, badgeSize, scaleratio),
-    calculateIconBadgePosition(geom.y, tile, imageSize, badgeSize, scaleratio),
+    calculateIconBadgePosition(geom.y, tile, imageSize, badgeSize, scaleratio)
   );
 }
 
@@ -310,7 +310,7 @@ function drawSelectionCircle(
   y,
   radius,
   largeStyle,
-  showAvailabilityBadge = false,
+  showAvailabilityBadge = false
 ) {
   const zoom = tile.coords.z - 1;
   const selectedCircleOffset = getSelectedIconCircleOffset(zoom, tile.ratio);
@@ -329,7 +329,7 @@ function drawSelectionCircle(
       y + 1.85 * selectedCircleOffset,
       radius - 2,
       0,
-      arc,
+      arc
     );
   } else {
     tile.ctx.arc(
@@ -337,7 +337,7 @@ function drawSelectionCircle(
       y + selectedCircleOffset,
       radius + 2,
       0,
-      arc,
+      arc
     );
   }
 
@@ -375,7 +375,7 @@ function getSmallStopIcon(type, radius, color) {
 const getMemoizedStopIcon = memoize(
   getSmallStopIcon,
   (type, radius, color, isHilighted) =>
-    `${type}_${radius}_${color}_${isHilighted}`,
+    `${type}_${radius}_${color}_${isHilighted}`
 );
 
 /**
@@ -390,7 +390,7 @@ export function drawStopIcon(
   platformNumber,
   isHilighted,
   isFerryTerminal,
-  modeIconColors,
+  modeIconColors
 ) {
   if (type === 'SUBWAY') {
     return;
@@ -421,7 +421,7 @@ export function drawStopIcon(
       isFerryTerminal ? 'FERRY_TERMINAL' : type,
       radius,
       color,
-      isHilighted,
+      isHilighted
     ).then(image => {
       tile.ctx.drawImage(image, x, y);
     });
@@ -436,7 +436,7 @@ export function drawStopIcon(
         : `icon-icon_${type.toLowerCase()}`,
       width,
       height,
-      color,
+      color
     ).then(image => {
       tile.ctx.drawImage(image, x, y);
       if (drawNumber && platformNumber) {
@@ -463,20 +463,20 @@ export function drawStopIcon(
         getImageFromSpriteCache(
           `icon-icon_station_highlight`,
           width,
-          height,
+          height
         ).then(image => {
           tile.ctx.drawImage(
             image,
             x - 4 / tile.scaleratio,
             y - 4 / tile.scaleratio,
             width + 8 / tile.scaleratio,
-            height + 8 / tile.scaleratio,
+            height + 8 / tile.scaleratio
           );
         });
       } else {
         const selectedCircleOffset = getSelectedIconCircleOffset(
           zoom,
-          tile.ratio,
+          tile.ratio
         );
         tile.ctx.beginPath();
         // eslint-disable-next-line no-param-reassign
@@ -486,7 +486,7 @@ export function drawStopIcon(
           y + selectedCircleOffset,
           radius + 2,
           0,
-          FULL_CIRCLE,
+          FULL_CIRCLE
         );
         tile.ctx.stroke();
       }
@@ -502,7 +502,7 @@ export function drawHybridStopIcon(
   geom,
   isHilighted,
   modeIconColors,
-  hasTrunkRoute = false,
+  hasTrunkRoute = false
 ) {
   const zoom = tile.coords.z - 1;
   const styles = getStopIconStyles('hybrid', zoom, isHilighted);
@@ -547,7 +547,7 @@ export function drawHybridStopIcon(
     getImageFromSpriteCache(
       `icon-icon_map_hybrid_stop${hasTrunkRoute ? '_express' : ''}`,
       width,
-      height,
+      height
     ).then(image => {
       tile.ctx.drawImage(image, x, y);
       if (isHilighted) {
@@ -564,21 +564,21 @@ export function drawHybridStopIcon(
             y + yOff / tile.ratio,
             radius * tile.scaleratio,
             0,
-            Math.PI,
+            Math.PI
           );
           tile.ctx.arc(
             x + xOff / tile.ratio,
             y + eHeight / tile.ratio,
             radius * tile.scaleratio,
             Math.PI,
-            0,
+            0
           );
           tile.ctx.arc(
             x + xOff / tile.ratio,
             y + yOff / tile.ratio,
             radius * tile.scaleratio,
             0,
-            Math.PI,
+            Math.PI
           );
         } else if (zoom === 15) {
           tile.ctx.arc(
@@ -586,21 +586,21 @@ export function drawHybridStopIcon(
             y + 213 / tile.ratio,
             12 * tile.scaleratio,
             0,
-            Math.PI,
+            Math.PI
           );
           tile.ctx.arc(
             x + 81 / tile.ratio,
             y + 75 / tile.ratio,
             12 * tile.scaleratio,
             Math.PI,
-            0,
+            0
           );
           tile.ctx.arc(
             x + 81 / tile.ratio,
             y + 213 / tile.ratio,
             12 * tile.scaleratio,
             0,
-            Math.PI,
+            Math.PI
           );
         } else {
           tile.ctx.arc(
@@ -608,21 +608,21 @@ export function drawHybridStopIcon(
             y + 273 / tile.ratio,
             13.5 * tile.scaleratio,
             0,
-            Math.PI,
+            Math.PI
           );
           tile.ctx.arc(
             x + 97.2 / tile.ratio,
             y + 88.5 / tile.ratio,
             13.5 * tile.scaleratio,
             Math.PI,
-            0,
+            0
           );
           tile.ctx.arc(
             x + 97.2 / tile.ratio,
             y + 273 / tile.ratio,
             13.5 * tile.scaleratio,
             0,
-            Math.PI,
+            Math.PI
           );
         }
         tile.ctx.stroke();
@@ -654,7 +654,7 @@ export function drawCitybikeIcon(
   available,
   iconName,
   showAvailability,
-  isHilighted,
+  isHilighted
 ) {
   const zoom = tile.coords.z - 1;
   const styles = getStopIconStyles('citybike', zoom, isHilighted);
@@ -787,12 +787,12 @@ export function drawTerminalIcon(tile, geom, type, isHilighted) {
   getImageFromSpriteCache(
     `icon-icon_${type.split(',')[0].toLowerCase()}`,
     width,
-    height,
+    height
   ).then(image => {
     tile.ctx.drawImage(
       image,
       geom.x / tile.ratio - width / 2,
-      geom.y / tile.ratio - height / 2,
+      geom.y / tile.ratio - height / 2
     );
   });
   if (isHilighted) {
@@ -803,9 +803,9 @@ export function drawTerminalIcon(tile, geom, type, isHilighted) {
           geom.x / tile.ratio - width / 2 - 4 / tile.scaleratio,
           geom.y / tile.ratio - height / 2 - 4 / tile.scaleratio,
           width + 8 / tile.scaleratio,
-          height + 8 / tile.scaleratio,
+          height + 8 / tile.scaleratio
         );
-      },
+      }
     );
   }
 }
@@ -828,22 +828,22 @@ export function drawHybridStationIcon(tile, geom, isHilighted) {
       tile.ctx.drawImage(
         image,
         geom.x / tile.ratio - width / 2,
-        geom.y / tile.ratio - height / 2,
+        geom.y / tile.ratio - height / 2
       );
-    },
+    }
   );
   if (isHilighted) {
     getImageFromSpriteCache(
       'icon-icon_hybrid_station_highlight',
       width,
-      height,
+      height
     ).then(image => {
       tile.ctx.drawImage(
         image,
         geom.x / tile.ratio - width / 2 - 4 / tile.scaleratio,
         geom.y / tile.ratio - height / 2 - 4 / tile.scaleratio,
         width + 8 / tile.scaleratio,
-        height + 8 / tile.scaleratio,
+        height + 8 / tile.scaleratio
       );
     });
   }
@@ -855,7 +855,7 @@ export function drawParkAndRideIcon(
   geom,
   width,
   height,
-  isHilighted = false,
+  isHilighted = false
 ) {
   const img =
     type === ParkTypes.Bicycle ? 'icon-icon_bike-park' : 'icon-icon_car-park';
@@ -870,9 +870,9 @@ export function drawParkAndRideIcon(
           geom.x / tile.ratio - width / 2 - 4 / tile.scaleratio,
           geom.y / tile.ratio - height / 2 - 4 / tile.scaleratio,
           width + 7.5 / tile.scaleratio,
-          height + 6 / tile.scaleratio,
+          height + 6 / tile.scaleratio
         );
-      },
+      }
     );
   }
 }
@@ -883,7 +883,7 @@ export function drawAvailabilityBadge(
   geom,
   imageSize,
   badgeSize,
-  scaleratio,
+  scaleratio
 ) {
   if (
     availability !== 'good' &&
@@ -896,7 +896,7 @@ export function drawAvailabilityBadge(
   getImageFromSpriteCache(
     `icon-icon_${availability}-availability`,
     badgeSize,
-    badgeSize,
+    badgeSize
   ).then(image => {
     drawIconImageBadge(image, tile, geom, imageSize, badgeSize, scaleratio);
   });

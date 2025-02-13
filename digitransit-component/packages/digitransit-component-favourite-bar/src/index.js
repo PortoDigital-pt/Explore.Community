@@ -17,8 +17,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 const isKeyboardSelectionEvent = event => {
@@ -48,7 +48,7 @@ const FavouriteLocation = ({
   text,
   label,
   isLoading,
-  color,
+  color
 }) => {
   const ariaLabel =
     label === '' ? text : `${text} ${label} ${i18next.t('add-destination')}`;
@@ -80,11 +80,11 @@ FavouriteLocation.propTypes = {
   text: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired
 };
 
 FavouriteLocation.defaultProps = {
-  isLoading: false,
+  isLoading: false
 };
 
 /**
@@ -122,8 +122,8 @@ class FavouriteBar extends React.Component {
         name: PropTypes.string,
         lon: PropTypes.number,
         selectedIconId: PropTypes.string,
-        favouriteId: PropTypes.string,
-      }),
+        favouriteId: PropTypes.string
+      })
     ).isRequired,
     /** Optional. Function for clicking favourites. */
     onClickFavourite: PropTypes.func,
@@ -144,8 +144,8 @@ class FavouriteBar extends React.Component {
     /** Optional. */
     fontWeights: PropTypes.shape({
       /** Default value is 500. */
-      medium: PropTypes.number,
-    }),
+      medium: PropTypes.number
+    })
   };
 
   static defaultProps = {
@@ -158,8 +158,8 @@ class FavouriteBar extends React.Component {
     isLoading: false,
     color: '#007ac9',
     fontWeights: {
-      medium: 500,
-    },
+      medium: 500
+    }
   };
 
   static FavouriteIconIdToNameMap = {
@@ -168,7 +168,7 @@ class FavouriteBar extends React.Component {
     'icon-icon_work': 'work',
     'icon-icon_sport': 'sport',
     'icon-icon_school': 'school',
-    'icon-icon_shopping': 'shopping',
+    'icon-icon_shopping': 'shopping'
   };
 
   constructor(props) {
@@ -178,7 +178,7 @@ class FavouriteBar extends React.Component {
       firstFavourite: props.favourites[0] || null,
       secondFavourite: props.favourites[1] || null,
       favourites: props.favourites.slice(2, props.favourites.length),
-      timestamp: 0,
+      timestamp: 0
     };
     this.expandListRef = React.createRef();
     this.suggestionListRef = React.createRef();
@@ -204,7 +204,7 @@ class FavouriteBar extends React.Component {
       return {
         firstFavourite: nextFavourites[0] || null,
         secondFavourite: nextFavourites[1] || null,
-        favourites: nextFavourites.slice(2, nextFavourites.length),
+        favourites: nextFavourites.slice(2, nextFavourites.length)
       };
     }
     return null;
@@ -223,7 +223,7 @@ class FavouriteBar extends React.Component {
       this.setState(
         prevState => ({
           listOpen: !prevState.listOpen,
-          timestamp: new Date().getTime(),
+          timestamp: new Date().getTime()
         }),
         () => {
           if (this.state.listOpen) {
@@ -231,7 +231,7 @@ class FavouriteBar extends React.Component {
           } else {
             this.expandListRef.current?.focus();
           }
-        },
+        }
       );
     }
   };
@@ -244,7 +244,7 @@ class FavouriteBar extends React.Component {
       !this.expandListRef.current.contains(event.target)
     ) {
       this.setState({
-        listOpen: false,
+        listOpen: false
       });
     }
   };
@@ -287,7 +287,7 @@ class FavouriteBar extends React.Component {
     item,
     index,
     ariaLabelSuffix = '',
-    className = undefined,
+    className = undefined
   ) => {
     const id = `favourite-suggestion-list--item-${index}`;
     return (
@@ -322,8 +322,8 @@ class FavouriteBar extends React.Component {
     const customSuggestions = [
       {
         name: i18next.t('add-place'),
-        selectedIconId: 'favourite',
-      },
+        selectedIconId: 'favourite'
+      }
     ];
     if (this.props.favourites.length === 0) {
       return customSuggestions;
@@ -333,8 +333,8 @@ class FavouriteBar extends React.Component {
       {
         name: i18next.t('edit'),
         selectedIconId: 'edit',
-        iconColor: this.props.color,
-      },
+        iconColor: this.props.color
+      }
     ];
   };
 
@@ -394,7 +394,7 @@ class FavouriteBar extends React.Component {
           <button
             type="button"
             className={cx(styles.expandButton, styles[expandIcon], {
-              [styles.rotate]: listOpen,
+              [styles.rotate]: listOpen
             })}
             ref={this.expandListRef}
             id="favourite-expand-button"
@@ -421,7 +421,7 @@ class FavouriteBar extends React.Component {
               {favourites.map((item, index) => {
                 const favouriteLabel = formatFavouritePlaceLabel(
                   item.name,
-                  item.address,
+                  item.address
                 );
                 const address = favouriteLabel[1];
 
@@ -429,10 +429,10 @@ class FavouriteBar extends React.Component {
                   {
                     ...item,
                     address,
-                    iconColor: this.props.color,
+                    iconColor: this.props.color
                   },
                   index,
-                  `, ${i18next.t('add-destination')}`,
+                  `, ${i18next.t('add-destination')}`
                 );
               })}
               {favourites.length > 0 && (
@@ -442,12 +442,12 @@ class FavouriteBar extends React.Component {
                 this.renderSuggestion(
                   {
                     ...item,
-                    iconColor: this.props.color,
+                    iconColor: this.props.color
                   },
                   favourites.length + index,
                   undefined,
-                  'favouriteCustom',
-                ),
+                  'favouriteCustom'
+                )
               )}
             </ul>
           )}

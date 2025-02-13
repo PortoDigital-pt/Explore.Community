@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   Component as MessageBar,
-  getServiceAlertId,
+  getServiceAlertId
 } from '../../../app/component/MessageBar';
 import { mockContext } from '../helpers/mock-context';
 import { shallowWithIntl } from '../helpers/mock-intl-enzyme';
@@ -17,22 +17,22 @@ const defaultProps = {
   currentTime: 1558610379,
   duplicateMessageCounter: 0,
   breakpoint: 'large',
-  relayEnvironment: { environment: {} },
+  relayEnvironment: { environment: {} }
 };
 
 const context = {
   ...mockContext,
   config: {
     CONFIG: 'default',
-    messageBarAlerts: true,
-  },
+    messageBarAlerts: true
+  }
 };
 
 describe('<MessageBar />', () => {
   it('should render empty if there are no messages', () => {
     const props = { ...defaultProps };
     const wrapper = shallowWithIntl(<MessageBar {...props} />, {
-      context,
+      context
     });
     expect(wrapper.isEmptyRender()).to.equal(true);
   });
@@ -47,12 +47,12 @@ describe('<MessageBar />', () => {
           alertSeverityLevel: AlertSeverityLevelType.Severe,
           effectiveStartDate: defaultProps.currentTime - 100,
           effectiveEndDate: defaultProps.currentTime + 100,
-          feed: 'Foo',
-        },
-      ],
+          feed: 'Foo'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<MessageBar {...props} />, {
-      context,
+      context
     });
     await wrapper.instance().componentDidMount();
     expect(wrapper.find(Icon)).to.have.lengthOf(2);
@@ -68,7 +68,7 @@ describe('<MessageBar />', () => {
         alertSeverityLevel: AlertSeverityLevelType.Severe,
         effectiveStartDate: defaultProps.currentTime - 100,
         effectiveEndDate: defaultProps.currentTime + 100,
-        feed: 'Foo',
+        feed: 'Foo'
       },
       {
         alertDescriptionText: 'text',
@@ -77,8 +77,8 @@ describe('<MessageBar />', () => {
         alertSeverityLevel: AlertSeverityLevelType.Severe,
         effectiveStartDate: defaultProps.currentTime - 100,
         effectiveEndDate: defaultProps.currentTime + 100,
-        feed: 'Foo',
-      },
+        feed: 'Foo'
+      }
     ];
 
     expect(getServiceAlertId(alerts[0])).to.equal(alertId);
@@ -86,10 +86,10 @@ describe('<MessageBar />', () => {
 
     const props = {
       ...defaultProps,
-      getServiceAlertsAsync: async () => alerts,
+      getServiceAlertsAsync: async () => alerts
     };
     const wrapper = shallowWithIntl(<MessageBar {...props} />, {
-      context,
+      context
     });
     await wrapper.instance().componentDidMount();
     expect(wrapper.instance().validMessages()[0].id).to.not.equal(alertId);
@@ -104,15 +104,15 @@ describe('<MessageBar />', () => {
         alertSeverityLevel: AlertSeverityLevelType.Severe,
         effectiveEndDate: 1558610381,
         effectiveStartDate: 1558610380,
-        feed: 'Foo',
-      },
+        feed: 'Foo'
+      }
     ];
     const props = {
       ...defaultProps,
-      getServiceAlertsAsync: async () => alerts,
+      getServiceAlertsAsync: async () => alerts
     };
     const wrapper = shallowWithIntl(<MessageBar {...props} />, {
-      context,
+      context
     });
 
     await wrapper.instance().componentDidMount();
@@ -129,18 +129,18 @@ describe('<MessageBar />', () => {
           alertSeverityLevel: AlertSeverityLevelType.Severe,
           effectiveStartDate: defaultProps.currentTime - 100,
           effectiveEndDate: defaultProps.currentTime + 100,
-          feed: 'Foo',
-        },
-      ],
+          feed: 'Foo'
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<MessageBar {...props} />, {
       context: {
         ...context,
         config: {
           CONFIG: 'default',
-          messageBarAlerts: false,
-        },
-      },
+          messageBarAlerts: false
+        }
+      }
     });
     await wrapper.instance().componentDidMount();
 
@@ -158,20 +158,20 @@ describe('<MessageBar />', () => {
             fi: [
               {
                 type: 'text',
-                content: 'Test message',
-              },
-            ],
-          },
-        },
-      ],
+                content: 'Test message'
+              }
+            ]
+          }
+        }
+      ]
     };
     const wrapper = shallowWithIntl(<MessageBar {...props} />, {
-      context,
+      context
     });
     await wrapper.instance().componentDidMount();
     expect(wrapper.find('section').get(0).props.style).to.have.property(
       'background',
-      '#000000',
+      '#000000'
     );
   });
 });

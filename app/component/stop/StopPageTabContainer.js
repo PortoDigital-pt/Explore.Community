@@ -23,24 +23,24 @@ StopPageTabContainer.propTypes = {
         realtimeState: PropTypes.string,
         trip: PropTypes.shape({
           pattern: PropTypes.shape({
-            code: PropTypes.string,
+            code: PropTypes.string
           }),
           route: PropTypes.shape({
             alerts: PropTypes.arrayOf(alertShape),
             trip: PropTypes.shape({
               pattern: PropTypes.shape({
-                code: PropTypes.string,
-              }),
-            }),
-          }),
-        }),
-      }),
-    ),
-  }),
+                code: PropTypes.string
+              })
+            })
+          })
+        })
+      })
+    )
+  })
 };
 
 StopPageTabContainer.defaultProps = {
-  stop: undefined,
+  stop: undefined
 };
 
 const containerComponent = createFragmentContainer(StopPageTabContainer, {
@@ -68,7 +68,7 @@ const containerComponent = createFragmentContainer(StopPageTabContainer, {
         realtimeState
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, StopPageTabContainer as Component };

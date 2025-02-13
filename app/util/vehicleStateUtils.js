@@ -9,7 +9,7 @@ export default function getVehicleState(
   arrivalTimeToStop,
   departureTimeFromStop,
   first,
-  last,
+  last
 ) {
   let vehicleState;
   if (

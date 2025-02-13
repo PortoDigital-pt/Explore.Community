@@ -29,13 +29,13 @@ NationalServiceLink.propTypes = {
   nationalServiceLink: PropTypes.objectOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired,
-    }),
-  ),
+      href: PropTypes.string.isRequired
+    })
+  )
 };
 
 NationalServiceLink.defaultProps = {
-  nationalServiceLink: null,
+  nationalServiceLink: null
 };
 
 NationalServiceLink.displayName = 'NationalServiceLink';
@@ -44,8 +44,8 @@ const connectedComponent = connectToStores(
   NationalServiceLink,
   ['PreferencesStore'],
   context => ({
-    currentLanguage: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    currentLanguage: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export { connectedComponent as default, NationalServiceLink as Component };

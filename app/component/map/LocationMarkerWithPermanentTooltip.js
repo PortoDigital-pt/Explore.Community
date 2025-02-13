@@ -12,7 +12,7 @@ const LocationMarkerWithPermanentTooltip = props => {
         zIndexOffset={1000}
         position={props.position}
         icon={L.divIcon({
-          iconSize: [0, 0],
+          iconSize: [0, 0]
         })}
         opacity={0.01}
         keyboard={false}
@@ -33,7 +33,7 @@ const LocationMarkerWithPermanentTooltip = props => {
 
 LocationMarkerWithPermanentTooltip.propTypes = {
   position: locationShape.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };
 
 export default LocationMarkerWithPermanentTooltip;

@@ -32,13 +32,13 @@ SelectParkAndRideRow.displayName = 'SelectParkAndRideRow';
 SelectParkAndRideRow.propTypes = {
   bikeParkId: PropTypes.string,
   carParkId: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 
 SelectParkAndRideRow.defaultProps = {
   bikeParkId: undefined,
   carParkId: undefined,
-  name: '',
+  name: ''
 };
 
 export default SelectParkAndRideRow;

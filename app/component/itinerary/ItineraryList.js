@@ -11,7 +11,7 @@ import { isBrowser } from '../../util/browser';
 import {
   getExtendedMode,
   showBikeBoardingNote,
-  showCarBoardingNote,
+  showCarBoardingNote
 } from '../../util/legUtils';
 import ItineraryListHeader from './ItineraryListHeader';
 import ItinerariesNotFound from './ItinerariesNotFound';
@@ -22,7 +22,7 @@ import { getIntermediatePlaces } from '../../util/otpStrings';
 
 const spinnerPosition = {
   top: 'top',
-  bottom: 'bottom',
+  bottom: 'bottom'
 };
 
 function ItineraryList(
@@ -41,7 +41,7 @@ function ItineraryList(
     routingFeedbackPosition,
     ...rest
   },
-  context,
+  context
 ) {
   const { config } = context;
   const { location } = context.match;
@@ -75,7 +75,7 @@ function ItineraryList(
         translationId="leave-your-car-park-and-ride"
         defaultMessage="Park & Ride"
         key="itinerary-summary.parkride-title"
-      />,
+      />
     );
   }
   if (hash === streetHash.bikeAndVehicle) {
@@ -87,7 +87,7 @@ function ItineraryList(
         <ItineraryListHeader
           translationId="itinerary-summary.bikePark-title"
           key="itinerary-summary.bikepark-title"
-        />,
+        />
       );
     }
     if (planEdges.length > bikeParkItineraryCount) {
@@ -95,13 +95,13 @@ function ItineraryList(
       const mode =
         getExtendedMode(
           planEdges[bikeParkItineraryCount].node.legs.find(l => l.transitLeg),
-          config,
+          config
         ) || 'rail';
       const legs = planEdges
         .slice(bikeParkItineraryCount)
         .flatMap(edge => edge.node.legs);
       const showBikeBoardingInfo = legs.some(leg =>
-        showBikeBoardingNote(leg, config),
+        showBikeBoardingNote(leg, config)
       );
 
       summaries.splice(
@@ -112,7 +112,7 @@ function ItineraryList(
           defaultMessage="Take your bike with you onboard"
           key="itinerary-summary.bikeandpublic-title"
           showBikeBoardingInfo={showBikeBoardingInfo}
-        />,
+        />
       );
     }
   }
@@ -123,13 +123,13 @@ function ItineraryList(
       const mode =
         getExtendedMode(
           planEdges[carDirectItineraryCount].node.legs.find(l => l.transitLeg),
-          config,
+          config
         ) || 'ferry';
       const legs = planEdges
         .slice(carDirectItineraryCount)
         .flatMap(edge => edge.node.legs);
       const showCarBoardingInfo = legs.some(leg =>
-        showCarBoardingNote(leg, config),
+        showCarBoardingNote(leg, config)
       );
 
       summaries.splice(
@@ -140,7 +140,7 @@ function ItineraryList(
           defaultMessage="Take your car with you onboard"
           key="itinerary-summary.carandpublic-title"
           showCarBoardingInfo={showCarBoardingInfo}
-        />,
+        />
       );
     }
   }
@@ -151,7 +151,7 @@ function ItineraryList(
       <div
         className="summary-list-separator"
         key={`summary-list-separator-${separatorPosition}`}
-      />,
+      />
     );
   }
   if (routingFeedbackPosition) {
@@ -167,7 +167,7 @@ function ItineraryList(
           className={cx(
             'flex-horizontal',
             'summary-notification',
-            'show-alternatives',
+            'show-alternatives'
           )}
         >
           <Icon className="icon-icon_settings" img="icon-icon_settings" />
@@ -184,7 +184,7 @@ function ItineraryList(
           className={cx(
             'flex-horizontal',
             'alternative-vehicle-info',
-            'summary-notification',
+            'summary-notification'
           )}
         >
           <Icon className="info-icon" img="icon-icon_info" />
@@ -196,7 +196,7 @@ function ItineraryList(
               <FormattedMessage
                 id="e-scooter-alternative"
                 values={{
-                  paymentInfo: <FormattedMessage id="payment-info-e-scooter" />,
+                  paymentInfo: <FormattedMessage id="payment-info-e-scooter" />
                 }}
               />
             </div>
@@ -212,7 +212,7 @@ function ItineraryList(
         <div
           className={cx('summary-list-items', {
             'summary-list-items-loading-top':
-              loadingMore === spinnerPosition.top,
+              loadingMore === spinnerPosition.top
           })}
         >
           {summaries}
@@ -242,7 +242,7 @@ ItineraryList.propTypes = {
   showRentalVehicleNotifier: PropTypes.bool,
   separatorPosition: PropTypes.number,
   loadingMore: PropTypes.string,
-  routingFeedbackPosition: PropTypes.number,
+  routingFeedbackPosition: PropTypes.number
 };
 
 ItineraryList.defaultProps = {
@@ -253,12 +253,12 @@ ItineraryList.defaultProps = {
   showRentalVehicleNotifier: false,
   separatorPosition: undefined,
   loadingMore: undefined,
-  routingFeedbackPosition: undefined,
+  routingFeedbackPosition: undefined
 };
 
 ItineraryList.contextTypes = {
   config: configShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 const containerComponent = createFragmentContainer(ItineraryList, {
@@ -279,11 +279,11 @@ const containerComponent = createFragmentContainer(ItineraryList, {
         }
       }
     }
-  `,
+  `
 });
 
 export {
   containerComponent as default,
   ItineraryList as Component,
-  spinnerPosition,
+  spinnerPosition
 };

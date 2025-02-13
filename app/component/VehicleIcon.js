@@ -70,7 +70,7 @@ const VehicleIcon = ({
   scrollIntoView,
   vehicleNumber,
   useLargeIcon,
-  color,
+  color
 }) => (
   <span>
     {useLargeIcon ? (
@@ -115,7 +115,7 @@ VehicleIcon.propTypes = {
   scrollIntoView: PropTypes.bool,
   vehicleNumber: PropTypes.string.isRequired,
   useLargeIcon: PropTypes.bool,
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 VehicleIcon.defaultProps = {
@@ -125,7 +125,7 @@ VehicleIcon.defaultProps = {
   mode: 'bus',
   scrollIntoView: false,
   useLargeIcon: false,
-  color: undefined,
+  color: undefined
 };
 
 export default VehicleIcon;

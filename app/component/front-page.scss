@@ -17,7 +17,7 @@ $heading-color: #858585;
   // small, mid
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: $primary-contrastText;
   margin-top: 35px;
 
   .datetimepicker-container {
@@ -26,6 +26,10 @@ $heading-color: #858585;
     .datetimepicker-bottom-row-open {
       margin-bottom: 9px;
     }
+  }
+
+  .ctrl-panel-container {
+    background: $primary-contrastText;
   }
 }
 

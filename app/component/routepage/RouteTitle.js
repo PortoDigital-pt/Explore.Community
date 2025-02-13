@@ -26,11 +26,11 @@ const RouteTitle = ({ route, breakpoint }) =>
 
 RouteTitle.propTypes = {
   route: routeShape.isRequired,
-  breakpoint: PropTypes.string,
+  breakpoint: PropTypes.string
 };
 
 RouteTitle.defaultProps = {
-  breakpoint: undefined,
+  breakpoint: undefined
 };
 
 export default createFragmentContainer(withBreakpoint(RouteTitle), {
@@ -42,5 +42,5 @@ export default createFragmentContainer(withBreakpoint(RouteTitle), {
       mode
       type
     }
-  `,
+  `
 });

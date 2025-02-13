@@ -43,7 +43,7 @@ function ViaLeg(props, { config, intl }) {
   const distance = displayDistance(
     parseInt(props.leg.distance, 10),
     config,
-    intl.formatNumber,
+    intl.formatNumber
   );
   const [address, place] = splitStringToAddressAndPlace(props.leg.from.name);
   const startTime = legTimeStr(props.leg.start);
@@ -74,10 +74,10 @@ function ViaLeg(props, { config, intl }) {
                   distance,
                   origin: props.leg.from ? props.leg.from.name : '',
                   destination: props.leg.to ? props.leg.to.name : '',
-                  duration,
+                  duration
                 }}
               />
-            ),
+            )
           }}
         />
       </span>
@@ -144,16 +144,16 @@ ViaLeg.propTypes = {
   index: PropTypes.number.isRequired,
   focusAction: PropTypes.func.isRequired,
   focusToLeg: PropTypes.func.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 ViaLeg.defaultProps = {
-  children: undefined,
+  children: undefined
 };
 
 ViaLeg.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default ViaLeg;

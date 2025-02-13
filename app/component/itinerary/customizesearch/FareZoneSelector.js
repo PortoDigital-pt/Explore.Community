@@ -10,31 +10,31 @@ import { saveRoutingSettings } from '../../../action/SearchSettingsActions';
 class FareZoneSelector extends React.Component {
   static propTypes = {
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
-    currentOption: PropTypes.string.isRequired,
+    currentOption: PropTypes.string.isRequired
   };
 
   static contextTypes = {
     config: configShape.isRequired,
     intl: intlShape.isRequired,
-    executeAction: PropTypes.func.isRequired,
+    executeAction: PropTypes.func.isRequired
   };
 
   createFareZoneObjects = options => {
     const { intl, config } = this.context;
     const constructedOptions = options.map(o => ({
       displayName: config.fareMapping(o),
-      value: o,
+      value: o
     }));
     const sortedOptions = constructedOptions.sort((a, b) =>
-      a.displayName.localeCompare(b.displayName),
+      a.displayName.localeCompare(b.displayName)
     );
     sortedOptions.unshift({
       displayName: 'none',
       displayNameObject: intl.formatMessage({
         defaultMessage: 'ticket-type-none',
-        id: 'ticket-type-none',
+        id: 'ticket-type-none'
       }),
-      value: 'none',
+      value: 'none'
     });
     return uniqBy(sortedOptions, 'value');
   };
@@ -48,27 +48,27 @@ class FareZoneSelector extends React.Component {
         <SearchSettingsDropdown
           labelText={intl.formatMessage({
             id: 'zones',
-            defaultMessage: 'Fare zones',
+            defaultMessage: 'Fare zones'
           })}
           currentSelection={{
             title:
               currentOption === 'none'
                 ? intl.formatMessage({
                     defaultMessage: 'ticket-type-none',
-                    id: 'ticket-type-none',
+                    id: 'ticket-type-none'
                   })
                 : currentOption,
-            value: currentOption,
+            value: currentOption
           }}
           options={mappedOptions}
           onOptionSelected={value => {
             this.context.executeAction(saveRoutingSettings, {
-              ticketTypes: value,
+              ticketTypes: value
             });
             addAnalyticsEvent({
               category: 'ItinerarySettings',
               action: 'ChangeFareZones',
-              name: value,
+              name: value
             });
           }}
           displayValueFormatter={value =>

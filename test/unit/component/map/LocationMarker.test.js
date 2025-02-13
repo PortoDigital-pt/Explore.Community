@@ -10,8 +10,8 @@ describe('<LocationMarker />', () => {
       position: {
         address: 'Katariina Saksilaisen katu 12, Helsinki',
         lat: 60.215977901541855,
-        lon: 24.987739389762282,
-      },
+        lon: 24.987739389762282
+      }
     };
     const wrapper = shallowWithIntl(<LocationMarker {...props} />);
     const { icon } = wrapper.props();
@@ -24,9 +24,9 @@ describe('<LocationMarker />', () => {
       position: {
         address: 'Katariina Saksilaisen katu 12, Helsinki',
         lat: 60.215977901541855,
-        lon: 24.987739389762282,
+        lon: 24.987739389762282
       },
-      type: 'from',
+      type: 'from'
     };
     const wrapper = shallowWithIntl(<LocationMarker {...props} />);
     expect(wrapper.props().className).to.equal('from');
@@ -39,8 +39,8 @@ describe('<LocationMarker />', () => {
       position: {
         address: 'Katariina Saksilaisen katu 12, Helsinki',
         lat: 60.215977901541855,
-        lon: 24.987739389762282,
-      },
+        lon: 24.987739389762282
+      }
     };
     const wrapper = shallowWithIntl(<LocationMarker {...props} />);
     expect(wrapper.props().className).to.contain('foobar');
@@ -52,13 +52,13 @@ describe('<LocationMarker />', () => {
       position: {
         address: 'Katariina Saksilaisen katu 12, Helsinki',
         lat: 60.215977901541855,
-        lon: 24.987739389762282,
+        lon: 24.987739389762282
       },
-      type: 'to',
+      type: 'to'
     };
     const wrapper = shallowWithIntl(<LocationMarker {...props} />);
     expect(wrapper.props().icon.element.props.img).to.equal(
-      'icon-icon_mapMarker-to-map',
+      'icon-icon_mapMarker-to-map'
     );
   });
 });

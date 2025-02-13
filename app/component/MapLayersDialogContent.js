@@ -17,7 +17,7 @@ import { getTransportModes, showRentalVehiclesOfType } from '../util/modeUtils';
 import { TransportMode } from '../constants';
 
 const transportModeconfigShape = PropTypes.shape({
-  availableForSelection: PropTypes.bool,
+  availableForSelection: PropTypes.bool
 });
 
 const geoJsonConfigShape = PropTypes.shape({
@@ -25,27 +25,27 @@ const geoJsonConfigShape = PropTypes.shape({
     PropTypes.shape({
       url: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.arrayOf(PropTypes.string)
       ]).isRequired,
       name: PropTypes.shape({
         en: PropTypes.string,
         fi: PropTypes.string.isRequired,
-        sv: PropTypes.string,
-      }),
-    }),
-  ),
+        sv: PropTypes.string
+      })
+    })
+  )
 });
 
 const mapLayersconfigShape = PropTypes.shape({
   vehicleRental: PropTypes.shape({
-    networks: PropTypes.object,
+    networks: PropTypes.object
   }),
   geoJson: geoJsonConfigShape,
   parkAndRide: PropTypes.shape({
-    showParkAndRide: PropTypes.bool,
+    showParkAndRide: PropTypes.bool
   }),
   parkAndRideForBikes: PropTypes.shape({
-    showParkAndRideForBikes: PropTypes.bool,
+    showParkAndRideForBikes: PropTypes.bool
   }),
   transportModes: PropTypes.shape({
     bus: transportModeconfigShape,
@@ -54,16 +54,16 @@ const mapLayersconfigShape = PropTypes.shape({
     rail: transportModeconfigShape,
     subway: transportModeconfigShape,
     tram: transportModeconfigShape,
-    scooter: transportModeconfigShape,
+    scooter: transportModeconfigShape
   }),
   mapLayers: PropTypes.shape({
     tooltip: PropTypes.shape({
       en: PropTypes.string,
       fi: PropTypes.string.isRequired,
-      sv: PropTypes.string,
-    }),
+      sv: PropTypes.string
+    })
   }),
-  vehicles: PropTypes.bool,
+  vehicles: PropTypes.bool
 });
 
 const sendLayerChangeAnalytic = (name, enable) => {
@@ -71,7 +71,7 @@ const sendLayerChangeAnalytic = (name, enable) => {
   addAnalyticsEvent({
     category: 'Map',
     action,
-    name,
+    name
   });
 };
 
@@ -83,12 +83,12 @@ class MapLayersDialogContent extends React.Component {
     updateMapLayers: PropTypes.func.isRequired,
     lang: PropTypes.string.isRequired,
     open: PropTypes.bool.isRequired,
-    geoJson: geoJsonConfigShape,
+    geoJson: geoJsonConfigShape
   };
 
   static defaultProps = {
     mapLayerOptions: null,
-    geoJson: undefined,
+    geoJson: undefined
   };
 
   handlePanelState(open) {
@@ -100,13 +100,13 @@ class MapLayersDialogContent extends React.Component {
 
   updateSetting = newSetting => {
     this.props.updateMapLayers({
-      ...newSetting,
+      ...newSetting
     });
   };
 
   updateStopSetting = newSetting => {
     const stop = {
-      ...newSetting,
+      ...newSetting
     };
     this.updateSetting({ stop });
   };
@@ -114,7 +114,7 @@ class MapLayersDialogContent extends React.Component {
   updateGeoJsonSetting = newSetting => {
     const geoJson = {
       ...this.props.mapLayers.geoJson,
-      ...newSetting,
+      ...newSetting
     };
     this.updateSetting({ geoJson });
   };
@@ -127,7 +127,7 @@ class MapLayersDialogContent extends React.Component {
       stop,
       geoJson,
       vehicles,
-      scooter,
+      scooter
     } = this.props.mapLayers;
     let arr;
     if (this.props.geoJson) {
@@ -154,7 +154,7 @@ class MapLayersDialogContent extends React.Component {
         <span className="map-layer-header">
           {this.context.intl.formatMessage({
             id: 'select-map-layers-header',
-            defaultMessage: 'Bubble Dialog Header',
+            defaultMessage: 'Bubble Dialog Header'
           })}
         </span>
         <div className="checkbox-grouping" />
@@ -221,7 +221,7 @@ class MapLayersDialogContent extends React.Component {
           {showRentalVehiclesOfType(
             config.vehicleRental?.networks,
             config,
-            TransportMode.Citybike,
+            TransportMode.Citybike
           ) && (
             <Checkbox
               large
@@ -238,7 +238,7 @@ class MapLayersDialogContent extends React.Component {
           {showRentalVehiclesOfType(
             config.vehicleRental?.networks,
             config,
-            TransportMode.Scooter,
+            TransportMode.Scooter
           ) && (
             <Checkbox
               large
@@ -291,7 +291,7 @@ class MapLayersDialogContent extends React.Component {
                 this.updateSetting({ parkAndRideForBikes: e.target.checked });
                 sendLayerChangeAnalytic(
                   'ParkAndRideForBikes',
-                  e.target.checked,
+                  e.target.checked
                 );
               }}
             />
@@ -326,7 +326,7 @@ MapLayersDialogContent.contextTypes = {
   config: configShape.isRequired,
   intl: intlShape.isRequired,
   router: routerShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 /**
  * Retrieves the list of geojson layers in use from the configuration or
@@ -340,7 +340,7 @@ MapLayersDialogContent.contextTypes = {
 export const getGeoJsonLayersOrDefault = (
   config,
   store,
-  defaultValue = undefined,
+  defaultValue = undefined
 ) => {
   return (
     (Array.isArray(config.geoJson?.layers) && config.geoJson.layers) ||
@@ -356,17 +356,17 @@ const connectedComponent = connectToStores(
     config: {
       ...config,
       geoJson: {
-        layers: getGeoJsonLayersOrDefault(config, getStore(GeoJsonStore)),
-      },
+        layers: getGeoJsonLayersOrDefault(config, getStore(GeoJsonStore))
+      }
     },
     updateMapLayers: mapLayers =>
       executeAction(updateMapLayers, { ...mapLayers }),
-    lang: getStore('PreferencesStore').getLanguage(),
+    lang: getStore('PreferencesStore').getLanguage()
   }),
   {
     config: mapLayersconfigShape,
-    executeAction: PropTypes.func,
-  },
+    executeAction: PropTypes.func
+  }
 );
 
 export { connectedComponent as default, MapLayersDialogContent as Component };

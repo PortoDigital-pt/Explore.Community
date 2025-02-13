@@ -1,7 +1,7 @@
 import {
   AlertSeverityLevelType,
   RealtimeStateType,
-  AlertEntityType,
+  AlertEntityType
 } from '../../../app/constants';
 import * as utils from '../../../app/util/alertUtils';
 
@@ -13,13 +13,13 @@ describe('alertUtils', () => {
 
     it('should return false if stoptime has a non-matching realtimeState', () => {
       expect(
-        utils.stoptimeHasCancelation({ realtimeState: 'SCHEDULED' }),
+        utils.stoptimeHasCancelation({ realtimeState: 'SCHEDULED' })
       ).to.equal(false);
     });
 
     it('should return true if stoptime has a matching realtimeState', () => {
       expect(
-        utils.stoptimeHasCancelation({ realtimeState: 'CANCELED' }),
+        utils.stoptimeHasCancelation({ realtimeState: 'CANCELED' })
       ).to.equal(true);
     });
   });
@@ -31,7 +31,7 @@ describe('alertUtils', () => {
 
     it('should return false if trip has no array "stoptimes"', () => {
       expect(utils.tripHasCancelation({ stoptimes: undefined })).to.equal(
-        false,
+        false
       );
     });
 
@@ -40,9 +40,9 @@ describe('alertUtils', () => {
         utils.tripHasCancelation({
           stoptimes: [
             { realtimeState: 'CANCELED' },
-            { realtimeState: 'SCHEDULED' },
-          ],
-        }),
+            { realtimeState: 'SCHEDULED' }
+          ]
+        })
       ).to.equal(false);
     });
 
@@ -51,9 +51,9 @@ describe('alertUtils', () => {
         utils.tripHasCancelation({
           stoptimes: [
             { realtimeState: 'CANCELED' },
-            { realtimeState: 'CANCELED' },
-          ],
-        }),
+            { realtimeState: 'CANCELED' }
+          ]
+        })
       ).to.equal(true);
     });
   });
@@ -61,13 +61,13 @@ describe('alertUtils', () => {
   describe('tripHasCancelationForStop', () => {
     it('should return false if trip is undefined', () => {
       expect(
-        utils.tripHasCancelationForStop(undefined, { gtfsId: 'foo' }),
+        utils.tripHasCancelationForStop(undefined, { gtfsId: 'foo' })
       ).to.equal(false);
     });
 
     it('should return false if trip has no array "stoptimes"', () => {
       expect(utils.tripHasCancelationForStop({}, { gtfsId: 'foo' })).to.equal(
-        false,
+        false
       );
     });
 
@@ -78,12 +78,12 @@ describe('alertUtils', () => {
             stoptimes: [
               {
                 realtimeState: RealtimeStateType.Canceled,
-                stop: { gtfsId: 'foo' },
-              },
-            ],
+                stop: { gtfsId: 'foo' }
+              }
+            ]
           },
-          undefined,
-        ),
+          undefined
+        )
       ).to.equal(false);
     });
 
@@ -94,12 +94,12 @@ describe('alertUtils', () => {
             stoptimes: [
               {
                 realtimeState: RealtimeStateType.Canceled,
-                stop: { gtfsId: 'foo' },
-              },
-            ],
+                stop: { gtfsId: 'foo' }
+              }
+            ]
           },
-          {},
-        ),
+          {}
+        )
       ).to.equal(false);
     });
 
@@ -110,14 +110,14 @@ describe('alertUtils', () => {
             stoptimes: [
               {
                 realtimeState: RealtimeStateType.Canceled,
-                stop: { gtfsId: 'foo' },
-              },
-            ],
+                stop: { gtfsId: 'foo' }
+              }
+            ]
           },
           {
-            gtfsId: 'foo',
-          },
-        ),
+            gtfsId: 'foo'
+          }
+        )
       ).to.equal(true);
     });
   });
@@ -129,13 +129,13 @@ describe('alertUtils', () => {
 
     it('should return false if the leg has not been canceled', () => {
       expect(
-        utils.legHasCancelation({ realtimeState: RealtimeStateType.Scheduled }),
+        utils.legHasCancelation({ realtimeState: RealtimeStateType.Scheduled })
       ).to.equal(false);
     });
 
     it('should return true if the leg has been canceled', () => {
       expect(
-        utils.legHasCancelation({ realtimeState: RealtimeStateType.Canceled }),
+        utils.legHasCancelation({ realtimeState: RealtimeStateType.Canceled })
       ).to.equal(true);
     });
   });
@@ -151,7 +151,7 @@ describe('alertUtils', () => {
 
     it('should return undefined if the severity level cannot be determined', () => {
       expect(utils.getMaximumAlertSeverityLevel([{ foo: 'bar' }])).to.equal(
-        undefined,
+        undefined
       );
     });
 
@@ -159,40 +159,40 @@ describe('alertUtils', () => {
       const alerts = [
         { foo: 'bar' },
         { alertSeverityLevel: AlertSeverityLevelType.Info },
-        { foo: 'baz' },
+        { foo: 'baz' }
       ];
       expect(utils.getMaximumAlertSeverityLevel(alerts)).to.equal(
-        AlertSeverityLevelType.Info,
+        AlertSeverityLevelType.Info
       );
     });
 
     it('should prioritize severe over warning', () => {
       const alerts = [
         { alertSeverityLevel: AlertSeverityLevelType.Severe },
-        { alertSeverityLevel: AlertSeverityLevelType.Warning },
+        { alertSeverityLevel: AlertSeverityLevelType.Warning }
       ];
       expect(utils.getMaximumAlertSeverityLevel(alerts)).to.equal(
-        AlertSeverityLevelType.Severe,
+        AlertSeverityLevelType.Severe
       );
     });
 
     it('should prioritize warning over info', () => {
       const alerts = [
         { alertSeverityLevel: AlertSeverityLevelType.Info },
-        { alertSeverityLevel: AlertSeverityLevelType.Warning },
+        { alertSeverityLevel: AlertSeverityLevelType.Warning }
       ];
       expect(utils.getMaximumAlertSeverityLevel(alerts)).to.equal(
-        AlertSeverityLevelType.Warning,
+        AlertSeverityLevelType.Warning
       );
     });
 
     it('should prioritize info over unknown', () => {
       const alerts = [
         { alertSeverityLevel: AlertSeverityLevelType.Info },
-        { alertSeverityLevel: AlertSeverityLevelType.Unknown },
+        { alertSeverityLevel: AlertSeverityLevelType.Unknown }
       ];
       expect(utils.getMaximumAlertSeverityLevel(alerts)).to.equal(
-        AlertSeverityLevelType.Info,
+        AlertSeverityLevelType.Info
       );
     });
   });
@@ -206,8 +206,8 @@ describe('alertUtils', () => {
       expect(
         utils.isAlertValid(
           { effectiveStartDate: null, effectiveEndDate: null },
-          1000,
-        ),
+          1000
+        )
       ).to.equal(true);
     });
 
@@ -215,8 +215,8 @@ describe('alertUtils', () => {
       expect(
         utils.isAlertValid(
           { effectiveStartDate: 1000, effectiveEndDate: 2000 },
-          2500,
-        ),
+          2500
+        )
       ).to.equal(false);
     });
 
@@ -224,24 +224,24 @@ describe('alertUtils', () => {
       expect(
         utils.isAlertValid(
           { effectiveStartDate: 1000, effectiveEndDate: 2000 },
-          1500,
-        ),
+          1500
+        )
       ).to.equal(true);
     });
 
     it('should mark a current alert within DEFAULT_VALIDITY period as valid', () => {
       expect(
         utils.isAlertValid({ effectiveStartDate: 1000 }, 1100, {
-          defaultValidity: 200,
-        }),
+          defaultValidity: 200
+        })
       ).to.equal(true);
     });
 
     it('should mark an alert after the DEFAULT_VALIDITY period as invalid', () => {
       expect(
         utils.isAlertValid({ effectiveStartDate: 1000 }, 1300, {
-          defaultValidity: 200,
-        }),
+          defaultValidity: 200
+        })
       ).to.equal(false);
     });
 
@@ -249,8 +249,8 @@ describe('alertUtils', () => {
       expect(
         utils.isAlertValid(
           { effectiveStartDate: 1000, effectiveEndDate: 2000 },
-          500,
-        ),
+          500
+        )
       ).to.equal(false);
     });
 
@@ -258,8 +258,8 @@ describe('alertUtils', () => {
       expect(
         utils.isAlertValid(
           { effectiveStartDate: 0, effectiveEndDate: 1000 },
-          undefined,
-        ),
+          undefined
+        )
       ).to.equal(true);
     });
 
@@ -268,10 +268,10 @@ describe('alertUtils', () => {
         utils.isAlertValid(
           {
             effectiveStartDate: 1558904400,
-            effectiveEndDate: 1559941140,
+            effectiveEndDate: 1559941140
           },
-          1558678507424 / 1000,
-        ),
+          1558678507424 / 1000
+        )
       ).to.equal(false);
     });
 
@@ -284,8 +284,8 @@ describe('alertUtils', () => {
         utils.isAlertValid(
           { effectiveStartDate: 100, effectiveEndDate: 100 },
           99,
-          { isFutureValid: true },
-        ),
+          { isFutureValid: true }
+        )
       ).to.equal(true);
     });
   });
@@ -297,7 +297,7 @@ describe('alertUtils', () => {
 
     it('should return an empty array if route has no array "patterns"', () => {
       expect(
-        utils.getCancelationsForRoute({ patterns: undefined }),
+        utils.getCancelationsForRoute({ patterns: undefined })
       ).to.deep.equal([]);
     });
 
@@ -309,13 +309,13 @@ describe('alertUtils', () => {
               {
                 stoptimes: [
                   {
-                    realtimeState: RealtimeStateType.Canceled,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+                    realtimeState: RealtimeStateType.Canceled
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       };
       expect(utils.getCancelationsForRoute(route)).to.have.lengthOf(1);
     });
@@ -329,11 +329,11 @@ describe('alertUtils', () => {
               {
                 stoptimes: [
                   {
-                    realtimeState: RealtimeStateType.Canceled,
-                  },
-                ],
-              },
-            ],
+                    realtimeState: RealtimeStateType.Canceled
+                  }
+                ]
+              }
+            ]
           },
           {
             code: 'bar',
@@ -341,13 +341,13 @@ describe('alertUtils', () => {
               {
                 stoptimes: [
                   {
-                    realtimeState: RealtimeStateType.Canceled,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+                    realtimeState: RealtimeStateType.Canceled
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       };
       expect(utils.getCancelationsForRoute(route, 'foo')).to.have.lengthOf(1);
     });
@@ -366,9 +366,9 @@ describe('alertUtils', () => {
             realtimeState: RealtimeStateType.Canceled,
             scheduledArrival: 1,
             scheduledDeparture: 100,
-            serviceDay: 0,
-          },
-        ]),
+            serviceDay: 0
+          }
+        ])
       ).to.equal(true);
     });
 
@@ -380,10 +380,10 @@ describe('alertUtils', () => {
           [
             {
               effectiveStartDate: 1,
-              effectiveEndDate: 100,
-            },
-          ],
-        ),
+              effectiveEndDate: 100
+            }
+          ]
+        )
       ).to.equal(true);
     });
 
@@ -396,10 +396,10 @@ describe('alertUtils', () => {
             {
               alertSeverityLevel: AlertSeverityLevelType.Warning,
               effectiveStartDate: 1,
-              effectiveEndDate: 100,
-            },
-          ],
-        ),
+              effectiveEndDate: 100
+            }
+          ]
+        )
       ).to.equal(true);
     });
 
@@ -412,10 +412,10 @@ describe('alertUtils', () => {
             {
               alertSeverityLevel: AlertSeverityLevelType.Info,
               effectiveStartDate: 1,
-              effectiveEndDate: 100,
-            },
-          ],
-        ),
+              effectiveEndDate: 100
+            }
+          ]
+        )
       ).to.equal(false);
     });
 
@@ -427,10 +427,10 @@ describe('alertUtils', () => {
           [
             {
               effectiveStartDate: 1,
-              effectiveEndDate: 100,
-            },
-          ],
-        ),
+              effectiveEndDate: 100
+            }
+          ]
+        )
       ).to.equal(false);
     });
 
@@ -444,7 +444,7 @@ describe('alertUtils', () => {
       const cancelation = {
         scheduledArrival: 10,
         scheduledDeparture: 20,
-        serviceDay: 0,
+        serviceDay: 0
       };
       expect(utils.cancelationHasExpired(25, cancelation)).to.equal(true);
     });
@@ -453,7 +453,7 @@ describe('alertUtils', () => {
       const cancelation = {
         scheduledArrival: 10,
         scheduledDeparture: 20,
-        serviceDay: 0,
+        serviceDay: 0
       };
       expect(utils.cancelationHasExpired(15, cancelation)).to.equal(false);
     });
@@ -462,7 +462,7 @@ describe('alertUtils', () => {
       const cancelation = {
         scheduledArrival: 10,
         scheduledDeparture: 10,
-        serviceDay: 0,
+        serviceDay: 0
       };
       expect(utils.cancelationHasExpired(5, cancelation)).to.equal(false);
     });
@@ -475,7 +475,7 @@ describe('alertUtils', () => {
 
     it('should return an empty array if stop has no array "stoptimes"', () => {
       expect(
-        utils.getCancelationsForStop({ stoptimes: undefined }),
+        utils.getCancelationsForStop({ stoptimes: undefined })
       ).to.deep.equal([]);
     });
 
@@ -483,21 +483,21 @@ describe('alertUtils', () => {
       const stop = {
         stoptimes: [
           {
-            realtimeState: RealtimeStateType.Canceled,
+            realtimeState: RealtimeStateType.Canceled
           },
           {
-            realtimeState: RealtimeStateType.Scheduled,
+            realtimeState: RealtimeStateType.Scheduled
           },
           {
-            realtimeState: RealtimeStateType.Updated,
+            realtimeState: RealtimeStateType.Updated
           },
           {
-            realtimeState: RealtimeStateType.Modified,
+            realtimeState: RealtimeStateType.Modified
           },
           {
-            realtimeState: undefined,
-          },
-        ],
+            realtimeState: undefined
+          }
+        ]
       };
       expect(utils.getCancelationsForStop(stop)).to.have.lengthOf(1);
     });
@@ -506,16 +506,16 @@ describe('alertUtils', () => {
   describe('getActiveLegAlertSeverityLevel', () => {
     it('should return undefined if the leg is falsy', () => {
       expect(utils.getActiveLegAlertSeverityLevel(undefined)).to.equal(
-        undefined,
+        undefined
       );
     });
 
     it('should return "WARNING" if the leg is canceled', () => {
       const leg = {
-        realtimeState: RealtimeStateType.Canceled,
+        realtimeState: RealtimeStateType.Canceled
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(
-        AlertSeverityLevelType.Warning,
+        AlertSeverityLevelType.Warning
       );
     });
 
@@ -527,18 +527,18 @@ describe('alertUtils', () => {
             {
               alertSeverityLevel: AlertSeverityLevelType.Warning,
               effectiveEndDate: 1553778000,
-              effectiveStartDate: alertEffectiveStartDate,
-            },
-          ],
+              effectiveStartDate: alertEffectiveStartDate
+            }
+          ]
         },
         start: {
           scheduledTime: new Date(
-            alertEffectiveStartDate * 1000 + 1000,
-          ).toISOString(),
-        },
+            alertEffectiveStartDate * 1000 + 1000
+          ).toISOString()
+        }
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(
-        AlertSeverityLevelType.Warning,
+        AlertSeverityLevelType.Warning
       );
     });
 
@@ -550,15 +550,15 @@ describe('alertUtils', () => {
             {
               alertSeverityLevel: AlertSeverityLevelType.Warning,
               effectiveEndDate: alertEffectiveEndDate,
-              effectiveStartDate: 1553754595,
-            },
-          ],
+              effectiveStartDate: 1553754595
+            }
+          ]
         },
         start: {
           scheduledTime: new Date(
-            alertEffectiveEndDate * 1000 + 1,
-          ).toISOString(),
-        },
+            alertEffectiveEndDate * 1000 + 1
+          ).toISOString()
+        }
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(undefined);
     });
@@ -573,21 +573,21 @@ describe('alertUtils', () => {
               effectiveStartDate: 1553754595,
               entities: [
                 {
-                  __typename: AlertEntityType.Route,
-                },
-              ],
-            },
-          ],
+                  __typename: AlertEntityType.Route
+                }
+              ]
+            }
+          ]
         },
         start: { scheduledTime: new Date(1553769600000).toISOString() },
         trip: {
           pattern: {
-            code: 'HSL:3001I:0:01',
-          },
-        },
+            code: 'HSL:3001I:0:01'
+          }
+        }
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(
-        AlertSeverityLevelType.Warning,
+        AlertSeverityLevelType.Warning
       );
     });
 
@@ -599,15 +599,15 @@ describe('alertUtils', () => {
               {
                 alertSeverityLevel: AlertSeverityLevelType.Warning,
                 effectiveEndDate: 1553778000,
-                effectiveStartDate: 1553754595,
-              },
-            ],
-          },
+                effectiveStartDate: 1553754595
+              }
+            ]
+          }
         },
-        start: { scheduledTime: new Date(1553769600000).toISOString() },
+        start: { scheduledTime: new Date(1553769600000).toISOString() }
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(
-        AlertSeverityLevelType.Warning,
+        AlertSeverityLevelType.Warning
       );
     });
 
@@ -619,15 +619,15 @@ describe('alertUtils', () => {
               {
                 alertSeverityLevel: AlertSeverityLevelType.Warning,
                 effectiveEndDate: 1553778000,
-                effectiveStartDate: 1553754595,
-              },
-            ],
-          },
+                effectiveStartDate: 1553754595
+              }
+            ]
+          }
         },
-        start: { scheduledTime: new Date(1553769600000).toISOString() },
+        start: { scheduledTime: new Date(1553769600000).toISOString() }
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(
-        AlertSeverityLevelType.Warning,
+        AlertSeverityLevelType.Warning
       );
     });
 
@@ -640,13 +640,13 @@ describe('alertUtils', () => {
                 {
                   alertSeverityLevel: AlertSeverityLevelType.Warning,
                   effectiveEndDate: 1553778000,
-                  effectiveStartDate: 1553754595,
-                },
-              ],
-            },
-          },
+                  effectiveStartDate: 1553754595
+                }
+              ]
+            }
+          }
         ],
-        start: { scheduledTime: new Date(1553769600000).toISOString() },
+        start: { scheduledTime: new Date(1553769600000).toISOString() }
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(undefined);
     });
@@ -658,14 +658,14 @@ describe('alertUtils', () => {
             {
               alertSeverityLevel: AlertSeverityLevelType.Info,
               effectiveEndDate: 1553778000,
-              effectiveStartDate: 1553754595,
-            },
-          ],
+              effectiveStartDate: 1553754595
+            }
+          ]
         },
-        start: { scheduledTime: new Date(1553769600000).toISOString() },
+        start: { scheduledTime: new Date(1553769600000).toISOString() }
       };
       expect(utils.getActiveLegAlertSeverityLevel(leg)).to.equal(
-        AlertSeverityLevelType.Info,
+        AlertSeverityLevelType.Info
       );
     });
   });
@@ -676,12 +676,12 @@ describe('alertUtils', () => {
         {
           alertSeverityLevel: AlertSeverityLevelType.Info,
           effectiveEndDate: 1559941140,
-          effectiveStartDate: 1558904400,
-        },
+          effectiveStartDate: 1558904400
+        }
       ];
       const currentTime = 1558599526;
       expect(utils.getActiveAlertSeverityLevel(alerts, currentTime)).to.equal(
-        undefined,
+        undefined
       );
     });
 
@@ -690,12 +690,12 @@ describe('alertUtils', () => {
         {
           alertSeverityLevel: AlertSeverityLevelType.Info,
           effectiveEndDate: null,
-          effectiveStartDate: null,
-        },
+          effectiveStartDate: null
+        }
       ];
       const currentTime = 1558599526;
       expect(utils.getActiveAlertSeverityLevel(alerts, currentTime)).to.equal(
-        AlertSeverityLevelType.Info,
+        AlertSeverityLevelType.Info
       );
     });
 
@@ -706,11 +706,11 @@ describe('alertUtils', () => {
         {
           alertSeverityLevel: AlertSeverityLevelType.Info,
           effectiveStartDate: currentTime - 100,
-          effectiveEndDate: currentTime + 100,
-        },
+          effectiveEndDate: currentTime + 100
+        }
       ];
       expect(utils.getActiveAlertSeverityLevel(alerts, currentTime)).to.equal(
-        AlertSeverityLevelType.Info,
+        AlertSeverityLevelType.Info
       );
     });
   });
@@ -722,11 +722,11 @@ describe('alertUtils', () => {
         { alertSeverityLevel: AlertSeverityLevelType.Severe },
         { alertSeverityLevel: AlertSeverityLevelType.Info },
         { alertSeverityLevel: AlertSeverityLevelType.Severe },
-        { alertSeverityLevel: 'foo' },
+        { alertSeverityLevel: 'foo' }
       ];
       const sortedAlerts = alerts.sort(utils.alertSeverityCompare);
       expect(sortedAlerts[0].alertSeverityLevel).to.equal(
-        AlertSeverityLevelType.Severe,
+        AlertSeverityLevelType.Severe
       );
     });
 
@@ -735,11 +735,11 @@ describe('alertUtils', () => {
         { alertSeverityLevel: AlertSeverityLevelType.Unknown },
         { alertSeverityLevel: AlertSeverityLevelType.Warning },
         { alertSeverityLevel: AlertSeverityLevelType.Info },
-        { alertSeverityLevel: 'foo' },
+        { alertSeverityLevel: 'foo' }
       ];
       const sortedAlerts = alerts.sort(utils.alertSeverityCompare);
       expect(sortedAlerts[0].alertSeverityLevel).to.equal(
-        AlertSeverityLevelType.Warning,
+        AlertSeverityLevelType.Warning
       );
     });
   });
@@ -754,15 +754,15 @@ describe('alertUtils', () => {
         { alertSeverityLevel: AlertSeverityLevelType.Warning },
         {
           alertSeverityLevel: AlertSeverityLevelType.Severe,
-          alertDescriptionText: 'foo',
-        },
+          alertDescriptionText: 'foo'
+        }
       ];
       expect(utils.hasMeaningfulData(alerts)).to.equal(true);
     });
     it('should return false if neither header or description are present', () => {
       const alerts = [
         { alertSeverityLevel: AlertSeverityLevelType.Warning },
-        { alertSeverityLevel: AlertSeverityLevelType.Severe },
+        { alertSeverityLevel: AlertSeverityLevelType.Severe }
       ];
       expect(utils.hasMeaningfulData(alerts)).to.equal(false);
     });
@@ -770,13 +770,13 @@ describe('alertUtils', () => {
       const alerts = [
         {
           alertSeverityLevel: AlertSeverityLevelType.Warning,
-          alertDescriptionText: 'meaningful but not priority',
+          alertDescriptionText: 'meaningful but not priority'
         },
         {
           alertSeverityLevel: AlertSeverityLevelType.Severe,
           alertDescriptionText: '',
-          alertHeaderText: '',
-        },
+          alertHeaderText: ''
+        }
       ];
       expect(utils.hasMeaningfulData(alerts)).to.equal(false);
     });

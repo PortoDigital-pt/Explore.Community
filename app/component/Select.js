@@ -11,19 +11,19 @@ class Select extends React.Component {
         displayName: PropTypes.string.isRequired,
         displayNameObject: PropTypes.oneOfType([
           PropTypes.node,
-          PropTypes.string,
+          PropTypes.string
         ]),
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-          .isRequired,
-      }).isRequired,
+          .isRequired
+      }).isRequired
     ).isRequired,
-    ariaLabel: PropTypes.string,
+    ariaLabel: PropTypes.string
   };
 
   static defaultProps = {
     headerText: undefined,
     selected: undefined,
-    ariaLabel: undefined,
+    ariaLabel: undefined
   };
 
   static getOptionTags(options) {

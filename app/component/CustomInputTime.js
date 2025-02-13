@@ -29,5 +29,5 @@ export default function CustomInputTime({ changeTime, time }) {
 
 CustomInputTime.propTypes = {
   changeTime: PropTypes.func.isRequired,
-  time: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired
 };

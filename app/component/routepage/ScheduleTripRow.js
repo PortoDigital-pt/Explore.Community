@@ -10,7 +10,7 @@ function ScheduleTripRow(props) {
       <div className="trip-column">
         <div
           className={cx('trip-from', 'trip-label', {
-            canceled: props.isCanceled,
+            canceled: props.isCanceled
           })}
         >
           {props.departureTime}
@@ -20,7 +20,7 @@ function ScheduleTripRow(props) {
         </div>
         <div
           className={cx('trip-to', 'trip-label', {
-            canceled: props.isCanceled,
+            canceled: props.isCanceled
           })}
         >
           {props.arrivalTime}
@@ -32,11 +32,11 @@ function ScheduleTripRow(props) {
 ScheduleTripRow.propTypes = {
   departureTime: PropTypes.string.isRequired,
   arrivalTime: PropTypes.string.isRequired,
-  isCanceled: PropTypes.bool,
+  isCanceled: PropTypes.bool
 };
 
 ScheduleTripRow.defaultProps = {
-  isCanceled: false,
+  isCanceled: false
 };
 
 ScheduleTripRow.displayName = 'ScheduleTripRow';

@@ -25,10 +25,10 @@ NaviStack.propTypes = {
   messages: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      severity: PropTypes.string.isRequired,
-    }),
+      severity: PropTypes.string.isRequired
+    })
   ).isRequired,
-  handleRemove: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired
 };
 
 export default NaviStack;

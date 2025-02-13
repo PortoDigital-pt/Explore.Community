@@ -13,8 +13,8 @@ export const filterObject = (obj, filter, filterValue) =>
       obj[val][filter] === filterValue
         ? {
             ...acc,
-            [val]: obj[val],
+            [val]: obj[val]
           }
         : acc,
-    {},
+    {}
   );

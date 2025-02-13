@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment-timezone';
@@ -9,7 +10,7 @@ import i18next from 'i18next';
 import Icon from '@digitransit-component/digitransit-component-icon';
 import DesktopDatetimepicker from './DesktopDatetimepicker';
 import translations from './translations';
-import styles from './styles.scss';
+import styles from '../../../../../sass/themes/amporto/digitransit-components/datetime-picker.scss';
 import { isMobile } from './mobileDetection';
 import dateTimeInputIsSupported from './dateTimeInputIsSupported';
 import MobilePickerModal from './MobilePickerModal';
@@ -20,8 +21,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 /**
@@ -76,12 +77,12 @@ function Datetimepicker({
   serviceTimeRange,
   onOpen,
   onClose,
-  openPicker,
+  openPicker
 }) {
   moment.tz.setDefault(timeZone);
   const [isOpen, changeOpen] = useState(openPicker || false);
   const [displayTimestamp, changeDisplayTimestamp] = useState(
-    timestamp || moment().valueOf(),
+    timestamp || moment().valueOf()
   );
   // timer for updating displayTimestamp in real time
   const [timerId, setTimer] = useState(null);
@@ -96,7 +97,7 @@ function Datetimepicker({
 
   useEffect(() => {
     Object.keys(translations).forEach(language =>
-      i18next.addResourceBundle(language, 'translation', translations[lang]),
+      i18next.addResourceBundle(language, 'translation', translations[lang])
     );
   }, []);
 
@@ -204,7 +205,7 @@ function Datetimepicker({
     if (alertRef.current) {
       alertRef.current.innerHTML = i18next.t(
         'accessible-closed',
-        translationSettings,
+        translationSettings
       );
       setTimeout(() => {
         alertRef.current.innerHTML = null;
@@ -216,7 +217,7 @@ function Datetimepicker({
     if (alertRef.current) {
       alertRef.current.innerHTML = i18next.t(
         'accessible-opened',
-        translationSettings,
+        translationSettings
       );
       setTimeout(() => {
         alertRef.current.innerHTML = null;
@@ -429,7 +430,7 @@ function Datetimepicker({
       id={`${htmlId}-root`}
       style={{
         '--color': `${color}`,
-        '--font-weight-medium': fontWeights.medium,
+        '--font-weight-medium': fontWeights.medium
       }}
     >
       <legend className={styles['sr-only']}>
@@ -477,7 +478,7 @@ function Datetimepicker({
                     departureOrArrival === 'departure'
                       ? 'departure'
                       : 'arrival',
-                    translationSettings,
+                    translationSettings
                   )}
                   {` ${
                     moment().isSame(moment(displayTimestamp), 'day')
@@ -515,12 +516,12 @@ Datetimepicker.propTypes = {
   color: PropTypes.string,
   onModalSubmit: PropTypes.func.isRequired,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number.isRequired,
+    medium: PropTypes.number.isRequired
   }).isRequired,
   serviceTimeRange: PropTypes.number.isRequired,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
-  openPicker: PropTypes.bool,
+  openPicker: PropTypes.bool
 };
 
 Datetimepicker.defaultProps = {
@@ -531,7 +532,7 @@ Datetimepicker.defaultProps = {
   timeZone: 'Europe/Helsinki',
   onOpen: null,
   onClose: null,
-  openPicker: undefined,
+  openPicker: undefined
 };
 
 export default Datetimepicker;

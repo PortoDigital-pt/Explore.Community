@@ -10,7 +10,7 @@ import { useCitybikes } from '../util/modeUtils';
 import {
   PREFIX_ITINERARY_SUMMARY,
   PREFIX_STOPS,
-  PREFIX_ROUTES,
+  PREFIX_ROUTES
 } from '../util/path';
 import searchContext from '../util/searchContext';
 import intializeSearchContext from '../util/DTSearchContextInitializer';
@@ -23,7 +23,7 @@ import { removeSearch } from '../action/SearchActions';
 const PATH_OPTS = {
   stopsPrefix: PREFIX_STOPS,
   routesPrefix: PREFIX_ROUTES,
-  itinerarySummaryPrefix: PREFIX_ITINERARY_SUMMARY,
+  itinerarySummaryPrefix: PREFIX_ITINERARY_SUMMARY
 };
 
 export function getLocationSearchTargets(config, isMobile) {
@@ -33,7 +33,7 @@ export function getLocationSearchTargets(config, isMobile) {
     // configurable setup
     locationSearchTargets = [
       ...locationSearchTargets,
-      ...config.locationSearchTargetsFromOTP,
+      ...config.locationSearchTargetsFromOTP
     ];
   } else {
     // default setup
@@ -58,7 +58,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
       config: configShape.isRequired,
       intl: intlShape.isRequired,
       executeAction: PropTypes.func.isRequired,
-      getStore: PropTypes.func.isRequired,
+      getStore: PropTypes.func.isRequired
     };
 
     static propTypes = {
@@ -68,7 +68,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
       fromMap: PropTypes.string,
       isMobile: PropTypes.bool,
       favouriteContext: PropTypes.bool,
-      showViapointControl: PropTypes.bool,
+      showViapointControl: PropTypes.bool
     };
 
     static defaultProps = {
@@ -76,7 +76,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
       fromMap: undefined,
       isMobile: false,
       showViapointControl: false,
-      favouriteContext: false,
+      favouriteContext: false
     };
 
     constructor(props) {
@@ -86,7 +86,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
         pendingCurrentLocation: false,
         isInitialized: false,
         positioningSelectedFrom: '',
-        fromMap: this.props.fromMap,
+        fromMap: this.props.fromMap
       };
     }
 
@@ -100,7 +100,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
         ) {
           return {
             pendingCurrentLocation: false,
-            positioningSelectedFrom: null,
+            positioningSelectedFrom: null
           };
         }
       }
@@ -123,7 +123,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
         if (locState.status === 'found-address') {
           this.onSuggestionSelected(
             locState,
-            prevState.positioningSelectedFrom,
+            prevState.positioningSelectedFrom
           );
         }
       }
@@ -142,7 +142,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
       ) {
         this.context.executeAction(searchContext.saveSearch, {
           item,
-          type,
+          type
         });
       }
     };
@@ -160,10 +160,10 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
                 status: 'no-location',
                 address: this.context.intl.formatMessage({
                   id: 'own-position',
-                  defaultMessage: 'Own Location',
-                }),
+                  defaultMessage: 'Own Location'
+                })
               },
-              id,
+              id
             );
             return;
           }
@@ -177,7 +177,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
             // eslint-disable-next-line react/no-unused-state
             this.setState(
               { pendingCurrentLocation: true, positioningSelectedFrom: id },
-              this.context.executeAction(searchContext.startLocationWatch),
+              this.context.executeAction(searchContext.startLocationWatch)
             );
             if (this.props.onGeolocationStart) {
               this.props.onGeolocationStart(item, id);
@@ -187,7 +187,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
           if (!location.address) {
             location.address = this.context.intl.formatMessage({
               id: 'own-position',
-              defaultMessage: 'Own Location',
+              defaultMessage: 'Own Location'
             });
           }
         } else {
@@ -211,7 +211,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
       }
       if (item.type === 'OldSearch' && item.properties.gid) {
         getJson(this.context.config.URL.PELIAS_PLACE, {
-          ids: item.properties.gid,
+          ids: item.properties.gid
         })
           .then(res => {
             const newItem = { ...item };
@@ -237,7 +237,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
             } else {
               this.context.executeAction(removeSearch, {
                 item: newItem,
-                type,
+                type
               });
             }
             this.onSuggestionSelected(item, id);
@@ -254,7 +254,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
 
     confirmMapSelection = (type, mapLocation) => {
       this.setState({ fromMap: undefined }, () =>
-        this.props.selectHandler(mapLocation, type),
+        this.props.selectHandler(mapLocation, type)
       );
     };
 
@@ -323,8 +323,8 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
     ComponentWithSearchContext,
     ['PositionStore'],
     context => ({
-      locationState: context.getStore('PositionStore').getLocationState(),
-    }),
+      locationState: context.getStore('PositionStore').getLocationState()
+    })
   );
   return componentWithPosition;
 }

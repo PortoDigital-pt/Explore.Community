@@ -6,7 +6,7 @@ import { shallowWithIntl } from '../helpers/mock-intl-enzyme';
 import ZoneIcon from '../../../app/component/ZoneIcon';
 
 const config = {
-  unknownZones: ['FOO'],
+  unknownZones: ['FOO']
 };
 
 describe('<ZoneIcon />', () => {
@@ -20,9 +20,9 @@ describe('<ZoneIcon />', () => {
       <ZoneIcon zoneId="FOO" showUnknown={false} />,
       {
         context: {
-          config,
-        },
-      },
+          config
+        }
+      }
     );
     expect(wrapper.isEmptyRender()).to.equal(true);
   });
@@ -30,8 +30,8 @@ describe('<ZoneIcon />', () => {
   it('should render a placeholder if the zone is unknown', () => {
     const wrapper = shallowWithIntl(<ZoneIcon zoneId="FOO" showUnknown />, {
       context: {
-        config,
-      },
+        config
+      }
     });
     expect(wrapper.find('.unknown').text()).to.equal('?');
   });

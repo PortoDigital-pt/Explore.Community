@@ -22,11 +22,11 @@ const ZoneIcon = ({ className, zoneId, showUnknown }, { config, intl }) => {
         'zone-icon-container',
         className,
         {
-          'multi-letter-container': !zoneUnknown && zoneId.length > 1,
+          'multi-letter-container': !zoneUnknown && zoneId.length > 1
         },
         {
-          'unknown-container': zoneUnknown,
-        },
+          'unknown-container': zoneUnknown
+        }
       )}
     >
       {zoneUnknown && (
@@ -49,7 +49,7 @@ const ZoneIcon = ({ className, zoneId, showUnknown }, { config, intl }) => {
             className={cx(
               'circle',
               { 'multi-letter': zoneId.length > 1 },
-              zoneId,
+              zoneId
             )}
           >
             {zoneId}
@@ -63,18 +63,18 @@ const ZoneIcon = ({ className, zoneId, showUnknown }, { config, intl }) => {
 ZoneIcon.propTypes = {
   className: PropTypes.string,
   zoneId: PropTypes.string,
-  showUnknown: PropTypes.bool,
+  showUnknown: PropTypes.bool
 };
 
 ZoneIcon.defaultProps = {
   className: undefined,
   zoneId: undefined,
-  showUnknown: true,
+  showUnknown: true
 };
 
 ZoneIcon.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default ZoneIcon;

@@ -16,7 +16,7 @@ const AirplaneLeg = ({ leg, focusAction, index }) => (
     <FormattedMessage
       id="airplane-with-route-number"
       values={{
-        routeNumber: leg.route && leg.route.shortName,
+        routeNumber: leg.route && leg.route.shortName
       }}
       defaultMessage="Flight {routeNumber}"
     />
@@ -26,7 +26,7 @@ const AirplaneLeg = ({ leg, focusAction, index }) => (
 AirplaneLeg.propTypes = {
   leg: legShape.isRequired,
   index: PropTypes.number.isRequired,
-  focusAction: PropTypes.func.isRequired,
+  focusAction: PropTypes.func.isRequired
 };
 
 export default AirplaneLeg;

@@ -10,7 +10,7 @@ describe('browser', () => {
     it('should return true for space " "', () => {
       const event = {
         key: ' ',
-        preventDefault: noop,
+        preventDefault: noop
       };
 
       const result = utils.isKeyboardSelectionEvent(event);
@@ -20,7 +20,7 @@ describe('browser', () => {
     it('should return true for space "Spacebar"', () => {
       const event = {
         key: 'Spacebar',
-        preventDefault: noop,
+        preventDefault: noop
       };
 
       const result = utils.isKeyboardSelectionEvent(event);
@@ -30,7 +30,7 @@ describe('browser', () => {
     it('should return true for enter', () => {
       const event = {
         key: 'Enter',
-        preventDefault: noop,
+        preventDefault: noop
       };
 
       const result = utils.isKeyboardSelectionEvent(event);
@@ -49,7 +49,7 @@ describe('browser', () => {
         key: 'Enter',
         preventDefault: () => {
           wasCalled = true;
-        },
+        }
       };
 
       utils.isKeyboardSelectionEvent(event);
@@ -62,7 +62,7 @@ describe('browser', () => {
         key: 'Tab',
         preventDefault: () => {
           wasCalled = true;
-        },
+        }
       };
 
       utils.isKeyboardSelectionEvent(event);
@@ -72,7 +72,7 @@ describe('browser', () => {
     it('should read .which if .key is not available', () => {
       const event = {
         preventDefault: noop,
-        which: 32, // enter
+        which: 32 // enter
       };
 
       const result = utils.isKeyboardSelectionEvent(event);
@@ -82,7 +82,7 @@ describe('browser', () => {
     it('should read .keyCode if .which and .key are not available', () => {
       const event = {
         keyCode: 32, // enter
-        preventDefault: () => {},
+        preventDefault: () => {}
       };
 
       const result = utils.isKeyboardSelectionEvent(event);

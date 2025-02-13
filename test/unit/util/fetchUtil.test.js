@@ -30,7 +30,7 @@ describe('retryFetch', () => {
     }
 
     const calls = fetchMock.callHistory.calls(
-      'https://dev-api.digitransit.fi/timetables/v1/hsl/routes/routes.json',
+      'https://dev-api.digitransit.fi/timetables/v1/hsl/routes/routes.json'
     );
     expect(calls.length).to.equal(6);
   });
@@ -63,7 +63,7 @@ describe('retryFetch', () => {
 
     expect(durationDifference).to.be.within(
       expectedDifference - allowedVariance,
-      expectedDifference + allowedVariance,
+      expectedDifference + allowedVariance
     );
   });
 
@@ -75,7 +75,7 @@ describe('retryFetch', () => {
       assert.fail('No error should have been thrown');
     }
     const calls = fetchMock.callHistory.calls(
-      'https://dev-api.digitransit.fi/timetables/v1/hsl/routes/routes.json',
+      'https://dev-api.digitransit.fi/timetables/v1/hsl/routes/routes.json'
     );
     expect(calls.length).to.equal(1);
   });

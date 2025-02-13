@@ -26,7 +26,7 @@ const MobileFooter = (props, { config }) => {
 };
 
 MobileFooter.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default MobileFooter;

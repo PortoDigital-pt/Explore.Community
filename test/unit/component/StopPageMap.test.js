@@ -10,10 +10,10 @@ describe('<StopPageMap />', () => {
     const props = {
       breakpoint: 'large',
       params: {
-        stopId: 'HSL:2211275',
+        stopId: 'HSL:2211275'
       },
       routes: [],
-      stop: null,
+      stop: null
     };
     const wrapper = shallowWithIntl(<StopPageMap {...props} />);
     expect(wrapper.find('.map').length).to.equal(0);

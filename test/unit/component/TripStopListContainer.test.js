@@ -10,17 +10,17 @@ describe('<TripStopListContainer />', () => {
       currentTime: serviceDay + 2000,
       locationState: {},
       relay: {
-        forceFetch: () => {},
+        forceFetch: () => {}
       },
       trip: {
         gtfsId: 'feed:1',
         pattern: {
           code: 'foobar-1-1',
-          directionId: 1,
+          directionId: 1
         },
         route: {
           gtfsId: 'foobar-1',
-          mode: 'BUS',
+          mode: 'BUS'
         },
         stoptimesForDate: [
           {
@@ -28,32 +28,32 @@ describe('<TripStopListContainer />', () => {
             realtimeDeparture: 1000,
             serviceDay,
             stop: {
-              gtfsId: 'stop-1',
-            },
+              gtfsId: 'stop-1'
+            }
           },
           {
             pattern: {},
             realtimeDeparture: 3000,
             serviceDay,
             stop: {
-              gtfsId: 'stop-2',
-            },
-          },
-        ],
+              gtfsId: 'stop-2'
+            }
+          }
+        ]
       },
       vehicles: {},
       tripStart: '',
-      breakpoint: 'large',
+      breakpoint: 'large'
     };
     const wrapper = shallowWithIntl(<TripStopListContainer {...props} />, {
       context: {
-        config: { CONFIG: 'default' },
-      },
+        config: { CONFIG: 'default' }
+      }
     });
     expect(wrapper.find(TripRouteStop)).to.have.lengthOf(2);
     expect(wrapper.find(TripRouteStop).at(0).prop('stopPassed')).to.equal(true);
     expect(wrapper.find(TripRouteStop).at(1).prop('stopPassed')).to.equal(
-      false,
+      false
     );
   });
 
@@ -62,18 +62,18 @@ describe('<TripStopListContainer />', () => {
       currentTime: 1554882006,
       locationState: {},
       relay: {
-        forceFetch: () => {},
+        forceFetch: () => {}
       },
       trip: {
         gtfsId: 'HSL:1',
         pattern: {
           code: 'HSL:6172:0:01',
-          directionId: 0,
+          directionId: 0
         },
         route: {
           mode: 'BUS',
           gtfsId: 'HSL:6172',
-          color: null,
+          color: null
         },
         stoptimesForDate: [
           {
@@ -84,15 +84,15 @@ describe('<TripStopListContainer />', () => {
               code: 'E3155',
               lat: 60.160171,
               lon: 24.738517,
-              alerts: [],
+              alerts: []
             },
             realtimeDeparture: 36300,
             realtime: true,
             scheduledDeparture: 36300,
             serviceDay: 1554843600,
-            realtimeState: 'UPDATED',
-          },
-        ],
+            realtimeState: 'UPDATED'
+          }
+        ]
       },
       tripStart: '1005',
       vehicles: {
@@ -107,7 +107,7 @@ describe('<TripStopListContainer />', () => {
           timestamp: 1554881821,
           lat: 60.1305,
           long: 24.42246,
-          heading: 89,
+          heading: 89
         },
         HSL_00875: {
           id: 'HSL_00875',
@@ -120,19 +120,19 @@ describe('<TripStopListContainer />', () => {
           timestamp: 1554881822,
           lat: 60.12307,
           long: 24.41071,
-          heading: 140,
-        },
+          heading: 140
+        }
       },
       color: '',
-      breakpoint: 'large',
+      breakpoint: 'large'
     };
     const wrapper = shallowWithIntl(<TripStopListContainer {...props} />, {
       context: {
-        config: { CONFIG: 'default' },
-      },
+        config: { CONFIG: 'default' }
+      }
     });
     expect(wrapper.find(TripRouteStop).prop('selectedVehicle').id).to.equal(
-      'HSL_00875',
+      'HSL_00875'
     );
   });
 });

@@ -23,19 +23,19 @@ TerminalPageTabContainer.propTypes = {
         realtimeState: PropTypes.string,
         trip: PropTypes.shape({
           pattern: PropTypes.shape({
-            code: PropTypes.string,
+            code: PropTypes.string
           }),
           route: PropTypes.shape({
-            alerts: PropTypes.arrayOf(alertShape),
-          }),
-        }),
-      }),
-    ),
-  }),
+            alerts: PropTypes.arrayOf(alertShape)
+          })
+        })
+      })
+    )
+  })
 };
 
 TerminalPageTabContainer.defaultProps = {
-  station: undefined,
+  station: undefined
 };
 
 const containerComponent = createFragmentContainer(TerminalPageTabContainer, {
@@ -73,7 +73,7 @@ const containerComponent = createFragmentContainer(TerminalPageTabContainer, {
         realtimeState
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, TerminalPageTabContainer as Component };

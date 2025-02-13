@@ -16,7 +16,7 @@ fs.readdirSync(directory).forEach(name => {
         pckg,
         dir: path.join(directory, name),
         dependencies: pckg.dependencies || {},
-        devDependencies: pckg.devDependencies || {},
+        devDependencies: pckg.devDependencies || {}
       });
     }
   }

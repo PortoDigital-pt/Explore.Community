@@ -7,7 +7,7 @@ import { isBrowser } from '../../util/browser';
 import { configShape, geoJsonFeatureShape } from '../../util/shapes';
 import {
   isMultiPointTypeGeometry,
-  isPointTypeGeometry,
+  isPointTypeGeometry
 } from '../../util/geo-utils';
 
 let Geojson;
@@ -30,7 +30,7 @@ const getIcons = features => {
 
   return features
     .filter(
-      feature => feature.properties?.icon?.id && feature.properties?.icon?.svg,
+      feature => feature.properties?.icon?.id && feature.properties?.icon?.svg
     )
     .map(feature => feature.properties.icon)
     .reduce((icons, icon) => {
@@ -39,7 +39,7 @@ const getIcons = features => {
         & replace the '#' character with '%23'. `encodeURI()` won't do this.
       */
       const url = `data:image/svg+xml;charset=utf-8,${encodeURI(
-        icon.svg,
+        icon.svg
       ).replace(/#/g, '%23')}`;
       icons[icon.id] = url; // eslint-disable-line no-param-reassign
       return icons;
@@ -63,21 +63,21 @@ const getMarker = (feature, latlng, icons = {}) => {
     marker = L.marker(latlng, {
       icon: new L.Icon({
         iconUrl: icons[properties.icon.id],
-        className: 'icon-zone',
+        className: 'icon-zone'
       }),
       interactive,
-      keyboard: false,
+      keyboard: false
     });
   } else if (properties.textOnly) {
     marker = L.circleMarker(latlng, {
       interactive,
-      keyboard: false,
+      keyboard: false
     });
     marker.bindTooltip(properties.textOnly, {
       className: 'geoJsonText',
       direction: 'center',
       offset: [0, 0],
-      permanent: true,
+      permanent: true
     });
   } else {
     marker = L.circleMarker(latlng, { interactive, keyboard: false });
@@ -89,7 +89,7 @@ const getMarker = (feature, latlng, icons = {}) => {
 const addPopup = (feature, layer) => {
   if (feature.properties.popupContent) {
     layer.bindPopup(feature.properties.popupContent, {
-      className: 'geoJsonPopup',
+      className: 'geoJsonPopup'
     });
   }
 };
@@ -99,18 +99,18 @@ class GeoJSON extends React.Component {
     // eslint-disable-next-line
     bounds: PropTypes.object,
     data: PropTypes.shape({
-      features: PropTypes.arrayOf(geoJsonFeatureShape),
+      features: PropTypes.arrayOf(geoJsonFeatureShape)
     }).isRequired,
     geoJsonZoomLevel: PropTypes.number,
     locationPopup: PropTypes.string,
-    onSelectLocation: PropTypes.func,
+    onSelectLocation: PropTypes.func
   };
 
   static defaultProps = {
     bounds: undefined,
     geoJsonZoomLevel: undefined,
     locationPopup: undefined,
-    onSelectLocation: undefined,
+    onSelectLocation: undefined
   };
 
   static contextTypes = { config: configShape.isRequired };
@@ -124,7 +124,7 @@ class GeoJSON extends React.Component {
       className: 'cursor-grab',
       color: config.colors.primary,
       weight: 3,
-      opacity: 0.8,
+      opacity: 0.8
     };
     const defaultMarkerStyle = {
       color: config.colors.primary,
@@ -132,14 +132,14 @@ class GeoJSON extends React.Component {
       radius: 6,
       opacity: 1,
       fillOpacity: 1,
-      weight: 2,
+      weight: 2
     };
     const textMarkerStyle = {
       color: config.colors.primary,
       radius: 0,
       opacity: 0,
       fillOpacity: 0,
-      weight: 0,
+      weight: 0
     };
 
     const { geometry } = feature;
@@ -161,11 +161,11 @@ class GeoJSON extends React.Component {
     ) {
       const lineArray = [
         0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.55, 0.61, 0.69, 0.78, 0.89, 1.02, 1.17,
-        1.36, 1.58, 1.85, 2.17, 2.56, 3.02, 3.57, 4.24, 5.04, 6,
+        1.36, 1.58, 1.85, 2.17, 2.56, 3.02, 3.57, 4.24, 5.04, 6
       ];
       const haloArray = [
         2, 2, 2, 2, 2, 2, 2.74, 3.62, 4.68, 5.95, 7.48, 9.31, 11.51, 14.05,
-        17.31, 21.11, 25.67, 31.14, 37.71, 45.59, 55.04, 66.39, 80,
+        17.31, 21.11, 25.67, 31.14, 37.71, 45.59, 55.04, 66.39, 80
       ];
 
       const index =
@@ -173,7 +173,7 @@ class GeoJSON extends React.Component {
       const newStyle = {
         ...feature.style,
         weight:
-          feature.style.type === 'halo' ? haloArray[index] : lineArray[index],
+          feature.style.type === 'halo' ? haloArray[index] : lineArray[index]
       };
       return { ...defaultLineStyle, ...newStyle };
     }
@@ -187,7 +187,7 @@ class GeoJSON extends React.Component {
   // eslint-disable-next-line camelcase
   UNSAFE_componentWillMount() {
     const {
-      data: { features },
+      data: { features }
     } = this.props;
     this.icons = getIcons(features);
   }
@@ -199,7 +199,7 @@ class GeoJSON extends React.Component {
     }
 
     const hasOnlyPointGeometries = data.features.every(feature =>
-      isPointTypeGeometry(feature.geometry),
+      isPointTypeGeometry(feature.geometry)
     );
     if (!hasOnlyPointGeometries) {
       return (

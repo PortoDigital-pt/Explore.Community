@@ -43,7 +43,7 @@ const getArrowMarkerStyle = (leg, pixelPositions) => {
     topLeft: leg.topLeft,
     bottomRight: leg.bottomRight,
     width: leg.width,
-    height: leg.height,
+    height: leg.height
   };
   // The area used to calculate overlaps excludes the arrow part for simplicity. This offset x and y are caused by the area that the arrow takes
   const arrowOffset = { x: 10, y: 12 };
@@ -121,14 +121,14 @@ class TransitLegMarkers extends React.Component {
       map: PropTypes.shape({
         latLngToLayerPoint: PropTypes.func.isRequired,
         on: PropTypes.func.isRequired,
-        off: PropTypes.func.isRequired,
-      }).isRequired,
-    }).isRequired,
+        off: PropTypes.func.isRequired
+      }).isRequired
+    }).isRequired
   };
 
   static contextTypes = {
     config: configShape.isRequired,
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   getLegMarkerPixelPosition(leg) {
@@ -139,7 +139,7 @@ class TransitLegMarkers extends React.Component {
     const leafletPixelPosition = {
       ...map.latLngToLayerPoint({ lat: middle.lat, lon: middle.lon }),
       width: 45,
-      height: 15,
+      height: 15
     };
     let offset;
     let type;
@@ -153,16 +153,16 @@ class TransitLegMarkers extends React.Component {
     const truePixelPosition = {
       topLeft: {
         x: leafletPixelPosition.x - offset.x,
-        y: leafletPixelPosition.y + offset.y,
+        y: leafletPixelPosition.y + offset.y
       },
       bottomRight: {
         x: leafletPixelPosition.x - offset.x + leafletPixelPosition.width,
-        y: leafletPixelPosition.y + offset.y + leafletPixelPosition.height,
+        y: leafletPixelPosition.y + offset.y + leafletPixelPosition.height
       },
       type,
       middle,
       width: leafletPixelPosition.width,
-      height: leafletPixelPosition.height,
+      height: leafletPixelPosition.height
     };
     return truePixelPosition;
   }
@@ -172,12 +172,12 @@ class TransitLegMarkers extends React.Component {
     const leafletPixelPosition = {
       ...map.latLngToLayerPoint({ lat, lon }),
       width: 105,
-      height: 30,
+      height: 30
     }; // Offset 15 x 10
     const truePixelPosition = {
       topLeft: {
         x: leafletPixelPosition.x + offsetSpeechBubble.x,
-        y: leafletPixelPosition.y - offsetSpeechBubble.y,
+        y: leafletPixelPosition.y - offsetSpeechBubble.y
       },
       bottomRight: {
         x:
@@ -187,10 +187,10 @@ class TransitLegMarkers extends React.Component {
         y:
           leafletPixelPosition.y -
           offsetSpeechBubble.y +
-          leafletPixelPosition.height,
+          leafletPixelPosition.height
       },
       width: leafletPixelPosition.width,
-      height: leafletPixelPosition.height,
+      height: leafletPixelPosition.height
     };
     return truePixelPosition;
   }
@@ -204,7 +204,7 @@ class TransitLegMarkers extends React.Component {
     }
     return `${this.context.intl.formatMessage({
       id: 'transfer',
-      defaultMessage: 'Transfer',
+      defaultMessage: 'Transfer'
     })}: ${duration} min`;
   }
 
@@ -229,7 +229,7 @@ class TransitLegMarkers extends React.Component {
     const pixelPositions = [];
     const legsWithPositions = this.props.transitLegs.map(leg => ({
       ...leg,
-      ...this.getLegMarkerPixelPosition(leg),
+      ...this.getLegMarkerPixelPosition(leg)
     }));
 
     // Draw regular legmarkers first, no tweaking needed
@@ -252,15 +252,15 @@ class TransitLegMarkers extends React.Component {
             lon: leg.middle.lon,
             name: leg.legName,
             gtfsId: leg.from.stop.gtfsId,
-            code: leg.from.stop.code,
+            code: leg.from.stop.code
           }}
           mode={leg.mode}
           zIndexOffset={leg.zIndexOffset} // Make sure the LegMarker always stays above the StopMarkers
-        />,
+        />
       );
       pixelPositions.push({
         topLeft: leg.topLeft,
-        bottomRight: leg.bottomRight,
+        bottomRight: leg.bottomRight
       });
     });
 
@@ -287,11 +287,11 @@ class TransitLegMarkers extends React.Component {
             lon: leg.middle.lon,
             name: leg.legName,
             gtfsId: leg.from.stop.gtfsId,
-            code: leg.from.stop.code,
+            code: leg.from.stop.code
           }}
           mode={leg.mode}
           zIndexOffset={leg.zIndexOffset} // Make sure the LegMarker always stays above the StopMarkers
-        />,
+        />
       );
       pixelPositions.push(styleAndPosition.pixelPosition);
     });
@@ -301,15 +301,15 @@ class TransitLegMarkers extends React.Component {
     legsWithTransferStops.pop(); // Excluding the finishing leg
     legsWithTransferStops.forEach((leg, index) => {
       const speechBubblePixelPosition = this.getSpeechbubblePixelPosition(
-        leg.to,
+        leg.to
       );
       const styleAndPosition = getSpeechBubbleStyle(
         speechBubblePixelPosition,
-        pixelPositions,
+        pixelPositions
       );
       const text = this.getSpeechBubbleText(
         leg,
-        this.props.transitLegs[index + 1],
+        this.props.transitLegs[index + 1]
       );
       objs.push(
         <SpeechBubble
@@ -318,7 +318,7 @@ class TransitLegMarkers extends React.Component {
           text={text}
           speechBubbleStyle={styleAndPosition.style}
           zIndexOffset={leg.zIndexOffset}
-        />,
+        />
       );
       pixelPositions.push(styleAndPosition.position);
     });

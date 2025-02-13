@@ -8,12 +8,12 @@ import DatetimepickerContainer from '../DatetimepickerContainer';
 
 class SearchSettings extends React.Component {
   static propTypes = {
-    toggleSettings: PropTypes.func.isRequired,
+    toggleSettings: PropTypes.func.isRequired
   };
   /* eslint-enable react/no-unused-prop-types */
 
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   state = {};

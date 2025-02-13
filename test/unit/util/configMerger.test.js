@@ -9,14 +9,14 @@ describe('configMerger', () => {
             {
               header: 'header1',
               paragraphs: ['foo1'],
-              link: 'foo1.com',
+              link: 'foo1.com'
             },
             {
               header: 'header2',
-              paragraphs: ['foo2'],
-            },
-          ],
-        },
+              paragraphs: ['foo2']
+            }
+          ]
+        }
       };
 
       const modifications = {
@@ -25,19 +25,19 @@ describe('configMerger', () => {
             {
               header: 'header1',
               paragraphs: ['bar1'],
-              link: 'bar1.com',
+              link: 'bar1.com'
             },
             {
               header: 'header2',
-              link: 'bar2.com',
+              link: 'bar2.com'
             },
             {
               header: 'header3',
               paragraphs: ['bar3'],
-              link: 'bar3.com',
-            },
-          ],
-        },
+              link: 'bar3.com'
+            }
+          ]
+        }
       };
 
       const merged = merger(base, modifications);

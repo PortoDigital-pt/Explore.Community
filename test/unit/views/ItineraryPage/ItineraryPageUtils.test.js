@@ -13,7 +13,7 @@ describe('itineraryPageUtils', () => {
     beforeEach(() => {
       mockStoredItinerary = {
         itinerary: {
-          end: TEN_MINUTES_FROM_NOW,
+          end: TEN_MINUTES_FROM_NOW
         },
         params: {
           from: 'foo',
@@ -21,19 +21,19 @@ describe('itineraryPageUtils', () => {
           arriveBy: ARRIVE_BY,
           time: TIME,
           hash: INDEX,
-          secondHash: undefined,
-        },
+          secondHash: undefined
+        }
       };
 
       mockMatch = {
         params: { from: 'foo', to: 'bar', hash: INDEX, secondHash: undefined },
-        location: { query: { time: TIME, arriveBy: ARRIVE_BY } },
+        location: { query: { time: TIME, arriveBy: ARRIVE_BY } }
       };
     });
 
     it('should return true for equal params', () => {
       expect(
-        isStoredItineraryRelevant(mockStoredItinerary, mockMatch),
+        isStoredItineraryRelevant(mockStoredItinerary, mockMatch)
       ).to.equal(true);
     });
 
@@ -42,8 +42,8 @@ describe('itineraryPageUtils', () => {
         isStoredItineraryRelevant(mockStoredItinerary, {
           ...mockMatch,
           hash: 'other',
-          secondHash: INDEX,
-        }),
+          secondHash: INDEX
+        })
       ).to.equal(true);
     });
 
@@ -56,24 +56,24 @@ describe('itineraryPageUtils', () => {
       expect(
         isStoredItineraryRelevant(
           itineraryWithoutArriveBy,
-          matchWithoutArriveBy,
-        ),
+          matchWithoutArriveBy
+        )
       ).to.equal(true);
     });
 
     it('should return false for past itinerary', () => {
       const TEN_MINUTES_IN_THE_PAST = new Date(
-        Date.now() + 600000,
+        Date.now() + 600000
       ).toISOString();
 
       expect(
         isStoredItineraryRelevant(
           {
             ...mockStoredItinerary,
-            itinerary: { end: TEN_MINUTES_IN_THE_PAST },
+            itinerary: { end: TEN_MINUTES_IN_THE_PAST }
           },
-          mockMatch,
-        ),
+          mockMatch
+        )
       ).to.equal(true);
     });
 
@@ -83,7 +83,7 @@ describe('itineraryPageUtils', () => {
       matchWithDifferentHash.params.secondHash = undefined;
 
       expect(
-        isStoredItineraryRelevant(mockStoredItinerary, matchWithDifferentHash),
+        isStoredItineraryRelevant(mockStoredItinerary, matchWithDifferentHash)
       ).to.equal(false);
     });
 
@@ -93,19 +93,19 @@ describe('itineraryPageUtils', () => {
       matchWithDifferentHash.params.secondHash = undefined;
 
       expect(
-        isStoredItineraryRelevant(mockStoredItinerary, matchWithDifferentHash),
+        isStoredItineraryRelevant(mockStoredItinerary, matchWithDifferentHash)
       ).to.equal(false);
     });
 
     it('should throw error if match is undefined', () => {
       expect(() =>
-        isStoredItineraryRelevant(mockStoredItinerary, undefined),
+        isStoredItineraryRelevant(mockStoredItinerary, undefined)
       ).to.throw(Error);
     });
 
     it('should not throw error if stored itinerary is empty object', () => {
       expect(() => isStoredItineraryRelevant({}, mockMatch)).to.not.throw(
-        Error,
+        Error
       );
       expect(isStoredItineraryRelevant({}, mockMatch)).to.equal(false);
     });
@@ -114,14 +114,14 @@ describe('itineraryPageUtils', () => {
       expect(() =>
         isStoredItineraryRelevant(
           { ...mockStoredItinerary, itinerary: undefined },
-          mockMatch,
-        ),
+          mockMatch
+        )
       ).to.not.throw(Error);
       expect(
         isStoredItineraryRelevant(
           { ...mockStoredItinerary, itinerary: undefined },
-          mockMatch,
-        ),
+          mockMatch
+        )
       ).to.equal(false);
     });
 
@@ -129,14 +129,14 @@ describe('itineraryPageUtils', () => {
       expect(() =>
         isStoredItineraryRelevant(
           { ...mockStoredItinerary, params: undefined },
-          mockMatch,
-        ),
+          mockMatch
+        )
       ).to.not.throw(Error);
       expect(
         isStoredItineraryRelevant(
           { ...mockStoredItinerary, params: undefined },
-          mockMatch,
-        ),
+          mockMatch
+        )
       ).to.equal(false);
     });
   });

@@ -7,7 +7,7 @@ import { epochToTime } from '../../../util/timeUtils';
 
 export default function NaviBottom(
   { setNavigation, arrival, time },
-  { config },
+  { config }
 ) {
   const handleClose = useCallback(() => setNavigation(false), [setNavigation]);
   const handleTicketButtonClick = useCallback(e => e.stopPropagation(), []);
@@ -16,7 +16,7 @@ export default function NaviBottom(
   const remainingDuration = Math.ceil((arrival - time) / 60000); // ms to minutes
 
   const sheetClasses = cx('navi-bottom-sheet', {
-    'ticket-link': isTicketSaleActive,
+    'ticket-link': isTicketSaleActive
   });
 
   const closeButton = (
@@ -64,9 +64,9 @@ export default function NaviBottom(
 NaviBottom.propTypes = {
   setNavigation: PropTypes.func.isRequired,
   arrival: PropTypes.number.isRequired,
-  time: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired
 };
 
 NaviBottom.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

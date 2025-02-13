@@ -15,7 +15,7 @@ function MobileTimepicker({
   id,
   label,
   icon,
-  timeZone,
+  timeZone
 }) {
   const [inputValue, changeInputValue] = useState(getDisplay(value));
   const [isValidInput, setValidInput] = useState(true);
@@ -42,7 +42,7 @@ function MobileTimepicker({
         maxLength="6"
         className={cx(
           styles['time-input-mobile'],
-          showError ? 'mobile-datetimepicker-invalid-input' : '',
+          showError ? 'mobile-datetimepicker-invalid-input' : ''
         )}
         value={inputValue}
         onFocus={e => {
@@ -82,12 +82,12 @@ MobileTimepicker.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   icon: PropTypes.node,
-  timeZone: PropTypes.string,
+  timeZone: PropTypes.string
 };
 
 MobileTimepicker.defaultProps = {
   icon: null,
-  timeZone: 'Europe/Helsinki',
+  timeZone: 'Europe/Helsinki'
 };
 
 export default MobileTimepicker;

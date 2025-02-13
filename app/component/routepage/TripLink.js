@@ -38,7 +38,7 @@ function TripLink({ vehicleState, vehicle, shortName, ...rest }) {
         }
       `}
       variables={{
-        id: vehicle.tripId,
+        id: vehicle.tripId
       }}
       environment={environment}
       render={({ props }) => {
@@ -66,7 +66,7 @@ function TripLink({ vehicleState, vehicle, shortName, ...rest }) {
               addAnalyticsEvent({
                 category: 'Route',
                 action: 'OpenTripInformation',
-                name: vehicle.mode.toUpperCase(),
+                name: vehicle.mode.toUpperCase()
               });
             }}
           >
@@ -82,21 +82,21 @@ TripLink.propTypes = {
   trip: PropTypes.shape({
     gtfsId: PropTypes.string,
     route: PropTypes.shape({
-      gtfsId: PropTypes.string,
+      gtfsId: PropTypes.string
     }),
     pattern: PropTypes.shape({
-      code: PropTypes.string,
-    }),
+      code: PropTypes.string
+    })
   }),
   vehicle: vehicleShape.isRequired,
   shortName: PropTypes.string,
-  vehicleState: PropTypes.string,
+  vehicleState: PropTypes.string
 };
 
 TripLink.defaultProps = {
   trip: undefined,
   shortName: undefined,
-  vehicleState: undefined,
+  vehicleState: undefined
 };
 
 export default TripLink;

@@ -25,12 +25,12 @@ const props = {
           headsign: 'Kamppi',
           route: {
             agency: {
-              name: 'Helsingin seudun liikenne',
+              name: 'Helsingin seudun liikenne'
             },
             longName: 'Kamppi-Töölö-Pihlajamäki-Pukinmäki-Malmi',
             mode: 'BUS',
-            shortName: '70',
-          },
+            shortName: '70'
+          }
         },
         stoptimes: [
           {
@@ -38,14 +38,14 @@ const props = {
             pickupType: 'SCHEDULED',
             realtimeState: 'CANCELED',
             scheduledDeparture: 32460,
-            serviceDay: 1547071200,
-          },
-        ],
-      },
-    ],
+            serviceDay: 1547071200
+          }
+        ]
+      }
+    ]
   },
   date: '20231031',
-  language: 'en',
+  language: 'en'
 };
 
 describe('<Timetable />', () => {
@@ -55,13 +55,13 @@ describe('<Timetable />', () => {
         ...mockContext,
         config: {
           CONFIG: 'default',
-          URL: {},
-        },
-      },
+          URL: {}
+        }
+      }
     });
     expect(wrapper.find(TimetableRow)).to.have.lengthOf(1);
     expect(wrapper.find(TimetableRow).prop('stoptimes')[0].isCanceled).to.equal(
-      true,
+      true
     );
   });
 
@@ -73,9 +73,9 @@ describe('<Timetable />', () => {
         config: {
           CONFIG: 'default',
           URL: { STOP_TIMETABLES: { HSL: baseTimetableURL } },
-          timetables: { HSL: timetables.default.HSL },
-        },
-      },
+          timetables: { HSL: timetables.default.HSL }
+        }
+      }
     });
     expect(wrapper.find(SecondaryButton)).to.have.lengthOf(2);
   });

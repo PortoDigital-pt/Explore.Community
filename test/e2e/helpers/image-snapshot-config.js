@@ -1,7 +1,7 @@
 const getConfig = (
   customSnapshotIdentifier,
   customSnapshotsDir,
-  customDiffDir,
+  customDiffDir
 ) => {
   return {
     diffDirection: 'vertical',
@@ -11,7 +11,7 @@ const getConfig = (
     failureThresholdType: 'percent',
     customSnapshotsDir,
     customDiffDir,
-    customSnapshotIdentifier,
+    customSnapshotIdentifier
   };
 };
 

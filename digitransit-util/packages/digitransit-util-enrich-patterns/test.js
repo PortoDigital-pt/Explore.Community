@@ -7,38 +7,38 @@ import enrichPatterns from '.';
 describe('Testing @digitransit-util/digitransit-util-enrich-patterns module', () => {
   const nextFridaysAndSaturdays = [];
   nextFridaysAndSaturdays.push(
-    JSON.parse(`{ "day": ["${moment(moment()).day(5).format('YYYYMMDD')}"] }`),
+    JSON.parse(`{ "day": ["${moment(moment()).day(5).format('YYYYMMDD')}"] }`)
   );
   nextFridaysAndSaturdays.push(
-    JSON.parse(`{ "day": ["${moment(moment()).day(6).format('YYYYMMDD')}"] }`),
+    JSON.parse(`{ "day": ["${moment(moment()).day(6).format('YYYYMMDD')}"] }`)
   );
   nextFridaysAndSaturdays.push(
     JSON.parse(
       `{ "day": ["${moment(moment())
         .day(5 + 7)
-        .format('YYYYMMDD')}"] }`,
-    ),
+        .format('YYYYMMDD')}"] }`
+    )
   );
   nextFridaysAndSaturdays.push(
     JSON.parse(
       `{ "day": ["${moment(moment())
         .day(6 + 7)
-        .format('YYYYMMDD')}"] }`,
-    ),
+        .format('YYYYMMDD')}"] }`
+    )
   );
   nextFridaysAndSaturdays.push(
     JSON.parse(
       `{ "day": ["${moment(moment())
         .day(5 + 14)
-        .format('YYYYMMDD')}"] }`,
-    ),
+        .format('YYYYMMDD')}"] }`
+    )
   );
   nextFridaysAndSaturdays.push(
     JSON.parse(
       `{ "day": ["${moment(moment())
         .day(6 + 14)
-        .format('YYYYMMDD')}"] }`,
-    ),
+        .format('YYYYMMDD')}"] }`
+    )
   );
 
   const patterns = [
@@ -47,8 +47,8 @@ describe('Testing @digitransit-util/digitransit-util-enrich-patterns module', ()
       headsign: 'Kirkkonummi',
       stops: [{ name: 'Helsinki' }, { name: 'Kirkkonummi' }],
       tripsForDate: [],
-      activeDates: nextFridaysAndSaturdays,
-    },
+      activeDates: nextFridaysAndSaturdays
+    }
   ];
   const retValue = enrichPatterns(patterns, true, 3);
 
@@ -68,7 +68,7 @@ describe('Testing @digitransit-util/digitransit-util-enrich-patterns module', ()
         'rangeFollowingDays',
         'stops',
         'tripsForDate',
-        'untilDate',
+        'untilDate'
       );
   });
 

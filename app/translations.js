@@ -252,7 +252,7 @@ const translations = {
       'Kun bestillingstransport. Afgangen må forudbestilles af operatør.',
     'weather-at-destination': 'Vejret på destinationen',
     yesterday: 'I går',
-    zones: 'Zoner',
+    zones: 'Zoner'
   },
 
   de: {
@@ -818,7 +818,7 @@ const translations = {
     where: 'Wohin?',
     yesterday: 'Gestern',
     zone: 'Tarifzone',
-    zones: 'Tarifzonen',
+    zones: 'Tarifzonen'
   },
 
   en: {
@@ -883,7 +883,6 @@ const translations = {
     'set-time-now-button-label': 'Set travel time to current',
     'time-navigation-buttons': 'Time navigation buttons',
     'time-selector-form': 'Edit time',
-    // eslint-disable-next-line sort-keys
     address: 'Address',
     'address-or-stop': 'Address or stop',
     agency: 'Operator',
@@ -1013,7 +1012,6 @@ const translations = {
     'crushed-standing-room-only': 'Crushed standing room only',
     'cycle-distance-duration': 'Cycle {duration} ({distance})',
     'cyclewalk-distance-duration': 'Walk your bike {duration} ({distance})',
-    // eslint-disable-next-line sort-keys
     currentposition: 'Current position',
     datasources: 'Data sources',
     date: 'Date',
@@ -1816,6 +1814,11 @@ const translations = {
     'zone-info': 'Zone {zone}',
     'zone-unknown': 'Unknown zone',
     zones: 'Fare zones',
+    'nav-item-explore': 'Explore',
+    'nav-item-navigate': 'Navigate',
+    'nav-item-itineraries': 'Itineraries',
+    'nav-item-blocks': 'Blocks',
+    'nav-item-favourites': 'Favourites'
   },
 
   es: {
@@ -2110,7 +2113,7 @@ const translations = {
       'Sólo bajo demanda, necesita ser reservado con antelación.',
     'weather-at-destination': 'Tiempo en destino',
     yesterday: 'Ayer',
-    zones: 'Zonas tarifarias',
+    zones: 'Zonas tarifarias'
   },
 
   fi: {
@@ -3106,7 +3109,7 @@ const translations = {
     zone: 'Vyöhyke',
     'zone-info': 'Vyöhyke {zone}',
     'zone-unknown': 'Tuntematon vyöhyke',
-    zones: 'Lippuvyöhykkeet',
+    zones: 'Lippuvyöhykkeet'
   },
 
   fr: {
@@ -3439,7 +3442,7 @@ const translations = {
       "Uniquement à la demande. Doit être réservé à l'avance",
     'weather-at-destination': 'Météo à destination',
     yesterday: 'Hier',
-    zones: 'Zones tarifaires',
+    zones: 'Zones tarifaires'
   },
 
   nb: {
@@ -3693,7 +3696,7 @@ const translations = {
       'Kun bestillingsrute. Avgangen må forhåndsbestilles fra operatør.',
     'weather-at-destination': 'Været på destinasjonen',
     yesterday: 'I går',
-    zones: 'Billettsoner',
+    zones: 'Billettsoner'
   },
 
   pl: {
@@ -4582,7 +4585,7 @@ const translations = {
     zone: 'Strefa',
     'zone-info': 'Strefa {zone}',
     'zone-unknown': 'Nieznana strefa',
-    zones: 'Strefy taryfowe',
+    zones: 'Strefy taryfowe'
   },
 
   ro: {
@@ -5058,7 +5061,7 @@ const translations = {
     where: 'Where to?',
     yesterday: 'Ieri',
     zone: 'Zone',
-    zones: 'Zone tarifare',
+    zones: 'Zone tarifare'
   },
 
   pt: {
@@ -6225,6 +6228,11 @@ const translations = {
     where: 'Para onde?',
     'zone-info': 'Zona {zone}',
     'zone-unknown': 'Zona desconhecida',
+    'nav-item-explore': 'Explorar',
+    'nav-item-navigate': 'Navegar',
+    'nav-item-itineraries': 'Roteiros',
+    'nav-item-blocks': 'Quarteirões',
+    'nav-item-favourites': 'Favoritos'
   },
 
   sv: {
@@ -7219,8 +7227,8 @@ const translations = {
     zone: 'Zon',
     'zone-info': 'Zon {zone}',
     'zone-unknown': 'Okänd zon',
-    zones: 'Biljettzoner',
-  },
+    zones: 'Biljettzoner'
+  }
 };
 
 export default translations;

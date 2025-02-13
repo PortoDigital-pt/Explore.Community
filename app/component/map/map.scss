@@ -73,15 +73,15 @@ div.map {
       z-index: index($zindex, mobile-drawer);
 
       .drag-line {
-        width: 48px;
-        height: 4px;
-        border-radius: 2px;
-        background-color: #ddd;
+        width: 30px;
+        height: 3px;
+        border-radius: 200px;
+        background-color: #d9d9d9;
         display: block;
         z-index: index($zindex, mobile-drawer-drag-line);
         margin: auto;
         position: relative;
-        top: -5px;
+        top: 0;
       }
 
       .content-container {
@@ -90,7 +90,7 @@ div.map {
         box-shadow: 0 -10px 10px -10px rgba(0, 0, 0, 0.3);
         border-radius: 15px 15px 0 0;
         padding-top: 15px;
-        background-color: white;
+        background-color: $primary-contrastText;
       }
     }
   }

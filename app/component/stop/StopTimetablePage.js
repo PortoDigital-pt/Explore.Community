@@ -10,9 +10,9 @@ import TimetableContainer from './TimetableContainer';
 class StopTimetablePage extends React.Component {
   static propTypes = {
     stop: PropTypes.shape({
-      url: PropTypes.string,
+      url: PropTypes.string
     }).isRequired,
-    relay: relayShape.isRequired,
+    relay: relayShape.isRequired
   };
 
   state = prepareServiceDay({});
@@ -31,16 +31,16 @@ class StopTimetablePage extends React.Component {
     this.setState({ date: value });
     this.props.relay.refetch(
       {
-        date: value,
+        date: value
       },
-      null,
+      null
     );
   };
 
   static contextTypes = {
     router: routerShape.isRequired,
     match: matchShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   render() {
@@ -64,7 +64,7 @@ export default createRefetchContainer(
         url
         ...TimetableContainer_stop @arguments(date: $date)
       }
-    `,
+    `
   },
   graphql`
     query StopTimetablePageQuery($stopId: String!, $date: String) {
@@ -72,5 +72,5 @@ export default createRefetchContainer(
         ...StopTimetablePage_stop @arguments(date: $date)
       }
     }
-  `,
+  `
 );

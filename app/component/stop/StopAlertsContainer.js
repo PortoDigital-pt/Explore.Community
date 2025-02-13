@@ -66,7 +66,7 @@ const containerComponent = createFragmentContainer(StopAlertsContainer, {
         }
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, StopAlertsContainer as Component };

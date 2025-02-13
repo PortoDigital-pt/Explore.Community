@@ -31,7 +31,7 @@ const styleFeatures = data => {
   }
   const output = {
     type: 'FeatureCollection',
-    features: [],
+    features: []
   };
   data.features.forEach(feature => {
     if (!Array.isArray(feature.styles)) {
@@ -122,7 +122,7 @@ class GeoJsonStore extends Store {
         });
         const data = {
           name: name || id,
-          data: mapped,
+          data: mapped
         };
         this.geoJsonData[id] = data;
       } catch (error) {

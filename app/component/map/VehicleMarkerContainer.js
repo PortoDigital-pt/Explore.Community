@@ -14,7 +14,7 @@ const MODES_WITH_ICONS = [
   'rail',
   'subway',
   'ferry',
-  'speedtram',
+  'speedtram'
 ];
 
 function getVehicleIcon(
@@ -22,7 +22,7 @@ function getVehicleIcon(
   heading,
   vehicleNumber,
   color,
-  useLargeIcon = true,
+  useLargeIcon = true
 ) {
   if (!isBrowser) {
     return null;
@@ -41,7 +41,7 @@ function getVehicleIcon(
     ),
     className: `vehicle-icon ${modeOrDefault}`,
     iconSize: [20, 20],
-    iconAnchor: useLargeIcon ? [15, 15] : [10, 10],
+    iconAnchor: useLargeIcon ? [15, 15] : [10, 10]
   };
 }
 
@@ -77,16 +77,16 @@ function VehicleMarkerContainer(props, { config }) {
         props.direction,
         props.tripStart,
         props.pattern,
-        ignoreHeadsign ? undefined : props.headsign,
+        ignoreHeadsign ? undefined : props.headsign
       );
-    },
+    }
   );
   const visibleVehicleIds = visibleVehicles.map(([id]) => id);
   props.setVisibleVehicles(visibleVehicleIds);
 
   return visibleVehicles.map(([id, message]) => {
     const type = props.topics?.find(
-      t => t.shortName === message.shortName,
+      t => t.shortName === message.shortName
     )?.type;
     let mode;
     if (type === ExtendedRouteTypes.BusExpress) {
@@ -107,7 +107,7 @@ function VehicleMarkerContainer(props, { config }) {
         key={id}
         position={{
           lat: message.lat,
-          lon: message.long,
+          lon: message.long
         }}
         zIndexOffset={10000}
         icon={getVehicleIcon(
@@ -115,7 +115,7 @@ function VehicleMarkerContainer(props, { config }) {
           message.heading,
           vehicleNumber,
           message.color,
-          props.useLargeIcon,
+          props.useLargeIcon
         )}
       />
     );
@@ -134,18 +134,18 @@ VehicleMarkerContainer.propTypes = {
       shortName: PropTypes.string,
       heading: PropTypes.number,
       lat: PropTypes.number.isRequired,
-      long: PropTypes.number.isRequired,
-    }).isRequired,
-  ).isRequired,
+      long: PropTypes.number.isRequired
+    }).isRequired
+  ).isRequired
 };
 
 VehicleMarkerContainer.defaultProps = {
   tripStart: undefined,
-  direction: undefined,
+  direction: undefined
 };
 
 VehicleMarkerContainer.contextTypes = {
-  config: configShape,
+  config: configShape
 };
 
 const connectedComponent = connectToStores(
@@ -153,13 +153,12 @@ const connectedComponent = connectToStores(
   ['RealTimeInformationStore'],
   (context, props) => {
     const { vehicles, setVisibleVehicles } = context.getStore(
-      'RealTimeInformationStore',
+      'RealTimeInformationStore'
     );
     let vehiclesFiltered = vehicles;
     if (props.mode) {
       const filtered = Object.entries(vehicles).filter(
-        ([, message]) =>
-          message.mode.toLowerCase() === props.mode.toLowerCase(),
+        ([, message]) => message.mode.toLowerCase() === props.mode.toLowerCase()
       );
       vehiclesFiltered = Object.fromEntries(filtered);
     }
@@ -168,19 +167,19 @@ const connectedComponent = connectToStores(
     const vehiclesWithRecentUpdates = Object.entries(vehiclesFiltered).filter(
       ([, message]) => {
         return message.receivedAt > Date.now() / 1000 - 180;
-      },
+      }
     );
     return {
       ...props,
       vehicles: Object.fromEntries(vehiclesWithRecentUpdates),
-      setVisibleVehicles,
+      setVisibleVehicles
     };
-  },
+  }
 );
 
 export {
   connectedComponent as default,
   VehicleMarkerContainer as Component,
   shouldShowVehicle,
-  getVehicleIcon,
+  getVehicleIcon
 };

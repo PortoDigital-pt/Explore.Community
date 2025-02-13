@@ -15,12 +15,12 @@ import UserMenu from './UserMenu';
 
 export default function AppBar(
   { showLogo, title, homeUrl, logo, user, breakpoint, titleClicked },
-  { config, intl, match, getStore },
+  { config, intl, match, getStore }
 ) {
   const { location } = match;
   const [disruptionInfoOpen, setDisruptionInfoOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(
-    window.sessionStorage.menuOpen === 'true',
+    window.sessionStorage.menuOpen === 'true'
   );
   const url = encodeURI(`${window.location?.origin || ''}${location.pathname}`);
   const params = location.search && location.search.substring(1);
@@ -29,7 +29,7 @@ export default function AppBar(
     addAnalyticsEvent({
       category: 'Navigation',
       action: newState ? 'OpenMenu' : 'CloseMenu',
-      name: null,
+      name: null
     });
     // Set sessionStorage menuOpen to false on closing the menu so it doesn't pop up opened on later refreshes.
     window.sessionStorage.setItem('menuOpen', false);
@@ -51,7 +51,7 @@ export default function AppBar(
           <button
             aria-label={intl.formatMessage({
               id: 'to-frontpage',
-              defaultMessage: 'To frontpage',
+              defaultMessage: 'To frontpage'
             })}
             type="button"
             onClick={e => {
@@ -59,7 +59,7 @@ export default function AppBar(
               addAnalyticsEvent({
                 category: 'Navigation',
                 action: 'Home',
-                name: null,
+                name: null
               });
             }}
           >
@@ -82,8 +82,8 @@ export default function AppBar(
                       event.preventDefault();
                       getStore('FavouriteStore').storeFavourites();
                       window.location.href = '/logout';
-                    },
-                  },
+                    }
+                  }
                 ]}
                 isMobile
               />
@@ -103,7 +103,7 @@ export default function AppBar(
                 id="openMenuButton"
                 aria-label={intl.formatMessage({
                   id: 'main-menu-label-open',
-                  defaultMessage: 'Open the main menu',
+                  defaultMessage: 'Open the main menu'
                 })}
                 onClick={() => setMenuOpenWithAnalytics(true)}
                 className="noborder cursor-pointer"
@@ -127,7 +127,7 @@ AppBar.propTypes = {
   logo: PropTypes.string,
   user: userShape,
   breakpoint: PropTypes.string,
-  titleClicked: PropTypes.func.isRequired,
+  titleClicked: PropTypes.func.isRequired
 };
 
 AppBar.defaultProps = {
@@ -136,12 +136,12 @@ AppBar.defaultProps = {
   homeUrl: undefined,
   logo: undefined,
   user: undefined,
-  breakpoint: undefined,
+  breakpoint: undefined
 };
 
 AppBar.contextTypes = {
   getStore: PropTypes.func.isRequired,
   config: configShape.isRequired,
   intl: intlShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };

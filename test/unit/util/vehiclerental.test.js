@@ -3,7 +3,7 @@ import {
   getRentalNetworkId,
   getRentalNetworkIcon,
   getRentalNetworkName,
-  getRentalNetworkConfig,
+  getRentalNetworkConfig
 } from '../../../app/util/vehicleRentalUtils';
 
 describe('vehiclerental', () => {
@@ -27,23 +27,23 @@ describe('vehiclerental', () => {
   describe('getRentalNetworkId', () => {
     it('should default to a default config', () => {
       expect(getRentalNetworkConfig(undefined, {})).to.equal(
-        defaultNetworkConfig,
+        defaultNetworkConfig
       );
       expect(getRentalNetworkConfig('Smoove', {})).to.equal(
-        defaultNetworkConfig,
+        defaultNetworkConfig
       );
       expect(getRentalNetworkConfig('Smoove', { vehicleRental: {} })).to.equal(
-        defaultNetworkConfig,
+        defaultNetworkConfig
       );
       expect(
         getRentalNetworkConfig('Smoove', {
-          vehicleRental: { networks: {} },
-        }),
+          vehicleRental: { networks: {} }
+        })
       ).to.equal(defaultNetworkConfig);
       expect(
         getRentalNetworkConfig('Smoove', {
-          vehicleRental: { networks: { smoove: {} } },
-        }),
+          vehicleRental: { networks: { smoove: {} } }
+        })
       ).to.equal(defaultNetworkConfig);
     });
 
@@ -53,13 +53,13 @@ describe('vehiclerental', () => {
           networks: {
             foobar: {
               icon: 'citybike',
-              type: 'scooter',
-            },
-          },
-        },
+              type: 'scooter'
+            }
+          }
+        }
       };
       expect(getRentalNetworkConfig('foobar', config)).to.equal(
-        config.vehicleRental.networks.foobar,
+        config.vehicleRental.networks.foobar
       );
     });
 
@@ -69,13 +69,13 @@ describe('vehiclerental', () => {
           networks: {
             foobar: {
               icon: 'citybike',
-              type: 'scooter',
-            },
-          },
-        },
+              type: 'scooter'
+            }
+          }
+        }
       };
       expect(getRentalNetworkConfig('Foobar', config)).to.equal(
-        config.vehicleRental.networks.foobar,
+        config.vehicleRental.networks.foobar
       );
     });
   });
@@ -88,7 +88,7 @@ describe('vehiclerental', () => {
 
     it('should default to "icon-icon_citybike" if no icon has been defined', () => {
       const networkConfig = {
-        icon: undefined,
+        icon: undefined
       };
       const result = getRentalNetworkIcon(networkConfig);
       expect(result).to.equal('icon-icon_citybike');
@@ -96,7 +96,7 @@ describe('vehiclerental', () => {
 
     it('should return the given icon', () => {
       const networkConfig = {
-        icon: 'foobar',
+        icon: 'foobar'
       };
       const result = getRentalNetworkIcon(networkConfig);
       expect(result).to.equal('icon-icon_foobar');

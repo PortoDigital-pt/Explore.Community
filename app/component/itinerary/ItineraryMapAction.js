@@ -23,15 +23,15 @@ function ItineraryMapAction({ target, focusAction, ariaLabelId }, { intl }) {
 ItineraryMapAction.propTypes = {
   focusAction: PropTypes.func.isRequired,
   target: PropTypes.string.isRequired,
-  ariaLabelId: PropTypes.string,
+  ariaLabelId: PropTypes.string
 };
 
 ItineraryMapAction.defaultProps = {
-  ariaLabelId: 'itinerary-summary.show-on-map',
+  ariaLabelId: 'itinerary-summary.show-on-map'
 };
 
 ItineraryMapAction.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default ItineraryMapAction;

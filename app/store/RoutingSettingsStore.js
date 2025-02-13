@@ -1,7 +1,7 @@
 import Store from 'fluxible/addons/BaseStore';
 import {
   getSearchSettingsStorage,
-  setSearchSettingsStorage,
+  setSearchSettingsStorage
 } from './localStorage';
 
 class RoutingSettingsStore extends Store {
@@ -26,7 +26,7 @@ class RoutingSettingsStore extends Store {
 
   static handlers = {
     saveRoutingSettings: 'saveRoutingSettings',
-    getRoutingSettings: 'getRoutingSettings',
+    getRoutingSettings: 'getRoutingSettings'
   };
 }
 

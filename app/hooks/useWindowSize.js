@@ -7,8 +7,8 @@ const getSize = window => ({
   height: window.innerHeight,
   outer: {
     width: window.outerWidth,
-    height: window.outerHeight,
-  },
+    height: window.outerHeight
+  }
 });
 
 /**
@@ -36,9 +36,9 @@ const useWindowSize = () => {
           height: undefined,
           outer: {
             width: undefined,
-            height: undefined,
-          },
-        },
+            height: undefined
+          }
+        }
   );
 
   useEffect(() => {

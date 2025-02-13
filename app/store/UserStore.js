@@ -15,7 +15,7 @@ class UserStore extends Store {
   }
 
   static handlers = {
-    setUser: 'setUser',
+    setUser: 'setUser'
   };
 }
 

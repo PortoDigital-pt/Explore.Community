@@ -24,9 +24,9 @@ export default function getJson(url, params) {
         method: 'GET',
 
         headers: {
-          Accept: 'application/json',
-        },
-      },
+          Accept: 'application/json'
+        }
+      }
     )
     .then(res => {
       return res.data;

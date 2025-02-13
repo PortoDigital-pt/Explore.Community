@@ -9,53 +9,53 @@ const config = {
   transportModes: {
     bus: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     rail: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     citybike: {
       availableForSelection: true,
-      defaultValue: false,
+      defaultValue: false
     },
 
     airplane: {
       availableForSelection: false,
-      defaultValue: false,
-    },
+      defaultValue: false
+    }
   },
 
   modePolygons: {},
 
-  modeBoundingBoxes: {},
+  modeBoundingBoxes: {}
 };
 
 const from = {
   address: 'Mannerheimintie 22-24, Helsinki',
   lat: 60.17063480162678,
-  lon: 24.93707656860352,
+  lon: 24.93707656860352
 };
 
 const to = {
   address: 'Tehtaankatu 19, Helsinki',
   lat: 60.15825127085749,
-  lon: 24.942741394042972,
+  lon: 24.942741394042972
 };
 
 const intermediatePlaces = [
   {
     address: 'Takaniementie 3A',
     lat: 60.15688,
-    lon: 24.86445,
+    lon: 24.86445
   },
   {
     address: 'Suomenlinna C 53, Helsinki',
     lat: 60.1465466812523,
-    lon: 24.988660812377933,
-  },
+    lon: 24.988660812377933
+  }
 ];
 
 describe('modeUtils', () => {
@@ -73,7 +73,7 @@ describe('modeUtils', () => {
   describe('getModes', () => {
     it('should retrieve modes from localStorage', () => {
       setCustomizedSettings({
-        modes: [TransportMode.Rail, TransportMode.Bus],
+        modes: [TransportMode.Rail, TransportMode.Bus]
       });
 
       const modes = utils.getModes(config);
@@ -91,7 +91,7 @@ describe('modeUtils', () => {
 
     it('should filter out all modes with "availableForSelection": false from localStorage', () => {
       setCustomizedSettings({
-        modes: [TransportMode.Rail, TransportMode.Airplane, StreetMode.Walk],
+        modes: [TransportMode.Rail, TransportMode.Airplane, StreetMode.Walk]
       });
 
       const modes = utils.getModes(config);
@@ -105,8 +105,8 @@ describe('modeUtils', () => {
           TransportMode.Rail,
           'FOO',
           StreetMode.Walk,
-          StreetMode.ParkAndRide,
-        ],
+          StreetMode.ParkAndRide
+        ]
       });
 
       const modes = utils.getModes(config);
@@ -142,7 +142,7 @@ describe('modeUtils', () => {
 
     it('should return false if mode has availableForSelection false', () => {
       expect(utils.isTransportModeAvailable(config, 'AIRPLANE')).to.equal(
-        false,
+        false
       );
     });
 
@@ -154,13 +154,13 @@ describe('modeUtils', () => {
   describe('filterModes', () => {
     it('should return an empty array if modes is not available', () => {
       expect(
-        utils.filterModes(config, null, from, to, intermediatePlaces).length,
+        utils.filterModes(config, null, from, to, intermediatePlaces).length
       ).to.equal(0);
     });
 
     it('should return an empty array if modes is not an array or a string', () => {
       expect(
-        utils.filterModes(config, {}, from, to, intermediatePlaces).length,
+        utils.filterModes(config, {}, from, to, intermediatePlaces).length
       ).to.equal(0);
     });
 
@@ -168,10 +168,10 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
-        modePolygons: {},
+        modePolygons: {}
       };
       const modes = [StreetMode.Walk, TransportMode.Bus];
       const result = utils.filterModes(
@@ -179,7 +179,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
 
       expect(result.length).to.equal(1);
@@ -190,10 +190,10 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
-        modePolygons: {},
+        modePolygons: {}
       };
       const modes = StreetMode.Walk;
       const result = utils.filterModes(
@@ -201,7 +201,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
       expect(result.length).to.equal(0);
     });
@@ -210,10 +210,10 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
-        modePolygons: {},
+        modePolygons: {}
       };
       const modes = 'WALK,BUS';
       const result = utils.filterModes(
@@ -221,7 +221,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
 
       expect(result.length).to.equal(1);
@@ -232,10 +232,10 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
-        modePolygons: {},
+        modePolygons: {}
       };
       const modes = 'BUS,CAR_PARK,WALK,UNKNOWN';
       const result = utils.filterModes(
@@ -243,7 +243,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
 
       expect(result.length).to.equal(1);
@@ -254,10 +254,10 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
-        modePolygons: {},
+        modePolygons: {}
       };
       const modes = 'PUBLIC_TRANSPORT,BUS,WALK';
       const result = utils.filterModes(
@@ -265,7 +265,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
 
       expect(result.length).to.equal(1);
@@ -276,13 +276,13 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
+            availableForSelection: true
           },
           rail: {
-            availableForSelection: false,
-          },
+            availableForSelection: false
+          }
         },
-        modePolygons: {},
+        modePolygons: {}
       };
       const modes = 'BUS,CAR,RAIL,WALK';
       const result = utils.filterModes(
@@ -290,7 +290,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
 
       expect(result.length).to.equal(1);
@@ -301,11 +301,11 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
+            availableForSelection: true
           },
           ferry: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
         modePolygons: {
           FERRY: [
@@ -316,7 +316,7 @@ describe('modeUtils', () => {
               [24.660873413085934, 60.26604463476335],
               [24.684906005859375, 60.27762155444544],
               [24.68353271484375, 60.28783308214864],
-              [24.65606689453125, 60.29770119508587],
+              [24.65606689453125, 60.29770119508587]
             ],
             // A rough outline of Suomenlinna
             [
@@ -325,10 +325,10 @@ describe('modeUtils', () => {
               [24.97690200805664, 60.1242366231181],
               [25.028228759765625, 60.12740027206243],
               [25.021705627441406, 60.149622743464434],
-              [24.98737335205078, 60.15936170889179],
-            ],
-          ],
-        },
+              [24.98737335205078, 60.15936170889179]
+            ]
+          ]
+        }
       };
       const modes = 'BUS,CAR,RAIL,WALK';
       // last intermediate place should be inside Suomenlinna polygon
@@ -337,7 +337,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
 
       expect(result.length).to.equal(1);
@@ -348,11 +348,11 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
+            availableForSelection: true
           },
           ferry: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
         modePolygons: {
           FERRY: [
@@ -363,10 +363,10 @@ describe('modeUtils', () => {
               [24.97690200805664, 60.1242366231181],
               [25.028228759765625, 60.12740027206243],
               [25.021705627441406, 60.149622743464434],
-              [24.98737335205078, 60.15936170889179],
-            ],
-          ],
-        },
+              [24.98737335205078, 60.15936170889179]
+            ]
+          ]
+        }
       };
       const modes = 'BUS,CAR,RAIL,WALK';
       // Remove last Suomenlinna location from intermediate places
@@ -375,7 +375,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces.slice(0, -1),
+        intermediatePlaces.slice(0, -1)
       );
 
       expect(result.length).to.equal(1);
@@ -389,17 +389,17 @@ describe('modeUtils', () => {
         transportModes: {
           d: {
             availableForSelection: true,
-            defaultValue: true,
+            defaultValue: true
           },
           e: {
             availableForSelection: false,
-            defaultValue: true,
+            defaultValue: true
           },
           f: {
             availableForSelection: true,
-            defaultValue: false,
-          },
-        },
+            defaultValue: false
+          }
+        }
       };
       const result = utils.getTransitModes(modeConfig);
 
@@ -414,17 +414,17 @@ describe('modeUtils', () => {
         transportModes: {
           d: {
             availableForSelection: true,
-            defaultValue: true,
+            defaultValue: true
           },
           e: {
             availableForSelection: false,
-            defaultValue: true,
+            defaultValue: true
           },
           f: {
             availableForSelection: true,
-            defaultValue: false,
-          },
-        },
+            defaultValue: false
+          }
+        }
       };
       const result = utils.getTransitModes(modeConfig);
 
@@ -439,13 +439,13 @@ describe('modeUtils', () => {
         transportModes: {
           d: {
             availableForSelection: true,
-            defaultValue: true,
+            defaultValue: true
           },
           e: {
             availableForSelection: true,
-            defaultValue: false,
-          },
-        },
+            defaultValue: false
+          }
+        }
       };
 
       expect(utils.showModeSettings(modeConfig)).to.equal(true);
@@ -456,13 +456,13 @@ describe('modeUtils', () => {
         transportModes: {
           d: {
             availableForSelection: true,
-            defaultValue: true,
+            defaultValue: true
           },
           e: {
             availableForSelection: false,
-            defaultValue: false,
-          },
-        },
+            defaultValue: false
+          }
+        }
       };
 
       expect(utils.showModeSettings(modeConfig)).to.equal(false);
@@ -474,10 +474,10 @@ describe('modeUtils', () => {
       const modeConfig = {
         transportModes: {
           bus: {
-            availableForSelection: true,
-          },
+            availableForSelection: true
+          }
         },
-        modePolygons: {},
+        modePolygons: {}
       };
       const modes = 'BUS,WALK,UNKNOWN';
       const result = utils.filterModes(
@@ -485,7 +485,7 @@ describe('modeUtils', () => {
         modes,
         from,
         to,
-        intermediatePlaces,
+        intermediatePlaces
       );
 
       expect(result.length).to.equal(1);
@@ -496,7 +496,7 @@ describe('modeUtils', () => {
   describe('toggleTransportMode', () => {
     it('should return previous modes in addition to new mode', () => {
       setCustomizedSettings({
-        modes: [TransportMode.Rail, StreetMode.Walk],
+        modes: [TransportMode.Rail, StreetMode.Walk]
       });
 
       const result = utils.toggleTransportMode(TransportMode.Bus, config);
@@ -508,7 +508,7 @@ describe('modeUtils', () => {
 
     it('should return previous modes minus toggled mode if it previously existed', () => {
       setCustomizedSettings({
-        modes: [TransportMode.Rail, TransportMode.Bus, StreetMode.Walk],
+        modes: [TransportMode.Rail, TransportMode.Bus, StreetMode.Walk]
       });
 
       const result = utils.toggleTransportMode(TransportMode.Rail, config);

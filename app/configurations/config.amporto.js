@@ -48,6 +48,8 @@ const {
   NARROW_NEAR_YOU_BUTTONS,
   MESSAGE_BAR_ALERTS,
   SHOW_CO2_IN_ITINERARY_SUMMARY,
+  SHOW_ITINERARIES,
+  SHOW_BLOCKS
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -66,23 +68,24 @@ export default {
     API_URL,
     MAP: {
       default: MAP_URL,
-      en: MAP_URL,
+      en: MAP_URL
     },
     STOP_MAP: {
-      default: `${OTP_URL}routers/default/vectorTiles/stops,stations/`,
+      default: `${OTP_URL}routers/default/vectorTiles/stops,stations/`
     },
     RENTAL_STATION_MAP: {
-      default: `${OTP_URL}routers/default/vectorTiles/rentalStations/`,
+      default: `${OTP_URL}routers/default/vectorTiles/rentalStations/`
     },
     REALTIME_RENTAL_STATION_MAP: {
-      default: `${OTP_URL}routers/default/vectorTiles/realtimeRentalStations/`,
+      default: `${OTP_URL}routers/default/vectorTiles/realtimeRentalStations/`
     },
     PARK_AND_RIDE_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParking/`,
+      default: `${POI_MAP_PREFIX}/en/vehicleParking/`
     },
     PARK_AND_RIDE_GROUP_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`,
+      default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`
     },
+    FONT: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800'
   },
 
   title: APP_TITLE,
@@ -90,8 +93,12 @@ export default {
   textLogo: TEXT_LOGO === 'true',
   logo: LOGO,
 
+  // navbar items
+  showItineraries: SHOW_ITINERARIES === 'true',
+  showBlocks: SHOW_BLOCKS === 'true',
+
   contactName: {
-    default: CONTACT_NAME,
+    default: CONTACT_NAME
   },
 
   useSearchPolygon: USE_SEARCH_POLYGON === 'true',
@@ -100,7 +107,7 @@ export default {
     'boundary.rect.min_lat': minLat,
     'boundary.rect.max_lat': maxLat,
     'boundary.rect.min_lon': minLon,
-    'boundary.rect.max_lon': maxLon,
+    'boundary.rect.max_lon': maxLon
   },
   feedIds: FEED_IDS?.split(',') || ['1', '2'],
 
@@ -109,7 +116,7 @@ export default {
   searchSources: SEARCH_SOURCES?.split(',') || ['oa', 'osm', 'custom'],
   search: {
     peliasLayer: PELIAS_LAYER?.split(',') || ['address', 'stop', 'venue_ropi'],
-    minimalRegexp: new RegExp(MINIMAL_REGEXP),
+    minimalRegexp: new RegExp(MINIMAL_REGEXP)
   },
 
   availableLanguages: AVAILABLE_LANGUAGES?.split(',') || ['pt', 'en'],
@@ -122,8 +129,8 @@ export default {
     attribution: MAP_ATTRIBUTION,
     areaBounds: {
       corner1: [minLat, minLon],
-      corner2: [maxLat, maxLon],
-    },
+      corner2: [maxLat, maxLon]
+    }
   },
 
   vehicleRental: {
@@ -131,56 +138,56 @@ export default {
       smoove: {
         enabled: true,
         season: {
-          alwaysOn: true,
+          alwaysOn: true
         },
         capacity: BIKEAVL_WITHMAX,
         icon: 'citybike',
         name: {
           fi: 'Helsinki ja Espoo',
           sv: 'Helsingfors och Esbo',
-          en: 'Helsinki and Espoo',
+          en: 'Helsinki and Espoo'
         },
         type: 'citybike',
         url: {
           fi: 'https://www.hsl.fi/kaupunkipyorat/helsinki',
           sv: 'https://www.hsl.fi/sv/stadscyklar/helsingfors',
-          en: 'https://www.hsl.fi/en/citybikes/helsinki',
-        },
-      },
-    },
+          en: 'https://www.hsl.fi/en/citybikes/helsinki'
+        }
+      }
+    }
   },
 
   appBarLink: {
     name: APP_BAR_LINK_NAME,
-    href: APP_BAR_LINK_HREF,
+    href: APP_BAR_LINK_HREF
   },
 
   colors: {
     primary: '#243E8B',
     iconColors: {
-      'mode-bus': '#243E8B',
-    },
+      'mode-bus': '#243E8B'
+    }
   },
 
   socialMedia: {
     title: APP_TITLE,
-    description: APP_DESCRIPTION,
+    description: APP_DESCRIPTION
   },
 
   meta: {
     description: APP_DESCRIPTION,
-    keywords: 'digitransit',
+    keywords: 'digitransit'
   },
 
   transportModes: {
     ferry: {
       availableForSelection: MODES_FERRY_AVAILABLE_SELECTION === 'true',
-      defaultValue: MODES_FERRY_DEFAULT === 'true',
+      defaultValue: MODES_FERRY_DEFAULT === 'true'
     },
     citybike: {
       availableForSelection: MODES_CITY_BYKE_AVAILABLE_SELECTION === 'true',
-      defaultValue: MODES_CITY_BYKE_DEFAULT === 'true',
-    },
+      defaultValue: MODES_CITY_BYKE_DEFAULT === 'true'
+    }
   },
   hideWeatherLabel: HIDE_WEATHER_LABEL === 'true',
   alwaysShowDistanceInKm: ALWAYS_SHOW_DISTANCE_IN_KM === 'true',
@@ -190,7 +197,7 @@ export default {
     [minLon, maxLat],
     [maxLon, maxLat],
     [maxLon, minLat],
-    [minLon, minLat],
+    [minLon, minLat]
   ],
 
   menu: {
@@ -198,13 +205,13 @@ export default {
     content: [
       {
         name: 'about-this-service',
-        route: '/tietoja-palvelusta',
+        route: '/tietoja-palvelusta'
       },
       {
         name: 'accessibility-statement',
-        href: 'https://kauppa.waltti.fi/media/authority/154/files/Saavutettavuusseloste_Waltti-reittiopas_JyQfJhC.htm',
-      },
-    ],
+        href: 'https://kauppa.waltti.fi/media/authority/154/files/Saavutettavuusseloste_Waltti-reittiopas_JyQfJhC.htm'
+      }
+    ]
   },
 
   allowLogin: ALLOW_LOGIN === 'true',
@@ -214,7 +221,7 @@ export default {
   defaultEndpoint: {
     address: 'Porto - Portugal',
     lat: 41.1533658,
-    lon: -8.6046909,
+    lon: -8.6046909
   },
 
   useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
@@ -224,27 +231,27 @@ export default {
       {
         header: 'About this service',
         paragraphs: [
-          'This service is provided by APD for route planning in AMP region. The service covers public transport, walking, cycling, and some private car use. Service is built on Digitransit platform.',
-        ],
-      },
+          'This service is provided by APD for route planning in AMP region. The service covers public transport, walking, cycling, and some private car use. Service is built on Digitransit platform.'
+        ]
+      }
     ],
     pt: [
       {
         header: 'Sobre este serviço',
         paragraphs: [
-          'Este serviço é prestado pela APD para o planeamento de rotas na região AMP. O serviço cobre transporte público, caminhada, ciclismo e algum uso de carro particular. O serviço é construído na plataforma Digitransit.',
-        ],
-      },
-    ],
+          'Este serviço é prestado pela APD para o planeamento de rotas na região AMP. O serviço cobre transporte público, caminhada, ciclismo e algum uso de carro particular. O serviço é construído na plataforma Digitransit.'
+        ]
+      }
+    ]
   },
 
   themeMap: {
     porto: 'porto',
-    amporto: 'amporto',
+    amporto: 'amporto'
   },
 
   geoJson: {
-    layers: [],
+    layers: []
   },
 
   vehicles: VEHICLES === 'true',
@@ -267,23 +274,23 @@ export default {
   stopCard: {
     header: {
       virtualMonitorBaseUrl:
-        'https://virtualmonitor.services.dev.portodigital.pt/',
-    },
+        'https://virtualmonitor.services.dev.portodigital.pt/'
+    }
   },
   mainMenu: {
     stopMonitor: {
       show: true,
-      url: 'https://virtualmonitor.services.dev.portodigital.pt/createview',
-    },
+      url: 'https://virtualmonitor.services.dev.portodigital.pt/createview'
+    }
   },
 
   zones: {
     stops: true,
-    itinerary: true,
+    itinerary: true
   },
 
   // Notice! Turning on this setting forces the search for car routes (for the CO2 comparison only).
   showCO2InItinerarySummary: SHOW_CO2_IN_ITINERARY_SUMMARY === 'true',
 
-  availableTickets: null,
+  availableTickets: null
 };

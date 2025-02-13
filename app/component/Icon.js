@@ -19,7 +19,7 @@ const IconBadge = ({ badgeFill, badgeText, textFill }) => {
       />
       <text
         className={cx('badge-text', {
-          long: isBadgeTextLong(badgeText),
+          long: isBadgeTextLong(badgeText)
         })}
         dy="0.35em"
         x="20"
@@ -35,13 +35,13 @@ const IconBadge = ({ badgeFill, badgeText, textFill }) => {
 IconBadge.propTypes = {
   badgeFill: PropTypes.string,
   badgeText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  textFill: PropTypes.string,
+  textFill: PropTypes.string
 };
 
 IconBadge.defaultProps = {
   badgeFill: undefined,
   badgeText: undefined,
-  textFill: '#fff',
+  textFill: '#fff'
 };
 
 IconBadge.asString = (badgeFill, badgeText, badgeTextFill) => {
@@ -52,7 +52,7 @@ IconBadge.asString = (badgeFill, badgeText, badgeTextFill) => {
   <svg class="icon-badge" viewBox="0 0 40 40">
     <circle class="badge-circle" cx="20" cy="20" fill="${badgeFill}" r="20"/>
     <text class="${cx('badge-text', {
-      long: isBadgeTextLong(badgeText),
+      long: isBadgeTextLong(badgeText)
     })}" dy="0.3em" x="20" y="20" fill=${badgeTextFill}>${badgeText}</text>
   </svg>`;
 };
@@ -72,7 +72,7 @@ function Icon({
   viewBox,
   width,
   dataURI,
-  ariaLabel,
+  ariaLabel
 }) {
   return (
     <span aria-hidden className="icon-container">
@@ -82,7 +82,7 @@ function Icon({
           fill: color || null,
           height: height ? `${height}em` : null,
           width: width ? `${width}em` : null,
-          outline: 0,
+          outline: 0
         }}
         viewBox={!omitViewBox ? viewBox : null}
         className={cx('icon', className)}
@@ -126,7 +126,7 @@ Icon.propTypes = {
   viewBox: PropTypes.string,
   width: PropTypes.number,
   dataURI: PropTypes.string,
-  ariaLabel: PropTypes.string,
+  ariaLabel: PropTypes.string
 };
 
 Icon.defaultProps = {
@@ -143,7 +143,7 @@ Icon.defaultProps = {
   viewBox: '0 0 40 40',
   width: undefined,
   ariaLabel: '',
-  dataURI: undefined,
+  dataURI: undefined
 };
 
 Icon.asString = ({
@@ -154,7 +154,7 @@ Icon.asString = ({
   badgeText = undefined,
   badgeTextFill = undefined,
   backgroundShape = undefined,
-  color,
+  color
 }) => `
   <span class="icon-container">
     <svg

@@ -8,17 +8,17 @@ import DTAutosuggestPanel from '@digitransit-component/digitransit-component-aut
 import {
   configShape,
   locationStateShape,
-  locationShape,
+  locationShape
 } from '../../util/shapes';
 import { addAnalyticsEvent } from '../../util/analyticsUtils';
 import {
   withSearchContext,
-  getLocationSearchTargets,
+  getLocationSearchTargets
 } from '../WithSearchContext';
 import {
   setIntermediatePlaces,
   updateItinerarySearch,
-  onLocationPopup,
+  onLocationPopup
 } from '../../util/queryUtils';
 import { getIntermediatePlaces, locationToOTP } from '../../util/otpStrings';
 import { setViaPoints } from '../../action/ViaPointActions';
@@ -38,7 +38,7 @@ class OriginDestinationBar extends React.Component {
     showFavourites: PropTypes.bool.isRequired,
     viaPoints: PropTypes.arrayOf(locationShape),
     locationState: locationStateShape.isRequired,
-    modeSet: PropTypes.string,
+    modeSet: PropTypes.string
   };
 
   static contextTypes = {
@@ -47,7 +47,7 @@ class OriginDestinationBar extends React.Component {
     getStore: PropTypes.func.isRequired,
     executeAction: PropTypes.func.isRequired,
     match: matchShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static defaultProps = {
@@ -55,7 +55,7 @@ class OriginDestinationBar extends React.Component {
     language: 'fi',
     isMobile: false,
     viaPoints: [],
-    modeSet: undefined,
+    modeSet: undefined
   };
 
   constructor(props) {
@@ -77,7 +77,7 @@ class OriginDestinationBar extends React.Component {
       setIntermediatePlaces(
         this.context.router,
         this.context.match,
-        p.map(locationToOTP),
+        p.map(locationToOTP)
       );
     }
   };
@@ -93,7 +93,7 @@ class OriginDestinationBar extends React.Component {
       this.props.origin,
       this.context.router,
       location,
-      this.context.executeAction,
+      this.context.executeAction
     );
   };
 
@@ -114,13 +114,13 @@ class OriginDestinationBar extends React.Component {
         id,
         this.context.router,
         this.context.match,
-        this.context.executeAction,
+        this.context.executeAction
       );
     }
     addAnalyticsEvent({
       action,
       category: 'ItinerarySettings',
-      name: item.type,
+      name: item.type
     });
   };
 
@@ -130,7 +130,7 @@ class OriginDestinationBar extends React.Component {
     const refPoint = getRefPoint(
       props.origin,
       props.destination,
-      props.locationState,
+      props.locationState
     );
     const filter = config.stopSearchFilter
       ? results => results.filter(config.stopSearchFilter)
@@ -140,7 +140,7 @@ class OriginDestinationBar extends React.Component {
         className={cx(
           'origin-destination-bar',
           props.className,
-          'flex-horizontal',
+          'flex-horizontal'
         )}
       >
         <DTAutosuggestPanelWithSearchContext
@@ -158,7 +158,7 @@ class OriginDestinationBar extends React.Component {
           sources={[
             'History',
             'Datasource',
-            props.showFavourites ? 'Favourite' : '',
+            props.showFavourites ? 'Favourite' : ''
           ]}
           targets={getLocationSearchTargets(config, props.isMobile)}
           lang={props.language}
@@ -188,8 +188,8 @@ const connectedComponent = connectToStores(
     language: getStore('PreferencesStore').getLanguage(),
     showFavourites: getStore('FavouriteStore').getStatus() === 'has-data',
     viaPoints: getStore('ViaPointStore').getViaPoints(),
-    locationState: getStore('PositionStore').getLocationState(),
-  }),
+    locationState: getStore('PositionStore').getLocationState()
+  })
 );
 
 export { connectedComponent as default, OriginDestinationBar as Component };

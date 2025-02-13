@@ -9,7 +9,7 @@ import StopNearYouContainer from './StopNearYouContainer';
 import withBreakpoint from '../../util/withBreakpoint';
 import {
   sortNearbyRentalStations,
-  sortNearbyStops,
+  sortNearbyStops
 } from '../../util/sortUtils';
 import CityBikeStopNearYou from './VehicleRentalStationNearYou';
 import Loading from '../Loading';
@@ -29,23 +29,23 @@ class StopsNearYouContainer extends React.Component {
     position: PropTypes.shape({
       address: PropTypes.string,
       lat: PropTypes.number,
-      lon: PropTypes.number,
+      lon: PropTypes.number
     }).isRequired,
     withSeparator: PropTypes.bool,
-    prioritizedStops: PropTypes.arrayOf(PropTypes.string),
+    prioritizedStops: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
     stopPatterns: undefined,
     withSeparator: false,
-    prioritizedStops: undefined,
+    prioritizedStops: undefined
   };
 
   static contextTypes = {
     config: configShape,
     intl: intlShape.isRequired,
     executeAction: PropTypes.func.isRequired,
-    getStore: PropTypes.func,
+    getStore: PropTypes.func
   };
 
   constructor(props, context) {
@@ -58,7 +58,7 @@ class StopsNearYouContainer extends React.Component {
       currentPosition: props.position,
       fetchMoreStops: false,
       isLoadingmoreStops: false,
-      isUpdatingPosition: false,
+      isUpdatingPosition: false
     };
   }
 
@@ -72,13 +72,13 @@ class StopsNearYouContainer extends React.Component {
     ) {
       newState = {
         ...newState,
-        currentPosition: nextProps.position,
+        currentPosition: nextProps.position
       };
     }
     if (nextProps.stopPatterns) {
       const stopsForFiltering = [...nextProps.stopPatterns.nearest.edges];
       const newestStops = stopsForFiltering.splice(
-        stopsForFiltering.length - 5,
+        stopsForFiltering.length - 5
       );
       if (
         newestStops.every(stop => {
@@ -91,12 +91,12 @@ class StopsNearYouContainer extends React.Component {
       ) {
         newState = {
           ...newState,
-          fetchMoreStops: true,
+          fetchMoreStops: true
         };
       } else {
         newState = {
           ...newState,
-          fetchMoreStops: false,
+          fetchMoreStops: false
         };
       }
     }
@@ -124,7 +124,7 @@ class StopsNearYouContainer extends React.Component {
       this.resultsUpdatedAlertRef.current.innerHTML =
         this.context.intl.formatMessage({
           id: 'stop-near-you-update-alert',
-          defaultMessage: 'Search results updated',
+          defaultMessage: 'Search results updated'
         });
       setTimeout(() => {
         this.resultsUpdatedAlertRef.current.innerHTML = null;
@@ -143,20 +143,20 @@ class StopsNearYouContainer extends React.Component {
     const variables = {
       lat: this.props.position.lat,
       lon: this.props.position.lon,
-      startTime: this.props.currentTime,
+      startTime: this.props.currentTime
     };
     this.setState({
-      isUpdatingPosition: true,
+      isUpdatingPosition: true
     });
     this.props.relay.refetchConnection(
       this.state.stopCount,
       () => {
         this.setState({
           isUpdatingPosition: false,
-          currentPosition: this.props.position,
+          currentPosition: this.props.position
         });
       },
-      variables,
+      variables
     );
   };
 
@@ -172,7 +172,7 @@ class StopsNearYouContainer extends React.Component {
           : previousState.refetches,
         stopCount: previousState.stopCount + 5,
         fetchMoreStops: false,
-        isLoadingmoreStops: false,
+        isLoadingmoreStops: false
       }));
     });
   };
@@ -193,7 +193,7 @@ class StopsNearYouContainer extends React.Component {
       });
       const filteredCityBikeStopPatterns = withNetworks.filter(pattern => {
         return getDefaultNetworks(this.context.config).includes(
-          pattern.node.place?.rentalNetwork?.networkId,
+          pattern.node.place?.rentalNetwork?.networkId
         );
       });
       sortedPatterns = filteredCityBikeStopPatterns
@@ -294,7 +294,7 @@ class StopsNearYouContainer extends React.Component {
             type="button"
             aria-label={this.context.intl.formatMessage({
               id: 'show-more-stops-near-you',
-              defaultMessage: 'Load more nearby stops',
+              defaultMessage: 'Load more nearby stops'
             })}
             className="show-more-button"
             onClick={() => this.showMore(false)}
@@ -307,7 +307,7 @@ class StopsNearYouContainer extends React.Component {
   }
 }
 const StopsNearYouContainerWithBreakpoint = withBreakpoint(
-  StopsNearYouContainer,
+  StopsNearYouContainer
 );
 
 const connectedContainer = connectToStores(
@@ -319,18 +319,18 @@ const connectedContainer = connectToStores(
         ? new Set(
             getStore('FavouriteStore')
               .getVehicleRentalStations()
-              .map(station => station.stationId),
+              .map(station => station.stationId)
           )
         : new Set(
             getStore('FavouriteStore')
               .getStopsAndStations()
-              .map(stop => stop.gtfsId),
+              .map(stop => stop.gtfsId)
           );
     return {
       currentTime: getStore('TimeStore').getCurrentTime(),
-      favouriteIds,
+      favouriteIds
     };
-  },
+  }
 );
 
 const refetchContainer = createPaginationContainer(
@@ -395,7 +395,7 @@ const refetchContainer = createPaginationContainer(
           }
         }
       }
-    `,
+    `
   },
   {
     direction: 'forward',
@@ -405,14 +405,14 @@ const refetchContainer = createPaginationContainer(
     getFragmentVariables(prevVars, totalCount) {
       return {
         ...prevVars,
-        first: totalCount,
+        first: totalCount
       };
     },
     getVariables(props, pagevars, fragmentVariables) {
       return {
         ...fragmentVariables,
         first: pagevars.count,
-        after: pagevars.cursor,
+        after: pagevars.cursor
       };
     },
     query: graphql`
@@ -446,8 +446,8 @@ const refetchContainer = createPaginationContainer(
             )
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export { refetchContainer as default, StopsNearYouContainer as Component };

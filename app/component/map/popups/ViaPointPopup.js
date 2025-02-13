@@ -15,13 +15,13 @@ const Popup = isBrowser ? require('react-leaflet/es/Popup').default : null; // e
 
 const filterViaPoint = (allPoints, pointToRemove) => {
   return allPoints.filter(
-    p => p.lat !== pointToRemove.lat && p.lon !== pointToRemove.lon,
+    p => p.lat !== pointToRemove.lat && p.lon !== pointToRemove.lon
   );
 };
 
 function ViaPointPopup(
   { lat, lon, viaPoints },
-  { executeAction, router, match },
+  { executeAction, router, match }
 ) {
   const currentPoint = { lat, lon };
 
@@ -67,13 +67,13 @@ function ViaPointPopup(
 ViaPointPopup.propTypes = {
   lat: PropTypes.number.isRequired,
   lon: PropTypes.number.isRequired,
-  viaPoints: PropTypes.arrayOf(locationShape).isRequired,
+  viaPoints: PropTypes.arrayOf(locationShape).isRequired
 };
 
 ViaPointPopup.contextTypes = {
   executeAction: PropTypes.func.isRequired,
   router: routerShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 const connectedComponent = connectToStores(
@@ -82,7 +82,7 @@ const connectedComponent = connectToStores(
   ({ getStore }) => {
     const viaPoints = getStore(ViaPointStore).getViaPoints();
     return { viaPoints };
-  },
+  }
 );
 
 export { connectedComponent as default, ViaPointPopup as Component };

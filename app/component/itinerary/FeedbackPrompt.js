@@ -21,5 +21,5 @@ export default function FeedbackPrompt(props, { config }) {
 }
 
 FeedbackPrompt.contextTypes = {
-  config: configShape,
+  config: configShape
 };

@@ -10,7 +10,7 @@ import { legTimeStr } from '../../util/legUtils';
 export default function AlternativeLegsInfo({
   legs,
   showAlternativeLegs,
-  toggle,
+  toggle
 }) {
   let values = {
     leg1: (
@@ -33,7 +33,7 @@ export default function AlternativeLegsInfo({
           </span>
         )}
       </span>
-    ),
+    )
   };
   if (legs.length > 1) {
     values = {
@@ -58,7 +58,7 @@ export default function AlternativeLegsInfo({
             </span>
           )}
         </span>
-      ),
+      )
     };
   }
 
@@ -94,7 +94,7 @@ export default function AlternativeLegsInfo({
         'alternative-legs-info-container',
         'alternative-legs-clickable',
         'cursor-pointer',
-        { open: showAlternativeLegs },
+        { open: showAlternativeLegs }
       )}
       onClick={() => toggle()}
       onKeyPress={e => {
@@ -118,5 +118,5 @@ export default function AlternativeLegsInfo({
 AlternativeLegsInfo.propTypes = {
   legs: PropTypes.arrayOf(legShape).isRequired,
   showAlternativeLegs: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired
 };

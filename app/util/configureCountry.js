@@ -25,7 +25,7 @@ export const configureCountry = (config, selectedCountries) => {
     }
     config.searchParams = {
       ...config.searchParams,
-      'boundary.country': boundaries,
+      'boundary.country': boundaries
     };
     config.feedIds = feedIds;
   }

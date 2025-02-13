@@ -11,7 +11,7 @@ describe('<Availability />', () => {
       fewAvailableCount: 3,
       fewerAvailableCount: 2,
       text: <p className="test-text">foo</p>,
-      showStatusBar: true,
+      showStatusBar: true
     };
     const wrapper = shallowWithIntl(<Availability {...props} />);
     expect(wrapper.find('.test-text').text()).to.equal('foo');
@@ -24,7 +24,7 @@ describe('<Availability />', () => {
       fewAvailableCount: 2,
       fewerAvailableCount: 1,
       text: <p className="test-text">foo</p>,
-      showStatusBar: true,
+      showStatusBar: true
     };
     const wrapper = shallowWithIntl(<Availability {...props} />);
     expect(wrapper.find('.available-few')).to.have.lengthOf(1);
@@ -38,7 +38,7 @@ describe('<Availability />', () => {
       fewAvailableCount: 3,
       fewerAvailableCount: 3,
       text: <p className="test-text">foo</p>,
-      showStatusBar: false,
+      showStatusBar: false
     };
     const wrapper = shallowWithIntl(<Availability {...props} />);
     expect(wrapper.find('.available-few')).to.have.lengthOf(0);

@@ -14,7 +14,7 @@ import { getActiveAlertSeverityLevel } from '../../util/alertUtils';
 import { PREFIX_STOPS } from '../../util/path';
 import {
   RentalNetworkType,
-  getRentalNetworkConfig,
+  getRentalNetworkConfig
 } from '../../util/vehicleRentalUtils';
 import { displayDistance } from '../../util/geo-utils';
 import { durationToString } from '../../util/timeUtils';
@@ -23,16 +23,16 @@ import VehicleRentalLeg from './VehicleRentalLeg';
 
 function WalkLeg(
   { children, focusAction, focusToLeg, index, leg, previousLeg },
-  { config, intl },
+  { config, intl }
 ) {
   const distance = displayDistance(
     parseInt(leg.mode !== 'WALK' ? 0 : leg.distance, 10),
     config,
-    intl.formatNumber,
+    intl.formatNumber
   );
   //
   const duration = durationToString(
-    leg.mode !== 'WALK' ? 0 : leg.duration * 1000,
+    leg.mode !== 'WALK' ? 0 : leg.duration * 1000
   );
   const startMs = legTime(leg.start);
   // If mode is not WALK, WalkLeg should get information from "to".
@@ -47,7 +47,7 @@ function WalkLeg(
 
   const networkType = getRentalNetworkConfig(
     previousLeg?.rentedBike && network,
-    config,
+    config
   ).type;
   const isScooter = networkType === RentalNetworkType.Scooter;
   const returnNotice = previousLeg?.rentedBike ? (
@@ -71,7 +71,7 @@ function WalkLeg(
     leg.to.name?.toLowerCase() === 'scooter'
       ? intl.formatMessage({
           id: 'e-scooter',
-          defaultMessage: 'scooter',
+          defaultMessage: 'scooter'
         })
       : leg.to.name;
 
@@ -87,7 +87,7 @@ function WalkLeg(
             distance,
             duration,
             origin: leg[toOrFrom] ? leg[toOrFrom].name : '',
-            destination: leg.to ? destinationLabel : '',
+            destination: leg.to ? destinationLabel : ''
           }}
         />
       </span>
@@ -138,7 +138,7 @@ function WalkLeg(
               returnNotice
                 ? 'itinerary-leg-first-row-return-bike'
                 : 'itinerary-leg-first-row',
-              isScooter && 'scooter',
+              isScooter && 'scooter'
             )}
           >
             <div className="itinerary-leg-row">
@@ -167,7 +167,7 @@ function WalkLeg(
                     className="inline-icon"
                     severityLevel={getActiveAlertSeverityLevel(
                       leg[toOrFrom].stop && leg[toOrFrom].stop.alerts,
-                      startMs / 1000,
+                      startMs / 1000
                     )}
                   />
                 </Link>
@@ -200,7 +200,7 @@ function WalkLeg(
                     className="inline-icon"
                     severityLevel={getActiveAlertSeverityLevel(
                       leg[toOrFrom].stop && leg[toOrFrom].stop.alerts,
-                      startMs / 1000,
+                      startMs / 1000
                     )}
                   />
                 </div>
@@ -234,7 +234,7 @@ function WalkLeg(
             id="walk-distance-duration"
             values={{
               distance: config.emphasizeDistance ? <b>{distance}</b> : distance,
-              duration,
+              duration
             }}
             defaultMessage="Walk {distance} ({duration})"
           />
@@ -255,17 +255,17 @@ WalkLeg.propTypes = {
   index: PropTypes.number.isRequired,
   leg: legShape.isRequired,
   previousLeg: legShape,
-  focusToLeg: PropTypes.func.isRequired,
+  focusToLeg: PropTypes.func.isRequired
 };
 
 WalkLeg.defaultProps = {
   previousLeg: undefined,
-  children: undefined,
+  children: undefined
 };
 
 WalkLeg.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default WalkLeg;

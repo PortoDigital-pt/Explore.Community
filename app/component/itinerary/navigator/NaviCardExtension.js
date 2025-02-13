@@ -7,7 +7,7 @@ import StopCode from '../../StopCode';
 import PlatformNumber from '../../PlatformNumber';
 import {
   getZoneLabel,
-  getHeadsignFromRouteLongName,
+  getHeadsignFromRouteLongName
 } from '../../../util/legUtils';
 import ZoneIcon from '../../ZoneIcon';
 import { legShape, configShape } from '../../../util/shapes';
@@ -29,7 +29,7 @@ const NaviCardExtension = ({ legType, leg, nextLeg }, { config }) => {
       vehicleParking,
       vehicleRentalStation,
       stop,
-      config,
+      config
     );
   } else {
     destination.iconId = 'icon-icon_mapMarker-to';
@@ -121,7 +121,7 @@ const NaviCardExtension = ({ legType, leg, nextLeg }, { config }) => {
                 <span className="bold">
                   {trip.tripHeadsign || getHeadsignFromRouteLongName(route)}
                 </span>
-              ),
+              )
             }}
           />
         </div>
@@ -140,17 +140,17 @@ const NaviCardExtension = ({ legType, leg, nextLeg }, { config }) => {
 NaviCardExtension.propTypes = {
   leg: legShape,
   nextLeg: legShape,
-  legType: PropTypes.string,
+  legType: PropTypes.string
 };
 
 NaviCardExtension.defaultProps = {
   legType: '',
   leg: undefined,
-  nextLeg: undefined,
+  nextLeg: undefined
 };
 
 NaviCardExtension.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default NaviCardExtension;

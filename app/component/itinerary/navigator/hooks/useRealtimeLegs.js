@@ -89,7 +89,7 @@ function matchLegEnds(legs) {
           legs,
           walk,
           shiftEnd,
-          (transferDuration + gap) / transferDuration,
+          (transferDuration + gap) / transferDuration
         );
       }
     }
@@ -103,12 +103,12 @@ function getLegsOfInterest(legs, now) {
       firstLeg: undefined,
       lastLeg: undefined,
       currentLeg: undefined,
-      nextLeg: undefined,
+      nextLeg: undefined
     };
   }
 
   const currentLeg = legs.find(
-    ({ start, end }) => legTime(start) <= now && legTime(end) >= now,
+    ({ start, end }) => legTime(start) <= now && legTime(end) >= now
   );
   const previousLeg = legs.findLast(({ end }) => legTime(end) < now);
   const nextStart = currentLeg ? legTime(currentLeg.end) : now;
@@ -118,7 +118,7 @@ function getLegsOfInterest(legs, now) {
     lastLeg: legs[legs.length - 1],
     previousLeg,
     currentLeg,
-    nextLeg: legs.find(({ start }) => legTime(start) >= nextStart),
+    nextLeg: legs.find(({ start }) => legTime(start) >= nextStart)
   };
 }
 
@@ -133,23 +133,23 @@ function getInitialState(legs) {
         const geometry = polyUtil.decode(leg.legGeometry.points);
         const clonedLeg = cloneDeep(leg);
         clonedLeg.geometry = geometry.map(p =>
-          GeodeticToEnu(p[0], p[1], origin),
+          GeodeticToEnu(p[0], p[1], origin)
         );
         clonedLeg.freezeStart = legTime(clonedLeg.start) <= time;
         clonedLeg.freezeEnd = legTime(clonedLeg.end) <= time;
         return clonedLeg;
-      }),
+      })
     };
   }
   return {
     time,
-    realTimeLegs: [],
+    realTimeLegs: []
   };
 }
 
 const useRealtimeLegs = (relayEnvironment, initialLegs) => {
   const [{ origin, time, realTimeLegs }, setTimeAndRealTimeLegs] = useState(
-    () => getInitialState(initialLegs),
+    () => getInitialState(initialLegs)
   );
 
   const queryAndMapRealtimeLegs = useCallback(
@@ -165,16 +165,16 @@ const useRealtimeLegs = (relayEnvironment, initialLegs) => {
             relayEnvironment,
             legQuery,
             { id: leg.legId },
-            { force: true },
-          ).toPromise(),
+            { force: true }
+          ).toPromise()
         );
       const responses = await Promise.all(legQueries);
       return responses.reduce(
         (map, response) => ({ ...map, [response.leg.legId]: response.leg }),
-        {},
+        {}
       );
     },
-    [relayEnvironment],
+    [relayEnvironment]
   );
 
   const fetchAndSetRealtimeLegs = useCallback(async () => {
@@ -182,7 +182,7 @@ const useRealtimeLegs = (relayEnvironment, initialLegs) => {
     const rtLegMap = await queryAndMapRealtimeLegs(realTimeLegs, now).catch(
       err =>
         // eslint-disable-next-line no-console
-        console.error('Failed to query and map real time legs', err),
+        console.error('Failed to query and map real time legs', err)
     );
 
     setTimeAndRealTimeLegs(prev => {
@@ -203,8 +203,8 @@ const useRealtimeLegs = (relayEnvironment, initialLegs) => {
             ...rtLeg, // delete above prevent this from overwriting a previous, frozen state
             to: {
               ...l.to,
-              vehicleRentalStation: rtLeg.to.vehicleRentalStation,
-            },
+              vehicleRentalStation: rtLeg.to.vehicleRentalStation
+            }
           };
         }
         // Non-transit legs are kept unfrozen for now to allow them to be scaled or shifted
@@ -245,7 +245,7 @@ const useRealtimeLegs = (relayEnvironment, initialLegs) => {
     lastLeg,
     previousLeg,
     currentLeg,
-    nextLeg,
+    nextLeg
   };
 };
 

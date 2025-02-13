@@ -10,9 +10,9 @@ describe('<LogoSmall />', () => {
     const wrapper = shallowWithIntl(<LogoSmall logo="/" showLogo />, {
       context: {
         config: {
-          textLogo: false,
-        },
-      },
+          textLogo: false
+        }
+      }
     });
 
     expect(wrapper.find('span.title')).to.have.lengthOf(0);
@@ -23,9 +23,9 @@ describe('<LogoSmall />', () => {
     const wrapper = shallowWithIntl(<LogoSmall showLogo />, {
       context: {
         config: {
-          textLogo: true,
-        },
-      },
+          textLogo: true
+        }
+      }
     });
 
     expect(wrapper.find('span.title')).to.have.lengthOf(1);
@@ -38,10 +38,10 @@ describe('<LogoSmall />', () => {
       {
         context: {
           config: {
-            textLogo: true,
-          },
-        },
-      },
+            textLogo: true
+          }
+        }
+      }
     );
 
     const titleElement = wrapper.find('span.title');
@@ -54,9 +54,9 @@ describe('<LogoSmall />', () => {
     const wrapper = shallowWithIntl(<LogoSmall logo="/" title="foo" />, {
       context: {
         config: {
-          textLogo: true,
-        },
-      },
+          textLogo: true
+        }
+      }
     });
 
     expect(wrapper.find('.title').text()).to.equal('foo');

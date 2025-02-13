@@ -6,8 +6,8 @@ describe('mqttClient', () => {
   const testMessage = {
     VP: {
       lat: 123.123456,
-      long: 123.123456,
-    },
+      long: 123.123456
+    }
   };
   const testTopic =
     '/hfp/v2/journey/ongoing/vp/bus/0018/00296/1064/1/Itä-Pakila/16:12/1250101/5/60;24/29/04/85';
@@ -30,8 +30,8 @@ describe('mqttClient', () => {
     it('should return undefined if long is null or undefined', () => {
       const rawMessage = {
         VP: {
-          lat: 123.123456,
-        },
+          lat: 123.123456
+        }
       };
       const message = parseMessage(testTopic, rawMessage, 'HSL');
       expect(message).to.equal(undefined);
@@ -40,8 +40,8 @@ describe('mqttClient', () => {
     it('should return undefined if lat is null or undefined', () => {
       const rawMessage = {
         VP: {
-          long: 123.123456,
-        },
+          long: 123.123456
+        }
       };
       const message = parseMessage(testTopic, rawMessage, 'HSL');
       expect(message).to.equal(undefined);
@@ -89,8 +89,8 @@ describe('mqttClient', () => {
         VP: {
           lat: 123.123456,
           long: 123.123456,
-          seq: 1,
-        },
+          seq: 1
+        }
       };
       const message = parseMessage(metroTopic, seqOneMessage, 'HSL');
       expect(message).to.not.equal(undefined);
@@ -103,8 +103,8 @@ describe('mqttClient', () => {
         VP: {
           lat: 123.123456,
           long: 123.123456,
-          seq: 2,
-        },
+          seq: 2
+        }
       };
       const message = parseMessage(metroTopic, seqOneMessage, 'HSL');
       expect(message).to.equal(undefined);

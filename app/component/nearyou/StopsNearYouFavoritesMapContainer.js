@@ -10,7 +10,7 @@ import {
   vehicleRentalStationShape,
   stopShape,
   stationShape,
-  locationShape,
+  locationShape
 } from '../../util/shapes';
 
 function StopsNearYouFavoritesMapContainer(props) {
@@ -25,11 +25,11 @@ function StopsNearYouFavoritesMapContainer(props) {
           node: {
             distance: distance(position, stop),
             place: {
-              ...stop,
-            },
-          },
+              ...stop
+            }
+          }
         };
-      }),
+      })
   );
   stopList.push(
     ...stations
@@ -40,11 +40,11 @@ function StopsNearYouFavoritesMapContainer(props) {
           node: {
             distance: distance(position, stop),
             place: {
-              ...stop,
-            },
-          },
+              ...stop
+            }
+          }
         };
-      }),
+      })
   );
   if (vehicleStations) {
     stopList.push(
@@ -56,11 +56,11 @@ function StopsNearYouFavoritesMapContainer(props) {
             node: {
               distance: distance(position, stop),
               place: {
-                ...stop,
-              },
-            },
+                ...stop
+              }
+            }
           };
-        }),
+        })
     );
   }
   stopList.sort((a, b) => a.node.distance - b.node.distance);
@@ -72,13 +72,13 @@ StopsNearYouFavoritesMapContainer.propTypes = {
   stops: PropTypes.arrayOf(stopShape),
   stations: PropTypes.arrayOf(stationShape),
   vehicleStations: PropTypes.arrayOf(vehicleRentalStationShape),
-  position: locationShape.isRequired,
+  position: locationShape.isRequired
 };
 
 StopsNearYouFavoritesMapContainer.defaultProps = {
   stops: undefined,
   stations: undefined,
-  vehicleStations: undefined,
+  vehicleStations: undefined
 };
 
 const StopsNearYouMapWithStores = connectToStores(
@@ -87,7 +87,7 @@ const StopsNearYouMapWithStores = connectToStores(
   ({ getStore }) => {
     const language = getStore(PreferencesStore).getLanguage();
     return { language };
-  },
+  }
 );
 
 const containerComponent = createFragmentContainer(StopsNearYouMapWithStores, {
@@ -151,10 +151,10 @@ const containerComponent = createFragmentContainer(StopsNearYouMapWithStores, {
       lon
       stationId
     }
-  `,
+  `
 });
 
 export {
   containerComponent as default,
-  StopsNearYouFavoritesMapContainer as Component,
+  StopsNearYouFavoritesMapContainer as Component
 };

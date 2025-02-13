@@ -9,7 +9,7 @@ import { executeSearch } from '@digitransit-search-util/digitransit-search-util-
 import SuggestionItem from '@digitransit-component/digitransit-component-suggestion-item';
 import {
   getNameLabel,
-  getStopCode,
+  getStopCode
 } from '@digitransit-search-util/digitransit-search-util-uniq-by-label';
 import { getStopName } from '@digitransit-search-util/digitransit-search-util-helpers';
 import getLabel from '@digitransit-search-util/digitransit-search-util-get-label';
@@ -31,8 +31,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 const Loading = props => (
@@ -44,11 +44,11 @@ const Loading = props => (
 );
 
 Loading.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 Loading.defaultProps = {
-  children: undefined,
+  children: undefined
 };
 
 const getPlatform = addendum => {
@@ -96,7 +96,7 @@ function getSuggestionContent(item) {
 
     if (item.properties.mode) {
       suggestionType = i18next.t(
-        item.properties.mode.toLowerCase().replace('favourite', ''),
+        item.properties.mode.toLowerCase().replace('favourite', '')
       );
     } else {
       const layer = item.properties.layer
@@ -119,7 +119,7 @@ function getSuggestionContent(item) {
         label,
         stopCode,
         mode,
-        platform,
+        platform
       ];
     }
     if (
@@ -141,9 +141,9 @@ function getSuggestionContent(item) {
   return [
     i18next.t('future-route'),
     `${i18next.t('origin')} ${name1}${tail1} ${i18next.t(
-      'destination',
+      'destination'
     )} ${name2}${tail2}`,
-    item.translatedText,
+    item.translatedText
   ];
 }
 
@@ -263,7 +263,7 @@ class DTAutosuggest extends React.Component {
       // eslint-disable-next-line
       context: PropTypes.object,
       clearOldSearches: PropTypes.func,
-      clearFutureRoutes: PropTypes.func,
+      clearFutureRoutes: PropTypes.func
     }).isRequired,
     ariaLabel: PropTypes.string,
     onSelect: PropTypes.func.isRequired,
@@ -284,7 +284,7 @@ class DTAutosuggest extends React.Component {
     timeZone: PropTypes.string,
     pathOpts: PropTypes.shape({
       routesPrefix: PropTypes.string,
-      stopsPrefix: PropTypes.string,
+      stopsPrefix: PropTypes.string
     }),
     mobileLabel: PropTypes.string,
     lock: PropTypes.func.isRequired,
@@ -292,18 +292,18 @@ class DTAutosuggest extends React.Component {
     refPoint: PropTypes.shape({
       address: PropTypes.string,
       lat: PropTypes.number,
-      lon: PropTypes.number,
+      lon: PropTypes.number
     }),
     inputClassName: PropTypes.string,
     fontWeights: PropTypes.shape({
-      medium: PropTypes.number,
+      medium: PropTypes.number
     }),
     modeIconColors: PropTypes.objectOf(PropTypes.string),
     getAutoSuggestIcons: PropTypes.objectOf(PropTypes.func),
     required: PropTypes.bool,
     modeSet: PropTypes.string,
     showScroll: PropTypes.bool,
-    isEmbedded: PropTypes.bool,
+    isEmbedded: PropTypes.bool
   };
 
   static defaultProps = {
@@ -330,14 +330,14 @@ class DTAutosuggest extends React.Component {
     timeZone: 'Europe/Helsinki',
     pathOpts: {
       routesPrefix: 'linjat',
-      stopsPrefix: 'pysakit',
+      stopsPrefix: 'pysakit'
     },
     ariaLabel: undefined,
     mobileLabel: undefined,
     inputClassName: '',
     translatedPlaceholder: undefined,
     fontWeights: {
-      medium: 500,
+      medium: 500
     },
     modeIconColors: {
       'mode-bus': '#007ac9',
@@ -346,12 +346,12 @@ class DTAutosuggest extends React.Component {
       'mode-metro': '#ed8c00',
       'mode-ferry': '#007A97',
       'mode-citybike': '#f2b62d',
-      'mode-funicular': '#ff00ff',
+      'mode-funicular': '#ff00ff'
     },
     required: false,
     modeSet: undefined,
     showScroll: false,
-    refPoint: {},
+    refPoint: {}
   };
 
   constructor(props) {
@@ -372,7 +372,7 @@ class DTAutosuggest extends React.Component {
       pendingSelection: null,
       suggestionIndex: 0,
       cleanExecuted: false,
-      scrollY: 0,
+      scrollY: 0
     };
     Object.keys(translations).forEach(lang => {
       i18next.addResourceBundle(lang, 'translation', translations[lang]);
@@ -396,7 +396,7 @@ class DTAutosuggest extends React.Component {
     // wait until address is set or geolocationing fails
     if (nextProps.value !== this.state.value && !this.state.editing) {
       this.setState({
-        value: nextProps.value,
+        value: nextProps.value
       });
     }
   }
@@ -404,14 +404,14 @@ class DTAutosuggest extends React.Component {
   onChange = (event, { newValue, method }) => {
     const newState = {
       value: this.fInput || newValue || '',
-      renderMobileSearch: this.props.isMobile,
+      renderMobileSearch: this.props.isMobile
     };
     // Remove filled input value so it wont be reused unnecessary
     this.fInput = null;
     if (!this.state.editing) {
       newState.editing = true;
       this.setState(newState, () =>
-        this.fetchFunction({ value: newValue || '' }),
+        this.fetchFunction({ value: newValue || '' })
       );
     } else if (method !== 'enter' || this.state.valid) {
       // test above drops unnecessary update
@@ -441,7 +441,7 @@ class DTAutosuggest extends React.Component {
     this.setState({
       editing: false,
       renderMobileSearch: false,
-      value: this.props.value,
+      value: this.props.value
     });
   };
 
@@ -453,11 +453,11 @@ class DTAutosuggest extends React.Component {
             sources: ['Favourite', 'Back'],
             ownPlaces: true,
             pendingSelection: ref.suggestion.type,
-            value: '',
+            value: ''
           },
           () => {
             this.fetchFunction({ value: '' });
-          },
+          }
         );
         return;
       }
@@ -470,11 +470,11 @@ class DTAutosuggest extends React.Component {
             sources: this.props.sources,
             ownPlaces: false,
             pendingSelection: ref.suggestion.type,
-            suggestionIndex: ref.suggestionIndex,
+            suggestionIndex: ref.suggestionIndex
           },
           () => {
             this.fetchFunction({ value: '' });
-          },
+          }
         );
         return;
       }
@@ -482,7 +482,7 @@ class DTAutosuggest extends React.Component {
       this.setState(
         {
           editing: false,
-          value: ref.suggestionValue,
+          value: ref.suggestionValue
         },
         () => {
           this.input.blur();
@@ -496,11 +496,11 @@ class DTAutosuggest extends React.Component {
               renderMobileSearch: false,
               sources: this.props.sources,
               ownPlaces: false,
-              suggestions: [],
+              suggestions: []
             },
             () => {
               this.selectionDone = false;
-            },
+            }
           );
           if (
             this.props.focusChange &&
@@ -511,14 +511,14 @@ class DTAutosuggest extends React.Component {
           if (this.props.isMobile) {
             this.closeMobileSearch();
           }
-        },
+        }
       );
     } else {
       this.setState(
         prevState => ({
-          pendingSelection: prevState.value,
+          pendingSelection: prevState.value
         }),
-        () => this.checkPendingSelection(), // search may finish during state change
+        () => this.checkPendingSelection() // search may finish during state change
       );
     }
   };
@@ -528,7 +528,7 @@ class DTAutosuggest extends React.Component {
       suggestions: [],
       sources: this.props.sources,
       ownPlaces: false,
-      editing: false,
+      editing: false
     });
   };
 
@@ -541,11 +541,11 @@ class DTAutosuggest extends React.Component {
       this.setState(
         {
           pendingSelection: null,
-          editing: true,
+          editing: true
         },
         () => {
           this.input.focus();
-        },
+        }
       );
       // accept after all ongoing searches have finished
     } else if (this.state.pendingSelection && this.state.valid) {
@@ -553,14 +553,14 @@ class DTAutosuggest extends React.Component {
       this.setState(
         {
           pendingSelection: null,
-          editing: false,
+          editing: false
         },
         () => {
           if (this.state.suggestions.length) {
             this.input.blur();
             this.props.onSelect(
               this.state.suggestions[this.state.suggestionIndex],
-              this.props.id,
+              this.props.id
             );
 
             if (this.props.isMobile) {
@@ -573,7 +573,7 @@ class DTAutosuggest extends React.Component {
               this.props.focusChange();
             }
           }
-        },
+        }
       );
     }
   };
@@ -637,7 +637,7 @@ class DTAutosuggest extends React.Component {
                 s === 'Favourite' &&
                 !this.state.ownPlaces &&
                 !this.props.isMobile
-              ),
+              )
           );
 
         executeSearch(
@@ -648,7 +648,7 @@ class DTAutosuggest extends React.Component {
           this.props.filterResults,
           this.props.geocodingSize,
           {
-            input: value || '',
+            input: value || ''
           },
           searchResult => {
             if (searchResult == null) {
@@ -660,7 +660,7 @@ class DTAutosuggest extends React.Component {
                 suggestion =>
                   suggestion.type !== 'FutureRoute' ||
                   (suggestion.type === 'FutureRoute' &&
-                    suggestion.properties.time > moment().unix()),
+                    suggestion.properties.time > moment().unix())
               )
               .map(suggestion => {
                 if (
@@ -671,7 +671,7 @@ class DTAutosuggest extends React.Component {
                 ) {
                   const translated = { ...suggestion };
                   translated.properties.labelId = i18next.t(
-                    suggestion.properties.labelId,
+                    suggestion.properties.labelId
                   );
                   return translated;
                 }
@@ -687,16 +687,16 @@ class DTAutosuggest extends React.Component {
               this.setState(
                 {
                   valid: true,
-                  suggestions,
+                  suggestions
                 },
-                () => this.checkPendingSelection(),
+                () => this.checkPendingSelection()
               );
             }
           },
           this.props.pathOpts,
-          this.props.refPoint,
+          this.props.refPoint
         );
-      },
+      }
     );
   };
 
@@ -706,11 +706,11 @@ class DTAutosuggest extends React.Component {
       value: '',
       sources: this.props.sources,
       ownPlaces: false,
-      renderMobileSearch: this.props.isMobile,
+      renderMobileSearch: this.props.isMobile
     };
     // must update suggestions
     this.setState(newState, () =>
-      this.fetchFunction({ value: '', cleanExecuted: true }),
+      this.fetchFunction({ value: '', cleanExecuted: true })
     );
     if (this.props.onClear) {
       this.props.onClear(this.props.id);
@@ -729,25 +729,25 @@ class DTAutosuggest extends React.Component {
         editing: true,
         // reset at start, just in case we missed something
         pendingSelection: null,
-        renderMobileSearch: this.props.isMobile,
+        renderMobileSearch: this.props.isMobile
       };
 
       // DT-3263: added stateKeyDown
       const stateKeyDown = {
         editing: true,
         pendingSelection: null,
-        value: inputValue,
+        value: inputValue
       };
 
       if (!this.state.suggestions.length) {
         // DT-3263: added if-else statement
         if (typeof inputValue === 'object' || !inputValue) {
           this.setState(newState, () =>
-            this.fetchFunction({ value: this.state.value }),
+            this.fetchFunction({ value: this.state.value })
           );
         } else {
           this.setState(stateKeyDown, () =>
-            this.fetchFunction({ value: inputValue }),
+            this.fetchFunction({ value: inputValue })
           );
         }
       } else {
@@ -775,7 +775,7 @@ class DTAutosuggest extends React.Component {
       editing: true,
       value: newValue.properties.name,
       checkPendingSelection: newValue,
-      valid: true,
+      valid: true
     };
     // must update suggestions
     this.setState(newState);
@@ -788,7 +788,7 @@ class DTAutosuggest extends React.Component {
       item.type === 'FutureRoute'
         ? {
             ...item,
-            translatedText: translateFutureRouteSuggestionTime(item),
+            translatedText: translateFutureRouteSuggestionTime(item)
           }
         : item;
     const content = getSuggestionContent(item);
@@ -815,12 +815,12 @@ class DTAutosuggest extends React.Component {
     this.setState(
       {
         renderMobileSearch: false,
-        value: this.props.value,
+        value: this.props.value
       },
       () => {
         window.scrollTo(0, this.state.scrollY);
         this.onSuggestionsClearRequested();
-      },
+      }
     );
   };
 
@@ -853,11 +853,11 @@ class DTAutosuggest extends React.Component {
     if (keyCode === 'ArrowDown' && this.state.value !== '') {
       const newState = {
         editing: true,
-        value: this.state.value,
+        value: this.state.value
       };
       // must update suggestions
       this.setState(newState, () =>
-        this.fetchFunction({ value: this.state.value }),
+        this.fetchFunction({ value: this.state.value })
       );
     }
     if (!this.state.editing) {
@@ -911,7 +911,7 @@ class DTAutosuggest extends React.Component {
       'Käytä nykyistä sijaintia',
       'Use current location',
       'Your current location',
-      'Wybrane miejsce',
+      'Wybrane miejsce'
     ];
     if (positions.includes(this.state.value)) {
       this.clearInput();
@@ -943,10 +943,10 @@ class DTAutosuggest extends React.Component {
           this.props.isMobile && this.props.transportMode ? styles.thin : ''
         } ${styles[this.props.id] || ''} ${
           this.state.value ? styles.hasValue : ''
-        } ${this.props.inputClassName}`,
+        } ${this.props.inputClassName}`
       ),
       onKeyDown: this.keyDown, // DT-3263
-      required: this.props.required,
+      required: this.props.required
     };
     const ariaBarId = this.props.id.replace('searchfield-', '');
     let SearchBarId = this.props.ariaLabel || i18next.t(ariaBarId);
@@ -966,14 +966,14 @@ class DTAutosuggest extends React.Component {
       .concat(movingToDestinationFieldText);
 
     const ariaSuggestionLen = i18next.t('search-autosuggest-len', {
-      count: suggestions.length,
+      count: suggestions.length
     });
 
     const ariaCurrentSuggestion = () => {
       if (this.suggestionAsAriaContent() || this.props.value) {
         return i18next.t('search-current-suggestion', {
           selection:
-            this.suggestionAsAriaContent().toLowerCase() || this.props.value,
+            this.suggestionAsAriaContent().toLowerCase() || this.props.value
         });
       }
       return '';
@@ -998,14 +998,14 @@ class DTAutosuggest extends React.Component {
               ...suggestions,
               {
                 type: 'clear-search-history',
-                labelId: i18next.t('clear-search-history'),
-              },
+                labelId: i18next.t('clear-search-history')
+              }
             ]}
             inputProps={{
               ...inputProps,
               placeholder: this.isOriginDestinationOrViapoint()
                 ? i18next.t('address-place-or-business')
-                : inputProps.placeholder,
+                : inputProps.placeholder
             }}
             fetchFunction={this.fetchFunction}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -1039,11 +1039,11 @@ class DTAutosuggest extends React.Component {
           <div
             className={cx([
               styles['autosuggest-input-container'],
-              styles[this.props.id],
+              styles[this.props.id]
             ])}
             style={{
               '--color': `${this.props.color}`,
-              '--hover-color': `${this.props.hoverColor}`,
+              '--hover-color': `${this.props.hoverColor}`
             }}
           >
             {this.props.icon && (
@@ -1052,7 +1052,7 @@ class DTAutosuggest extends React.Component {
                   styles[`autosuggest-input-icon`],
                   styles[this.props.id],
                   this.props.inputClassName &&
-                    `${this.props.inputClassName}-input-icon`,
+                    `${this.props.inputClassName}-input-icon`
                 ])}
                 aria-label={ariaRequiredText
                   .concat(' ')
@@ -1073,7 +1073,7 @@ class DTAutosuggest extends React.Component {
               renderSuggestion={this.renderItem}
               inputProps={{
                 ...inputProps,
-                onFocus: this.onFocus,
+                onFocus: this.onFocus
               }}
               focusInputOnSuggestionClick
               shouldRenderSuggestions={() => this.state.editing}

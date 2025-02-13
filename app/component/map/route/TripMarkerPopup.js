@@ -32,7 +32,7 @@ function TripMarkerPopup(props) {
             addAnalyticsEvent({
               category: 'Map',
               action: 'OpenTripInformation',
-              name: props.trip.route.mode,
+              name: props.trip.route.mode
             });
           }}
         >
@@ -54,19 +54,19 @@ TripMarkerPopup.propTypes = {
   trip: PropTypes.shape({
     gtfsId: PropTypes.string,
     pattern: PropTypes.shape({
-      code: PropTypes.string.isRequired,
+      code: PropTypes.string.isRequired
     }),
     route: PropTypes.shape({
       gtfsId: PropTypes.string.isRequired,
       mode: PropTypes.string.isRequired,
       shortName: PropTypes.string,
-      color: PropTypes.string,
-    }).isRequired,
+      color: PropTypes.string
+    }).isRequired
   }).isRequired,
   message: PropTypes.shape({
     mode: PropTypes.string.isRequired,
-    tripStartTime: PropTypes.string,
-  }).isRequired,
+    tripStartTime: PropTypes.string
+  }).isRequired
 };
 
 const containerComponent = createFragmentContainer(TripMarkerPopup, {
@@ -88,7 +88,7 @@ const containerComponent = createFragmentContainer(TripMarkerPopup, {
         type
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, TripMarkerPopup as Component };

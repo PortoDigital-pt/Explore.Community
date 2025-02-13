@@ -26,16 +26,16 @@ const NavigatorIntroModal = ({ onPrimaryClick, onClose }, { config }) => {
 
 NavigatorIntroModal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  onPrimaryClick: PropTypes.func,
+  onPrimaryClick: PropTypes.func
 };
 
 NavigatorIntroModal.defaultProps = {
-  onPrimaryClick: undefined,
+  onPrimaryClick: undefined
 };
 
 NavigatorIntroModal.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default NavigatorIntroModal;

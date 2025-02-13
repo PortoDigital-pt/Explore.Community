@@ -3,5 +3,5 @@ import { FormattedMessage } from 'react-intl';
 
 export default withProps({
   id: 'stop-page.title-short',
-  defaultMessage: 'Stop',
+  defaultMessage: 'Stop'
 })(FormattedMessage);

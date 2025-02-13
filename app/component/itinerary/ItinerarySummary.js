@@ -13,7 +13,7 @@ function ItinerarySummary({
   futureText,
   isMultiRow,
   isMobile,
-  hideBottomDivider,
+  hideBottomDivider
 }) {
   return (
     <div className="itinerary-summary">
@@ -62,7 +62,7 @@ ItinerarySummary.description = () =>
 
 const summaryShape = PropTypes.shape({
   duration: PropTypes.number,
-  distance: PropTypes.number,
+  distance: PropTypes.number
 });
 
 ItinerarySummary.propTypes = {
@@ -73,7 +73,7 @@ ItinerarySummary.propTypes = {
   futureText: PropTypes.string,
   isMultiRow: PropTypes.bool,
   isMobile: PropTypes.bool,
-  hideBottomDivider: PropTypes.bool,
+  hideBottomDivider: PropTypes.bool
 };
 
 ItinerarySummary.defaultProps = {
@@ -83,7 +83,7 @@ ItinerarySummary.defaultProps = {
   futureText: '',
   isMultiRow: false,
   isMobile: false,
-  hideBottomDivider: false,
+  hideBottomDivider: false
 };
 
 ItinerarySummary.displayName = 'ItinerarySummary';

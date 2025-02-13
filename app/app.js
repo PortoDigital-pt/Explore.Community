@@ -21,7 +21,7 @@ import CountryStore from './store/CountryStore';
 
 export default config => {
   const app = new Fluxible({
-    component: routes(config),
+    component: routes(config)
   });
 
   app.registerStore(MessageStore);
@@ -64,16 +64,16 @@ export default config => {
         dehydrate() {
           return {
             headers,
-            config,
+            config
           };
         },
         rehydrate(state) {
           ({ config, headers } = state); // eslint-disable-line no-param-reassign
-        },
+        }
       };
     },
     dehydrate: () => ({}),
-    rehydrate: () => {},
+    rehydrate: () => {}
   });
 
   return app;

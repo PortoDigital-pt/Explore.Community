@@ -32,7 +32,7 @@ function makeHash(s) {
 export default function enrichPatterns(
   patterns,
   onlyInFuture,
-  serviceTimeRange,
+  serviceTimeRange
 ) {
   const currentDate = moment();
   const lastRangeDate = moment()
@@ -72,7 +72,7 @@ export default function enrichPatterns(
   });
 
   futureTrips = futureTrips.filter(
-    f => f.tripsForDate.length > 0 || f.activeDates.length > 0,
+    f => f.tripsForDate.length > 0 || f.activeDates.length > 0
   );
 
   for (let y = 0; y < futureTrips.length; y++) {
@@ -122,7 +122,7 @@ export default function enrichPatterns(
     futureTrips[y].activeDates = Array.from(new Set(actDates.sort()));
     futureTrips[y].allowedDiff = dayRangeAllowedDiff(
       dayNumbers,
-      Number(currentDate.format('E')),
+      Number(currentDate.format('E'))
     );
 
     if (
@@ -158,14 +158,14 @@ export default function enrichPatterns(
         ? `${minAndMaxDate[0]}`
         : '-';
       futureTrips[y].untilDate = moment(minAndMaxDate[1]).isBefore(
-        lastRangeDate,
+        lastRangeDate
       )
         ? `${minAndMaxDate[1]}`
         : '-';
     }
 
     futureTrips[y].activeDates = futureTrips[y].activeDates.filter(
-      ad => moment(ad).isSameOrAfter(currentDate.format(DATE_FORMAT)) === true,
+      ad => moment(ad).isSameOrAfter(currentDate.format(DATE_FORMAT)) === true
     );
 
     futureTrips[y].minAndMaxDate = minAndMaxDate;
@@ -175,7 +175,7 @@ export default function enrichPatterns(
   }
 
   futureTrips = futureTrips.filter(
-    f => f.tripsForDate.length > 0 || f.activeDates.length > 0,
+    f => f.tripsForDate.length > 0 || f.activeDates.length > 0
   );
 
   // DT-2531: shows main routes (both directions) if there is no futureTrips

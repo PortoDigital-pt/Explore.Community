@@ -11,7 +11,7 @@ import {
   configShape,
   relayShape,
   vehicleShape,
-  patternShape,
+  patternShape
 } from '../../util/shapes';
 import RouteStop from './RouteStop';
 import withBreakpoint from '../../util/withBreakpoint';
@@ -25,18 +25,18 @@ class RouteStopListContainer extends React.PureComponent {
     currentTime: PropTypes.number.isRequired,
     relay: relayShape.isRequired,
     breakpoint: PropTypes.string.isRequired,
-    hideDepartures: PropTypes.bool,
+    hideDepartures: PropTypes.bool
   };
 
   static defaultProps = {
     className: undefined,
     vehicles: [],
-    hideDepartures: false,
+    hideDepartures: false
   };
 
   static contextTypes = {
     config: configShape.isRequired,
-    match: matchShape.isRequired,
+    match: matchShape.isRequired
   };
 
   getStops() {
@@ -45,9 +45,9 @@ class RouteStopListContainer extends React.PureComponent {
     const mode = getRouteMode(this.props.pattern.route);
     const vehicles = groupBy(
       values(this.props.vehicles).filter(
-        vehicle => this.props.currentTime - vehicle.timestamp < 5 * 60,
+        vehicle => this.props.currentTime - vehicle.timestamp < 5 * 60
       ),
-      vehicle => vehicle.next_stop,
+      vehicle => vehicle.next_stop
     );
     const rowClassName = `bp-${this.props.breakpoint}`;
 
@@ -91,9 +91,9 @@ class RouteStopListContainer extends React.PureComponent {
       relay.refetch(
         {
           currentTime: next,
-          patternId: this.context.match.params.patternId,
+          patternId: this.context.match.params.patternId
         },
-        null,
+        null
       );
     }
   }
@@ -121,8 +121,8 @@ const containerComponent = createRefetchContainer(
     ['RealTimeInformationStore', 'PositionStore', 'TimeStore'],
     ({ getStore }) => ({
       vehicles: getStore('RealTimeInformationStore').vehicles,
-      currentTime: getStore('TimeStore').getCurrentTime(),
-    }),
+      currentTime: getStore('TimeStore').getCurrentTime()
+    })
   ),
   {
     pattern: graphql`
@@ -166,7 +166,7 @@ const containerComponent = createRefetchContainer(
           zoneId
         }
       }
-    `,
+    `
   },
   graphql`
     query RouteStopListContainerQuery(
@@ -178,7 +178,7 @@ const containerComponent = createRefetchContainer(
           @arguments(currentTime: $currentTime, patternId: $patternId)
       }
     }
-  `,
+  `
 );
 
 export { containerComponent as default, RouteStopListContainer as Component };

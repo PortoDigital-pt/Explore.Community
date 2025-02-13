@@ -10,7 +10,7 @@ import { getJson } from '../util/xhrPromise';
 
 const SiteHeader = lazy(() => import('@hsl-fi/site-header'));
 const SharedLocalStorageObserver = lazy(
-  () => import('@hsl-fi/shared-local-storage'),
+  () => import('@hsl-fi/shared-local-storage')
 );
 
 const clearStorages = context => {
@@ -27,7 +27,7 @@ const AppBarHsl = ({ lang, user, favourites }, context) => {
 
   const notificationApiUrls = {
     get: `${notificationAPI}?language=${lang}`,
-    post: `${notificationAPI}?language=${lang}`,
+    post: `${notificationAPI}?language=${lang}`
   };
 
   const [banners, setBanners] = useState([]);
@@ -43,7 +43,7 @@ const AppBarHsl = ({ lang, user, favourites }, context) => {
   useEffect(() => {
     if (config.URL.FONTCOUNTER && config.NODE_ENV === 'production') {
       fetch(config.URL.FONTCOUNTER, {
-        mode: 'no-cors',
+        mode: 'no-cors'
       });
     }
   }, []);
@@ -51,16 +51,16 @@ const AppBarHsl = ({ lang, user, favourites }, context) => {
   const languages = [
     {
       name: 'fi',
-      url: `/fi${location.pathname}${location.search}`,
+      url: `/fi${location.pathname}${location.search}`
     },
     {
       name: 'sv',
-      url: `/sv${location.pathname}${location.search}`,
+      url: `/sv${location.pathname}${location.search}`
     },
     {
       name: 'en',
-      url: `/en${location.pathname}${location.search}`,
-    },
+      url: `/en${location.pathname}${location.search}`
+    }
   ];
 
   const { given_name, family_name } = user;
@@ -85,21 +85,21 @@ const AppBarHsl = ({ lang, user, favourites }, context) => {
               {
                 name: intl.formatMessage({
                   id: 'userinfo',
-                  defaultMessage: 'My information',
+                  defaultMessage: 'My information'
                 }),
                 url: `${config.URL.ROOTLINK}/omat-tiedot`,
-                onClick: () => {},
+                onClick: () => {}
               },
               {
                 name: intl.formatMessage({
                   id: 'logout',
-                  defaultMessage: 'Logout',
+                  defaultMessage: 'Logout'
                 }),
                 url: '/logout',
-                onClick: () => clearStorages(context),
-              },
-            ],
-          },
+                onClick: () => clearStorages(context)
+              }
+            ]
+          }
         }
       : {};
 
@@ -158,7 +158,7 @@ AppBarHsl.contextTypes = {
   match: matchShape.isRequired,
   config: configShape.isRequired,
   getStore: PropTypes.func.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 AppBarHsl.propTypes = {
@@ -167,15 +167,15 @@ AppBarHsl.propTypes = {
     given_name: PropTypes.string,
     family_name: PropTypes.string,
     sub: PropTypes.string,
-    notLogged: PropTypes.bool,
+    notLogged: PropTypes.bool
   }),
-  favourites: PropTypes.arrayOf(favouriteShape),
+  favourites: PropTypes.arrayOf(favouriteShape)
 };
 
 AppBarHsl.defaultProps = {
   lang: 'fi',
   user: {},
-  favourites: [],
+  favourites: []
 };
 
 export { AppBarHsl as default, AppBarHsl as Component };

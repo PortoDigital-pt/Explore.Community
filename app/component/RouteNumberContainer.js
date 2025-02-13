@@ -6,7 +6,7 @@ import RouteNumber from './RouteNumber';
 
 const RouteNumberContainer = (
   { interliningWithRoute, route, mode, ...props },
-  { config },
+  { config }
 ) =>
   route && (
     <RouteNumber
@@ -20,16 +20,16 @@ const RouteNumberContainer = (
 RouteNumberContainer.propTypes = {
   route: routeShape.isRequired,
   interliningWithRoute: PropTypes.string,
-  mode: PropTypes.string,
+  mode: PropTypes.string
 };
 
 RouteNumberContainer.defaultProps = {
   interliningWithRoute: undefined,
-  mode: undefined,
+  mode: undefined
 };
 
 RouteNumberContainer.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default RouteNumberContainer;

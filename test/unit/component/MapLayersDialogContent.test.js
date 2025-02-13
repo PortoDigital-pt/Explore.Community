@@ -7,7 +7,7 @@ import { mockContext, mockChildContextTypes } from '../helpers/mock-context';
 
 import {
   Component as MapLayersDialogContent,
-  getGeoJsonLayersOrDefault,
+  getGeoJsonLayersOrDefault
 } from '../../../app/component/MapLayersDialogContent';
 
 describe('<MapLayersDialogContent />', () => {
@@ -18,16 +18,16 @@ describe('<MapLayersDialogContent />', () => {
       lang: 'fi',
       mapLayers: {
         stop: {},
-        terminal: {},
+        terminal: {}
       },
-      updateMapLayers: () => {},
+      updateMapLayers: () => {}
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
 
     expect(wrapper.find('.map-layer-header')).to.have.lengthOf(1);
@@ -37,7 +37,7 @@ describe('<MapLayersDialogContent />', () => {
     let mapLayers = {
       showAllBusses: false,
       stop: {},
-      terminal: {},
+      terminal: {}
     };
     const props = {
       open: true,
@@ -46,20 +46,20 @@ describe('<MapLayersDialogContent />', () => {
       mapLayers,
       updateMapLayers: layers => {
         mapLayers = { ...layers };
-      },
+      }
     };
     const context = {
       config: {
         CONFIG: 'default',
-        vehicles: true,
-      },
+        vehicles: true
+      }
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext, ...context },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
     wrapper
       .find('.option-checkbox.large input')
@@ -72,9 +72,9 @@ describe('<MapLayersDialogContent />', () => {
   it('should update the bus stop layer', () => {
     let mapLayers = {
       stop: {
-        bus: false,
+        bus: false
       },
-      terminal: {},
+      terminal: {}
     };
     const props = {
       open: true,
@@ -83,24 +83,24 @@ describe('<MapLayersDialogContent />', () => {
       mapLayers,
       updateMapLayers: layers => {
         mapLayers = { ...layers };
-      },
+      }
     };
     const context = {
       config: {
         CONFIG: 'default',
         transportModes: {
           bus: {
-            availableForSelection: true,
-          },
-        },
-      },
+            availableForSelection: true
+          }
+        }
+      }
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext, ...context },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
 
     wrapper
@@ -114,9 +114,9 @@ describe('<MapLayersDialogContent />', () => {
   it('should update the tram stop layer', () => {
     let mapLayers = {
       stop: {
-        tram: false,
+        tram: false
       },
-      terminal: {},
+      terminal: {}
     };
     const props = {
       open: true,
@@ -125,24 +125,24 @@ describe('<MapLayersDialogContent />', () => {
       mapLayers,
       updateMapLayers: layers => {
         mapLayers = { ...layers };
-      },
+      }
     };
     const context = {
       config: {
         CONFIG: 'default',
         transportModes: {
           tram: {
-            availableForSelection: true,
-          },
-        },
-      },
+            availableForSelection: true
+          }
+        }
+      }
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext, ...context },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
 
     wrapper
@@ -156,9 +156,9 @@ describe('<MapLayersDialogContent />', () => {
   it('should update the ferry stop layer', () => {
     let mapLayers = {
       stop: {
-        ferry: false,
+        ferry: false
       },
-      terminal: {},
+      terminal: {}
     };
     const props = {
       open: true,
@@ -167,24 +167,24 @@ describe('<MapLayersDialogContent />', () => {
       mapLayers,
       updateMapLayers: layers => {
         mapLayers = { ...layers };
-      },
+      }
     };
     const context = {
       config: {
         CONFIG: 'default',
         transportModes: {
           ferry: {
-            availableForSelection: true,
-          },
-        },
-      },
+            availableForSelection: true
+          }
+        }
+      }
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext, ...context },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
 
     wrapper
@@ -204,7 +204,7 @@ describe('<MapLayersDialogContent />', () => {
     let mapLayers = {
       citybike: false,
       stop: {},
-      terminal: {},
+      terminal: {}
     };
     const props = {
       open: true,
@@ -213,7 +213,7 @@ describe('<MapLayersDialogContent />', () => {
       mapLayers,
       updateMapLayers: layers => {
         mapLayers = { ...layers };
-      },
+      }
     };
     const context = {
       config: {
@@ -232,24 +232,24 @@ describe('<MapLayersDialogContent />', () => {
                 }.${tomorrow.getFullYear()}`,
                 preSeasonStart: `${yesterday.getDate()}.${
                   yesterday.getMonth() + 1
-                }.${yesterday.getFullYear()}`,
-              },
-            },
-          },
+                }.${yesterday.getFullYear()}`
+              }
+            }
+          }
         },
         transportModes: {
           citybike: {
-            availableForSelection: true,
-          },
-        },
-      },
+            availableForSelection: true
+          }
+        }
+      }
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext, ...context },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
 
     wrapper
@@ -263,7 +263,7 @@ describe('<MapLayersDialogContent />', () => {
     let mapLayers = {
       parkAndRide: false,
       stop: {},
-      terminal: {},
+      terminal: {}
     };
     const props = {
       open: true,
@@ -272,22 +272,22 @@ describe('<MapLayersDialogContent />', () => {
       mapLayers,
       updateMapLayers: layers => {
         mapLayers = { ...layers };
-      },
+      }
     };
     const context = {
       config: {
         CONFIG: 'default',
         parkAndRide: {
-          showParkAndRide: true,
-        },
-      },
+          showParkAndRide: true
+        }
+      }
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext, ...context },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
 
     wrapper
@@ -305,8 +305,8 @@ describe('<MapLayersDialogContent />', () => {
       stop: {},
       geoJson: {
         somejson: true,
-        morejson: false,
-      },
+        morejson: false
+      }
     };
     const props = {
       open: true,
@@ -321,17 +321,17 @@ describe('<MapLayersDialogContent />', () => {
           name: {
             fi: 'testi',
             sv: 'test',
-            en: 'test',
-          },
+            en: 'test'
+          }
         },
         morejson: {
           name: {
             fi: 'nimi',
             sv: 'namn',
-            en: 'name',
-          },
-        },
-      },
+            en: 'name'
+          }
+        }
+      }
     };
     const context = {
       config: {
@@ -342,28 +342,28 @@ describe('<MapLayersDialogContent />', () => {
               name: {
                 fi: 'testi',
                 sv: 'test',
-                en: 'test',
+                en: 'test'
               },
-              url: 'somejson',
+              url: 'somejson'
             },
             {
               name: {
                 fi: 'nimi',
                 sv: 'namn',
-                en: 'name',
+                en: 'name'
               },
-              url: 'morejson',
-            },
-          ],
-        },
-      },
+              url: 'morejson'
+            }
+          ]
+        }
+      }
     };
     const wrapper = mountWithIntl(
       <MapLayersDialogContent isOpen {...props} />,
       {
         context: { ...mockContext, ...context },
-        childContextTypes: { ...mockChildContextTypes },
-      },
+        childContextTypes: { ...mockChildContextTypes }
+      }
     );
     const checkboxes = wrapper.find('.option-checkbox.large input');
     expect(checkboxes.length).to.equal(2);
@@ -380,14 +380,14 @@ describe('<MapLayersDialogContent />', () => {
         geoJson: {
           layers: [
             {
-              foo: 'bar',
-            },
-          ],
-        },
+              foo: 'bar'
+            }
+          ]
+        }
       };
       const store = { layers: undefined };
       expect(getGeoJsonLayersOrDefault(config, store)).to.equal(
-        config.geoJson.layers,
+        config.geoJson.layers
       );
     });
 
@@ -395,15 +395,15 @@ describe('<MapLayersDialogContent />', () => {
       const config = {
         CONFIG: 'default',
         geoJson: {
-          layerConfigUrl: 'foobar',
-        },
+          layerConfigUrl: 'foobar'
+        }
       };
       const store = {
         layers: [
           {
-            foo: 'bar',
-          },
-        ],
+            foo: 'bar'
+          }
+        ]
       };
       expect(getGeoJsonLayersOrDefault(config, store)).to.equal(store.layers);
     });
@@ -413,7 +413,7 @@ describe('<MapLayersDialogContent />', () => {
       const store = {};
       const defaultValue = [];
       expect(getGeoJsonLayersOrDefault(config, store, defaultValue)).to.equal(
-        defaultValue,
+        defaultValue
       );
     });
   });

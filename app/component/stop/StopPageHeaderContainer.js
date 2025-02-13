@@ -10,15 +10,15 @@ export default createFragmentContainer(
     ({ getStore }, { match }) => ({
       favourite: getStore('FavouriteStore').isFavourite(
         match.params.stopId,
-        'stop',
-      ),
-    }),
+        'stop'
+      )
+    })
   ),
   {
     stop: graphql`
       fragment StopPageHeaderContainer_stop on Stop {
         ...StopCardHeaderContainer_stop
       }
-    `,
-  },
+    `
+  }
 );

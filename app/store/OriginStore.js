@@ -18,7 +18,7 @@ class OriginStore extends Store {
   }
 
   static handlers = {
-    SetOrigin: 'setOrigin',
+    SetOrigin: 'setOrigin'
   };
 }
 

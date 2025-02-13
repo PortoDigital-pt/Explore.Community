@@ -2,7 +2,7 @@ import isString from 'lodash/isString';
 import {
   locationToOTP,
   otpToLocation,
-  getIntermediatePlaces,
+  getIntermediatePlaces
 } from './otpStrings';
 import { getPathWithEndpointObjects, PREFIX_ITINERARY_SUMMARY } from './path';
 import { saveFutureRoute } from '../action/FutureRoutesActions';
@@ -37,12 +37,12 @@ export const replaceQueryParams = (router, match, newParams) => {
 
   const query = fixArrayParams({
     ...location.query,
-    ...newParams,
+    ...newParams
   });
 
   router.replace({
     ...location,
-    query,
+    query
   });
 };
 
@@ -69,12 +69,12 @@ export const setIntermediatePlaces = (router, match, newIntermediatePlaces) => {
         : newIntermediatePlaces;
     } else {
       parsedIntermediatePlaces = newIntermediatePlaces.filter(
-        intermediatePlace => !hasUndefined(intermediatePlace),
+        intermediatePlace => !hasUndefined(intermediatePlace)
       );
     }
 
     replaceQueryParams(router, match, {
-      intermediatePlaces: parsedIntermediatePlaces,
+      intermediatePlaces: parsedIntermediatePlaces
     });
   }
 };
@@ -84,25 +84,25 @@ export const updateItinerarySearch = (
   destination,
   router,
   location,
-  executeAction,
+  executeAction
 ) => {
   executeAction(saveFutureRoute, {
     origin,
     destination,
-    query: location.query,
+    query: location.query
   });
 
   const newLocation = {
     ...location,
     state: {
       ...location.state,
-      summaryPageSelected: 0,
+      summaryPageSelected: 0
     },
     pathname: getPathWithEndpointObjects(
       origin,
       destination,
-      PREFIX_ITINERARY_SUMMARY,
-    ),
+      PREFIX_ITINERARY_SUMMARY
+    )
   };
   router.replace(newLocation);
 };
@@ -128,6 +128,6 @@ export const onLocationPopup = (item, id, router, match, executeAction) => {
     destination,
     router,
     match.location,
-    executeAction,
+    executeAction
   );
 };

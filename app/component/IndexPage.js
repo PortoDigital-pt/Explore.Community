@@ -15,7 +15,7 @@ import storeOrigin from '../action/originActions';
 import storeDestination from '../action/destinationActions';
 import {
   withSearchContext,
-  getLocationSearchTargets,
+  getLocationSearchTargets
 } from './WithSearchContext';
 import {
   getPathWithEndpointObjects,
@@ -24,7 +24,7 @@ import {
   sameLocations,
   definesItinerarySearch,
   PREFIX_NEARYOU,
-  PREFIX_ITINERARY_SUMMARY,
+  PREFIX_ITINERARY_SUMMARY
 } from '../util/path';
 import { addAnalyticsEvent } from '../util/analyticsUtils';
 import withBreakpoint from '../util/withBreakpoint';
@@ -38,11 +38,11 @@ import LazilyLoad, { importLazy } from './LazilyLoad';
 import {
   getTransportModes,
   getNearYouModes,
-  useCitybikes,
+  useCitybikes
 } from '../util/modeUtils';
 import {
   checkPositioningPermission,
-  startLocationWatch,
+  startLocationWatch
 } from '../action/PositionActions';
 
 const StopRouteSearch = withSearchContext(DTAutoSuggest);
@@ -50,16 +50,15 @@ const LocationSearch = withSearchContext(DTAutosuggestPanel);
 const modules = {
   CtrlPanel: () =>
     importLazy(
-      import('@digitransit-component/digitransit-component-control-panel'),
+      import('@digitransit-component/digitransit-component-control-panel')
     ),
   TrafficNowLink: () =>
     importLazy(
-      import('@digitransit-component/digitransit-component-traffic-now-link'),
+      import('@digitransit-component/digitransit-component-traffic-now-link')
     ),
   OverlayWithSpinner: () => importLazy(import('./visual/OverlayWithSpinner')),
   FavouritesContainer: () => importLazy(import('./FavouritesContainer')),
-  DatetimepickerContainer: () =>
-    importLazy(import('./DatetimepickerContainer')),
+  DatetimepickerContainer: () => importLazy(import('./DatetimepickerContainer'))
 };
 
 class IndexPage extends React.Component {
@@ -69,7 +68,7 @@ class IndexPage extends React.Component {
     getStore: PropTypes.func.isRequired,
     router: routerShape.isRequired,
     match: matchShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -82,13 +81,13 @@ class IndexPage extends React.Component {
     query: PropTypes.object.isRequired,
     favouriteModalAction: PropTypes.string,
     fromMap: PropTypes.string,
-    locationState: locationShape.isRequired,
+    locationState: locationShape.isRequired
   };
 
   static defaultProps = {
     lang: 'fi',
     favouriteModalAction: '',
-    fromMap: undefined,
+    fromMap: undefined
   };
 
   constructor(props, context) {
@@ -164,8 +163,8 @@ class IndexPage extends React.Component {
         pathname: getPathWithEndpointObjects(
           origin,
           destination,
-          PREFIX_ITINERARY_SUMMARY,
-        ),
+          PREFIX_ITINERARY_SUMMARY
+        )
       };
       if (newLocation.query.time === undefined) {
         newLocation.query.time = Math.floor(Date.now() / 1000).toString();
@@ -176,12 +175,12 @@ class IndexPage extends React.Component {
       const path = getPathWithEndpointObjects(
         origin,
         destination,
-        config.indexPath,
+        config.indexPath
       );
       if (path !== location.pathname) {
         const newLocation = {
           ...location,
-          pathname: path,
+          pathname: path
         };
         router.replace(newLocation);
       }
@@ -191,7 +190,7 @@ class IndexPage extends React.Component {
   onSelectStopRoute = item => {
     addAnalyticsEvent({
       event: 'route_search',
-      search_action: 'route_or_stop',
+      search_action: 'route_or_stop'
     });
     this.context.router.push(getStopRoutePath(item));
   };
@@ -200,7 +199,7 @@ class IndexPage extends React.Component {
     const { router, executeAction } = this.context;
     addAnalyticsEvent({
       event: 'itinerary_search',
-      search_action: item.type,
+      search_action: item.type
     });
 
     if (item.type === 'FutureRoute') {
@@ -215,7 +214,7 @@ class IndexPage extends React.Component {
   clickFavourite = favourite => {
     addAnalyticsEvent({
       event: 'favorite_press',
-      favorite_type: 'place',
+      favorite_type: 'place'
     });
     this.context.executeAction(storeDestination, favourite);
   };
@@ -233,7 +232,7 @@ class IndexPage extends React.Component {
     addAnalyticsEvent({
       event: 'sendMatomoEvent',
       category: 'nearbyStops',
-      stop_type: url.split('/')[2].toLowerCase(),
+      stop_type: url.split('/')[2].toLowerCase()
     });
     this.context.router.push(url);
   };
@@ -250,7 +249,7 @@ class IndexPage extends React.Component {
     const modeTitles = filterObject(
       transportModes,
       'availableForSelection',
-      true,
+      true
     );
     // If nearYouModes is configured, display those. Otherwise, display all configured transport modes
     const modes =
@@ -259,7 +258,7 @@ class IndexPage extends React.Component {
     const alertsContext = {
       currentTime: this.props.currentTime,
       getModesWithAlerts,
-      feedIds: config.feedIds,
+      feedIds: config.feedIds
     };
 
     return config.showNearYouButtons ? (
@@ -284,7 +283,7 @@ class IndexPage extends React.Component {
         <h2>
           {intl.formatMessage({
             id: 'stop-near-you-title',
-            defaultMessage: 'Stops and lines near you',
+            defaultMessage: 'Stops and lines near you'
           })}
         </h2>
       </div>
@@ -333,7 +332,7 @@ class IndexPage extends React.Component {
       refPoint,
       searchPanelText: intl.formatMessage({
         id: 'where',
-        defaultMessage: 'Where to?',
+        defaultMessage: 'Where to?'
       }),
       originPlaceHolder: 'search-origin-index',
       destinationPlaceHolder: 'search-destination-index',
@@ -343,7 +342,7 @@ class IndexPage extends React.Component {
       fromMap: this.props.fromMap,
       fontWeights,
       modeIconColors: colors.iconColors,
-      modeSet: config.iconModeSet,
+      modeSet: config.iconModeSet
     };
 
     const stopRouteSearchProps = {
@@ -364,7 +363,7 @@ class IndexPage extends React.Component {
       fontWeights,
       modeIconColors: colors.iconColors,
       modeSet: config.iconModeSet,
-      geocodingSize: 25,
+      geocodingSize: 25
     };
 
     if (config.stopSearchFilter) {
@@ -382,7 +381,7 @@ class IndexPage extends React.Component {
           TrafficNowLink,
           OverlayWithSpinner,
           FavouritesContainer,
-          DatetimepickerContainer,
+          DatetimepickerContainer
         }) =>
           breakpoint === 'large' ? (
             <div
@@ -392,7 +391,7 @@ class IndexPage extends React.Component {
             >
               <div
                 style={{ display: 'block' }}
-                className="scrollable-content-wrapper momentum-scroll"
+                className="scrollable-content-wrapper momentum-scroll ctrl-panel-container"
               >
                 <h1 className="sr-only">
                   <FormattedMessage
@@ -453,10 +452,8 @@ class IndexPage extends React.Component {
             >
               {(showSpinner && <OverlayWithSpinner />) || null}
               <div
-                style={{
-                  display: 'block',
-                  backgroundColor: '#ffffff',
-                }}
+                className="ctrl-panel-container"
+                style={{ display: 'block' }}
               >
                 <CtrlPanel
                   instance="hsl"
@@ -512,7 +509,7 @@ const Index = shouldUpdate(
       isEqual(nextProps.query, props.query) &&
       isEqual(nextProps.locationState, props.locationState)
     );
-  },
+  }
 )(IndexPage);
 
 const IndexPageWithBreakpoint = withBreakpoint(Index);
@@ -524,7 +521,7 @@ const IndexPageWithStores = connectToStores(
     'DestinationStore',
     'TimeStore',
     'PreferencesStore',
-    'PositionStore',
+    'PositionStore'
   ],
   (context, props) => {
     const origin = context.getStore('OriginStore').getOrigin();
@@ -549,13 +546,13 @@ const IndexPageWithStores = connectToStores(
     newProps.query = query; // defines itinerary search time & arriveBy
 
     return newProps;
-  },
+  }
 );
 
 IndexPageWithStores.contextTypes = {
   ...IndexPageWithStores.contextTypes,
   executeAction: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const GeoIndexPage = Geomover(IndexPageWithStores);

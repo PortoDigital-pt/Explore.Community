@@ -16,13 +16,13 @@ export const renderZoneTicket = (fareId, alternativeFares, hasPurchaseLink) => {
       options.push(
         <div className="or" key={`${alternativeFares[i]}-or`}>
           <FormattedMessage id="or" />
-        </div>,
+        </div>
       );
       options.push(
         <ZoneTicket
           key={alternativeFares[i]}
           ticketType={alternativeFares[i]}
-        />,
+        />
       );
     }
 
@@ -35,7 +35,7 @@ const ZoneTicket = ({ ticketType, hasPurchaseLink }) =>
   ticketType ? (
     <span
       className={cx('zone-ticket', {
-        purchase: hasPurchaseLink,
+        purchase: hasPurchaseLink
       })}
     >
       {ticketType}
@@ -44,10 +44,10 @@ const ZoneTicket = ({ ticketType, hasPurchaseLink }) =>
 
 ZoneTicket.propTypes = {
   ticketType: PropTypes.string.isRequired,
-  hasPurchaseLink: PropTypes.bool,
+  hasPurchaseLink: PropTypes.bool
 };
 
 ZoneTicket.defaultProps = {
-  hasPurchaseLink: false,
+  hasPurchaseLink: false
 };
 export default ZoneTicket;

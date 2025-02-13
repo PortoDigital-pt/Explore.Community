@@ -21,10 +21,10 @@ export function saveFavourite(actionContext, data) {
       if (!actionContext.config.allowFavouritesFromLocalstorage) {
         actionContext.executeAction(
           addMessage,
-          failedFavouriteMessage(favouriteType, true),
+          failedFavouriteMessage(favouriteType, true)
         );
       }
-    },
+    }
   });
 }
 
@@ -43,10 +43,10 @@ export function updateFavourites(actionContext, data) {
       if (!actionContext.config.allowFavouritesFromLocalstorage) {
         actionContext.executeAction(
           addMessage,
-          failedFavouriteMessage(favouriteType, true),
+          failedFavouriteMessage(favouriteType, true)
         );
       }
-    },
+    }
   });
 }
 
@@ -62,9 +62,9 @@ export function deleteFavourite(actionContext, data) {
       if (!actionContext.config.allowFavouritesFromLocalstorage) {
         actionContext.executeAction(
           addMessage,
-          failedFavouriteMessage(favouriteType, false),
+          failedFavouriteMessage(favouriteType, false)
         );
       }
-    },
+    }
   });
 }

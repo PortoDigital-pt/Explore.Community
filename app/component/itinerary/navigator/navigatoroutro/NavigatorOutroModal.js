@@ -22,12 +22,12 @@ const NavigatorOutroModal = ({ onClose, destination }, { config }) => {
 
 NavigatorOutroModal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  destination: PropTypes.string.isRequired,
+  destination: PropTypes.string.isRequired
 };
 
 NavigatorOutroModal.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default NavigatorOutroModal;

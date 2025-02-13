@@ -9,12 +9,12 @@ import { locationToUri, locationToOTP } from '../util/otpStrings';
 import {
   getPathWithEndpointObjects,
   getItineraryPagePath,
-  PREFIX_ITINERARY_SUMMARY,
+  PREFIX_ITINERARY_SUMMARY
 } from '../util/path';
 
 export default function MapRoutingButton(
   { stop },
-  { intl, router, match, config },
+  { intl, router, match, config }
 ) {
   const [showModal, setShowModal] = useState(false);
   const [buttonText, setButtonText] = useState(null);
@@ -43,7 +43,7 @@ export default function MapRoutingButton(
     const place = {
       ...item,
       address,
-      gtfsId: match.params.stopId || match.params.terminalId,
+      gtfsId: match.params.stopId || match.params.terminalId
     };
     if (id === 'origin') {
       newLocation = {
@@ -51,9 +51,9 @@ export default function MapRoutingButton(
         pathname: getPathWithEndpointObjects(
           place,
           {},
-          PREFIX_ITINERARY_SUMMARY,
+          PREFIX_ITINERARY_SUMMARY
         ),
-        query: { time },
+        query: { time }
       };
     } else if (id === 'destination') {
       newLocation = {
@@ -61,9 +61,9 @@ export default function MapRoutingButton(
         pathname: getPathWithEndpointObjects(
           {},
           place,
-          PREFIX_ITINERARY_SUMMARY,
+          PREFIX_ITINERARY_SUMMARY
         ),
-        query: { time },
+        query: { time }
       };
     } else {
       newLocation = {
@@ -71,8 +71,8 @@ export default function MapRoutingButton(
         pathname: getItineraryPagePath(locationToUri({}), locationToUri({})),
         query: {
           intermediatePlaces: locationToOTP(item),
-          query: { time },
-        },
+          query: { time }
+        }
       };
     }
     router.push(newLocation);
@@ -158,5 +158,5 @@ MapRoutingButton.contextTypes = {
   config: configShape.isRequired,
   executeAction: PropTypes.func.isRequired,
   router: routerShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };

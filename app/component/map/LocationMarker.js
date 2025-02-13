@@ -11,7 +11,7 @@ export default function LocationMarker({
   className,
   isLarge,
   type,
-  disabled,
+  disabled
 }) {
   const getValidType = markertype => {
     switch (markertype) {
@@ -39,7 +39,7 @@ export default function LocationMarker({
           />
         ),
         iconAnchor: [sideLength / 2, sideLength],
-        iconSize: [sideLength, sideLength],
+        iconSize: [sideLength, sideLength]
       }}
       zIndexOffset={12000}
     >
@@ -59,7 +59,7 @@ LocationMarker.propTypes = {
   className: PropTypes.string,
   isLarge: PropTypes.bool,
   type: PropTypes.oneOf(['from', 'via', 'to', 'favourite']),
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 LocationMarker.defaultProps = {
@@ -67,5 +67,5 @@ LocationMarker.defaultProps = {
   className: undefined,
   isLarge: false,
   type: 'via',
-  disabled: false,
+  disabled: false
 };

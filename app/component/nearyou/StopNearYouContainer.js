@@ -69,7 +69,7 @@ const containerComponent = createRefetchContainer(
           }
         }
       }
-    `,
+    `
   },
   graphql`
     query StopNearYouContainerRefetchQuery(
@@ -87,7 +87,7 @@ const containerComponent = createRefetchContainer(
           @arguments(startTime: $startTime, omitNonPickups: $omitNonPickups)
       }
     }
-  `,
+  `
 );
 
 export default containerComponent;

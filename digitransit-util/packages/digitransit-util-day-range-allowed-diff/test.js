@@ -17,15 +17,15 @@ const testsForMonday = [
   { allowedDiff: 4, dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     allowedDiff: 1,
@@ -43,9 +43,9 @@ const testsForMonday = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 const testsforTuesday = [
@@ -61,15 +61,15 @@ const testsforTuesday = [
   { allowedDiff: 3, dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     allowedDiff: 1,
@@ -87,9 +87,9 @@ const testsforTuesday = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 const testsForWednesday = [
@@ -105,15 +105,15 @@ const testsForWednesday = [
   { allowedDiff: 2, dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     allowedDiff: 1,
@@ -131,9 +131,9 @@ const testsForWednesday = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 const testsForThursday = [
@@ -149,15 +149,15 @@ const testsForThursday = [
   { allowedDiff: 1, dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     allowedDiff: 1,
@@ -175,9 +175,9 @@ const testsForThursday = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 const testsForFriday = [
@@ -193,15 +193,15 @@ const testsForFriday = [
   { allowedDiff: 7, dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     allowedDiff: 3,
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     allowedDiff: 2,
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     allowedDiff: 1,
@@ -219,9 +219,9 @@ const testsForFriday = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 const testForSaturday = [
@@ -237,15 +237,15 @@ const testForSaturday = [
   { allowedDiff: 1, dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     allowedDiff: 2,
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     allowedDiff: 2,
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     allowedDiff: 1,
@@ -263,9 +263,9 @@ const testForSaturday = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 const testsForSunday = [
@@ -281,15 +281,15 @@ const testsForSunday = [
   { allowedDiff: 5, dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     allowedDiff: 1,
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     allowedDiff: 1,
@@ -307,9 +307,9 @@ const testsForSunday = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', () => {
@@ -318,7 +318,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', ()
       it(`should return "${
         test.allowedDiff
       }" when day number\`s string is "${Array.from(
-        new Set(test.dayNoArray.sort()),
+        new Set(test.dayNoArray.sort())
       ).join('')}"`, () => {
         const retValue = dayRangeAllowedDiff(test.dayNoArray, 1);
         expect(retValue).to.equal(test.allowedDiff);
@@ -330,7 +330,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', ()
       it(`should return "${
         test.allowedDiff
       }" when day number\`s string is "${Array.from(
-        new Set(test.dayNoArray.sort()),
+        new Set(test.dayNoArray.sort())
       ).join('')}"`, () => {
         const retValue = dayRangeAllowedDiff(test.dayNoArray, 2);
         expect(retValue).to.equal(test.allowedDiff);
@@ -342,7 +342,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', ()
       it(`should return "${
         test.allowedDiff
       }" when day number\`s string is "${Array.from(
-        new Set(test.dayNoArray.sort()),
+        new Set(test.dayNoArray.sort())
       ).join('')}"`, () => {
         const retValue = dayRangeAllowedDiff(test.dayNoArray, 3);
         expect(retValue).to.equal(test.allowedDiff);
@@ -354,7 +354,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', ()
       it(`should return "${
         test.allowedDiff
       }" when day number\`s string is "${Array.from(
-        new Set(test.dayNoArray.sort()),
+        new Set(test.dayNoArray.sort())
       ).join('')}"`, () => {
         const retValue = dayRangeAllowedDiff(test.dayNoArray, 4);
         expect(retValue).to.equal(test.allowedDiff);
@@ -366,7 +366,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', ()
       it(`should return "${
         test.allowedDiff
       }" when day number\`s string is "${Array.from(
-        new Set(test.dayNoArray.sort()),
+        new Set(test.dayNoArray.sort())
       ).join('')}"`, () => {
         const retValue = dayRangeAllowedDiff(test.dayNoArray, 5);
         expect(retValue).to.equal(test.allowedDiff);
@@ -378,7 +378,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', ()
       it(`should return "${
         test.allowedDiff
       }" when day number\`s string is "${Array.from(
-        new Set(test.dayNoArray.sort()),
+        new Set(test.dayNoArray.sort())
       ).join('')}"`, () => {
         const retValue = dayRangeAllowedDiff(test.dayNoArray, 6);
         expect(retValue).to.equal(test.allowedDiff);
@@ -390,7 +390,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-allowed-diff', ()
       it(`should return "${
         test.allowedDiff
       }" when day number\`s string is "${Array.from(
-        new Set(test.dayNoArray.sort()),
+        new Set(test.dayNoArray.sort())
       ).join('')}"`, () => {
         const retValue = dayRangeAllowedDiff(test.dayNoArray, 7);
         expect(retValue).to.equal(test.allowedDiff);

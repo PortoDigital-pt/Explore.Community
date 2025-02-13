@@ -9,7 +9,7 @@ import routeNameCompare from '@digitransit-search-util/digitransit-search-util-r
 import {
   mapRoute,
   isStop,
-  match,
+  match
 } from '@digitransit-search-util/digitransit-search-util-helpers';
 import filterMatchingToInput from '@digitransit-search-util/digitransit-search-util-filter-matching-to-input';
 import { isString, orderBy } from 'lodash';
@@ -231,8 +231,8 @@ export function getStopAndStationsQuery(favourites) {
   if (stopIds.length > 0) {
     queries.push(
       fetchQuery(relayEnvironment, favouriteStopsQuery, {
-        ids: stopIds,
-      }).toPromise(),
+        ids: stopIds
+      }).toPromise()
     );
   }
   const stationIds = favourites
@@ -241,8 +241,8 @@ export function getStopAndStationsQuery(favourites) {
   if (stationIds.length > 0) {
     queries.push(
       fetchQuery(relayEnvironment, favouriteStationsQuery, {
-        ids: stationIds,
-      }).toPromise(),
+        ids: stationIds
+      }).toPromise()
     );
   }
   if (queries.length === 0) {
@@ -254,7 +254,7 @@ export function getStopAndStationsQuery(favourites) {
         return stopOrStation.stops
           ? stopOrStation.stops
           : stopOrStation.stations;
-      }),
+      })
     )
     .then(flatten)
     .then(result => result.filter(res => res !== null))
@@ -262,7 +262,7 @@ export function getStopAndStationsQuery(favourites) {
       // eslint-disable-next-line func-names
       const stopStationMap = stopsAndStations.reduce(function (
         map,
-        stopOrStation,
+        stopOrStation
       ) {
         // eslint-disable-next-line no-param-reassign
         map[stopOrStation.gtfsId] = stopOrStation;
@@ -274,11 +274,11 @@ export function getStopAndStationsQuery(favourites) {
           ...stop,
           properties: {
             label: stop.name,
-            layer: isStop(stop) ? 'favouriteStop' : 'favouriteStation',
+            layer: isStop(stop) ? 'favouriteStop' : 'favouriteStation'
           },
           geometry: {
-            coordinates: [stop.lon, stop.lat],
-          },
+            coordinates: [stop.lon, stop.lat]
+          }
         };
         return favourite;
       });
@@ -291,7 +291,7 @@ export function getAllVehicleRentalStations() {
   }
   return fetchQuery(
     relayEnvironment,
-    searchVehicleRentalStationsQuery,
+    searchVehicleRentalStationsQuery
   ).toPromise();
 }
 
@@ -310,7 +310,7 @@ export function filterStopsAndStationsByMode(stopsToFilter, mode) {
       item =>
         item.properties.layer === 'station' ||
         item.properties.layer === 'favouriteStation' ||
-        item.properties.type === 'station',
+        item.properties.type === 'station'
     )
     .map(item => item.gtfsId);
 
@@ -319,22 +319,22 @@ export function filterStopsAndStationsByMode(stopsToFilter, mode) {
       item =>
         item.properties.layer === 'stop' ||
         item.properties.layer === 'favouriteStop' ||
-        item.properties.type === 'stop',
+        item.properties.type === 'stop'
     )
     .map(item => item.gtfsId);
   const queries = [];
   if (stopIds.length > 0) {
     queries.push(
       fetchQuery(relayEnvironment, stopsQuery, {
-        ids: stopIds,
-      }).toPromise(),
+        ids: stopIds
+      }).toPromise()
     );
   }
   if (stationIds.length > 0) {
     queries.push(
       fetchQuery(relayEnvironment, stationsQuery, {
-        ids: stationIds,
-      }).toPromise(),
+        ids: stationIds
+      }).toPromise()
     );
   }
   if (queries.length === 0) {
@@ -346,7 +346,7 @@ export function filterStopsAndStationsByMode(stopsToFilter, mode) {
         return stopOrStation.stops
           ? stopOrStation.stops
           : stopOrStation.stations;
-      }),
+      })
     )
     .then(flatten)
     .then(result => result.filter(res => res !== null))
@@ -358,13 +358,13 @@ export function filterStopsAndStationsByMode(stopsToFilter, mode) {
         const oldStop = stopsToFilter.find(s => s.gtfsId === stop.gtfsId);
         const newStop = {
           ...oldStop,
-          mode: stopMode,
+          mode: stopMode
         };
         if (newStop.mode === mode) {
           return newStop;
         }
         return undefined;
-      }),
+      })
     )
     .then(compact);
 }
@@ -381,7 +381,7 @@ export function getFavouriteRoutesQuery(
   favourites,
   input,
   transportMode,
-  pathOpts,
+  pathOpts
 ) {
   if (
     !relayEnvironment ||
@@ -391,7 +391,7 @@ export function getFavouriteRoutesQuery(
     return Promise.resolve([]);
   }
   return fetchQuery(relayEnvironment, favouriteRoutesQuery, {
-    ids: favourites,
+    ids: favourites
   })
     .toPromise()
     .then(data => data.routes.map(r => mapRoute(r, pathOpts)))
@@ -400,8 +400,8 @@ export function getFavouriteRoutesQuery(
       routes.map(favourite => ({
         ...favourite,
         properties: { ...favourite.properties, layer: 'favouriteRoute' },
-        type: 'FavouriteRoute',
-      })),
+        type: 'FavouriteRoute'
+      }))
     )
     .then(routes => {
       if (transportMode) {
@@ -414,11 +414,11 @@ export function getFavouriteRoutesQuery(
     .then(routes =>
       filterMatchingToInput(routes, input, [
         'properties.shortName',
-        'properties.longName',
-      ]),
+        'properties.longName'
+      ])
     )
     .then(routes =>
-      routes.sort((x, y) => routeNameCompare(x.properties, y.properties)),
+      routes.sort((x, y) => routeNameCompare(x.properties, y.properties))
     );
 }
 /**
@@ -436,7 +436,7 @@ export function getFavouriteVehicleRentalStationsQuery(favourites, input) {
   }
   const favouriteIds = favourites.map(station => station.stationId);
   return fetchQuery(relayEnvironment, favouriteVehicleRentalQuery, {
-    ids: favouriteIds,
+    ids: favouriteIds
   })
     .toPromise()
     .then(data => data.vehicleRentalStations)
@@ -444,18 +444,18 @@ export function getFavouriteVehicleRentalStationsQuery(favourites, input) {
     .then(stations =>
       stations.map(favourite => ({
         geometry: {
-          coordinates: [favourite.lon, favourite.lat],
+          coordinates: [favourite.lon, favourite.lat]
         },
         properties: {
           name: favourite.name,
           labelId: favourite.stationId,
-          layer: 'favouriteVehicleRentalStation',
+          layer: 'favouriteVehicleRentalStation'
         },
-        type: 'FavouriteVehicleRentalStation',
-      })),
+        type: 'FavouriteVehicleRentalStation'
+      }))
     )
     .then(stations =>
-      filterMatchingToInput(stations, input, ['properties.name']),
+      filterMatchingToInput(stations, input, ['properties.name'])
     )
     .then(stations => stations.sort());
 }
@@ -485,7 +485,7 @@ export function getRoutesQuery(input, feedIds, transportMode, pathOpts) {
   return fetchQuery(relayEnvironment, searchRoutesQuery, {
     feeds: Array.isArray(feedIds) && feedIds.length > 0 ? feedIds : null,
     name: input,
-    modes: transportMode ? modes : null,
+    modes: transportMode ? modes : null
   })
     .toPromise()
     .then(data => {
@@ -496,7 +496,7 @@ export function getRoutesQuery(input, feedIds, transportMode, pathOpts) {
       const orderedResults = orderBy(
         results,
         [result => match(normalizedTerm, result.properties)],
-        ['desc', 'desc'],
+        ['desc', 'desc']
       );
       return take(orderedResults, 100);
     });
@@ -508,8 +508,8 @@ export function withCurrentTime(location) {
     ...location,
     query: {
       ...query,
-      time: query.time ? query.time : moment().unix(),
-    },
+      time: query.time ? query.time : moment().unix()
+    }
   };
 }
 /**

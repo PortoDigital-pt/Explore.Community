@@ -5,7 +5,7 @@ class User {
 
   serialize() {
     const x = {
-      data: this.data,
+      data: this.data
     };
     if (this.token) {
       x.token = this.token;

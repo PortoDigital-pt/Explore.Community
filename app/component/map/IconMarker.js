@@ -33,7 +33,7 @@ export default class IconMarker extends React.Component {
         // Custom HTML code to put inside the div element, empty by default.
         element: false,
 
-        className: 'leaflet-div-icon',
+        className: 'leaflet-div-icon'
       },
 
       createIcon(oldIcon) {
@@ -51,7 +51,7 @@ export default class IconMarker extends React.Component {
 
       createShadow() {
         return null;
-      },
+      }
     });
 
     this.state = { icon: new this.Icon(props.icon) };
@@ -73,7 +73,7 @@ export default class IconMarker extends React.Component {
         zIndexOffset={this.props.zIndexOffset}
       >
         {this.props.children}
-      </Marker>,
+      </Marker>
     ];
   }
 }
@@ -81,16 +81,16 @@ export default class IconMarker extends React.Component {
 IconMarker.propTypes = {
   position: PropTypes.shape({
     lat: PropTypes.number.isRequired,
-    lon: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired
   }).isRequired,
   icon: PropTypes.shape({
-    element: PropTypes.node.isRequired,
+    element: PropTypes.node.isRequired
   }).isRequired,
   zIndexOffset: PropTypes.number,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 IconMarker.defaultProps = {
   zIndexOffset: undefined,
-  children: undefined,
+  children: undefined
 };

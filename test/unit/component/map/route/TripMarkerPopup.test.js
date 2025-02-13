@@ -24,7 +24,7 @@ describe('<TripMarkerPopup />', () => {
         shortName: '15',
         timestamp: 1573138253,
         tripId: 'OULU:12345',
-        tripStartTime: undefined,
+        tripStartTime: undefined
       },
       trip: {
         pattern: {
@@ -32,21 +32,21 @@ describe('<TripMarkerPopup />', () => {
           headsign: 'Keskusta (Kuvernööri)',
           stops: [
             {
-              name: 'Koulutie',
+              name: 'Koulutie'
             },
             {
-              name: 'Kuvernööri',
-            },
-          ],
+              name: 'Kuvernööri'
+            }
+          ]
         },
         route: {
           gtfsId: 'OULU:15',
           longName: 'Koulutie - Kuvernööri',
           mode: 'BUS',
-          shortName: '15',
+          shortName: '15'
         },
-        gtfsId: 'OULU:12345',
-      },
+        gtfsId: 'OULU:12345'
+      }
     };
 
     const wrapper = shallowWithIntl(<TripMarkerPopup {...props} />);

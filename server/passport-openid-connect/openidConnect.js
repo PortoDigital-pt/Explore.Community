@@ -32,18 +32,18 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
   const RedisClient = RedisKey
     ? redis.createClient(RedisPort, RedisHost, {
         auth_pass: RedisKey,
-        tls: { servername: RedisHost },
+        tls: { servername: RedisHost }
       })
     : redis.createClient(RedisPort, RedisHost);
 
   const redirectUris = hostnames?.map(host => `${host}${callbackPath}`);
   const postLogoutRedirectUris = hostnames?.map(
-    host => `${host}${logoutCallbackPath}`,
+    host => `${host}${logoutCallbackPath}`
   );
   if (process.env.NODE_ENV === 'development' && postLogoutRedirectUris) {
     redirectUris.push(`http://localhost:${port}${callbackPath}`);
     postLogoutRedirectUris.push(
-      `http://localhost:${port}${logoutCallbackPath}`,
+      `http://localhost:${port}${logoutCallbackPath}`
     );
   }
 
@@ -63,7 +63,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       if (clearAllUserSessions) {
         RedisClient.sadd(`sessions-${userId}`, sessionId);
       }
-    },
+    }
   });
 
   const redirectToLogin = function (req, res, next) {
@@ -77,7 +77,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       '/linjat/',
       '/terminaalit/',
       '/pyoraasemat/',
-      '/lahellasi/',
+      '/lahellasi/'
     ];
     // Only allow sso login when user navigates to certain paths
     // Query parameter is string type
@@ -96,7 +96,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       if (debugLogging) {
         console.log(
           'redirecting to login with sso token ',
-          JSON.stringify(ssoToken),
+          JSON.stringify(ssoToken)
         );
       }
       res.redirect(`/login?${params}&url=${req.path}`);
@@ -114,7 +114,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       return passport.authenticate('passport-openid-connect', {
         refresh: true,
         successReturnToOrRedirect: `/${indexPath}`,
-        failureRedirect: `/${indexPath}`,
+        failureRedirect: `/${indexPath}`
       })(req, res, next);
     }
     return next();
@@ -128,7 +128,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
         host: RedisHost,
         port: RedisPort,
         client: RedisClient,
-        ttl: 60 * 60 * 24 * 60,
+        ttl: 60 * 60 * 24 * 60
       }),
       resave: false,
       saveUninitialized: false,
@@ -136,9 +136,9 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
         secure: process.env.NODE_ENV === 'production',
         httpOnly: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 60,
-        sameSite: 'none',
-      },
-    }),
+        sameSite: 'none'
+      }
+    })
   );
 
   // Initialize Passport
@@ -166,7 +166,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     }
     passport.authenticate('passport-openid-connect', {
       scope: 'profile',
-      successReturnToOrRedirect: '/',
+      successReturnToOrRedirect: '/'
     })(req, res);
   });
 
@@ -176,8 +176,8 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     passport.authenticate('passport-openid-connect', {
       callback: true,
       successReturnToOrRedirect: `/${indexPath}`,
-      failureRedirect: '/login',
-    }),
+      failureRedirect: '/login'
+    })
   );
 
   app.get('/logout', function (req, res) {
@@ -189,7 +189,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     const params = {
       post_logout_redirect_uri: postLogoutRedirectUri,
       id_token_hint: req.user.token.id_token,
-      ui_locales: cookieLang,
+      ui_locales: cookieLang
     };
     const logoutUrl = oic.client.endSessionUrl(params);
 
@@ -314,7 +314,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       headers: { Authorization: `Bearer ${req.user.token.access_token}` },
       method: req.method,
       url: `${FavouriteHost}/${req.user.data.sub}`,
-      data: JSON.stringify(req.body),
+      data: JSON.stringify(req.body)
     })
       .then(function (response) {
         if (response && response.status && response.data) {
@@ -341,11 +341,11 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     axios({
       headers: {
         'content-type': 'application/json',
-        'x-hslid-token': req.user.token.access_token,
+        'x-hslid-token': req.user.token.access_token
       },
       method: req.method,
       url,
-      data: JSON.stringify(req.body),
+      data: JSON.stringify(req.body)
     })
       .then(function (response) {
         if (response && response.status && response.data) {

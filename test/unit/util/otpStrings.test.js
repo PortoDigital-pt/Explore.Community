@@ -18,10 +18,10 @@ describe('otpStrings', () => {
       const location = utils.otpToLocation(input);
       expect(location.address).to.equal('Kluuvi, luoteinen, Kluuvi, Helsinki');
       expect(Object.prototype.hasOwnProperty.call(location, 'lat')).to.equal(
-        false,
+        false
       );
       expect(Object.prototype.hasOwnProperty.call(location, 'lon')).to.equal(
-        false,
+        false
       );
     });
 
@@ -30,10 +30,10 @@ describe('otpStrings', () => {
       const location = utils.otpToLocation(input);
       expect(location.address).to.equal('Kluuvi, luoteinen, Kluuvi, Helsinki');
       expect(Object.prototype.hasOwnProperty.call(location, 'lat')).to.equal(
-        false,
+        false
       );
       expect(Object.prototype.hasOwnProperty.call(location, 'lon')).to.equal(
-        false,
+        false
       );
     });
 
@@ -54,7 +54,7 @@ describe('otpStrings', () => {
       const input = 'Kluuvi, luoteinen, Kluuvi, Helsinki::60.173123,24.948365';
       const location = utils.otpToLocation(input);
       expect(
-        Object.prototype.hasOwnProperty.call(location, 'locationSlack'),
+        Object.prototype.hasOwnProperty.call(location, 'locationSlack')
       ).to.equal(false);
     });
 
@@ -63,7 +63,7 @@ describe('otpStrings', () => {
         'Kluuvi, luoteinen, Kluuvi, Helsinki::60.173123,24.948365::foo';
       const location = utils.otpToLocation(input);
       expect(
-        Object.prototype.hasOwnProperty.call(location, 'locationSlack'),
+        Object.prototype.hasOwnProperty.call(location, 'locationSlack')
       ).to.equal(false);
     });
   });
@@ -84,7 +84,7 @@ describe('otpStrings', () => {
 
     it('should return an empty array for whitespace intermediatePlaces', () => {
       const query = {
-        intermediatePlaces: ' ',
+        intermediatePlaces: ' '
       };
       const result = utils.getIntermediatePlaces(query);
       expect(Array.isArray(result)).to.equal(true);
@@ -93,7 +93,7 @@ describe('otpStrings', () => {
 
     it('should return a location parsed from a string-mode intermediatePlaces', () => {
       const query = {
-        intermediatePlaces: 'Kera, Espoo::60.217992,24.75494',
+        intermediatePlaces: 'Kera, Espoo::60.217992,24.75494'
       };
       const result = utils.getIntermediatePlaces(query);
       expect(Array.isArray(result)).to.equal(true);
@@ -107,8 +107,8 @@ describe('otpStrings', () => {
       const query = {
         intermediatePlaces: [
           'Kera, Espoo::60.217992,24.75494',
-          'Leppävaara, Espoo::60.219235,24.81329',
-        ],
+          'Leppävaara, Espoo::60.219235,24.81329'
+        ]
       };
       const result = utils.getIntermediatePlaces(query);
       expect(Array.isArray(result)).to.equal(true);
@@ -123,7 +123,7 @@ describe('otpStrings', () => {
 
     it('should return an empty array if intermediatePlaces is neither a string nor an array', () => {
       const query = {
-        intermediatePlaces: {},
+        intermediatePlaces: {}
       };
       const result = utils.getIntermediatePlaces(query);
       expect(Array.isArray(result)).to.equal(true);

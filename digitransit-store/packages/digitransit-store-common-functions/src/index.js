@@ -56,13 +56,13 @@ export function setItem(key, value) {
         // eslint-disable-next-line no-console
         console.log(
           '[localStorage]' + // eslint-disable-line no-console
-            ' Unable to save state; localStorage is not available in Safari private mode',
+            ' Unable to save state; localStorage is not available in Safari private mode'
         );
       } else {
         handleSecurityError(
           error,
           '[localStorage]' +
-            ' Unable to save state; access to localStorage denied by browser settings',
+            ' Unable to save state; access to localStorage denied by browser settings'
         );
       }
     }

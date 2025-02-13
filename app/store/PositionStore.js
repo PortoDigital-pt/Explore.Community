@@ -152,7 +152,7 @@ export default class PositionStore extends Store {
         this.status === PositionStore.STATUS_GEOLOCATION_DENIED ||
         this.status === PositionStore.STATUS_GEOLOCATION_TIMEOUT ||
         this.status === PositionStore.STATUS_GEOLOCATION_WATCH_TIMEOUT ||
-        this.status === PositionStore.STATUS_GEOLOCATION_NOT_SUPPORTED,
+        this.status === PositionStore.STATUS_GEOLOCATION_NOT_SUPPORTED
     };
   }
 
@@ -184,6 +184,6 @@ export default class PositionStore extends Store {
     GeolocationWatchStarted: 'storeWatchId',
     GeolocationWatchStopped: 'clearWatchId',
     StartReverseGeocoding: 'startReverseGeocoding',
-    storeWatchId: 'storeWatchId',
+    storeWatchId: 'storeWatchId'
   };
 }

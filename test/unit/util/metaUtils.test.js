@@ -14,25 +14,25 @@ describe('metaUtils', () => {
         meta: [
           {
             name: 'description',
-            content: description,
+            content: description
           },
           {
             property: 'og:title',
-            content: title,
+            content: title
           },
           {
             property: 'og:description',
-            content: description,
+            content: description
           },
           {
             property: 'twitter:title',
-            content: title,
+            content: title
           },
           {
             property: 'twitter:description',
-            content: description,
-          },
-        ],
+            content: description
+          }
+        ]
       });
     });
   });

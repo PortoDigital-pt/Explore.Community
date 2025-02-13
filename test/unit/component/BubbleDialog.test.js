@@ -19,11 +19,11 @@ describe('<BubbleDialog />', () => {
         if (isOpen) {
           trueCount += 1;
         }
-      },
+      }
     };
     const wrapper = mountWithIntl(<BubbleDialog {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(wrapper.find('.bubble-dialog-container')).to.have.lengthOf(0);
 
@@ -47,11 +47,11 @@ describe('<BubbleDialog />', () => {
       },
       onDialogOpen: () => {
         callCount += 1;
-      },
+      }
     };
     const wrapper = mountWithIntl(<BubbleDialog {...props} />, {
       context: { ...mockContext },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     wrapper.find('.bubble-dialog-toggle').simulate('click');

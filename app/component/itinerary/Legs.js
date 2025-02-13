@@ -6,7 +6,7 @@ import {
   configShape,
   fareShape,
   itineraryShape,
-  relayShape,
+  relayShape
 } from '../../util/shapes';
 import TransitLeg from './TransitLeg';
 import WalkLeg from './WalkLeg';
@@ -27,7 +27,7 @@ import {
   isLegOnFoot,
   legTime,
   markViaPoints,
-  getBoardingLeg,
+  getBoardingLeg
 } from '../../util/legUtils';
 import { getRouteMode } from '../../util/modeUtils';
 import { addAnalyticsEvent } from '../../util/analyticsUtils';
@@ -39,7 +39,7 @@ const stopCode = stop => stop && stop.code && <StopCode code={stop.code} />;
 
 export default class Legs extends React.Component {
   static childContextTypes = {
-    focusFunction: PropTypes.func,
+    focusFunction: PropTypes.func
   };
 
   static propTypes = {
@@ -53,12 +53,12 @@ export default class Legs extends React.Component {
     showBikeBoardingInformation: PropTypes.bool,
     showCarBoardingInformation: PropTypes.bool,
     usingOwnCarWholeTrip: PropTypes.bool,
-    relayEnvironment: relayShape,
+    relayEnvironment: relayShape
   };
 
   static contextTypes = {
     config: configShape,
-    match: matchShape,
+    match: matchShape
   };
 
   static defaultProps = {
@@ -68,7 +68,7 @@ export default class Legs extends React.Component {
     showBikeBoardingInformation: false,
     showCarBoardingInformation: false,
     usingOwnCarWholeTrip: false,
-    relayEnvironment: undefined,
+    relayEnvironment: undefined
   };
 
   getChildContext() {
@@ -81,7 +81,7 @@ export default class Legs extends React.Component {
     addAnalyticsEvent({
       category: 'Itinerary',
       action: 'ZoomMapToStopLocation',
-      name: null,
+      name: null
     });
   };
 
@@ -97,7 +97,7 @@ export default class Legs extends React.Component {
       showBikeBoardingInformation,
       showCarBoardingInformation,
       relayEnvironment,
-      usingOwnCarWholeTrip,
+      usingOwnCarWholeTrip
     } = this.props;
     const { waitThreshold } = this.context.config.itinerary;
 
@@ -111,14 +111,14 @@ export default class Legs extends React.Component {
       fare:
         (leg.route &&
           fares?.find(fare => fare.routeGtfsId === leg.route.gtfsId)) ||
-        undefined,
+        undefined
     }));
     const numberOfLegs = compressedLegs.length;
     if (numberOfLegs === 0) {
       return null;
     }
     const bikeParked = compressedLegs.some(
-      leg => leg.to.vehicleParking && leg.mode === 'BICYCLE',
+      leg => leg.to.vehicleParking && leg.mode === 'BICYCLE'
     );
     let previousLeg;
     let nextLeg;
@@ -148,7 +148,7 @@ export default class Legs extends React.Component {
         leg,
         index: j,
         focusAction: this.focus(leg.from),
-        focusToLeg: this.focusToLeg(leg),
+        focusToLeg: this.focusToLeg(leg)
       };
       const transitLegProps = {
         leg,
@@ -157,7 +157,7 @@ export default class Legs extends React.Component {
         focusAction: this.focus(leg.from),
         changeHash: this.props.changeHash,
         tabIndex: this.props.tabIndex,
-        usingOwnCarWholeTrip,
+        usingOwnCarWholeTrip
       };
 
       let waitLeg;
@@ -203,7 +203,7 @@ export default class Legs extends React.Component {
         legs.push(
           <WalkLeg {...legProps} previousLeg={previousLeg}>
             {stopCode(leg.from.stop)}
-          </WalkLeg>,
+          </WalkLeg>
         );
       } else if (
         (leg.mode === 'BUS' ||
@@ -218,9 +218,9 @@ export default class Legs extends React.Component {
           {
             mode: leg.mode,
             type: leg.route?.type,
-            gtfsId: leg.route?.gtfsId,
+            gtfsId: leg.route?.gtfsId
           },
-          this.context.config,
+          this.context.config
         );
         legs.push(<TransitLeg mode={mode} {...transitLegProps} />);
       } else if (leg.mode === 'AIRPLANE') {
@@ -230,7 +230,7 @@ export default class Legs extends React.Component {
             leg={leg}
             start={startTime}
             focusAction={this.focus(leg.from)}
-          />,
+          />
         );
         legs.push(<AirplaneLeg {...transitLegProps} />);
         legs.push(
@@ -238,7 +238,7 @@ export default class Legs extends React.Component {
             index={j + 0.5}
             leg={leg}
             focusAction={this.focus(leg.to)}
-          />,
+          />
         );
       } else if (
         leg.rentedBike ||
@@ -261,7 +261,7 @@ export default class Legs extends React.Component {
           previousLeg,
           waitLeg,
           leg,
-          'BICYCLE_WALK',
+          'BICYCLE_WALK'
         );
         if (!bikeParked && boardingLeg !== undefined) {
           bicycleWalkLeg = boardingLeg;
@@ -273,7 +273,7 @@ export default class Legs extends React.Component {
             openSettings={this.props.openSettings}
             nextLegMode={nextLeg?.mode}
             relayEnvironment={relayEnvironment}
-          />,
+          />
         );
       } else if (leg.mode === 'CAR') {
         // If there is a transit leg after or before a car leg, render a car boarding leg without distance information.
@@ -282,12 +282,12 @@ export default class Legs extends React.Component {
           previousLeg,
           waitLeg,
           leg,
-          'CAR_BOARDING',
+          'CAR_BOARDING'
         );
         legs.push(
           <CarLeg {...legProps} carBoardingLeg={carBoardingLeg}>
             {stopCode(leg.from.stop)}
-          </CarLeg>,
+          </CarLeg>
         );
       }
 
@@ -309,7 +309,7 @@ export default class Legs extends React.Component {
           focusToLeg={this.focusToLeg(lastLeg)}
         >
           {stopCode(lastLeg.to.stop)}
-        </WalkLeg>,
+        </WalkLeg>
       );
     }
 
@@ -319,7 +319,7 @@ export default class Legs extends React.Component {
         endTime={itinerary.end}
         focusAction={this.focus(lastLeg.to)}
         to={lastLeg.to}
-      />,
+      />
     );
 
     legs.push(<Profile itinerary={itinerary} />);

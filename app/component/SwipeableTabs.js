@@ -71,17 +71,17 @@ export default class SwipeableTabs extends React.Component {
     navigationOnBottom: PropTypes.bool,
     classname: PropTypes.string,
     ariaFrom: PropTypes.string.isRequired,
-    ariaFromHeader: PropTypes.string.isRequired,
+    ariaFromHeader: PropTypes.string.isRequired
   };
 
   static defaultProps = {
     hideArrows: false,
     navigationOnBottom: false,
-    classname: undefined,
+    classname: undefined
   };
 
   static contextTypes = {
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   componentDidMount() {
@@ -147,11 +147,11 @@ export default class SwipeableTabs extends React.Component {
           aria-label={this.context.intl.formatMessage(
             {
               id: 'move-to-tab',
-              defaultMessage: 'Move to tab {number}',
+              defaultMessage: 'Move to tab {number}'
             },
             {
-              number: index + 1,
-            },
+              number: index + 1
+            }
           )}
           tabIndex={0}
           className={`swipe-tab-ball ${
@@ -178,7 +178,7 @@ export default class SwipeableTabs extends React.Component {
     const fromMessage = this.context.intl
       .formatMessage({
         id: from,
-        defaultMessage: 'Swipe results tabs.',
+        defaultMessage: 'Swipe results tabs.'
       })
       .concat(' ');
     switch (position) {
@@ -186,24 +186,24 @@ export default class SwipeableTabs extends React.Component {
         return fromMessage.concat(
           this.context.intl.formatMessage({
             id: 'swipe-result-tabs',
-            defaultMessage: 'Switch tabs using arrow keys.',
-          }),
+            defaultMessage: 'Switch tabs using arrow keys.'
+          })
         );
       case 'left':
         return fromMessage.concat(
           this.context.intl.formatMessage({
             id: 'swipe-result-tab-left',
             defaultMessage:
-              'Swipe result tabs left arrow. Press Enter or Space to show the previous tab.',
-          }),
+              'Swipe result tabs left arrow. Press Enter or Space to show the previous tab.'
+          })
         );
       case 'right':
         return fromMessage.concat(
           this.context.intl.formatMessage({
             id: 'swipe-result-tab-right',
             defaultMessage:
-              'Swipe result tabs right arrow. Press Enter or Space to show the next tab.',
-          }),
+              'Swipe result tabs right arrow. Press Enter or Space to show the next tab.'
+          })
         );
       default:
         return null;
@@ -241,7 +241,7 @@ export default class SwipeableTabs extends React.Component {
                     setTimeout(() => {
                       this.props.onSwipe(i);
                     }, 300);
-                  },
+                  }
                 }}
                 childCount={tabs.length}
                 ref={el => {
@@ -269,7 +269,7 @@ export default class SwipeableTabs extends React.Component {
             {!hideArrows && (
               <div
                 className={cx('swipe-button-container', {
-                  active: !(disabled || this.props.tabIndex <= 0),
+                  active: !(disabled || this.props.tabIndex <= 0)
                 })}
               >
                 <div
@@ -299,9 +299,9 @@ export default class SwipeableTabs extends React.Component {
                 {intl.formatMessage(
                   {
                     id: 'swipe-sr-new-tab-opened',
-                    defaultMessage: 'Tab {number} opened.',
+                    defaultMessage: 'Tab {number} opened.'
                   },
-                  { number: this.props.tabIndex + 1 },
+                  { number: this.props.tabIndex + 1 }
                 )}
               </span>
               {disabled ? null : tabBalls}
@@ -309,7 +309,7 @@ export default class SwipeableTabs extends React.Component {
             {!hideArrows && (
               <div
                 className={cx('swipe-button-container', {
-                  active: !(disabled || this.props.tabIndex >= tabs.length - 1),
+                  active: !(disabled || this.props.tabIndex >= tabs.length - 1)
                 })}
               >
                 <div
@@ -350,7 +350,7 @@ export default class SwipeableTabs extends React.Component {
                     setTimeout(() => {
                       this.props.onSwipe(i);
                     }, 300);
-                  },
+                  }
                 }}
                 childCount={tabs.length}
                 ref={el => {

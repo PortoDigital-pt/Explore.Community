@@ -15,22 +15,22 @@ const defaultConfig = {
     HSL: {
       'HSL:AB': {
         price: 3.1,
-        zones: ['A', 'B'],
+        zones: ['A', 'B']
       },
       'HSL:BC': {
         price: 3.1,
-        zones: ['B', 'C'],
+        zones: ['B', 'C']
       },
       'HSL:ABCD': {
         price: 4.1,
-        zones: ['A', 'B', 'C', 'D'],
+        zones: ['A', 'B', 'C', 'D']
       },
       'HSL:BCD': {
         price: 5.1,
-        zones: ['B', 'C', 'D'],
-      },
-    },
-  },
+        zones: ['B', 'C', 'D']
+      }
+    }
+  }
 };
 
 describe('<TicketInformation />', () => {
@@ -46,19 +46,19 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:BCD',
                   price: {
-                    amount: 4.1,
-                  },
-                },
-              },
+                    amount: 4.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
+                phone: '(09) 4766 4444'
+              }
+            }
           },
           {
             fareProducts: [
@@ -67,30 +67,30 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:ABCD',
                   price: {
-                    amount: 4.5,
-                  },
-                },
-              },
+                    amount: 4.5
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = mountWithIntl(<TicketInformation {...props} />, {
-      context: { config: defaultConfig },
+      context: { config: defaultConfig }
     });
 
     expect(wrapper.find('.ticket-type-zone.multi-component')).to.have.lengthOf(
-      2,
+      2
     );
   });
 
@@ -106,19 +106,19 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:BCD',
                   price: {
-                    amount: 4.1,
-                  },
-                },
-              },
+                    amount: 4.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
+                phone: '(09) 4766 4444'
+              }
+            }
           },
           {
             fareProducts: [
@@ -127,29 +127,29 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:ABCD',
                   price: {
-                    amount: 4.5,
-                  },
-                },
-              },
+                    amount: 4.5
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = mountWithIntl(<TicketInformation {...props} />, {
-      context: { config: defaultConfig },
+      context: { config: defaultConfig }
     });
     expect(wrapper.find('.ticket-title').first().text()).to.equal(
-      'Required tickets:',
+      'Required tickets:'
     );
   });
 
@@ -165,30 +165,30 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
+                    amount: 3.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = mountWithIntl(<TicketInformation {...props} />, {
-      context: { config: defaultConfig },
+      context: { config: defaultConfig }
     });
 
     expect(wrapper.find('.ticket-title').first().text()).to.equal(
-      'Required ticket:',
+      'Required ticket:'
     );
   });
 
@@ -203,15 +203,15 @@ describe('<TicketInformation />', () => {
               gtfsId: 'HSL:F1',
               fareUrl: 'http://www.hsl.fi/liput',
               name: 'Helsingin seudun liikenne',
-              phone: '(09) 4766 4444',
-            },
-          },
+              phone: '(09) 4766 4444'
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = mountWithIntl(<TicketInformation {...props} />, {
-      context: { config: defaultConfig },
+      context: { config: defaultConfig }
     });
 
     expect(wrapper.find('.ticket-type-zone')).to.have.lengthOf(0);
@@ -231,26 +231,26 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
+                    amount: 3.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = mountWithIntl(<TicketInformation {...props} />, {
-      context: { config: defaultConfig },
+      context: { config: defaultConfig }
     });
 
     expect(wrapper.find('.ticket-description').text()).to.contain('3.10 €');
@@ -268,26 +268,26 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
+                    amount: 3.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = mountWithIntl(<TicketInformation {...props} />, {
-      context: { config: { ...defaultConfig, showTicketPrice: false } },
+      context: { config: { ...defaultConfig, showTicketPrice: false } }
     });
 
     expect(wrapper.find('.ticket-description')).to.have.lengthOf(0);
@@ -305,33 +305,33 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
+                    amount: 3.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
+        defaultConfig
       ),
-      defaultConfig,
+      defaultConfig
     };
 
     const wrapper = shallowWithIntl(<TicketInformation {...props} />, {
       context: {
         config: {
           ...defaultConfig,
-          useTicketIcons: true,
-        },
-      },
+          useTicketIcons: true
+        }
+      }
     });
     expect(wrapper.find(ZoneTicket)).to.have.lengthOf(1);
   });
@@ -339,7 +339,7 @@ describe('<TicketInformation />', () => {
   it('should use the mapped name for the ticket', () => {
     const config = {
       ...defaultConfig,
-      fareMapping: fareId => `foo_${fareId}_bar`,
+      fareMapping: fareId => `foo_${fareId}_bar`
     };
     const props = {
       legs: [],
@@ -351,8 +351,8 @@ describe('<TicketInformation />', () => {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
+                phone: '(09) 4766 4444'
+              }
             },
             fareProducts: [
               {
@@ -360,22 +360,22 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
-            ],
-          },
+                    amount: 3.1
+                  }
+                }
+              }
+            ]
+          }
         ],
-        config,
-      ),
+        config
+      )
     };
 
     const wrapper = shallowWithIntl(<TicketInformation {...props} />, {
-      context: { config },
+      context: { config }
     });
     expect(wrapper.find('.ticket-identifier').text()).to.equal(
-      'foo_HSL:AB_bar',
+      'foo_HSL:AB_bar'
     );
   });
 
@@ -390,8 +390,8 @@ describe('<TicketInformation />', () => {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
+                phone: '(09) 4766 4444'
+              }
             },
             fareProducts: [
               {
@@ -399,24 +399,24 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
-            ],
-          },
+                    amount: 3.1
+                  }
+                }
+              }
+            ]
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
 
     const wrapper = shallowWithIntl(<TicketInformation {...props} />, {
       context: {
         config: {
           ...defaultConfig,
-          useTicketIcons: true,
-        },
-      },
+          useTicketIcons: true
+        }
+      }
     });
     expect(wrapper.find(ZoneTicket)).to.have.lengthOf(1);
   });
@@ -433,38 +433,38 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
+                    amount: 3.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
+        defaultConfig
       ),
-      zones: ['B'],
+      zones: ['B']
     };
     const wrapper = shallowWithIntl(<TicketInformation {...props} />, {
       context: {
         config: {
           ...defaultConfig,
-          useTicketIcons: true,
+          useTicketIcons: true
           /*  availableTickets: {
             HSL: {
               'HSL:AB': { price: 3.1, zones: ['A', 'B'] },
               'HSL:BC': { price: 3.1, zones: ['B', 'C'] },
             }, 
           }, */
-        },
-      },
+        }
+      }
     });
 
     expect(wrapper.find(ZoneTicket)).to.have.lengthOf(2);
@@ -484,26 +484,26 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
+                    amount: 3.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
-          },
+                phone: '(09) 4766 4444'
+              }
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = shallowWithIntl(<TicketInformation {...props} />, {
-      context: { config: { ...defaultConfig, ticketLink: 'foobar' } },
+      context: { config: { ...defaultConfig, ticketLink: 'foobar' } }
     });
     expect(wrapper.find('a').prop('href')).to.equal('foobar');
   });
@@ -514,15 +514,15 @@ describe('<TicketInformation />', () => {
         {
           mode: 'FERRY',
           to: {
-            name: 'JOTAIN',
+            name: 'JOTAIN'
           },
           from: {
-            name: 'MUUTA',
+            name: 'MUUTA'
           },
           route: {
-            gtfsId: 'FOO:1234',
-          },
-        },
+            gtfsId: 'FOO:1234'
+          }
+        }
       ],
       fares: getFaresFromLegs(
         [
@@ -533,19 +533,19 @@ describe('<TicketInformation />', () => {
                 product: {
                   id: 'HSL:AB',
                   price: {
-                    amount: 3.1,
-                  },
-                },
-              },
+                    amount: 3.1
+                  }
+                }
+              }
             ],
             route: {
               agency: {
                 gtfsId: 'HSL:F1',
                 fareUrl: 'http://www.hsl.fi/liput',
                 name: 'Helsingin seudun liikenne',
-                phone: '(09) 4766 4444',
-              },
-            },
+                phone: '(09) 4766 4444'
+              }
+            }
           },
 
           {
@@ -554,27 +554,27 @@ describe('<TicketInformation />', () => {
               agency: {
                 fareUrl: 'foobaz',
                 gtfsId: 'FOO:BAR',
-                name: 'Merisataman lauttaliikenne',
+                name: 'Merisataman lauttaliikenne'
               },
               gtfsId: 'FOO:1234',
-              longName: 'Merisataman lautta',
-            },
-          },
+              longName: 'Merisataman lautta'
+            }
+          }
         ],
-        defaultConfig,
-      ),
+        defaultConfig
+      )
     };
     const wrapper = shallowWithIntl(<TicketInformation {...props} />, {
-      context: { config: { ...defaultConfig, ticketLink: 'foobaz' } },
+      context: { config: { ...defaultConfig, ticketLink: 'foobaz' } }
     });
     expect(wrapper.find('.ticket-identifier')).to.have.lengthOf(2);
 
     const ticketWrapper = wrapper.find('.ticket-type-zone').at(1);
     expect(ticketWrapper.find('.ticket-identifier').text()).to.equal(
-      'Merisataman lautta',
+      'Merisataman lautta'
     );
     expect(ticketWrapper.find('.ticket-description').text()).to.equal(
-      'Merisataman lauttaliikenne',
+      'Merisataman lauttaliikenne'
     );
     expect(wrapper.find('a').prop('href')).to.equal('foobaz');
   });

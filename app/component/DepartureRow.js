@@ -11,7 +11,7 @@ import { epochToTime } from '../util/timeUtils';
 import {
   alertSeverityCompare,
   getAlertsForObject,
-  isAlertValid,
+  isAlertValid
 } from '../util/alertUtils';
 import Icon from './Icon';
 import { addAnalyticsEvent } from '../util/analyticsUtils';
@@ -33,14 +33,14 @@ export default function DepartureRow(
     onCapacityClick,
     ...props
   },
-  { config, intl },
+  { config, intl }
 ) {
   const { trip, trip: { route } = {} } = departure;
   const mode = getRouteMode(route);
   const departureTimeMs = departureTime * 1000;
   const time = epochToTime(departureTimeMs, config);
   const timeDiffInMinutes = Math.floor(
-    (departureTime - props.currentTime) / 60,
+    (departureTime - props.currentTime) / 60
   );
   let icon;
   let iconColor;
@@ -54,7 +54,7 @@ export default function DepartureRow(
     sr = (
       <span className="sr-only">
         {intl.formatMessage({
-          id: 'disruptions-tab.sr-disruptions',
+          id: 'disruptions-tab.sr-disruptions'
         })}
       </span>
     );
@@ -74,7 +74,7 @@ export default function DepartureRow(
   if (timeDiffInMinutes <= 0) {
     shownTime = intl.formatMessage({
       id: 'arriving-soon',
-      defaultMessage: 'Now',
+      defaultMessage: 'Now'
     });
   } else if (timeDiffInMinutes > config.minutesToDepartureLimit) {
     shownTime = undefined;
@@ -82,9 +82,9 @@ export default function DepartureRow(
     shownTime = intl.formatMessage(
       {
         id: 'departure-time-in-minutes',
-        defaultMessage: '{minutes} min',
+        defaultMessage: '{minutes} min'
       },
-      { minutes: timeDiffInMinutes },
+      { minutes: timeDiffInMinutes }
     );
   }
   const { shortName } = departure.trip.route;
@@ -103,28 +103,28 @@ export default function DepartureRow(
       <>
         <Link
           to={`/${PREFIX_ROUTES}/${encodeURIComponent(
-            departure.trip.pattern.route.gtfsId,
+            departure.trip.pattern.route.gtfsId
           )}/${PREFIX_STOPS}/${encodeURIComponent(
-            departure.trip.pattern.code,
+            departure.trip.pattern.code
           )}/${encodeURIComponent(departure.trip.gtfsId)}`}
           onClick={() => {
             addAnalyticsEvent({
               category: 'Stop',
               action: 'OpenRouteViewFromStop',
-              name: 'RightNowTab',
+              name: 'RightNowTab'
             });
           }}
           tabIndex={first ? '0' : '-1'}
           aria-hidden={!first}
           aria-label={intl.formatMessage(
             {
-              id: 'departure-page-sr',
+              id: 'departure-page-sr'
             },
             {
               shortName: shortName?.toLowerCase(),
               destination: headsign,
-              time,
-            },
+              time
+            }
           )}
         />
         {node}
@@ -135,7 +135,7 @@ export default function DepartureRow(
   const capacity = getCapacity(
     config,
     trip?.occupancy?.occupancyStatus,
-    departureTimeMs,
+    departureTimeMs
   );
 
   return (
@@ -144,13 +144,13 @@ export default function DepartureRow(
         'departure-row',
         mode,
         departure.bottomRow ? 'bottom' : '',
-        props.className,
+        props.className
       )}
       key={uuid()}
     >
       <td
         className={cx('route-number-container', {
-          long: shortName && shortName.length <= 6 && shortName.length >= 5,
+          long: shortName && shortName.length <= 6 && shortName.length >= 5
         })}
         style={{ backgroundColor: `#${departure.trip.route.color}` }}
       >
@@ -172,14 +172,14 @@ export default function DepartureRow(
               </>
             )}
           </>,
-          true,
+          true
         )}
       </td>
       <td className={cx('route-headsign', departure.bottomRow ? 'bottom' : '')}>
         {renderWithLink(
           <div className="headsign">
             {headsign} {departure.bottomRow && departure.bottomRow}
-          </div>,
+          </div>
         )}
       </td>
       <td className="time-cell">
@@ -189,7 +189,7 @@ export default function DepartureRow(
               <span
                 className={cx('route-arrival', {
                   realtime: departure.realtime,
-                  canceled,
+                  canceled
                 })}
                 aria-hidden="true"
               >
@@ -199,7 +199,7 @@ export default function DepartureRow(
             <span
               className={cx('route-time', {
                 realtime: departure.realtime,
-                canceled,
+                canceled
               })}
               aria-hidden="true"
             >
@@ -208,18 +208,18 @@ export default function DepartureRow(
             <span className="sr-only">
               {intl.formatMessage(
                 {
-                  id: 'departure-time-sr',
+                  id: 'departure-time-sr'
                 },
                 {
                   when: shownTime,
                   time,
                   realTime: departure.realtime
                     ? intl.formatMessage({ id: 'realtime' })
-                    : '',
-                },
+                    : ''
+                }
               )}
             </span>
-          </>,
+          </>
         )}
       </td>
       {showPlatformCode && (
@@ -233,7 +233,7 @@ export default function DepartureRow(
               }
             >
               {departure.stop?.platformCode}
-            </div>,
+            </div>
           )}
         </td>
       )}
@@ -267,17 +267,17 @@ DepartureRow.propTypes = {
   showPlatformCode: PropTypes.bool,
   canceled: PropTypes.bool,
   className: PropTypes.string,
-  onCapacityClick: PropTypes.func,
+  onCapacityClick: PropTypes.func
 };
 
 DepartureRow.defaultProps = {
   showPlatformCode: false,
   canceled: false,
   className: '',
-  onCapacityClick: undefined,
+  onCapacityClick: undefined
 };
 
 DepartureRow.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };

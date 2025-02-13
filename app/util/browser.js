@@ -45,15 +45,15 @@ export const isIeOrOldVersion = () => {
   const browser =
     isBrowser &&
     navigator.userAgent.match(
-      /(MSIE|Trident|(?!Gecko.+)Firefox|(?!AppleWebKit.+Chrome.+)Safari(?!.+Edge)|(?!AppleWebKit.+)Chrom(e|ium)(?!.+Edge)|(?!AppleWebKit.+Chrome.+Safari.+)Edge|AppleWebKit(?!.+Chrome|.+Safari)|Gecko(?!.+Firefox))(?: |\/)([0-9]+)./,
+      /(MSIE|Trident|(?!Gecko.+)Firefox|(?!AppleWebKit.+Chrome.+)Safari(?!.+Edge)|(?!AppleWebKit.+)Chrom(e|ium)(?!.+Edge)|(?!AppleWebKit.+Chrome.+Safari.+)Edge|AppleWebKit(?!.+Chrome|.+Safari)|Gecko(?!.+Firefox))(?: |\/)([0-9]+)./
     );
   let version = 0;
   if (isSafari) {
     version = parseInt(
       navigator.userAgent.substring(
-        navigator.userAgent.indexOf('Version/') + 8,
+        navigator.userAgent.indexOf('Version/') + 8
       ),
-      10,
+      10
     );
   } else if (browser) {
     version = parseInt(browser[browser.length - 1], 10);

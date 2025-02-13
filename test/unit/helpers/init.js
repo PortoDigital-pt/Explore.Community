@@ -22,16 +22,16 @@ const copyProps = (src, target) => {
     .reduce(
       (result, prop) => ({
         ...result,
-        [prop]: Object.getOwnPropertyDescriptor(src, prop),
+        [prop]: Object.getOwnPropertyDescriptor(src, prop)
       }),
-      {},
+      {}
     );
   Object.defineProperties(target, props);
 };
 
 // set up jsdom
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>', {
-  url: 'https://localhost:8080',
+  url: 'https://localhost:8080'
 });
 const { window } = jsdom;
 
@@ -40,12 +40,12 @@ global.window = window;
 global.document = window.document;
 global.navigator = {
   platform: process.platform || '',
-  userAgent: 'node.js',
+  userAgent: 'node.js'
 };
 copyProps(window, global);
 
 const config = {
-  useCookiesPrompt: false,
+  useCookiesPrompt: false
 };
 // For Google Tag Manager
 initAnalyticsClientSide(config);

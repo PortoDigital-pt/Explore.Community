@@ -8,7 +8,7 @@ export default {
         legGeometry: {
           points:
             'sslnJkefwCMDg@RE@GD@XB\\F|@Dz@@H@XDj@PbCBZTtDd@Rv@[`@O`@MDC\\MrAg@NC\\Oh@Sr@WVDr@XHDbC|A\\XPBPBRDPDCfA?J`A|BTDNLDFRJRBhBNn@Vn@X\\ZTb@Vv@ZjAF@J`@FRBHDNDNRMR@l@AVCREF@BFx@W\\KZA^Ib@Ud@_@VOhAOlBc@fA[`@Ib@E\\CTGzCoAp@KNE|@[TORIdC}@vCeAr@WFCfBm@DA`Bi@`@SR_@jAwCZuARw@\\YjA{Bl@cABKv@rAR`@LPJJPJNDL@VAPGTMFPPLPCNGREBXLKNQRMN@XHVCXMHCd@GXF\\ATIDFFBH?XILE|ImCVOv@QTGd@MLCb@YpAa@^q@FYBOLAr@y@h@c@n@a@b@QdASn@Gf@GVI`@Uv@}@TYJIJCTEHAZAb@GpAOPCHEHCnDQXC@\\?n@@n@@NDLHDf@Ar@E\\CZAFAl@CVAD?DAJ?b@EHGFARALAp@EvDi@CmB',
-          length: 191,
+          length: 191
         },
         mode: 'BICYCLE',
         rentedBike: false,
@@ -19,7 +19,7 @@ export default {
           name: 'Opastinsilta 6, Helsinki',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         to: {
           lat: 60.168941,
@@ -27,7 +27,7 @@ export default {
           name: 'Aleksanterinkatu 17, Helsinki',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         trip: null,
         intermediateStops: [],
@@ -37,11 +37,11 @@ export default {
         distance: 3884.128000000003,
         duration: 926.0,
         intermediatePlace: false,
-        agency: null,
-      },
+        agency: null
+      }
     ],
     duration: 926,
-    fares: null,
+    fares: null
   },
   bikingAndWalking: {
     start: new Date(1533206085000).toISOString(),
@@ -52,7 +52,7 @@ export default {
         legGeometry: {
           points:
             'sslnJkefwCMDg@RE@GD@XB\\F|@Dz@@H@XDj@PbCB|E?`@_Bl@[bMDC@F?LGB@N?B@N@N@L@P@L@F@LID_FdBIN[T]VUJ?@Dd@DbA',
-          length: 39,
+          length: 39
         },
         mode: 'BICYCLE',
         rentedBike: false,
@@ -63,7 +63,7 @@ export default {
           name: 'Opastinsilta 6, Helsinki',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         to: {
           lat: 60.20132220000001,
@@ -71,7 +71,7 @@ export default {
           name: 'corner of underpass and bike path',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         trip: null,
         intermediateStops: [],
@@ -81,7 +81,7 @@ export default {
         distance: 670.3969999999999,
         duration: 163.0,
         intermediatePlace: false,
-        agency: null,
+        agency: null
       },
       {
         transitLeg: false,
@@ -95,7 +95,7 @@ export default {
           name: 'corner of underpass and bike path',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         to: {
           lat: 60.200959600000004,
@@ -103,7 +103,7 @@ export default {
           name: 'corner of Platform 3 and Platform 4',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         trip: null,
         intermediateStops: [],
@@ -113,7 +113,7 @@ export default {
         distance: 41.574,
         duration: 49.0,
         intermediatePlace: false,
-        agency: null,
+        agency: null
       },
       {
         transitLeg: false,
@@ -127,7 +127,7 @@ export default {
           name: 'corner of Platform 3 and Platform 4',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         to: {
           lat: 60.199547700000004,
@@ -135,7 +135,7 @@ export default {
           name: 'corner of Platform 3 and Platform 4',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         trip: null,
         intermediateStops: [],
@@ -145,7 +145,7 @@ export default {
         distance: 161.353,
         duration: 34.0,
         intermediatePlace: false,
-        agency: null,
+        agency: null
       },
       {
         transitLeg: false,
@@ -159,7 +159,7 @@ export default {
           name: 'corner of Platform 3 and Platform 4',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         to: {
           lat: 60.199118,
@@ -171,8 +171,8 @@ export default {
             gtfsId: 'HSL:1174551',
             code: '0071',
             platformCode: '1-5',
-            id: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-          },
+            id: 'U3RvcDpIU0w6MTE3NDU1MQ=='
+          }
         },
         trip: null,
         intermediateStops: [],
@@ -182,13 +182,13 @@ export default {
         distance: 50.900999999999996,
         duration: 69.0,
         intermediatePlace: false,
-        agency: null,
+        agency: null
       },
       {
         transitLeg: true,
         legGeometry: {
           points: 'mslnJwydwCzJm@lG?jH`AbFTpLgBdK}DhHgDdi@}PvOgGrLkGzQkA',
-          length: 12,
+          length: 12
         },
         mode: 'RAIL',
         rentedBike: false,
@@ -198,13 +198,13 @@ export default {
           agency: {
             name: 'Helsingin seudun liikenne',
             id: 'QWdlbmN5OkhTTA==',
-            phone: '(09) 4766 4444',
+            phone: '(09) 4766 4444'
           },
           id: 'Um91dGU6SFNMOjMwMDFL',
           gtfsId: 'HSL:3001K',
           longName: 'Helsinki-Kerava',
           mode: 'RAIL',
-          alerts: [],
+          alerts: []
         },
         from: {
           lat: 60.199118,
@@ -216,8 +216,8 @@ export default {
             gtfsId: 'HSL:1174551',
             code: '0071',
             platformCode: '1-5',
-            id: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-          },
+            id: 'U3RvcDpIU0w6MTE3NDU1MQ=='
+          }
         },
         to: {
           lat: 60.172987,
@@ -229,95 +229,95 @@ export default {
             gtfsId: 'HSL:1020553',
             code: '0070',
             platformCode: '1-3',
-            id: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-          },
+            id: 'U3RvcDpIU0w6MTAyMDU1Mw=='
+          }
         },
         trip: {
           stoptimes: [
             {
               stop: {
                 gtfsId: 'HSL:9040502',
-                id: 'U3RvcDpIU0w6OTA0MDUwMg==',
+                id: 'U3RvcDpIU0w6OTA0MDUwMg=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:9090502',
-                id: 'U3RvcDpIU0w6OTA5MDUwMg==',
+                id: 'U3RvcDpIU0w6OTA5MDUwMg=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:4810551',
-                id: 'U3RvcDpIU0w6NDgxMDU1MQ==',
+                id: 'U3RvcDpIU0w6NDgxMDU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:4730551',
-                id: 'U3RvcDpIU0w6NDczMDU1MQ==',
+                id: 'U3RvcDpIU0w6NDczMDU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:4740551',
-                id: 'U3RvcDpIU0w6NDc0MDU1MQ==',
+                id: 'U3RvcDpIU0w6NDc0MDU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:4600551',
-                id: 'U3RvcDpIU0w6NDYwMDU1MQ==',
+                id: 'U3RvcDpIU0w6NDYwMDU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:4610551',
-                id: 'U3RvcDpIU0w6NDYxMDU1MQ==',
+                id: 'U3RvcDpIU0w6NDYxMDU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:1411551',
-                id: 'U3RvcDpIU0w6MTQxMTU1MQ==',
+                id: 'U3RvcDpIU0w6MTQxMTU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:1382551',
-                id: 'U3RvcDpIU0w6MTM4MjU1MQ==',
+                id: 'U3RvcDpIU0w6MTM4MjU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:1285551',
-                id: 'U3RvcDpIU0w6MTI4NTU1MQ==',
+                id: 'U3RvcDpIU0w6MTI4NTU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:1174551',
-                id: 'U3RvcDpIU0w6MTE3NDU1MQ==',
+                id: 'U3RvcDpIU0w6MTE3NDU1MQ=='
               },
-              pickupType: 'SCHEDULED',
+              pickupType: 'SCHEDULED'
             },
             {
               stop: {
                 gtfsId: 'HSL:1020553',
-                id: 'U3RvcDpIU0w6MTAyMDU1Mw==',
+                id: 'U3RvcDpIU0w6MTAyMDU1Mw=='
               },
-              pickupType: 'NONE',
-            },
+              pickupType: 'NONE'
+            }
           ],
           id: 'VHJpcDpIU0w6MzAwMUtfMjAxODA4MDFfVG9fMl8xMzEx',
           gtfsId: 'HSL:3001K_20180801_To_2_1311',
@@ -399,7 +399,7 @@ export default {
               { lat: 60.180862, lon: 24.938539 },
               { lat: 60.178187, lon: 24.939851 },
               { lat: 60.176005, lon: 24.941194 },
-              { lat: 60.172987, lon: 24.941576 },
+              { lat: 60.172987, lon: 24.941576 }
             ],
             stops: [
               {
@@ -410,7 +410,7 @@ export default {
                 id: 'U3RvcDpIU0w6OTA0MDUwMg==',
                 platformCode: '1-6',
                 code: 'Ke0042',
-                desc: 'Asemanaukio 1',
+                desc: 'Asemanaukio 1'
               },
               {
                 lat: 60.380407,
@@ -420,7 +420,7 @@ export default {
                 id: 'U3RvcDpIU0w6OTA5MDUwMg==',
                 platformCode: '4',
                 code: 'Ke0092',
-                desc: 'Saviontie 80',
+                desc: 'Saviontie 80'
               },
               {
                 lat: 60.350669,
@@ -430,7 +430,7 @@ export default {
                 id: 'U3RvcDpIU0w6NDgxMDU1MQ==',
                 platformCode: '4',
                 code: 'V0816',
-                desc: 'Metsolantie 2',
+                desc: 'Metsolantie 2'
               },
               {
                 lat: 60.332385,
@@ -440,7 +440,7 @@ export default {
                 id: 'U3RvcDpIU0w6NDczMDU1MQ==',
                 platformCode: '4',
                 code: 'V0736',
-                desc: 'Kasperinpolku 10',
+                desc: 'Kasperinpolku 10'
               },
               {
                 lat: 60.323635,
@@ -450,7 +450,7 @@ export default {
                 id: 'U3RvcDpIU0w6NDc0MDU1MQ==',
                 platformCode: '4',
                 code: 'V0746',
-                desc: 'Koivukylän puistotie',
+                desc: 'Koivukylän puistotie'
               },
               {
                 lat: 60.303266,
@@ -460,7 +460,7 @@ export default {
                 id: 'U3RvcDpIU0w6NDYwMDU1MQ==',
                 platformCode: '4',
                 code: 'V0606',
-                desc: 'Urheilutie 29',
+                desc: 'Urheilutie 29'
               },
               {
                 lat: 60.29259,
@@ -470,7 +470,7 @@ export default {
                 id: 'U3RvcDpIU0w6NDYxMDU1MQ==',
                 platformCode: '6',
                 code: 'V0617',
-                desc: 'Ratatie 11',
+                desc: 'Ratatie 11'
               },
               {
                 lat: 60.276015,
@@ -480,7 +480,7 @@ export default {
                 id: 'U3RvcDpIU0w6MTQxMTU1MQ==',
                 platformCode: '4',
                 code: '0077',
-                desc: 'Tapuliaukio',
+                desc: 'Tapuliaukio'
               },
               {
                 lat: 60.250924,
@@ -490,7 +490,7 @@ export default {
                 id: 'U3RvcDpIU0w6MTM4MjU1MQ==',
                 platformCode: '4',
                 code: '0075',
-                desc: 'Malminkaari 4',
+                desc: 'Malminkaari 4'
               },
               {
                 lat: 60.228072,
@@ -500,7 +500,7 @@ export default {
                 id: 'U3RvcDpIU0w6MTI4NTU1MQ==',
                 platformCode: '4',
                 code: '0073',
-                desc: 'Oulunkylän tori 2 a',
+                desc: 'Oulunkylän tori 2 a'
               },
               {
                 lat: 60.199118,
@@ -510,7 +510,7 @@ export default {
                 id: 'U3RvcDpIU0w6MTE3NDU1MQ==',
                 platformCode: '1-5',
                 code: '0071',
-                desc: 'Ratapihantie 6',
+                desc: 'Ratapihantie 6'
               },
               {
                 lat: 60.172987,
@@ -520,15 +520,15 @@ export default {
                 id: 'U3RvcDpIU0w6MTAyMDU1Mw==',
                 platformCode: '1-3',
                 code: '0070',
-                desc: 'Kaivokatu 1',
-              },
+                desc: 'Kaivokatu 1'
+              }
             ],
             route: {
               mode: 'RAIL',
               color: null,
-              id: 'Um91dGU6SFNMOjMwMDFL',
-            },
-          },
+              id: 'Um91dGU6SFNMOjMwMDFL'
+            }
+          }
         },
         intermediateStops: [],
         realTime: true,
@@ -541,8 +541,8 @@ export default {
           name: 'Helsingin seudun liikenne',
           url: 'http://www.hsl.fi/',
           fareUrl: null,
-          id: 'QWdlbmN5OkhTTA==',
-        },
+          id: 'QWdlbmN5OkhTTA=='
+        }
       },
       {
         transitLeg: false,
@@ -560,8 +560,8 @@ export default {
             gtfsId: 'HSL:1020553',
             code: '0070',
             platformCode: '1-3',
-            id: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-          },
+            id: 'U3RvcDpIU0w6MTAyMDU1Mw=='
+          }
         },
         to: {
           lat: 60.17297670000001,
@@ -569,7 +569,7 @@ export default {
           name: 'corner of  and Platform 2',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         trip: null,
         intermediateStops: [],
@@ -579,14 +579,14 @@ export default {
         distance: 36.331,
         duration: 46.0,
         intermediatePlace: false,
-        agency: null,
+        agency: null
       },
       {
         transitLeg: false,
         legGeometry: {
           points:
             'apgnJynfwCC@Pw@EwBAs@AYHCnDQXC@\\?n@@n@@NDLHDf@Ar@E\\CZAFAl@CVAD?DAJ?b@EHGFARALAp@EvDi@CmB',
-          length: 33,
+          length: 33
         },
         mode: 'BICYCLE',
         rentedBike: false,
@@ -597,7 +597,7 @@ export default {
           name: 'corner of  and Platform 2',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         to: {
           lat: 60.168941,
@@ -605,7 +605,7 @@ export default {
           name: 'Aleksanterinkatu 17, Helsinki',
           vertexType: 'NORMAL',
           vehicleRentalStation: null,
-          stop: null,
+          stop: null
         },
         trip: null,
         intermediateStops: [],
@@ -615,8 +615,8 @@ export default {
         distance: 594.3149999999999,
         duration: 153.0,
         intermediatePlace: false,
-        agency: null,
-      },
+        agency: null
+      }
     ],
     duration: 480,
     fares: [
@@ -624,8 +624,8 @@ export default {
         type: 'regular',
         currency: 'EUR',
         cents: 320,
-        components: [{ fareId: 'HSL:hki' }],
-      },
-    ],
-  },
+        components: [{ fareId: 'HSL:hki' }]
+      }
+    ]
+  }
 };

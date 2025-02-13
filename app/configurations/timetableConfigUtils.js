@@ -15,7 +15,7 @@ export default {
       baseURL,
       route,
       subscriptionParam,
-      subscriptionToken,
+      subscriptionToken
     ) {
       const routeIdSplitted = route.gtfsId.split(':');
       const routeId = routeIdSplitted[1];
@@ -31,7 +31,7 @@ export default {
       return url;
     },
     setAvailableRouteTimetables: function setAvailableRouteTimetables(
-      timetables,
+      timetables
     ) {
       this.availableRouteTimetables = timetables;
     },
@@ -46,14 +46,14 @@ export default {
       url.searchParams.append('props[date]', formattedDate);
       url.searchParams.append('props[lang]', lang);
       return url;
-    },
+    }
   },
   tampere: {
     timetableUrlResolver: function timetableUrlResolver(
       baseURL,
       route,
       subscriptionParam,
-      subscriptionToken,
+      subscriptionToken
     ) {
       const routeNumber = route.shortName.replace(/\D/g, '');
       return new URL(`${baseURL}${routeNumber}.html`);
@@ -61,6 +61,6 @@ export default {
     stopPdfUrlResolver: function stopPdfUrlResolver(baseURL, stop, date, lang) {
       const stopIdSplitted = stop.gtfsId.split(':');
       return new URL(`${baseURL}${parseInt(stopIdSplitted[1], 10)}.pdf`);
-    },
-  },
+    }
+  }
 };

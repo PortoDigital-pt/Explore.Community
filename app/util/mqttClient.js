@@ -43,7 +43,7 @@ function getTopic(options, settings) {
     headsign,
     feedId,
     tripId,
-    geoHash,
+    geoHash
   );
   return topic;
 }
@@ -86,7 +86,7 @@ export function parseMessage(topic, message, defaultFeedId) {
       startTime.length > 4 &&
       parseInt(startTime.substring(0, 2), 10) < 5
         ? `${parseInt(startTime.substring(0, 2), 10) + 24}${startTime.substring(
-            3,
+            3
           )}`
         : startTime.replace(/:/g, '');
     return {
@@ -105,7 +105,7 @@ export function parseMessage(topic, message, defaultFeedId) {
       long: ceil(parsedMessage.long, 5),
       shortName: parsedMessage.desi,
       heading: parsedMessage.hdg,
-      headsign: undefined, // in HSL data headsign from realtime data does not always match gtfs data
+      headsign: undefined // in HSL data headsign from realtime data does not always match gtfs data
     };
   }
   return undefined;
@@ -155,7 +155,7 @@ export function startMqttClient(settings, actionContext) {
           });
 
           return { client, topics };
-        },
+        }
       );
     }
     const client = mqtt.default.connect(settings.mqtt);
@@ -163,8 +163,8 @@ export function startMqttClient(settings, actionContext) {
     client.on('message', (topic, message) =>
       actionContext.dispatch(
         'RealTimeClientMessage',
-        parseMessage(topic, message, settings.feedId),
-      ),
+        parseMessage(topic, message, settings.feedId)
+      )
     );
     return { client, topics };
   });

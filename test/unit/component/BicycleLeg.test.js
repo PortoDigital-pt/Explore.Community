@@ -23,27 +23,27 @@ describe('<BicycleLeg />', () => {
           name: 'Hertanmäenkatu',
           vehicleRentalStation: {
             vehiclesAvailable: 0,
-            rentalNetwork: { networkId: 'foobar' },
-          },
+            rentalNetwork: { networkId: 'foobar' }
+          }
         },
         to: {
-          name: 'Testipaikka',
-        },
-      },
+          name: 'Testipaikka'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<BicycleLeg {...props} />, {
       context: {
         config: {
           vehicleRental: {
-            networks: { foobar: { type: RentalNetworkType.CityBike } },
+            networks: { foobar: { type: RentalNetworkType.CityBike } }
           },
           defaultSettings: { walkSpeed: 1, bikeSpeed: 1 },
-          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 },
-        },
-      },
+          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 }
+        }
+      }
     });
     expect(wrapper.find(FormattedMessage).at(0).prop('id')).to.equal(
-      'rent-cycle-at',
+      'rent-cycle-at'
     );
   });
 
@@ -64,27 +64,27 @@ describe('<BicycleLeg />', () => {
           name: 'Hertanmäenkatu',
           vehicleRentalStation: {
             vehiclesAvailable: 0,
-            rentalNetwork: { networkId: 'foobar' },
-          },
+            rentalNetwork: { networkId: 'foobar' }
+          }
         },
         to: {
-          name: 'Testipaikka',
-        },
-      },
+          name: 'Testipaikka'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<BicycleLeg {...props} />, {
       context: {
         config: {
           vehicleRental: {
-            networks: { foobar: { type: RentalNetworkType.Scooter } },
+            networks: { foobar: { type: RentalNetworkType.Scooter } }
           },
           defaultSettings: { walkSpeed: 1, bikeSpeed: 1 },
-          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 },
-        },
-      },
+          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 }
+        }
+      }
     });
     expect(wrapper.find(FormattedMessage).at(0).prop('id')).to.equal(
-      'rent-e-scooter-at',
+      'rent-e-scooter-at'
     );
   });
 
@@ -105,30 +105,30 @@ describe('<BicycleLeg />', () => {
           name: 'Hertanmäenkatu',
           vehicleRentalStation: {
             vehiclesAvailable: 0,
-            rentalNetwork: { networkId: 'foobar' },
-          },
+            rentalNetwork: { networkId: 'foobar' }
+          }
         },
         to: {
-          name: 'Testipaikka',
-        },
-      },
+          name: 'Testipaikka'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<BicycleLeg {...props} />, {
       context: {
         config: {
           vehicleRental: {
-            networks: { foobar: { type: RentalNetworkType.CityBike } },
+            networks: { foobar: { type: RentalNetworkType.CityBike } }
           },
           defaultSettings: { walkSpeed: 1, bikeSpeed: 1 },
-          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 },
-        },
-      },
+          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 }
+        }
+      }
     });
     expect(
       wrapper
         .find(FormattedMessage)
         .find('[id="cycle-distance-duration"]')
-        .exists(),
+        .exists()
     ).to.equal(true);
   });
 
@@ -149,30 +149,30 @@ describe('<BicycleLeg />', () => {
           name: 'Hertanmäenkatu',
           vehicleRentalStation: {
             vehiclesAvailable: 0,
-            rentalNetwork: { networkId: 'foobar' },
-          },
+            rentalNetwork: { networkId: 'foobar' }
+          }
         },
         to: {
-          name: 'Testipaikka',
-        },
-      },
+          name: 'Testipaikka'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<BicycleLeg {...props} />, {
       context: {
         config: {
           vehicleRental: {
-            networks: { foobar: { type: RentalNetworkType.Scooter } },
+            networks: { foobar: { type: RentalNetworkType.Scooter } }
           },
           defaultSettings: { walkSpeed: 1, bikeSpeed: 1 },
-          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 },
-        },
-      },
+          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 }
+        }
+      }
     });
     expect(
       wrapper
         .find(FormattedMessage)
         .find('[id="scooter-distance-duration"]')
-        .exists(),
+        .exists()
     ).to.equal(true);
   });
 
@@ -193,27 +193,27 @@ describe('<BicycleLeg />', () => {
           name: 'Hertanmäenkatu',
           vehicleRentalStation: {
             vehiclesAvailable: 0,
-            rentalNetwork: { networkId: 'foobar' },
-          },
+            rentalNetwork: { networkId: 'foobar' }
+          }
         },
         to: {
-          name: 'Testipaikka',
-        },
-      },
+          name: 'Testipaikka'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<BicycleLeg {...props} />, {
       context: {
         config: {
           vehicleRental: {
-            networks: { foobar: { type: RentalNetworkType.CityBike } },
+            networks: { foobar: { type: RentalNetworkType.CityBike } }
           },
           defaultSettings: { walkSpeed: 1, bikeSpeed: 1 },
-          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 },
-        },
-      },
+          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 }
+        }
+      }
     });
     expect(wrapper.find(FormattedMessage).at(1).prop('id')).to.equal(
-      'cyclewalk-distance-duration',
+      'cyclewalk-distance-duration'
     );
   });
 
@@ -234,27 +234,27 @@ describe('<BicycleLeg />', () => {
           name: 'Hertanmäenkatu',
           vehicleRentalStation: {
             vehiclesAvailable: 0,
-            rentalNetwork: { networkId: 'foobar' },
-          },
+            rentalNetwork: { networkId: 'foobar' }
+          }
         },
         to: {
-          name: 'Testipaikka',
-        },
-      },
+          name: 'Testipaikka'
+        }
+      }
     };
     const wrapper = shallowWithIntl(<BicycleLeg {...props} />, {
       context: {
         config: {
           vehicleRental: {
-            networks: { foobar: { type: RentalNetworkType.Scooter } },
+            networks: { foobar: { type: RentalNetworkType.Scooter } }
           },
           defaultSettings: { walkSpeed: 1, bikeSpeed: 1 },
-          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 },
-        },
-      },
+          defaultOptions: { walkSpeed: 1, bikeSpeed: 1 }
+        }
+      }
     });
     expect(wrapper.find(FormattedMessage).at(1).prop('id')).to.equal(
-      'scooterwalk-distance-duration',
+      'scooterwalk-distance-duration'
     );
   });
 });

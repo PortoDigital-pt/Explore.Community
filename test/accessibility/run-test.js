@@ -20,20 +20,20 @@ const localResults = {
   violations: [],
   passes: [],
   incomplete: [],
-  inapplicable: [],
+  inapplicable: []
 };
 const benchmarkResults = {
   violations: [],
   passes: [],
   incomplete: [],
-  inapplicable: [],
+  inapplicable: []
 };
 
 const color = {
   critical: '\x1b[1m\x1b[31m',
   serious: '\x1b[31m',
   moderate: '\x1b[33m',
-  minor: '\x1b[33m',
+  minor: '\x1b[33m'
 };
 
 process.exitCode = 1;
@@ -82,7 +82,7 @@ const printTestResults = (results, printResults, url) => {
       console.log(
         color[v.impact],
         `${v.impact} - ${v.id}: ${v.help} ${firstTargetElement}`,
-        '\x1b[0m',
+        '\x1b[0m'
       );
     }
   }
@@ -127,7 +127,7 @@ async function terminalPageTimetableTest(
   rootUrl,
   printResults,
   benchmark,
-  path,
+  path
 ) {
   const [driver, builder] = createTestEnv();
   const url = `${rootUrl}${path}`;
@@ -150,7 +150,7 @@ async function ItineraryTest(rootUrl, printResults, benchmark, path) {
   await driver.get(url);
   // Open settings menu
   const el = await driver.findElement(
-    By.className('open-advanced-settings-window-button'),
+    By.className('open-advanced-settings-window-button')
   );
   await driver.wait(until.elementIsVisible(el), 1000);
   await el.sendKeys(Key.RETURN);
@@ -166,7 +166,7 @@ const TEST_CASES = {
   '/lahellasi/BUS/Rautatientori%2C%20Helsinki::60.170384,24.939846':
     stopsNearYouTest,
   '/reitti/Otakaari%2024%2C%20Espoo%3A%3A60.1850004462205%2C24.832384918447488/L%C3%B6nnrotinkatu%2029%2C%20Helsinki%3A%3A60.164182342362864%2C24.932237237563104':
-    ItineraryTest,
+    ItineraryTest
 };
 
 async function runTestCases(
@@ -174,7 +174,7 @@ async function runTestCases(
   isBenchmark,
   callback,
   printResults,
-  pathsToTest = undefined,
+  pathsToTest = undefined
 ) {
   for (const [path, test] of Object.entries(TEST_CASES)) {
     if (pathsToTest) {
@@ -194,15 +194,15 @@ const violationsAreEqual = (v1, v2) => {
 
 const resetErrorsRelatedtoURL = urls => {
   localResults.violations = localResults.violations.filter(
-    v => !urls.has(v.url),
+    v => !urls.has(v.url)
   );
   localResults.passes = localResults.passes.filter(v => !urls.has(v.url));
 
   benchmarkResults.violations = benchmarkResults.violations.filter(
-    v => !urls.has(v.url),
+    v => !urls.has(v.url)
   );
   benchmarkResults.passes = benchmarkResults.passes.filter(
-    v => !urls.has(v.url),
+    v => !urls.has(v.url)
   );
 };
 
@@ -212,11 +212,11 @@ const wrapup = () => {
     console.log('=== ACCESSIBILITY TESTS DONE ===');
   }
   console.log(
-    `violations in LOCAL: ${localResults.violations.length}, passes: ${localResults.passes.length}, incomplete: ${localResults.incomplete.length}, inapplicable: ${localResults.inapplicable.length}`,
+    `violations in LOCAL: ${localResults.violations.length}, passes: ${localResults.passes.length}, incomplete: ${localResults.incomplete.length}, inapplicable: ${localResults.inapplicable.length}`
   );
   if (!onlyTestLocal) {
     console.log(
-      `violations in BENCHMARK: ${benchmarkResults.violations.length}, passes: ${benchmarkResults.passes.length}, incomplete: ${benchmarkResults.incomplete.length}, inapplicable: ${benchmarkResults.inapplicable.length}`,
+      `violations in BENCHMARK: ${benchmarkResults.violations.length}, passes: ${benchmarkResults.passes.length}, incomplete: ${benchmarkResults.incomplete.length}, inapplicable: ${benchmarkResults.inapplicable.length}`
     );
     const newViolations = localResults.violations.filter(v1 => {
       return !benchmarkResults.violations.some(v2 => {
@@ -249,7 +249,7 @@ const wrapup = () => {
         console.log(
           color[v.impact],
           `${v.impact} - ${v.id}: ${v.help} ${firstTargetElement}`,
-          '\x1b[0m',
+          '\x1b[0m'
         );
       }
     } else {
@@ -276,14 +276,14 @@ const runTests = (printResults, pathsToTest = undefined) => {
           } else {
             callback(null);
           }
-        },
+        }
       ],
       err => {
         if (err) {
           throw new Error(err);
         }
         wrapup();
-      },
+      }
     );
   } catch (e) {
     throw new Error(e);

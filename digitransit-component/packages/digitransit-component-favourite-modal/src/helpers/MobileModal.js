@@ -20,7 +20,7 @@ const MobileModal = ({
   savePlaceText,
   cantSaveText,
   requiredText,
-  fontWeights,
+  fontWeights
 }) => {
   return (
     <div
@@ -28,7 +28,7 @@ const MobileModal = ({
       style={{
         '--color': `${color}`,
         '--hover-color': `${hoverColor}`,
-        '--font-weight-medium': fontWeights.medium,
+        '--font-weight-medium': fontWeights.medium
       }}
     >
       <div className={styles['favourite-modal-mobile-top']}>
@@ -60,7 +60,7 @@ const MobileModal = ({
           className={cx(
             `${styles['favourite-modal-mobile-button']} ${
               canSave() ? '' : styles.disabled
-            }`,
+            }`
           )}
           onClick={saveFavourite}
           aria-label={`${canSave() ? savePlaceText : cantSaveText}`}
@@ -89,8 +89,8 @@ MobileModal.propTypes = {
   cantSaveText: PropTypes.string.isRequired,
   requiredText: PropTypes.string.isRequired,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number.isRequired,
-  }).isRequired,
+    medium: PropTypes.number.isRequired
+  }).isRequired
 };
 
 export default MobileModal;
