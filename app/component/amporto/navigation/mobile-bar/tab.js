@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, bool, func } from 'prop-types';
 import classnames from 'classnames';
-import Icon from '../../Icon';
+import Icon from '../../../Icon';
 
 export const NavTab = ({ item, onClick, description, active }) => (
   <div

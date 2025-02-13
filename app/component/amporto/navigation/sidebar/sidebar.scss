@@ -44,7 +44,9 @@ button.menu {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 24px;
+    flex-grow: 1;
+    row-gap: 32px;
+    padding: 24px 24px 24px 32px;
     background-color: $primary-color;
     position: absolute;
     left: 0;
@@ -57,6 +59,34 @@ button.menu {
         rgba(0, 0, 0, 0.23) 0 3px 10px;
     transition: transform 450ms cubic-bezier(0.23, 1, 0.32, 1);
     transform: translate(-100%);
+
+
+    .top {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        flex-direction: row;
+
+        h1 {
+            font-size: 28px;
+            line-height: 0;
+            color: $primary-contrastText;
+            font-weight: $font-weight-bold;
+        }
+
+        .icon {
+            display: flex;
+            position: relative;
+            width: 33px;
+            height: 33px;
+            color: $primary-contrastText;
+        }
+    }
+
+    footer {
+        position: absolute;
+        bottom: 24px;
+    }
 }
 
 .sidebar-content-close {

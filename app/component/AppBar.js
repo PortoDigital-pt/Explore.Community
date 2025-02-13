@@ -12,7 +12,7 @@ import LogoSmall from './LogoSmall';
 import CanceledLegsBar from './CanceledLegsBar';
 import LoginButton from './LoginButton';
 import UserMenu from './UserMenu';
-import SidebarMenu from './amporto/sidebar';
+import SidebarMenu from './amporto/navigation/sidebar';
 
 export default function AppBar(
   { showLogo, title, homeUrl, logo, user, breakpoint, titleClicked },

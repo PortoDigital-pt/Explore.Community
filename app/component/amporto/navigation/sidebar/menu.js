@@ -1,6 +1,7 @@
 import React from 'react';
 import { bool, func } from 'prop-types';
 import Modal from 'react-modal';
+import Content from './content';
 
 const classNames = {
     base: 'sidebar-content',
@@ -22,7 +23,7 @@ const Menu = ({ isOpen, onClose }) => (
         onRequestClose={onClose}
         shouldFocusAfterRender={false}
     >
-        <div>MODAL</div>
+        <Content onClose={onClose} />
     </Modal>
 );
 

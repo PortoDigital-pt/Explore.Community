@@ -4,25 +4,10 @@ import classnames from 'classnames';
 import { string } from 'prop-types';
 import getContext from 'recompose/getContext';
 import { intlShape } from 'react-intl';
-import { configShape } from '../../../util/shapes';
+import { configShape } from '../../../../util/shapes';
 import { NavTab } from './tab';
-import withBreakpoint from '../../../util/withBreakpoint';
-
-const NAVIGATION_ITEMS = {
-  EXPLORE: 'explore',
-  NAVIGATE: 'navigate',
-  ITINERARIES: 'itineraries',
-  BLOCKS: 'blocks',
-  FAVOURITES: 'favourites'
-};
-
-const NAVIGATION_ITEMS_PATH_MAP = {
-  [NAVIGATION_ITEMS.EXPLORE]: `/${NAVIGATION_ITEMS.EXPLORE}`,
-  [NAVIGATION_ITEMS.NAVIGATE]: '/',
-  [NAVIGATION_ITEMS.ITINERARIES]: `/${NAVIGATION_ITEMS.ITINERARIES}`,
-  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`,
-  [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
-};
+import withBreakpoint from '../../../../util/withBreakpoint';
+import { NAVIGATION_ITEMS, NAVIGATION_ITEMS_PATH_MAP } from '../constants';
 
 const filterNavigationItems = ({ showItineraries, showBlocks }) => {
   const navToRender = { ...NAVIGATION_ITEMS };

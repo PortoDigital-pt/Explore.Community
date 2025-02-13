@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useCallback, lazy } from 'react';
 import classnames from 'classnames';
-import Icon from '../../Icon';
-import withBreakpoint from '../../../util/withBreakpoint';
+import Icon from '../../../Icon';
+import withBreakpoint from '../../../../util/withBreakpoint';
 
 const Menu = lazy(() => import('./menu'));
 
