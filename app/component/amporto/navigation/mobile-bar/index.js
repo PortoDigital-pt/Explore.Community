@@ -51,7 +51,7 @@ const NavigationBar = (
 
   useEffect(() => {
     if (!client) {
-      setClient(true)
+      setClient(true);
     }
   }, [client, setClient]);
 

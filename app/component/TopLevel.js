@@ -117,7 +117,7 @@ class TopLevel extends React.Component {
           (prevProps.match.params.terminalId &&
             this.props.match.params.terminalId &&
             prevProps.match.params.terminalId !==
-            this.props.match.params.terminalId) ||
+              this.props.match.params.terminalId) ||
           (prevProps.match.params.id &&
             this.props.match.params.id &&
             prevProps.match.params.id !== this.props.match.params.id)
@@ -198,7 +198,7 @@ class TopLevel extends React.Component {
           <ErrorBoundary
             key={
               this.props.match.location.state &&
-                this.props.match.location.state.errorBoundaryKey
+              this.props.match.location.state.errorBoundaryKey
                 ? this.props.match.location.state.errorBoundaryKey
                 : 0
             }

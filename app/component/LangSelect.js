@@ -19,7 +19,7 @@ const language = (lang, highlight, match, intl) => {
       aria-label={aria}
       key={lang}
       href={`/${lang}${match.location.pathname}${match.location.search}`}
-      className={`${(highlight && 'selected') || ''} noborder lang`}
+      className={`${(highlight && 'selected') || ''} noborder language`}
     >
       {lang}
     </a>
@@ -29,7 +29,7 @@ const language = (lang, highlight, match, intl) => {
 const LangSelect = ({ currentLanguage }, { config, match, intl }) => {
   if (isBrowser) {
     return (
-      <div key="lang-select" id="lang-select">
+      <div key="lang-select" id="language-select">
         {config.availableLanguages.map(lang =>
           language(lang, lang === currentLanguage, match, intl)
         )}
