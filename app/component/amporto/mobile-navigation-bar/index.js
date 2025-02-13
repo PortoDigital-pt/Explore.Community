@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { useRouter } from 'found';
 import classnames from 'classnames';
 import { string } from 'prop-types';
@@ -51,6 +51,7 @@ const NavigationBar = (
   { breakpoint },
   { config: { showItineraries, showBlocks }, intl }
 ) => {
+  const [client, setClient] = useState(false);
   const { match, router } = useRouter();
 
   const navigationItems = useMemo(
@@ -62,6 +63,16 @@ const NavigationBar = (
     item => router.push(NAVIGATION_ITEMS_PATH_MAP[item]),
     [router.push]
   );
+
+  useEffect(() => {
+    if (!client) {
+      setClient(true)
+    }
+  }, [client, setClient]);
+
+  if (!client) {
+    return null;
+  }
 
   return (
     <nav
