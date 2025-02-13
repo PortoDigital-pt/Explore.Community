@@ -113,6 +113,19 @@ button.menu {
     footer {
         position: absolute;
         bottom: 24px;
+        display: flex;
+        flex-direction: column;
+
+        span {
+            display: flex;
+            position: relative;
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: $font-weight-regular;
+            color: $primary-light;
+            font-size: $font-size-s;
+        }
     }
 }
 

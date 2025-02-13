@@ -17,7 +17,7 @@ const Content = ({ onClose }) => (
       <LanguageSelection />
       <nav>nav items</nav>
     </>
-    <footer>footer</footer>
+    <footer><span>Política de privacidade</span><span>Política de cookies</span></footer>
   </>
 );
 
