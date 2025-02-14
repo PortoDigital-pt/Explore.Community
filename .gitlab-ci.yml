@@ -11,3 +11,7 @@ sast:
   stage: test
 include:
 - template: Security/SAST.gitlab-ci.yml
+- template: Jobs/Container-Scanning.gitlab-ci.yml
+
+variables:
+    SECURE_LOG_LEVEL: 'debug'
