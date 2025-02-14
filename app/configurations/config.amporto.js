@@ -205,7 +205,7 @@ export default {
     content: [
       {
         name: 'about-this-service',
-        route: '/tietoja-palvelusta'
+        route: '/about'
       },
       {
         name: 'accessibility-statement',

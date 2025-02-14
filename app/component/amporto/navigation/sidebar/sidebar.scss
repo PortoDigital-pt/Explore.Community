@@ -48,9 +48,7 @@ button.menu {
     row-gap: 32px;
     padding: 24px 24px 24px 32px;
     background-color: $primary-color;
-    position: absolute;
-    left: 0;
-    right: auto;
+    position: relative;
     width: 90%;
     height: 100%;
     z-index: 10003;
@@ -82,7 +80,7 @@ button.menu {
         }
     }
 
-    #language-select {
+    .language-select {
         display: flex;
         position: relative;
         margin-top: 0 !important;
@@ -110,21 +108,59 @@ button.menu {
         }
     }
 
+    nav {
+        width: calc(70% - 32px - 24px);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        row-gap: 16px;
+
+        button {
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            justify-content: flex-start;
+            column-gap: 8px;
+            padding: 8px 0 8px 0;
+            color: $primary-contrastText;
+
+            .icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            span {
+                font-weight: $font-weight-regular;
+                font-size: $font-size-l;
+            }
+        }
+    }
+
     footer {
+        width: calc(70% - 32px - 24px);
         position: absolute;
         bottom: 24px;
         display: flex;
         flex-direction: column;
 
-        span {
+        button {
             display: flex;
             position: relative;
-            padding: 8px;
+            padding: 8px 0 8px 0;
             width: 100%;
             cursor: pointer;
             font-weight: $font-weight-regular;
             color: $primary-light;
             font-size: $font-size-s;
+        }
+
+        hr {
+            position: relative;
+            display: flex;
+            width: 100%;
+            stroke-width: 1px;
+            color: $neutral;
+            margin-bottom: 10px;
         }
     }
 }

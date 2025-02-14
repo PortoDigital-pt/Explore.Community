@@ -19,7 +19,7 @@ export const render = createRender({});
 export default config => (
   <Route Component={TopLevel}>
     <Route
-      path="/tietoja-palvelusta"
+      path="/about"
       getComponent={() =>
         import(/* webpackChunkName: "about" */ '../component/AboutPage').then(
           getDefault

@@ -872,6 +872,7 @@ const translations = {
     'search-autosuggest-len':
       'There {len, plural, =1 {is 1 suggestion} other {are {len} suggestions}} available',
     'search-current-suggestion': 'Current selection: {selection}',
+    'lang-selection': 'Select: {language}',
     'select-date': 'Select date',
     'select-from-map-destination': 'Select destination',
     'select-from-map-favourite': 'Select from map',
@@ -4607,6 +4608,7 @@ const translations = {
       'Locații, adrese, stații. Selectați cu mouse-ul sau alegeți din săgețile tastaturii.',
     'search-autosuggest-len': 'Am găsit {len} sugestii',
     'search-current-suggestion': 'Current selection: {selection}',
+    'lang-selection': 'Select: {language}',
     'select-date': 'Selectați data',
     'set-time-earlier-button-label':
       'Setați timpul călătoriei pentru mai devreme',
@@ -6079,6 +6081,7 @@ const translations = {
     'search-autosuggest-label-move-to-destination':
       'Depois de selecionar o local de partida, você é automaticamente movido para o campo de destino.',
     'search-current-suggestion': 'Seleção atual: {selection}',
+    'lang-selection': 'Seleccionar: {language}',
     'search-destination-index': 'Insira o destino',
     'search-fields.sr-instructions':
       'A pesquisa de rotas ocorrerá automaticamente quando você inserir origem e destino. A alteração dos parâmetros de pesquisa desencadeará uma nova pesquisa. Navegue até os campos de pesquisa usando a tecla tab',

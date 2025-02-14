@@ -545,7 +545,7 @@ export default {
       },
       {
         name: 'about-this-service',
-        route: '/tietoja-palvelusta'
+        route: '/about'
       }
     ]
   },

@@ -7,7 +7,22 @@ import { intlShape } from 'react-intl';
 import { configShape } from '../../../../util/shapes';
 import { NavTab } from './tab';
 import withBreakpoint from '../../../../util/withBreakpoint';
-import { NAVIGATION_ITEMS, NAVIGATION_ITEMS_PATH_MAP } from '../constants';
+
+export const NAVIGATION_ITEMS = {
+  EXPLORE: 'explore',
+  NAVIGATE: 'navigate',
+  ITINERARIES: 'itineraries',
+  BLOCKS: 'blocks',
+  FAVOURITES: 'favourites'
+};
+
+export const NAVIGATION_ITEMS_PATH_MAP = {
+  [NAVIGATION_ITEMS.EXPLORE]: `/${NAVIGATION_ITEMS.EXPLORE}`,
+  [NAVIGATION_ITEMS.NAVIGATE]: '/',
+  [NAVIGATION_ITEMS.ITINERARIES]: `/${NAVIGATION_ITEMS.ITINERARIES}`,
+  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`,
+  [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
+};
 
 const filterNavigationItems = ({ showItineraries, showBlocks }) => {
   const navToRender = { ...NAVIGATION_ITEMS };
@@ -44,7 +59,7 @@ const NavigationBar = (
     [showItineraries, showBlocks]
   );
 
-  const onNavigation = useCallback(
+  const navigate = useCallback(
     item => router.push(NAVIGATION_ITEMS_PATH_MAP[item]),
     [router.push]
   );
@@ -69,7 +84,7 @@ const NavigationBar = (
         <NavTab
           key={item}
           item={item}
-          onClick={() => onNavigation(item)}
+          onClick={() => navigate(item)}
           description={intl.messages[`nav-item-${item}`]}
           active={isActive({ pathname: match.location.pathname, item })}
         />

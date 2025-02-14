@@ -12,14 +12,14 @@ const language = (lang, highlight, match, intl) => {
         { id: 'search-current-suggestion' },
         { selection: lang }
       )
-    : intl.formatMessage({ id: 'language-selection' }, { language: lang });
+    : intl.formatMessage({ id: 'lang-selection' }, { language: lang });
   return (
     <a
       id={`lang-${lang}`}
       aria-label={aria}
       key={lang}
       href={`/${lang}${match.location.pathname}${match.location.search}`}
-      className={`${(highlight && 'selected') || ''} noborder language`}
+      className={`${(highlight && 'selected') || ''} noborder lang`}
     >
       {lang}
     </a>

@@ -3,13 +3,13 @@ import { string, bool, func } from 'prop-types';
 import classnames from 'classnames';
 import Icon from '../../../Icon';
 
+//TODO: proper aria label
 export const NavTab = ({ item, onClick, description, active }) => (
-  <div
+  <button
+    type='button'
     className="nav-tab"
     aria-label={description}
     onClick={onClick}
-    role="button"
-    tabIndex={0}
   >
     <div className={classnames('content', { active })}>
       <Icon img={`icon-${item}`} viewBox="0 0 24 24" />
@@ -20,7 +20,7 @@ export const NavTab = ({ item, onClick, description, active }) => (
         hide: !active
       })}
     />
-  </div>
+  </button>
 );
 
 NavTab.propTypes = {
