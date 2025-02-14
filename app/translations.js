@@ -1819,7 +1819,9 @@ const translations = {
     'nav-item-navigate': 'Navigate',
     'nav-item-itineraries': 'Itineraries',
     'nav-item-blocks': 'Blocks',
-    'nav-item-favourites': 'Favourites'
+    'nav-item-favourites': 'Favourites',
+    'nav-item-profile': 'Profile',
+    'nav-item-about': 'About {app}'
   },
 
   es: {
@@ -6235,7 +6237,9 @@ const translations = {
     'nav-item-navigate': 'Navegar',
     'nav-item-itineraries': 'Roteiros',
     'nav-item-blocks': 'Quarteirões',
-    'nav-item-favourites': 'Favoritos'
+    'nav-item-favourites': 'Favoritos',
+    'nav-item-profile': 'Perfil',
+    'nav-item-about': 'Sobre o {app}'
   },
 
   sv: {

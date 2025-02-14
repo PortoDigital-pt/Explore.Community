@@ -14,6 +14,8 @@ const overlayClassNames = {
   beforeClose: 'sidebar-overlay-close'
 };
 
+Modal.setAppElement('#app');
+
 const Menu = ({ isOpen, onClose }) => (
   <Modal
     isOpen={isOpen}
@@ -21,7 +23,8 @@ const Menu = ({ isOpen, onClose }) => (
     className={classNames}
     overlayClassName={overlayClassNames}
     onRequestClose={onClose}
-    shouldFocusAfterRender={false}
+    shouldFocusAfterRender
+    shouldCloseOnEsc
   >
     <Content onClose={onClose} />
   </Modal>

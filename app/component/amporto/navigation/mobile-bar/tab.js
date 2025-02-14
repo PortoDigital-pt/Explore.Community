@@ -3,10 +3,11 @@ import { string, bool, func } from 'prop-types';
 import classnames from 'classnames';
 import Icon from '../../../Icon';
 
-//TODO: proper aria label
+// TODO: aria label to navigation
+
 export const NavTab = ({ item, onClick, description, active }) => (
   <button
-    type='button'
+    type="button"
     className="nav-tab"
     aria-label={description}
     onClick={onClick}

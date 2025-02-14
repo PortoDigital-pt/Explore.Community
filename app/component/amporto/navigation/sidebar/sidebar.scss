@@ -65,7 +65,7 @@ button.menu {
         flex-direction: row;
 
         h1 {
-            font-size: 28px;
+            font-size: $font-size-heading-s;
             line-height: 0;
             color: $primary-contrastText;
             font-weight: $font-weight-bold;
@@ -109,13 +109,14 @@ button.menu {
     }
 
     nav {
-        width: calc(70% - 32px - 24px);
+        width: 85%;
         position: relative;
         display: flex;
         flex-direction: column;
         row-gap: 16px;
 
         button {
+            width: 100%;
             display: flex;
             position: relative;
             flex-direction: row;
@@ -130,14 +131,29 @@ button.menu {
             }
 
             span {
+                text-align: left;
                 font-weight: $font-weight-regular;
                 font-size: $font-size-l;
             }
+
+            &:nth-last-child(-n + 3) {
+                margin-top: -10px;
+            }
+        }
+
+        hr {
+            position: relative;
+            display: flex;
+            width: 100%;
+            stroke-width: 1px;
+            color: $neutral;
+            margin-top: -10px;
+            margin-bottom: 10px;
         }
     }
 
     footer {
-        width: calc(70% - 32px - 24px);
+        width: calc(85% - 32px - 24px);
         position: absolute;
         bottom: 24px;
         display: flex;

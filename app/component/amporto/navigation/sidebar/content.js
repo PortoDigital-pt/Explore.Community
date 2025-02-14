@@ -7,7 +7,7 @@ import Icon from '../../../Icon';
 import LanguageSelect from '../../language';
 import { configShape } from '../../../../util/shapes';
 
-// TODO: name from config?
+// TODO: aria label to navigation
 
 export const NAVIGATION_ITEMS = {
   EXPLORE: 'explore',
@@ -16,11 +16,16 @@ export const NAVIGATION_ITEMS = {
   BLOCKS: 'blocks'
 };
 
+const NAVIGATION_PROFILE = 'profile';
+const NAVIGATION_ABOUT = 'about';
+
 export const NAVIGATION_ITEMS_PATH_MAP = {
   [NAVIGATION_ITEMS.EXPLORE]: `/${NAVIGATION_ITEMS.EXPLORE}`,
   [NAVIGATION_ITEMS.NAVIGATE]: '/',
   [NAVIGATION_ITEMS.ITINERARIES]: `/${NAVIGATION_ITEMS.ITINERARIES}`,
-  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`
+  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`,
+  [NAVIGATION_PROFILE]: `/${NAVIGATION_PROFILE}`,
+  [NAVIGATION_ABOUT]: `/${NAVIGATION_ABOUT}`
 };
 
 const filterNavigationItems = ({ showItineraries, showBlocks }) => {
@@ -39,7 +44,7 @@ const filterNavigationItems = ({ showItineraries, showBlocks }) => {
 
 const Content = (
   { onClose },
-  { config: { showItineraries, showBlocks }, intl }
+  { config: { title, showItineraries, showBlocks }, intl }
 ) => {
   const { router } = useRouter();
 
@@ -60,7 +65,7 @@ const Content = (
     <>
       <>
         <div className="top">
-          <h1>Explore.Porto</h1>
+          <h1>{title}</h1>
           <button onClick={onClose} type="button">
             <Icon img="icon-close" viewBox="0 0 33 33" />
           </button>
@@ -73,12 +78,27 @@ const Content = (
               <span>{intl.messages[`nav-item-${item}`]}</span>
             </button>
           ))}
+          <hr />
+          <button onClick={() => navigate(NAVIGATION_PROFILE)} type="button">
+            <Icon img={`icon-${NAVIGATION_PROFILE}`} viewBox="0 0 24 24" />
+            <span>{intl.messages[`nav-item-${NAVIGATION_PROFILE}`]}</span>
+          </button>
+          <hr />
+          <button onClick={() => navigate(NAVIGATION_ABOUT)} type="button">
+            <Icon img={`icon-${NAVIGATION_ABOUT}`} viewBox="0 0 24 24" />
+            <span>
+              {intl.formatMessage(
+                { id: `nav-item-${NAVIGATION_ABOUT}` },
+                { app: title }
+              )}
+            </span>
+          </button>
         </nav>
       </>
       <footer>
         <hr />
-        <button type='button'>Política de privacidade</button>
-        <button type='button'>Política de cookies</button>
+        <button type="button">Política de privacidade</button>
+        <button type="button">Política de cookies</button>
       </footer>
     </>
   );
