@@ -159,7 +159,8 @@ button.menu {
         display: flex;
         flex-direction: column;
 
-        button {
+        a {
+            text-decoration: none;
             display: flex;
             position: relative;
             padding: 8px 0 8px 0;

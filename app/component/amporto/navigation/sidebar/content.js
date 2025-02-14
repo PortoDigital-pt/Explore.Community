@@ -8,6 +8,7 @@ import LanguageSelect from '../../language';
 import { configShape } from '../../../../util/shapes';
 
 // TODO: aria label to navigation
+// TODO: footer description on translations
 
 export const NAVIGATION_ITEMS = {
   EXPLORE: 'explore',
@@ -44,7 +45,16 @@ const filterNavigationItems = ({ showItineraries, showBlocks }) => {
 
 const Content = (
   { onClose },
-  { config: { title, showItineraries, showBlocks }, intl }
+  {
+    config: {
+      title,
+      showItineraries,
+      showBlocks,
+      privacyPolicyLink,
+      cookiesPolicyLink
+    },
+    intl
+  }
 ) => {
   const { router } = useRouter();
 
@@ -95,11 +105,21 @@ const Content = (
           </button>
         </nav>
       </>
-      <footer>
-        <hr />
-        <button type="button">Política de privacidade</button>
-        <button type="button">Política de cookies</button>
-      </footer>
+      {(privacyPolicyLink || cookiesPolicyLink) && (
+        <footer>
+          <hr />
+          {privacyPolicyLink && (
+            <a target="_blank" href={privacyPolicyLink} rel="noreferrer">
+              Política de privacidade
+            </a>
+          )}
+          {cookiesPolicyLink && (
+            <a target="_blank" href={cookiesPolicyLink} rel="noreferrer">
+              Política de cookies
+            </a>
+          )}
+        </footer>
+      )}
     </>
   );
 };

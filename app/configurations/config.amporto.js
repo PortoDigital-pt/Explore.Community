@@ -49,7 +49,9 @@ const {
   MESSAGE_BAR_ALERTS,
   SHOW_CO2_IN_ITINERARY_SUMMARY,
   SHOW_ITINERARIES,
-  SHOW_BLOCKS
+  SHOW_BLOCKS,
+  PRIVACY_POLICY,
+  COOKIES_POLICY
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -225,6 +227,9 @@ export default {
   },
 
   useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
+
+  privacyPolicyLink: PRIVACY_POLICY,
+  cookiesPolicyLink: COOKIES_POLICY,
 
   aboutThisService: {
     en: [
