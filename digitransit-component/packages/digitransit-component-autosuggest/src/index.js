@@ -21,7 +21,7 @@ import 'moment/locale/de';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import translations from './helpers/translations';
-import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest.scss';
+import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest/autosuggest.scss';
 import MobileSearch from './helpers/MobileSearch';
 import withScrollLock from './helpers/withScrollLock';
 
@@ -303,7 +303,8 @@ class DTAutosuggest extends React.Component {
     required: PropTypes.bool,
     modeSet: PropTypes.string,
     showScroll: PropTypes.bool,
-    isEmbedded: PropTypes.bool
+    isEmbedded: PropTypes.bool,
+    mobileSearchPrefixIconId: PropTypes.string
   };
 
   static defaultProps = {
@@ -351,7 +352,8 @@ class DTAutosuggest extends React.Component {
     required: false,
     modeSet: undefined,
     showScroll: false,
-    refPoint: {}
+    refPoint: {},
+    mobileSearchPrefixIconId: undefined
   };
 
   constructor(props) {
@@ -1033,6 +1035,7 @@ class DTAutosuggest extends React.Component {
             accessiblePrimaryColor={this.props.accessiblePrimaryColor}
             fontWeights={this.props.fontWeights}
             showScroll={this.props.showScroll}
+            prefixIconId={this.props.mobileSearchPrefixIconId}
           />
         )}
         {!renderMobileSearch && (

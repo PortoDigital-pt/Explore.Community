@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Airplane from './assets/airplane.svg';
-import Arrow from './assets/arrow.svg';
+import Arrow from './assets/amporto/arrow.svg';
 import Bus from './assets/bus.svg';
 import Busstop from './assets/bus_stop.svg';
 import City from './assets/city.svg';
 import Edit from './assets/edit.svg';
 import Ferry from './assets/ferry.svg';
 import Home from './assets/amporto/home.svg';
-import Locate from './assets/locate.svg';
-import Place from './assets/place.svg';
+import Locate from './assets/amporto/locate.svg';
+import Place from './assets/amporto/place.svg';
 import Rail from './assets/rail.svg';
 import School from './assets/school.svg';
 import Shopping from './assets/shopping.svg';
 import Sport from './assets/sport.svg';
 import Star from './assets/star.svg';
 import Station from './assets/station.svg';
-import Subway from './assets/subway.svg';
+import Subway from './assets/amporto/subway.svg';
 import Tram from './assets/tram.svg';
 import Work from './assets/amporto/work.svg';
 import Map from './assets/map.svg';
@@ -35,7 +35,7 @@ import Ellipsis from './assets/ellipsis.svg';
 import Opposite from './assets/opposite.svg';
 import Viapoint from './assets/viapoint.svg';
 import Calendar from './assets/calendar.svg';
-import SelectFromMap from './assets/select-from-map.svg';
+import SelectFromMap from './assets/amporto/select-from-map.svg';
 import CautionWhite from './assets/caution_white_exclamation.svg';
 import Trash from './assets/trash.svg';
 import ModeBus from './assets/mode_bus.svg';
@@ -72,7 +72,7 @@ import CityBikeRentalStationDigitransit from './assets/citybike-stop-digitransit
 import CityBikeRentalStationDigitransitSecondary from './assets/citybike-stop-digitransit-secondary.svg';
 import SearchAirplaneDigitransit from './assets/search-airplane-digitransit.svg';
 import SearchBusStationDigitransit from './assets/search-bus-station-digitransit.svg';
-import SearchBusStopDigitransit from './assets/search-bus-stop-digitransit.svg';
+import SearchBusStopDigitransit from './assets/amporto/search-bus-stop-digitransit.svg';
 import SearchBusTramStopDigitransit from './assets/search-bustram-stop-digitransit.svg';
 import SearchFerryDigitransit from './assets/search-ferry-digitransit.svg';
 import SearchFerryStopDigitransit from './assets/search-ferry-stop-digitransit.svg';
@@ -213,9 +213,9 @@ const Icon = ({ color, img, height, width, rotate }) => {
     transform: rotate ? `rotate(${rotate}deg)` : null
   };
   const icons = IconMap(style);
-  if (img === 'locate' && color && color.toUpperCase() !== '#007AC9') {
-    return icons.position;
-  }
+  // if (img === 'locate' && color && color.toUpperCase() !== '#007AC9') {
+  //   return icons.position;
+  // }
   return icons[img];
 };
 

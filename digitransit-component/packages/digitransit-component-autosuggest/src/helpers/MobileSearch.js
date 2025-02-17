@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useCallback } from 'react';
 import ReactModal from 'react-modal';
@@ -5,8 +6,8 @@ import cx from 'classnames';
 import Icon from '@digitransit-component/digitransit-component-icon';
 import DialogModal from '@digitransit-component/digitransit-component-dialog-modal';
 import Autosuggest from 'react-autosuggest';
-import mobileStyles from './MobileSearch.scss';
-import mobileNoScrollStyles from './MobileNoScroll.scss';
+import mobileStyles from '../../../../../sass/themes/amporto/digitransit-components/autosuggest/MobileSearch.scss';
+import mobileNoScrollStyles from '../../../../../sass/themes/amporto/digitransit-components/autosuggest/MobileNoScroll.scss';
 
 class AutosuggestPatch extends Autosuggest {
   constructor(props) {
@@ -44,7 +45,8 @@ const MobileSearch = ({
   accessiblePrimaryColor,
   searchOpen,
   fontWeights,
-  showScroll
+  showScroll,
+  prefixIconId
 }) => {
   const styles = showScroll ? mobileStyles : mobileNoScrollStyles;
 
@@ -131,7 +133,7 @@ const MobileSearch = ({
         onKeyDown={e => isKeyboardSelectionEvent(e) && clearInput()}
         aria-label={clearInputButtonText}
       >
-        <Icon img="close" color={color} />
+        <Icon img="clearLocation" color={color} />
       </button>
     );
   };
@@ -150,7 +152,11 @@ const MobileSearch = ({
           <Icon img="arrow" />
         </button>
         <span className={styles['right-column']}>
-          <span className={styles['combobox-label']} id={labelId}>
+          <span
+            className={styles['combobox-label']}
+            id={labelId}
+            style={{ display: 'none' }}
+          >
             {label}
           </span>
           <AutosuggestPatch
@@ -176,6 +182,11 @@ const MobileSearch = ({
             }}
             renderInputComponent={p => (
               <>
+                {prefixIconId && (
+                  <div className={styles['prefix-icon']}>
+                    <Icon img="search" />
+                  </div>
+                )}
                 <input aria-label={ariaLabel} id={id} {...p} />
                 {value && clearButton()}
               </>
@@ -250,7 +261,8 @@ MobileSearch.propTypes = {
   fontWeights: PropTypes.shape({
     medium: PropTypes.number.isRequired
   }).isRequired,
-  showScroll: PropTypes.bool
+  showScroll: PropTypes.bool,
+  prefixIconId: PropTypes.string
 };
 
 MobileSearch.defaultProps = {
@@ -262,7 +274,8 @@ MobileSearch.defaultProps = {
   focusInput: false,
   color: undefined,
   hoverColor: undefined,
-  showScroll: undefined
+  showScroll: undefined,
+  prefixIconId: undefined
 };
 
 export default MobileSearch;
