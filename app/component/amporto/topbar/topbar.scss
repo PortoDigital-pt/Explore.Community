@@ -1,0 +1,10 @@
+.transparent-topbar {
+    display: flex;
+    position: absolute;
+    padding: 8px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1008;
+}

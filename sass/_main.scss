@@ -69,9 +69,11 @@ $body-font-weight: $font-weight-medium;
 @import '../app/component/itinerary/navigator/navigatoroutro/navigator-outro';
 
 // amporto
-@import '../app/component/amporto/navigation/mobile-bar/mobile-bar';
+@import '../app/component/amporto/navigation/bottom-navigation-bar/bottom-navigation-bar';
 @import '../app/component/amporto/navigation/sidebar/sidebar';
 @import '../app/component/amporto/language/language';
+@import '../app/component/amporto/topbar/topbar';
+
 
 /* Modal */
 @import '~foundation-apps/scss/helpers/breakpoints';

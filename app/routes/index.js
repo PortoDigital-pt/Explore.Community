@@ -21,19 +21,19 @@ export default config => {
   const { itineraries, blocks } = config.optionalNavigationItems;
 
   return (
-  <Route Component={TopLevel}>
-    <Route path="/js/*" Component={Error404} />
-    <Route path="/css/*" Component={Error404} />
-    <Route path="/assets/*" Component={Error404} />
-    {getAboutRoutes()}
-    {getProfileRoutes()}
-    {getExploreRoutes()}
-    {getFavouritesRoutes()}
-    {itineraries && getItinerariesRoutes()}
-    {blocks && getBlocksRoutes()}
-    {getNavigateRoutes(config) /* Digitransit routes */}
-    {/* For all the rest render 404 */}
-    <Route path="*" Component={Error404} />
-  </Route>
-);
+    <Route Component={TopLevel}>
+      <Route path="/js/*" Component={Error404} />
+      <Route path="/css/*" Component={Error404} />
+      <Route path="/assets/*" Component={Error404} />
+      {getAboutRoutes()}
+      {getProfileRoutes()}
+      {getExploreRoutes()}
+      {getFavouritesRoutes()}
+      {itineraries && getItinerariesRoutes()}
+      {blocks && getBlocksRoutes()}
+      {getNavigateRoutes(config) /* Digitransit routes */}
+      {/* For all the rest render 404 */}
+      <Route path="*" Component={Error404} />
+    </Route>
+  );
 };

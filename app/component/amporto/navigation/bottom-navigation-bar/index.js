@@ -32,7 +32,7 @@ const isActive = ({ pathname, item }) =>
     ? notNavigateExpression.test(pathname)
     : pathname.startsWith(`/${item}`);
 
-const NavigationBar = (
+const BottomNavigationBar = (
   { breakpoint },
   { config: { optionalNavigationItems }, intl }
 ) => {
@@ -80,11 +80,11 @@ const NavigationBar = (
   );
 };
 
-NavigationBar.propTypes = {
+BottomNavigationBar.propTypes = {
   breakpoint: string.isRequired
 };
 
-NavigationBar.contextTypes = {
+BottomNavigationBar.contextTypes = {
   config: configShape.isRequired,
   intl: intlShape.isRequired
 };
@@ -92,4 +92,4 @@ NavigationBar.contextTypes = {
 export default getContext({
   config: configShape.isRequired,
   intl: intlShape.isRequired
-})(withBreakpoint(NavigationBar));
+})(withBreakpoint(BottomNavigationBar));

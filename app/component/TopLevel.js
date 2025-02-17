@@ -18,7 +18,8 @@ import DesktopView from './DesktopView';
 import ErrorBoundary from './ErrorBoundary';
 import { DesktopOrMobile } from '../util/withBreakpoint';
 import { addAnalyticsEvent, handleUserAnalytics } from '../util/analyticsUtils';
-import MobileNavigationBar from './amporto/navigation/mobile-bar';
+import BottomNavigationBar from './amporto/navigation/bottom-navigation-bar';
+import Topbar from './amporto/topbar';
 
 class TopLevel extends React.Component {
   static propTypes = {
@@ -183,7 +184,7 @@ class TopLevel extends React.Component {
 
     return (
       <Fragment>
-        {!this.topBarOptions.hidden && (
+        {/*! this.topBarOptions.hidden && (
           <AppBarContainer
             title={this.context.config.title}
             {...this.topBarOptions}
@@ -191,7 +192,8 @@ class TopLevel extends React.Component {
             homeUrl={homeUrl}
             style={this.context.config.appBarStyle}
           />
-        )}
+        ) */}
+        <Topbar />
         <section id="mainContent" className="content">
           {this.props.meta}
           <noscript>This page requires JavaScript to run.</noscript>
@@ -204,7 +206,7 @@ class TopLevel extends React.Component {
             }
           >
             {content}
-            <MobileNavigationBar />
+            <BottomNavigationBar />
           </ErrorBoundary>
         </section>
       </Fragment>
