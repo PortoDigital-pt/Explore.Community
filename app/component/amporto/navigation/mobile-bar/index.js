@@ -85,6 +85,7 @@ const NavigationBar = (
           key={item}
           item={item}
           onClick={() => navigate(item)}
+          aria={intl.messages[`nav-item-aria-${item}`]}
           description={intl.messages[`nav-item-${item}`]}
           active={isActive({ pathname: match.location.pathname, item })}
         />
