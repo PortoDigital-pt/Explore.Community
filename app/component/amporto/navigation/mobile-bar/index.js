@@ -7,35 +7,20 @@ import { intlShape } from 'react-intl';
 import { configShape } from '../../../../util/shapes';
 import { NavTab } from './tab';
 import withBreakpoint from '../../../../util/withBreakpoint';
+import {
+  COMMON_NAVIGATION_ITEMS,
+  COMMON_NAVIGATION_ITEMS_PATH_MAP,
+  filterOptionalNavigationItems
+} from '../common';
 
-export const NAVIGATION_ITEMS = {
-  EXPLORE: 'explore',
-  NAVIGATE: 'navigate',
-  ITINERARIES: 'itineraries',
-  BLOCKS: 'blocks',
+const NAVIGATION_ITEMS = {
+  ...COMMON_NAVIGATION_ITEMS,
   FAVOURITES: 'favourites'
 };
 
-export const NAVIGATION_ITEMS_PATH_MAP = {
-  [NAVIGATION_ITEMS.EXPLORE]: `/${NAVIGATION_ITEMS.EXPLORE}`,
-  [NAVIGATION_ITEMS.NAVIGATE]: '/',
-  [NAVIGATION_ITEMS.ITINERARIES]: `/${NAVIGATION_ITEMS.ITINERARIES}`,
-  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`,
+const NAVIGATION_ITEMS_PATH_MAP = {
+  ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
   [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
-};
-
-const filterNavigationItems = ({ showItineraries, showBlocks }) => {
-  const navToRender = { ...NAVIGATION_ITEMS };
-
-  if (!showItineraries) {
-    delete navToRender.ITINERARIES;
-  }
-
-  if (!showBlocks) {
-    delete navToRender.BLOCKS;
-  }
-
-  return navToRender;
 };
 
 const notNavigateExpression = new RegExp(
@@ -49,14 +34,15 @@ const isActive = ({ pathname, item }) =>
 
 const NavigationBar = (
   { breakpoint },
-  { config: { showItineraries, showBlocks }, intl }
+  { config: { optionalNavigationItems }, intl }
 ) => {
   const [client, setClient] = useState(false);
   const { match, router } = useRouter();
 
   const navigationItems = useMemo(
-    () => filterNavigationItems({ showItineraries, showBlocks }),
-    [showItineraries, showBlocks]
+    () =>
+      filterOptionalNavigationItems(optionalNavigationItems, NAVIGATION_ITEMS),
+    [optionalNavigationItems]
   );
 
   const navigate = useCallback(
@@ -77,7 +63,7 @@ const NavigationBar = (
   return (
     <nav
       className={classnames('navbar', {
-        hide: breakpoint !== 'small'
+        hide: breakpoint === 'large'
       })}
     >
       {Object.values(navigationItems).map(item => (

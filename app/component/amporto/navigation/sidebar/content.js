@@ -5,38 +5,19 @@ import { intlShape } from 'react-intl';
 import { configShape } from '../../../../util/shapes';
 import Icon from '../../../Icon';
 import LanguageSelect from '../../language';
-
-export const NAVIGATION_ITEMS = {
-  EXPLORE: 'explore',
-  NAVIGATE: 'navigate',
-  ITINERARIES: 'itineraries',
-  BLOCKS: 'blocks'
-};
+import {
+  COMMON_NAVIGATION_ITEMS,
+  COMMON_NAVIGATION_ITEMS_PATH_MAP,
+  filterOptionalNavigationItems
+} from '../common';
 
 const NAVIGATION_PROFILE = 'profile';
 const NAVIGATION_ABOUT = 'about';
 
-export const NAVIGATION_ITEMS_PATH_MAP = {
-  [NAVIGATION_ITEMS.EXPLORE]: `/${NAVIGATION_ITEMS.EXPLORE}`,
-  [NAVIGATION_ITEMS.NAVIGATE]: '/',
-  [NAVIGATION_ITEMS.ITINERARIES]: `/${NAVIGATION_ITEMS.ITINERARIES}`,
-  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`,
+const NAVIGATION_ITEMS_PATH_MAP = {
+  ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
   [NAVIGATION_PROFILE]: `/${NAVIGATION_PROFILE}`,
   [NAVIGATION_ABOUT]: `/${NAVIGATION_ABOUT}`
-};
-
-const filterNavigationItems = ({ showItineraries, showBlocks }) => {
-  const navToRender = { ...NAVIGATION_ITEMS };
-
-  if (!showItineraries) {
-    delete navToRender.ITINERARIES;
-  }
-
-  if (!showBlocks) {
-    delete navToRender.BLOCKS;
-  }
-
-  return navToRender;
 };
 
 const Content = (
@@ -44,8 +25,7 @@ const Content = (
   {
     config: {
       title,
-      showItineraries,
-      showBlocks,
+      optionalNavigationItems,
       privacyPolicyLink,
       cookiesPolicyLink
     },
@@ -55,8 +35,12 @@ const Content = (
   const { router } = useRouter();
 
   const navigationItems = useMemo(
-    () => filterNavigationItems({ showItineraries, showBlocks }),
-    [showItineraries, showBlocks]
+    () =>
+      filterOptionalNavigationItems(
+        optionalNavigationItems,
+        COMMON_NAVIGATION_ITEMS
+      ),
+    [optionalNavigationItems]
   );
 
   const navigate = useCallback(

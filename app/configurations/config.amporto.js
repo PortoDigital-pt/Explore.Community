@@ -96,8 +96,10 @@ export default {
   logo: LOGO,
 
   // navbar items
-  showItineraries: SHOW_ITINERARIES === 'true',
-  showBlocks: SHOW_BLOCKS === 'true',
+  optionalNavigationItems: {
+    itineraries: SHOW_ITINERARIES === 'true',
+    blocks: SHOW_BLOCKS === 'true'
+  },
 
   contactName: {
     default: CONTACT_NAME
