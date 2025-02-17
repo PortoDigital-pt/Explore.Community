@@ -74,8 +74,8 @@ button.menu {
         .icon {
             display: flex;
             position: relative;
-            width: 33px;
-            height: 33px;
+            width: 32px;
+            height: 32px;
             color: $primary-contrastText;
         }
     }
@@ -169,6 +169,10 @@ button.menu {
             font-weight: $font-weight-regular;
             color: $primary-light;
             font-size: $font-size-s;
+
+            @media (min-width: 400px) {
+                font-size: $font-size-base;
+            }
         }
 
         hr {

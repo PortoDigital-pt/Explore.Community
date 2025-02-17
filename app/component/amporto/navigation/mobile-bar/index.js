@@ -77,7 +77,7 @@ const NavigationBar = (
   return (
     <nav
       className={classnames('navbar', {
-        hide: breakpoint === 'large'
+        hide: breakpoint !== 'small'
       })}
     >
       {Object.values(navigationItems).map(item => (

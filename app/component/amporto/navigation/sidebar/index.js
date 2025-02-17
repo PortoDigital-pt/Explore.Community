@@ -14,9 +14,11 @@ export default function SidebarMenu() {
       <button className="menu" onClick={open} type="button">
         <Icon img="icon-menu" viewBox="0 0 24 24" />
       </button>
-      <Suspense fallback="">
-        <Menu isOpen={isOpen} onClose={close} />
-      </Suspense>
+      {isOpen && (
+        <Suspense fallback="">
+          <Menu isOpen={isOpen} onClose={close} />
+        </Suspense>
+      )}
     </>
   );
 }
