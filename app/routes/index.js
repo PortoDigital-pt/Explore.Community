@@ -17,7 +17,10 @@ export const historyMiddlewares = [queryMiddleware];
 
 export const render = createRender({});
 
-export default config => (
+export default config => {
+  const { itineraries, blocks } = config.optionalNavigationItems;
+
+  return (
   <Route Component={TopLevel}>
     <Route path="/js/*" Component={Error404} />
     <Route path="/css/*" Component={Error404} />
@@ -26,10 +29,11 @@ export default config => (
     {getProfileRoutes()}
     {getExploreRoutes()}
     {getFavouritesRoutes()}
-    {config.showItineraries && getItinerariesRoutes()}
-    {config.showBlocks && getBlocksRoutes()}
+    {itineraries && getItinerariesRoutes()}
+    {blocks && getBlocksRoutes()}
     {getNavigateRoutes(config) /* Digitransit routes */}
     {/* For all the rest render 404 */}
     <Route path="*" Component={Error404} />
   </Route>
 );
+};
