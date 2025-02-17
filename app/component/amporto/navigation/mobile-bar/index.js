@@ -10,7 +10,7 @@ import withBreakpoint from '../../../../util/withBreakpoint';
 import {
   COMMON_NAVIGATION_ITEMS,
   COMMON_NAVIGATION_ITEMS_PATH_MAP,
-  filterOptionalNavigationItems
+  generateNavigationItemsConfig
 } from '../common';
 
 const NAVIGATION_ITEMS = {
@@ -41,7 +41,7 @@ const NavigationBar = (
 
   const navigationItems = useMemo(
     () =>
-      filterOptionalNavigationItems(optionalNavigationItems, NAVIGATION_ITEMS),
+      generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),
     [optionalNavigationItems]
   );
 

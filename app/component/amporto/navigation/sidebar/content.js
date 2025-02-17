@@ -8,7 +8,7 @@ import LanguageSelect from '../../language';
 import {
   COMMON_NAVIGATION_ITEMS,
   COMMON_NAVIGATION_ITEMS_PATH_MAP,
-  filterOptionalNavigationItems
+  generateNavigationItemsConfig
 } from '../common';
 
 const NAVIGATION_PROFILE = 'profile';
@@ -36,7 +36,7 @@ const Content = (
 
   const navigationItems = useMemo(
     () =>
-      filterOptionalNavigationItems(
+      generateNavigationItemsConfig(
         optionalNavigationItems,
         COMMON_NAVIGATION_ITEMS
       ),

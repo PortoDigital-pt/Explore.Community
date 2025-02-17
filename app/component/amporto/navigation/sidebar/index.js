@@ -1,4 +1,6 @@
 import React, { Suspense, useState, useCallback, lazy } from 'react';
+import { bool } from 'prop-types';
+import classnames from 'classnames';
 import getContext from 'recompose/getContext';
 import { intlShape } from 'react-intl';
 import { configShape } from '../../../../util/shapes';
@@ -6,7 +8,7 @@ import Icon from '../../../Icon';
 
 const Menu = lazy(() => import('./menu'));
 
-const SidebarMenu = (_, { intl }) => {
+const SidebarMenu = ({ shadow = false }, { intl }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const open = useCallback(() => setIsOpen(true), []);
@@ -15,7 +17,7 @@ const SidebarMenu = (_, { intl }) => {
   return (
     <>
       <button
-        className="menu"
+        className={classnames('menu', { shadow })}
         onClick={open}
         type="button"
         aria-label={intl.messages['nav-menu-open']}
@@ -29,6 +31,10 @@ const SidebarMenu = (_, { intl }) => {
       )}
     </>
   );
+};
+
+SidebarMenu.propTypes = {
+  shadow: bool
 };
 
 SidebarMenu.contextTypes = {
