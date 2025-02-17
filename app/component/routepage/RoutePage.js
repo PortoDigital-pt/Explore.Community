@@ -21,13 +21,12 @@ import AlertBanner from '../AlertBanner';
 import {
   hasEntitiesOfType,
   hasMeaningfulData,
-  isAlertValid,
+  isAlertValid
 } from '../../util/alertUtils';
 import { AlertEntityType } from '../../constants';
 
 const modules = {
-  FavouriteRouteContainer: () =>
-    importLazy(import('./FavouriteRouteContainer')),
+  FavouriteRouteContainer: () => importLazy(import('./FavouriteRouteContainer'))
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -36,7 +35,7 @@ class RoutePage extends React.Component {
     getStore: PropTypes.func.isRequired,
     executeAction: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -45,11 +44,11 @@ class RoutePage extends React.Component {
     router: routerShape.isRequired,
     breakpoint: PropTypes.string.isRequired,
     error: errorShape,
-    currentTime: PropTypes.number.isRequired,
+    currentTime: PropTypes.number.isRequired
   };
 
   static defaultProps = {
-    error: undefined,
+    error: undefined
   };
 
   componentDidMount() {
@@ -102,7 +101,7 @@ class RoutePage extends React.Component {
         </div>
         <div
           className={cx('route-container', {
-            'bp-large': breakpoint === 'large',
+            'bp-large': breakpoint === 'large'
           })}
           aria-live="polite"
         >
@@ -127,7 +126,7 @@ class RoutePage extends React.Component {
               >
                 <span className="sr-only" style={{ whiteSpace: 'pre' }}>
                   {this.context.intl.formatMessage({
-                    id: mode.toLowerCase(),
+                    id: mode.toLowerCase()
                   })}{' '}
                   {label?.toLowerCase()}
                 </span>
@@ -177,7 +176,7 @@ class RoutePage extends React.Component {
 
 const containerComponent = createFragmentContainer(
   connectToStores(withBreakpoint(RoutePage), ['TimeStore'], context => ({
-    currentTime: context.getStore('TimeStore').getCurrentTime(),
+    currentTime: context.getStore('TimeStore').getCurrentTime()
   })),
   {
     route: graphql`
@@ -238,8 +237,8 @@ const containerComponent = createFragmentContainer(
           }
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export { containerComponent as default, RoutePage as Component };

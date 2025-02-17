@@ -35,14 +35,14 @@ const mapStopTimes = stoptimesObject =>
           headsign: stoptime.pattern.headsign,
           longName: stoptime.pattern.route.longName,
           isCanceled: st.realtimeState === RealtimeStateType.Canceled,
-          mode: stoptime.pattern.route.mode,
-        })),
+          mode: stoptime.pattern.route.mode
+        }))
     )
     .reduce((acc, val) => acc.concat(val), []);
 
 const groupArrayByHour = stoptimesArray =>
   groupBy(stoptimesArray, stoptime =>
-    Math.floor(stoptime.scheduledDeparture / (60 * 60)),
+    Math.floor(stoptime.scheduledDeparture / (60 * 60))
   );
 
 const printStop = e => {
@@ -68,31 +68,31 @@ class Timetable extends React.Component {
               shortName: PropTypes.string,
               mode: PropTypes.string.isRequired,
               agency: PropTypes.shape({
-                name: PropTypes.string.isRequired,
-              }).isRequired,
-            }).isRequired,
+                name: PropTypes.string.isRequired
+              }).isRequired
+            }).isRequired
           }).isRequired,
           stoptimes: PropTypes.arrayOf(
             PropTypes.shape({
               realtimeState: PropTypes.string.isRequired,
               scheduledDeparture: PropTypes.number.isRequired,
-              serviceDay: PropTypes.number.isRequired,
-            }),
-          ).isRequired,
-        }),
-      ).isRequired,
+              serviceDay: PropTypes.number.isRequired
+            })
+          ).isRequired
+        })
+      ).isRequired
     }).isRequired,
     startDate: PropTypes.string.isRequired,
     onDateChange: PropTypes.func.isRequired,
     date: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired
   };
 
   static contextTypes = {
     router: routerShape.isRequired,
     match: matchShape.isRequired,
     config: configShape.isRequired,
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   constructor(props) {
@@ -108,7 +108,7 @@ class Timetable extends React.Component {
     this.state = {
       showRoutes: [],
       showFilterModal: false,
-      oldStopId: this.props.stop.gtfsId,
+      oldStopId: this.props.stop.gtfsId
     };
   }
 
@@ -122,7 +122,7 @@ class Timetable extends React.Component {
   componentDidMount() {
     if (this.context.match.location.query.routes) {
       this.setState({
-        showRoutes: this.context.match.location.query.routes?.split(',') || [],
+        showRoutes: this.context.match.location.query.routes?.split(',') || []
       });
     }
   }
@@ -130,7 +130,7 @@ class Timetable extends React.Component {
   setParams = (routes, date) => {
     replaceQueryParams(this.context.router, this.context.match, {
       routes,
-      date,
+      date
     });
   };
 
@@ -146,14 +146,14 @@ class Timetable extends React.Component {
         (item, index, self) =>
           index ===
           self.findIndex(
-            o => o.headsign === item.headsign && o.shortName === item.shortName,
-          ),
+            o => o.headsign === item.headsign && o.shortName === item.shortName
+          )
       );
 
     const routesWithDupes = [];
     Object.entries(groupBy(routesToCheck, 'shortName')).forEach(
       ([key, value]) =>
-        value.length > 1 ? routesWithDupes.push(key) : undefined,
+        value.length > 1 ? routesWithDupes.push(key) : undefined
     );
 
     return routesWithDupes;
@@ -196,7 +196,7 @@ class Timetable extends React.Component {
 
   formTimeRow = (timetableMap, hour) => {
     const sortedArr = timetableMap[hour].sort(
-      (time1, time2) => time1.scheduledDeparture - time2.scheduledDeparture,
+      (time1, time2) => time1.scheduledDeparture - time2.scheduledDeparture
     );
 
     const filteredRoutes = sortedArr
@@ -204,7 +204,7 @@ class Timetable extends React.Component {
         time =>
           this.state.showRoutes.filter(o => o === time.name || o === time.id)
             .length > 0 &&
-          moment.unix(time.serviceDay + time.scheduledDeparture).format('HH'),
+          moment.unix(time.serviceDay + time.scheduledDeparture).format('HH')
       )
       .filter(o => o === padStart(hour % 24, 2, '0'));
 
@@ -258,8 +258,8 @@ class Timetable extends React.Component {
         uniqBy(
           mapStopTimes(
             this.props.stop.stoptimesForServiceDate.filter(
-              o => o.pattern.route.shortName,
-            ),
+              o => o.pattern.route.shortName
+            )
           )
             .map(o => {
               const obj = Object.assign(o);
@@ -268,11 +268,11 @@ class Timetable extends React.Component {
               return obj;
             })
             .filter(o => o.duplicate === true),
-          'groupId',
+          'groupId'
         ),
-        'name',
+        'name'
       ),
-      'name',
+      'name'
     );
 
     let variantsWithMarks = [];
@@ -283,18 +283,18 @@ class Timetable extends React.Component {
           const obj = Object.assign(o);
           obj.duplicate = '*'.repeat(i + 1);
           return obj;
-        }),
+        })
       );
     });
 
     variantsWithMarks = [].concat(...variantsWithMarks);
 
     const routesWithDetails = mapStopTimes(
-      this.props.stop.stoptimesForServiceDate,
+      this.props.stop.stoptimesForServiceDate
     ).map(o => {
       const obj = Object.assign(o);
       const getDuplicate = variantsWithMarks.find(
-        o2 => o2.name === o.name && o2.headsign === o.headsign && o2.duplicate,
+        o2 => o2.name === o.name && o2.headsign === o.headsign && o2.duplicate
       );
       obj.duplicate = getDuplicate ? getDuplicate.duplicate : false;
       return obj;
@@ -314,7 +314,7 @@ class Timetable extends React.Component {
             this.context.config.URL.STOP_TIMETABLES[stopIdSplitted[0]],
             this.props.stop,
             date,
-            this.props.language,
+            this.props.language
           )
         : null;
     const virtualMonitorUrl =
@@ -351,7 +351,7 @@ class Timetable extends React.Component {
                   addAnalyticsEvent({
                     category: 'Stop',
                     action: 'ChangeTimetableDay',
-                    name: null,
+                    name: null
                   });
                 }}
                 dateFormat="YYYYMMDD"
@@ -390,7 +390,7 @@ class Timetable extends React.Component {
                     className={cx(
                       'flex-horizontal',
                       'timetable-notification',
-                      'info',
+                      'info'
                     )}
                   >
                     <Icon
@@ -433,7 +433,7 @@ class Timetable extends React.Component {
                   display:
                     variantsWithMarks.filter(o => o.duplicate).length > 0
                       ? 'block'
-                      : 'none',
+                      : 'none'
                 }}
               >
                 <h1>
@@ -463,7 +463,7 @@ class Timetable extends React.Component {
                 addAnalyticsEvent({
                   category: 'Stop',
                   action: 'PrintTimetable',
-                  name: null,
+                  name: null
                 });
               }}
               buttonIcon="icon-icon_print"
@@ -478,7 +478,7 @@ class Timetable extends React.Component {
                   addAnalyticsEvent({
                     category: 'Stop',
                     action: 'PrintWeeklyTimetable',
-                    name: null,
+                    name: null
                   });
                 }}
                 buttonIcon="icon-icon_print"

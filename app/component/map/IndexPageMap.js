@@ -17,7 +17,7 @@ import CookieSettingsButton from '../CookieSettingsButton';
 
 const locationMarkerModules = {
   LocationMarker: () =>
-    importLazy(import(/* webpackChunkName: "map" */ './LocationMarker')),
+    importLazy(import(/* webpackChunkName: "map" */ './LocationMarker'))
 };
 
 let focus = {};
@@ -25,7 +25,7 @@ const mwtProps = {};
 
 function IndexPageMap(
   { match, origin, destination, mapLayers },
-  { config, executeAction },
+  { config, executeAction }
 ) {
   let newFocus = {};
   let zoom = 16;
@@ -63,7 +63,7 @@ function IndexPageMap(
         {({ LocationMarker }) => (
           <LocationMarker position={origin} type="from" />
         )}
-      </LazilyLoad>,
+      </LazilyLoad>
     );
   }
 
@@ -73,7 +73,7 @@ function IndexPageMap(
         {({ LocationMarker }) => (
           <LocationMarker position={destination} type="to" />
         )}
-      </LazilyLoad>,
+      </LazilyLoad>
     );
   }
 
@@ -105,18 +105,18 @@ IndexPageMap.propTypes = {
   lang: PropTypes.string.isRequired,
   origin: locationShape,
   destination: locationShape,
-  mapLayers: mapLayerShape.isRequired,
+  mapLayers: mapLayerShape.isRequired
 };
 
 IndexPageMap.defaultProps = {
   origin: {},
-  destination: {},
+  destination: {}
 };
 
 IndexPageMap.contextTypes = {
   config: configShape.isRequired,
   executeAction: PropTypes.func.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const IndexPageMapWithStores = connectToStores(
@@ -131,9 +131,9 @@ const IndexPageMapWithStores = connectToStores(
       origin,
       destination,
       lang,
-      mapLayers: getStore('MapLayerStore').getMapLayers(),
+      mapLayers: getStore('MapLayerStore').getMapLayers()
     };
-  },
+  }
 );
 
 export { IndexPageMapWithStores as default, IndexPageMap as Component };

@@ -15,8 +15,8 @@ describe('<StopCardHeader />', () => {
         desc: 'Hietaniemenkatu',
         gtfsId: 'HSL:1130181',
         name: 'Hietaniemi',
-        zoneId: null,
-      },
+        zoneId: null
+      }
     };
     const wrapper = shallowWithIntl(<StopCardHeader {...props} />, {
       context: {
@@ -24,16 +24,16 @@ describe('<StopCardHeader />', () => {
         config: {
           stopCard: { header: {} },
           zones: {
-            stops: true,
+            stops: true
           },
           colors: {
-            primary: '#000000',
-          },
-        },
+            primary: '#000000'
+          }
+        }
       },
       childContextTypes: {
-        ...mockChildContextTypes,
-      },
+        ...mockChildContextTypes
+      }
     });
     expect(wrapper.find(ZoneIcon)).to.have.lengthOf(0);
   });
@@ -45,9 +45,9 @@ describe('<StopCardHeader />', () => {
         desc: 'Hietaniemenkatu',
         gtfsId: 'HSL:1130181',
         name: 'Hietaniemi',
-        zoneId: 'A',
+        zoneId: 'A'
       },
-      className: 'stop-page header',
+      className: 'stop-page header'
     };
     const wrapper = shallowWithIntl(<StopCardHeader {...props} />, {
       context: {
@@ -55,21 +55,21 @@ describe('<StopCardHeader />', () => {
         config: {
           stopCard: {
             header: {
-              virtualMonitorBaseUrl: '',
-            },
+              virtualMonitorBaseUrl: ''
+            }
           },
           zones: {
-            stops: false,
+            stops: false
           },
           colors: {
-            primary: '#000000',
+            primary: '#000000'
           },
-          allowLogin: false,
-        },
+          allowLogin: false
+        }
       },
       childContextTypes: {
-        ...mockChildContextTypes,
-      },
+        ...mockChildContextTypes
+      }
     });
 
     expect(wrapper.find(ExternalLink)).to.have.lengthOf(0);
@@ -82,8 +82,8 @@ describe('<StopCardHeader />', () => {
         desc: 'Hietaniemenkatu',
         gtfsId: 'HSL:1130181',
         name: 'Hietaniemi',
-        zoneId: 'A',
-      },
+        zoneId: 'A'
+      }
     };
     const wrapper = shallowWithIntl(<StopCardHeader {...props} />, {
       context: {
@@ -91,16 +91,16 @@ describe('<StopCardHeader />', () => {
         config: {
           stopCard: { header: {} },
           zones: {
-            stops: false,
+            stops: false
           },
           colors: {
-            primary: '#000000',
-          },
-        },
+            primary: '#000000'
+          }
+        }
       },
       childContextTypes: {
-        ...mockChildContextTypes,
-      },
+        ...mockChildContextTypes
+      }
     });
     expect(wrapper.find(ZoneIcon)).to.have.lengthOf(0);
   });

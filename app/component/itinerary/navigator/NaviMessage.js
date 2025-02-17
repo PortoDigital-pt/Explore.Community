@@ -8,7 +8,7 @@ import Icon from '../../Icon';
 
 function NaviMessage(
   { severity, children, index, handleRemove, hideClose },
-  { config },
+  { config }
 ) {
   const [removingIndex, setRemovingIndex] = useState(null);
 
@@ -42,7 +42,7 @@ function NaviMessage(
       className={cx(
         'info-stack-item',
         removingIndex === index ? 'slide-out-right' : '',
-        `${severity.toLowerCase()}`,
+        `${severity.toLowerCase()}`
       )}
     >
       <Icon img={iconId} height={1.4} width={1.4} color={color} />
@@ -69,16 +69,16 @@ NaviMessage.propTypes = {
   children: PropTypes.node.isRequired,
   index: PropTypes.number.isRequired,
   handleRemove: PropTypes.func.isRequired,
-  hideClose: PropTypes.bool,
+  hideClose: PropTypes.bool
 };
 
 NaviMessage.defaultProps = {
-  hideClose: false,
+  hideClose: false
 };
 
 NaviMessage.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default NaviMessage;

@@ -41,5 +41,5 @@ export default function ItinerariesNotFound(props) {
 
 ItinerariesNotFound.propTypes = {
   from: locationShape.isRequired,
-  to: locationShape.isRequired,
+  to: locationShape.isRequired
 };

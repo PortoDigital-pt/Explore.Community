@@ -252,7 +252,7 @@ const translations = {
       'Kun bestillingstransport. Afgangen må forudbestilles af operatør.',
     'weather-at-destination': 'Vejret på destinationen',
     yesterday: 'I går',
-    zones: 'Zoner',
+    zones: 'Zoner'
   },
 
   de: {
@@ -818,7 +818,7 @@ const translations = {
     where: 'Wohin?',
     yesterday: 'Gestern',
     zone: 'Tarifzone',
-    zones: 'Tarifzonen',
+    zones: 'Tarifzonen'
   },
 
   en: {
@@ -872,6 +872,7 @@ const translations = {
     'search-autosuggest-len':
       'There {len, plural, =1 {is 1 suggestion} other {are {len} suggestions}} available',
     'search-current-suggestion': 'Current selection: {selection}',
+    'lang-selection': 'Select: {language}',
     'select-date': 'Select date',
     'select-from-map-destination': 'Select destination',
     'select-from-map-favourite': 'Select from map',
@@ -883,7 +884,6 @@ const translations = {
     'set-time-now-button-label': 'Set travel time to current',
     'time-navigation-buttons': 'Time navigation buttons',
     'time-selector-form': 'Edit time',
-    // eslint-disable-next-line sort-keys
     address: 'Address',
     'address-or-stop': 'Address or stop',
     agency: 'Operator',
@@ -1013,7 +1013,6 @@ const translations = {
     'crushed-standing-room-only': 'Crushed standing room only',
     'cycle-distance-duration': 'Cycle {duration} ({distance})',
     'cyclewalk-distance-duration': 'Walk your bike {duration} ({distance})',
-    // eslint-disable-next-line sort-keys
     currentposition: 'Current position',
     datasources: 'Data sources',
     date: 'Date',
@@ -1816,6 +1815,26 @@ const translations = {
     'zone-info': 'Zone {zone}',
     'zone-unknown': 'Unknown zone',
     zones: 'Fare zones',
+    'nav-item-explore': 'Explore',
+    'nav-item-navigate': 'Navigate',
+    'nav-item-itineraries': 'Itineraries',
+    'nav-item-blocks': 'Blocks',
+    'nav-item-favourites': 'Favourites',
+    'nav-item-profile': 'Profile',
+    'nav-item-about': 'About {app}',
+    'nav-item-aria-explore': 'Go to explore',
+    'nav-item-aria-navigate': 'Go to navigate',
+    'nav-item-aria-itineraries': 'Go to itineraries',
+    'nav-item-aria-blocks': 'Go to blocks',
+    'nav-item-aria-favourites': 'Go to favourites',
+    'nav-item-aria-profile': 'Go to profile',
+    'nav-item-aria-about': 'Learn more about {app}',
+    'privacy-policy': 'Privacy policy',
+    'cookies-policy': 'Cookies policy',
+    'privacy-policy-aria': 'Consult privacy policy',
+    'cookies-policy-aria': 'Consult cookies policy',
+    'nav-menu-close': 'Close navigation menu',
+    'nav-menu-open': 'Open navigation menu'
   },
 
   es: {
@@ -2110,7 +2129,7 @@ const translations = {
       'Sólo bajo demanda, necesita ser reservado con antelación.',
     'weather-at-destination': 'Tiempo en destino',
     yesterday: 'Ayer',
-    zones: 'Zonas tarifarias',
+    zones: 'Zonas tarifarias'
   },
 
   fi: {
@@ -3106,7 +3125,7 @@ const translations = {
     zone: 'Vyöhyke',
     'zone-info': 'Vyöhyke {zone}',
     'zone-unknown': 'Tuntematon vyöhyke',
-    zones: 'Lippuvyöhykkeet',
+    zones: 'Lippuvyöhykkeet'
   },
 
   fr: {
@@ -3439,7 +3458,7 @@ const translations = {
       "Uniquement à la demande. Doit être réservé à l'avance",
     'weather-at-destination': 'Météo à destination',
     yesterday: 'Hier',
-    zones: 'Zones tarifaires',
+    zones: 'Zones tarifaires'
   },
 
   nb: {
@@ -3693,7 +3712,7 @@ const translations = {
       'Kun bestillingsrute. Avgangen må forhåndsbestilles fra operatør.',
     'weather-at-destination': 'Været på destinasjonen',
     yesterday: 'I går',
-    zones: 'Billettsoner',
+    zones: 'Billettsoner'
   },
 
   pl: {
@@ -4582,7 +4601,7 @@ const translations = {
     zone: 'Strefa',
     'zone-info': 'Strefa {zone}',
     'zone-unknown': 'Nieznana strefa',
-    zones: 'Strefy taryfowe',
+    zones: 'Strefy taryfowe'
   },
 
   ro: {
@@ -4604,6 +4623,7 @@ const translations = {
       'Locații, adrese, stații. Selectați cu mouse-ul sau alegeți din săgețile tastaturii.',
     'search-autosuggest-len': 'Am găsit {len} sugestii',
     'search-current-suggestion': 'Current selection: {selection}',
+    'lang-selection': 'Select: {language}',
     'select-date': 'Selectați data',
     'set-time-earlier-button-label':
       'Setați timpul călătoriei pentru mai devreme',
@@ -5058,7 +5078,7 @@ const translations = {
     where: 'Where to?',
     yesterday: 'Ieri',
     zone: 'Zone',
-    zones: 'Zone tarifare',
+    zones: 'Zone tarifare'
   },
 
   pt: {
@@ -5303,8 +5323,6 @@ const translations = {
     'footer-feedback': 'Submeter feedback',
     'footer-link-to-privacy-policy': 'Política de privacidade',
     'footer-link-to-cookie-policy': 'Política de cookies',
-    'privacy-policy-href': 'https://www.porto.pt/pt/politica-de-privacidade',
-    'cookie-policy-href': 'https://www.cm-porto.pt/legal/politica-de-cookies',
     frontpage: 'Página inicial',
     'generic-error': 'Ocorreu um erro',
     'geolocate-yourself': 'Actualizar a sua localização',
@@ -5468,7 +5486,6 @@ const translations = {
     previous: 'Anterior',
     print: 'Imprimir',
     'print-timetable': 'Tabela de horários semanal',
-    'privacy-policy': 'Política de Privacidade',
     profile: 'Detalhes pessoais',
     rail: 'Comboio',
     'rail-with-route-number': 'Comboio {routeNumber} {headSign}',
@@ -5903,6 +5920,7 @@ const translations = {
     'menu-faq': 'Perguntas Frequentes',
     'menu-feedback': 'Enviar comentários',
     'menu-link-to-privacy-policy': 'Política de privacidade',
+    'menu-link-to-cookies-policy': 'Política de cookies',
     'min-transfer-time': 'Tempo de intercâmbio',
     'mobile-ticket-purchase-aria':
       'Informações de compra de bilhetes móveis. Compre {ticketName} por {price}. Compre o bilhete no aplicativo HSL ou baixe o aplicativo',
@@ -6076,6 +6094,7 @@ const translations = {
     'search-autosuggest-label-move-to-destination':
       'Depois de selecionar o local de partida, você é automaticamente movido para o campo de destino.',
     'search-current-suggestion': 'Seleção atual: {selection}',
+    'lang-selection': 'Seleccionar: {language}',
     'search-destination-index': 'Insira o destino',
     'search-fields.sr-instructions':
       'A pesquisa de rotas ocorrerá automaticamente quando você inserir origem e destino. A alteração dos parâmetros de pesquisa desencadeará uma nova pesquisa. Navegue até os campos de pesquisa usando a tecla tab',
@@ -6225,6 +6244,26 @@ const translations = {
     where: 'Para onde?',
     'zone-info': 'Zona {zone}',
     'zone-unknown': 'Zona desconhecida',
+    'nav-item-explore': 'Explorar',
+    'nav-item-navigate': 'Navegar',
+    'nav-item-itineraries': 'Roteiros',
+    'nav-item-blocks': 'Quarteirões',
+    'nav-item-favourites': 'Favoritos',
+    'nav-item-profile': 'Perfil',
+    'nav-item-about': 'Sobre o {app}',
+    'nav-item-aria-explore': 'Ir para a página explorar',
+    'nav-item-aria-navigate': 'Ir para a página navegar',
+    'nav-item-aria-itineraries': 'Ir para a página roteiros',
+    'nav-item-aria-blocks': 'Ir para a página quarteirões',
+    'nav-item-aria-favourites': 'Ir para os favoritos',
+    'nav-item-aria-profile': 'Ir para o perfil',
+    'nav-item-aria-about': 'Aprender mais sobre {app}',
+    'privacy-policy': 'Política de privacidade',
+    'cookies-policy': 'Política de cookies',
+    'privacy-policy-aria': 'Consultar a política de privacidade',
+    'cookies-policy-aria': 'Consultar a política de cookies',
+    'nav-menu-close': 'Fechar o menu de navegação',
+    'nav-menu-open': 'Abrir o menu de navegação'
   },
 
   sv: {
@@ -7219,8 +7258,8 @@ const translations = {
     zone: 'Zon',
     'zone-info': 'Zon {zone}',
     'zone-unknown': 'Okänd zon',
-    zones: 'Biljettzoner',
-  },
+    zones: 'Biljettzoner'
+  }
 };
 
 export default translations;

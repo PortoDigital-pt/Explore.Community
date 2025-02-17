@@ -7,7 +7,7 @@ import {
   legShape,
   locationShape,
   itineraryShape,
-  configShape,
+  configShape
 } from '../../util/shapes';
 import Icon from '../Icon';
 import RelativeDuration from './RelativeDuration';
@@ -25,7 +25,7 @@ import {
   getRouteText,
   legTime,
   legTimeStr,
-  LegMode,
+  LegMode
 } from '../../util/legUtils';
 import { dateOrEmpty, isTomorrow, timeStr } from '../../util/timeUtils';
 import withBreakpoint from '../../util/withBreakpoint';
@@ -34,7 +34,7 @@ import {
   BIKEAVL_UNKNOWN,
   getRentalNetworkIcon,
   getRentalNetworkConfig,
-  getVehicleCapacity,
+  getVehicleCapacity
 } from '../../util/vehicleRentalUtils';
 import { getRouteMode } from '../../util/modeUtils';
 import { getCapacityForLeg } from '../../util/occupancyUtil';
@@ -47,7 +47,7 @@ const Leg = ({
   routeNumber,
   legLength,
   fitRouteNumber,
-  renderModeIcons,
+  renderModeIcons
 }) => {
   return (
     <div
@@ -55,7 +55,7 @@ const Leg = ({
         'leg',
         mode.toLowerCase(),
         fitRouteNumber ? 'fit-route-number' : '',
-        renderModeIcons ? 'render-icon' : '',
+        renderModeIcons ? 'render-icon' : ''
       )}
       style={{ '--width': `${legLength}%` }}
     >
@@ -69,12 +69,12 @@ Leg.propTypes = {
   legLength: PropTypes.number.isRequired,
   mode: PropTypes.string.isRequired,
   fitRouteNumber: PropTypes.bool,
-  renderModeIcons: PropTypes.bool,
+  renderModeIcons: PropTypes.bool
 };
 
 Leg.defaultProps = {
   fitRouteNumber: false,
-  renderModeIcons: false,
+  renderModeIcons: false
 };
 
 export function RouteLeg(
@@ -89,9 +89,9 @@ export function RouteLeg(
     withBicycle,
     withCar,
     hasOneTransitLeg,
-    shortenLabels,
+    shortenLabels
   },
-  { config },
+  { config }
 ) {
   const isCallAgency = isCallAgencyLeg(leg);
   let routeNumber;
@@ -107,7 +107,7 @@ export function RouteLeg(
   if (isCallAgency) {
     const message = intl.formatMessage({
       id: 'pay-attention',
-      defaultMessage: 'Pay Attention',
+      defaultMessage: 'Pay Attention'
     });
 
     routeNumber = (
@@ -160,23 +160,23 @@ RouteLeg.propTypes = {
   withBicycle: PropTypes.bool.isRequired,
   withCar: PropTypes.bool.isRequired,
   hasOneTransitLeg: PropTypes.bool,
-  shortenLabels: PropTypes.bool,
+  shortenLabels: PropTypes.bool
 };
 
 RouteLeg.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 RouteLeg.defaultProps = {
   isTransitLeg: true,
   interliningWithRoute: undefined,
   hasOneTransitLeg: false,
-  shortenLabels: false,
+  shortenLabels: false
 };
 
 export const ModeLeg = (
   { leg, mode, large, legLength, duration, renderModeIcons, icon },
-  { config },
+  { config }
 ) => {
   let networkIcon;
   if (
@@ -188,8 +188,8 @@ export const ModeLeg = (
       getRentalNetworkIcon(
         getRentalNetworkConfig(
           leg.from.vehicleRentalStation.rentalNetwork.networkId,
-          config,
-        ),
+          config
+        )
       );
   } else if (mode === 'SCOOTER') {
     networkIcon = 'icon-icon_scooter_rider';
@@ -225,17 +225,17 @@ ModeLeg.propTypes = {
   legLength: PropTypes.number.isRequired,
   renderModeIcons: PropTypes.bool,
   duration: PropTypes.number,
-  icon: PropTypes.string,
+  icon: PropTypes.string
 };
 
 ModeLeg.defaultProps = {
   renderModeIcons: false,
   duration: undefined,
-  icon: undefined,
+  icon: undefined
 };
 
 ModeLeg.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export const ViaLeg = () => (
@@ -249,7 +249,7 @@ const getViaPointIndex = (leg, intermediatePlaces) => {
     return -1;
   }
   return intermediatePlaces.findIndex(
-    place => place.lat === leg.from.lat && place.lon === leg.from.lon,
+    place => place.lat === leg.from.lat && place.lon === leg.from.lon
   );
 };
 
@@ -279,13 +279,13 @@ const Itinerary = (
     lowestCo2value,
     ...props
   },
-  { intl, intl: { formatMessage }, config },
+  { intl, intl: { formatMessage }, config }
 ) => {
   const isTransitLeg = leg => leg.transitLeg;
   const isTransitOrRentalLeg = leg => leg.transitLeg || leg.rentedBike;
   const isLegOnFoot = leg => leg.mode === 'WALK' || leg.mode === 'BICYCLE_WALK';
   const usingOwnBicycle = itinerary.legs.some(
-    leg => getLegMode(leg) === 'BICYCLE' && leg.rentedBike === false,
+    leg => getLegMode(leg) === 'BICYCLE' && leg.rentedBike === false
   );
   const usingOwnBicycleWholeTrip =
     usingOwnBicycle && itinerary.legs.every(leg => !leg.to.vehicleParking);
@@ -304,7 +304,7 @@ const Itinerary = (
   let noTransitLegs = true;
   const splitLegs = splitLegsAtViaPoints(itinerary.legs, intermediatePlaces);
   const compressedLegs = compressLegs(splitLegs).map(leg => ({
-    ...leg,
+    ...leg
   }));
   let intermediateSlack = 0;
   let transitLegCount = 0;
@@ -389,7 +389,7 @@ const Itinerary = (
 
     const [interliningLines, interliningLegs] = getInterliningLegs(
       compressedLegs,
-      i,
+      i
     );
 
     const lastLegWithInterline = interliningLegs[interliningLegs.length - 1];
@@ -435,7 +435,7 @@ const Itinerary = (
           mode={walkMode}
           legLength={legLength}
           large={breakpoint === 'large'}
-        />,
+        />
       );
       if (usingOwnBicycle && leg.to.vehicleParking) {
         onlyIconLegs += 1;
@@ -448,7 +448,7 @@ const Itinerary = (
               img="icon-bike_parking"
               className="itinerary-icon bike_park"
             />
-          </div>,
+          </div>
         );
       }
     } else if (
@@ -475,7 +475,7 @@ const Itinerary = (
           showRentalBikeDurationWarning || rentDurationOverSurchargeLimit;
         if (!citybikeicon) {
           citybikeicon = getRentalNetworkIcon(
-            getRentalNetworkConfig(bikeNetwork, config),
+            getRentalNetworkConfig(bikeNetwork, config)
           );
         }
       }
@@ -489,12 +489,12 @@ const Itinerary = (
           mode="CITYBIKE"
           legLength={legLength}
           large={breakpoint === 'large'}
-        />,
+        />
       );
       vehicleNames.push(
         formatMessage({
-          id: `to-bicycle`,
-        }),
+          id: `to-bicycle`
+        })
       );
       stopNames.push(leg.from.name);
     } else if (leg.mode === 'SCOOTER' && leg.rentedBike) {
@@ -509,12 +509,12 @@ const Itinerary = (
           mode="SCOOTER"
           legLength={legLength}
           large={breakpoint === 'large'}
-        />,
+        />
       );
       vehicleNames.push(
         formatMessage({
-          id: `to-e-scooter`,
-        }),
+          id: `to-e-scooter`
+        })
       );
       stopNames.push('');
     } else if (leg.mode === 'CAR') {
@@ -528,7 +528,7 @@ const Itinerary = (
           legLength={legLength}
           large={breakpoint === 'large'}
           icon="icon-icon_car-withoutBox"
-        />,
+        />
       );
       if (leg.to.vehicleParking) {
         onlyIconLegs += 1;
@@ -541,7 +541,7 @@ const Itinerary = (
               img="icon-icon_car-park"
               className="itinerary-icon car_park"
             />
-          </div>,
+          </div>
         );
       }
     } else if (leg.mode === 'BICYCLE' && renderBar) {
@@ -556,7 +556,7 @@ const Itinerary = (
           mode={leg.mode}
           legLength={legLength}
           large={breakpoint === 'large'}
-        />,
+        />
       );
       if (leg.to.vehicleParking) {
         onlyIconLegs += 1;
@@ -569,7 +569,7 @@ const Itinerary = (
               img="icon-bike_parking"
               className="itinerary-icon bike_park"
             />
-          </div>,
+          </div>
         );
       }
     }
@@ -609,19 +609,19 @@ const Itinerary = (
             withCar={withCar}
             hasOneTransitLeg={hasOneTransitLeg(itinerary)}
             shortenLabels={shortenLabels}
-          />,
+          />
         );
       }
       vehicleNames.push(
         formatMessage(
           {
-            id: `${leg.mode.toLowerCase()}-with-route-number`,
+            id: `${leg.mode.toLowerCase()}-with-route-number`
           },
           {
             routeNumber: leg.route.shortName,
-            headSign: '',
-          },
-        ),
+            headSign: ''
+          }
+        )
       );
       stopNames.push(leg.from.name);
     }
@@ -639,7 +639,7 @@ const Itinerary = (
           mode={LegMode.Wait}
           large={breakpoint === 'large'}
           icon={usingOwnCarWholeTrip ? 'icon-icon_wait-car' : undefined}
-        />,
+        />
       );
     }
   });
@@ -679,7 +679,7 @@ const Itinerary = (
       firstLegStartTime = firstDeparture.rentedBike ? (
         <div
           className={cx('itinerary-first-leg-start-time', {
-            small: breakpoint !== 'large',
+            small: breakpoint !== 'large'
           })}
         >
           <FormattedMessage
@@ -692,20 +692,20 @@ const Itinerary = (
                   {legTimeStr(firstDeparture.start)}
                 </span>
               ),
-              firstDepartureStop: firstDeparture.from.name,
+              firstDepartureStop: firstDeparture.from.name
             }}
           />
           <div>
             {getVehicleCapacity(
               config,
-              firstDeparture.from.vehicleRentalStation.rentalNetwork.networkId,
+              firstDeparture.from.vehicleRentalStation.rentalNetwork.networkId
             ) !== BIKEAVL_UNKNOWN && (
               <FormattedMessage
                 id="bikes-available"
                 values={{
                   amount:
                     firstDeparture.from.vehicleRentalStation.availableVehicles
-                      .total,
+                      .total
                 }}
               />
             )}
@@ -714,7 +714,7 @@ const Itinerary = (
       ) : (
         <div
           className={cx('itinerary-first-leg-start-time', 'overflow-fade', {
-            small: breakpoint !== 'large',
+            small: breakpoint !== 'large'
           })}
         >
           <FormattedMessage
@@ -723,7 +723,7 @@ const Itinerary = (
               firstDepartureTime: (
                 <span
                   className={cx('start-time', {
-                    realtime: firstDeparture.realTime,
+                    realtime: firstDeparture.realTime
                   })}
                 >
                   {legTimeStr(firstDeparture.start)}
@@ -733,7 +733,7 @@ const Itinerary = (
                 <FormattedMessage id={firstDepartureStopType} />
               ),
               firstDepartureStop: stopNames[0],
-              firstDeparturePlatform,
+              firstDeparturePlatform
             }}
           />
         </div>
@@ -743,7 +743,7 @@ const Itinerary = (
     firstLegStartTime = (
       <div
         className={cx('itinerary-first-leg-start-time', {
-          small: breakpoint !== 'large',
+          small: breakpoint !== 'large'
         })}
       >
         <FormattedMessage id="itinerary-summary-row.no-transit-legs" />
@@ -757,8 +757,8 @@ const Itinerary = (
     {
       passive: props.passive,
       'bp-large': breakpoint === 'large',
-      'no-border': hideSelectionIndicator,
-    },
+      'no-border': hideSelectionIndicator
+    }
   ]);
 
   //  accessible representation for summary
@@ -790,7 +790,7 @@ const Itinerary = (
                 departureTime: legTimeStr(firstDeparture.start),
                 firstDepartureTime: legTimeStr(firstDeparture.start), // vehicle rental start time
                 stopName: stopNames[0],
-                firstDepartureStop: stopNames[0], // vehicle rental stop name
+                firstDepartureStop: stopNames[0] // vehicle rental stop name
               }}
             />
           ),
@@ -802,15 +802,15 @@ const Itinerary = (
               {
                 id: stopNames[index]
                   ? 'itinerary-summary-row.transfers'
-                  : 'itinerary-summary-row.transfers-to-rental',
+                  : 'itinerary-summary-row.transfers-to-rental'
               },
               {
                 vehicle: name,
-                stopName: stopNames[index],
-              },
+                stopName: stopNames[index]
+              }
             );
           }),
-          totalTime: <RelativeDuration duration={duration} />,
+          totalTime: <RelativeDuration duration={duration} />
         }}
       />
     </div>
@@ -821,7 +821,7 @@ const Itinerary = (
         id="itinerary-co2.description-simple"
         defaultMessage="CO₂ emissions for this route"
         values={{
-          co2value,
+          co2value
         }}
       />
     </div>
@@ -829,9 +829,9 @@ const Itinerary = (
 
   const ariaLabelMessage = intl.formatMessage(
     {
-      id: 'itinerary-page.show-details-label',
+      id: 'itinerary-page.show-details-label'
     },
-    { number: props.hash + 1 },
+    { number: props.hash + 1 }
   );
 
   const dateString = dateOrEmpty(startTime, refTime);
@@ -875,7 +875,7 @@ const Itinerary = (
         <FormattedMessage
           id="summary-page.row-label"
           values={{
-            number: props.hash + 1,
+            number: props.hash + 1
           }}
         />
       </h3>
@@ -945,7 +945,7 @@ const Itinerary = (
               <div
                 className={cx(
                   'itinerary-legs',
-                  showOverflowIcon ? 'overflow-icon' : '',
+                  showOverflowIcon ? 'overflow-icon' : ''
                 )}
                 style={{ '--plus': `${iconLegsInPercents}%` }}
                 ref={itineraryContainerOverflowRef}
@@ -974,7 +974,7 @@ const Itinerary = (
                     values={{
                       duration:
                         config.vehicleRental.networks[bikeNetwork]
-                          .timeBeforeSurcharge / 60,
+                          .timeBeforeSurcharge / 60
                     }}
                     defaultMessage=""
                   />
@@ -994,7 +994,7 @@ const Itinerary = (
               tabIndex="0"
               role="button"
               title={formatMessage({
-                id: 'itinerary-page.show-details',
+                id: 'itinerary-page.show-details'
               })}
               key="arrow"
               className="action-arrow-click-area flex-vertical noborder"
@@ -1031,7 +1031,7 @@ Itinerary.propTypes = {
   intermediatePlaces: PropTypes.arrayOf(locationShape),
   hideSelectionIndicator: PropTypes.bool,
   lowestCo2value: PropTypes.number,
-  viaPoints: PropTypes.arrayOf(locationShape),
+  viaPoints: PropTypes.arrayOf(locationShape)
 };
 
 Itinerary.defaultProps = {
@@ -1039,12 +1039,12 @@ Itinerary.defaultProps = {
   intermediatePlaces: [],
   hideSelectionIndicator: true,
   lowestCo2value: 0,
-  viaPoints: [],
+  viaPoints: []
 };
 
 Itinerary.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 Itinerary.displayName = 'Itinerary';
@@ -1167,7 +1167,7 @@ const containerComponent = createFragmentContainer(ItineraryWithBreakpoint, {
         }
       }
     }
-  `,
+  `
 });
 
 export { containerComponent as default, Itinerary as component };

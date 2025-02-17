@@ -22,8 +22,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 const isKeyboardSelectionEvent = event => {
@@ -76,8 +76,8 @@ class FavouriteEditingModal extends React.Component {
         name: PropTypes.string,
         selectedIconId: PropTypes.string,
         favouriteId: PropTypes.string,
-        layer: PropTypes.string,
-      }),
+        layer: PropTypes.string
+      })
     ).isRequired,
     lang: PropTypes.string,
     appElement: PropTypes.string.isRequired,
@@ -89,8 +89,8 @@ class FavouriteEditingModal extends React.Component {
     /** Optional. */
     fontWeights: PropTypes.shape({
       /** Default value is 500. */
-      medium: PropTypes.number,
-    }),
+      medium: PropTypes.number
+    })
   };
 
   static defaultProps = {
@@ -99,8 +99,8 @@ class FavouriteEditingModal extends React.Component {
     color: '#007ac9',
     hoverColor: '#0062a1',
     fontWeights: {
-      medium: 500,
-    },
+      medium: 500
+    }
   };
 
   constructor(props) {
@@ -109,7 +109,7 @@ class FavouriteEditingModal extends React.Component {
     this.state = {
       favourites: props.favourites,
       showDeletePlaceModal: false,
-      selectedFavourite: null,
+      selectedFavourite: null
     };
     Object.keys(translations).forEach(lang => {
       i18next.addResourceBundle(lang, 'translation', translations[lang]);
@@ -127,7 +127,7 @@ class FavouriteEditingModal extends React.Component {
         nextProps.handleClose();
       }
       return {
-        favourites: nextFavourites,
+        favourites: nextFavourites
       };
     }
     return null;
@@ -157,7 +157,7 @@ class FavouriteEditingModal extends React.Component {
       : 'place';
     const [name, address] = formatFavouritePlaceLabel(
       favourite.name,
-      favourite.address,
+      favourite.address
     );
 
     return (
@@ -198,7 +198,7 @@ class FavouriteEditingModal extends React.Component {
           <div
             className={cx(
               styles['favourite-edit-list-item-icon'],
-              styles[iconId],
+              styles[iconId]
             )}
           >
             <Icon img={iconId} color={this.props.color} />
@@ -215,7 +215,7 @@ class FavouriteEditingModal extends React.Component {
             role="button"
             tabIndex="0"
             aria-label={i18next.t('edit-place-name', {
-              favourite,
+              favourite
             })}
             className={styles['favourite-edit-list-item-edit']}
             onClick={() => this.props.onEditSelected(favourite)}
@@ -231,20 +231,20 @@ class FavouriteEditingModal extends React.Component {
             role="button"
             tabIndex="0"
             aria-label={i18next.t('delete-place-name', {
-              favourite,
+              favourite
             })}
             className={styles['favourite-edit-list-item-remove']}
             onClick={() =>
               this.setState({
                 selectedFavourite: favourite,
-                showDeletePlaceModal: true,
+                showDeletePlaceModal: true
               })
             }
             onKeyDown={e => {
               if (isKeyboardSelectionEvent(e)) {
                 this.setState({
                   selectedFavourite: favourite,
-                  showDeletePlaceModal: true,
+                  showDeletePlaceModal: true
                 });
               }
             }}
@@ -287,7 +287,7 @@ class FavouriteEditingModal extends React.Component {
         handleClose={() =>
           this.setState(
             { selectedFavourite: null, showDeletePlaceModal: false },
-            () => this.props.handleClose(),
+            () => this.props.handleClose()
           )
         }
         isModalOpen={this.state.showDeletePlaceModal}
@@ -299,14 +299,14 @@ class FavouriteEditingModal extends React.Component {
           this.props.deleteFavourite(favourite);
           this.setState({
             selectedFavourite: null,
-            showDeletePlaceModal: false,
+            showDeletePlaceModal: false
           });
         }}
         secondaryButtonText={i18next.t('cancel')}
         secondaryButtonOnClick={() =>
           this.setState({
             selectedFavourite: null,
-            showDeletePlaceModal: false,
+            showDeletePlaceModal: false
           })
         }
         color={this.props.color}
@@ -320,7 +320,7 @@ class FavouriteEditingModal extends React.Component {
   closeModal = () => {
     this.props.handleClose();
     const omittedFavourites = this.state.favourites.map(item =>
-      omit(item, ['chosen', 'selected']),
+      omit(item, ['chosen', 'selected'])
     );
     if (!isEqual(omittedFavourites, this.props.favourites)) {
       this.props.updateFavourites(omittedFavourites);
@@ -331,14 +331,14 @@ class FavouriteEditingModal extends React.Component {
     const { color, hoverColor, fontWeights } = this.props;
     const modalProps = {
       headerText: i18next.t('edit-places'),
-      renderList: () => this.renderFavouriteList(),
+      renderList: () => this.renderFavouriteList()
     };
     return (
       <div
         style={{
           '--color': `${color}`,
           '--hover-color': `${hoverColor}`,
-          '--font-weight-medium': fontWeights.medium,
+          '--font-weight-medium': fontWeights.medium
         }}
       >
         <ModalContent {...modalProps} />

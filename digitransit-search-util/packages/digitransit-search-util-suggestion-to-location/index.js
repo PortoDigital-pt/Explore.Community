@@ -106,6 +106,6 @@ export default function suggestionToLocation(item) {
       item.lon ||
       (item.geometry &&
         item.geometry.coordinates &&
-        item.geometry.coordinates[0]),
+        item.geometry.coordinates[0])
   };
 }

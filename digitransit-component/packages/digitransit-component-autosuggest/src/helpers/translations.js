@@ -73,7 +73,7 @@ const translations = {
     venue: 'Venue',
     'via-point': 'Zwischenziel',
     where: 'Wohin?',
-    place: 'Ort',
+    place: 'Ort'
   },
   en: {
     address: 'Address',
@@ -157,7 +157,7 @@ const translations = {
     venue: 'Venue',
     'via-point': 'Via point',
     where: 'Where to?',
-    place: 'Location',
+    place: 'Location'
   },
   fi: {
     address: 'Osoite',
@@ -240,7 +240,7 @@ const translations = {
     venue: 'Paikka',
     'via-point': 'Välipiste',
     where: 'Minne mennään?',
-    place: 'Paikka',
+    place: 'Paikka'
   },
   pl: {
     address: 'Adres',
@@ -325,7 +325,7 @@ const translations = {
     venue: 'Miejsce',
     'via-point': 'Przez punkt',
     where: 'Dokąd?',
-    place: 'Miejsce',
+    place: 'Miejsce'
   },
   pt: {
     'add-via-button-label': 'Adicionar através do ponto',
@@ -409,7 +409,7 @@ const translations = {
     vehiclerentalstation: 'Ponto de partilha',
     venue: 'Localização',
     'via-point': 'Ponto de passagem',
-    where: 'Para onde?',
+    where: 'Para onde?'
   },
   sv: {
     address: 'Adress',
@@ -491,8 +491,8 @@ const translations = {
     venue: 'Mötesplats',
     'via-point': 'Via punkt',
     where: 'Vart vill du åka?',
-    place: 'Plats',
-  },
+    place: 'Plats'
+  }
 };
 
 export default translations;

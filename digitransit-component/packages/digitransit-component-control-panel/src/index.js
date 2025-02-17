@@ -13,8 +13,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 function SeparatorLine({ usePaddingBottom20 }) {
@@ -29,11 +29,11 @@ function SeparatorLine({ usePaddingBottom20 }) {
 }
 
 SeparatorLine.propTypes = {
-  usePaddingBottom20: PropTypes.bool,
+  usePaddingBottom20: PropTypes.bool
 };
 
 SeparatorLine.defaultProps = {
-  usePaddingBottom20: false,
+  usePaddingBottom20: false
 };
 
 function OriginToDestination({ showTitle, language }) {
@@ -57,12 +57,12 @@ function OriginToDestination({ showTitle, language }) {
 
 OriginToDestination.propTypes = {
   showTitle: PropTypes.bool,
-  language: PropTypes.string,
+  language: PropTypes.string
 };
 
 OriginToDestination.defaultProps = {
   showTitle: false,
-  language: 'fi',
+  language: 'fi'
 };
 
 /**
@@ -104,7 +104,7 @@ const validNearYouModes = [
   'subway',
   'airplane',
   'ferry',
-  'citybike',
+  'citybike'
 ];
 
 function getIconName(mode, modeSet) {
@@ -126,7 +126,7 @@ function NearStopsAndRoutes({
   modes,
   modeSet,
   modeIconColors,
-  fontWeights,
+  fontWeights
 }) {
   const [modesWithAlerts, setModesWithAlerts] = useState([]);
 
@@ -193,7 +193,7 @@ function NearStopsAndRoutes({
                     ? modes[mode]['color']
                     : modeIconColors[`mode-${mode}`] || buttonStyle['color']
                 }`,
-                '--borderRadius': `${buttonStyle.borderRadius}`,
+                '--borderRadius': `${buttonStyle.borderRadius}`
               }}
             >
               <Icon img={getIconName(mode, modeSet)} />
@@ -270,13 +270,13 @@ NearStopsAndRoutes.propTypes = {
   alertsContext: PropTypes.shape({
     getModesWithAlerts: PropTypes.func,
     currentTime: PropTypes.number,
-    feedIds: PropTypes.arrayOf(PropTypes.string),
+    feedIds: PropTypes.arrayOf(PropTypes.string)
   }),
   LinkComponent: PropTypes.object,
   origin: PropTypes.shape({
     address: PropTypes.string,
     lat: PropTypes.number,
-    lon: PropTypes.number,
+    lon: PropTypes.number
   }),
   omitLanguageUrl: PropTypes.bool,
   onClick: PropTypes.func,
@@ -286,8 +286,8 @@ NearStopsAndRoutes.propTypes = {
   modeIconColors: PropTypes.objectOf(PropTypes.string),
   modeSet: PropTypes.string,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number,
-  }),
+    medium: PropTypes.number
+  })
 };
 
 NearStopsAndRoutes.defaultProps = {
@@ -307,12 +307,12 @@ NearStopsAndRoutes.defaultProps = {
     'mode-tram': '#008151',
     'mode-metro': '#ed8c00',
     'mode-ferry': '#007A97',
-    'mode-citybike': '#F2B62D',
+    'mode-citybike': '#F2B62D'
   },
   modeSet: 'default',
   fontWeights: {
-    medium: 500,
-  },
+    medium: 500
+  }
 };
 
 /**
@@ -341,15 +341,15 @@ class CtrlPanel extends React.Component {
     children: PropTypes.arrayOf(PropTypes.node),
     position: PropTypes.string.isRequired,
     fontWeights: PropTypes.shape({
-      medium: PropTypes.number,
-    }),
+      medium: PropTypes.number
+    })
   };
 
   static defaultProps = {
     children: [],
     fontWeights: {
-      medium: 500,
-    },
+      medium: 500
+    }
   };
 
   constructor(props) {

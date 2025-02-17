@@ -17,8 +17,8 @@ i18next.init({
   fallbackLng: 'fi',
   defaultNS: 'translation',
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
+    escapeValue: false // not needed for react as it escapes by default
+  }
 });
 
 Object.keys(translations).forEach(lang => {
@@ -31,14 +31,14 @@ const FavouriteIconIdToNameMap = {
   'icon-icon_work': 'work',
   'icon-icon_sport': 'sport',
   'icon-icon_school': 'school',
-  'icon-icon_shopping': 'shopping',
+  'icon-icon_shopping': 'shopping'
 };
 
 const FavouriteIconTableButton = ({
   value,
   selectedIconId,
   handleClick,
-  color,
+  color
 }) => {
   const [isHovered, setHover] = useState(false);
   const [isFocused, setFocus] = useState(false);
@@ -51,7 +51,7 @@ const FavouriteIconTableButton = ({
       type="button"
       className={cx(styles['favourite-icon-table-column'], styles[value], {
         [styles['selected-icon']]:
-          value === FavouriteIconIdToNameMap[selectedIconId],
+          value === FavouriteIconIdToNameMap[selectedIconId]
       })}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -69,14 +69,14 @@ FavouriteIconTableButton.propTypes = {
   handleClick: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   selectedIconId: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired
 };
 
 const FavouriteIconTable = ({
   favouriteIconIds,
   selectedIconId,
   handleClick,
-  color,
+  color
 }) => {
   const columns = favouriteIconIds.map(value => (
     <FavouriteIconTableButton
@@ -99,11 +99,11 @@ FavouriteIconTable.propTypes = {
   handleClick: PropTypes.func.isRequired,
   favouriteIconIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedIconId: PropTypes.string,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired
 };
 
 FavouriteIconTable.defaultProps = {
-  selectedIconId: '',
+  selectedIconId: ''
 };
 
 /**
@@ -172,7 +172,7 @@ class FavouriteModal extends React.Component {
       selectedIconId: PropTypes.string,
       favouriteId: PropTypes.string,
       layer: PropTypes.string,
-      defaultName: PropTypes.string,
+      defaultName: PropTypes.string
     }),
     /** Optional.
      * @type {function} */
@@ -188,8 +188,8 @@ class FavouriteModal extends React.Component {
     /** Optional. */
     fontWeights: PropTypes.shape({
       /** Default value is 500. */
-      medium: PropTypes.number,
-    }),
+      medium: PropTypes.number
+    })
   };
 
   static defaultProps = {
@@ -202,8 +202,8 @@ class FavouriteModal extends React.Component {
     color: '#007ac9',
     hoverColor: '#0062a1',
     fontWeights: {
-      medium: 500,
-    },
+      medium: 500
+    }
   };
 
   static favouriteIconIds = [
@@ -212,14 +212,14 @@ class FavouriteModal extends React.Component {
     'work',
     'sport',
     'school',
-    'shopping',
+    'shopping'
   ];
 
   constructor(props) {
     super(props);
     i18next.changeLanguage(props.lang);
     this.state = {
-      favourite: null,
+      favourite: null
     };
     Object.keys(translations).forEach(lang => {
       i18next.addResourceBundle(lang, 'translation', translations[lang]);
@@ -232,15 +232,15 @@ class FavouriteModal extends React.Component {
 
     if (isEmpty(nextFav)) {
       return {
-        favourite: null,
+        favourite: null
       };
     }
 
     if (isEmpty(prevFav) && !isEmpty(nextFav)) {
       return {
         favourite: {
-          ...nextFav,
-        },
+          ...nextFav
+        }
       };
     }
     if (
@@ -258,8 +258,8 @@ class FavouriteModal extends React.Component {
           lon: nextFav.lon,
           gid: nextFav.gid || null,
           name: prevFav.name || nextFav.name || '',
-          defaultName: nextFav.defaultName,
-        },
+          defaultName: nextFav.defaultName
+        }
       };
     }
     return null;
@@ -278,7 +278,7 @@ class FavouriteModal extends React.Component {
   specifyName = event => {
     const name = event.target.value;
     this.setState(prevState => ({
-      favourite: { ...prevState.favourite, name },
+      favourite: { ...prevState.favourite, name }
     }));
   };
 
@@ -286,8 +286,8 @@ class FavouriteModal extends React.Component {
     this.setState(prevState => ({
       favourite: {
         ...prevState.favourite,
-        selectedIconId: `icon-icon_${id}`,
-      },
+        selectedIconId: `icon-icon_${id}`
+      }
     }));
   };
 
@@ -329,7 +329,7 @@ class FavouriteModal extends React.Component {
         this.props.addAnalyticsEvent({
           category: 'Favourite',
           action: 'SaveFavourite',
-          name: this.state.favourite.selectedIconId,
+          name: this.state.favourite.selectedIconId
         });
       }
       if (this.isEdit() && this.props.cancelSelected) {
@@ -351,7 +351,7 @@ class FavouriteModal extends React.Component {
       autosuggestComponent: {
         ...this.props.autosuggestComponent,
         color,
-        hoverColor,
+        hoverColor
       },
       inputPlaceholder: i18next.t('input-placeholder'),
       specifyName: this.specifyName,
@@ -381,7 +381,7 @@ class FavouriteModal extends React.Component {
       savePlaceText: i18next.t('save-place'),
       cantSaveText: i18next.t('cannot-save-place'),
       requiredText: i18next.t('required-text'),
-      fontWeights,
+      fontWeights
     };
     return (
       <Modal

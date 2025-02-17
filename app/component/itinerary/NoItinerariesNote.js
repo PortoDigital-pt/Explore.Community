@@ -7,7 +7,7 @@ import {
   errorShape,
   RoutingerrorShape,
   locationStateShape,
-  locationShape,
+  locationShape
 } from '../../util/shapes';
 import ErrorCard from './ErrorCard';
 import findErrorMessageIds from './findErrorMessageIds';
@@ -37,9 +37,9 @@ function NoItinerariesNote(
     error,
     routingErrors,
     locationState,
-    searchTime,
+    searchTime
   },
-  context,
+  context
 ) {
   const { match, config } = context;
   const { areaPolygon, minDistanceBetweenFromAndTo, nationalServiceLink } =
@@ -55,12 +55,12 @@ function NoItinerariesNote(
     areaPolygon,
     minDistanceBetweenFromAndTo,
     error,
-    currentTime,
+    currentTime
   };
   const errorMessageIds = findErrorMessageIds(
     routingErrors,
     query,
-    queryContext,
+    queryContext
   );
 
   const { LinkComponent, titleId, bodyId, iconImg, iconType } =
@@ -68,7 +68,7 @@ function NoItinerariesNote(
 
   const linkCompProps = {
     nationalServiceLink,
-    match,
+    match
   };
 
   return (
@@ -92,7 +92,7 @@ NoItinerariesNote.propTypes = {
   biking: PropTypes.bool,
   driving: PropTypes.bool,
   error: errorShape,
-  routingErrors: PropTypes.arrayOf(RoutingerrorShape),
+  routingErrors: PropTypes.arrayOf(RoutingerrorShape)
 };
 
 NoItinerariesNote.defaultProps = {
@@ -101,20 +101,20 @@ NoItinerariesNote.defaultProps = {
   driving: false,
   error: '',
   locationState: undefined,
-  routingErrors: [],
+  routingErrors: []
 };
 
 NoItinerariesNote.contextTypes = {
   config: configShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 const connectedComponent = connectToStores(
   NoItinerariesNote,
   ['PositionStore'],
   context => ({
-    locationState: context.getStore('PositionStore').getLocationState(),
-  }),
+    locationState: context.getStore('PositionStore').getLocationState()
+  })
 );
 
 export { connectedComponent as default, NoItinerariesNote as Component };

@@ -11,7 +11,7 @@ import Icon from '../../Icon';
 import {
   getTransitModes,
   getModes,
-  toggleTransportMode,
+  toggleTransportMode
 } from '../../../util/modeUtils';
 
 const TransportModesSection = ({ config }, { executeAction }) => {
@@ -40,8 +40,8 @@ const TransportModesSection = ({ config }, { executeAction }) => {
                 [`mode-option-block`, 'toggle-label'],
                 mode.toLowerCase(),
                 {
-                  disabled: !selectedModes.includes(mode),
-                },
+                  disabled: !selectedModes.includes(mode)
+                }
               )}
             >
               <div className="mode-icon">
@@ -72,7 +72,7 @@ const TransportModesSection = ({ config }, { executeAction }) => {
                 toggled={selectedModes.includes(mode)}
                 onToggle={() =>
                   executeAction(saveRoutingSettings, {
-                    modes: toggleTransportMode(mode, config),
+                    modes: toggleTransportMode(mode, config)
                   })
                 }
               />
@@ -85,12 +85,12 @@ const TransportModesSection = ({ config }, { executeAction }) => {
 };
 
 TransportModesSection.propTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 TransportModesSection.contextTypes = {
   intl: intlShape.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default TransportModesSection;

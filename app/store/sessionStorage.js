@@ -12,7 +12,7 @@ function handleSecurityError(error, logMessage) {
 
 export const getSessionStorage = (
   runningInBrowser,
-  errorHandler = handleSecurityError,
+  errorHandler = handleSecurityError
 ) => {
   if (runningInBrowser) {
     try {
@@ -36,13 +36,13 @@ function setItem(key, value) {
         // eslint-disable-next-line no-console
         console.log(
           '[sessionStorage]' + // eslint-disable-line no-console
-            ' Unable to save state; sessionStorage is not available in Safari private mode',
+            ' Unable to save state; sessionStorage is not available in Safari private mode'
         );
       } else {
         handleSecurityError(
           error,
           '[sessionStorage]' +
-            ' Unable to save state; access to sessionStorage denied by browser settings',
+            ' Unable to save state; access to sessionStorage denied by browser settings'
         );
       }
     }

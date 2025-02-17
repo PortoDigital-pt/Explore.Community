@@ -33,7 +33,7 @@ self.addEventListener('fetch', event => {
         })
         .catch(error => {
           throw error;
-        }),
-    ),
+        })
+    )
   );
 });

@@ -11,7 +11,7 @@ import {
   getCaseRadius,
   getStopRadius,
   getHubRadius,
-  getMapIconScale,
+  getMapIconScale
 } from '../../util/mapIconUtils';
 import PopupHeader from './PopupHeader';
 
@@ -65,7 +65,7 @@ export const getRoundIcon = zoom => {
       </svg>
     `,
     iconSize: [radius * 2, radius * 2],
-    className: `cursor-pointer`,
+    className: `cursor-pointer`
   });
 };
 
@@ -80,7 +80,7 @@ export const getCustomIcon = (zoom, iconUrl, size) => {
   return L.icon({
     iconAnchor: [(1 / 2) * iconSize, (1 / 2) * iconSize],
     iconSize: [iconSize, iconSize],
-    iconUrl,
+    iconUrl
   });
 };
 
@@ -98,7 +98,7 @@ export const getPropertyValueOrDefault = (
   properties,
   propertyName,
   language,
-  defaultValue = undefined,
+  defaultValue = undefined
 ) =>
   (properties &&
     propertyName &&
@@ -112,7 +112,7 @@ const PointFeatureMarker = ({
   language,
   locationPopup,
   onSelectLocation,
-  size = CUSTOM_ICON_SIZE,
+  size = CUSTOM_ICON_SIZE
 }) => {
   const { geometry, properties } = feature;
   if (!isPointTypeGeometry(geometry)) {
@@ -138,7 +138,7 @@ const PointFeatureMarker = ({
       maxWidth={locationPopup === 'all' ? 320 : 250}
       position={{
         lat,
-        lon,
+        lon
       }}
       shouldRender={zoom =>
         isCustomIconVisible(zoom) || isRoundIconVisible(zoom)
@@ -154,7 +154,7 @@ const PointFeatureMarker = ({
             location={{
               address,
               lat,
-              lon,
+              lon
             }}
             locationPopup={locationPopup}
             onSelectLocation={onSelectLocation}
@@ -169,40 +169,40 @@ PointFeatureMarker.propTypes = {
   feature: PropTypes.shape({
     geometry: PropTypes.shape({
       coordinates: PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+        PropTypes.oneOfType([PropTypes.number, PropTypes.array])
       ).isRequired,
-      type: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired
     }).isRequired,
     properties: PropTypes.shape({
       address: PropTypes.string,
       city: PropTypes.string,
       icon: PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired
       }),
-      name: PropTypes.string,
-    }).isRequired,
+      name: PropTypes.string
+    }).isRequired
   }).isRequired,
   // eslint-disable-next-line
   icons: PropTypes.object,
   language: PropTypes.string.isRequired,
   locationPopup: PropTypes.string,
   onSelectLocation: PropTypes.func,
-  size: PropTypes.number,
+  size: PropTypes.number
 };
 
 PointFeatureMarker.defaultProps = {
   icons: {},
   locationPopup: undefined,
   onSelectLocation: undefined,
-  size: undefined,
+  size: undefined
 };
 
 const connectedComponent = connectToStores(
   PointFeatureMarker,
   [PreferencesStore],
   ({ getStore }) => ({
-    language: getStore(PreferencesStore).getLanguage(),
-  }),
+    language: getStore(PreferencesStore).getLanguage()
+  })
 );
 
 export { connectedComponent as default, PointFeatureMarker as Component };

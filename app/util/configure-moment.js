@@ -17,11 +17,11 @@ export default function configureMoment(language, config) {
 
   moment.relativeTimeThreshold(
     's',
-    config.moment.relativeTimeThreshold.seconds,
+    config.moment.relativeTimeThreshold.seconds
   );
   moment.relativeTimeThreshold(
     'm',
-    config.moment.relativeTimeThreshold.minutes,
+    config.moment.relativeTimeThreshold.minutes
   );
   moment.relativeTimeThreshold('h', config.moment.relativeTimeThreshold.hours);
   moment.relativeTimeThreshold('d', config.moment.relativeTimeThreshold.days);

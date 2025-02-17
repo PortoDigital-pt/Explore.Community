@@ -18,11 +18,11 @@ export default function ItineraryNotification({ headerId, bodyId, iconId }) {
 ItineraryNotification.propTypes = {
   headerId: PropTypes.string,
   bodyId: PropTypes.string,
-  iconId: PropTypes.string,
+  iconId: PropTypes.string
 };
 
 ItineraryNotification.defaultProps = {
   headerId: undefined,
   bodyId: undefined,
-  iconId: undefined,
+  iconId: undefined
 };

@@ -16,7 +16,7 @@ import 'leaflet/dist/leaflet.css';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
 import {
   startRealTimeClient,
-  stopRealTimeClient,
+  stopRealTimeClient
 } from '../../action/realTimeClientAction';
 import PositionMarker from './PositionMarker';
 import VectorTileLayerContainer from './tile-layer/VectorTileLayerContainer';
@@ -47,7 +47,7 @@ const startClient = context => {
       feedId,
       options: context.config.feedIds
         .filter(f => realTime[f]?.active)
-        .map(f => ({ feedId: f })),
+        .map(f => ({ feedId: f }))
     };
     context.executeAction(startRealTimeClient, config);
   }
@@ -81,7 +81,7 @@ export default class Map extends React.Component {
     // eslint-disable-next-line
     geoJson: PropTypes.object,
     mapLayers: mapLayerShape,
-    breakpoint: PropTypes.string,
+    breakpoint: PropTypes.string
   };
 
   static defaultProps = {
@@ -106,14 +106,14 @@ export default class Map extends React.Component {
     leafletEvents: undefined,
     leafletObjs: undefined,
     objectsToHide: { vehicleRentalStations: [] },
-    breakpoint: undefined,
+    breakpoint: undefined
   };
 
   static contextTypes = {
     executeAction: PropTypes.func.isRequired,
     getStore: PropTypes.func,
     config: configShape.isRequired,
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   constructor(props) {
@@ -125,7 +125,7 @@ export default class Map extends React.Component {
     if (this.props.breakpoint !== 'large') {
       this.boundsOptions = {
         paddingTopLeft: [0, EXTRA_PADDING],
-        paddingBottomRight: [0, (window.innerHeight - 64) / 2],
+        paddingBottomRight: [0, (window.innerHeight - 64) / 2]
       };
     }
   }
@@ -191,8 +191,8 @@ export default class Map extends React.Component {
         0,
         Math.max(
           Math.min(padding, window.innerHeight - 2 * EXTRA_PADDING),
-          EXTRA_PADDING,
-        ),
+          EXTRA_PADDING
+        )
       ];
     }
   };
@@ -208,7 +208,7 @@ export default class Map extends React.Component {
       geoJson,
       mapLayers,
       bottomPadding,
-      mapLayerRef,
+      mapLayerRef
     } = this.props;
     const { config } = this.context;
 
@@ -216,7 +216,7 @@ export default class Map extends React.Component {
     if (bottomPadding !== undefined && this.boundsOptions) {
       this.boundsOptions.paddingBottomRight = [
         0,
-        Math.min(bottomPadding + EXTRA_PADDING, window.innerHeight - 60),
+        Math.min(bottomPadding + EXTRA_PADDING, window.innerHeight - 60)
       ];
     }
     if (this.props.bounds) {
@@ -239,12 +239,12 @@ export default class Map extends React.Component {
     const mapAreaBounds = L.latLngBounds(
       L.latLng(
         config.map.areaBounds.corner1[0],
-        config.map.areaBounds.corner1[1],
+        config.map.areaBounds.corner1[1]
       ),
       L.latLng(
         config.map.areaBounds.corner2[0],
-        config.map.areaBounds.corner2[1],
-      ),
+        config.map.areaBounds.corner2[1]
+      )
     );
     naviProps.maxBounds = mapAreaBounds;
 
@@ -271,13 +271,13 @@ export default class Map extends React.Component {
         locationPopup={locationPopup}
         onSelectLocation={onSelectLocation}
         mapLayers={this.props.mapLayers}
-      />,
+      />
     ]);
 
     if (this.props.mapLayers.vehicles) {
       const useLargeIcon = this.state.zoom >= config.stopsMinZoom;
       leafletObjNew.push(
-        <VehicleMarkerContainer key="vehicles" useLargeIcon={useLargeIcon} />,
+        <VehicleMarkerContainer key="vehicles" useLargeIcon={useLargeIcon} />
       );
     }
 
@@ -292,7 +292,7 @@ export default class Map extends React.Component {
           key =>
             mapLayers.geoJson[key] !== false &&
             (mapLayers.geoJson[key] === true ||
-              geoJson[key].isOffByDefault !== true),
+              geoJson[key].isOffByDefault !== true)
         )
         .forEach((key, i) => {
           leafletObjNew.push(
@@ -302,14 +302,14 @@ export default class Map extends React.Component {
               geoJsonZoomLevel={this.state.zoom}
               locationPopup={locationPopup}
               onSelectLocation={onSelectLocation}
-            />,
+            />
           );
         });
     }
 
     const leafletEvents = {
       ...this.props.leafletEvents,
-      onZoomend: this.zoomEnd,
+      onZoomend: this.zoomEnd
     };
 
     return (
@@ -318,7 +318,7 @@ export default class Map extends React.Component {
         <span
           className="overlay-mover"
           style={{
-            transform: `translate(0, -${this.props.bottomPadding}px)`,
+            transform: `translate(0, -${this.props.bottomPadding}px)`
           }}
         >
           {this.props.bottomButtons}
@@ -377,10 +377,10 @@ export default class Map extends React.Component {
                   zoomInText={zoomInText}
                   zoomOutText={zoomOutText}
                   zoomInTitle={this.context.intl.formatMessage({
-                    id: 'map-zoom-in-button',
+                    id: 'map-zoom-in-button'
                   })}
                   zoomOutTitle={this.context.intl.formatMessage({
-                    id: 'map-zoom-out-button',
+                    id: 'map-zoom-out-button'
                   })}
                 />
               )}

@@ -13,14 +13,14 @@ describe('<ServiceAlertIcon />', () => {
 
   it('should render empty if the severity is falsy', () => {
     const wrapper = shallowWithIntl(
-      <ServiceAlertIcon severityLevel={undefined} />,
+      <ServiceAlertIcon severityLevel={undefined} />
     );
     expect(wrapper.isEmptyRender()).to.equal(true);
   });
 
   it('should render an info icon', () => {
     const wrapper = shallowWithIntl(
-      <ServiceAlertIcon severityLevel={AlertSeverityLevelType.Info} />,
+      <ServiceAlertIcon severityLevel={AlertSeverityLevelType.Info} />
     );
     expect(wrapper.isEmptyRender()).to.equal(false);
     expect(wrapper.find(Icon).prop('className')).to.contain('info');
@@ -28,7 +28,7 @@ describe('<ServiceAlertIcon />', () => {
 
   it('should render a caution icon', () => {
     const wrapper = shallowWithIntl(
-      <ServiceAlertIcon severityLevel={AlertSeverityLevelType.Warning} />,
+      <ServiceAlertIcon severityLevel={AlertSeverityLevelType.Warning} />
     );
     expect(wrapper.isEmptyRender()).to.equal(false);
     expect(wrapper.find(Icon).prop('className')).to.contain('caution');

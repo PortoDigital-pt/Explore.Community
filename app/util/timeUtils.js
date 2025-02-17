@@ -57,7 +57,7 @@ export const RANGE_PAST = 7;
 export const validateServiceTimeRange = (
   itineraryFutureDays,
   serviceTimeRange,
-  now,
+  now
 ) => {
   const NOW = now ? moment.unix(now) : moment();
   const RANGE_FUTURE = !itineraryFutureDays ? 30 : itineraryFutureDays;
@@ -69,7 +69,7 @@ export const validateServiceTimeRange = (
     // empty param returns a default range
     return {
       start: START,
-      end: END,
+      end: END
     };
   }
 
@@ -127,7 +127,7 @@ export function getFormattedTimeDate(startTime, pattern) {
  */
 export function epochToTime(ms, config) {
   const time = new Date(ms).toLocaleTimeString('en-GB', {
-    timeZone: config.timeZone,
+    timeZone: config.timeZone
   });
   const parts = time.split(':');
   return `${parts[0]}:${parts[1]}`;
@@ -146,7 +146,7 @@ export function unixTime(ms) {
  */
 export function unixToYYYYMMDD(s, config) {
   const date = new Date(s * 1000).toLocaleDateString('en-GB', {
-    timeZone: config.timeZone,
+    timeZone: config.timeZone
   });
   const parts = date.split('/');
   return `${parts[2]}${parts[1]}${parts[0]}`;

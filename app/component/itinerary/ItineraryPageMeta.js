@@ -14,31 +14,31 @@ export default compose(
     const { to, from } = match.params;
     const params = {
       from: otpToLocation(from).address,
-      to: otpToLocation(to).address,
+      to: otpToLocation(to).address
     };
     const title = intl.formatMessage(
       {
         id: 'summary-page.title',
-        defaultMessage: 'Itinerary suggestions',
+        defaultMessage: 'Itinerary suggestions'
       },
-      params,
+      params
     );
     const description = intl.formatMessage(
       {
         id: 'summary-page.description',
-        defaultMessage: '{from} - {to}',
+        defaultMessage: '{from} - {to}'
       },
-      params,
+      params
     );
     return generateMetaData(
       {
         description,
-        title,
+        title
       },
       config,
       {
-        pathname: `/${encodeURIComponent(from)}/${encodeURIComponent(to)}`,
-      },
+        pathname: `/${encodeURIComponent(from)}/${encodeURIComponent(to)}`
+      }
     );
-  }),
+  })
 )(Helmet);

@@ -13,19 +13,19 @@ const TerminalPageMapContainer = ({ station }) => {
 };
 
 TerminalPageMapContainer.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 TerminalPageMapContainer.propTypes = {
   station: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
-    platformCode: PropTypes.string,
-  }),
+    platformCode: PropTypes.string
+  })
 };
 
 TerminalPageMapContainer.defaultProps = {
-  station: undefined,
+  station: undefined
 };
 
 const containerComponent = createFragmentContainer(TerminalPageMapContainer, {
@@ -40,7 +40,7 @@ const containerComponent = createFragmentContainer(TerminalPageMapContainer, {
       vehicleMode
       locationType
     }
-  `,
+  `
 });
 
 export { containerComponent as default, TerminalPageMapContainer as Component };

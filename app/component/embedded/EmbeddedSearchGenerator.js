@@ -10,7 +10,7 @@ import { getRefPoint } from '../../util/apiUtils';
 import withBreakpoint from '../../util/withBreakpoint';
 import {
   withSearchContext,
-  getLocationSearchTargets,
+  getLocationSearchTargets
 } from '../WithSearchContext';
 import { isBrowser } from '../../util/browser';
 
@@ -22,7 +22,7 @@ const languages = [
   { id: 'fi', name: 'finnish', defaultMessage: 'Finnish' },
   { id: 'sv', name: 'swedish', defaultMessage: 'Swedish' },
   { id: 'en', name: 'english', defaultMessage: 'English' },
-  { id: 'pl', name: 'polish', defaultMessage: 'Polish' },
+  { id: 'pl', name: 'polish', defaultMessage: 'Polish' }
 ];
 
 const EmbeddedSearchGenerator = (props, context) => {
@@ -88,7 +88,7 @@ const EmbeddedSearchGenerator = (props, context) => {
     modeSet: config.iconModeSet,
     modeIconColors: config.colors.modeIconColors,
     selectHandler: onSelectLocation,
-    getAutoSuggestIcons: context.config.getAutoSuggestIcons,
+    getAutoSuggestIcons: context.config.getAutoSuggestIcons
   };
 
   const generateComponent = () => {
@@ -101,7 +101,7 @@ const EmbeddedSearchGenerator = (props, context) => {
           ...locData,
           lon1: searchOrigin?.lon,
           lat1: searchOrigin?.lat,
-          address1: value(searchOrigin),
+          address1: value(searchOrigin)
         };
       }
     }
@@ -113,7 +113,7 @@ const EmbeddedSearchGenerator = (props, context) => {
           ...locData,
           lon2: searchDestination?.lon,
           lat2: searchDestination?.lat,
-          address2: value(searchDestination),
+          address2: value(searchDestination)
         };
       }
     }
@@ -121,7 +121,7 @@ const EmbeddedSearchGenerator = (props, context) => {
     mode[searchModeRestriction.substring(0, searchModeRestriction.length - 2)] =
       'true';
     const searchMatch = {
-      location: { query: { ...mode, ...locData, lang: searchLang } },
+      location: { query: { ...mode, ...locData, lang: searchLang } }
     };
     return <EmbeddedSearch match={searchMatch} />;
   };
@@ -417,7 +417,7 @@ const EmbeddedSearchGenerator = (props, context) => {
                 height: 250,
                 width: searchWidth,
                 minWidth: MIN_WIDTH,
-                maxWidth: MAX_WIDTH,
+                maxWidth: MAX_WIDTH
               }}
               disabled="disabled"
               readOnly="readonly"
@@ -472,20 +472,20 @@ const EmbeddedSearchGenerator = (props, context) => {
 
 EmbeddedSearchGenerator.propTypes = {
   breakpoint: PropTypes.string,
-  lang: PropTypes.string.isRequired,
+  lang: PropTypes.string.isRequired
 };
 
 EmbeddedSearchGenerator.defaultProps = { breakpoint: undefined };
 
 EmbeddedSearchGenerator.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default connectToStores(
   withBreakpoint(EmbeddedSearchGenerator),
   ['PreferencesStore'],
   context => ({
-    lang: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    lang: context.getStore('PreferencesStore').getLanguage()
+  })
 );

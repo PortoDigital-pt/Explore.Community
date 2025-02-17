@@ -8,7 +8,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import {
   getFaresFromLegs,
   shouldShowFareInfo,
-  shouldShowFarePurchaseInfo,
+  shouldShowFarePurchaseInfo
 } from '../../util/fareUtils';
 import {
   compressLegs,
@@ -21,14 +21,14 @@ import {
   getZones,
   isCallAgencyLeg,
   legContainsBikePark,
-  legContainsRentalBike,
+  legContainsRentalBike
 } from '../../util/legUtils';
 import { streetHash } from '../../util/path';
 import { configShape, itineraryShape, relayShape } from '../../util/shapes';
 import {
   getFormattedTimeDate,
   isToday,
-  isTomorrow,
+  isTomorrow
 } from '../../util/timeUtils';
 import { BreakpointConsumer } from '../../util/withBreakpoint';
 import BackButton from '../BackButton';
@@ -56,7 +56,7 @@ class ItineraryDetails extends React.Component {
     startNavigation: PropTypes.func,
     bikePublicItineraryCount: PropTypes.number,
     carPublicItineraryCount: PropTypes.number,
-    relayEnvironment: relayShape,
+    relayEnvironment: relayShape
   };
 
   static defaultProps = {
@@ -67,7 +67,7 @@ class ItineraryDetails extends React.Component {
     carPublicItineraryCount: 0,
     carEmissions: undefined,
     relayEnvironment: undefined,
-    startNavigation: undefined,
+    startNavigation: undefined
   };
 
   static contextTypes = {
@@ -75,7 +75,7 @@ class ItineraryDetails extends React.Component {
     router: routerShape.isRequired,
     match: matchShape.isRequired,
     intl: intlShape.isRequired,
-    getStore: PropTypes.func.isRequired,
+    getStore: PropTypes.func.isRequired
   };
 
   shouldShowDisclaimer(config) {
@@ -93,7 +93,7 @@ class ItineraryDetails extends React.Component {
     }
     if (isTomorrow(startTime, refTime)) {
       return this.context.intl.formatMessage({
-        id: 'tomorrow',
+        id: 'tomorrow'
       });
     }
     return getFormattedTimeDate(startTime, 'dd D.M.');
@@ -102,7 +102,7 @@ class ItineraryDetails extends React.Component {
   getExtraProps(itinerary) {
     const compressedItinerary = {
       ...itinerary,
-      legs: compressLegs(itinerary.legs),
+      legs: compressLegs(itinerary.legs)
     };
     const walkingDistance = getTotalWalkingDistance(compressedItinerary);
     const walkingDuration = getTotalWalkingDuration(compressedItinerary);
@@ -118,18 +118,18 @@ class ItineraryDetails extends React.Component {
     return {
       walking: {
         duration: walkingDuration,
-        distance: walkingDistance,
+        distance: walkingDistance
       },
       biking: {
         duration: bikingDuration,
-        distance: bikingDistance,
+        distance: bikingDistance
       },
       driving: {
         duration: drivingDuration,
-        distance: drivingDistance,
+        distance: drivingDistance
       },
       futureText,
-      isMultiRow,
+      isMultiRow
     };
   }
 
@@ -139,7 +139,7 @@ class ItineraryDetails extends React.Component {
       currentLanguage,
       isMobile,
       bikePublicItineraryCount,
-      carPublicItineraryCount,
+      carPublicItineraryCount
     } = this.props;
     const { config } = this.context;
     if (!itinerary?.legs[0]) {
@@ -155,13 +155,13 @@ class ItineraryDetails extends React.Component {
     const usingOwnCarWholeTrip =
       walking.distance === 0 && biking.distance === 0 && driving.distance > 0;
     const legsWithRentalBike = compressLegs(itinerary.legs).filter(leg =>
-      legContainsRentalBike(leg),
+      legContainsRentalBike(leg)
     );
     const legswithBikePark = compressLegs(itinerary.legs).filter(leg =>
-      legContainsBikePark(leg),
+      legContainsBikePark(leg)
     );
     const legsWithScooter = compressLegs(itinerary.legs).some(
-      leg => leg.mode === 'SCOOTER',
+      leg => leg.mode === 'SCOOTER'
     );
     const containsBiking = biking.duration > 0 && biking.distance > 0;
     const showBikeBoardingInformation =
@@ -221,7 +221,7 @@ class ItineraryDetails extends React.Component {
               text={disclaimer.disclaimer}
               href={disclaimer.link}
               linkText={disclaimer.text}
-            />,
+            />
           );
         }
       });
@@ -234,7 +234,7 @@ class ItineraryDetails extends React.Component {
             textId="separate-ticket-required-for-call-agency-disclaimer"
             href={info.callAgencyInfoLink}
             linkText={info.callAgencyInfoLinkText}
-          />,
+          />
         );
       }
 
@@ -247,9 +247,9 @@ class ItineraryDetails extends React.Component {
               agencyName:
                 typeof config.primaryAgencyName === 'string'
                   ? config.primaryAgencyName
-                  : config.primaryAgencyName?.[currentLanguage],
+                  : config.primaryAgencyName?.[currentLanguage]
             }}
-          />,
+          />
         );
       }
     }
@@ -260,7 +260,7 @@ class ItineraryDetails extends React.Component {
           <FormattedMessage
             id="summary-page.row-label"
             values={{
-              number: itineraryIndex,
+              number: itineraryIndex
             }}
           />
         </h2>
@@ -335,13 +335,13 @@ class ItineraryDetails extends React.Component {
             ),
             <div
               className={cx('momentum-scroll itinerary-tabs__scroll', {
-                multirow: isMultiRow,
+                multirow: isMultiRow
               })}
               key="legs"
             >
               <div
                 className={cx('itinerary-main', {
-                  'bp-large': breakpoint === 'large',
+                  'bp-large': breakpoint === 'large'
                 })}
                 key="legwrapper"
               >
@@ -381,7 +381,7 @@ class ItineraryDetails extends React.Component {
                 </div>
               )}
               <div className="itinerary-empty-space" key="emptyspace" />
-            </div>,
+            </div>
           ]}
         </BreakpointConsumer>
       </div>
@@ -391,7 +391,7 @@ class ItineraryDetails extends React.Component {
 
 const withRelay = createFragmentContainer(
   connectToStores(ItineraryDetails, ['PreferencesStore'], context => ({
-    currentLanguage: context.getStore('PreferencesStore').getLanguage(),
+    currentLanguage: context.getStore('PreferencesStore').getLanguage()
   })),
   {
     itinerary: graphql`
@@ -667,8 +667,8 @@ const withRelay = createFragmentContainer(
           }
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export { ItineraryDetails as Component, withRelay as default };

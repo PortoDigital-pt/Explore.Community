@@ -4,7 +4,7 @@ module.exports = {
     'plugin:compat/recommended',
     'plugin:jsx-a11y/recommended',
     'airbnb',
-    'plugin:prettier/recommended',
+    'plugin:prettier/recommended'
   ],
   rules: {
     curly: ['error', 'all'],
@@ -25,7 +25,7 @@ module.exports = {
     'react/jsx-key': 'error',
     'react/jsx-props-no-spreading': 'off',
     'react/forbid-prop-types': ['warn', { forbid: ['any', 'array', 'object'] }],
-    'react/require-default-props': 'warn',
+    'react/require-default-props': 'off',
     'react/sort-comp': 'off',
     'react/state-in-constructor': 'off',
     'react/static-property-placement': 'off',
@@ -37,8 +37,8 @@ module.exports = {
       {
         components: ['Link'],
         specialLink: ['to'],
-        aspects: ['noHref', 'invalidHref', 'preferButton'],
-      },
+        aspects: ['noHref', 'invalidHref', 'preferButton']
+      }
     ],
     'jsx-a11y/label-has-associated-control': 'off', // this has a bug with FormattedMessage
     'jsx-a11y/label-has-for': 'off', // deprecated in 6.1.0, does not support select tags
@@ -54,27 +54,27 @@ module.exports = {
         arrowParens: 'avoid',
         endOfLine: 'auto',
         singleQuote: true,
-        trailingComma: 'all',
-      },
-    ],
+        trailingComma: 'none'
+      }
+    ]
   },
   env: {
-    browser: true,
+    browser: true
   },
   plugins: ['react', 'compat', 'prettier', 'jsx-a11y'],
   settings: {
-    polyfills: ['fetch', 'promises'],
+    polyfills: ['fetch', 'promises']
   },
   overrides: [
     {
       files: ['*.js'],
-      processor: '@graphql-eslint/graphql',
+      processor: '@graphql-eslint/graphql'
     },
     {
       files: ['*.graphql'],
       extends: [
         'plugin:@graphql-eslint/operations-recommended',
-        'plugin:@graphql-eslint/relay',
+        'plugin:@graphql-eslint/relay'
       ],
       // Available rules can be found at https://the-guild.dev/graphql/eslint/rules/naming-convention
       rules: {
@@ -83,8 +83,8 @@ module.exports = {
         '@graphql-eslint/naming-convention': [
           'error',
           {
-            VariableDefinition: 'camelCase',
-          },
+            VariableDefinition: 'camelCase'
+          }
         ],
         // Relay directives caused errors and ignoring them didn't work for some reason
         '@graphql-eslint/known-directives': 'off',
@@ -101,11 +101,11 @@ module.exports = {
         '@graphql-eslint/require-import-fragment': 'off',
         '@graphql-eslint/selection-set-depth': 'off',
         '@graphql-eslint/unique-fragment-name': 'off',
-        '@graphql-eslint/unique-operation-name': 'off',
+        '@graphql-eslint/unique-operation-name': 'off'
       },
       parserOptions: {
-        schema: './build/schema.graphql',
-      },
-    },
-  ],
+        schema: './build/schema.graphql'
+      }
+    }
+  ]
 };

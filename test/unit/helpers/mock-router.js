@@ -3,7 +3,7 @@ const mockMatcher = {
   match: () => {},
   getRoutes: () => {},
   isActive: () => {},
-  format: () => {},
+  format: () => {}
 };
 
 export const mockRouter = {
@@ -15,7 +15,7 @@ export const mockRouter = {
   addNavigationListener: () => {},
   matcher: mockMatcher,
   replaceRouteConfig: () => {},
-  isActive: () => {},
+  isActive: () => {}
 };
 
 export const mockMatch = {
@@ -26,7 +26,7 @@ export const mockMatch = {
     hash: '',
     index: 0,
     delta: 0,
-    query: {},
+    query: {}
   },
   routeIndices: [],
   routeParams: {},
@@ -34,6 +34,6 @@ export const mockMatch = {
   routes: [],
   router: mockRouter,
   route: {
-    getComponent: () => {},
-  },
+    getComponent: () => {}
+  }
 };

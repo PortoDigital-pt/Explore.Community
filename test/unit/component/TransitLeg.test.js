@@ -8,7 +8,7 @@ import IntermediateLeg from '../../../app/component/itinerary/IntermediateLeg';
 import {
   RealtimeStateType,
   AlertSeverityLevelType,
-  AlertEntityType,
+  AlertEntityType
 } from '../../../app/constants';
 import ServiceAlertIcon from '../../../app/component/ServiceAlertIcon';
 import { mockContext } from '../helpers/mock-context';
@@ -19,7 +19,7 @@ const defaultProps = {
   interliningLegs: [],
   focusAction: () => {},
   index: 0,
-  lang: 'fi',
+  lang: 'fi'
 };
 
 const config = {
@@ -27,7 +27,7 @@ const config = {
   itinerary: {},
   zones: { itinerary: true },
   feedIds: ['HSL'],
-  colors: { primary: 'ffffff' },
+  colors: { primary: 'ffffff' }
 };
 
 describe('<TransitLeg />', () => {
@@ -39,8 +39,8 @@ describe('<TransitLeg />', () => {
           name: 'Lokkalantie',
           stop: {
             zoneId: 'A',
-            gtfsId: 'HSL:1',
-          },
+            gtfsId: 'HSL:1'
+          }
         },
         duration: 10000,
         intermediatePlaces: [
@@ -50,35 +50,35 @@ describe('<TransitLeg />', () => {
               code: 'E2502',
               gtfsId: 'HSL:2252202',
               name: 'Leppäsolmu',
-              zoneId: 'B',
-            },
-          },
+              zoneId: 'B'
+            }
+          }
         ],
         route: {
-          gtfsId: 'HSL:7280',
+          gtfsId: 'HSL:7280'
         },
         start: { scheduledTime: new Date(1540989960000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'HSL:7280_20181022_Ke_1_1435',
           pattern: {
-            code: 'HSL:7280:0:01',
+            code: 'HSL:7280:0:01'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config,
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     wrapper.setState({ showIntermediateStops: true });
 
@@ -95,7 +95,7 @@ describe('<TransitLeg />', () => {
       leg: {
         from: {
           name: 'Lokkalantie',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [
@@ -105,8 +105,8 @@ describe('<TransitLeg />', () => {
               code: 'E2502',
               gtfsId: 'HSL:2252202',
               name: 'Leppäsolmu',
-              zoneId: 'B',
-            },
+              zoneId: 'B'
+            }
           },
           {
             arrival: { scheduledtime: new Date(1540990440000).toISOString() },
@@ -114,36 +114,36 @@ describe('<TransitLeg />', () => {
               gtfsId: 'HSL:2131251',
               name: 'Nihtisilta',
               code: 'E1313',
-              zoneId: 'C',
-            },
-          },
+              zoneId: 'C'
+            }
+          }
         ],
         route: {
-          gtfsId: 'HSL:7280',
+          gtfsId: 'HSL:7280'
         },
         start: { scheduledTime: new Date(1540989960000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'HSL:7280_20181022_Ke_1_1435',
           pattern: {
-            code: 'HSL:7280:0:01',
+            code: 'HSL:7280:0:01'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
 
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config,
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     wrapper.setState({ showIntermediateStops: true });
 
@@ -166,8 +166,8 @@ describe('<TransitLeg />', () => {
         from: {
           name: 'Lokkalantie',
           stop: {
-            gtfsId: 'HSL:1',
-          },
+            gtfsId: 'HSL:1'
+          }
         },
         duration: 10000,
         intermediatePlaces: [
@@ -177,37 +177,37 @@ describe('<TransitLeg />', () => {
               code: 'E2502',
               gtfsId: 'HSL:2252202',
               name: 'Leppäsolmu',
-              zoneId: 'B',
-            },
-          },
+              zoneId: 'B'
+            }
+          }
         ],
         route: {
-          gtfsId: 'HSL:7280',
+          gtfsId: 'HSL:7280'
         },
         start: { scheduledTime: new Date(1540989960000).toISOString() },
         to: {
           name: 'Testitie',
           stop: {
-            zoneId: 'C',
-          },
+            zoneId: 'C'
+          }
         },
         trip: {
           gtfsId: 'HSL:7280_20181022_Ke_1_1435',
           pattern: {
-            code: 'HSL:7280:0:01',
+            code: 'HSL:7280:0:01'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config,
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     wrapper.setState({ showIntermediateStops: true });
 
@@ -225,8 +225,8 @@ describe('<TransitLeg />', () => {
         from: {
           name: 'Lokkalantie',
           stop: {
-            gtfsId: 'HSL:1',
-          },
+            gtfsId: 'HSL:1'
+          }
         },
         duration: 10000,
         intermediatePlaces: [
@@ -236,40 +236,40 @@ describe('<TransitLeg />', () => {
               code: 'E2502',
               gtfsId: 'HSL:2252202',
               name: 'Leppäsolmu',
-              zoneId: 'B',
-            },
-          },
+              zoneId: 'B'
+            }
+          }
         ],
         route: {
-          gtfsId: 'HSL:7280',
+          gtfsId: 'HSL:7280'
         },
         start: { scheduledTime: new Date(1540989960000).toISOString() },
         to: {
           name: 'Testitie',
           stop: {
-            zoneId: 'C',
-          },
+            zoneId: 'C'
+          }
         },
         trip: {
           gtfsId: 'HSL:7280_20181022_Ke_1_1435',
           pattern: {
-            code: 'HSL:7280:0:01',
+            code: 'HSL:7280:0:01'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config: {
           ...config,
-          zones: { itinerary: false },
+          zones: { itinerary: false }
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     wrapper.setState({ showIntermediateStops: true });
     const leg = wrapper.find(IntermediateLeg);
@@ -282,7 +282,7 @@ describe('<TransitLeg />', () => {
       leg: {
         from: {
           name: 'Lokkalantie',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [
@@ -292,8 +292,8 @@ describe('<TransitLeg />', () => {
               code: 'E2502',
               gtfsId: 'HSL:2252202',
               name: 'Leppäsolmu',
-              zoneId: 'B',
-            },
+              zoneId: 'B'
+            }
           },
           {
             arrival: { scheduledtime: new Date(1540990270000).toISOString() },
@@ -301,37 +301,37 @@ describe('<TransitLeg />', () => {
               code: 'E2506',
               gtfsId: 'HSL:123456',
               name: 'Turvesolmu',
-              zoneId: 'B',
-            },
-          },
+              zoneId: 'B'
+            }
+          }
         ],
         route: {
-          gtfsId: 'HSL:7280',
+          gtfsId: 'HSL:7280'
         },
         start: { scheduledTime: new Date(1540989960000).toISOString() },
         to: {
           name: 'Testitie',
           stop: {
-            zoneId: 'C',
-          },
+            zoneId: 'C'
+          }
         },
         trip: {
           gtfsId: 'HSL:7280_20181022_Ke_1_1435',
           pattern: {
-            code: 'HSL:7280:0:01',
+            code: 'HSL:7280:0:01'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config,
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
 
     wrapper.instance().toggleShowIntermediateStops();
@@ -347,7 +347,7 @@ describe('<TransitLeg />', () => {
       leg: {
         from: {
           name: 'Huopalahti',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [
@@ -356,41 +356,41 @@ describe('<TransitLeg />', () => {
             stop: {
               code: '007',
               gtfsId: 'stop1',
-              name: 'Ilmala',
-            },
-          },
+              name: 'Ilmala'
+            }
+          }
         ],
         route: {
-          gtfsId: 'A',
+          gtfsId: 'A'
         },
         start: { scheduledTime: new Date(1540989960000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A12345',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
           stoptimes: [
             {
               realtimeState: RealtimeStateType.Canceled,
-              stop: { gtfsId: 'stop1' },
-            },
+              stop: { gtfsId: 'stop1' }
+            }
           ],
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'RAIL',
+      mode: 'RAIL'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config,
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     wrapper.setState({ showIntermediateStops: true });
     expect(wrapper.find(IntermediateLeg).prop('isCanceled')).to.equal(true);
@@ -403,7 +403,7 @@ describe('<TransitLeg />', () => {
         end: { scheduledtime: new Date(1553856420000).toISOString() },
         from: {
           name: 'Testilahti',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [],
@@ -414,41 +414,41 @@ describe('<TransitLeg />', () => {
               entities: [
                 {
                   __typename: AlertEntityType.Route,
-                  gtfsId: 'A',
-                },
-              ],
-            },
+                  gtfsId: 'A'
+                }
+              ]
+            }
           ],
-          gtfsId: 'A',
+          gtfsId: 'A'
         },
         start: { scheduledTime: new Date(1553856180000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A12345',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config: {
           ...config,
-          showAlternativeLegs: true,
+          showAlternativeLegs: true
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find(LegInfo).props().alertSeverityLevel).to.equal(
-      AlertSeverityLevelType.Warning,
+      AlertSeverityLevelType.Warning
     );
   });
 
@@ -467,46 +467,46 @@ describe('<TransitLeg />', () => {
                 entities: [
                   {
                     __typename: AlertEntityType.Stop,
-                    gtfsId: 'A',
-                  },
-                ],
-              },
-            ],
-          },
+                    gtfsId: 'A'
+                  }
+                ]
+              }
+            ]
+          }
         },
         duration: 10000,
         intermediatePlaces: [],
         route: {
-          gtfsId: 'A',
+          gtfsId: 'A'
         },
         start: { scheduledTime: new Date(1553856180000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A12345',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config: {
           ...config,
-          showAlternativeLegs: true,
+          showAlternativeLegs: true
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find(LegInfo).props().alertSeverityLevel).to.equal(
-      AlertSeverityLevelType.Warning,
+      AlertSeverityLevelType.Warning
     );
   });
 
@@ -517,12 +517,12 @@ describe('<TransitLeg />', () => {
         end: { scheduledtime: new Date(1553856420000).toISOString() },
         from: {
           name: 'Testilahti',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [],
         route: {
-          gtfsId: 'A',
+          gtfsId: 'A'
         },
         start: { scheduledTime: new Date(1553856180000).toISOString() },
         to: {
@@ -535,36 +535,36 @@ describe('<TransitLeg />', () => {
                 entities: [
                   {
                     __typename: AlertEntityType.Stop,
-                    gtfsId: 'B',
-                  },
-                ],
-              },
-            ],
-          },
+                    gtfsId: 'B'
+                  }
+                ]
+              }
+            ]
+          }
         },
         trip: {
           gtfsId: 'A12345',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config: {
           ...config,
-          showAlternativeLegs: true,
+          showAlternativeLegs: true
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find(LegInfo).props().alertSeverityLevel).to.equal(
-      AlertSeverityLevelType.Warning,
+      AlertSeverityLevelType.Warning
     );
   });
 
@@ -575,7 +575,7 @@ describe('<TransitLeg />', () => {
         end: { scheduledtime: new Date(1553856420000).toISOString() },
         from: {
           name: 'Testilahti',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [
@@ -590,45 +590,45 @@ describe('<TransitLeg />', () => {
                   entities: [
                     {
                       __typename: AlertEntityType.Stop,
-                      gtfsId: 'foobar',
-                    },
-                  ],
-                },
-              ],
-            },
-          },
+                      gtfsId: 'foobar'
+                    }
+                  ]
+                }
+              ]
+            }
+          }
         ],
         route: {
-          gtfsId: 'A',
+          gtfsId: 'A'
         },
         start: { scheduledTime: new Date(1553856180000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A12345',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config: {
           ...config,
-          showAlternativeLegs: true,
+          showAlternativeLegs: true
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find(LegInfo).props().alertSeverityLevel).to.equal(
-      undefined,
+      undefined
     );
   });
 
@@ -640,33 +640,33 @@ describe('<TransitLeg />', () => {
           isUnknown: true,
           agency: {
             name: 'foogency',
-            fareUrl: 'https://www.hsl.fi',
-          },
+            fareUrl: 'https://www.hsl.fi'
+          }
         },
         from: {
           name: 'Test',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [],
         route: {
-          gtfsId: '1234',
+          gtfsId: '1234'
         },
         start: { scheduledTime: new Date(1553856180000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A1234',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
 
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
@@ -676,10 +676,10 @@ describe('<TransitLeg />', () => {
           ...config,
           showTicketInformation: true,
           availableTickets: { HSL: { 'HSL:A': { price: 5.5, zones: ['A'] } } },
-          hideExternalOperator: () => false,
+          hideExternalOperator: () => false
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find('.disclaimer-container')).to.have.lengthOf(1);
     expect(wrapper.find('.agency-link')).to.have.lengthOf(1);
@@ -693,33 +693,33 @@ describe('<TransitLeg />', () => {
           isUnknown: true,
           agency: {
             name: 'foogency',
-            fareUrl: 'https://www.hsl.fi',
-          },
+            fareUrl: 'https://www.hsl.fi'
+          }
         },
         from: {
           name: 'Test',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [],
         route: {
-          gtfsId: '1234',
+          gtfsId: '1234'
         },
         start: { scheduledTime: new Date(1553856180000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A1234',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
 
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
@@ -729,10 +729,10 @@ describe('<TransitLeg />', () => {
           ...config,
           showTicketInformation: true,
           availableTickets: { HSL: { 'foo:A': { price: 5.5, zones: ['A'] } } },
-          hideExternalOperator: () => false,
+          hideExternalOperator: () => false
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find('.disclaimer-container')).to.have.lengthOf(1);
     expect(wrapper.find('.agency-link')).to.have.lengthOf(1);
@@ -755,44 +755,44 @@ describe('<TransitLeg />', () => {
                 entities: [
                   {
                     __typename: AlertEntityType.Stop,
-                    gtfsId: 'A',
-                  },
-                ],
-              },
-            ],
-          },
+                    gtfsId: 'A'
+                  }
+                ]
+              }
+            ]
+          }
         },
         duration: 1000,
         intermediatePlaces: [],
         route: {
-          gtfsId: 'A1234',
+          gtfsId: 'A1234'
         },
         start: { scheduledTime: new Date(startTime * 1000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A1234:01',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
 
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
       context: {
         ...mockContext,
         config,
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find(ServiceAlertIcon).prop('severityLevel')).to.equal(
-      AlertSeverityLevelType.Info,
+      AlertSeverityLevelType.Info
     );
   });
 
@@ -803,7 +803,7 @@ describe('<TransitLeg />', () => {
       leg: {
         from: {
           name: 'Test',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [],
@@ -818,9 +818,9 @@ describe('<TransitLeg />', () => {
               entities: [
                 {
                   __typename: AlertEntityType.Route,
-                  gtfsId: 'A1234',
-                },
-              ],
+                  gtfsId: 'A1234'
+                }
+              ]
             },
             {
               alertSeverityLevel: AlertSeverityLevelType.Severe,
@@ -830,9 +830,9 @@ describe('<TransitLeg />', () => {
               entities: [
                 {
                   __typename: AlertEntityType.Route,
-                  gtfsId: 'A1234',
-                },
-              ],
+                  gtfsId: 'A1234'
+                }
+              ]
             },
             {
               alertSeverityLevel: AlertSeverityLevelType.Warning,
@@ -842,27 +842,27 @@ describe('<TransitLeg />', () => {
               entities: [
                 {
                   __typename: AlertEntityType.Route,
-                  gtfsId: 'A1234',
-                },
-              ],
-            },
-          ],
+                  gtfsId: 'A1234'
+                }
+              ]
+            }
+          ]
         },
         start: { scheduledTime: new Date(startTime * 1000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A1234:01',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
 
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
@@ -870,10 +870,10 @@ describe('<TransitLeg />', () => {
         ...mockContext,
         config: {
           ...config,
-          showAlertHeader: true,
+          showAlertHeader: true
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find('.description').text()).to.equal('severe header');
   });
@@ -885,7 +885,7 @@ describe('<TransitLeg />', () => {
       leg: {
         from: {
           name: 'Test',
-          stop: {},
+          stop: {}
         },
         duration: 10000,
         intermediatePlaces: [],
@@ -900,27 +900,27 @@ describe('<TransitLeg />', () => {
               entities: [
                 {
                   __typename: AlertEntityType.Route,
-                  gtfsId: 'A1234',
-                },
-              ],
-            },
-          ],
+                  gtfsId: 'A1234'
+                }
+              ]
+            }
+          ]
         },
         start: { scheduledTime: new Date(startTime * 1000).toISOString() },
         to: {
           name: 'Testitie',
-          stop: {},
+          stop: {}
         },
         trip: {
           gtfsId: 'A1234:01',
           pattern: {
-            code: 'A',
+            code: 'A'
           },
-          tripHeadsign: 'foo - bar',
+          tripHeadsign: 'foo - bar'
         },
-        interlineWithPreviousLeg: false,
+        interlineWithPreviousLeg: false
       },
-      mode: 'BUS',
+      mode: 'BUS'
     };
 
     const wrapper = shallowWithIntl(<TransitLeg {...props} />, {
@@ -928,10 +928,10 @@ describe('<TransitLeg />', () => {
         ...mockContext,
         config: {
           ...config,
-          showAlertHeader: true,
+          showAlertHeader: true
         },
-        focusFunction: () => () => {},
-      },
+        focusFunction: () => () => {}
+      }
     });
     expect(wrapper.find('.description').text()).to.equal('unknown header');
   });

@@ -13,8 +13,8 @@ const feature1 = {
     mode: 'moude',
     longName: 'short',
     agency: { name: 'test' },
-    label: 'test',
-  },
+    label: 'test'
+  }
 };
 
 const feature2 = {
@@ -27,8 +27,8 @@ const feature2 = {
     mode: 'moudew',
     longName: 'shorta',
     agency: { name: 'test' },
-    label: 'teset',
-  },
+    label: 'teset'
+  }
 };
 
 const feature3 = {
@@ -41,8 +41,8 @@ const feature3 = {
     mode: 'moude',
     longName: 'short',
     agency: { name: 'test' },
-    label: 'test',
-  },
+    label: 'test'
+  }
 };
 describe('Testing @digitransit-search-util/digitransit-search-util-uniq-by-label module', () => {
   describe('uniqByLabel()', () => {
@@ -73,7 +73,7 @@ describe('Testing @digitransit-search-util/digitransit-search-util-uniq-by-label
         lon: 24.803862,
         selectedIconId: 'icon-icon_home',
         name: 'Koti',
-        type: 'place',
+        type: 'place'
       };
 
       const output = getNameLabel(testSuggestionProps1);
@@ -87,7 +87,7 @@ describe('Testing @digitransit-search-util/digitransit-search-util-uniq-by-label
     it('should remove name from address word-wise', () => {
       const output = formatFavouritePlaceLabel(
         'Tietäjä',
-        'Tietäjäntie 11, Espoo',
+        'Tietäjäntie 11, Espoo'
       );
       expect(output.length).to.equal(2);
       expect(output[0]).to.equal('Tietäjä');
@@ -97,7 +97,7 @@ describe('Testing @digitransit-search-util/digitransit-search-util-uniq-by-label
     it('should remove trailing comma and space', () => {
       const output1 = formatFavouritePlaceLabel(
         'Tietäjäntie',
-        'Tietäjäntie 11, Espoo',
+        'Tietäjäntie 11, Espoo'
       );
       expect(output1.length).to.equal(2);
       expect(output1[0]).to.equal('Tietäjäntie');
@@ -105,7 +105,7 @@ describe('Testing @digitransit-search-util/digitransit-search-util-uniq-by-label
 
       const output2 = formatFavouritePlaceLabel(
         'Tietäjäntie 11',
-        'Tietäjäntie 11, Espoo',
+        'Tietäjäntie 11, Espoo'
       );
       expect(output2.length).to.equal(2);
       expect(output2[0]).to.equal('Tietäjäntie 11');

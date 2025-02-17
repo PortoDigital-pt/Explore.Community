@@ -5,7 +5,7 @@ import AlertList from '../AlertList';
 import {
   getCancelationsForStop,
   getAlertsForObject,
-  getServiceAlertsForStation,
+  getServiceAlertsForStation
 } from '../../util/alertUtils';
 import { getRouteMode } from '../../util/modeUtils';
 import { epochToTime } from '../../util/timeUtils';
@@ -37,8 +37,8 @@ export const filterAlertEntities = (stop, alerts) => {
       return {
         ...alert,
         entities: alert.entities.filter(entity =>
-          isRelevantEntity(entity, stopIds, routeIds),
-        ),
+          isRelevantEntity(entity, stopIds, routeIds)
+        )
       };
     })
     .filter(alert => alert.entities.length > 0);
@@ -46,7 +46,7 @@ export const filterAlertEntities = (stop, alerts) => {
 
 export const getUniqueAlerts = alerts => {
   return uniq(alerts.map(alert => JSON.stringify(alert))).map(alert =>
-    JSON.parse(alert),
+    JSON.parse(alert)
   );
 };
 
@@ -63,11 +63,11 @@ export const getCancelations = (stop, intl, config) => {
       type,
       mode,
       shortName,
-      gtfsId,
+      gtfsId
     };
     const departureTime = stoptime.serviceDay + stoptime.scheduledDeparture;
     const translatedMode = intl.formatMessage({
-      id: getRouteMode(stoptime.trip.route).toLowerCase(),
+      id: getRouteMode(stoptime.trip.route).toLowerCase()
     });
     return {
       alertDescriptionText: intl.formatMessage(
@@ -76,11 +76,11 @@ export const getCancelations = (stop, intl, config) => {
           mode: translatedMode,
           route: shortName,
           headsign: stoptime.headsign || stoptime.trip.tripHeadsign,
-          time: epochToTime(departureTime * 1000, config),
-        },
+          time: epochToTime(departureTime * 1000, config)
+        }
       ),
       entities: [entity],
-      alertSeverityLevel: AlertSeverityLevelType.Warning,
+      alertSeverityLevel: AlertSeverityLevelType.Warning
     };
   });
 };
@@ -94,8 +94,8 @@ export const getAlerts = stop => {
   return getUniqueAlerts(
     filterAlertEntities(
       stop,
-      isStation ? getServiceAlertsForStation(stop) : getAlertsForObject(stop),
-    ),
+      isStation ? getServiceAlertsForStation(stop) : getAlertsForObject(stop)
+    )
   );
 };
 

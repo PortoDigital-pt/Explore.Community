@@ -15,10 +15,10 @@ const getDefaultProps = () => ({
   timeSelectorEndTime: 1535451326000,
   timeSelectorServiceTimeRange: {
     start: 1534798800,
-    end: 1538081999,
+    end: 1538081999
   },
   toggleSettings: () => {},
-  translationSettings: { lng: 'fi' },
+  translationSettings: { lng: 'fi' }
 });
 
 describe('<SearchSettings />', () => {
@@ -29,9 +29,9 @@ describe('<SearchSettings />', () => {
         router: mockRouter,
         match: mockMatch,
         config: defaultConfig,
-        getStore: mockContext.getStore,
+        getStore: mockContext.getStore
       },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
 
     expect(wrapper.find(DatetimepickerContainer)).to.have.lengthOf(1);

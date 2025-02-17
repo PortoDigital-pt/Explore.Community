@@ -9,22 +9,22 @@ import { replaceQueryParams } from '../util/queryUtils';
 class CanceledLegsBar extends React.Component {
   static contextTypes = {
     router: routerShape.isRequired,
-    match: matchShape.isRequired,
+    match: matchShape.isRequired
   };
 
   static propTypes = {
-    showCanceledLegsBanner: PropTypes.bool,
+    showCanceledLegsBanner: PropTypes.bool
   };
 
   static defaultProps = {
-    showCanceledLegsBanner: false,
+    showCanceledLegsBanner: false
   };
 
   fetchNewRoute = () => {
     replaceQueryParams(
       this.context.router,
       this.context.match,
-      this.context.match.location.query,
+      this.context.match.location.query
     );
   };
 
@@ -33,7 +33,7 @@ class CanceledLegsBar extends React.Component {
       <div
         className="canceled-legs-banner"
         style={{
-          display: this.props.showCanceledLegsBanner ? 'block' : 'none',
+          display: this.props.showCanceledLegsBanner ? 'block' : 'none'
         }}
       >
         <div className="canceled-legs-container">
@@ -75,8 +75,8 @@ const withStore = connectToStores(
   context => ({
     showCanceledLegsBanner: context
       .getStore('CanceledLegsBarStore')
-      .getShowCanceledLegsBanner(),
-  }),
+      .getShowCanceledLegsBanner()
+  })
 );
 
 export { withStore as default, CanceledLegsBar as component };

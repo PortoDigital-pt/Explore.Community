@@ -77,7 +77,7 @@ export default function reittiopasParameterMiddleware(req, res, next) {
       res.cookie('lang', lang, {
         // Good up to one year
         maxAge: 365 * 24 * 60 * 60,
-        path: '/',
+        path: '/'
       });
     }
     if (

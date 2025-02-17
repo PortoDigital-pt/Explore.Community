@@ -23,11 +23,11 @@ const SelectedStopPopupContent = ({ stop, name }) => (
 
 SelectedStopPopupContent.propTypes = {
   stop: stopShape.isRequired,
-  name: PropTypes.node,
+  name: PropTypes.node
 };
 
 SelectedStopPopupContent.defaultProps = {
-  name: undefined,
+  name: undefined
 };
 
 SelectedStopPopupContent.displayName = 'SelectedStopPopupContent';

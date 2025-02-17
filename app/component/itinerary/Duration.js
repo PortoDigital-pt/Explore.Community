@@ -24,7 +24,7 @@ export default function Duration(props) {
             duration,
             inFuture: futureText,
             departureTime,
-            arrivalTime: endTime,
+            arrivalTime: endTime
           }}
         />{' '}
       </span>
@@ -56,11 +56,11 @@ Duration.propTypes = {
   startTime: PropTypes.string.isRequired,
   endTime: PropTypes.string.isRequired,
   futureText: PropTypes.string,
-  multiRow: PropTypes.bool,
+  multiRow: PropTypes.bool
 };
 
 Duration.defaultProps = {
   className: '',
   futureText: '',
-  multiRow: false,
+  multiRow: false
 };

@@ -15,16 +15,16 @@ describe('<ItinerarySummary />', () => {
       itinerary: data.bikingAndWalking,
       biking: {
         distance: 1000,
-        duration: 180,
+        duration: 180
       },
       walking: {
         distance: 555,
-        duration: 300,
-      },
+        duration: 300
+      }
     };
     const wrapper = mountWithIntl(<ItinerarySummary {...props} />, {
       context: mockContext,
-      childContextTypes: mockChildContextTypes,
+      childContextTypes: mockChildContextTypes
     });
     expect(wrapper.find(Distance).length).to.equal(2);
   });
@@ -35,16 +35,16 @@ describe('<ItinerarySummary />', () => {
       itinerary: data.bikingAndWalking,
       biking: {
         distance: 1000,
-        duration: 180,
+        duration: 180
       },
       walking: {
         distance: 555,
-        duration: 300,
-      },
+        duration: 300
+      }
     };
     const wrapper = mountWithIntl(<ItinerarySummary {...props} />, {
       context: mockContext,
-      childContextTypes: mockChildContextTypes,
+      childContextTypes: mockChildContextTypes
     }).find('.distance--itinerary-summary');
     expect(wrapper.first().find('.icon.walk').length).to.equal(1);
     expect(wrapper.last().find('.icon.bike').length).to.equal(1);
@@ -56,12 +56,12 @@ describe('<ItinerarySummary />', () => {
       itinerary: data.onlyBiking,
       biking: {
         distance: 1000,
-        duration: 180,
-      },
+        duration: 180
+      }
     };
     const wrapper = mountWithIntl(<ItinerarySummary {...props} />, {
       context: mockContext,
-      childContextTypes: mockChildContextTypes,
+      childContextTypes: mockChildContextTypes
     });
     expect(wrapper.find(Distance).length).to.equal(1);
     expect(wrapper.find('.icon.bike').length).to.equal(1);

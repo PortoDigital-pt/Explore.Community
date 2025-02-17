@@ -9,13 +9,13 @@ import { component as CanceledLegsBar } from '../../app/component/CanceledLegsBa
 describe('<CanceledLegsBar />', () => {
   it('should render the banner if there are canceled legs', () => {
     const props = {
-      showCanceledLegsBanner: true,
+      showCanceledLegsBanner: true
     };
     const wrapper = shallowWithIntl(<CanceledLegsBar {...props} />, {
-      context: { ...mockContext },
+      context: { ...mockContext }
     });
     expect(
-      wrapper.find('.canceled-legs-banner').prop('style'),
+      wrapper.find('.canceled-legs-banner').prop('style')
     ).to.have.property('display', 'block');
   });
 });

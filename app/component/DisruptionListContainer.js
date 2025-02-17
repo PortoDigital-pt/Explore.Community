@@ -11,7 +11,7 @@ import {
   getEntitiesOfTypeFromAlert,
   hasEntitiesOfType,
   hasEntitiesOfTypes,
-  isAlertValid,
+  isAlertValid
 } from '../util/alertUtils';
 import { isKeyboardSelectionEvent } from '../util/browser';
 import withBreakpoint from '../util/withBreakpoint';
@@ -39,12 +39,12 @@ const splitAlertByRouteModeAndColor = alert => {
 
 function DisruptionListContainer(
   { breakpoint, currentTime, viewer, onClickLink },
-  { intl },
+  { intl }
 ) {
   const validAlerts = viewer?.alerts
     ?.filter(alert => isAlertValid(alert, currentTime))
     .filter(alert =>
-      hasEntitiesOfTypes(alert, [AlertEntityType.Route, AlertEntityType.Stop]),
+      hasEntitiesOfTypes(alert, [AlertEntityType.Route, AlertEntityType.Stop])
     );
 
   if (!validAlerts || validAlerts.length === 0) {
@@ -69,7 +69,7 @@ function DisruptionListContainer(
     .map(alert => {
       return {
         ...alert,
-        entities: getEntitiesOfTypeFromAlert(alert, AlertEntityType.Route),
+        entities: getEntitiesOfTypeFromAlert(alert, AlertEntityType.Route)
       };
     })
     .flatMap(splitAlertByRouteModeAndColor);
@@ -79,7 +79,7 @@ function DisruptionListContainer(
     .map(alert => {
       return {
         ...alert,
-        entities: getEntitiesOfTypeFromAlert(alert, AlertEntityType.Stop),
+        entities: getEntitiesOfTypeFromAlert(alert, AlertEntityType.Stop)
       };
     });
 
@@ -87,12 +87,12 @@ function DisruptionListContainer(
     <div className="disruption-list-container">
       <div
         className={cx('stop-tab-container', {
-          collapsed: !disruptionCount || !infoCount,
+          collapsed: !disruptionCount || !infoCount
         })}
       >
         <div
           className={cx('stop-tab-singletab', {
-            active: showDisruptions,
+            active: showDisruptions
           })}
           onClick={() => setShowDisruptions(true)}
           onKeyDown={e =>
@@ -110,14 +110,14 @@ function DisruptionListContainer(
             </div>
             <div>
               {`${intl.formatMessage({
-                id: 'disruptions',
+                id: 'disruptions'
               })} (${disruptionCount})`}
             </div>
           </div>
         </div>
         <div
           className={cx('stop-tab-singletab', {
-            active: !showDisruptions,
+            active: !showDisruptions
           })}
           onClick={() => setShowDisruptions(false)}
           onKeyDown={e =>
@@ -132,7 +132,7 @@ function DisruptionListContainer(
             </div>
             <div>
               {`${intl.formatMessage({
-                id: 'releases',
+                id: 'releases'
               })} (${infoCount})`}
             </div>
           </div>
@@ -140,7 +140,7 @@ function DisruptionListContainer(
       </div>
       <div
         className={cx('disruption-list-content momentum-scroll', {
-          'disruption-list-content__large': breakpoint === 'large',
+          'disruption-list-content__large': breakpoint === 'large'
         })}
       >
         {routeAlertsToShow.length > 0 && (
@@ -175,21 +175,21 @@ function DisruptionListContainer(
 }
 
 DisruptionListContainer.contextTypes = {
-  intl: intlShape,
+  intl: intlShape
 };
 
 DisruptionListContainer.propTypes = {
   breakpoint: PropTypes.string,
   currentTime: PropTypes.number.isRequired,
   viewer: PropTypes.shape({
-    alerts: PropTypes.arrayOf(alertShape),
+    alerts: PropTypes.arrayOf(alertShape)
   }).isRequired,
-  onClickLink: PropTypes.func,
+  onClickLink: PropTypes.func
 };
 
 DisruptionListContainer.defaultProps = {
   breakpoint: 'small',
-  onClickLink: undefined,
+  onClickLink: undefined
 };
 
 const containerComponent = createFragmentContainer(
@@ -197,8 +197,8 @@ const containerComponent = createFragmentContainer(
     withBreakpoint(DisruptionListContainer),
     ['TimeStore'],
     context => ({
-      currentTime: context.getStore('TimeStore').getCurrentTime(),
-    }),
+      currentTime: context.getStore('TimeStore').getCurrentTime()
+    })
   ),
   {
     viewer: graphql`
@@ -232,8 +232,8 @@ const containerComponent = createFragmentContainer(
           }
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export { containerComponent as default, DisruptionListContainer as Component };

@@ -28,18 +28,18 @@ const LogoSmall = ({ logo, title }, { config }) => {
 
 LogoSmall.propTypes = {
   logo: PropTypes.string,
-  title: PropTypes.node,
+  title: PropTypes.node
 };
 
 LogoSmall.defaultProps = {
   logo: undefined,
-  title: undefined,
+  title: undefined
 };
 
 LogoSmall.contextTypes = {
   config: PropTypes.shape({
-    textLogo: PropTypes.bool.isRequired,
-  }).isRequired,
+    textLogo: PropTypes.bool.isRequired
+  }).isRequired
 };
 
 export default LogoSmall;

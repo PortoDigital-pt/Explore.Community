@@ -13,7 +13,7 @@ export default function EmissionsInfo({ itinerary, isMobile }) {
     co2value >= 0 && (
       <div
         className={cx('itinerary-co2-information', {
-          mobile: isMobile,
+          mobile: isMobile
         })}
       >
         <div className="itinerary-co2-line">
@@ -45,5 +45,5 @@ export default function EmissionsInfo({ itinerary, isMobile }) {
 
 EmissionsInfo.propTypes = {
   itinerary: itineraryShape.isRequired,
-  isMobile: PropTypes.bool.isRequired,
+  isMobile: PropTypes.bool.isRequired
 };

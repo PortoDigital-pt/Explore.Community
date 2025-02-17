@@ -17,21 +17,21 @@ function DateSelect(props, context) {
 
   dates.push({
     label: context.intl.formatMessage({ id: 'today', defaultMessage: 'Today' }),
-    value: date.format(props.dateFormat),
+    value: date.format(props.dateFormat)
   });
 
   dates.push({
     label: context.intl.formatMessage({
       id: 'tomorrow',
-      defaultMessage: 'Tomorrow',
+      defaultMessage: 'Tomorrow'
     }),
-    value: date.add(1, 'd').format(props.dateFormat),
+    value: date.add(1, 'd').format(props.dateFormat)
   });
 
   for (let i = 0; i < 58; i++) {
     dates.push({
       value: date.add(1, 'd').format(props.dateFormat),
-      label: date.format('dd D.M.'),
+      label: date.format('dd D.M.')
     });
   }
   const dateList = dates.map(option => {
@@ -45,7 +45,7 @@ function DateSelect(props, context) {
             <Icon img="icon-icon_check" height={1.1525} width={0.904375} />
           )}
         </>
-      ),
+      )
     };
   });
   const selectedDate = dateList.find(d => d.value === props.selectedDate);
@@ -59,7 +59,7 @@ function DateSelect(props, context) {
         guidance: () => '.', // this can't be empty for some reason
         onChange: ({ value }) =>
           `${context.intl.formatMessage({
-            id: 'route-page.pattern-chosen',
+            id: 'route-page.pattern-chosen'
           })} ${value.textLabel}`,
         onFilter: () => '',
         onFocus: ({ context: itemContext, focused }) => {
@@ -67,22 +67,22 @@ function DateSelect(props, context) {
             return focused.textLabel;
           }
           return '';
-        },
+        }
       }}
       className="date-select"
       classNamePrefix={classNamePrefix}
       components={{
         DropdownIndicator: () => null,
-        IndicatorSeparator: () => null,
+        IndicatorSeparator: () => null
       }}
       inputId={`aria-input-${id}`}
       aria-label={`
             ${context.intl.formatMessage({
               id: 'select-date',
-              defaultMessage: 'Select date',
+              defaultMessage: 'Select date'
             })}.
             ${context.intl.formatMessage({
-              id: 'route-page.pattern-chosen',
+              id: 'route-page.pattern-chosen'
             })} ${selectedDate.textLabel}`}
       isSearchable={false}
       name={id}
@@ -116,10 +116,10 @@ DateSelect.propTypes = {
   startDate: PropTypes.string.isRequired,
   selectedDate: PropTypes.string.isRequired,
   dateFormat: PropTypes.string.isRequired,
-  onDateChange: PropTypes.func.isRequired,
+  onDateChange: PropTypes.func.isRequired
 };
 DateSelect.contextTypes = {
-  intl: intlShape.isRequired, // eslint-disable-line react/no-typos
+  intl: intlShape.isRequired // eslint-disable-line react/no-typos
 };
 DateSelect.displayName = 'DateSelect';
 

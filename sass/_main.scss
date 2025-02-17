@@ -67,7 +67,13 @@ $body-font-weight: $font-weight-medium;
 @import '../app/component/itinerary/navigator/navigator';
 @import '../app/component/itinerary/navigator/navigatorintro/navigator-intro';
 @import '../app/component/itinerary/navigator/navigatoroutro/navigator-outro';
-@import '../app/component/amporto/navbar/navbar';
+
+// amporto
+@import '../app/component/amporto/navigation/bottom-navigation-bar/bottom-navigation-bar';
+@import '../app/component/amporto/navigation/sidebar/sidebar';
+@import '../app/component/amporto/language/language';
+@import '../app/component/amporto/topbar/topbar';
+
 
 /* Modal */
 @import '~foundation-apps/scss/helpers/breakpoints';

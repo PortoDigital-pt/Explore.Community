@@ -10,7 +10,7 @@ describe('<ScheduleTripRow />', () => {
     const props = {
       isCanceled: true,
       departureTime: '10.50',
-      arrivalTime: '11.55',
+      arrivalTime: '11.55'
     };
     const wrapper = shallowWithIntl(<ScheduleTripRow {...props} />);
     expect(wrapper.find('.trip-from.canceled')).to.have.lengthOf(1);

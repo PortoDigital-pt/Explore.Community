@@ -3,7 +3,7 @@ import { PlannerMessageType } from '../constants';
 
 export const agencyShape = PropTypes.shape({
   name: PropTypes.string,
-  fareUrl: PropTypes.string,
+  fareUrl: PropTypes.string
 });
 
 export const alertShape = PropTypes.shape({
@@ -17,23 +17,23 @@ export const alertShape = PropTypes.shape({
   id: PropTypes.string,
   entities: PropTypes.arrayOf(
     PropTypes.shape({
-      __typename: PropTypes.string.isRequired,
-    }),
-  ),
+      __typename: PropTypes.string.isRequired
+    })
+  )
 });
 
 export const childrenShape = PropTypes.oneOfType([
   PropTypes.arrayOf(PropTypes.node),
-  PropTypes.node,
+  PropTypes.node
 ]);
 
 export const configShape = PropTypes.shape({
-  CONFIG: PropTypes.string.isRequired,
+  CONFIG: PropTypes.string.isRequired
 });
 
 export const errorShape = PropTypes.oneOfType([
   PropTypes.string,
-  PropTypes.shape({ message: PropTypes.string }),
+  PropTypes.shape({ message: PropTypes.string })
 ]);
 
 export const fareShape = PropTypes.shape({
@@ -42,12 +42,12 @@ export const fareShape = PropTypes.shape({
   cents: PropTypes.number,
   isUnknown: PropTypes.bool,
   routeName: PropTypes.string,
-  ticketName: PropTypes.string,
+  ticketName: PropTypes.string
 });
 
 export const favouriteShape = PropTypes.shape({
   type: PropTypes.string,
-  favouriteId: PropTypes.string,
+  favouriteId: PropTypes.string
 });
 
 export const geoJsonFeatureShape = PropTypes.shape({
@@ -59,12 +59,12 @@ export const geoJsonFeatureShape = PropTypes.shape({
         PropTypes.arrayOf(
           PropTypes.oneOfType([
             PropTypes.arrayOf(PropTypes.number),
-            PropTypes.number,
-          ]),
-        ),
-      ]),
+            PropTypes.number
+          ])
+        )
+      ])
     ).isRequired,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
   }).isRequired,
   // eslint-disable-next-line
   properties: PropTypes.object,
@@ -74,7 +74,7 @@ export const popupColorShape = PropTypes.shape({
   accessiblePrimary: PropTypes.string,
   hover: PropTypes.string,
   primary: PropTypes.string,
-  iconColors: PropTypes.objectOf(PropTypes.string),
+  iconColors: PropTypes.objectOf(PropTypes.string)
 });
 
 export const parkShape = PropTypes.shape({
@@ -83,21 +83,21 @@ export const parkShape = PropTypes.shape({
   lon: PropTypes.number,
   availability: PropTypes.shape({
     bicycleSpaces: PropTypes.number,
-    carSpaces: PropTypes.number,
+    carSpaces: PropTypes.number
   }),
   capacity: PropTypes.shape({ carSpaces: PropTypes.number }),
   tags: PropTypes.arrayOf(PropTypes.string),
-  realtime: PropTypes.bool,
+  realtime: PropTypes.bool
 });
 
 export const vehicleRentalStationShape = PropTypes.shape({
   availableVehicles: PropTypes.shape({ total: PropTypes.number }),
   availableSpaces: PropTypes.shape({ total: PropTypes.number }),
   rentalNetwork: PropTypes.shape({
-    networkId: PropTypes.string,
+    networkId: PropTypes.string
   }),
   capacity: PropTypes.number,
-  operative: PropTypes.bool,
+  operative: PropTypes.bool
 });
 
 export const rentalVehicleShape = PropTypes.shape({
@@ -109,12 +109,12 @@ export const rentalVehicleShape = PropTypes.shape({
   rentalUris: PropTypes.shape({
     android: PropTypes.string,
     ios: PropTypes.string,
-    web: PropTypes.string,
+    web: PropTypes.string
   }),
   rentalNetwork: PropTypes.shape({
     url: PropTypes.string,
-    networkId: PropTypes.string,
-  }),
+    networkId: PropTypes.string
+  })
 });
 
 export const routeShape = PropTypes.shape({
@@ -124,28 +124,28 @@ export const routeShape = PropTypes.shape({
   longName: PropTypes.string,
   color: PropTypes.string,
   type: PropTypes.number,
-  alerts: PropTypes.arrayOf(alertShape),
+  alerts: PropTypes.arrayOf(alertShape)
 });
 
 export const patternShape = PropTypes.shape({
   code: PropTypes.string,
   route: PropTypes.shape({
     mode: PropTypes.string,
-    color: PropTypes.string,
+    color: PropTypes.string
   }),
   stops: PropTypes.arrayOf(
     PropTypes.shape({
       lat: PropTypes.number,
       lon: PropTypes.number,
-      code: PropTypes.string,
-    }),
+      code: PropTypes.string
+    })
   ),
   geometry: PropTypes.arrayOf(
     PropTypes.shape({
       lat: PropTypes.number.isRequired,
-      lon: PropTypes.number.isRequired,
-    }).isRequired,
-  ),
+      lon: PropTypes.number.isRequired
+    }).isRequired
+  )
 });
 
 export const tripShape = PropTypes.shape({
@@ -156,10 +156,10 @@ export const tripShape = PropTypes.shape({
     PropTypes.shape({
       headsign: PropTypes.string,
       stop: PropTypes.shape({
-        gtfsId: PropTypes.string.isRequired,
-      }),
-    }),
-  ),
+        gtfsId: PropTypes.string.isRequired
+      })
+    })
+  )
 });
 
 export const stopTimeShape = PropTypes.shape({
@@ -169,7 +169,7 @@ export const stopTimeShape = PropTypes.shape({
   serviceDay: PropTypes.number,
   trip: tripShape,
   dropoffType: PropTypes.string,
-  pickupType: PropTypes.string,
+  pickupType: PropTypes.string
 });
 
 export const stopShape = PropTypes.shape({
@@ -183,7 +183,7 @@ export const stopShape = PropTypes.shape({
   zoneId: PropTypes.string,
   alerts: PropTypes.arrayOf(alertShape),
   routes: PropTypes.arrayOf(routeShape),
-  stoptimes: PropTypes.arrayOf(stopTimeShape),
+  stoptimes: PropTypes.arrayOf(stopTimeShape)
 });
 
 export const stationShape = PropTypes.shape({
@@ -191,19 +191,19 @@ export const stationShape = PropTypes.shape({
   locationType: PropTypes.string,
   alerts: PropTypes.arrayOf(alertShape),
   stops: PropTypes.arrayOf(stopShape),
-  stoptimes: PropTypes.arrayOf(stopTimeShape),
+  stoptimes: PropTypes.arrayOf(stopTimeShape)
 });
 
 export const departureShape = PropTypes.shape({
   trip: tripShape,
   headsign: PropTypes.string,
   realtime: PropTypes.bool,
-  stop: stopShape,
+  stop: stopShape
 });
 
 export const legTimeShape = PropTypes.shape({
   scheduledTime: PropTypes.string,
-  estimated: PropTypes.shape({ time: PropTypes.string }),
+  estimated: PropTypes.shape({ time: PropTypes.string })
 });
 
 export const legShape = PropTypes.shape({
@@ -222,7 +222,7 @@ export const legShape = PropTypes.shape({
     name: PropTypes.string,
     stop: stopShape,
     vehicleRentalStation: vehicleRentalStationShape,
-    rentalVehicle: rentalVehicleShape,
+    rentalVehicle: rentalVehicleShape
   }),
   to: PropTypes.shape({
     name: PropTypes.string,
@@ -230,14 +230,14 @@ export const legShape = PropTypes.shape({
     vehicleRentalStation: vehicleRentalStationShape,
 
     bikePark: parkShape,
-    carPark: parkShape,
+    carPark: parkShape
   }),
   rentedBike: PropTypes.bool,
   departureDelay: PropTypes.number,
   intermediatePlaces: PropTypes.arrayOf(
     PropTypes.shape({
-      arrival: legTimeShape,
-    }),
+      arrival: legTimeShape
+    })
   ),
   interlineWithPreviousLeg: PropTypes.bool,
   // eslint-disable-next-line
@@ -251,12 +251,12 @@ export const itineraryShape = PropTypes.shape({
   walkDistance: PropTypes.number,
   legs: PropTypes.arrayOf(legShape),
   emissionsPerPerson: PropTypes.shape({
-    co2: PropTypes.number,
-  }),
+    co2: PropTypes.number
+  })
 });
 
 export const planEdgeShape = PropTypes.shape({
-  node: itineraryShape.isRequired,
+  node: itineraryShape.isRequired
 });
 
 export const locationShape = PropTypes.shape({
@@ -264,7 +264,7 @@ export const locationShape = PropTypes.shape({
   lon: PropTypes.number,
   address: PropTypes.string,
   type: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string
 });
 
 const StatusPropType = PropTypes.oneOf([
@@ -278,7 +278,7 @@ const StatusPropType = PropTypes.oneOf([
   'geolocation-watch-timeout',
   'geolocation-not-supported',
   'reverse-geocoding-ready',
-  'reverse-geocoding-in-progress',
+  'reverse-geocoding-in-progress'
 ]);
 
 export const locationStateShape = PropTypes.shape({
@@ -293,12 +293,12 @@ export const locationStateShape = PropTypes.shape({
   hasLocation: PropTypes.bool,
   isLocationingInProgress: PropTypes.bool,
   isReverseGeocodingInProgress: PropTypes.bool,
-  locationingFailed: PropTypes.bool,
+  locationingFailed: PropTypes.bool
 });
 
 const MapLayerOptionShape = PropTypes.shape({
   isLocked: PropTypes.bool,
-  isSelected: PropTypes.bool,
+  isSelected: PropTypes.bool
 });
 
 const MapLayerOptionStopOrTerminalShape = PropTypes.shape({
@@ -307,7 +307,7 @@ const MapLayerOptionStopOrTerminalShape = PropTypes.shape({
   tram: PropTypes.shape(MapLayerOptionShape),
   subway: PropTypes.shape(MapLayerOptionShape),
   ferry: PropTypes.shape(MapLayerOptionShape),
-  funicular: PropTypes.shape(MapLayerOptionShape),
+  funicular: PropTypes.shape(MapLayerOptionShape)
 });
 
 export const mapLayerOptionsShape = PropTypes.shape({
@@ -335,16 +335,16 @@ export const mapLayerOptionsShape = PropTypes.shape({
     PropTypes.shape(MapLayerOptionShape),
     // eslint-disable-next-line
     PropTypes.any,
-  ]),
+  ])
 });
 
 export const planShape = PropTypes.shape({
   edges: PropTypes.arrayOf(planEdgeShape),
-  searchDateTime: PropTypes.string,
+  searchDateTime: PropTypes.string
 });
 
 export const plannerMessageShape = PropTypes.oneOf(
-  Object.values(PlannerMessageType),
+  Object.values(PlannerMessageType)
 );
 
 export const refShape = PropTypes.oneOfType([
@@ -366,7 +366,7 @@ const ROUTER_ERROR_CODES = Object.values(PlannerMessageType);
 
 export const RoutingerrorShape = PropTypes.shape({
   code: PropTypes.oneOf(ROUTER_ERROR_CODES),
-  inputField: PropTypes.oneOf(['DATE_TIME', 'TO', 'FROM']),
+  inputField: PropTypes.oneOf(['DATE_TIME', 'TO', 'FROM'])
 });
 
 export const settingsShape = PropTypes.shape({
@@ -374,14 +374,14 @@ export const settingsShape = PropTypes.shape({
   walkReluctance: PropTypes.number,
   modes: PropTypes.arrayOf(PropTypes.string),
   bikeSpeed: PropTypes.number,
-  transferPenalty: PropTypes.number,
+  transferPenalty: PropTypes.number
 });
 
 export const userShape = PropTypes.shape({
   given_name: PropTypes.string,
   family_name: PropTypes.string,
   sub: PropTypes.string,
-  notLogged: PropTypes.bool,
+  notLogged: PropTypes.bool
 });
 
 export const vehicleShape = PropTypes.shape({
@@ -398,12 +398,12 @@ export const vehicleShape = PropTypes.shape({
   shortName: PropTypes.string,
   color: PropTypes.string,
   heading: PropTypes.number,
-  headsign: PropTypes.string,
+  headsign: PropTypes.string
 });
 
 export const minTransferTimeShape = PropTypes.arrayOf(
   PropTypes.shape({
     title: PropTypes.string,
-    value: PropTypes.number,
-  }),
+    value: PropTypes.number
+  })
 );

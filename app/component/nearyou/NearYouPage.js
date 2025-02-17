@@ -20,18 +20,18 @@ import Loading from '../Loading';
 import StopNearYouContainer from './StopNearYouContainer';
 import {
   checkPositioningPermission,
-  startLocationWatch,
+  startLocationWatch
 } from '../../action/PositionActions';
 import DisruptionBanner from '../DisruptionBanner';
 import StopsNearYouSearch from './StopsNearYouSearch';
 import {
   getGeolocationState,
   getReadMessageIds,
-  setReadMessageIds,
+  setReadMessageIds
 } from '../../store/localStorage';
 import {
   withSearchContext,
-  getLocationSearchTargets,
+  getLocationSearchTargets
 } from '../WithSearchContext';
 import { PREFIX_NEARYOU } from '../../util/path';
 import StopsNearYouContainer from './StopsNearYouContainer';
@@ -43,13 +43,13 @@ import { mapLayerShape } from '../../store/MapLayerStore';
 import {
   getRentalNetworkConfig,
   getRentalNetworkId,
-  getDefaultNetworks,
+  getDefaultNetworks
 } from '../../util/vehicleRentalUtils';
 import { getMapLayerOptions } from '../../util/mapLayerUtils';
 import {
   getTransportModes,
   getNearYouModes,
-  useCitybikes,
+  useCitybikes
 } from '../../util/modeUtils';
 import FavouriteStore from '../../store/FavouriteStore';
 
@@ -73,7 +73,7 @@ function getModes(config) {
   const modes = nearYouModes.length
     ? nearYouModes
     : Object.keys(transportModes).filter(
-        mode => transportModes[mode].availableForSelection,
+        mode => transportModes[mode].availableForSelection
       );
   return modes.map(nearYouMode => nearYouMode.toUpperCase());
 }
@@ -84,7 +84,7 @@ class NearYouPage extends React.Component {
     executeAction: PropTypes.func.isRequired,
     getStore: PropTypes.func,
     intl: intlShape.isRequired,
-    router: routerShape.isRequired,
+    router: routerShape.isRequired
   };
 
   static propTypes = {
@@ -97,14 +97,14 @@ class NearYouPage extends React.Component {
     favouriteStationIds: PropTypes.arrayOf(PropTypes.string),
     favouriteVehicleStationIds: PropTypes.arrayOf(PropTypes.string),
     mapLayers: mapLayerShape.isRequired,
-    favouritesFetched: PropTypes.bool,
+    favouritesFetched: PropTypes.bool
   };
 
   static defaultProps = {
     favouriteStopIds: [],
     favouriteStationIds: [],
     favouriteVehicleStationIds: [],
-    favouritesFetched: false,
+    favouritesFetched: false
   };
 
   constructor(props) {
@@ -116,7 +116,7 @@ class NearYouPage extends React.Component {
       searchPosition: {},
       mapLayerOptions: null,
       // eslint-disable-next-line react/no-unused-state
-      resultsLoaded: false,
+      resultsLoaded: false
     };
   }
 
@@ -128,7 +128,7 @@ class NearYouPage extends React.Component {
       const { mode } = this.props.match.params;
       const mapLayerOptions = getMapLayerOptions({
         lockedMapLayers: ['vehicles', 'citybike', 'stop'],
-        selectedMapLayers: ['vehicles', mode.toLowerCase()],
+        selectedMapLayers: ['vehicles', mode.toLowerCase()]
       });
       this.setState({ showCityBikeTeaser, mapLayerOptions });
     } else {
@@ -200,7 +200,7 @@ class NearYouPage extends React.Component {
       } else if (nextProps.position.hasLocation) {
         newState = {
           phase: PH_USEGEOLOCATION,
-          searchPosition: nextProps.position,
+          searchPosition: nextProps.position
         };
       }
       return newState;
@@ -220,7 +220,7 @@ class NearYouPage extends React.Component {
     const { mode } = this.props.match.params;
     const mapLayerOptions = getMapLayerOptions({
       lockedMapLayers: ['vehicles', 'citybike', 'stop'],
-      selectedMapLayers: ['vehicles', mode.toLowerCase()],
+      selectedMapLayers: ['vehicles', mode.toLowerCase()]
     });
     this.setState({ mapLayerOptions });
   };
@@ -249,7 +249,7 @@ class NearYouPage extends React.Component {
       omitNonPickups: this.context.config.omitNonPickups,
       feedIds: this.context.config.feedIds,
       prioritizedStopIds: prioritizedStops,
-      filterByNetwork: allowedNetworks,
+      filterByNetwork: allowedNetworks
     };
   };
 
@@ -299,19 +299,19 @@ class NearYouPage extends React.Component {
         const path = `/${PREFIX_NEARYOU}/${mode}/POS`;
         this.context.router.replace({
           ...this.props.match.location,
-          pathname: path,
+          pathname: path
         });
       } else {
         const path = `/${PREFIX_NEARYOU}/${mode}/${locationToUri(centerOfMap)}`;
         this.context.router.replace({
           ...this.props.match.location,
-          pathname: path,
+          pathname: path
         });
       }
       return this.setState({
         searchPosition: { ...centerOfMap, type },
         centerOfMapChanged: false,
-        phase,
+        phase
       });
     }
     return this.setState({ searchPosition: this.getPosition() });
@@ -331,7 +331,7 @@ class NearYouPage extends React.Component {
     const path = `/${PREFIX_NEARYOU}/${newMode}${pathParams}`;
     this.context.router.replace({
       ...this.props.match.location,
-      pathname: path,
+      pathname: path
     });
     this.setState({ centerOfMapChanged: false });
   };
@@ -346,7 +346,7 @@ class NearYouPage extends React.Component {
           type="button"
           aria-label={this.context.intl.formatMessage({
             id: 'show-more-stops-near-you',
-            defaultMessage: 'Load more nearby stops',
+            defaultMessage: 'Load more nearby stops'
           })}
           className="update-stops-button"
           onClick={this.updateLocation}
@@ -360,7 +360,7 @@ class NearYouPage extends React.Component {
                 <FormattedMessage
                   id={`nearest-stops-${modeClass.toLowerCase()}`}
                 />
-              ),
+              )
             }}
           />
         </button>
@@ -475,7 +475,7 @@ class NearYouPage extends React.Component {
               if (Object.keys(vehicleRental.networks).length === 1) {
                 cityBikeNetworkUrl = getRentalNetworkConfig(
                   getRentalNetworkId(Object.keys(vehicleRental.networks)),
-                  config,
+                  config
                 ).url;
               }
               const prioritizedStops =
@@ -587,7 +587,7 @@ class NearYouPage extends React.Component {
                       variables={{
                         stopIds: prioritizedStops,
                         startTime: 0,
-                        omitNonPickups: false,
+                        omitNonPickups: false
                       }}
                       environment={this.props.relayEnvironment}
                       render={res => {
@@ -677,7 +677,7 @@ class NearYouPage extends React.Component {
           variables={{
             stopIds: this.props.favouriteStopIds,
             stationIds: this.props.favouriteStationIds,
-            vehicleRentalStationIds: this.props.favouriteVehicleStationIds,
+            vehicleRentalStationIds: this.props.favouriteVehicleStationIds
           }}
           environment={this.props.relayEnvironment}
           render={({ props }) => {
@@ -699,7 +699,7 @@ class NearYouPage extends React.Component {
                   favouriteIds={[
                     ...this.props.favouriteStopIds,
                     ...this.props.favouriteStationIds,
-                    ...this.props.favouriteVehicleStationIds,
+                    ...this.props.favouriteVehicleStationIds
                   ]}
                   breakpoint={this.props.breakpoint}
                   setMWTRef={this.setMWTRef}
@@ -714,7 +714,7 @@ class NearYouPage extends React.Component {
     const filteredMapLayers = {
       ...this.props.mapLayers,
       citybike: mode === 'CITYBIKE',
-      citybikeOverrideMinZoom: mode === 'CITYBIKE',
+      citybikeOverrideMinZoom: mode === 'CITYBIKE'
     };
     if (!this.context.config.map.showLayerSelector) {
       filteredMapLayers.stop = {};
@@ -796,13 +796,13 @@ class NearYouPage extends React.Component {
     const path = `/${PREFIX_NEARYOU}/${mode}/${locationToUri(item)}`;
     this.context.router.replace({
       ...this.props.match.location,
-      pathname: path,
+      pathname: path
     });
     this.centerOfMap = null;
     this.setState({
       phase: PH_USEDEFAULTPOS,
       searchPosition: item,
-      centerOfMapChanged: false,
+      centerOfMapChanged: false
     });
   };
 
@@ -828,7 +828,7 @@ class NearYouPage extends React.Component {
       inputClassName: onMap ? 'origin-stop-near-you-selector' : undefined,
       modeIconColors: this.context.config.colors.iconColors,
       modeSet: this.context.config.iconModeSet,
-      getAutoSuggestIcons: this.context.config.getAutoSuggestIcons,
+      getAutoSuggestIcons: this.context.config.getAutoSuggestIcons
     };
     const targets = getLocationSearchTargets(this.context.config, false);
     return (
@@ -853,7 +853,7 @@ class NearYouPage extends React.Component {
         appElement="#app"
         contentLabel="content label"
         closeButtonLabel={this.context.intl.formatMessage({
-          id: 'close',
+          id: 'close'
         })}
         variant="small"
         isOpen
@@ -926,7 +926,7 @@ class NearYouPage extends React.Component {
                         <FormattedMessage
                           id={`nearest-stops-${mode.toLowerCase()}`}
                         />
-                      ),
+                      )
                     }}
                   />
                 )
@@ -998,17 +998,17 @@ const PositioningWrapper = connectToStores(
       favouriteStopIds,
       favouriteVehicleStationIds,
       favouriteStationIds,
-      favouritesFetched: status !== FavouriteStore.STATUS_FETCHING_OR_UPDATING,
+      favouritesFetched: status !== FavouriteStore.STATUS_FETCHING_OR_UPDATING
     };
-  },
+  }
 );
 
 PositioningWrapper.contextTypes = {
   getStore: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export {
   PositioningWrapper as default,
-  NearYouPageWithBreakpoint as Component,
+  NearYouPageWithBreakpoint as Component
 };

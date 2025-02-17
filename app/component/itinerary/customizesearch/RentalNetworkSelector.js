@@ -9,13 +9,13 @@ import {
   getRentalNetworkName,
   getRentalNetworkConfig,
   updateVehicleNetworks,
-  getCitybikeNetworks,
+  getCitybikeNetworks
 } from '../../../util/vehicleRentalUtils';
 import { TransportMode } from '../../../constants';
 
 const RentalNetworkSelector = (
   { currentOptions },
-  { config, getStore, executeAction },
+  { config, getStore, executeAction }
 ) => (
   <React.Fragment>
     {mapDefaultNetworkProperties(config)
@@ -41,7 +41,7 @@ const RentalNetworkSelector = (
             <span className="mode-name">
               {getRentalNetworkName(
                 getRentalNetworkConfig(network.networkName, config),
-                getStore('PreferencesStore').getLanguage(),
+                getStore('PreferencesStore').getLanguage()
               )}
             </span>
             <Toggle
@@ -50,14 +50,14 @@ const RentalNetworkSelector = (
                 !!currentOptions &&
                 currentOptions.filter(
                   option =>
-                    option.toLowerCase() === network.networkName.toLowerCase(),
+                    option.toLowerCase() === network.networkName.toLowerCase()
                 ).length > 0
               }
               onToggle={() => {
                 const newNetworks = updateVehicleNetworks(
                   getCitybikeNetworks(config),
                   network.networkName,
-                  network.type,
+                  network.type
                 );
                 const newSettings = { allowedBikeRentalNetworks: newNetworks };
                 executeAction(saveRoutingSettings, newSettings);
@@ -70,13 +70,13 @@ const RentalNetworkSelector = (
 );
 
 RentalNetworkSelector.propTypes = {
-  currentOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentOptions: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 RentalNetworkSelector.contextTypes = {
   config: configShape.isRequired,
   getStore: PropTypes.func.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default RentalNetworkSelector;

@@ -5,7 +5,7 @@ import TruncateMarkup from 'react-truncate-markup';
 
 const TruncatedMessage = (
   { lines, message, className, truncate, onShowMore, onTruncate = () => {} },
-  { intl },
+  { intl }
 ) => {
   const [isTruncated, setTruncated] = useState(true);
 
@@ -32,7 +32,7 @@ const TruncatedMessage = (
             >
               {intl.formatMessage({
                 id: 'show-more',
-                defaultMessage: 'Show more',
+                defaultMessage: 'Show more'
               })}
             </button>{' '}
             &rsaquo;
@@ -53,17 +53,17 @@ TruncatedMessage.propTypes = {
   className: PropTypes.string,
   truncate: PropTypes.bool,
   onShowMore: PropTypes.func.isRequired,
-  onTruncate: PropTypes.func,
+  onTruncate: PropTypes.func
 };
 
 TruncatedMessage.defaultProps = {
   className: PropTypes.string.isRequired,
   truncate: false,
-  onTruncate: () => {},
+  onTruncate: () => {}
 };
 
 TruncatedMessage.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default TruncatedMessage;

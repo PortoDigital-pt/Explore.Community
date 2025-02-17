@@ -8,11 +8,11 @@ import { configShape } from '../../../util/shapes';
 
 const NavigatorModal = ({ withBackdrop, isOpen, children, slideUp }) => {
   const overlayClass = cx('navigator-modal-container', {
-    'navigator-modal-backdrop': withBackdrop,
+    'navigator-modal-backdrop': withBackdrop
   });
 
   const modalClass = cx('navigator-modal', {
-    'slide-in': slideUp,
+    'slide-in': slideUp
   });
 
   return (
@@ -31,19 +31,19 @@ NavigatorModal.propTypes = {
   children: PropTypes.node,
   withBackdrop: PropTypes.bool,
   isOpen: PropTypes.bool,
-  slideUp: PropTypes.bool,
+  slideUp: PropTypes.bool
 };
 
 NavigatorModal.defaultProps = {
   children: undefined,
   withBackdrop: false,
   isOpen: false,
-  slideUp: false,
+  slideUp: false
 };
 
 NavigatorModal.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default NavigatorModal;

@@ -7,7 +7,7 @@ import {
   getCustomizedSettings,
   setCustomizedSettings,
   getReadMessageIds,
-  setReadMessageIds,
+  setReadMessageIds
 } from '../../app/store/localStorage';
 import defaultConfig from '../../app/configurations/config.default';
 

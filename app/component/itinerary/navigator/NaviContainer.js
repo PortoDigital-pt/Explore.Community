@@ -6,7 +6,7 @@ import { legTime } from '../../../util/legUtils';
 import { legShape, relayShape } from '../../../util/shapes';
 import {
   startLocationWatch,
-  stopLocationWatch,
+  stopLocationWatch
 } from '../../../action/PositionActions';
 import NaviBottom from './NaviBottom';
 import NaviCardContainer from './NaviCardContainer';
@@ -25,9 +25,9 @@ function NaviContainer(
     setNavigation,
     isNavigatorIntroDismissed,
     mapRef,
-    mapLayerRef,
+    mapLayerRef
   },
-  { executeAction, getStore, router },
+  { executeAction, getStore, router }
 ) {
   const hasPosition = useRef(false);
   const prevPos = useRef(undefined);
@@ -48,7 +48,7 @@ function NaviContainer(
     lastLeg,
     previousLeg,
     currentLeg,
-    nextLeg,
+    nextLeg
   } = useRealtimeLegs(relayEnvironment, legs);
 
   useEffect(() => {
@@ -132,18 +132,18 @@ NaviContainer.propTypes = {
   // eslint-disable-next-line
   mapRef: PropTypes.object,
   mapLayerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-    .isRequired,
+    .isRequired
 };
 
 NaviContainer.contextTypes = {
   executeAction: PropTypes.func,
   getStore: PropTypes.func.isRequired,
-  router: routerShape.isRequired,
+  router: routerShape.isRequired
 };
 
 NaviContainer.defaultProps = {
   mapRef: undefined,
-  isNavigatorIntroDismissed: false,
+  isNavigatorIntroDismissed: false
 };
 
 export default NaviContainer;

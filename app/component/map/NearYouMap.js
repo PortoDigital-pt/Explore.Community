@@ -15,18 +15,18 @@ import { getSettings } from '../../util/planParamUtil';
 import {
   startRealTimeClient,
   stopRealTimeClient,
-  changeRealTimeClientTopics,
+  changeRealTimeClientTopics
 } from '../../action/realTimeClientAction';
 import {
   sortNearbyRentalStations,
-  sortNearbyStops,
+  sortNearbyStops
 } from '../../util/sortUtils';
 import ItineraryLine from './ItineraryLine';
 import {
   locationShape,
   relayShape,
   configShape,
-  stopShape,
+  stopShape
 } from '../../util/shapes';
 import Loading from '../Loading';
 import LazilyLoad, { importLazy } from '../LazilyLoad';
@@ -37,7 +37,7 @@ import { walkQuery } from './WalkQuery';
 
 const locationMarkerModules = {
   LocationMarker: () =>
-    importLazy(import(/* webpackChunkName: "map" */ './LocationMarker')),
+    importLazy(import(/* webpackChunkName: "map" */ './LocationMarker'))
 };
 const handleStopsAndStations = edges => {
   const stopsAndStations = edges.map(({ node }) => {
@@ -72,7 +72,7 @@ const getRealTimeSettings = (routes, context) => {
     return {
       ...source,
       feedId,
-      options: routes,
+      options: routes
     };
   }
   return null;
@@ -106,7 +106,7 @@ const handleBounds = (location, edges) => {
     // No stops anywhere near
     return [
       [location.lat, location.lon],
-      [location.lat, location.lon],
+      [location.lat, location.lon]
     ];
   }
   const nearestStop = edges[0].node.place;
@@ -114,8 +114,8 @@ const handleBounds = (location, edges) => {
     [nearestStop.lat, nearestStop.lon],
     [
       location.lat + location.lat - nearestStop.lat,
-      location.lon + location.lon - nearestStop.lon,
-    ],
+      location.lon + location.lon - nearestStop.lon
+    ]
   ];
   return bounds;
 };
@@ -144,7 +144,7 @@ function NearYouMap(
     setMWTRef,
     ...rest
   },
-  { ...context },
+  { ...context }
 ) {
   const [sortedStopEdges, setSortedStopEdges] = useState([]);
   const [uniqueRealtimeTopics, setUniqueRealtimeTopics] = useState([]);
@@ -167,16 +167,16 @@ function NearYouMap(
       const variables = {
         origin: {
           location: {
-            coordinate: { latitude: position.lat, longitude: position.lon },
-          },
+            coordinate: { latitude: position.lat, longitude: position.lon }
+          }
         },
         destination: {
           location: {
-            coordinate: { latitude: stop.lat, longitude: stop.lon },
-          },
+            coordinate: { latitude: stop.lat, longitude: stop.lon }
+          }
         },
         walkSpeed: settings.walkSpeed,
-        wheelchair: !!settings.accessibilityOption,
+        wheelchair: !!settings.accessibilityOption
       };
       fetchQuery(environment, walkQuery, variables)
         .toPromise()
@@ -185,7 +185,7 @@ function NearYouMap(
             itinerary: result.plan.edges.length
               ? result.plan.edges?.[0].node
               : null,
-            stop,
+            stop
           });
         });
     } else {
@@ -249,7 +249,7 @@ function NearYouMap(
             feedId,
             route: pattern.route.gtfsId.split(':')[1],
             shortName: pattern.route.shortName,
-            type: pattern.route.type,
+            type: pattern.route.type
           });
           patterns.push(pattern);
         });
@@ -262,7 +262,7 @@ function NearYouMap(
               feedId,
               route: pattern.route.gtfsId.split(':')[1],
               shortName: pattern.route.shortName,
-              type: pattern.route.type,
+              type: pattern.route.type
             });
             patterns.push(pattern);
           });
@@ -306,7 +306,7 @@ function NearYouMap(
         .filter(
           stop =>
             stop.node.place.stoptimesWithoutPatterns &&
-            stop.node.place.stoptimesWithoutPatterns.length,
+            stop.node.place.stoptimesWithoutPatterns.length
         );
       if (isTransitMode && !active.length && relay.hasMore()) {
         relay.loadMore(5);
@@ -319,7 +319,7 @@ function NearYouMap(
         });
         const filteredCityBikeEdges = withNetworks.filter(pattern => {
           return getDefaultNetworks(context.config).includes(
-            pattern.node.place?.rentalNetwork.networkId,
+            pattern.node.place?.rentalNetwork.networkId
           );
         });
         sortedEdges = filteredCityBikeEdges
@@ -337,11 +337,11 @@ function NearYouMap(
             node: {
               distance: distance(position, stop),
               place: {
-                ...stop,
-              },
-            },
+                ...stop
+              }
+            }
           };
-        }),
+        })
       );
       const stopsAndStations = handleStopsAndStations(sortedEdges);
       handleWalkRoutes(stopsAndStations);
@@ -368,7 +368,7 @@ function NearYouMap(
         useLargeIcon
         mode={mode}
         topics={uniqueRealtimeTopics}
-      />,
+      />
     );
   }
   if (walk.itinerary) {
@@ -379,7 +379,7 @@ function NearYouMap(
         passive={false}
         showIntermediateStops={false}
         streetMode="walk"
-      />,
+      />
     );
   }
 
@@ -389,7 +389,7 @@ function NearYouMap(
       return [
         stopsAndStations[0]?.gtfsId ||
           stopsAndStations[0]?.stationId ||
-          stopsAndStations[0].node.place.gtfsId,
+          stopsAndStations[0].node.place.gtfsId
       ];
     }
     return [''];
@@ -408,7 +408,7 @@ function NearYouMap(
     leafletObjs,
     breakpoint,
     setMWTRef: setMWTRefNearYou,
-    ...rest,
+    ...rest
   };
 
   if (breakpoint === 'large') {
@@ -437,7 +437,7 @@ NearYouMap.propTypes = {
     nearest: PropTypes.shape({
       // eslint-disable-next-line
       edges: PropTypes.arrayOf(PropTypes.object).isRequired,
-    }).isRequired,
+    }).isRequired
   }),
   prioritizedStopsNearYou: PropTypes.arrayOf(stopShape),
   // eslint-disable-next-line
@@ -449,7 +449,7 @@ NearYouMap.propTypes = {
   relay: relayShape.isRequired,
   loading: PropTypes.bool,
   showWalkRoute: PropTypes.bool,
-  setMWTRef: PropTypes.func,
+  setMWTRef: PropTypes.func
 };
 
 NearYouMap.defaultProps = {
@@ -458,13 +458,13 @@ NearYouMap.defaultProps = {
   loading: false,
   favouriteIds: undefined,
   setMWTRef: undefined,
-  prioritizedStopsNearYou: [],
+  prioritizedStopsNearYou: []
 };
 
 NearYouMap.contextTypes = {
   config: configShape,
   executeAction: PropTypes.func,
-  getStore: PropTypes.func,
+  getStore: PropTypes.func
 };
 
 export default NearYouMap;

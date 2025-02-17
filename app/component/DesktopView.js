@@ -3,6 +3,7 @@ import React from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import BackButton from './BackButton';
 import ScrollableWrapper from './ScrollableWrapper';
+import SidebarMenu from './amporto/navigation/sidebar';
 
 export default function DesktopView({
   title,
@@ -12,11 +13,14 @@ export default function DesktopView({
   settingsDrawer,
   scrollable,
   bckBtnVisible,
-  bckBtnFallback,
+  bckBtnFallback
 }) {
   return (
     <div className="desktop">
       <div className="main-content" role="main">
+        <div className="desktop-navigation-content">
+          <SidebarMenu />
+        </div>
         {bckBtnVisible && (
           <div className="desktop-title">
             <div className="title-container h2">
@@ -50,7 +54,7 @@ DesktopView.propTypes = {
   settingsDrawer: PropTypes.node,
   scrollable: PropTypes.bool,
   bckBtnVisible: PropTypes.bool,
-  bckBtnFallback: PropTypes.string,
+  bckBtnFallback: PropTypes.string
 };
 
 DesktopView.defaultProps = {
@@ -61,5 +65,5 @@ DesktopView.defaultProps = {
   settingsDrawer: undefined,
   scrollable: false,
   bckBtnVisible: true,
-  bckBtnFallback: undefined,
+  bckBtnFallback: undefined
 };

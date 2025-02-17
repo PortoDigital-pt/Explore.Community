@@ -12,7 +12,7 @@ describe('queryUtils', () => {
       const router = {
         replace: params => {
           callParams = params;
-        },
+        }
       };
       utils.setIntermediatePlaces(router, mockMatch, {});
       expect(callParams).to.equal(undefined);
@@ -23,19 +23,19 @@ describe('queryUtils', () => {
       const router = {
         replace: params => {
           callParams = params;
-        },
+        }
       };
       const intermediatePlaces = [
         {
           lat: 60.217992,
           lon: 24.75494,
-          address: 'Kera, Espoo',
+          address: 'Kera, Espoo'
         },
         {
           lat: 60.219235,
           lon: 24.81329,
-          address: 'Leppävaara, Espoo',
-        },
+          address: 'Leppävaara, Espoo'
+        }
       ];
 
       utils.setIntermediatePlaces(router, mockMatch, intermediatePlaces);
@@ -48,7 +48,7 @@ describe('queryUtils', () => {
       const router = {
         replace: params => {
           callParams = params;
-        },
+        }
       };
       const intermediatePlace = 'Kera, Espoo::60.217992,24.75494';
 
@@ -62,17 +62,17 @@ describe('queryUtils', () => {
       const router = {
         replace: params => {
           callParams = params;
-        },
+        }
       };
       const intermediatePlaces = [
         'Kera, Espoo::60.217992,24.75494',
-        'Leppävaara, Espoo::60.219235,24.81329',
+        'Leppävaara, Espoo::60.219235,24.81329'
       ];
 
       utils.setIntermediatePlaces(router, mockMatch, intermediatePlaces);
 
       expect(callParams.query.intermediatePlaces).to.deep.equal(
-        intermediatePlaces,
+        intermediatePlaces
       );
     });
   });

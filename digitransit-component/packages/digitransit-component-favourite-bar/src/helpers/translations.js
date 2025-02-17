@@ -7,7 +7,7 @@ const translations = {
     edit: 'Bearbeiten',
     'open-favourites': 'Öffne Favoriten',
     home: 'Zuhause',
-    work: 'Arbeit',
+    work: 'Arbeit'
   },
   en: {
     'add-destination': 'Set as destination',
@@ -19,7 +19,7 @@ const translations = {
     edit: 'Edit',
     'open-favourites': 'Open favourites',
     home: 'Home',
-    work: 'Work',
+    work: 'Work'
   },
   fi: {
     'add-destination': 'Aseta määränpääksi',
@@ -31,7 +31,7 @@ const translations = {
     edit: 'Muokkaa',
     'open-favourites': 'Avaa suosikit',
     home: 'Koti',
-    work: 'Työ',
+    work: 'Työ'
   },
   pl: {
     'add-destination': 'Wybierz jako punkt docelowy',
@@ -43,7 +43,7 @@ const translations = {
     edit: 'Edytuj',
     'open-favourites': 'Pokaż ulubione',
     home: 'Dom',
-    work: 'Praca',
+    work: 'Praca'
   },
   pt: {
     'add-destination': 'Definir como destino',
@@ -55,7 +55,7 @@ const translations = {
     edit: 'Editar',
     'open-favourites': 'Abrir favoritos',
     home: 'Casa',
-    work: 'Trabalho',
+    work: 'Trabalho'
   },
   sv: {
     'add-destination': 'Ställa in som destination',
@@ -67,8 +67,8 @@ const translations = {
     edit: 'Redigera',
     'open-favourites': 'Öppna favoriter',
     home: 'Hem',
-    work: 'Arbete',
-  },
+    work: 'Arbete'
+  }
 };
 
 export default translations;

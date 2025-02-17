@@ -13,11 +13,11 @@ const DTModal = ({ show, children }) => {
 
 DTModal.propTypes = {
   show: PropTypes.bool.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 DTModal.defaultProps = {
-  children: [],
+  children: []
 };
 
 export default DTModal;

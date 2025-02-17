@@ -55,7 +55,7 @@ function FuzzyTripLink({ vehicle, stopName, nextStopName, ...rest }, context) {
         date: vehicle.operatingDay,
         time:
           vehicle.tripStartTime.substring(0, 2) * 60 * 60 +
-          vehicle.tripStartTime.substring(2, 4) * 60,
+          vehicle.tripStartTime.substring(2, 4) * 60
       }}
       environment={environment}
       render={({ props }) => {
@@ -80,32 +80,32 @@ function FuzzyTripLink({ vehicle, stopName, nextStopName, ...rest }, context) {
         const { shortName } = vehicle;
         const localizedMode = context.intl.formatMessage({
           id: `${mode}`,
-          defaultMessage: `${mode}`,
+          defaultMessage: `${mode}`
         });
         const ariaMessage = !(rest.vehicleState === 'arrived')
           ? context.intl.formatMessage(
               {
                 id: 'route-page-vehicle-position-between',
                 defaultMessage:
-                  '{mode} {shortName} is between {stopName} and {nextStopName}',
+                  '{mode} {shortName} is between {stopName} and {nextStopName}'
               },
               {
                 stopName,
                 nextStopName,
                 mode: localizedMode,
-                shortName: shortName?.toLowerCase(),
-              },
+                shortName: shortName?.toLowerCase()
+              }
             )
           : context.intl.formatMessage(
               {
                 id: 'route-page-vehicle-position',
-                defaultMessage: '{mode} {shortName} is at {stopName}',
+                defaultMessage: '{mode} {shortName} is at {stopName}'
               },
               {
                 stopName,
                 mode: localizedMode,
-                shortName: shortName?.toLowerCase(),
-              },
+                shortName: shortName?.toLowerCase()
+              }
             );
 
         return (
@@ -116,7 +116,7 @@ function FuzzyTripLink({ vehicle, stopName, nextStopName, ...rest }, context) {
               addAnalyticsEvent({
                 category: 'Route',
                 action: 'OpenTripInformation',
-                name: vehicle.mode.toUpperCase(),
+                name: vehicle.mode.toUpperCase()
               });
             }}
             aria-label={ariaMessage}
@@ -133,16 +133,16 @@ FuzzyTripLink.propTypes = {
   trip: tripShape,
   vehicle: vehicleShape.isRequired,
   stopName: PropTypes.string.isRequired,
-  nextStopName: PropTypes.string,
+  nextStopName: PropTypes.string
 };
 
 FuzzyTripLink.defaultProps = {
   trip: undefined,
-  nextStopName: undefined,
+  nextStopName: undefined
 };
 
 FuzzyTripLink.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default FuzzyTripLink;

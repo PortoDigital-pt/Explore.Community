@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React from 'react';
 import Route from 'found/Route';
 
@@ -25,7 +24,7 @@ export default () => (
     <Route path="map">
       {{
         content: <Route getComponent={() => ExploreMapContent} />,
-        map: <Route getComponent={() => ExploreMapMap} />,
+        map: <Route getComponent={() => ExploreMapMap} />
       }}
     </Route>
   </Route>

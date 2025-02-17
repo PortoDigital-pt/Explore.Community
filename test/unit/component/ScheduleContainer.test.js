@@ -14,11 +14,11 @@ describe('<ScheduleContainer />', () => {
       pattern: {
         stops: [
           {
-            name: 'Koskela',
+            name: 'Koskela'
           },
           {
-            name: 'Rautatientori',
-          },
+            name: 'Rautatientori'
+          }
         ],
         tripsForDate: [
           {
@@ -28,32 +28,32 @@ describe('<ScheduleContainer />', () => {
                 realtimeState: 'CANCELED',
                 scheduledArrival: 28080,
                 scheduledDeparture: 28080,
-                serviceDay: 1547503200,
+                serviceDay: 1547503200
               },
               {
                 realtimeState: 'CANCELED',
                 scheduledArrival: 30060,
                 scheduledDeparture: 30060,
-                serviceDay: 1547503200,
-              },
-            ],
-          },
+                serviceDay: 1547503200
+              }
+            ]
+          }
         ],
-        route: { gtfsId: '2550' },
+        route: { gtfsId: '2550' }
       },
       firstDepartures: {},
       serviceDay: '20190115',
-      breakpoint: 'large',
+      breakpoint: 'large'
     };
     const wrapper = shallowWithIntl(
       <ScheduleContainer {...props} match={mockMatch} />,
       {
-        context: mockContext,
-      },
+        context: mockContext
+      }
     );
     expect(wrapper.find(ScheduleTripRow)).to.have.lengthOf(1);
     expect(wrapper.find(ScheduleTripRow).at(0).props().isCanceled).to.equal(
-      true,
+      true
     );
   });
 });

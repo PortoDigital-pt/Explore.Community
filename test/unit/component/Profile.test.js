@@ -13,18 +13,18 @@ describe('<Profile />', () => {
         legs: [
           {
             distance: 1200,
-            mode: 'BUS',
-          },
-        ],
-      },
+            mode: 'BUS'
+          }
+        ]
+      }
     };
     const wrapper = shallowWithIntl(<Profile {...props} />, {
-      context: { config: { imperialEnabled: false } },
+      context: { config: { imperialEnabled: false } }
     });
 
     expect(wrapper.find('.itinerary-profile-item')).to.have.lengthOf(1);
     expect(wrapper.find('.itinerary-profile-item-value').at(0).text()).to.equal(
-      '1.2 km',
+      '1.2 km'
     );
   });
 });

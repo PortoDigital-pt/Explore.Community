@@ -18,8 +18,8 @@ describe('LangSelect', () => {
         context: {
           ...mockContext,
           executeAction: () => true,
-          config: { availableLanguages: ['fi', 'sv', 'en'] },
-        },
+          config: { availableLanguages: ['fi', 'sv', 'en'] }
+        }
       });
       expect(wrapper.isEmptyRender()).to.equal(false);
     });

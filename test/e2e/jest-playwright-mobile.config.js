@@ -11,15 +11,15 @@ module.exports = {
     protocol: 'http',
     launchTimeout: 200000,
     debug: true,
-    usedPortAction: 'ignore',
+    usedPortAction: 'ignore'
   },
   launchOptions: {
-    headless: !process.env.DEBUG,
+    headless: !process.env.DEBUG
   },
   contextOptions: {
-    viewport: iPhone12.viewport,
+    viewport: iPhone12.viewport
   },
   isMobile: true,
   devices: ['iPhone 12'],
-  browsers: ['chromium'],
+  browsers: ['chromium']
 };

@@ -7,7 +7,7 @@ import AlertList from '../AlertList';
 import {
   getAlertsForObject,
   tripHasCancelation,
-  setEntityForAlert,
+  setEntityForAlert
 } from '../../util/alertUtils';
 import { getRouteMode } from '../../util/modeUtils';
 import { alertShape } from '../../util/shapes';
@@ -24,7 +24,7 @@ const getCancelations = (
   intl,
   currentTime,
   validityPeriod,
-  config,
+  config
 ) =>
   pattern.trips
     .filter(trip => tripHasCancelation(trip, currentTime, validityPeriod))
@@ -33,13 +33,13 @@ const getCancelations = (
       (a, b) =>
         a.stoptimes[0].serviceDay +
         a.stoptimes[0].scheduledDeparture -
-        (b.stoptimes[0].serviceDay + b.stoptimes[0].scheduledDeparture),
+        (b.stoptimes[0].serviceDay + b.stoptimes[0].scheduledDeparture)
     )
     .map(trip => {
       const first = trip.stoptimes[0];
       const departureTime = first.serviceDay + first.scheduledDeparture;
       const mode = intl.formatMessage({
-        id: getRouteMode(route).toLowerCase(),
+        id: getRouteMode(route).toLowerCase()
       });
       return {
         alertDescriptionText: intl.formatMessage(
@@ -48,17 +48,17 @@ const getCancelations = (
             mode,
             route: route.shortName,
             headsign: first.headsign || trip.tripHeadsign,
-            time: epochToTime(departureTime * 1000, config),
-          },
+            time: epochToTime(departureTime * 1000, config)
+          }
         ),
         entities: [entity],
-        alertSeverityLevel: AlertSeverityLevelType.Warning,
+        alertSeverityLevel: AlertSeverityLevelType.Warning
       };
     });
 
 function RouteAlertsContainer(
   { currentTime, route, pattern },
-  { intl, config },
+  { intl, config }
 ) {
   const entity = {
     __typename: AlertEntityType.Route,
@@ -66,7 +66,7 @@ function RouteAlertsContainer(
     type: route.type,
     mode: route.mode,
     shortName: route.shortName,
-    gtfsId: route.gtfsId,
+    gtfsId: route.gtfsId
   };
   const cancelations = getCancelations(
     route,
@@ -75,12 +75,12 @@ function RouteAlertsContainer(
     intl,
     currentTime,
     config.routeCancelationAlertValidity,
-    config,
+    config
   );
 
   const serviceAlerts = getAlertsForObject(pattern).map(alert =>
     // We display all alerts as they would be for the route in this view
-    setEntityForAlert(alert, entity),
+    setEntityForAlert(alert, entity)
   );
 
   return (
@@ -99,7 +99,7 @@ RouteAlertsContainer.propTypes = {
     type: PropTypes.number,
     mode: PropTypes.string.isRequired,
     shortName: PropTypes.string.isRequired,
-    gtfsId: PropTypes.string.isRequired,
+    gtfsId: PropTypes.string.isRequired
   }).isRequired,
   pattern: PropTypes.shape({
     alerts: PropTypes.arrayOf(alertShape).isRequired,
@@ -113,13 +113,13 @@ RouteAlertsContainer.propTypes = {
             scheduledDeparture: PropTypes.number.isRequired,
             serviceDay: PropTypes.number.isRequired,
             stop: PropTypes.shape({
-              name: PropTypes.string,
-            }).isRequired,
-          }),
-        ).isRequired,
-      }),
-    ).isRequired,
-  }).isRequired,
+              name: PropTypes.string
+            }).isRequired
+          })
+        ).isRequired
+      })
+    ).isRequired
+  }).isRequired
 };
 
 RouteAlertsContainer.contextTypes = {
@@ -127,14 +127,14 @@ RouteAlertsContainer.contextTypes = {
   config: PropTypes.shape({
     routeCancelationAlertValidity: PropTypes.shape({
       before: PropTypes.number,
-      after: PropTypes.number,
-    }),
-  }).isRequired,
+      after: PropTypes.number
+    })
+  }).isRequired
 };
 
 const containerComponent = createFragmentContainer(
   connectToStores(RouteAlertsContainer, ['TimeStore'], context => ({
-    currentTime: context.getStore('TimeStore').getCurrentTime(),
+    currentTime: context.getStore('TimeStore').getCurrentTime()
   })),
   {
     route: graphql`
@@ -189,8 +189,8 @@ const containerComponent = createFragmentContainer(
           }
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export { containerComponent as default, RouteAlertsContainer as Component };

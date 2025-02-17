@@ -51,7 +51,7 @@ const Error404 = (props, { config }) => {
 };
 
 Error404.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 Error404.propTypes = {
@@ -59,11 +59,11 @@ Error404.propTypes = {
     id: PropTypes.string,
     // eslint-disable-next-line
     values: PropTypes.object,
-  }),
+  })
 };
 
 Error404.defaultProps = {
-  error: undefined,
+  error: undefined
 };
 
 Error404.displayName = 'Error404';

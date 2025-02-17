@@ -74,7 +74,7 @@ export function displayImperialDistance(meters) {
 function displayDistanceWithLocale(meters, formatNumber) {
   const opts = {
     minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
+    maximumFractionDigits: 1
   };
   if (meters < 100) {
     return `${formatNumber((Math.round(meters / 10) * 10).toFixed(1))} m`; // Tens of meters
@@ -85,7 +85,7 @@ function displayDistanceWithLocale(meters, formatNumber) {
   if (meters < 10000) {
     return `${formatNumber(
       ((Math.round(meters / 100) * 100) / 1000).toFixed(1),
-      opts,
+      opts
     )} km`; // hudreds of meters
   }
   if (meters < 100000) {
@@ -93,7 +93,7 @@ function displayDistanceWithLocale(meters, formatNumber) {
   }
   return `${formatNumber(
     (Math.round(meters / 10000) * 10).toFixed(1),
-    opts,
+    opts
   )} km`; // tens of kilometers
 }
 
@@ -136,7 +136,7 @@ export function boundWithMinimumArea(points, maxZoom = 18) {
   const e = Math.max(0, 18 - maxZoom);
   const dist = 0.002 * 2 ** e;
   const [lats, lons] = unzip(
-    points.filter(([lat, lon]) => !Number.isNaN(lat) && !Number.isNaN(lon)),
+    points.filter(([lat, lon]) => !Number.isNaN(lat) && !Number.isNaN(lon))
   );
   const minlat = Math.min(...lats);
   const minlon = Math.min(...lons);
@@ -146,7 +146,7 @@ export function boundWithMinimumArea(points, maxZoom = 18) {
   const missingWidth = Math.max(0, dist - (maxlon - minlon));
   return [
     [minlat - missingHeight / 2, minlon - missingWidth / 2],
-    [maxlat + missingHeight / 2, maxlon + missingWidth / 2],
+    [maxlat + missingHeight / 2, maxlon + missingWidth / 2]
   ];
 }
 
@@ -165,7 +165,7 @@ export function boundWithMinimumAreaSimple(points) {
   const maxlon = Math.max(...lons);
   return [
     [minlat, minlon],
-    [maxlat, maxlon],
+    [maxlat, maxlon]
   ];
 }
 
@@ -222,7 +222,7 @@ export function getMiddleOf(geometry) {
 
   return {
     lat: geometry[i - 1][0] + 0.5 * (geometry[i][0] - geometry[i - 1][0]),
-    lon: geometry[i - 1][1] + 0.5 * (geometry[i][1] - geometry[i - 1][1]),
+    lon: geometry[i - 1][1] + 0.5 * (geometry[i][1] - geometry[i - 1][1])
   };
 }
 
@@ -262,14 +262,14 @@ function calculateEllipsoidParams(ellipsoid) {
 const kkjEllipsoid = calculateEllipsoidParams({
   a: 6378388.0,
   f: 1.0 / 297.0,
-  k0: 1.0,
+  k0: 1.0
 });
 
 const wgsEllipsoid = calculateEllipsoidParams({
   a: 6378137.0,
   b: 6356752.314245,
   f: 1.0 / 298.257223563,
-  k0: 0.9996,
+  k0: 0.9996
 });
 
 export function kkj2ToWgs84(coords) {

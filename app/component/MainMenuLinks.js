@@ -16,7 +16,7 @@ const MainMenuLinks = ({ closeMenu, content }) => (
                 addAnalyticsEvent({
                   category: 'Navigation',
                   action: 'OpenMainMenuLink',
-                  name: link.label || link.name,
+                  name: link.label || link.name
                 });
               }
               if (link.route) {
@@ -26,18 +26,18 @@ const MainMenuLinks = ({ closeMenu, content }) => (
             {...link}
           />
         </div>
-      ),
+      )
     )}
   </div>
 );
 
 MainMenuLinks.propTypes = {
   content: PropTypes.arrayOf(PropTypes.shape(MenuItem.propTypes)),
-  closeMenu: PropTypes.func.isRequired,
+  closeMenu: PropTypes.func.isRequired
 };
 
 MainMenuLinks.defaultProps = {
-  content: [],
+  content: []
 };
 
 export default MainMenuLinks;

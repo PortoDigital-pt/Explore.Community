@@ -32,9 +32,9 @@ const RouteStop = (
     displayNextDeparture,
     shortName,
     prevStop,
-    hideDepartures,
+    hideDepartures
   },
-  { config, intl },
+  { config, intl }
 ) => {
   const patternExists =
     stop.stopTimesForPattern && stop.stopTimesForPattern.length > 0;
@@ -63,12 +63,12 @@ const RouteStop = (
       } else if (timeDiffInMinutes === 0) {
         departureText = intl.formatMessage({
           id: 'arriving-soon',
-          defaultMessage: 'Now',
+          defaultMessage: 'Now'
         });
       } else {
         departureText = intl.formatMessage(
           { id: 'departure-time-in-minutes', defaultMessage: '{minutes} min' },
-          { minutes: timeDiffInMinutes },
+          { minutes: timeDiffInMinutes }
         );
       }
     }
@@ -83,7 +83,7 @@ const RouteStop = (
 
     if (getActiveAlertSeverityLevel(stop.alerts, currentTime)) {
       text += `${intl.formatMessage({
-        id: 'disruptions-tab.sr-disruptions',
+        id: 'disruptions-tab.sr-disruptions'
       })},`;
     }
 
@@ -101,7 +101,7 @@ const RouteStop = (
         text += `${intl.formatMessage({ id: 'next' })},`;
         text += `${getDepartureTime(
           stop.stopTimesForPattern[1],
-          currentTime,
+          currentTime
         )},`;
         if (nextDeparture?.realtime) {
           text += `${intl.formatMessage({ id: 'realtime' })},`;
@@ -129,7 +129,7 @@ const RouteStop = (
       const vehicleTime = vehicle.timestamp * 1000;
       const distanceToStop = estimateItineraryDistance(stop, {
         lat: vehicle.lat,
-        lon: vehicle.long,
+        lon: vehicle.long
       });
       vehicleState = getVehicleState(
         distanceToStop,
@@ -138,15 +138,15 @@ const RouteStop = (
         arrivalTimeToStop,
         departureTimeFromStop,
         first,
-        last,
+        last
       );
       const vehicleWithParsedShortname = {
         ...vehicle,
         shortName:
           vehicle.shortName &&
           config.realTime[vehicle.route?.split(':')[0]].vehicleNumberParser(
-            vehicle.shortName,
-          ),
+            vehicle.shortName
+          )
       };
       vehicleTripLink = vehicle.tripId ? (
         <TripLink
@@ -207,7 +207,7 @@ const RouteStop = (
             addAnalyticsEvent({
               category: 'Routes',
               action: 'OpenStopViewFromRoute',
-              name: null,
+              name: null
             });
           }}
           aria-label={getText()}
@@ -221,7 +221,7 @@ const RouteStop = (
                     className="inline-icon"
                     severityLevel={getActiveAlertSeverityLevel(
                       stop.alerts,
-                      currentTime,
+                      currentTime
                     )}
                   />
                 </div>
@@ -303,16 +303,16 @@ RouteStop.propTypes = {
         serviceDay: PropTypes.number,
         pickupType: PropTypes.string,
         stop: PropTypes.shape({
-          platformCode: PropTypes.string,
-        }),
-      }),
-    ),
+          platformCode: PropTypes.string
+        })
+      })
+    )
   }).isRequired,
   nextStop: PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.string
   }),
   prevStop: PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.string
   }),
   mode: PropTypes.string,
   className: PropTypes.string,
@@ -321,7 +321,7 @@ RouteStop.propTypes = {
   last: PropTypes.bool,
   displayNextDeparture: PropTypes.bool,
   shortName: PropTypes.string,
-  hideDepartures: PropTypes.bool,
+  hideDepartures: PropTypes.bool
 };
 
 RouteStop.defaultProps = {
@@ -335,12 +335,12 @@ RouteStop.defaultProps = {
   prevStop: null,
   shortName: undefined,
   vehicle: undefined,
-  hideDepartures: false,
+  hideDepartures: false
 };
 
 RouteStop.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default RouteStop;

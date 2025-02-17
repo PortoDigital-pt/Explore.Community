@@ -29,22 +29,22 @@ describe('Testing @digitransit-util/digitransit-util-filter-matching-to-input mo
         confidence: 0.95,
         label: 'testaddress4',
         layer: 'address',
-        name: 'testaddress4',
+        name: 'testaddress4'
       },
-      geometry: { coordinates: [lon, lat] },
+      geometry: { coordinates: [lon, lat] }
     };
     const testObj2 = {
       properties: {
         label: 'steissi',
         layer: 'favouriteStation',
         address: 'Rautatieasema, Helsinki',
-        gtfsId: 'HSL:1000003',
+        gtfsId: 'HSL:1000003'
       },
-      geometry: { coordinates: [lon, lat] },
+      geometry: { coordinates: [lon, lat] }
     };
     const list = [testObj, testObj2];
     const retValue = filterMatchingToInput(list, 'steissi', [
-      'properties.label',
+      'properties.label'
     ]);
     expect(testObj2).to.be.equal(retValue[0]);
   });

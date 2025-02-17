@@ -30,21 +30,21 @@ class FutureRouteStore extends Store {
         address: origin.address,
         coordinates: {
           lat: origin.lat,
-          lon: origin.lon,
-        },
+          lon: origin.lon
+        }
       },
       destination: {
         address: destination.address,
         coordinates: {
           lat: destination.lat,
-          lon: destination.lon,
-        },
+          lon: destination.lon
+        }
       },
       arriveBy: query.arriveBy ? query.arriveBy : false,
-      time: query.time,
+      time: query.time
     };
     const storage = addFutureRoute(route, this.getFutureRoutes(), {
-      itinerarySummaryPrefix: PREFIX_ITINERARY_SUMMARY,
+      itinerarySummaryPrefix: PREFIX_ITINERARY_SUMMARY
     });
     setFutureRoutesStorage(storage);
     this.emitChange();
@@ -56,7 +56,7 @@ class FutureRouteStore extends Store {
   }
 
   static handlers = {
-    saveFutureRoute: 'saveFutureRoute',
+    saveFutureRoute: 'saveFutureRoute'
   };
 }
 

@@ -109,7 +109,7 @@ class RealTimeInformationStore extends Store {
     RealTimeClientStopped: 'clearClient',
     RealTimeClientMessage: 'handleMessage',
     RealTimeClientReset: 'resetClient',
-    RealTimeClientNewTopics: 'setTopics',
+    RealTimeClientNewTopics: 'setTopics'
   };
 }
 

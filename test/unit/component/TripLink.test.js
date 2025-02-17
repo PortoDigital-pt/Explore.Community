@@ -12,13 +12,13 @@ describe('<TripLink />', () => {
       trip: {
         trip: {
           route: {
-            gtfsId: 'OULU:15',
+            gtfsId: 'OULU:15'
           },
           pattern: {
-            code: '1',
+            code: '1'
           },
-          gtfsId: 'OULU:12345',
-        },
+          gtfsId: 'OULU:12345'
+        }
       },
       vehicle: {
         mode: 'bus',
@@ -30,15 +30,15 @@ describe('<TripLink />', () => {
         tripStartTime: '0600',
         operatingDay: '0',
         next_stop: '2',
-        timestamp: 0,
-      },
+        timestamp: 0
+      }
     };
     const environment = {};
 
     const wrapper = mountWithIntl(
       <ReactRelayContext.Provider value={{ environment }}>
         <TripLink {...props} />
-      </ReactRelayContext.Provider>,
+      </ReactRelayContext.Provider>
     );
     expect(wrapper.find('.route-now-content')).to.have.lengthOf(1);
     expect(wrapper.find(VehicleIcon)).to.have.lengthOf(1);

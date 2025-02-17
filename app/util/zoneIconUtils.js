@@ -2,7 +2,7 @@ export default function getZoneId(config, propertiesZones, dataZones) {
   function zoneFilter(zones) {
     return Array.isArray(zones)
       ? zones.filter(
-          zone => zone && config.feedIds.includes(zone.split(':')[0]),
+          zone => zone && config.feedIds.includes(zone.split(':')[0])
         )
       : [];
   }

@@ -12,7 +12,7 @@ describe('<TripStopsContainer />', () => {
       breakpoint: 'large',
       routes: [],
       trip: null,
-      match: mockMatch,
+      match: mockMatch
     };
     const wrapper = shallowWithIntl(<TripStopsContainer {...props} />);
     expect(wrapper.isEmptyRender()).to.equal(true);

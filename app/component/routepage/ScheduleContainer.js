@@ -42,7 +42,7 @@ const getMostFrequent = arr => {
     return acc;
   }, {});
   const hash = Object.keys(hashmap).reduce((a, b) =>
-    hashmap[a] > hashmap[b] ? a : b,
+    hashmap[a] > hashmap[b] ? a : b
   );
   let retValue;
   arr.forEach(a => {
@@ -76,7 +76,7 @@ const modifyDepartures = departures => {
         if (key.length === lengthToCheck && key.indexOf(`wk${z}`) !== -1) {
           sortedData = {
             ...sortedData,
-            [key]: sortBy(value, 'departureStoptime.scheduledDeparture'),
+            [key]: sortBy(value, 'departureStoptime.scheduledDeparture')
           };
         }
       }
@@ -91,7 +91,7 @@ const modifyDepartures = departures => {
           c[hash] = c[hash] || ['', hash, departure];
           c[hash][0] += i;
           return c;
-        }, {}),
+        }, {})
       );
       modifiedDepartures.push(result.sort());
     }
@@ -115,7 +115,7 @@ const getFirstDepartureDate = (departures, dateIn) => {
     const date = dateIn || moment();
     const dayNo = moment(date).isoWeekday();
     const idx = departures.findIndex(
-      departure => departure[0].indexOf(dayNo) !== -1,
+      departure => departure[0].indexOf(dayNo) !== -1
     );
     if (idx > 0 && departures[idx][1] === 0 && departures[idx][2] === '') {
       // get departure day on current week
@@ -133,7 +133,7 @@ const getFirstDepartureDate = (departures, dateIn) => {
       if (
         !isEqual(
           moment(date).startOf('isoWeek').format(DATE_FORMAT),
-          moment().startOf('isoWeek').format(DATE_FORMAT),
+          moment().startOf('isoWeek').format(DATE_FORMAT)
         )
       ) {
         return moment(date).format(DATE_FORMAT);
@@ -157,7 +157,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
   const weekStarts = [
     currentAndNextWeekAreSame
       ? startOfWeek.format(DATE_FORMAT)
-      : today.format(DATE_FORMAT),
+      : today.format(DATE_FORMAT)
   ];
 
   let pastDate;
@@ -186,7 +186,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
         startOfWeek
           .clone()
           .add(x - 1, 'w')
-          .format(DATE_FORMAT),
+          .format(DATE_FORMAT)
       );
     }
     if (isEmptyWeek(departures[x])) {
@@ -194,7 +194,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
     }
     weekStarts.push(startOfWeek.clone().add(x, 'w').format(DATE_FORMAT));
     weekEnds.push(
-      startOfWeek.clone().endOf('isoWeek').add(x, 'w').format(DATE_FORMAT),
+      startOfWeek.clone().endOf('isoWeek').add(x, 'w').format(DATE_FORMAT)
     );
     days.push([]);
   }
@@ -256,7 +256,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
     wantedDay.format(DATE_FORMAT),
     wantedDay.format('E'),
     '',
-    wantedDay.clone().startOf('isoWeek').format(DATE_FORMAT),
+    wantedDay.clone().startOf('isoWeek').format(DATE_FORMAT)
   ];
   const options = weekStarts.map((w, idx) => {
     const currentDayNo = moment().format('E');
@@ -276,7 +276,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
       days.length === 1 && days[idx][0].length === 1 && wantedDayIn && !isMerged
         ? wantedDay.format(DATE_FORMAT2)
         : `${timeRangeStart.format(DATE_FORMAT2)} - ${moment(
-            weekEnds[idx],
+            weekEnds[idx]
           ).format(DATE_FORMAT2)}`;
     if (
       !(wantedDay.isSameOrAfter(w) && wantedDay.isSameOrBefore(weekEnds[idx]))
@@ -294,7 +294,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
             : moment(w)
                 .clone()
                 .add(firstServiceDay[0] - 1, 'd')
-                .format(DATE_FORMAT),
+                .format(DATE_FORMAT)
       };
     }
 
@@ -303,7 +303,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
       wantedDay.format(DATE_FORMAT),
       wantedDay.format('E'),
       days[idx],
-      moment(weekStarts[idx]).format(DATE_FORMAT),
+      moment(weekStarts[idx]).format(DATE_FORMAT)
     ];
     return undefined;
   });
@@ -325,7 +325,7 @@ const populateData = (wantedDayIn, departures, isMerged, dataExistsDay) => {
         return !emptyWeek.includes(o.value);
       }),
     currentAndNextWeekAreSame,
-    pastDate,
+    pastDate
   ];
 };
 
@@ -355,18 +355,18 @@ class ScheduleContainer extends PureComponent {
     match: matchShape.isRequired,
     breakpoint: PropTypes.string.isRequired,
     router: routerShape.isRequired,
-    route: routeShape.isRequired,
+    route: routeShape.isRequired
   };
 
   static defaultProps = {
-    serviceDay: undefined,
+    serviceDay: undefined
   };
 
   static contextTypes = {
     intl: intlShape.isRequired,
     config: configShape.isRequired,
     match: matchShape.isRequired,
-    router: routerShape.isRequired,
+    router: routerShape.isRequired
   };
 
   state = {
@@ -374,7 +374,7 @@ class ScheduleContainer extends PureComponent {
     to:
       (this.props.pattern && this.props.pattern.stops.length - 1) || undefined,
     hasLoaded: false,
-    focusedTab: null,
+    focusedTab: null
   };
 
   tabRefs = {};
@@ -388,7 +388,7 @@ class ScheduleContainer extends PureComponent {
     if (
       date &&
       moment(date.clone().startOf('isoWeek').format(DATE_FORMAT)).isBefore(
-        moment(moment().startOf('isoWeek').format(DATE_FORMAT)),
+        moment(moment().startOf('isoWeek').format(DATE_FORMAT))
       )
     ) {
       match.router.replace(decodeURIComponent(match.location.pathname));
@@ -404,7 +404,7 @@ class ScheduleContainer extends PureComponent {
     addAnalyticsEvent({
       category: 'Route',
       action: 'ChangeTimetableStartPoint',
-      name: null,
+      name: null
     });
   };
 
@@ -414,7 +414,7 @@ class ScheduleContainer extends PureComponent {
     addAnalyticsEvent({
       category: 'Route',
       action: 'ChangeTimetableEndPoint',
-      name: null,
+      name: null
     });
   };
 
@@ -425,7 +425,7 @@ class ScheduleContainer extends PureComponent {
     if (this.testing && this.testNum && currentPattern) {
       currentPattern = {
         ...currentPattern,
-        trips: currentPattern.trips?.filter((s, i) => i < 2),
+        trips: currentPattern.trips?.filter((s, i) => i < 2)
       };
       if (
         moment(wantedDay, 'YYYYMMDD', true).isValid() &&
@@ -434,7 +434,7 @@ class ScheduleContainer extends PureComponent {
       ) {
         currentPattern = {
           ...currentPattern,
-          trips: [],
+          trips: []
         };
       }
       queryParams = queryParams.concat(`&test=${this.testNum}`);
@@ -448,7 +448,7 @@ class ScheduleContainer extends PureComponent {
 
     if (trips !== null && !this.state.hasLoaded) {
       this.setState({
-        hasLoaded: true,
+        hasLoaded: true
       });
       return (
         <div className={cx('summary-list-spinner-container', 'route-schedule')}>
@@ -464,14 +464,14 @@ class ScheduleContainer extends PureComponent {
             {
               id: 'no-trips-found',
               defaultMessage: `No journeys found for the selected date ${moment(
-                this.context.match.location.query.serviceDay,
-              ).format(DATE_FORMAT2)}`,
+                this.context.match.location.query.serviceDay
+              ).format(DATE_FORMAT2)}`
             },
             {
               selectedDate: moment(
-                this.context.match.location.query.serviceDay,
-              ).format(DATE_FORMAT2),
-            },
+                this.context.match.location.query.serviceDay
+              ).format(DATE_FORMAT2)
+            }
           )}
         </div>
       );
@@ -482,11 +482,11 @@ class ScheduleContainer extends PureComponent {
       const toSt = trip.stoptimes[to];
       const departureTime = getFormattedTimeDate(
         (fromSt.serviceDay + fromSt.scheduledDeparture) * 1000,
-        'HH:mm',
+        'HH:mm'
       );
       const arrivalTime = getFormattedTimeDate(
         (toSt.serviceDay + toSt.scheduledArrival) * 1000,
-        'HH:mm',
+        'HH:mm'
       );
 
       return (
@@ -505,14 +505,14 @@ class ScheduleContainer extends PureComponent {
     addAnalyticsEvent({
       category: 'Route',
       action: 'ChangeTimetableDay',
-      name: null,
+      name: null
     });
     const newPath = {
       ...location,
       query: {
         ...location.query,
-        serviceDay: newServiceDay,
-      },
+        serviceDay: newServiceDay
+      }
     };
     this.context.router.replace(newPath);
   };
@@ -522,7 +522,7 @@ class ScheduleContainer extends PureComponent {
     if (nextProps.pattern.code !== this.props.pattern.code) {
       this.setState({
         from: 0,
-        to: nextProps.pattern.stops.length - 1,
+        to: nextProps.pattern.stops.length - 1
       });
     }
   }
@@ -595,7 +595,7 @@ class ScheduleContainer extends PureComponent {
           data[5] &&
           !isEqual(
             tabDate.clone().format(DATE_FORMAT),
-            moment(data[5]).format(DATE_FORMAT),
+            moment(data[5]).format(DATE_FORMAT)
           )
         ) {
           if (
@@ -603,7 +603,7 @@ class ScheduleContainer extends PureComponent {
               tabDate
                 .clone()
                 .add(Number(tab[0]) - 1, 'd')
-                .format(DATE_FORMAT),
+                .format(DATE_FORMAT)
             )
           ) {
             tabDate = tabDate.clone().add(Number(tab[0]) + 6, 'd');
@@ -620,7 +620,7 @@ class ScheduleContainer extends PureComponent {
             disabled={dayArray.length === 1 && separatedMultiDays.length < 2}
             key={tab}
             className={cx({
-              'is-active': selected,
+              'is-active': selected
             })}
             onClick={() => {
               this.changeDate(tabDate.format(DATE_FORMAT));
@@ -630,13 +630,13 @@ class ScheduleContainer extends PureComponent {
             role="tab"
             aria-selected={selected}
             style={{
-              '--totalCount': `${count}`,
+              '--totalCount': `${count}`
             }}
           >
             {getTranslatedDayString(
               this.context.intl.locale,
               dayRangePattern(tab.split('')),
-              true,
+              true
             )}
           </button>
         );
@@ -683,8 +683,8 @@ class ScheduleContainer extends PureComponent {
       ...location,
       query: {
         ...location.query,
-        serviceDay,
-      },
+        serviceDay
+      }
     };
     if (isBrowser) {
       this.props.match.router.replace(newPath);
@@ -746,11 +746,11 @@ class ScheduleContainer extends PureComponent {
           // Redirect back to routes default pattern
           // eslint-disable-next-line react/prop-types
           this.props.router.replace(
-            `/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`,
+            `/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`
           );
         } else {
           throw new RedirectException(
-            `/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`,
+            `/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`
           );
         }
       }
@@ -760,7 +760,7 @@ class ScheduleContainer extends PureComponent {
     const newFromTo = [this.state.from, this.state.to];
 
     const currentPattern = this.props.route.patterns.filter(
-      p => p.code === this.props.pattern.code,
+      p => p.code === this.props.pattern.code
     );
 
     let dataToHandle;
@@ -836,7 +836,7 @@ class ScheduleContainer extends PureComponent {
 
     const firstDepartureDate = getFirstDepartureDate(
       firstDepartures[0],
-      wantedDay,
+      wantedDay
     );
     const isBeforeNextWeek = wantedDay
       ? moment(wantedDay).isBefore(moment(nextMonday))
@@ -865,7 +865,7 @@ class ScheduleContainer extends PureComponent {
       wantedDay,
       firstDepartures,
       this.hasMergedData,
-      this.dataExistsDay,
+      this.dataExistsDay
     );
 
     let newServiceDay;
@@ -904,7 +904,7 @@ class ScheduleContainer extends PureComponent {
         this.context.config.URL.ROUTE_TIMETABLES[routeIdSplitted[0]],
         this.props.route,
         this.context.config.API_SUBSCRIPTION_QUERY_PARAMETER_NAME,
-        this.context.config.API_SUBSCRIPTION_TOKEN,
+        this.context.config.API_SUBSCRIPTION_TOKEN
       );
 
     const showTrips = this.getTrips(
@@ -912,7 +912,7 @@ class ScheduleContainer extends PureComponent {
       newFromTo[0],
       newFromTo[1],
       newServiceDay,
-      wantedDay,
+      wantedDay
     );
 
     const tabs = this.renderDayTabs(data);
@@ -955,7 +955,7 @@ class ScheduleContainer extends PureComponent {
                 <ScheduleDropdown
                   id="other-dates"
                   title={intl.formatMessage({
-                    id: 'other-dates',
+                    id: 'other-dates'
                   })}
                   list={data[3]}
                   alignRight
@@ -969,7 +969,7 @@ class ScheduleContainer extends PureComponent {
           {this.props.pattern && (
             <div
               className={cx('route-schedule-list-wrapper', {
-                'bp-large': this.props.breakpoint === 'large',
+                'bp-large': this.props.breakpoint === 'large'
               })}
               aria-live="polite"
             >
@@ -1004,7 +1004,7 @@ class ScheduleContainer extends PureComponent {
                   addAnalyticsEvent({
                     category: 'Route',
                     action: 'PrintWeeklyTimetable',
-                    name: null,
+                    name: null
                   });
                 }}
                 buttonIcon="icon-icon_print"
@@ -1019,7 +1019,7 @@ class ScheduleContainer extends PureComponent {
                 addAnalyticsEvent({
                   category: 'Route',
                   action: 'PrintTimetable',
-                  name: null,
+                  name: null
                 });
               }}
               buttonIcon="icon-icon_print"
@@ -1554,8 +1554,8 @@ const containerComponent = createFragmentContainer(
           }
         }
       }
-    `,
-  },
+    `
+  }
 );
 
 export { containerComponent as default, ScheduleContainer as Component };

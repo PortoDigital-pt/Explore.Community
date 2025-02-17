@@ -23,7 +23,7 @@ export default function DisruptionInfo(props, context) {
         closeButtonLabel={intl.formatMessage({ id: 'close' })}
         contentLabel={intl.formatMessage({
           id: 'disruption-info',
-          defaultMessage: 'Disruption info',
+          defaultMessage: 'Disruption info'
         })}
         isOpen
         onCrossClick={() => setOpen(false)}
@@ -50,7 +50,7 @@ export default function DisruptionInfo(props, context) {
                   <h2>
                     {intl.formatMessage({
                       id: 'disruption-info',
-                      defaultMessage: 'Disruption info',
+                      defaultMessage: 'Disruption info'
                     })}
                   </h2>
                   <DisruptionListContainer
@@ -70,14 +70,14 @@ export default function DisruptionInfo(props, context) {
 }
 
 DisruptionInfo.propTypes = {
-  setOpen: PropTypes.func.isRequired,
+  setOpen: PropTypes.func.isRequired
 };
 
 DisruptionInfo.contextTypes = {
   intl: intlShape.isRequired,
   config: PropTypes.shape({
-    feedIds: PropTypes.arrayOf(PropTypes.string.isRequired),
-  }).isRequired,
+    feedIds: PropTypes.arrayOf(PropTypes.string.isRequired)
+  }).isRequired
 };
 
 DisruptionInfo.propTypes = {};

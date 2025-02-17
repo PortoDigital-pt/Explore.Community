@@ -10,7 +10,7 @@ import { addAnalyticsEvent } from '../util/analyticsUtils';
 
 function DatetimepickerContainer(
   { realtime, embedWhenClosed, embedWhenOpen, lang, color },
-  context,
+  context
 ) {
   const { router, match, config } = context;
   const openPicker = !!match.location.query.setTime; // string to boolean
@@ -19,13 +19,13 @@ function DatetimepickerContainer(
     replaceQueryParams(router, match, {
       time: time?.toString(),
       arriveBy,
-      setTime,
+      setTime
     });
   }, 10);
 
   const setOpenParam = debounce(setTime => {
     replaceQueryParams(router, match, {
-      setTime,
+      setTime
     });
   }, 10);
 
@@ -43,7 +43,7 @@ function DatetimepickerContainer(
     addAnalyticsEvent({
       action: 'EditJourneyTime',
       category: 'ItinerarySettings',
-      name: null,
+      name: null
     });
   };
 
@@ -52,7 +52,7 @@ function DatetimepickerContainer(
     addAnalyticsEvent({
       action: 'EditJourneyDate',
       category: 'ItinerarySettings',
-      name: null,
+      name: null
     });
   };
 
@@ -71,7 +71,7 @@ function DatetimepickerContainer(
       event: 'sendMatomoEvent',
       category: 'ItinerarySettings',
       action: 'LeavingArrivingSelection',
-      name: 'SelectLeaving',
+      name: 'SelectLeaving'
     });
   };
 
@@ -81,7 +81,7 @@ function DatetimepickerContainer(
       event: 'sendMatomoEvent',
       category: 'ItinerarySettings',
       action: 'LeavingArrivingSelection',
-      name: 'SelectArriving',
+      name: 'SelectArriving'
     });
   };
 
@@ -118,28 +118,28 @@ DatetimepickerContainer.propTypes = {
   embedWhenClosed: PropTypes.node,
   embedWhenOpen: PropTypes.node,
   lang: PropTypes.string,
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 DatetimepickerContainer.defaultProps = {
   embedWhenClosed: null,
   embedWhenOpen: null,
   lang: 'en',
-  color: '#007ac9',
+  color: '#007ac9'
 };
 
 DatetimepickerContainer.contextTypes = {
   router: routerShape.isRequired,
   match: matchShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const withLang = connectToStores(
   DatetimepickerContainer,
   ['PreferencesStore'],
   context => ({
-    lang: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    lang: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export { withLang as default, DatetimepickerContainer as Component };

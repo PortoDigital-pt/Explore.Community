@@ -17,15 +17,15 @@ const tests = [
   { dayPattern: 'pe-su', dayNoArray: ['5', '6', '7', '5', '6', '7'] },
   {
     dayPattern: 'ma-pe',
-    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2'],
+    dayNoArray: ['3', '4', '5', '1', '2', '3', '4', '5', '1', '2']
   },
   {
     dayPattern: 'ma-la',
-    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2'],
+    dayNoArray: ['3', '4', '5', '6', '1', '2', '3', '4', '5', '6', '1', '2']
   },
   {
     dayPattern: 'su-pe',
-    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2'],
+    dayNoArray: ['3', '4', '5', '7', '1', '2', '3', '4', '5', '7', '1', '2']
   },
   {
     dayPattern: 'ma-su',
@@ -43,9 +43,9 @@ const tests = [
       '6',
       '7',
       '1',
-      '2',
-    ],
-  },
+      '2'
+    ]
+  }
 ];
 
 describe('Testing @digitransit-util/digitransit-util-day-range-pattern', () => {
@@ -53,7 +53,7 @@ describe('Testing @digitransit-util/digitransit-util-day-range-pattern', () => {
     it(`should return pattern "${
       test.dayPattern
     }" converted from day number\`s string "${Array.from(
-      new Set(test.dayNoArray.sort()),
+      new Set(test.dayNoArray.sort())
     ).join('')}"`, () => {
       const retValue = dayRangePattern(test.dayNoArray);
       expect(retValue).to.equal(test.dayPattern);

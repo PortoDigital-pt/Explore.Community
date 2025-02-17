@@ -5,7 +5,7 @@ import TruncatedMessage from './TruncatedMessage';
 
 export default function MessageBarMessage(
   { content, textColor, truncate, onShowMore },
-  { config },
+  { config }
 ) {
   const heading = (e, color) => {
     if (config.showAlertHeader && e?.type === 'heading') {
@@ -49,7 +49,7 @@ export default function MessageBarMessage(
 
   const headingContent = heading(
     content.find(part => part.type === 'heading'),
-    textColor,
+    textColor
   );
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events
   return (
@@ -59,7 +59,7 @@ export default function MessageBarMessage(
       )}
       {body(
         content.find(part => part.type === 'text'),
-        content.find(part => part.type === 'a'),
+        content.find(part => part.type === 'a')
       )}
     </div>
   );
@@ -70,14 +70,14 @@ MessageBarMessage.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object).isRequired,
   textColor: PropTypes.string,
   truncate: PropTypes.bool,
-  onShowMore: PropTypes.func.isRequired,
+  onShowMore: PropTypes.func.isRequired
 };
 
 MessageBarMessage.defaultProps = {
   textColor: undefined,
-  truncate: false,
+  truncate: false
 };
 
 MessageBarMessage.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

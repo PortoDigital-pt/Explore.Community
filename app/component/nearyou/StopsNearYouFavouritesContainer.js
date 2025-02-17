@@ -6,7 +6,7 @@ import {
   stopShape,
   stationShape,
   vehicleRentalStationShape,
-  locationShape,
+  locationShape
 } from '../../util/shapes';
 import StopNearYouContainer from './StopNearYouContainer';
 import CityBikeStopNearYou from './VehicleRentalStationNearYou';
@@ -15,7 +15,7 @@ function StopsNearYouFavouritesContainer({
   stops,
   stations,
   vehicleStations,
-  searchPosition,
+  searchPosition
 }) {
   const stopList = [];
   stopList.push(
@@ -25,9 +25,9 @@ function StopsNearYouFavouritesContainer({
         return {
           type: 'stop',
           distance: distance(searchPosition, stop),
-          ...stop,
+          ...stop
         };
-      }),
+      })
   );
   stopList.push(
     ...stations
@@ -36,9 +36,9 @@ function StopsNearYouFavouritesContainer({
         return {
           type: 'station',
           distance: distance(searchPosition, stop),
-          ...stop,
+          ...stop
         };
-      }),
+      })
   );
   stopList.push(
     ...vehicleStations
@@ -47,9 +47,9 @@ function StopsNearYouFavouritesContainer({
         return {
           type: 'vehicleRentalStation',
           distance: distance(searchPosition, stop),
-          ...stop,
+          ...stop
         };
-      }),
+      })
   );
   stopList.sort((a, b) => a.distance - b.distance);
   const stopElements = stopList.map(stop => {
@@ -76,7 +76,7 @@ StopsNearYouFavouritesContainer.propTypes = {
   stops: PropTypes.arrayOf(stopShape),
   stations: PropTypes.arrayOf(stationShape),
   vehicleStations: PropTypes.arrayOf(vehicleRentalStationShape),
-  searchPosition: locationShape,
+  searchPosition: locationShape
 };
 
 const refetchContainer = createFragmentContainer(
@@ -123,11 +123,11 @@ const refetchContainer = createFragmentContainer(
         lon
         operative
       }
-    `,
-  },
+    `
+  }
 );
 
 export {
   refetchContainer as default,
-  StopsNearYouFavouritesContainer as Component,
+  StopsNearYouFavouritesContainer as Component
 };

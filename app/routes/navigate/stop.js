@@ -9,13 +9,13 @@ import {
   PREFIX_STOPS,
   PREFIX_TERMINALS,
   PREFIX_DISRUPTION,
-  PREFIX_TIMETABLE,
+  PREFIX_TIMETABLE
 } from '../../util/path';
 import {
   getDefault,
   errorLoading,
   getComponentOrNullRenderer,
-  getComponentOrLoadingRenderer,
+  getComponentOrLoadingRenderer
 } from '../../util/routerUtils';
 import { prepareDatesForStops } from '../../util/dateParamUtils';
 import { DATE_FORMAT } from '../../constants';
@@ -73,7 +73,7 @@ const queries = {
           ...StopAlertsContainer_stop @arguments(startTime: $startTime)
         }
       }
-    `,
+    `
   },
   station: {
     pageHeader: graphql`
@@ -130,8 +130,8 @@ const queries = {
           ...TerminalAlertsContainer_station @arguments(startTime: $startTime)
         }
       }
-    `,
-  },
+    `
+  }
 };
 
 export default function getstop(isTerminal = false) {
@@ -229,7 +229,7 @@ export default function getstop(isTerminal = false) {
                   const date = location?.query?.date;
                   return {
                     ...params,
-                    date: date || moment().format(DATE_FORMAT),
+                    date: date || moment().format(DATE_FORMAT)
                   };
                 }}
                 render={getComponentOrLoadingRenderer}
@@ -287,7 +287,7 @@ export default function getstop(isTerminal = false) {
               query={queryMap.pageMeta}
               render={getComponentOrNullRenderer}
             />
-          ),
+          )
         }}
       </Route>
     </Route>

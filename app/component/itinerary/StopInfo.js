@@ -9,7 +9,7 @@ import Icon from '../Icon';
 
 export default function StopInfo(
   { intermediateStopCount, toggleFunction, duration, showIntermediateStops },
-  { config },
+  { config }
 ) {
   const message = (showIntermediateStops && (
     <FormattedMessage id="itinerary-hide-stops" defaultMessage="Hide stops" />
@@ -17,7 +17,7 @@ export default function StopInfo(
     <FormattedMessage
       id="number-of-intermediate-stops"
       values={{
-        number: intermediateStopCount,
+        number: intermediateStopCount
       }}
       defaultMessage="{number, plural, =0 {No stops} one {1 stop} other {{number} stops} }"
     />
@@ -27,7 +27,7 @@ export default function StopInfo(
       role="button"
       tabIndex="0"
       className={cx('intermediate-stops-clickable', {
-        'cursor-pointer': intermediateStopCount > 0,
+        'cursor-pointer': intermediateStopCount > 0
       })}
       onClick={e => {
         e.stopPropagation();
@@ -44,7 +44,7 @@ export default function StopInfo(
     >
       <div
         className={cx('intermediate-stop-info-container', {
-          open: showIntermediateStops,
+          open: showIntermediateStops
         })}
       >
         {intermediateStopCount === 0 ? (
@@ -68,16 +68,16 @@ export default function StopInfo(
 }
 
 StopInfo.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 StopInfo.propTypes = {
   intermediateStopCount: PropTypes.number.isRequired,
   toggleFunction: PropTypes.func.isRequired,
   duration: PropTypes.number.isRequired,
-  showIntermediateStops: PropTypes.bool,
+  showIntermediateStops: PropTypes.bool
 };
 
 StopInfo.defaultProps = {
-  showIntermediateStops: false,
+  showIntermediateStops: false
 };

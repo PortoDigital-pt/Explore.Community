@@ -18,9 +18,9 @@ function TripLinkWithScroll(
     stopName,
     nextStopName,
     tripId,
-    vehicleState,
+    vehicleState
   },
-  context,
+  context
 ) {
   const trackedVehicleRef = useRef();
   const shouldUpdate = useRef(true);
@@ -53,37 +53,37 @@ function TripLinkWithScroll(
   });
   const localizedMode = context.intl.formatMessage({
     id: `${mode}`,
-    defaultMessage: `${mode}`,
+    defaultMessage: `${mode}`
   });
   let ariaMessage = !(vehicleState === 'arrived')
     ? context.intl.formatMessage(
         {
           id: 'route-page-vehicle-position-between',
           defaultMessage:
-            '{mode} {shortName} is between {stopName} and {nextStopName}',
+            '{mode} {shortName} is between {stopName} and {nextStopName}'
         },
         {
           stopName,
           nextStopName,
           mode: localizedMode,
-          shortName: vehicleNumber?.toLowerCase(),
-        },
+          shortName: vehicleNumber?.toLowerCase()
+        }
       )
     : context.intl.formatMessage(
         {
           id: 'route-page-vehicle-position',
-          defaultMessage: '{mode} {shortName} is at {stopName}',
+          defaultMessage: '{mode} {shortName} is at {stopName}'
         },
         {
           stopName,
           mode: localizedMode,
-          shortName: vehicleNumber?.toLowerCase(),
-        },
+          shortName: vehicleNumber?.toLowerCase()
+        }
       );
   if (selected) {
     ariaMessage += context.intl.formatMessage({
       id: 'route-page-vehicle-selected',
-      defaultMessage: 'Current selection.',
+      defaultMessage: 'Current selection.'
     });
   }
   const icon = (
@@ -123,7 +123,7 @@ TripLinkWithScroll.propTypes = {
   stopName: PropTypes.string,
   nextStopName: PropTypes.string,
   tripId: PropTypes.string,
-  vehicleState: PropTypes.string,
+  vehicleState: PropTypes.string
 };
 
 TripLinkWithScroll.defaultProps = {
@@ -134,11 +134,11 @@ TripLinkWithScroll.defaultProps = {
   selected: false,
   vehicleNumber: '',
   nextStopName: '',
-  stopName: '',
+  stopName: ''
 };
 
 TripLinkWithScroll.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default TripLinkWithScroll;

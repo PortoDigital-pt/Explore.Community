@@ -20,7 +20,7 @@ const {
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME,
   API_SUBSCRIPTION_HEADER_NAME,
   API_SUBSCRIPTION_TOKEN,
-  RUN_ENV,
+  RUN_ENV
 } = process.env;
 const hasAPISubscriptionQueryParameter =
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME && API_SUBSCRIPTION_TOKEN;
@@ -45,30 +45,30 @@ export default {
     MAP: {
       default: `${MAP_URL}/map/${MAP_VERSION}/hsl-map/`,
       sv: `${MAP_URL}/map/${MAP_VERSION}/hsl-map-sv/`,
-      en: `${MAP_URL}/map/${MAP_VERSION}/hsl-map-en/`,
+      en: `${MAP_URL}/map/${MAP_VERSION}/hsl-map-en/`
     },
     STOP_MAP: {
       default: `${POI_MAP_PREFIX}/fi/stops,stations/`,
-      sv: `${POI_MAP_PREFIX}/sv/stops,stations/`,
+      sv: `${POI_MAP_PREFIX}/sv/stops,stations/`
     },
     RENTAL_STATION_MAP: {
-      default: `${POI_MAP_PREFIX}/fi/rentalStations/`,
+      default: `${POI_MAP_PREFIX}/fi/rentalStations/`
     },
     REALTIME_RENTAL_STATION_MAP: {
-      default: `${POI_MAP_PREFIX}/fi/realtimeRentalStations/`,
+      default: `${POI_MAP_PREFIX}/fi/realtimeRentalStations/`
     },
     REALTIME_RENTAL_VEHICLE_MAP: {
-      default: `${POI_MAP_PREFIX}/fi/realtimeRentalVehicles/`,
+      default: `${POI_MAP_PREFIX}/fi/realtimeRentalVehicles/`
     },
     PARK_AND_RIDE_MAP: {
       default: `${POI_MAP_PREFIX}/en/vehicleParking/`,
       sv: `${POI_MAP_PREFIX}/sv/vehicleParking/`,
-      fi: `${POI_MAP_PREFIX}/fi/vehicleParking/`,
+      fi: `${POI_MAP_PREFIX}/fi/vehicleParking/`
     },
     PARK_AND_RIDE_GROUP_MAP: {
       default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`,
       sv: `${POI_MAP_PREFIX}/sv/vehicleParkingGroups/`,
-      fi: `${POI_MAP_PREFIX}/fi/vehicleParkingGroups/`,
+      fi: `${POI_MAP_PREFIX}/fi/vehicleParkingGroups/`
     },
 
     FONT: 'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700',
@@ -93,14 +93,14 @@ export default {
     }`,
     ROUTE_TIMETABLES: {
       HSL: `${API_URL}/timetables/v1/hsl/routes/`,
-      tampere: 'https://www.nysse.fi/aikataulut-ja-reitit/linjat/',
+      tampere: 'https://www.nysse.fi/aikataulut-ja-reitit/linjat/'
     },
     STOP_TIMETABLES: {
-      HSL: `${STOP_TIMETABLES_URL}/julkaisin-render/?component=Timetable`,
+      HSL: `${STOP_TIMETABLES_URL}/julkaisin-render/?component=Timetable`
     },
     WEATHER_DATA:
       'https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::simple&timestep=5&parameters=temperature,WindSpeedMS,WeatherSymbol3',
-    EMBEDDED_SEARCH_GENERATION: '/reittihakuelementti',
+    EMBEDDED_SEARCH_GENERATION: '/reittihakuelementti'
   },
 
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME,
@@ -138,7 +138,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     citybikes: station => {
       return ['citybike-stop-digitransit', '#f2b62d'];
-    },
+    }
   },
   /*
    * by default search endpoints from all but gtfs sources, correct gtfs source
@@ -148,19 +148,19 @@ export default {
 
   search: {
     suggestions: {
-      useTransportIcons: false,
+      useTransportIcons: false
     },
     usePeliasStops: false,
     mapPeliasModality: false,
     peliasMapping: {},
     peliasLayer: null,
     peliasLocalization: null,
-    minimalRegexp: /.{2,}/,
+    minimalRegexp: /.{2,}/
   },
 
   nearbyRoutes: {
     radius: 10000,
-    bucketSize: 1000,
+    bucketSize: 1000
   },
 
   omitNonPickups: true,
@@ -174,7 +174,7 @@ export default {
     rail: 50000,
     ferry: 50000,
     citybike: 20000,
-    airplane: 100000,
+    airplane: 100000
   },
 
   defaultSettings: {
@@ -190,7 +190,7 @@ export default {
     includeBikeSuggestions: true,
     includeParkAndRideSuggestions: false,
     includeCarSuggestions: false,
-    showBikeAndParkItineraries: false,
+    showBikeAndParkItineraries: false
   },
 
   /**
@@ -203,10 +203,10 @@ export default {
       least: 5,
       less: 3,
       more: 1,
-      most: 0.2,
+      most: 0.2
     },
     walkSpeed: [0.69, 0.97, 1.2, 1.67, 2.22],
-    bikeSpeed: [2.77, 4.15, 5.55, 6.94, 8.33],
+    bikeSpeed: [2.77, 4.15, 5.55, 6.94, 8.33]
   },
 
   transferPenaltyHigh: 1600,
@@ -226,7 +226,7 @@ export default {
     'da',
     'es',
     'ro',
-    'pl',
+    'pl'
   ],
   defaultLanguage: 'en',
   // This timezone data will expire in 2037
@@ -244,9 +244,9 @@ export default {
     showOffCanvasList: true,
     showFrontPageLink: true,
     stopMonitor: {
-      show: false,
+      show: false
     },
-    showEmbeddedSearch: true,
+    showEmbeddedSearch: true
   },
 
   itinerary: {
@@ -254,7 +254,7 @@ export default {
     // Measured in seconds.
     waitThreshold: 180,
     // Number of days to include to the service time range from the future
-    serviceTimeRange: 60,
+    serviceTimeRange: 60
   },
 
   map: {
@@ -266,11 +266,11 @@ export default {
     controls: {
       zoom: {
         // available controls positions: 'topleft', 'topright', 'bottomleft, 'bottomright'
-        position: 'bottomright',
+        position: 'bottomright'
       },
       scale: {
-        position: 'bottomright',
-      },
+        position: 'bottomright'
+      }
     },
     genericMarker: {
       // Do not render name markers at zoom levels below this value
@@ -279,22 +279,22 @@ export default {
       popup: {
         offset: [106, 16],
         maxWidth: 250,
-        minWidth: 250,
-      },
+        minWidth: 250
+      }
     },
 
     line: {
       halo: {
         weight: 7,
-        thinWeight: 2,
+        thinWeight: 2
       },
 
       leg: {
         weight: 6,
-        thinWeight: 2,
+        thinWeight: 2
       },
 
-      passiveColor: '#758993',
+      passiveColor: '#758993'
     },
 
     showZoomControl: true,
@@ -309,21 +309,21 @@ export default {
     // Finland + Stockholm
     areaBounds: {
       corner1: [70.25, 32.25],
-      corner2: [58.99, 17.75],
-    },
+      corner2: [58.99, 17.75]
+    }
   },
 
   stopCard: {
     header: {
       showDescription: true,
       showStopCode: true,
-      showDistance: true,
-    },
+      showDistance: true
+    }
   },
 
   autoSuggest: {
     // Let Pelias suggest based on current user location
-    locationAware: true,
+    locationAware: true
   },
 
   vehicleRental: {
@@ -339,13 +339,13 @@ export default {
     buyInstructions: {
       fi: 'Osta käyttöoikeutta päiväksi, viikoksi tai koko kaudeksi',
       sv: 'Köp ett abonnemang för en dag, en vecka eller för en hel säsong',
-      en: 'Buy a daily, weekly or season pass',
+      en: 'Buy a daily, weekly or season pass'
     },
     maxNearbyRentalVehicleAmount: 5,
     maxDistanceToRentalVehiclesInMeters: 100,
     maxMinutesToRentalJourneyStart: 60,
     maxMinutesToRentalJourneyEnd: 720,
-    allowDirectScooterJourneys: false,
+    allowDirectScooterJourneys: false
   },
 
   // Lowest level for stops and terminals are rendered
@@ -361,7 +361,7 @@ export default {
   stopsIconSize: {
     small: 8,
     selected: 28,
-    default: 18,
+    default: 18
   },
 
   appBarStyle: 'default',
@@ -377,22 +377,22 @@ export default {
       'mode-rail': '#af8dbc',
       'mode-ferry': '#247C7B',
       'mode-citybike': '#f2b62d',
-      'mode-scooter': '#C5CAD2',
-    },
+      'mode-scooter': '#C5CAD2'
+    }
   },
   iconModeSet: 'digitransit',
   fontWeights: {
-    medium: 700,
+    medium: 700
   },
 
   sprites: 'assets/svg-sprite.default.svg',
 
   disruption: {
-    showInfoButton: true,
+    showInfoButton: true
   },
 
   agency: {
-    show: true,
+    show: true
   },
 
   socialMedia: {
@@ -403,18 +403,18 @@ export default {
     image: {
       url: '/img/default-social-share.png',
       width: 2400,
-      height: 1260,
+      height: 1260
     },
 
     twitter: {
       card: 'summary_large_image',
-      site: '@hsldevcom',
-    },
+      site: '@hsldevcom'
+    }
   },
 
   meta: {
     description: APP_DESCRIPTION,
-    keywords: 'digitransit',
+    keywords: 'digitransit'
   },
 
   hideExternalOperator: () => false,
@@ -425,48 +425,48 @@ export default {
   transportModes: {
     bus: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     tram: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     rail: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     subway: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     airplane: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     ferry: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
 
     funicular: {
       availableForSelection: false,
-      defaultValue: false,
+      defaultValue: false
     },
 
     citybike: {
       availableForSelection: false,
-      defaultValue: false, // always false
+      defaultValue: false // always false
     },
 
     scooter: {
       availableForSelection: false,
-      defaultValue: false, // always false
-    },
+      defaultValue: false // always false
+    }
   },
 
   moment: {
@@ -475,8 +475,8 @@ export default {
       minutes: 59,
       hours: 23,
       days: 26,
-      months: 11,
-    },
+      months: 11
+    }
   },
 
   areaPolygon: [
@@ -524,7 +524,7 @@ export default {
     [20.2983, 59.2763],
     [19.3719, 59.6858],
     [18.7454, 60.1305],
-    [18.776, 60.3316],
+    [18.776, 60.3316]
   ],
 
   // Minimun distance between from and to locations in meters. User is noticed
@@ -541,20 +541,20 @@ export default {
     content: [
       {
         name: 'menu-feedback',
-        href: 'https://github.com/HSLdevcom/digitransit-ui/issues',
+        href: 'https://github.com/HSLdevcom/digitransit-ui/issues'
       },
       {
         name: 'about-this-service',
-        route: '/tietoja-palvelusta',
-      },
-    ],
+        route: '/about'
+      }
+    ]
   },
 
   // Default origin endpoint to use when user is outside of area
   defaultEndpoint: {
     address: 'Helsinki-Vantaan Lentoasema',
     lat: 60.317429,
-    lon: 24.9690395,
+    lon: 24.9690395
   },
 
   defaultMapZoom: 12,
@@ -572,67 +572,67 @@ export default {
       {
         header: 'Tietoja palvelusta',
         paragraphs: [
-          'Palvelu kattaa joukkoliikenteen, kävelyn, pyöräilyn ja yksityisautoilun rajatuilta osin. Palvelu perustuu Digitransit-palvelualustaan.',
-        ],
+          'Palvelu kattaa joukkoliikenteen, kävelyn, pyöräilyn ja yksityisautoilun rajatuilta osin. Palvelu perustuu Digitransit-palvelualustaan.'
+        ]
       },
       {
         header: 'Digitransit-palvelualusta',
         paragraphs: [
-          'Reittiopas perustuu Digitransit-palvelualustaan, joka on Liikenteenohjausyhtiö Fintraffic Oy:n, Helsingin seudun liikenteen (HSL) ja Waltti Solutions Oy:n tarjoama avoimen lähdekoodin reititysalusta. Reittiehdotukset perustuvat arvioituihin ajoaikoihin. Digitransit tai muut tiedon hyödyntäjät eivät takaa ehdotetun yhteyden toteutumista eivätkä korvaa kulkuyhteyden toteutumatta jäämisestä mahdollisesti aiheutuvia vahinkoja. Palvelun käyttäjien tietoja ei tallenneta palveluun.',
-        ],
+          'Reittiopas perustuu Digitransit-palvelualustaan, joka on Liikenteenohjausyhtiö Fintraffic Oy:n, Helsingin seudun liikenteen (HSL) ja Waltti Solutions Oy:n tarjoama avoimen lähdekoodin reititysalusta. Reittiehdotukset perustuvat arvioituihin ajoaikoihin. Digitransit tai muut tiedon hyödyntäjät eivät takaa ehdotetun yhteyden toteutumista eivätkä korvaa kulkuyhteyden toteutumatta jäämisestä mahdollisesti aiheutuvia vahinkoja. Palvelun käyttäjien tietoja ei tallenneta palveluun.'
+        ]
       },
       {
         header: 'Tietolähteet',
         paragraphs: [
-          'Tiedot perustuvat joukkoliikenneviranomaisten, liikennöitsijöiden, VR:n ja Finavian toimittamiin tietoihin. Tietolähteinä hyödynnetään Fintrafficin liikkumisen tietopalveluita, erityisesti liikkumispalveluiden avointa yhteyspistettä <a href="https://www.finap.fi/#/" target="_blank">Finap-palvelua</a>. Kartat, tiedot kaduista, rakennuksista, pysäkkien sijainnista ynnä muusta tarjoaa © OpenStreetMap contributors. Osoitetiedot tuodaan Digi- ja väestötietoviraston rakennusten osoitetietokannasta.',
-        ],
-      },
+          'Tiedot perustuvat joukkoliikenneviranomaisten, liikennöitsijöiden, VR:n ja Finavian toimittamiin tietoihin. Tietolähteinä hyödynnetään Fintrafficin liikkumisen tietopalveluita, erityisesti liikkumispalveluiden avointa yhteyspistettä <a href="https://www.finap.fi/#/" target="_blank">Finap-palvelua</a>. Kartat, tiedot kaduista, rakennuksista, pysäkkien sijainnista ynnä muusta tarjoaa © OpenStreetMap contributors. Osoitetiedot tuodaan Digi- ja väestötietoviraston rakennusten osoitetietokannasta.'
+        ]
+      }
     ],
 
     sv: [
       {
         header: 'Om tjänsten',
         paragraphs: [
-          'Reseplaneraren täcker med vissa begränsningar kollektivtrafik, promenad, cykling samt privatbilism. Tjänsten baserar sig på Digitransit-plattformen.',
-        ],
+          'Reseplaneraren täcker med vissa begränsningar kollektivtrafik, promenad, cykling samt privatbilism. Tjänsten baserar sig på Digitransit-plattformen.'
+        ]
       },
       {
         header: 'Digitransit-plattformen',
         paragraphs: [
-          'Reseplaneraren baseras på tjänsteplattformen Digitransit med öppen källkod, som är en tjänst som underhålls och utvecklas av Helsingforsregionens Trafik (HRT) Fintraffic Oy och Waltti Solutions Oy. Digitransit eller andra användare av informationen garanterar inte realiseringen av den föreslagna anslutningen och ersätter inte för eventuella skador som kan uppstå på grund av att transportförbindelsen inte fungerar. Tjänstanvändarnas information lagras inte i tjänsten.',
-        ],
+          'Reseplaneraren baseras på tjänsteplattformen Digitransit med öppen källkod, som är en tjänst som underhålls och utvecklas av Helsingforsregionens Trafik (HRT) Fintraffic Oy och Waltti Solutions Oy. Digitransit eller andra användare av informationen garanterar inte realiseringen av den föreslagna anslutningen och ersätter inte för eventuella skador som kan uppstå på grund av att transportförbindelsen inte fungerar. Tjänstanvändarnas information lagras inte i tjänsten.'
+        ]
       },
       {
         header: 'Datakällor',
         paragraphs: [
-          'Tjänsteinformationen baseras på information om kollektivtrafiken som tillhandahålls av kollektivtrafikmyndigheter, trafik operatörer, VR och Finavia. Fintraffics mobilitetsinformationstjänster används som datakällor, särskilt <a href="https://www.finap.fi/#/" target="_blank">National Access Point</a> för mobilitetstjänster FINAP Kartor, information om gator, byggnader, hållplatser och mer tillhandahålls av © OpenStreetMap-bidragsgivare. Adressuppgifter importeras från adressdatabasen till Myndigheten för Digitalisering och Befolkninsdata (DVV).',
-        ],
-      },
+          'Tjänsteinformationen baseras på information om kollektivtrafiken som tillhandahålls av kollektivtrafikmyndigheter, trafik operatörer, VR och Finavia. Fintraffics mobilitetsinformationstjänster används som datakällor, särskilt <a href="https://www.finap.fi/#/" target="_blank">National Access Point</a> för mobilitetstjänster FINAP Kartor, information om gator, byggnader, hållplatser och mer tillhandahålls av © OpenStreetMap-bidragsgivare. Adressuppgifter importeras från adressdatabasen till Myndigheten för Digitalisering och Befolkninsdata (DVV).'
+        ]
+      }
     ],
 
     en: [
       {
         header: 'About this service',
         paragraphs: [
-          'The service covers public transport, walking, cycling, and some private car use. Service is built on Digitransit platform.',
-        ],
+          'The service covers public transport, walking, cycling, and some private car use. Service is built on Digitransit platform.'
+        ]
       },
       {
         header: 'Digitransit platform',
         paragraphs: [
-          "The route planner is based on the open source Digitransit service platform, which is an service maintained and developed by Helsinki Region Transport (HRT) Traffic Management Company Fintraffic Oy and Waltti Solutions Oy. Route suggestions are based on estimated times. Digitransit or other users of the information do not guarantee the realization of the proposed connection and do not compensate for any damages that may arise from the failure of the transport connection. The service users' information is not stored in the service.",
-        ],
+          "The route planner is based on the open source Digitransit service platform, which is an service maintained and developed by Helsinki Region Transport (HRT) Traffic Management Company Fintraffic Oy and Waltti Solutions Oy. Route suggestions are based on estimated times. Digitransit or other users of the information do not guarantee the realization of the proposed connection and do not compensate for any damages that may arise from the failure of the transport connection. The service users' information is not stored in the service."
+        ]
       },
       {
         header: 'Data sources',
         paragraphs: [
-          "The service information is based on public transport route information provided by public transport authorities, operators, VR and Finavia. Fintraffic's mobility information services are used as data sources, especially National Access Point for mobility services <a href='https://www.finap.fi/#/' target='_blank'>FINAP</a>. Maps, information about streets, buildings, bus stop locations and more is provided by © OpenStreetMap contributors. Address information is imported from the address database of the buildings of the Digital and Population Data Services Agency (DVV).",
-        ],
-      },
+          "The service information is based on public transport route information provided by public transport authorities, operators, VR and Finavia. Fintraffic's mobility information services are used as data sources, especially National Access Point for mobility services <a href='https://www.finap.fi/#/' target='_blank'>FINAP</a>. Maps, information about streets, buildings, bus stop locations and more is provided by © OpenStreetMap contributors. Address information is imported from the address database of the buildings of the Digital and Population Data Services Agency (DVV)."
+        ]
+      }
     ],
     nb: {},
     fr: {},
-    de: {},
+    de: {}
   },
 
   staticMessages: [],
@@ -646,70 +646,70 @@ export default {
           {
             type: 'text',
             content:
-              'Palvelu ei tue käyttämääsi selainta. Päivitä selainohjelmasi tai lataa uusi selain oheisista linkeistä.\n',
+              'Palvelu ei tue käyttämääsi selainta. Päivitä selainohjelmasi tai lataa uusi selain oheisista linkeistä.\n'
           },
           {
             type: 'a',
             content: 'Google Chrome',
-            href: 'https://www.google.com/chrome/',
+            href: 'https://www.google.com/chrome/'
           },
           {
             type: 'a',
             content: 'Firefox',
-            href: 'https://www.mozilla.org/fi/firefox/new/',
+            href: 'https://www.mozilla.org/fi/firefox/new/'
           },
           {
             type: 'a',
             content: 'Microsoft Edge',
-            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge',
-          },
+            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge'
+          }
         ],
         en: [
           {
             type: 'text',
             content:
-              'The service does not support the browser you are using. Update your browser or download a new browser using the links below.\n',
+              'The service does not support the browser you are using. Update your browser or download a new browser using the links below.\n'
           },
           {
             type: 'a',
             content: 'Google Chrome',
-            href: 'https://www.google.com/chrome/',
+            href: 'https://www.google.com/chrome/'
           },
           {
             type: 'a',
             content: 'Firefox',
-            href: 'https://www.mozilla.org/fi/firefox/new/',
+            href: 'https://www.mozilla.org/fi/firefox/new/'
           },
           {
             type: 'a',
             content: 'Microsoft Edge',
-            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge',
-          },
+            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge'
+          }
         ],
         sv: [
           {
             type: 'text',
             content:
-              'Tjänsten stöder inte den webbläsare som du har i bruk. Uppdatera din webbläsare eller ladda ner en ny webbläsare via nedanstående länk.\n',
+              'Tjänsten stöder inte den webbläsare som du har i bruk. Uppdatera din webbläsare eller ladda ner en ny webbläsare via nedanstående länk.\n'
           },
           {
             type: 'a',
             content: 'Google Chrome',
-            href: 'https://www.google.com/chrome/',
+            href: 'https://www.google.com/chrome/'
           },
           {
             type: 'a',
             content: 'Firefox',
-            href: 'https://www.mozilla.org/sv-SE/firefox/new/',
+            href: 'https://www.mozilla.org/sv-SE/firefox/new/'
           },
           {
             type: 'a',
             content: 'Microsoft Edge',
-            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge',
-          },
-        ],
-      },
-    },
+            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge'
+          }
+        ]
+      }
+    }
   ],
 
   /* Do not change order of theme map lines */
@@ -736,14 +736,14 @@ export default {
     varely: '(seutuplus|varely)',
     kela: 'kelareitit',
     pori: 'pori',
-    raasepori: '(raasepori|bosse)',
+    raasepori: '(raasepori|bosse)'
   },
 
   minutesToDepartureLimit: 9,
 
   routeCancelationAlertValidity: {
     before: 3600, // 1 hour
-    after: 900, // 15 minutes
+    after: 900 // 15 minutes
   },
 
   imperialEnabled: false,
@@ -778,7 +778,7 @@ export default {
   availableTickets: {},
   zones: {
     stops: false,
-    itinerary: false,
+    itinerary: false
   },
 
   viaPointsEnabled: true,
@@ -797,13 +797,13 @@ export default {
     title: {
       fi: 'Reittihakuelementti',
       en: 'Route search element',
-      sv: 'Ruttsökningselement',
+      sv: 'Ruttsökningselement'
     },
     infoText: {
       fi: 'Luo reittihakuelementti ja lisää se omaan palveluusi. Hakukomponentin Hae reitti -painikkeesta siirrytään Reittioppaaseen.',
       en: 'Create a route search element and add it to your own service. The Find route button in the search component will transfer you to the journey planner.',
-      sv: 'Skapa ett ruttsökningselement och lägg det till din egen tjänst. Sök rutt-knappen i sökkomponenten tar dig till reseplaneraren.',
-    },
+      sv: 'Skapa ett ruttsökningselement och lägg det till din egen tjänst. Sök rutt-knappen i sökkomponenten tar dig till reseplaneraren.'
+    }
   },
 
   showAlternativeLegs: true,
@@ -819,17 +819,17 @@ export default {
       content: {
         fi: [
           'Kulkuneuvossa mahdollisuus kuljettaa pyörää. ',
-          'Tarkasta pyörän kuljettamisen mahdollinen maksullisuus operaattorilta.',
+          'Tarkasta pyörän kuljettamisen mahdollinen maksullisuus operaattorilta.'
         ],
         en: [
           'There is a possibility to transport a bicycle in the vehicle. ',
-          'Check the possible cost of transporting a bicycle from the operator.',
+          'Check the possible cost of transporting a bicycle from the operator.'
         ],
         sv: [
           'Möjlighet att transportera cykel i fordonet. ',
-          'Kontrollera eventuell avgift för att transportera cykel från operatören.',
-        ],
-      },
+          'Kontrollera eventuell avgift för att transportera cykel från operatören.'
+        ]
+      }
     },
     {
       showForCarWithPublic: true,
@@ -839,20 +839,20 @@ export default {
       content: {
         fi: [
           'Kulkuneuvossa mahdollisuus kuljettaa autoa. ',
-          'Tarkasta auton kuljettamisen mahdollinen maksullisuus operaattorilta.',
+          'Tarkasta auton kuljettamisen mahdollinen maksullisuus operaattorilta.'
         ],
         en: [
           'You can take your car on board. ',
-          'Check with the transport operator if an additional fee will be charged for the transportation of cars.',
+          'Check with the transport operator if an additional fee will be charged for the transportation of cars.'
         ],
         sv: [
           'Du kan ta med bilen ombord. ',
-          'Kontrollera med trafikoperatören om det är avgiftsbelagt att transportera bilar.',
-        ],
-      },
-    },
+          'Kontrollera med trafikoperatören om det är avgiftsbelagt att transportera bilar.'
+        ]
+      }
+    }
   ],
   navigation: false,
   sendAnalyticsCustomEventGoals: false,
-  shortenLongTextThreshold: 10, // for route number in itinerary summary
+  shortenLongTextThreshold: 10 // for route number in itinerary summary
 };

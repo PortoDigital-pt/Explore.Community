@@ -23,7 +23,7 @@ export default function ScheduleDropdown(props, context) {
     } else {
       const option = {
         ...selectedOption,
-        label: selectedOption.titleLabel,
+        label: selectedOption.titleLabel
       };
       setSelectedValue(option);
     }
@@ -50,7 +50,7 @@ export default function ScheduleDropdown(props, context) {
               )}
             </>
           ),
-          titleLabel,
+          titleLabel
         };
       });
 
@@ -96,13 +96,13 @@ export default function ScheduleDropdown(props, context) {
               return focused.fullLabel;
             }
             return '';
-          },
+          }
         }}
         className="dd-select"
         classNamePrefix={classNamePrefix}
         components={{
           DropdownIndicator: () => null,
-          IndicatorSeparator: () => null,
+          IndicatorSeparator: () => null
         }}
         inputId={`aria-input-${id}`}
         aria-label={
@@ -110,7 +110,7 @@ export default function ScheduleDropdown(props, context) {
             `${
               labelId &&
               intl.formatMessage({
-                id: 'route-page.pattern-chosen',
+                id: 'route-page.pattern-chosen'
               })
             } ${title}`) ||
           ''
@@ -161,7 +161,7 @@ export default function ScheduleDropdown(props, context) {
 
 ScheduleDropdown.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 ScheduleDropdown.propTypes = {
@@ -170,16 +170,16 @@ ScheduleDropdown.propTypes = {
   labelId: PropTypes.string,
   list: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string,
-    }),
+      label: PropTypes.string
+    })
   ).isRequired,
   onSelectChange: PropTypes.func,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 ScheduleDropdown.defaultProps = {
   alignRight: false,
   labelId: undefined,
   onSelectChange: undefined,
-  title: 'No title',
+  title: 'No title'
 };

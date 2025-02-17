@@ -39,13 +39,13 @@ export const retryFetch = (
   retryCount,
   retryDelay,
   options = {},
-  config = {},
+  config = {}
 ) => {
   return new Promise((resolve, reject) => {
     const retry = retriesLeft => {
       fetch(URL, {
         ...options,
-        headers: addSubscriptionHeader(options.headers, config),
+        headers: addSubscriptionHeader(options.headers, config)
       })
         .then(res => {
           if (res.ok) {
@@ -85,6 +85,6 @@ export const retryFetch = (
 
 export const fetchWithLanguageAndSubscription = (URL, config, lang) => {
   return fetch(addSubscriptionParam(addLocaleParam(URL, lang), config), {
-    headers: { 'Accept-Language': lang },
+    headers: { 'Accept-Language': lang }
   });
 };

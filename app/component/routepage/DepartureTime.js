@@ -9,14 +9,14 @@ import Icon from '../Icon';
 export default function DepartureTime(props, context) {
   let shownTime;
   const timeDiffInMinutes = Math.floor(
-    (props.departureTime - props.currentTime) / 60,
+    (props.departureTime - props.currentTime) / 60
   );
   if (timeDiffInMinutes <= -1) {
     shownTime = undefined;
   } else if (timeDiffInMinutes <= context.config.minutesToDepartureLimit) {
     shownTime = context.intl.formatMessage(
       { id: 'departure-time-in-minutes', defaultMessage: '{minutes} min' },
-      { minutes: timeDiffInMinutes },
+      { minutes: timeDiffInMinutes }
     );
   }
 
@@ -29,13 +29,13 @@ export default function DepartureTime(props, context) {
               ? context.intl.formatMessage(
                   {
                     id: 'stop-departure-time-future',
-                    defaultMessage: 'Departure time is in {minutes} minutes',
+                    defaultMessage: 'Departure time is in {minutes} minutes'
                   },
-                  { minutes: timeDiffInMinutes },
+                  { minutes: timeDiffInMinutes }
                 )
               : context.intl.formatMessage({
                   id: 'stop-departure-time-past',
-                  defaultMessage: 'Departure time was at',
+                  defaultMessage: 'Departure time was at'
                 })}
           </span>
           <span
@@ -43,9 +43,9 @@ export default function DepartureTime(props, context) {
               'time',
               {
                 realtime: props.realtime,
-                canceled: props.canceled,
+                canceled: props.canceled
               },
-              props.className,
+              props.className
             )}
             aria-hidden
           >
@@ -55,7 +55,7 @@ export default function DepartureTime(props, context) {
             <span className="sr-only">
               {context.intl.formatMessage({
                 id: 'realtime',
-                defaultMessage: 'Realtime',
+                defaultMessage: 'Realtime'
               })}
             </span>
           )}
@@ -68,15 +68,15 @@ export default function DepartureTime(props, context) {
             realtime: props.realtime,
             canceled: props.canceled,
             first: !props.isNextDeparture,
-            next: props.isNextDeparture,
+            next: props.isNextDeparture
           },
-          props.className,
+          props.className
         )}
       >
         {props.isNextDeparture &&
           `${context.intl.formatMessage({
             id: 'next',
-            defaultMessage: 'Next',
+            defaultMessage: 'Next'
           })} `}
         {epochToTime(props.departureTime * 1000, context.config)}
       </span>
@@ -89,7 +89,7 @@ export default function DepartureTime(props, context) {
 
 DepartureTime.contextTypes = {
   intl: intlShape.isRequired, // eslint-disable-line react/no-typos
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 DepartureTime.displayName = 'DepartureTime';
@@ -101,7 +101,7 @@ DepartureTime.propTypes = {
   departureTime: PropTypes.number.isRequired,
   realtime: PropTypes.bool,
   showCancelationIcon: PropTypes.bool,
-  isNextDeparture: PropTypes.bool,
+  isNextDeparture: PropTypes.bool
 };
 
 DepartureTime.defaultProps = {
@@ -109,12 +109,12 @@ DepartureTime.defaultProps = {
   canceled: false,
   realtime: false,
   showCancelationIcon: false,
-  isNextDeparture: false,
+  isNextDeparture: false
 };
 
 DepartureTime.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired, // eslint-disable-line react/no-typos
+  intl: intlShape.isRequired // eslint-disable-line react/no-typos
 };
 
 /**
@@ -135,7 +135,7 @@ export const mapStopTime = (stoptime, pattern) => ({
       : stoptime.realtimeDeparture),
   realtime: stoptime.realtimeDeparture !== -1 && stoptime.realtime,
   pattern: pattern && pattern.pattern,
-  trip: stoptime.trip,
+  trip: stoptime.trip
 });
 
 /**
@@ -149,7 +149,7 @@ export const fromStopTime = (
   stoptime,
   currentTime,
   showCancelationIcon = true,
-  isNextDeparture = false,
+  isNextDeparture = false
 ) => (
   <DepartureTime
     currentTime={currentTime}

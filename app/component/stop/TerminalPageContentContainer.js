@@ -18,11 +18,11 @@ class TerminalPageContent extends React.Component {
     relay: relayShape.isRequired,
     currentTime: PropTypes.number.isRequired,
     error: errorShape,
-    router: routerShape.isRequired,
+    router: routerShape.isRequired
   };
 
   static defaultProps = {
-    error: undefined,
+    error: undefined
   };
 
   // eslint-disable-next-line camelcase
@@ -63,7 +63,7 @@ class TerminalPageContent extends React.Component {
     const { stoptimes } = this.props.station;
     // eslint-disable-next-line prefer-destructuring
     const stopsWithPatterns = this.props.station.stops.filter(
-      stop => stop.patterns.length > 0,
+      stop => stop.patterns.length > 0
     );
     const mode =
       stopsWithPatterns.length > 0
@@ -129,7 +129,7 @@ class TerminalPageContent extends React.Component {
 
 const connectedComponent = createRefetchContainer(
   connectToStores(TerminalPageContent, ['TimeStore'], ({ getStore }) => ({
-    currentTime: getStore('TimeStore').getCurrentTime(),
+    currentTime: getStore('TimeStore').getCurrentTime()
   })),
   {
     station: graphql`
@@ -156,7 +156,7 @@ const connectedComponent = createRefetchContainer(
           ...DepartureListContainer_stoptimes
         }
       }
-    `,
+    `
   },
   graphql`
     query TerminalPageContentContainerQuery(
@@ -174,7 +174,7 @@ const connectedComponent = createRefetchContainer(
           )
       }
     }
-  `,
+  `
 );
 
 export { connectedComponent as default, TerminalPageContent as Component };

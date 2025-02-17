@@ -31,7 +31,7 @@ const LayerType = {
   Venue: 'venue',
   VehicleRentalStation: 'bikestation',
   CarPark: 'carpark',
-  BikePark: 'bikepark',
+  BikePark: 'bikepark'
 };
 export const isStop = ({ layer, type }) =>
   layer === 'stop' ||
@@ -58,11 +58,11 @@ export const mapRoute = (item, pathOpts) => {
     properties: {
       ...item,
       layer: `route-${item.mode}`,
-      link,
+      link
     },
     geometry: {
-      coordinates: null,
-    },
+      coordinates: null
+    }
   };
 };
 
@@ -95,7 +95,7 @@ export const match = (normalizedTerm, resultProperties) => {
     })
     .reduce(
       (previous, current) => (current > previous ? current : previous),
-      0,
+      0
     );
 };
 
@@ -213,9 +213,9 @@ export const sortSearchResults = (lineRegexp, results, term = '') => {
           default:
             return confidence;
         }
-      },
+      }
     ],
-    ['desc', 'desc'],
+    ['desc', 'desc']
   );
 
   return uniqWith(orderedResults, isDuplicate);

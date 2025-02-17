@@ -13,7 +13,7 @@ const searchSources = ['Favourite', 'History', 'Datasource'];
 
 function StopsNearYouSearch(
   { mode, breakpoint, lang, originLocation },
-  { router, config },
+  { router, config }
 ) {
   const isMobile = breakpoint !== 'large';
   const transportMode = `route-${mode}`;
@@ -21,7 +21,7 @@ function StopsNearYouSearch(
   const filter = config.stopSearchFilter
     ? (results, transportmode, type) =>
         filterSearchResultsByMode(results, transportmode, type).filter(
-          config.stopSearchFilter,
+          config.stopSearchFilter
         )
     : filterSearchResultsByMode;
   const selectHandler = item => {
@@ -65,17 +65,17 @@ StopsNearYouSearch.propTypes = {
   originLocation: PropTypes.shape({
     address: PropTypes.string,
     lat: PropTypes.number,
-    lon: PropTypes.number,
-  }),
+    lon: PropTypes.number
+  })
 };
 
 StopsNearYouSearch.defaultProps = {
-  originLocation: {},
+  originLocation: {}
 };
 
 StopsNearYouSearch.contextTypes = {
   router: routerShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default pure(StopsNearYouSearch);

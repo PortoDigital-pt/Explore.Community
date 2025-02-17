@@ -9,17 +9,17 @@ import {
   PREFIX_DISRUPTION,
   PREFIX_ROUTES,
   PREFIX_STOPS,
-  PREFIX_TIMETABLE,
+  PREFIX_TIMETABLE
 } from '../../util/path';
 import {
   getDefault,
   getComponentOrNullRenderer,
-  getComponentOrLoadingRenderer,
+  getComponentOrLoadingRenderer
 } from '../../util/routerUtils';
 import { prepareServiceDay } from '../../util/dateParamUtils';
 import {
   prepareScheduleParamsWithFiveWeeks,
-  prepareScheduleParamsWithTenWeeks,
+  prepareScheduleParamsWithTenWeeks
 } from '../../util/scheduleParamUtils';
 
 export default function route(config) {
@@ -165,7 +165,7 @@ export default function route(config) {
                 return null;
               }}
             />,
-            <Route path="(.?)*" />,
+            <Route path="(.?)*" />
           ],
           content: [
             <Route path={PREFIX_STOPS}>
@@ -423,8 +423,8 @@ export default function route(config) {
               `}
               prepareVariables={prepareServiceDay}
               render={getComponentOrLoadingRenderer}
-            />,
-          ],
+            />
+          ]
         }}
       </Route>
     </Route>

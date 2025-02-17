@@ -9,7 +9,7 @@ class ItineraryCircleLine extends React.Component {
     isVia: false,
     color: null,
     renderBottomMarker: true,
-    carPark: false,
+    carPark: false
   };
 
   static propTypes = {
@@ -18,14 +18,14 @@ class ItineraryCircleLine extends React.Component {
     isVia: PropTypes.bool,
     color: PropTypes.string,
     renderBottomMarker: PropTypes.bool,
-    carPark: PropTypes.bool,
+    carPark: PropTypes.bool
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      imageUrl: 'none',
+      imageUrl: 'none'
     };
   }
 
@@ -118,7 +118,7 @@ class ItineraryCircleLine extends React.Component {
     return (
       <div
         className={cx('leg-before', this.props.modeClassName, {
-          first: this.props.index === 0,
+          first: this.props.index === 0
         })}
         aria-hidden="true"
       >

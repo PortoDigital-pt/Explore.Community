@@ -186,7 +186,7 @@ const IconMap = style => {
       <SearchRailStationDigitransit style={style} />
     ),
     'search-tram-stop-digitransit': <SearchTramStopDigitransit style={style} />,
-    funicular: <Funicular style={style} />,
+    funicular: <Funicular style={style} />
   };
 };
 
@@ -206,7 +206,7 @@ const Icon = ({ color, img, height, width, rotate }) => {
     fill: color || null,
     height: height ? `${height}em` : null,
     width: width ? `${width}em` : null,
-    transform: rotate ? `rotate(${rotate}deg)` : null,
+    transform: rotate ? `rotate(${rotate}deg)` : null
   };
   const icons = IconMap(style);
   if (img === 'locate' && color && color.toUpperCase() !== '#007AC9') {
@@ -220,14 +220,14 @@ Icon.propTypes = {
   height: PropTypes.number,
   img: PropTypes.string.isRequired,
   width: PropTypes.number,
-  rotate: PropTypes.string,
+  rotate: PropTypes.string
 };
 
 Icon.defaultProps = {
   color: undefined,
   height: undefined,
   width: undefined,
-  rotate: undefined,
+  rotate: undefined
 };
 
 export default Icon;

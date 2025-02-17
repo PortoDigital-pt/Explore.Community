@@ -12,7 +12,7 @@ const PastLink = ({ match }) => (
 );
 
 PastLink.propTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 export default PastLink;

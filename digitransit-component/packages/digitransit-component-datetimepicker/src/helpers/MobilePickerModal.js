@@ -16,7 +16,7 @@ import styles from './styles.scss';
 moment.locale('en');
 i18next.init({ lng: 'en', resources: {} });
 Object.keys(translations).forEach(lang =>
-  i18next.addResourceBundle(lang, 'translation', translations[lang]),
+  i18next.addResourceBundle(lang, 'translation', translations[lang])
 );
 
 /**
@@ -34,7 +34,7 @@ function MobilePickerModal({
   getTimeDisplay,
   dateSelectItemCount,
   getDateDisplay,
-  fontWeights,
+  fontWeights
 }) {
   moment.tz.setDefault(timeZone);
   const translationSettings = { lng: lang };
@@ -70,7 +70,7 @@ function MobilePickerModal({
       <div
         style={{
           '--color': `${color}`,
-          '--font-weight-medium': fontWeights.medium,
+          '--font-weight-medium': fontWeights.medium
         }}
       >
         <div className={styles['top-row']}>
@@ -205,13 +205,13 @@ MobilePickerModal.propTypes = {
   dateSelectItemCount: PropTypes.number.isRequired,
   getDateDisplay: PropTypes.func.isRequired,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number.isRequired,
-  }).isRequired,
+    medium: PropTypes.number.isRequired
+  }).isRequired
 };
 
 MobilePickerModal.defaultProps = {
   color: '#007ac9',
-  timeZone: 'Europe/Helsinki',
+  timeZone: 'Europe/Helsinki'
 };
 
 export default MobilePickerModal;

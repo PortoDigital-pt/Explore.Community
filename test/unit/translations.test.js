@@ -11,7 +11,7 @@ import translations from '../../app/translations';
 const ignoredTerms = [
   'destination-label-change',
   'origin-label-change',
-  'splash-welcome',
+  'splash-welcome'
 ];
 
 describe('translations', () => {
@@ -25,7 +25,7 @@ describe('translations', () => {
       });
     expect(missing).to.deep.equal(
       {},
-      'the English translations are missing for these Finnish terms',
+      'the English translations are missing for these Finnish terms'
     );
   });
 
@@ -39,7 +39,7 @@ describe('translations', () => {
       });
     expect(missing).to.deep.equal(
       {},
-      'the Swedish translations are missing for these Finnish terms',
+      'the Swedish translations are missing for these Finnish terms'
     );
   });
 });

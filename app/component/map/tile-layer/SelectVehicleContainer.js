@@ -66,7 +66,7 @@ function SelectVehicleContainer(props) {
     <QueryRenderer
       query={props.rowView ? rowQuery : query}
       variables={{
-        tripId: props.vehicle.tripId,
+        tripId: props.vehicle.tripId
       }}
       environment={environment}
       render={results => {
@@ -90,7 +90,7 @@ function SelectVehicleContainer(props) {
         date: props.vehicle.operatingDay,
         time:
           props.vehicle.tripStartTime.substring(0, 2) * 60 * 60 +
-          props.vehicle.tripStartTime.substring(2, 4) * 60,
+          props.vehicle.tripStartTime.substring(2, 4) * 60
       }}
       environment={environment}
       render={results => {
@@ -112,11 +112,11 @@ SelectVehicleContainer.displayName = 'SelectVehicleContainer';
 
 SelectVehicleContainer.propTypes = {
   rowView: PropTypes.bool,
-  vehicle: vehicleShape.isRequired,
+  vehicle: vehicleShape.isRequired
 };
 
 SelectVehicleContainer.defaultProps = {
-  rowView: false,
+  rowView: false
 };
 
 export default SelectVehicleContainer;

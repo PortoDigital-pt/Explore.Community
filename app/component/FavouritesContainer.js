@@ -11,12 +11,12 @@ import DialogModal from '@digitransit-component/digitransit-component-dialog-mod
 import { configShape } from '../util/shapes';
 import {
   withSearchContext,
-  getLocationSearchTargets,
+  getLocationSearchTargets
 } from './WithSearchContext';
 import {
   saveFavourite,
   updateFavourites,
-  deleteFavourite,
+  deleteFavourite
 } from '../action/FavouriteActions';
 import FavouriteStore from '../store/FavouriteStore';
 import { addAnalyticsEvent } from '../util/analyticsUtils';
@@ -34,7 +34,7 @@ const favouriteShape = PropTypes.shape({
   name: PropTypes.string,
   selectedIconId: PropTypes.string,
   favouriteId: PropTypes.string,
-  layer: PropTypes.string,
+  layer: PropTypes.string
 });
 
 class FavouritesContainer extends React.Component {
@@ -42,7 +42,7 @@ class FavouritesContainer extends React.Component {
     intl: intlShape.isRequired,
     executeAction: PropTypes.func.isRequired,
     router: routerShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -55,7 +55,7 @@ class FavouritesContainer extends React.Component {
     requireLoggedIn: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     color: PropTypes.string,
-    hoverColor: PropTypes.string,
+    hoverColor: PropTypes.string
   };
 
   static defaultProps = {
@@ -67,7 +67,7 @@ class FavouritesContainer extends React.Component {
     favouriteModalAction: undefined,
     color: undefined,
     hoverColor: undefined,
-    lang: undefined,
+    lang: undefined
   };
 
   constructor(props) {
@@ -77,7 +77,7 @@ class FavouritesContainer extends React.Component {
       modalAction: null,
       addModalOpen: false,
       editModalOpen: false,
-      favourite: null,
+      favourite: null
     };
   }
 
@@ -113,42 +113,42 @@ class FavouritesContainer extends React.Component {
       favourite: {
         ...item,
         name: (prevState.favourite && prevState.favourite.name) || '',
-        defaultName: item.name || item.address,
-      },
+        defaultName: item.name || item.address
+      }
     }));
   };
 
   addHome = () => {
     addAnalyticsEvent({
       event: 'add_favorite_press',
-      favorite_type: 'place',
+      favorite_type: 'place'
     });
     this.setState({
       addModalOpen: true,
       favourite: {
         name: this.context.intl.formatMessage({
           id: 'location-home',
-          defaultMessage: 'Home',
+          defaultMessage: 'Home'
         }),
-        selectedIconId: 'icon-icon_home',
-      },
+        selectedIconId: 'icon-icon_home'
+      }
     });
   };
 
   addWork = () => {
     addAnalyticsEvent({
       event: 'add_favorite_press',
-      favorite_type: 'place',
+      favorite_type: 'place'
     });
     this.setState({
       addModalOpen: true,
       favourite: {
         name: this.context.intl.formatMessage({
           id: 'location-work',
-          defaultMessage: 'Work',
+          defaultMessage: 'Work'
         }),
-        selectedIconId: 'icon-icon_work',
-      },
+        selectedIconId: 'icon-icon_work'
+      }
     });
   };
 
@@ -156,7 +156,7 @@ class FavouritesContainer extends React.Component {
     addAnalyticsEvent({
       category: 'Favourite',
       action: 'SaveFavourite',
-      name: null,
+      name: null
     });
     this.context.executeAction(saveFavourite, favourite);
   };
@@ -165,7 +165,7 @@ class FavouritesContainer extends React.Component {
     addAnalyticsEvent({
       category: 'Favourite',
       action: 'DeleteFavourite',
-      name: null,
+      name: null
     });
     this.context.executeAction(deleteFavourite, favourite);
   };
@@ -174,12 +174,12 @@ class FavouritesContainer extends React.Component {
     addAnalyticsEvent({
       category: 'Favourite',
       action: 'UpdateFavourite',
-      name: null,
+      name: null
     });
     // Backend service requires all favourites for reordering to work
     const reordered = [
       ...favourites,
-      ...this.props.favourites.filter(item => item.type !== 'place'),
+      ...this.props.favourites.filter(item => item.type !== 'place')
     ];
     this.context.executeAction(updateFavourites, reordered);
   };
@@ -188,32 +188,32 @@ class FavouritesContainer extends React.Component {
     addAnalyticsEvent({
       category: 'Favourite',
       action: 'EditFavourite',
-      name: null,
+      name: null
     });
     this.setState({
       favourite: currentFavourite,
       editModalOpen: false,
-      addModalOpen: true,
+      addModalOpen: true
     });
   };
 
   renderLoginModal = () => {
     const login = this.context.intl.formatMessage({
       id: 'login',
-      defaultMessage: 'Log in',
+      defaultMessage: 'Log in'
     });
     const cancel = this.context.intl.formatMessage({
       id: 'cancel',
-      defaultMessage: 'cancel',
+      defaultMessage: 'cancel'
     });
     const headerText = this.context.intl.formatMessage({
       id: 'login-header',
-      defautlMessage: 'Log in first',
+      defautlMessage: 'Log in first'
     });
 
     const dialogContent = this.context.intl.formatMessage({
       id: 'login-content',
-      defautlMessage: 'Log in first',
+      defautlMessage: 'Log in first'
     });
     const loginUrl = this.state.modalAction
       ? `/login?favouriteModalAction=${this.state.modalAction}`
@@ -232,11 +232,11 @@ class FavouritesContainer extends React.Component {
           addAnalyticsEvent({
             category: 'Favourite',
             action: 'login',
-            name: null,
+            name: null
           });
 
           this.setState({
-            loginModalOpen: false,
+            loginModalOpen: false
           });
         }}
         secondaryButtonText={cancel}
@@ -244,10 +244,10 @@ class FavouritesContainer extends React.Component {
           addAnalyticsEvent({
             category: 'Favourite',
             action: 'login cancelled',
-            name: null,
+            name: null
           });
           this.setState({
-            loginModalOpen: false,
+            loginModalOpen: false
           });
         }}
         color={this.props.color}
@@ -259,11 +259,11 @@ class FavouritesContainer extends React.Component {
   addPlace = () => {
     addAnalyticsEvent({
       event: 'add_favorite_press',
-      favorite_type: 'place',
+      favorite_type: 'place'
     });
 
     this.setState({
-      addModalOpen: true,
+      addModalOpen: true
     });
   };
 
@@ -271,11 +271,11 @@ class FavouritesContainer extends React.Component {
     addAnalyticsEvent({
       category: 'Favourite',
       action: 'EditPlace',
-      name: null,
+      name: null
     });
 
     this.setState({
-      editModalOpen: true,
+      editModalOpen: true
     });
   };
 
@@ -284,20 +284,20 @@ class FavouritesContainer extends React.Component {
       addAnalyticsEvent({
         category: 'Favourite',
         action: 'CloseAddModal',
-        name: null,
+        name: null
       });
       this.setState({
-        addModalOpen: false,
+        addModalOpen: false
       });
     } else {
       addAnalyticsEvent({
         category: 'Favourite',
         action: 'CloseEditModal',
-        name: null,
+        name: null
       });
       this.setState({
         editModalOpen: false,
-        favourite: null,
+        favourite: null
       });
     }
     // Modal close animation lasts 250ms
@@ -310,11 +310,11 @@ class FavouritesContainer extends React.Component {
     addAnalyticsEvent({
       category: 'Favourite',
       action: 'CancelUpdate',
-      name: null,
+      name: null
     });
     this.setState({
       addModalOpen: false,
-      editModalOpen: true,
+      editModalOpen: true
     });
     // Modal close animation lasts 250ms
     setTimeout(() => {
@@ -329,7 +329,7 @@ class FavouritesContainer extends React.Component {
     const { config } = this.context;
     const { fontWeights } = config;
     const favouritePlaces = this.props.favourites.filter(
-      item => item.type === 'place',
+      item => item.type === 'place'
     );
     return (
       <React.Fragment>
@@ -437,13 +437,13 @@ const connectedComponent = connectToStores(
     color: context.config.colors.primary,
     hoverColor:
       context.config.colors.hover ||
-      LightenDarkenColor(context.config.colors.primary, -20),
-  }),
+      LightenDarkenColor(context.config.colors.primary, -20)
+  })
 );
 
 connectedComponent.contextTypes = {
   getStore: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export { connectedComponent as default, FavouritesContainer as Component };

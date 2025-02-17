@@ -18,7 +18,7 @@ const LoginButton = ({ loginUrl }) => {
 };
 
 LoginButton.propTypes = {
-  loginUrl: PropTypes.string.isRequired,
+  loginUrl: PropTypes.string.isRequired
 };
 
 export default LoginButton;

@@ -10,7 +10,7 @@ export default function ScrollableWrapper({
   children,
   className,
   id,
-  onScroll,
+  onScroll
 }) {
   const [scrolledState, changeScroll] = useState(false);
   function handleScroll(e) {
@@ -26,7 +26,7 @@ export default function ScrollableWrapper({
       {scrollable && (
         <div
           className={cx('before-scrollable-area', {
-            scrolled: scrollable && scrolledState,
+            scrolled: scrollable && scrolledState
           })}
         />
       )}
@@ -36,8 +36,8 @@ export default function ScrollableWrapper({
           'scroll-target',
           className,
           {
-            'momentum-scroll': scrollable,
-          },
+            'momentum-scroll': scrollable
+          }
         )}
         id={id}
         onScroll={scrollable ? handleScroll : () => {}}
@@ -53,7 +53,7 @@ ScrollableWrapper.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
-  onScroll: PropTypes.func,
+  onScroll: PropTypes.func
 };
 
 ScrollableWrapper.defaultProps = {
@@ -61,5 +61,5 @@ ScrollableWrapper.defaultProps = {
   children: null,
   className: '',
   id: '',
-  onScroll: () => {},
+  onScroll: () => {}
 };

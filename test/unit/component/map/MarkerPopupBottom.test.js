@@ -11,16 +11,16 @@ describe('<MarkerPopupBottom />', () => {
       location: {},
       leaflet: {
         map: {
-          closePopup: () => {},
-        },
+          closePopup: () => {}
+        }
       },
       locationPopup: 'all',
-      onSelectLocation: () => null,
+      onSelectLocation: () => null
     };
 
     const wrapper = mountWithIntl(
       <MarkerPopupBottomWithoutLeaflet {...props} />,
-      {},
+      {}
     );
 
     expect(wrapper.find('.route-add-viapoint').length).to.equal(1);

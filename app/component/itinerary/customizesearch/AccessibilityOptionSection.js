@@ -14,10 +14,10 @@ const AccessibilityOptionSection = ({ currentSettings }, { executeAction }) => {
       action: `Settings${
         currentSettings.accessibilityOption ? 'Disable' : 'Enable'
       }WheelChair`,
-      name: null,
+      name: null
     });
     executeAction(saveRoutingSettings, {
-      accessibilityOption: !currentSettings.accessibilityOption,
+      accessibilityOption: !currentSettings.accessibilityOption
     });
   };
 
@@ -53,11 +53,11 @@ const AccessibilityOptionSection = ({ currentSettings }, { executeAction }) => {
 };
 
 AccessibilityOptionSection.propTypes = {
-  currentSettings: settingsShape.isRequired,
+  currentSettings: settingsShape.isRequired
 };
 
 AccessibilityOptionSection.contextTypes = {
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default AccessibilityOptionSection;

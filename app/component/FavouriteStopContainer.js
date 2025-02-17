@@ -27,7 +27,7 @@ function FavouriteStopContainerComponent(props, context) {
         }
 
         getJson(context.config.URL.PELIAS_PLACE, {
-          ids: gid,
+          ids: gid
           // lang: context.getStore('PreferencesStore').getLanguage(), TODO enable this when OTP supports translations
         })
           .then(res => {
@@ -41,20 +41,20 @@ function FavouriteStopContainerComponent(props, context) {
                 gtfsId: stop.gtfsId,
                 lat: stop.lat,
                 lon: stop.lon,
-                type: favouriteType,
+                type: favouriteType
               });
               addAnalyticsEvent({
                 category: 'Stop',
                 action: 'MarkStopAsFavourite',
                 name: !context
                   .getStore('FavouriteStore')
-                  .isFavourite(stop.gtfsId, favouriteType),
+                  .isFavourite(stop.gtfsId, favouriteType)
               });
               setIsFetching(false);
             } else {
               context.executeAction(
                 addMessage,
-                failedFavouriteMessage(favouriteType, true),
+                failedFavouriteMessage(favouriteType, true)
               );
               setIsFetching(false);
             }
@@ -62,7 +62,7 @@ function FavouriteStopContainerComponent(props, context) {
           .catch(() => {
             context.executeAction(
               addMessage,
-              failedFavouriteMessage(favouriteType, true),
+              failedFavouriteMessage(favouriteType, true)
             );
             setIsFetching(false);
           });
@@ -74,18 +74,18 @@ function FavouriteStopContainerComponent(props, context) {
 FavouriteStopContainerComponent.propTypes = {
   stop: stopShape.isRequired,
   isTerminal: PropTypes.bool,
-  isFetching: PropTypes.bool,
+  isFetching: PropTypes.bool
 };
 
 FavouriteStopContainerComponent.defaultProps = {
   isTerminal: false,
-  isFetching: false,
+  isFetching: false
 };
 
 FavouriteStopContainerComponent.contextTypes = {
   getStore: PropTypes.func.isRequired,
   executeAction: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const FavouriteStopContainer = connectToStores(
@@ -106,21 +106,21 @@ const FavouriteStopContainer = connectToStores(
         action: 'MarkStopAsFavourite',
         name: !context
           .getStore('FavouriteStore')
-          .isFavourite(stop.gtfsId, isTerminal ? 'station' : 'stop'),
+          .isFavourite(stop.gtfsId, isTerminal ? 'station' : 'stop')
       });
     },
     requireLoggedIn: !context.config.allowFavouritesFromLocalstorage,
     isLoggedIn:
       context.config.allowLogin &&
       context.getStore('UserStore').getUser().sub !== undefined,
-    language: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    language: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 FavouriteStopContainer.contextTypes = {
   getStore: PropTypes.func.isRequired,
   executeAction: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default FavouriteStopContainer;

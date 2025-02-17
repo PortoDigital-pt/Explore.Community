@@ -5,11 +5,11 @@ import MockDate from 'mockdate';
 import moment from 'moment';
 
 import OldSearchesStore, {
-  STORE_VERSION,
+  STORE_VERSION
 } from '../../app/store/OldSearchesStore';
 import {
   getOldSearchesStorage,
-  setOldSearchesStorage,
+  setOldSearchesStorage
 } from '../../app/store/localStorage';
 import { PREFIX_ROUTES, PREFIX_STOPS } from '../../app/util/path';
 
@@ -42,10 +42,10 @@ const mockData = {
         locality_gid: 'whosonfirst:locality:101748418',
         neighbourhood: 'Kaartinkaupunki',
         neighbourhood_gid: 'whosonfirst:neighbourhood:85907976',
-        label: 'Aleksanterinkatu 52, kaakkoinen, Helsinki',
-      },
+        label: 'Aleksanterinkatu 52, kaakkoinen, Helsinki'
+      }
     },
-    type: 'endpoint',
+    type: 'endpoint'
   },
   updated: {
     item: {
@@ -75,11 +75,11 @@ const mockData = {
         locality_gid: 'whosonfirst:locality:101748417',
         neighbourhood: 'Kaartinkaupunki',
         neighbourhood_gid: 'whosonfirst:neighbourhood:85907975',
-        label: 'Aleksanterinkatu 52, kaakkoinen, Helsinki',
-      },
+        label: 'Aleksanterinkatu 52, kaakkoinen, Helsinki'
+      }
     },
-    type: 'endpoint',
-  },
+    type: 'endpoint'
+  }
 };
 
 describe('OldSearchesStore', () => {
@@ -94,9 +94,9 @@ describe('OldSearchesStore', () => {
         items: [
           {
             ...mockData.updated,
-            count: 1,
-          },
-        ],
+            count: 1
+          }
+        ]
       });
 
       const store = new OldSearchesStore();
@@ -127,9 +127,9 @@ describe('OldSearchesStore', () => {
         items: [
           {
             ...mockData.updated,
-            count: 1,
-          },
-        ],
+            count: 1
+          }
+        ]
       });
 
       const store = new OldSearchesStore();
@@ -143,8 +143,8 @@ describe('OldSearchesStore', () => {
         items: [
           { item: {}, type: 'endpoint' },
           { item: {}, type: 'route' },
-          { item: {}, type: 'endpoint' },
-        ],
+          { item: {}, type: 'endpoint' }
+        ]
       });
       const store = new OldSearchesStore();
       const oldSearches = store.getOldSearches('endpoint');
@@ -160,32 +160,32 @@ describe('OldSearchesStore', () => {
         items: [
           {
             item: {
-              foo: 'bar',
+              foo: 'bar'
             },
-            lastUpdated: timestamp().unix(),
+            lastUpdated: timestamp().unix()
           },
           {
             item: {
-              foo: 'baz',
+              foo: 'baz'
             },
-            lastUpdated: timestamp().add(1, 'seconds').unix(),
+            lastUpdated: timestamp().add(1, 'seconds').unix()
           },
           {
             item: {
-              foo: 'yes_filter',
+              foo: 'yes_filter'
             },
-            lastUpdated: timestamp().subtract(60, 'days').unix(),
+            lastUpdated: timestamp().subtract(60, 'days').unix()
           },
           {
             item: {
-              foo: 'no_filter',
+              foo: 'no_filter'
             },
             lastUpdated: timestamp()
               .subtract(60, 'days')
               .add(1, 'seconds')
-              .unix(),
-          },
-        ],
+              .unix()
+          }
+        ]
       });
 
       const store = new OldSearchesStore();
@@ -201,7 +201,7 @@ describe('OldSearchesStore', () => {
       MockDate.set(timestamp);
       setOldSearchesStorage({
         version: STORE_VERSION,
-        items: [{ item: {} }],
+        items: [{ item: {} }]
       });
 
       const store = new OldSearchesStore();
@@ -242,27 +242,27 @@ describe('OldSearchesStore', () => {
           properties: {
             gtfsId: 'foobar',
             agency: {
-              name: 'Tampereen joukkoliikenne',
+              name: 'Tampereen joukkoliikenne'
             },
             shortName: '32',
             mode: 'BUS',
             longName: 'TAYS - Hervanta - Hatanpää-Tampella',
             patterns: [
               {
-                code: 'foobar:0:01',
+                code: 'foobar:0:01'
               },
               {
-                code: 'foobar:1:01',
-              },
+                code: 'foobar:1:01'
+              }
             ],
             layer: 'route-BUS',
-            link: `/${PREFIX_ROUTES}/foobar/${PREFIX_STOPS}/foobar:0:01`,
+            link: `/${PREFIX_ROUTES}/foobar/${PREFIX_STOPS}/foobar:0:01`
           },
           geometry: {
-            coordinates: null,
-          },
+            coordinates: null
+          }
         },
-        type: 'search',
+        type: 'search'
       };
       const newData = {
         item: {
@@ -270,27 +270,27 @@ describe('OldSearchesStore', () => {
           properties: {
             gtfsId: 'tampere:32',
             agency: {
-              name: 'Tampereen joukkoliikenne',
+              name: 'Tampereen joukkoliikenne'
             },
             shortName: '32',
             mode: 'BUS',
             longName: 'TAYS - Hervanta - Hatanpää-Tampella',
             patterns: [
               {
-                code: 'tampere:32:0:01',
+                code: 'tampere:32:0:01'
               },
               {
-                code: 'tampere:32:1:01',
-              },
+                code: 'tampere:32:1:01'
+              }
             ],
             layer: 'route-BUS',
-            link: `/${PREFIX_ROUTES}/tampere:32/${PREFIX_STOPS}/tampere:32:0:01`,
+            link: `/${PREFIX_ROUTES}/tampere:32/${PREFIX_STOPS}/tampere:32:0:01`
           },
           geometry: {
-            coordinates: null,
-          },
+            coordinates: null
+          }
         },
-        type: 'search',
+        type: 'search'
       };
       const store = new OldSearchesStore();
       store.saveSearch(oldData);

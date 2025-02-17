@@ -11,18 +11,18 @@ describe('<StopPageContentContainer />', () => {
     const props = {
       currentTime: 0,
       params: {
-        stopId: '1234',
+        stopId: '1234'
       },
       relay: {
         refetch: () => {},
-        environment: {},
+        environment: {}
       },
       stop: {},
       router: mockRouter,
-      match: mockMatch,
+      match: mockMatch
     };
     const wrapper = shallowWithIntl(<StopPageContentContainer {...props} />, {
-      context: { config: { CONFIG: 'default' } },
+      context: { config: { CONFIG: 'default' } }
     });
 
     expect(wrapper.find('.stop-no-departures-container')).to.have.lengthOf(1);

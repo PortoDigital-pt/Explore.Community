@@ -25,7 +25,7 @@ export default function getGeocodingResults(
   sources,
   peliasUrl,
   minimalRegexp,
-  geocodingLayers,
+  geocodingLayers
 ) {
   const text = searchString ? searchString.trim() : null;
   if (

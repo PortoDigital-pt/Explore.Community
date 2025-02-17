@@ -4,7 +4,7 @@ import moment from 'moment';
 import {
   validateServiceTimeRange,
   RANGE_PAST,
-  convertTo24HourFormat,
+  convertTo24HourFormat
 } from '../../../app/util/timeUtils';
 
 const now = moment().unix();
@@ -28,7 +28,7 @@ describe('timeUtils', () => {
     it('should fix invalid time range', () => {
       const range = {
         start: now + 3600, // future
-        end: now - 3600, // past
+        end: now - 3600 // past
       };
       const futureDays = null; // DT-3175
       test(validateServiceTimeRange(futureDays, range, now));
@@ -37,29 +37,29 @@ describe('timeUtils', () => {
     it('should not change the days of a proper time range', () => {
       const range = {
         start: now - 3600 * 24, // yesterday
-        end: now + 3600 * 24 * 7, // next week
+        end: now + 3600 * 24 * 7 // next week
       };
       const futureDays = null; // DT-3175
       const validated = validateServiceTimeRange(futureDays, range, now);
       test(validated);
       expect(moment.unix(validated.start).dayOfYear()).to.equal(
-        moment.unix(range.start).dayOfYear(),
+        moment.unix(range.start).dayOfYear()
       );
       expect(moment.unix(validated.end).dayOfYear()).to.equal(
-        moment.unix(range.end).dayOfYear(),
+        moment.unix(range.end).dayOfYear()
       );
     });
 
     it('should not return too long a range', () => {
       const range = {
         start: now - 3600 * 24 * 365 * 2, // 2 years in the past
-        end: now + 3600 * 24 * 365 * 2,
+        end: now + 3600 * 24 * 365 * 2
       };
       const RANGE_FUTURE = 30; // DT-3175
       const validated = validateServiceTimeRange(RANGE_FUTURE, range, now);
       test(validated);
       expect((validated.end - validated.start) / 1000 / 86400).to.be.at.most(
-        RANGE_FUTURE + RANGE_PAST + 1,
+        RANGE_FUTURE + RANGE_PAST + 1
       ); // +1 for today
     });
   });

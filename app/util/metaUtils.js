@@ -13,30 +13,30 @@ import { generateManifestUrl } from './manifestUtils';
 export const generateMetaData = (
   { title, description },
   config,
-  { pathname } = {},
+  { pathname } = {}
 ) => ({
   title,
   meta: [
     {
       name: 'description',
-      content: description,
+      content: description
     },
     {
       property: 'og:title',
-      content: title,
+      content: title
     },
     {
       property: 'og:description',
-      content: description,
+      content: description
     },
     {
       property: 'twitter:title',
-      content: title,
+      content: title
     },
     {
       property: 'twitter:description',
-      content: description,
-    },
+      content: description
+    }
   ],
   ...(isBrowser &&
     config && {
@@ -48,16 +48,16 @@ export const generateMetaData = (
             {
               host: window.location.host,
               pathname: pathname || window.location.pathname,
-              protocol: window.location.protocol,
+              protocol: window.location.protocol
             },
             {
               title,
-              description,
-            },
-          ),
-        },
-      ],
-    }),
+              description
+            }
+          )
+        }
+      ]
+    })
 });
 
 export default generateMetaData;

@@ -17,11 +17,11 @@ const ConfirmLocationFromMapButton = props => {
         disabled={!props.isEnabled}
         onClick={props.isEnabled ? redirect : undefined}
         className={cx('select-from-map-confirm-button', {
-          disabled: !props.isEnabled,
+          disabled: !props.isEnabled
         })}
         style={{
           '--color': `${props.color}`,
-          '--hover-color': `${props.hoverColor}`,
+          '--hover-color': `${props.hoverColor}`
         }}
         key="confirmLocation"
       >
@@ -38,12 +38,12 @@ ConfirmLocationFromMapButton.propTypes = {
   type: PropTypes.string.isRequired,
   onConfirm: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired,
-  hoverColor: PropTypes.string.isRequired,
+  hoverColor: PropTypes.string.isRequired
 };
 
 ConfirmLocationFromMapButton.defaultProps = {
   address: undefined,
-  isEnabled: false,
+  isEnabled: false
 };
 
 export default ConfirmLocationFromMapButton;

@@ -16,17 +16,17 @@ import ScrollableWrapper from '../ScrollableWrapper';
 class PatternStopsContainer extends React.PureComponent {
   static propTypes = {
     pattern: PropTypes.shape({
-      code: PropTypes.string.isRequired,
+      code: PropTypes.string.isRequired
     }).isRequired,
     match: matchShape.isRequired,
     breakpoint: PropTypes.string.isRequired,
     router: routerShape.isRequired,
-    route: routeShape.isRequired,
+    route: routeShape.isRequired
   };
 
   static contextTypes = {
     config: configShape.isRequired,
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   render() {
@@ -35,7 +35,7 @@ class PatternStopsContainer extends React.PureComponent {
         if (this.props.route.gtfsId) {
           // Redirect back to routes default pattern
           this.props.router.replace(
-            `/${PREFIX_ROUTES}/${this.props.route.gtfsId}`,
+            `/${PREFIX_ROUTES}/${this.props.route.gtfsId}`
           );
         } else {
           return <Error404 />;
@@ -50,7 +50,7 @@ class PatternStopsContainer extends React.PureComponent {
     return (
       <ScrollableWrapper
         className={cx('route-page-content', {
-          'bp-large': this.props.breakpoint === 'large',
+          'bp-large': this.props.breakpoint === 'large'
         })}
       >
         {this.props.route && this.props.route.patterns && (
@@ -137,5 +137,5 @@ export default createFragmentContainer(withBreakpoint(PatternStopsContainer), {
         }
       }
     }
-  `,
+  `
 });

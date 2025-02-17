@@ -8,7 +8,7 @@ export default function FareDisclaimer({
   text,
   values,
   href,
-  linkText,
+  linkText
 }) {
   return (
     <div className="disclaimer-container unknown-fare-disclaimer__top">
@@ -31,7 +31,7 @@ FareDisclaimer.propTypes = {
   text: PropTypes.string, // preformatted text
   values: PropTypes.objectOf(PropTypes.string),
   href: PropTypes.string,
-  linkText: PropTypes.string,
+  linkText: PropTypes.string
 };
 
 FareDisclaimer.defaultProps = {
@@ -39,5 +39,5 @@ FareDisclaimer.defaultProps = {
   text: null,
   values: {},
   href: null,
-  linkText: null,
+  linkText: null
 };

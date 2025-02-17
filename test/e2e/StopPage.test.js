@@ -18,7 +18,7 @@ const mockRoutes = async page => {
           headers: { 'access-control-allow-origin': '*' },
           status: 200,
           contentType: 'application/json',
-          body: JSON.stringify(StopPageMockData),
+          body: JSON.stringify(StopPageMockData)
         });
       }
     }
@@ -32,7 +32,7 @@ describe(`Stop page with ${config} config`, () => {
   const paths = {
     hsl: '/pysakit/HSL:2434202',
     tampere: '/pysakit/tampere:0536',
-    matka: '/pysakit/HSL:2434202',
+    matka: '/pysakit/HSL:2434202'
   };
   test(`departure list on ${platform}`, async () => {
     const snapshotName = `stop-page-departure-list-${platform}`;
@@ -46,20 +46,20 @@ describe(`Stop page with ${config} config`, () => {
     const snapshotConfig = getConfig(
       snapshotName,
       `${customSnapshotsDir}/${browserName}/${config}/`,
-      `${customDiffDir}/${browserName}/${config}/`,
+      `${customDiffDir}/${browserName}/${config}/`
     );
     let mainContent;
     if (!isMobile) {
       await page.waitForSelector(
-        '#mainContent > .desktop > .main-content > .scrollable-content-wrapper',
+        '#mainContent > .desktop > .main-content > .scrollable-content-wrapper'
       );
       mainContent = await page.$('#mainContent > .desktop > .main-content');
     } else {
       await page.waitForSelector(
-        '#app > #mainContent > .mobile > .drawer-container > .drawer-content',
+        '#app > #mainContent > .mobile > .drawer-container > .drawer-content'
       );
       mainContent = await page.$(
-        '#app > #mainContent > .mobile > .drawer-container > .drawer-content',
+        '#app > #mainContent > .mobile > .drawer-container > .drawer-content'
       );
     }
     const image = await mainContent.screenshot();

@@ -12,7 +12,7 @@ const ChangeDepartureTimeLink = ({ match }) => (
 );
 
 ChangeDepartureTimeLink.propTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 export default ChangeDepartureTimeLink;

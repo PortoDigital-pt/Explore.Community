@@ -9,7 +9,7 @@ export const StreetMode = Object.freeze({
   /** Driving and parking */
   ParkAndRide: 'CAR_PARK',
   /** Walking */
-  Walk: 'WALK',
+  Walk: 'WALK'
 });
 
 /**
@@ -33,7 +33,7 @@ export const TransportMode = Object.freeze({
   /** Taking the funicular */
   Funicular: 'FUNICULAR',
   /** Riding a scooter */
-  Scooter: 'SCOOTER',
+  Scooter: 'SCOOTER'
 });
 
 /**
@@ -41,7 +41,7 @@ export const TransportMode = Object.freeze({
  */
 export const Mode = Object.freeze({
   ...StreetMode,
-  ...TransportMode,
+  ...TransportMode
 });
 
 /**
@@ -57,7 +57,7 @@ export const RealtimeStateType = Object.freeze({
   /** The trip information comes from the GTFS feed, i.e. no real-time update has been applied. This is often the default state. */
   Scheduled: 'SCHEDULED',
   /** The trip information has been updated, but the trip pattern stayed the same as the trip pattern of the scheduled trip. */
-  Updated: 'UPDATED',
+  Updated: 'UPDATED'
 });
 
 /**
@@ -75,7 +75,7 @@ export const AlertSeverityLevelType = Object.freeze({
   Info: 'INFO',
   Severe: 'SEVERE',
   Unknown: 'UNKNOWN_SEVERITY',
-  Warning: 'WARNING',
+  Warning: 'WARNING'
 });
 
 /**
@@ -91,18 +91,18 @@ export const AlertEntityType = Object.freeze({
   StopOnRoute: 'StopOnRoute',
   StopOnTrip: 'StopOnTrip',
   RouteType: 'RouteType',
-  Unknown: 'Unknown',
+  Unknown: 'Unknown'
 });
 
 export const ExtendedRouteTypes = Object.freeze({
   BusExpress: 702,
   BusLocal: 704,
-  SpeedTram: 900,
+  SpeedTram: 900
 });
 
 export const ParkTypes = {
   Bicycle: 'BICYCLE',
-  Car: 'CAR',
+  Car: 'CAR'
 };
 
 /**
@@ -116,5 +116,5 @@ export const PlannerMessageType = Object.freeze({
   OutsideServicePeriod: 'OUTSIDE_SERVICE_PERIOD',
   LocationNotFound: 'LOCATION_NOT_FOUND',
   NoStopsInRange: 'NO_STOPS_IN_RANGE',
-  SystemError: 'SYSTEM_ERROR',
+  SystemError: 'SYSTEM_ERROR'
 });

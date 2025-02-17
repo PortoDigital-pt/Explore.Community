@@ -14,7 +14,7 @@ const printItinerary = e => {
     event: 'sendMatomoEvent',
     category: 'Itinerary',
     action: 'Print',
-    name: null,
+    name: null
   });
   window.print();
 };
@@ -26,14 +26,14 @@ export default function Profile({ itinerary, small }, { config, intl }) {
         <div className="itinerary-profile-item-title">
           {`${intl.formatMessage({
             id: 'distance-total',
-            defaultMessage: 'Distance',
+            defaultMessage: 'Distance'
           })}:`}
         </div>
         <div className="itinerary-profile-item-value">
           {displayDistance(
             getTotalDistance(itinerary),
             config,
-            intl.formatNumber,
+            intl.formatNumber
           )}
         </div>
       </div>
@@ -52,14 +52,14 @@ export default function Profile({ itinerary, small }, { config, intl }) {
 
 Profile.propTypes = {
   itinerary: itineraryShape.isRequired,
-  small: PropTypes.bool,
+  small: PropTypes.bool
 };
 
 Profile.defaultProps = {
-  small: false,
+  small: false
 };
 
 Profile.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };

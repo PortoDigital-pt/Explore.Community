@@ -14,14 +14,14 @@ function SelectVehicleRentalClusterRow({
   desc,
   prefix,
   networks: networksInCluster,
-  isScooter,
+  isScooter
 }) {
   const img = isScooter
     ? 'icon-icon_scooter-lollipop'
     : 'icon-icon_citybike-stop-lollipop';
 
   const linkAddress = `/${prefix}/${encodeURIComponent(id)}/${[
-    ...networksInCluster,
+    ...networksInCluster
   ]}`;
 
   const address = desc || <FormattedMessage id="citybike-station-no-id" />;
@@ -54,17 +54,17 @@ SelectVehicleRentalClusterRow.propTypes = {
   desc: PropTypes.string,
   prefix: PropTypes.string.isRequired,
   networks: PropTypes.arrayOf(PropTypes.string).isRequired,
-  isScooter: PropTypes.bool,
+  isScooter: PropTypes.bool
 };
 
 SelectVehicleRentalClusterRow.defaultProps = {
   desc: undefined,
   name: undefined,
-  isScooter: false,
+  isScooter: false
 };
 
 SelectVehicleRentalClusterRow.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default SelectVehicleRentalClusterRow;

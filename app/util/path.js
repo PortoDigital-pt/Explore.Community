@@ -66,14 +66,14 @@ export const createReturnPath = (
   path,
   origin,
   destination,
-  hash = undefined,
+  hash = undefined
 ) => {
   const returnUrl = path === '' ? '' : `/${path}`;
   return [
     returnUrl,
     encodeURIComponent(decodeURIComponent(origin)),
     encodeURIComponent(decodeURIComponent(destination)),
-    hash || '',
+    hash || ''
   ].join('/');
 };
 
@@ -81,14 +81,14 @@ export const getNearYouPath = (place, mode) =>
   [
     `/${PREFIX_NEARYOU}`,
     encodeURIComponent(decodeURIComponent(mode)),
-    encodeURIComponent(decodeURIComponent(place)),
+    encodeURIComponent(decodeURIComponent(place))
   ].join('/');
 
 export const getItineraryPagePath = (origin, destination) =>
   [
     `/${PREFIX_ITINERARY_SUMMARY}`,
     encodeURIComponent(decodeURIComponent(origin)),
-    encodeURIComponent(decodeURIComponent(destination)),
+    encodeURIComponent(decodeURIComponent(destination))
   ].join('/');
 
 export const isEmpty = s =>
@@ -115,14 +115,14 @@ export const getIndexPath = (origin, destination, indexPath) => {
     return [
       indexPath,
       encodeURIComponent(isEmpty(origin) ? '-' : origin),
-      encodeURIComponent(isEmpty(destination) ? '-' : destination),
+      encodeURIComponent(isEmpty(destination) ? '-' : destination)
     ].join('/');
   }
   return [
     '',
     indexPath,
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
-    encodeURIComponent(isEmpty(destination) ? '-' : destination),
+    encodeURIComponent(isEmpty(destination) ? '-' : destination)
   ].join('/');
 };
 
@@ -204,5 +204,5 @@ export const streetHash = {
   bikeAndVehicle: 'bikeAndVehicle',
   car: 'car',
   carAndVehicle: 'carAndVehicle',
-  parkAndRide: 'parkAndRide',
+  parkAndRide: 'parkAndRide'
 };

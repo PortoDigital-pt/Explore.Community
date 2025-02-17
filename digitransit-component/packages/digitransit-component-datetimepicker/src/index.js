@@ -59,16 +59,16 @@ function DatetimepickerStateContainer({
   serviceTimeRange,
   onOpen,
   onClose,
-  openPicker,
+  openPicker
 }) {
   moment.locale(lang);
   moment.tz.setDefault(timeZone);
   const initialNow = realtime ? null : moment().valueOf();
   const [timestamp, changeTimestampState] = useState(
-    initialTimestamp ? initialTimestamp * 1000 : initialNow,
+    initialTimestamp ? initialTimestamp * 1000 : initialNow
   );
   const [departureOrArrival, changeDepartureOrArrival] = useState(
-    initialArriveBy === true ? 'arrival' : 'departure',
+    initialArriveBy === true ? 'arrival' : 'departure'
   );
 
   // update state if props change
@@ -86,7 +86,7 @@ function DatetimepickerStateContainer({
     }
     if (!initialArriveBy === (departureOrArrival === 'arrival')) {
       changeDepartureOrArrival(
-        initialArriveBy === true ? 'arrival' : 'departure',
+        initialArriveBy === true ? 'arrival' : 'departure'
       );
     }
   }, [initialTimestamp, initialArriveBy]);
@@ -96,7 +96,7 @@ function DatetimepickerStateContainer({
       changeTimestampState(moment().valueOf());
       onTimeChange(
         Math.round(moment().valueOf() / 1000),
-        departureOrArrival === 'arrival',
+        departureOrArrival === 'arrival'
       );
       return;
     }
@@ -109,7 +109,7 @@ function DatetimepickerStateContainer({
       changeTimestampState(moment().valueOf());
       onDateChange(
         Math.round(moment().valueOf() / 1000),
-        departureOrArrival === 'arrival',
+        departureOrArrival === 'arrival'
       );
       return;
     }
@@ -204,12 +204,12 @@ DatetimepickerStateContainer.propTypes = {
   color: PropTypes.string,
   timeZone: PropTypes.string,
   fontWeights: PropTypes.shape({
-    medium: PropTypes.number,
+    medium: PropTypes.number
   }),
   serviceTimeRange: PropTypes.number,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
-  openPicker: PropTypes.bool,
+  openPicker: PropTypes.bool
 };
 
 DatetimepickerStateContainer.defaultProps = {
@@ -222,12 +222,12 @@ DatetimepickerStateContainer.defaultProps = {
   color: '#007ac9',
   timeZone: 'Europe/Helsinki',
   fontWeights: {
-    medium: 500,
+    medium: 500
   },
   onOpen: null,
   onClose: null,
   openPicker: undefined,
-  serviceTimeRange: 30,
+  serviceTimeRange: 30
 };
 
 export default DatetimepickerStateContainer;

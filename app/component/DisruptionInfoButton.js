@@ -31,17 +31,17 @@ function DisruptionInfoButton(props, { config }) {
 
 DisruptionInfoButton.propTypes = {
   openDisruptionInfo: PropTypes.func.isRequired,
-  viewer: PropTypes.shape({ alerts: PropTypes.arrayOf(alertShape) }),
+  viewer: PropTypes.shape({ alerts: PropTypes.arrayOf(alertShape) })
 };
 
 DisruptionInfoButton.defaultProps = {
   viewer: {
-    alerts: [],
-  },
+    alerts: []
+  }
 };
 
 DisruptionInfoButton.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default createFragmentContainer(DisruptionInfoButton, {
@@ -52,5 +52,5 @@ export default createFragmentContainer(DisruptionInfoButton, {
         id
       }
     }
-  `,
+  `
 });

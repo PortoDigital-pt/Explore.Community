@@ -26,16 +26,16 @@ export const mockContext = {
       status: PositionStore.STATUS_NO_LOCATION,
       hasLocation: false,
       isLocationingInProgress: false,
-      locationingFailed: false,
+      locationingFailed: false
     }),
     getMessages: () => [],
     removeListener: noop,
     getRoutingSettings: () => ({}),
     isFavourite: noop,
-    getUser: () => ({}),
+    getUser: () => ({})
   }),
   match: mockMatch,
-  router: mockRouter,
+  router: mockRouter
 };
 
 /**
@@ -46,5 +46,5 @@ export const mockChildContextTypes = {
   executeAction: PropTypes.func,
   getStore: PropTypes.func,
   router: routerShape,
-  match: matchShape,
+  match: matchShape
 };

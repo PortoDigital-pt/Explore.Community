@@ -4,24 +4,23 @@ import React, {
   useLayoutEffect,
   useState,
   forwardRef,
-  useImperativeHandle,
+  useImperativeHandle
 } from 'react';
 import { matchShape } from 'found';
 import MapBottomsheetContext from './map/MapBottomsheetContext';
 import MobileFooter from './MobileFooter';
 import { isBrowser } from '../util/browser';
-import { TestNav } from './amporto';
 
 import {
   PREFIX_ROUTES,
   PREFIX_NEARYOU,
-  PREFIX_ITINERARY_SUMMARY,
+  PREFIX_ITINERARY_SUMMARY
 } from '../util/path';
 
 const noBottomSheetResetAtContentChange = [
   PREFIX_ROUTES,
   PREFIX_NEARYOU,
-  PREFIX_ITINERARY_SUMMARY,
+  PREFIX_ITINERARY_SUMMARY
 ];
 
 const BOTTOM_SHEET_OFFSET = 20;
@@ -78,9 +77,9 @@ const MobileView = forwardRef(
       selectFromMapHeader,
       mapRef,
       searchBox,
-      match,
+      match
     },
-    ref,
+    ref
   ) => {
     if (settingsDrawer) {
       return <div className="mobile">{settingsDrawer}</div>;
@@ -120,7 +119,7 @@ const MobileView = forwardRef(
         const pad =
           pos === 'middle' ? getMiddlePosition() : BOTTOM_SHEET_OFFSET;
         changeBottomPadding(pad, slowly);
-      },
+      }
     }));
 
     /* UI does not have a consistent way to render the map into mobile view.
@@ -187,10 +186,9 @@ const MobileView = forwardRef(
             <MobileFooter />
           </div>
         )}
-        <TestNav />
       </div>
     );
-  },
+  }
 );
 
 MobileView.propTypes = {
@@ -202,7 +200,7 @@ MobileView.propTypes = {
   searchBox: PropTypes.node,
   // eslint-disable-next-line
   mapRef: PropTypes.object,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 MobileView.defaultProps = {
@@ -212,7 +210,7 @@ MobileView.defaultProps = {
   settingsDrawer: undefined,
   selectFromMapHeader: undefined,
   searchBox: undefined,
-  mapRef: undefined,
+  mapRef: undefined
 };
 
 export default MobileView;

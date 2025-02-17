@@ -25,9 +25,9 @@ export function getJson(url, params) {
       method: 'GET',
 
       headers: {
-        Accept: 'application/json',
-      },
-    },
+        Accept: 'application/json'
+      }
+    }
   ).then(res => res.json());
 }
 
@@ -43,9 +43,9 @@ export function postJson(url, params, payload) {
 
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    },
+        'Content-Type': 'application/json'
+      }
+    }
   ).then(res => res.json());
 }
 

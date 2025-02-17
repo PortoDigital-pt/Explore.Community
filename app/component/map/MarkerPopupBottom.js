@@ -12,22 +12,22 @@ class MarkerPopupBottom extends React.Component {
     location: locationShape.isRequired,
     leaflet: PropTypes.shape({
       map: PropTypes.shape({
-        closePopup: PropTypes.func.isRequired,
-      }).isRequired,
+        closePopup: PropTypes.func.isRequired
+      }).isRequired
     }).isRequired,
     onSelectLocation: PropTypes.func.isRequired,
-    locationPopup: PropTypes.string,
+    locationPopup: PropTypes.string
   };
 
   static defaultProps = {
-    locationPopup: 'all', // show add via point by default
+    locationPopup: 'all' // show add via point by default
   };
 
   routeFrom = () => {
     addAnalyticsEvent({
       action: 'EditJourneyStartPoint',
       category: 'ItinerarySettings',
-      name: 'MapPopup',
+      name: 'MapPopup'
     });
     this.props.onSelectLocation(this.props.location, 'origin');
     this.props.leaflet.map.closePopup();
@@ -37,7 +37,7 @@ class MarkerPopupBottom extends React.Component {
     addAnalyticsEvent({
       action: 'EditJourneyEndPoint',
       category: 'ItinerarySettings',
-      name: 'MapPopup',
+      name: 'MapPopup'
     });
     this.props.onSelectLocation(this.props.location, 'destination');
     this.props.leaflet.map.closePopup();
@@ -47,7 +47,7 @@ class MarkerPopupBottom extends React.Component {
     addAnalyticsEvent({
       action: 'AddJourneyViaPoint',
       category: 'ItinerarySettings',
-      name: 'MapPopup',
+      name: 'MapPopup'
     });
     this.props.onSelectLocation(this.props.location, 'via');
     this.props.leaflet.map.closePopup();
@@ -86,5 +86,5 @@ const markerPopupBottomWithLeaflet = withLeaflet(MarkerPopupBottom);
 
 export {
   markerPopupBottomWithLeaflet as default,
-  MarkerPopupBottom as Component,
+  MarkerPopupBottom as Component
 };

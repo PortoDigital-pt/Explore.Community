@@ -10,7 +10,7 @@ export default class BackButton extends React.Component {
     intl: intlShape.isRequired,
     router: routerShape,
     match: matchShape,
-    config: configShape,
+    config: configShape
   };
 
   static propTypes = {
@@ -21,7 +21,7 @@ export default class BackButton extends React.Component {
     titleClassName: PropTypes.string,
     className: PropTypes.string,
     onBackBtnClick: PropTypes.func,
-    fallback: PropTypes.string,
+    fallback: PropTypes.string
   };
 
   static defaultProps = {
@@ -32,7 +32,7 @@ export default class BackButton extends React.Component {
     titleClassName: undefined,
     className: 'back-button',
     fallback: undefined,
-    onBackBtnClick: undefined,
+    onBackBtnClick: undefined
   };
 
   goBack = url => {
@@ -53,7 +53,7 @@ export default class BackButton extends React.Component {
       parts.pop();
       const newLoc = {
         ...location,
-        pathname: parts.join('/'),
+        pathname: parts.join('/')
       };
       router.replace(newLoc);
     } else if (url) {
@@ -92,7 +92,7 @@ export default class BackButton extends React.Component {
           }
           aria-label={this.context.intl.formatMessage({
             id: 'back-button-title',
-            defaultMessage: 'Go back to previous page',
+            defaultMessage: 'Go back to previous page'
           })}
           tabIndex={0}
         >

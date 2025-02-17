@@ -24,7 +24,7 @@ class GenericMarker extends React.Component {
   static displayName = 'GenericMarker';
 
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -39,10 +39,10 @@ class GenericMarker extends React.Component {
       map: PropTypes.shape({
         getZoom: PropTypes.func.isRequired,
         on: PropTypes.func.isRequired,
-        off: PropTypes.func.isRequired,
-      }).isRequired,
+        off: PropTypes.func.isRequired
+      }).isRequired
     }).isRequired,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -51,7 +51,7 @@ class GenericMarker extends React.Component {
     renderName: false,
     name: '',
     maxWidth: undefined,
-    children: undefined,
+    children: undefined
   };
 
   state = { zoom: this.props.leaflet.map.getZoom() };
@@ -101,14 +101,14 @@ class GenericMarker extends React.Component {
         key={`${this.props.name}_text`}
         position={{
           lat: this.props.position.lat,
-          lng: this.props.position.lon,
+          lng: this.props.position.lon
         }}
         interactive={false}
         icon={L.divIcon({
           html: `<div>${this.props.name}</div>`,
           className: 'popup',
           iconSize: [150, 0],
-          iconAnchor: [-8, 7],
+          iconAnchor: [-8, 7]
         })}
         keyboard={false}
       />

@@ -61,7 +61,7 @@ const containerComponent = createFragmentContainer(SelectVehicleRow, {
         color
       }
     }
-  `,
+  `
 });
 
 SelectVehicleRow.propTypes = {
@@ -69,20 +69,20 @@ SelectVehicleRow.propTypes = {
     gtfsId: PropTypes.string,
     pattern: PropTypes.shape({
       headsign: PropTypes.string,
-      code: PropTypes.string.isRequired,
+      code: PropTypes.string.isRequired
     }),
     route: PropTypes.shape({
       gtfsId: PropTypes.string.isRequired,
       mode: PropTypes.string,
       longName: PropTypes.string,
       shortName: PropTypes.string,
-      color: PropTypes.string,
-    }).isRequired,
+      color: PropTypes.string
+    }).isRequired
   }).isRequired,
   message: PropTypes.shape({
     mode: PropTypes.string.isRequired,
-    tripStartTime: PropTypes.string,
-  }).isRequired,
+    tripStartTime: PropTypes.string
+  }).isRequired
 };
 
 export { containerComponent as default, SelectVehicleRow as Component };

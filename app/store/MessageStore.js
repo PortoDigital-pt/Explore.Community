@@ -12,8 +12,8 @@ export const processStaticMessages = (root, callback) => {
           msg.content &&
           Object.keys(msg.content).some(
             key =>
-              Array.isArray(msg.content[key]) && msg.content[key].length > 0,
-          ),
+              Array.isArray(msg.content[key]) && msg.content[key].length > 0
+          )
       )
       .forEach(callback);
   }
@@ -25,8 +25,8 @@ export const processStaticMessages = (root, callback) => {
           msg.content &&
           Object.keys(msg.content).some(
             key =>
-              Array.isArray(msg.content[key]) && msg.content[key].length > 0,
-          ),
+              Array.isArray(msg.content[key]) && msg.content[key].length > 0
+          )
       )
       .forEach(callback);
   }
@@ -37,7 +37,7 @@ class MessageStore extends Store {
 
   static handlers = {
     AddMessage: 'addMessage',
-    MarkMessageAsRead: 'markMessageAsRead',
+    MarkMessageAsRead: 'markMessageAsRead'
   };
 
   constructor(...args) {
@@ -95,7 +95,7 @@ class MessageStore extends Store {
     if (getIsBrowser() && config.staticMessagesUrl !== undefined) {
       const response = await fetch(config.staticMessagesUrl, {
         mode: 'cors',
-        cache: 'reload',
+        cache: 'reload'
       });
       const json = await response.json();
       processStaticMessages(json, this.addMessage);

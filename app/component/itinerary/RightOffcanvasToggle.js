@@ -7,11 +7,11 @@ import { isKeyboardSelectionEvent } from '../../util/browser';
 
 export default function RightOffcanvasToggle(
   { onToggleClick, defaultMessage, translationId },
-  { intl: { formatMessage }, config },
+  { intl: { formatMessage }, config }
 ) {
   const label = formatMessage({
     id: 'settings-label-change',
-    defaultMessage: 'Change settings',
+    defaultMessage: 'Change settings'
   });
   return (
     <div className="right-offcanvas-toggle">
@@ -43,17 +43,17 @@ export default function RightOffcanvasToggle(
 RightOffcanvasToggle.propTypes = {
   onToggleClick: PropTypes.func.isRequired,
   defaultMessage: PropTypes.string,
-  translationId: PropTypes.string,
+  translationId: PropTypes.string
 };
 
 RightOffcanvasToggle.defaultProps = {
   defaultMessage: 'Settings',
-  translationId: 'settings',
+  translationId: 'settings'
 };
 
 RightOffcanvasToggle.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape,
+  config: configShape
 };
 
 RightOffcanvasToggle.displayName = 'RightOffcanvasToggle';

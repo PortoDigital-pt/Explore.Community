@@ -13,10 +13,10 @@ const dt2831 = {
       components: [
         {
           __dataID__: 'client:198107189847',
-          fareId: 'HSL:hki',
-        },
-      ],
-    },
+          fareId: 'HSL:hki'
+        }
+      ]
+    }
   ],
   legs: [
     {
@@ -29,7 +29,7 @@ const dt2831 = {
         name: 'Opastinsilta 6 Ak, Helsinki',
         vertexType: 'NORMAL',
         vehicleRentalStation: null,
-        stop: null,
+        stop: null
       },
       to: {
         __dataID__: 'client:198107189813',
@@ -43,14 +43,14 @@ const dt2831 = {
           gtfsId: 'HSL:1174551',
           code: '0071',
           platformCode: '1',
-          zoneId: '01',
-        },
+          zoneId: '01'
+        }
       },
       legGeometry: {
         __dataID__: 'client:198107189811',
         length: 34,
         points:
-          'stlnJcgfwCILYjA@XB\\F|@Dz@@H@XDj@PbCBZPvDBl@@DXbF?@HrADb@@PB^?J@FGBC@E@Dv@{B|@FbA?TBd@??UHA@',
+          'stlnJcgfwCILYjA@XB\\F|@Dz@@H@XDj@PbCBZPvDBl@@DXbF?@HrADb@@PB^?J@FGBC@E@Dv@{B|@FbA?TBd@??UHA@'
       },
       intermediatePlaces: [],
       realTime: false,
@@ -64,8 +64,8 @@ const dt2831 = {
       route: null,
       trip: null,
       __fragments__: {
-        '8::client': [{}],
-      },
+        '8::client': [{}]
+      }
     },
     {
       __dataID__: 'client:19810718989',
@@ -89,14 +89,14 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-                gtfsId: 'HSL:1174551',
+                gtfsId: 'HSL:1174551'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMlBfMjAxOTAxMjlfS2VfMV8xMzM4',
                 gtfsId: 'HSL:3002P_20190129_Ke_1_1338',
                 routeShortName: 'P',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189849',
@@ -104,14 +104,14 @@ const dt2831 = {
               realtimeState: 'CANCELED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-                gtfsId: 'HSL:1174551',
+                gtfsId: 'HSL:1174551'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMUtfMjAxOTAxMjlfS2VfMl8xNDEx',
                 gtfsId: 'HSL:3001K_20190129_Ke_2_1411',
                 routeShortName: 'K',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189850',
@@ -119,14 +119,14 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-                gtfsId: 'HSL:1174551',
+                gtfsId: 'HSL:1174551'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMlBfMjAxOTAxMjlfS2VfMV8xMzQ4',
                 gtfsId: 'HSL:3002P_20190129_Ke_1_1348',
                 routeShortName: 'P',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189851',
@@ -134,14 +134,14 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-                gtfsId: 'HSL:1174551',
+                gtfsId: 'HSL:1174551'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMUtfMjAxOTAxMjlfS2VfMl8xNDIx',
                 gtfsId: 'HSL:3001K_20190129_Ke_2_1421',
                 routeShortName: 'K',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189852',
@@ -149,18 +149,18 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-                gtfsId: 'HSL:1174551',
+                gtfsId: 'HSL:1174551'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMlBfMjAxOTAxMjlfS2VfMV8xMzU4',
                 gtfsId: 'HSL:3002P_20190129_Ke_1_1358',
                 routeShortName: 'P',
-                tripHeadsign: 'Helsinki',
-              },
-            },
+                tripHeadsign: 'Helsinki'
+              }
+            }
           ],
-          zoneId: '01',
-        },
+          zoneId: '01'
+        }
       },
       to: {
         __dataID__: 'client:198107189816',
@@ -174,13 +174,13 @@ const dt2831 = {
           gtfsId: 'HSL:1020553',
           code: '0070',
           platformCode: '1-3',
-          zoneId: '01',
-        },
+          zoneId: '01'
+        }
       },
       legGeometry: {
         __dataID__: 'client:198107189814',
         length: 12,
-        points: 'ovlnJi{dwClJi@|PNxIfBpFg@tDq@dK}DhHgDdi@}PvOgGzLqDrQeD',
+        points: 'ovlnJi{dwClJi@|PNxIfBpFg@tDq@dK}DhHgDdi@}PvOgGzLqDrQeD'
       },
       intermediatePlaces: [],
       realTime: true,
@@ -200,8 +200,8 @@ const dt2831 = {
         desc: null,
         agency: {
           __dataID__: 'QWdlbmN5OkhTTA==',
-          phone: '(09) 4766 4444',
-        },
+          phone: '(09) 4766 4444'
+        }
       },
       trip: {
         __dataID__: 'VHJpcDpIU0w6MzAwMlBfMjAxOTAxMjlfS2VfMV8xMzQ4',
@@ -209,7 +209,7 @@ const dt2831 = {
         tripHeadsign: 'Helsinki',
         pattern: {
           __dataID__: 'UGF0dGVybjpIU0w6MzAwMlA6MDowMQ==',
-          code: 'HSL:3002P:0:01',
+          code: 'HSL:3002P:0:01'
         },
         stoptimes: [
           {
@@ -218,8 +218,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTAyMDUwMg==',
-              gtfsId: 'HSL:1020502',
-            },
+              gtfsId: 'HSL:1020502'
+            }
           },
           {
             __dataID__: 'client:198107189818',
@@ -227,8 +227,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTE3NDUwMg==',
-              gtfsId: 'HSL:1174502',
-            },
+              gtfsId: 'HSL:1174502'
+            }
           },
           {
             __dataID__: 'client:198107189819',
@@ -236,8 +236,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTE3MjUwMw==',
-              gtfsId: 'HSL:1172503',
-            },
+              gtfsId: 'HSL:1172503'
+            }
           },
           {
             __dataID__: 'client:198107189820',
@@ -245,8 +245,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI5MTUwMQ==',
-              gtfsId: 'HSL:1291501',
-            },
+              gtfsId: 'HSL:1291501'
+            }
           },
           {
             __dataID__: 'client:198107189821',
@@ -254,8 +254,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI5NDU1Mg==',
-              gtfsId: 'HSL:1294552',
-            },
+              gtfsId: 'HSL:1294552'
+            }
           },
           {
             __dataID__: 'client:198107189822',
@@ -263,8 +263,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTMzMTU1MQ==',
-              gtfsId: 'HSL:1331551',
-            },
+              gtfsId: 'HSL:1331551'
+            }
           },
           {
             __dataID__: 'client:198107189823',
@@ -272,8 +272,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTMzMzU1Mg==',
-              gtfsId: 'HSL:1333552',
-            },
+              gtfsId: 'HSL:1333552'
+            }
           },
           {
             __dataID__: 'client:198107189824',
@@ -281,8 +281,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDE1MDU1MQ==',
-              gtfsId: 'HSL:4150551',
-            },
+              gtfsId: 'HSL:4150551'
+            }
           },
           {
             __dataID__: 'client:198107189825',
@@ -290,8 +290,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDE1MDU1Mg==',
-              gtfsId: 'HSL:4150552',
-            },
+              gtfsId: 'HSL:4150552'
+            }
           },
           {
             __dataID__: 'client:198107189826',
@@ -299,8 +299,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDE3MDU1MQ==',
-              gtfsId: 'HSL:4170551',
-            },
+              gtfsId: 'HSL:4170551'
+            }
           },
           {
             __dataID__: 'client:198107189827',
@@ -308,8 +308,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDE3MDU1Mg==',
-              gtfsId: 'HSL:4170552',
-            },
+              gtfsId: 'HSL:4170552'
+            }
           },
           {
             __dataID__: 'client:198107189828',
@@ -317,8 +317,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDI1MDU1MQ==',
-              gtfsId: 'HSL:4250551',
-            },
+              gtfsId: 'HSL:4250551'
+            }
           },
           {
             __dataID__: 'client:198107189829',
@@ -326,8 +326,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDIzMDU1MQ==',
-              gtfsId: 'HSL:4230551',
-            },
+              gtfsId: 'HSL:4230551'
+            }
           },
           {
             __dataID__: 'client:198107189830',
@@ -335,8 +335,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDUyMDU1MQ==',
-              gtfsId: 'HSL:4520551',
-            },
+              gtfsId: 'HSL:4520551'
+            }
           },
           {
             __dataID__: 'client:198107189831',
@@ -344,8 +344,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDUzMDUwMQ==',
-              gtfsId: 'HSL:4530501',
-            },
+              gtfsId: 'HSL:4530501'
+            }
           },
           {
             __dataID__: 'client:198107189832',
@@ -353,8 +353,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDcwMDUwMQ==',
-              gtfsId: 'HSL:4700501',
-            },
+              gtfsId: 'HSL:4700501'
+            }
           },
           {
             __dataID__: 'client:198107189833',
@@ -362,8 +362,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDYwMDU1MQ==',
-              gtfsId: 'HSL:4600551',
-            },
+              gtfsId: 'HSL:4600551'
+            }
           },
           {
             __dataID__: 'client:198107189834',
@@ -371,8 +371,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6NDYxMDU1MQ==',
-              gtfsId: 'HSL:4610551',
-            },
+              gtfsId: 'HSL:4610551'
+            }
           },
           {
             __dataID__: 'client:198107189835',
@@ -380,8 +380,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTQxMTU1MQ==',
-              gtfsId: 'HSL:1411551',
-            },
+              gtfsId: 'HSL:1411551'
+            }
           },
           {
             __dataID__: 'client:198107189836',
@@ -389,8 +389,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTM5MjU1MQ==',
-              gtfsId: 'HSL:1392551',
-            },
+              gtfsId: 'HSL:1392551'
+            }
           },
           {
             __dataID__: 'client:198107189837',
@@ -398,8 +398,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTM4MjU1MQ==',
-              gtfsId: 'HSL:1382551',
-            },
+              gtfsId: 'HSL:1382551'
+            }
           },
           {
             __dataID__: 'client:198107189838',
@@ -407,8 +407,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTM3MDU1MQ==',
-              gtfsId: 'HSL:1370551',
-            },
+              gtfsId: 'HSL:1370551'
+            }
           },
           {
             __dataID__: 'client:198107189839',
@@ -416,8 +416,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI4NTU1MQ==',
-              gtfsId: 'HSL:1285551',
-            },
+              gtfsId: 'HSL:1285551'
+            }
           },
           {
             __dataID__: 'client:198107189840',
@@ -425,8 +425,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTI1MDU1MQ==',
-              gtfsId: 'HSL:1250551',
-            },
+              gtfsId: 'HSL:1250551'
+            }
           },
           {
             __dataID__: 'client:198107189841',
@@ -434,8 +434,8 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTE3NDU1MQ==',
-              gtfsId: 'HSL:1174551',
-            },
+              gtfsId: 'HSL:1174551'
+            }
           },
           {
             __dataID__: 'client:198107189842',
@@ -443,14 +443,14 @@ const dt2831 = {
             realtimeState: 'SCHEDULED',
             stop: {
               __dataID__: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-              gtfsId: 'HSL:1020553',
-            },
-          },
-        ],
+              gtfsId: 'HSL:1020553'
+            }
+          }
+        ]
       },
       __fragments__: {
-        '8::client': [{}],
-      },
+        '8::client': [{}]
+      }
     },
     {
       __dataID__: 'client:198107189810',
@@ -474,14 +474,14 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-                gtfsId: 'HSL:1020553',
+                gtfsId: 'HSL:1020553'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMUtfMjAxOTAxMjlfS2VfMl8xNDAx',
                 gtfsId: 'HSL:3001K_20190129_Ke_2_1401',
                 routeShortName: 'K',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189854',
@@ -489,14 +489,14 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-                gtfsId: 'HSL:1020553',
+                gtfsId: 'HSL:1020553'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMlBfMjAxOTAxMjlfS2VfMV8xMzM4',
                 gtfsId: 'HSL:3002P_20190129_Ke_1_1338',
                 routeShortName: 'P',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189855',
@@ -504,14 +504,14 @@ const dt2831 = {
               realtimeState: 'CANCELED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-                gtfsId: 'HSL:1020553',
+                gtfsId: 'HSL:1020553'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMUtfMjAxOTAxMjlfS2VfMl8xNDEx',
                 gtfsId: 'HSL:3001K_20190129_Ke_2_1411',
                 routeShortName: 'K',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189856',
@@ -519,14 +519,14 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-                gtfsId: 'HSL:1020553',
+                gtfsId: 'HSL:1020553'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMlBfMjAxOTAxMjlfS2VfMV8xMzQ4',
                 gtfsId: 'HSL:3002P_20190129_Ke_1_1348',
                 routeShortName: 'P',
-                tripHeadsign: 'Helsinki',
-              },
+                tripHeadsign: 'Helsinki'
+              }
             },
             {
               __dataID__: 'client:198107189857',
@@ -534,18 +534,18 @@ const dt2831 = {
               realtimeState: 'UPDATED',
               stop: {
                 __dataID__: 'U3RvcDpIU0w6MTAyMDU1Mw==',
-                gtfsId: 'HSL:1020553',
+                gtfsId: 'HSL:1020553'
               },
               trip: {
                 __dataID__: 'VHJpcDpIU0w6MzAwMUtfMjAxOTAxMjlfS2VfMl8xNDIx',
                 gtfsId: 'HSL:3001K_20190129_Ke_2_1421',
                 routeShortName: 'K',
-                tripHeadsign: 'Helsinki',
-              },
-            },
+                tripHeadsign: 'Helsinki'
+              }
+            }
           ],
-          zoneId: '01',
-        },
+          zoneId: '01'
+        }
       },
       to: {
         __dataID__: 'client:198107189845',
@@ -554,12 +554,12 @@ const dt2831 = {
         name: 'Rautatieasema',
         vertexType: 'NORMAL',
         vehicleRentalStation: null,
-        stop: null,
+        stop: null
       },
       legGeometry: {
         __dataID__: 'client:198107189843',
         length: 17,
-        points: 'cpgnJukfwCHA?CB??BtH_@XANAAoB?SAG?E?E?E?C?IUF',
+        points: 'cpgnJukfwCHA?CB??BtH_@XANAAoB?SAG?E?E?E?C?IUF'
       },
       intermediatePlaces: [],
       realTime: false,
@@ -573,10 +573,10 @@ const dt2831 = {
       route: null,
       trip: null,
       __fragments__: {
-        '8::client': [{}],
-      },
-    },
-  ],
+        '8::client': [{}]
+      }
+    }
+  ]
 };
 
 export default dt2831;

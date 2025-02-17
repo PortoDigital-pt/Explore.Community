@@ -40,7 +40,7 @@ const searchContext = {
       status: 'no-location',
       hasLocation: false,
       isLocationingInProgress: false,
-      locationingFailed: false,
+      locationingFailed: false
     };
   },
   getFavouriteLocations: () => [],
@@ -48,7 +48,7 @@ const searchContext = {
   getFavouriteStops: () => [],
   getFavouriterRoutes: () => [],
   getLanguage: () => 'en',
-  getFutureRoutes: () => [],
+  getFutureRoutes: () => []
 };
 
 export default searchContext;

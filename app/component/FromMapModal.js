@@ -7,20 +7,20 @@ export default class FromMapModal extends React.Component {
     children: PropTypes.node,
     onClose: PropTypes.func.isRequired,
     titleId: PropTypes.string,
-    favouriteContext: PropTypes.bool,
+    favouriteContext: PropTypes.bool
   };
 
   static defaultProps = {
     children: [],
     titleId: undefined,
-    favouriteContext: false,
+    favouriteContext: false
   };
 
   constructor(props) {
     super(props);
     this.state = {
       containerClassName: 'from-map-modal-container',
-      modalClassName: 'dtmodal display-block windowed',
+      modalClassName: 'dtmodal display-block windowed'
     };
   }
 
@@ -29,9 +29,9 @@ export default class FromMapModal extends React.Component {
     this.setState(
       {
         containerClassName: 'from-map-modal-container closed',
-        modalClassName: `${modalClassName} modal-closed`,
+        modalClassName: `${modalClassName} modal-closed`
       },
-      () => setTimeout(() => this.props.onClose(), 500),
+      () => setTimeout(() => this.props.onClose(), 500)
     );
   };
 

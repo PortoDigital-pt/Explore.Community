@@ -14,7 +14,7 @@ function reverseGeocodeAddress(actionContext, coords) {
     'point.lon': coords.longitude,
     lang: language,
     size: 1,
-    layers: 'address',
+    layers: 'address'
   };
 
   if (actionContext.config.searchParams['boundary.country']) {
@@ -25,7 +25,7 @@ function reverseGeocodeAddress(actionContext, coords) {
 
   return getJson(
     actionContext.config.URL.PELIAS_REVERSE_GEOCODER,
-    searchParams,
+    searchParams
   ).then(data => {
     if (data.features != null && data.features.length > 0) {
       const match = data.features[0].properties;
@@ -34,7 +34,7 @@ function reverseGeocodeAddress(actionContext, coords) {
         gid: match.gid,
         name: match.name,
         layer: match.layer,
-        city: match.localadmin || match.locality,
+        city: match.localadmin || match.locality
       });
     } else {
       actionContext.dispatch('AddressFound', {});
@@ -43,14 +43,14 @@ function reverseGeocodeAddress(actionContext, coords) {
 }
 
 const debouncedReverseGeocoding = debounce(reverseGeocodeAddress, 10000, {
-  leading: true,
+  leading: true
 });
 
 function geoCallback(actionContext, pos) {
   actionContext.dispatch('GeolocationFound', {
     lat: pos.coords.latitude,
     lon: pos.coords.longitude,
-    heading: pos.coords.heading,
+    heading: pos.coords.heading
   });
   debouncedReverseGeocoding(actionContext, pos.coords);
 }
@@ -95,8 +95,8 @@ function mockPositionChange(actionContext) {
       coords: {
         latitude: pos.lat + (Math.random() - 0.5) * 0.001,
         longitude: pos.lon + (Math.random() - 0.5) * 0.001,
-        heading: 0,
-      },
+        heading: 0
+      }
     };
     geoCallback(actionContext, newPos);
   }
@@ -141,7 +141,7 @@ function watchPosition(actionContext) {
         geoWatchId = undefined;
         dispatchGeolocationError(actionContext, error);
       },
-      { enableHighAccuracy: true, timeout: 60000, maximumAge: 60000 },
+      { enableHighAccuracy: true, timeout: 60000, maximumAge: 60000 }
     );
     actionContext.dispatch('storeWatchId', geoWatchId);
   } catch (error) {
@@ -177,7 +177,7 @@ export function checkPositioningPermission() {
                 addAnalyticsEvent({
                   category: 'Map',
                   action: 'AllowGeolocation',
-                  name: null,
+                  name: null
                 });
                 permissionStatus.onchange = null;
               }

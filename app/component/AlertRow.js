@@ -14,14 +14,14 @@ import { PREFIX_ROUTES, PREFIX_STOPS } from '../util/path';
 import {
   entityCompare,
   getEntitiesOfType,
-  mapAlertSource,
+  mapAlertSource
 } from '../util/alertUtils';
 import { AlertEntityType } from '../constants';
 import { getRouteMode } from '../util/modeUtils';
 
 export const getTimePeriod = ({ currentTime, startTime, endTime, intl }) => {
   const at = intl.formatMessage({
-    id: 'at-time',
+    id: 'at-time'
   });
   const defaultFormat = `D.M.YYYY [${at}] HH:mm`;
   const start = capitalize(
@@ -31,8 +31,8 @@ export const getTimePeriod = ({ currentTime, startTime, endTime, intl }) => {
       nextDay: `[${intl.formatMessage({ id: 'tomorrow' })} ${at}] HH:mm`,
       lastWeek: defaultFormat,
       nextWeek: defaultFormat,
-      sameElse: defaultFormat,
-    }),
+      sameElse: defaultFormat
+    })
   );
   if (!endTime) {
     return start;
@@ -41,7 +41,7 @@ export const getTimePeriod = ({ currentTime, startTime, endTime, intl }) => {
     sameDay: 'HH:mm',
     nextDay: defaultFormat,
     nextWeek: defaultFormat,
-    sameElse: defaultFormat,
+    sameElse: defaultFormat
   });
   return `${start} - ${end}`;
 };
@@ -69,7 +69,7 @@ const getEntityIdentifiers = entities =>
     ?.map(
       entity =>
         entity.shortName ||
-        (entity.code ? `${entity.name} (${entity.code})` : entity.name),
+        (entity.code ? `${entity.name} (${entity.code})` : entity.name)
     )
     .filter(identifier => identifier);
 
@@ -97,9 +97,9 @@ export default function AlertRow(
     startTime,
     url,
     index,
-    onClickLink,
+    onClickLink
   },
-  { intl, config },
+  { intl, config }
 ) {
   if (!description && !header) {
     return null;
@@ -134,7 +134,7 @@ export default function AlertRow(
             className={cx('alert-row-link', routeMode)}
             style={{ color: routeColor }}
             aria-label={`${intl.formatMessage({
-              id: 'route',
+              id: 'route'
             })} ${identifier}`}
           >
             {identifier}
@@ -154,7 +154,7 @@ export default function AlertRow(
             to={`/${PREFIX_STOPS}/${gtfsIdList[i]}`}
             className={cx('alert-row-link', routeMode)}
             aria-label={`${intl.formatMessage({
-              id: 'stop',
+              id: 'stop'
             })} ${identifier}`}
           >
             {identifier}
@@ -218,7 +218,7 @@ export default function AlertRow(
                 currentTime: moment.unix(currentTime),
                 startTime: moment.unix(startTime),
                 endTime: endTime ? moment.unix(endTime) : undefined,
-                intl,
+                intl
               })}
             </>
           )}
@@ -245,8 +245,8 @@ AlertRow.propTypes = {
   entities: PropTypes.arrayOf(
     PropTypes.shape({
       __typename: PropTypes.string.isRequired,
-      gtfsId: PropTypes.string.isRequired,
-    }),
+      gtfsId: PropTypes.string.isRequired
+    })
   ),
   severityLevel: PropTypes.string,
   startTime: PropTypes.number,
@@ -255,12 +255,12 @@ AlertRow.propTypes = {
   header: PropTypes.string,
   feed: PropTypes.string,
   index: PropTypes.number.isRequired,
-  onClickLink: PropTypes.func,
+  onClickLink: PropTypes.func
 };
 
 AlertRow.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 AlertRow.defaultProps = {
@@ -274,5 +274,5 @@ AlertRow.defaultProps = {
   entities: undefined,
   url: undefined,
   showLinks: false,
-  onClickLink: undefined,
+  onClickLink: undefined
 };

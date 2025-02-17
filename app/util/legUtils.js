@@ -122,7 +122,7 @@ export const LegMode = {
   Walk: 'WALK',
   Car: 'CAR',
   Rail: 'RAIL',
-  Wait: 'WAIT',
+  Wait: 'WAIT'
 };
 
 /**
@@ -230,7 +230,7 @@ function syntheticEndpoint(originalEndpoint, place) {
     stop: place.stop,
     lat: place.stop.lat,
     lon: place.stop.lon,
-    name: place.stop.name,
+    name: place.stop.name
   };
 }
 
@@ -286,7 +286,7 @@ export function splitLegsAtViaPoints(originalLegs, viaPlaces) {
             ...leg,
             to: syntheticEndpoint(leg.to, place),
             end: place.arrival,
-            intermediatePlaces: intermediatePlaces.slice(start, i),
+            intermediatePlaces: intermediatePlaces.slice(start, i)
           };
           leg.intermediatePlace = true;
           leg.start = place.arrival;
@@ -330,18 +330,18 @@ export function markViaPoints(originalLegs, viaPlaces) {
       leg.intermediatePlaces.forEach(place => {
         intermediatePlaces.push({
           ...place,
-          isViaPoint: isViaPointMatch(place.stop, viaPoints),
+          isViaPoint: isViaPointMatch(place.stop, viaPoints)
         });
       });
       legs.push({
         ...leg,
         intermediatePlaces,
-        isViaPoint,
+        isViaPoint
       });
     } else {
       legs.push({
         ...leg,
-        isViaPoint,
+        isViaPoint
       });
     }
   });
@@ -358,7 +358,7 @@ export function markViaPoints(originalLegs, viaPlaces) {
  */
 export function compressLegs(originalLegs, keepBicycleWalk = false) {
   const usingOwnBicycle = originalLegs.some(
-    leg => getLegMode(leg) === LegMode.Bicycle && leg.rentedBike === false,
+    leg => getLegMode(leg) === LegMode.Bicycle && leg.rentedBike === false
   );
   const compressedLegs = [];
   let compressedLeg;
@@ -403,7 +403,7 @@ export function compressLegs(originalLegs, keepBicycleWalk = false) {
       compressedLeg.distance += currentLeg.distance;
       compressedLeg.to = {
         ...currentLeg.to,
-        ...{ vehicleParking: newBikePark },
+        ...{ vehicleParking: newBikePark }
       };
       compressedLeg.end = currentLeg.end;
       compressedLeg.mode = LegMode.Bicycle;
@@ -596,7 +596,7 @@ export function getLegBadgeProps(leg, config) {
   return {
     badgeFill: getVehicleAvailabilityIndicatorColor(total, config),
     badgeText: `${total}`,
-    badgeTextFill: getVehicleAvailabilityTextColor(total, config),
+    badgeTextFill: getVehicleAvailabilityTextColor(total, config)
   };
 }
 
@@ -639,7 +639,7 @@ export function getZones(legs) {
       [minCharCode, maxCharCode] = getNewMinMaxCharCodes(
         zoneCharCode,
         minCharCode,
-        maxCharCode,
+        maxCharCode
       );
     }
     if (leg.to && leg.to.stop && leg.to.stop.zoneId) {
@@ -647,7 +647,7 @@ export function getZones(legs) {
       [minCharCode, maxCharCode] = getNewMinMaxCharCodes(
         zoneCharCode,
         minCharCode,
-        maxCharCode,
+        maxCharCode
       );
     }
     if (Array.isArray(leg.intermediatePlaces)) {
@@ -658,7 +658,7 @@ export function getZones(legs) {
           [minCharCode, maxCharCode] = getNewMinMaxCharCodes(
             zoneCharCode,
             minCharCode,
-            maxCharCode,
+            maxCharCode
           );
         });
     }
@@ -689,10 +689,10 @@ export function getRoutes(legs) {
         agency: {
           fareUrl: agency.fareUrl,
           gtfsId: agency.gtfsId,
-          name: agency.name,
+          name: agency.name
         },
         gtfsId: route.gtfsId,
-        longName: route.longName,
+        longName: route.longName
       };
     }
   });
@@ -773,7 +773,7 @@ export function getBoardingLeg(
   previousLeg,
   waitLeg,
   leg,
-  boardingMode,
+  boardingMode
 ) {
   if ((nextLeg?.transitLeg && !waitLeg) || previousLeg?.transitLeg) {
     let { from, to } = leg;
@@ -782,13 +782,13 @@ export function getBoardingLeg(
     if (!previousLeg?.transitLeg && leg.from.stop) {
       from = {
         ...from,
-        stop: null,
+        stop: null
       };
     }
     if ((!nextLeg?.transitLeg && leg.to.stop) || waitLeg) {
       to = {
         ...to,
-        stop: null,
+        stop: null
       };
     }
     return {
@@ -799,7 +799,7 @@ export function getBoardingLeg(
       rentedBike: leg.rentedBike,
       to,
       from,
-      mode: boardingMode,
+      mode: boardingMode
     };
   }
   return undefined;

@@ -2,7 +2,7 @@ import {
   ICON_CAUTION,
   ICON_INFO,
   ICON_TYPE_INFO,
-  ICON_TYPE_CAUTION,
+  ICON_TYPE_CAUTION
 } from './ErrorCard';
 import NationalServiceLink from './NationalServiceLink';
 import PastLink from './PastLink';
@@ -22,15 +22,15 @@ const errorCardProps = [
     props: {
       bodyId: 'no-route-already-at-destination',
       LinkComponent: null,
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-route-origin-same-as-destination',
     props: {
       bodyId: 'no-route-origin-same-as-destination',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'itinerary-in-the-past',
@@ -38,8 +38,8 @@ const errorCardProps = [
       ...info,
       titleId: 'itinerary-in-the-past-title',
       bodyId: 'itinerary-in-the-past',
-      LinkComponent: PastLink,
-    },
+      LinkComponent: PastLink
+    }
   },
   {
     id: 'outside-bounds-1',
@@ -47,8 +47,8 @@ const errorCardProps = [
       titleId: 'router-unable',
       bodyId: 'destination-outside-service',
       LinkComponent: NationalServiceLink,
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'outside-bounds-2',
@@ -56,8 +56,8 @@ const errorCardProps = [
       titleId: 'router-unable',
       bodyId: 'origin-outside-service',
       LinkComponent: NationalServiceLink,
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'outside-bounds-3',
@@ -65,8 +65,8 @@ const errorCardProps = [
       titleId: 'router-unable',
       bodyId: 'router-outside-bounds-3',
       LinkComponent: NationalServiceLink,
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'outside-service-period',
@@ -74,100 +74,100 @@ const errorCardProps = [
       titleId: 'router-unable',
       bodyId: 'router-outside-service-period',
       LinkComponent: PastLink,
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-transit-connection',
     props: {
       titleId: 'no-route-msg',
       bodyId: 'no-route-msg-with-changes',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'location-not-found-1',
     props: {
       titleId: 'router-location-not-found-title-1',
       bodyId: 'router-location-not-found',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'location-not-found-2',
     props: {
       titleId: 'router-location-not-found-title-2',
       bodyId: 'router-location-not-found',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'location-not-found-3',
     props: {
       titleId: 'router-location-not-found-title-3',
       bodyId: 'router-location-not-found',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-stops-in-range-1',
     props: {
       titleId: 'router-unable',
       bodyId: 'router-stops-in-range-1',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-stops-in-range-2',
     props: {
       titleId: 'router-unable',
       bodyId: 'router-stops-in-range-2',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-stops-in-range-3',
     props: {
       titleId: 'router-unable',
       bodyId: 'router-stops-in-range-3',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'walk-bike-itinerary-4',
     props: {
       bodyId: 'walk-bike-itinerary-4',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'walk-bike-itinerary-1',
     props: {
       bodyId: 'walk-bike-itinerary-1',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'walk-bike-itinerary-2',
     props: {
       bodyId: 'walk-bike-itinerary-2',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'walk-bike-itinerary-3',
     props: {
       bodyId: 'walk-bike-itinerary-3',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'walking-better-than-transit',
     props: {
       titleId: 'router-only-walk-title',
       bodyId: 'router-only-walk',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-transit-connection-in-search-window',
@@ -175,39 +175,39 @@ const errorCardProps = [
       titleId: 'no-route-msg',
       bodyId: 'router-transit-connection-in-search-window',
       LinkComponent: ChangeDepartureTimeLink,
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-route-msg-with-changes',
     props: {
       titleId: 'no-route-msg',
       bodyId: 'no-route-msg-with-changes',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'system-error',
     props: {
       titleId: 'router-unable',
       bodyId: 'router-system-error',
-      ...caution,
-    },
+      ...caution
+    }
   },
   {
     id: 'no-route-alternative-suggestion',
     props: {
       bodyId: 'e-scooter-alternative',
-      ...info,
-    },
+      ...info
+    }
   },
   {
     id: 'no-route-msg',
     props: {
       bodyId: 'no-route-msg',
-      ...caution,
-    },
-  },
+      ...caution
+    }
+  }
 ];
 
 export default errorCardProps;

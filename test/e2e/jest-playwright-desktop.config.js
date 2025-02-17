@@ -7,16 +7,16 @@ module.exports = {
     protocol: 'http',
     launchTimeout: 200000,
     debug: true,
-    usedPortAction: 'ignore',
+    usedPortAction: 'ignore'
   },
   launchOptions: {
-    headless: !process.env.DEBUG,
+    headless: !process.env.DEBUG
   },
   contextOptions: {
     viewport: {
       width: 1920,
-      height: 1080,
-    },
+      height: 1080
+    }
   },
-  browsers: ['chromium', 'firefox', 'webkit'],
+  browsers: ['chromium', 'firefox', 'webkit']
 };

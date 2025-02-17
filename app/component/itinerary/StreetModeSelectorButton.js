@@ -9,13 +9,13 @@ import {
   getTotalDistance,
   getTotalBikingDistance,
   getTotalDrivingDistance,
-  getExtendedMode,
+  getExtendedMode
 } from '../../util/legUtils';
 import { streetHash } from '../../util/path';
 
 export default function StreetModeSelectorButton(
   { icon, name, plan, onClick },
-  { config, intl },
+  { config, intl }
 ) {
   const itinerary = plan?.edges?.[0]?.node;
   if (!itinerary) {
@@ -28,35 +28,35 @@ export default function StreetModeSelectorButton(
       distance = displayDistance(
         itinerary.walkDistance,
         config,
-        intl.formatNumber,
+        intl.formatNumber
       );
       break;
     case streetHash.bikeAndVehicle:
       distance = displayDistance(
         getTotalBikingDistance(itinerary),
         config,
-        intl.formatNumber,
+        intl.formatNumber
       );
       break;
     case streetHash.carAndVehicle:
       distance = displayDistance(
         getTotalDrivingDistance(itinerary),
         config,
-        intl.formatNumber,
+        intl.formatNumber
       );
       break;
     case streetHash.parkAndRide:
       distance = displayDistance(
         getTotalDrivingDistance(itinerary),
         config,
-        intl.formatNumber,
+        intl.formatNumber
       );
       break;
     default:
       distance = displayDistance(
         getTotalDistance(itinerary),
         config,
-        intl.formatNumber,
+        intl.formatNumber
       );
       break;
   }
@@ -70,13 +70,13 @@ export default function StreetModeSelectorButton(
     name === streetHash.carAndVehicle
   ) {
     const transitEdge = plan.edges.find(e =>
-      e.node.legs.find(l => l.transitLeg),
+      e.node.legs.find(l => l.transitLeg)
     );
     const mode =
       (transitEdge &&
         getExtendedMode(
           transitEdge.node.legs.find(l => l.transitLeg),
-          config,
+          config
         )) ||
       'rail';
     secondaryIcon = `icon-icon_${mode}`;
@@ -94,12 +94,12 @@ export default function StreetModeSelectorButton(
       aria-label={intl.formatMessage(
         {
           id: `street-mode-${name.toLowerCase()}-aria`,
-          defaultMessage: `${name} itinerary`,
+          defaultMessage: `${name} itinerary`
         },
         {
           length: distance,
-          duration,
-        },
+          duration
+        }
       )}
     >
       <div className="street-mode-selector-button-content">
@@ -153,10 +153,10 @@ StreetModeSelectorButton.propTypes = {
   icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   plan: planShape.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 StreetModeSelectorButton.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };

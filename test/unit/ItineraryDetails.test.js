@@ -16,14 +16,14 @@ describe('<ItineraryDetails />', () => {
       openSettings: () => {},
       showCanceledLegsBanner: false,
       plan: {
-        date: 19700101,
+        date: 19700101
       },
       isMobile: false,
       currentTime: 0,
-      lang: 'fi',
+      lang: 'fi'
     };
     const wrapper = shallowWithIntl(<ItineraryDetails {...props} />, {
-      context: { ...mockContext },
+      context: { ...mockContext }
     });
     expect(wrapper.find('.itinerary-tab').length).to.equal(1);
   });

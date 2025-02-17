@@ -14,11 +14,11 @@ import { getIdWithoutFeed } from '../util/feedScopedIdUtils';
 
 const modules = {
   FavouriteVehicleRentalStationContainer: () =>
-    importLazy(import('./FavouriteVehicleRentalStationContainer')),
+    importLazy(import('./FavouriteVehicleRentalStationContainer'))
 };
 const ParkOrBikeStationHeader = (
   { parkOrStation, breakpoint, parkType },
-  { config },
+  { config }
 ) => {
   const [zoneId, setZoneId] = useState(undefined);
   useEffect(() => {
@@ -28,7 +28,7 @@ const ParkOrBikeStationHeader = (
       'boundary.circle.radius': 0.2,
       layers: 'address',
       size: 1,
-      zones: 1,
+      zones: 1
     };
     if (config.searchParams['boundary.country']) {
       searchParams['boundary.country'] =
@@ -93,19 +93,19 @@ ParkOrBikeStationHeader.propTypes = {
     name: PropTypes.string.isRequired,
     stationId: PropTypes.string,
     lat: PropTypes.number.isRequired,
-    lon: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired
   }).isRequired,
-  parkType: PropTypes.string,
+  parkType: PropTypes.string
 };
 
 ParkOrBikeStationHeader.defaultProps = { parkType: undefined };
 
 ParkOrBikeStationHeader.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const ParkOrBikeStationHeaderWithBreakpoint = withBreakpoint(
-  ParkOrBikeStationHeader,
+  ParkOrBikeStationHeader
 );
 
 export default ParkOrBikeStationHeaderWithBreakpoint;

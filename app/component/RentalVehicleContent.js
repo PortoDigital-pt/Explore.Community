@@ -8,7 +8,7 @@ import Icon from './Icon';
 import withBreakpoint from '../util/withBreakpoint';
 import {
   getRentalNetworkIcon,
-  getRentalNetworkConfig,
+  getRentalNetworkConfig
 } from '../util/vehicleRentalUtils';
 import { isBrowser } from '../util/browser';
 import { PREFIX_RENTALVEHICLES } from '../util/path';
@@ -18,7 +18,7 @@ import { rentalVehicleShape } from '../util/shapes';
 
 const RentalVehicleContent = (
   { rentalVehicle, breakpoint, router, error, language, match },
-  { config },
+  { config }
 ) => {
   const [isClient, setClient] = useState(false);
 
@@ -43,7 +43,7 @@ const RentalVehicleContent = (
   }
   const networkConfig = getRentalNetworkConfig(
     rentalVehicle.rentalNetwork.networkId,
-    config,
+    config
   );
   const vehicleIcon = getRentalNetworkIcon(networkConfig);
 
@@ -120,25 +120,25 @@ RentalVehicleContent.propTypes = {
   breakpoint: PropTypes.string.isRequired,
   router: routerShape.isRequired,
   error: PropTypes.shape({
-    message: PropTypes.string,
+    message: PropTypes.string
   }),
   language: PropTypes.string.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      networks: PropTypes.string,
-    }),
-  }),
+      networks: PropTypes.string
+    })
+  })
 };
 
 RentalVehicleContent.defaultProps = {
   error: undefined,
-  match: undefined,
+  match: undefined
 };
 
 RentalVehicleContent.contextTypes = {
   config: PropTypes.shape({
-    text: PropTypes.string,
-  }).isRequired,
+    text: PropTypes.string
+  }).isRequired
 };
 
 const RentalVehicleContentWithBreakpoint = withBreakpoint(RentalVehicleContent);
@@ -149,7 +149,7 @@ const connectedComponent = connectToStores(
   ({ getStore }) => {
     const language = getStore('PreferencesStore').getLanguage();
     return { language };
-  },
+  }
 );
 
 const containerComponent = createFragmentContainer(connectedComponent, {
@@ -169,10 +169,10 @@ const containerComponent = createFragmentContainer(connectedComponent, {
         url
       }
     }
-  `,
+  `
 });
 
 export {
   containerComponent as default,
-  RentalVehicleContentWithBreakpoint as Component,
+  RentalVehicleContentWithBreakpoint as Component
 };

@@ -7,11 +7,11 @@ describe('Testing @digitransit-util/digitransit-util-distance module', () => {
   it('Checking that distance is calculated', () => {
     const latlon1 = {
       lat: 3,
-      lon: 2,
+      lon: 2
     };
     const latlon2 = {
       lat: 4,
-      lon: 1,
+      lon: 1
     };
 
     const retValue = distance(latlon1, latlon2);

@@ -8,7 +8,7 @@ const NavigatorIntroFeature = ({
   iconColor,
   iconBackgroundColor,
   header,
-  body,
+  body
 }) => {
   return (
     <div className="feature">
@@ -35,13 +35,13 @@ NavigatorIntroFeature.propTypes = {
   body: PropTypes.string.isRequired,
   icon: PropTypes.string,
   iconColor: PropTypes.string,
-  iconBackgroundColor: PropTypes.string,
+  iconBackgroundColor: PropTypes.string
 };
 
 NavigatorIntroFeature.defaultProps = {
   icon: undefined,
   iconColor: 'black',
-  iconBackgroundColor: 'transparent',
+  iconBackgroundColor: 'transparent'
 };
 
 export default NavigatorIntroFeature;

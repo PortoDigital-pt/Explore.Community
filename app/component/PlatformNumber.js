@@ -32,17 +32,17 @@ function PlatformNumber({ number, short, isRailOrSubway }) {
 PlatformNumber.propTypes = {
   number: PropTypes.string,
   short: PropTypes.bool,
-  isRailOrSubway: PropTypes.bool,
+  isRailOrSubway: PropTypes.bool
 };
 
 PlatformNumber.defaultProps = {
   number: undefined,
   short: true,
-  isRailOrSubway: false,
+  isRailOrSubway: false
 };
 
 PlatformNumber.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 PlatformNumber.displayName = 'PlatformNumber';

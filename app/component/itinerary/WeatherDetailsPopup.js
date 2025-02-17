@@ -6,7 +6,7 @@ import Icon from '../Icon';
 
 export default function WeatherDetailsPopup(
   { weatherData, onClose },
-  { intl },
+  { intl }
 ) {
   // Icons for night time is represented adding a 100 to an id. For example:
   // iconId 1 (clear sky) for a day is 101 for a night. Subtract this so we don't need duplicate translations.
@@ -31,7 +31,7 @@ export default function WeatherDetailsPopup(
           <Icon img={`icon-icon_weather_${weatherData.iconId}`} />
           <span className="weather-temperature">
             {`${Math.round(weatherData.temperature) > 1 ? '+' : ''}${Math.round(
-              weatherData.temperature,
+              weatherData.temperature
             )}\u00B0C`}
           </span>
         </div>
@@ -50,11 +50,11 @@ WeatherDetailsPopup.propTypes = {
   weatherData: PropTypes.shape({
     temperature: PropTypes.number,
     iconId: PropTypes.number,
-    time: PropTypes.string,
+    time: PropTypes.string
   }).isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 WeatherDetailsPopup.contextTypes = {
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };

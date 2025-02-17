@@ -5,7 +5,7 @@ import { DATE_FORMAT } from '../constants';
 export const prepareServiceDay = params => {
   return {
     ...params,
-    date: moment().format(DATE_FORMAT),
+    date: moment().format(DATE_FORMAT)
   };
 };
 
@@ -13,7 +13,7 @@ export const prepareDatesForStops = params => {
   return {
     ...params,
     startTime: moment().unix() - 60 * 5, // 5 mins in the past
-    date: moment().format(DATE_FORMAT),
+    date: moment().format(DATE_FORMAT)
   };
 };
 
@@ -30,6 +30,6 @@ export const prepareWeekDays = params => {
   return {
     ...params,
     id,
-    dates: [monday, tuesday, wednesday, thursday, friday, saturday, sunday],
+    dates: [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
   };
 };

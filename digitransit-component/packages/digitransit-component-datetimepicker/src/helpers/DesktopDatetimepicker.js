@@ -43,7 +43,7 @@ function DesktopDatetimepicker({
   disableTyping,
   timeZone,
   datePicker,
-  translationSettings,
+  translationSettings
 }) {
   moment.tz.setDefault(timeZone);
   const [displayValue, changeDisplayValue] = useState(getDisplay(value));
@@ -113,7 +113,7 @@ function DesktopDatetimepicker({
   const closestOption =
     closestOptions.length > 0
       ? closestOptions?.reduce((a, b) =>
-          Math.abs(value - a.value) < Math.abs(value - b.value) ? a : b,
+          Math.abs(value - a.value) < Math.abs(value - b.value) ? a : b
         )
       : undefined;
   const inputId = `${id}-input`;
@@ -154,7 +154,7 @@ function DesktopDatetimepicker({
               return itemLabel;
             }
             return '';
-          },
+          }
         }}
         options={options}
         inputId={inputId}
@@ -189,11 +189,11 @@ function DesktopDatetimepicker({
           handleTimestamp(time.value);
         }}
         components={{
-          IndicatorsContainer: () => null,
+          IndicatorsContainer: () => null
         }}
         className={cx(
           styles['datetimepicker-select-container'],
-          invalidInput ? 'datetimepicker-invalid-input' : '',
+          invalidInput ? 'datetimepicker-invalid-input' : ''
         )}
         classNamePrefix="datetimepicker-select"
         onInputChange={onInputChange}
@@ -288,14 +288,14 @@ DesktopDatetimepicker.propTypes = {
   disableTyping: PropTypes.bool,
   timeZone: PropTypes.string,
   datePicker: PropTypes.bool,
-  translationSettings: PropTypes.shape({ lng: PropTypes.string.isRequired }),
+  translationSettings: PropTypes.shape({ lng: PropTypes.string.isRequired })
 };
 
 DesktopDatetimepicker.defaultProps = {
   disableTyping: false,
   timeZone: 'Europe/Helsinki',
   datePicker: false,
-  translationSettings: { lng: 'fi' },
+  translationSettings: { lng: 'fi' }
 };
 
 export default DesktopDatetimepicker;

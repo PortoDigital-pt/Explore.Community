@@ -18,25 +18,25 @@ const StopPageMeta = compose(
     const title = intl.formatMessage(
       {
         id: 'stop-page.title',
-        defaultMessage: 'Stop - {name} {code}',
+        defaultMessage: 'Stop - {name} {code}'
       },
-      stop,
+      stop
     );
     const description = intl.formatMessage(
       {
         id: 'stop-page.description',
-        defaultMessage: 'Stop - {name} {code}, {desc}',
+        defaultMessage: 'Stop - {name} {code}, {desc}'
       },
-      stop,
+      stop
     );
     return generateMetaData(
       {
         description,
-        title,
+        title
       },
-      config,
+      config
     );
-  }),
+  })
 )(Helmet);
 
 export default createFragmentContainer(StopPageMeta, {
@@ -46,5 +46,5 @@ export default createFragmentContainer(StopPageMeta, {
       code
       desc
     }
-  `,
+  `
 });

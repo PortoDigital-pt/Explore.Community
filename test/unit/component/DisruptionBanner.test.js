@@ -5,7 +5,7 @@ import { Component as DisruptionBanner } from '../../../app/component/Disruption
 import DisruptionBannerAlert from '../../../app/component/DisruptionBannerAlert';
 import {
   AlertSeverityLevelType,
-  AlertEntityType,
+  AlertEntityType
 } from '../../../app/constants';
 
 describe('<DisruptionBanner />', () => {
@@ -26,17 +26,17 @@ describe('<DisruptionBanner />', () => {
               __typename: AlertEntityType.Route,
               mode: 'BUS',
               shortName: '1',
-              gtfsId: 'foo:1',
-            },
-          ],
-        },
-      ],
+              gtfsId: 'foo:1'
+            }
+          ]
+        }
+      ]
     };
 
     const wrapper = shallowWithIntl(<DisruptionBanner {...props} />, {
       context: {
-        config: { CONFIG: 'default' },
-      },
+        config: { CONFIG: 'default' }
+      }
     });
     expect(wrapper.find(DisruptionBannerAlert)).to.lengthOf(1);
   });

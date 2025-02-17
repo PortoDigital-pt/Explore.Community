@@ -11,8 +11,8 @@ require('@babel/register')({
   // This will override `node_modules` ignoring - you can alternatively pass
   // an array of strings to be explicitly matched or a regex / glob
   ignore: [
-    /node_modules\/(?!react-leaflet|@babel\/runtime\/helpers\/esm|@digitransit-util)/,
-  ],
+    /node_modules\/(?!react-leaflet|@babel\/runtime\/helpers\/esm|@digitransit-util)/
+  ]
 });
 
 global.fetch = require('node-fetch');
@@ -65,8 +65,8 @@ function setUpOpenId() {
     require('helmet')({
       contentSecurityPolicy: false,
       referrerPolicy: false,
-      expectCt: false,
-    }),
+      expectCt: false
+    })
   );
   setUpOIDC(app, port, indexPath, hostnames);
 }
@@ -76,14 +76,14 @@ function setUpStaticFolders() {
   if (process.env.ASSET_URL) {
     const swText = fs.readFileSync(
       path.join(process.cwd(), '_static', 'sw.js'),
-      { encoding: 'utf8' },
+      { encoding: 'utf8' }
     );
     const injectionPoint = swText.indexOf(';') + 2;
     const swPreText = swText.substring(0, injectionPoint);
     const swPostText = swText.substring(injectionPoint);
     const swInjectionText = fs
       .readFileSync(path.join(process.cwd(), 'server', 'swInjection.js'), {
-        encoding: 'utf8',
+        encoding: 'utf8'
       })
       .replace(/ASSET_URL/g, process.env.ASSET_URL);
     const swTextInjected = swPreText + swInjectionText + swPostText;
@@ -113,14 +113,14 @@ function setUpStaticFolders() {
         }
         // Always set cors header
         res.header('Access-Control-Allow-Origin', '*');
-      },
-    }),
+      }
+    })
   );
 
   if (config.localStorageEmitter) {
     app.use(
       '/local-storage-emitter',
-      express.static(path.join(staticFolder, 'emitter')),
+      express.static(path.join(staticFolder, 'emitter'))
     );
   }
 }
@@ -147,7 +147,7 @@ function setUpErrorHandling() {
 function setUpRoutes() {
   app.use(
     ['/', '/fi/', '/en/', '/sv/', '/ru/', '/slangi/'],
-    require('./reittiopasParameterMiddleware').default,
+    require('./reittiopasParameterMiddleware').default
   );
 
   app.use(require('../app/server').default);
@@ -169,7 +169,7 @@ function setUpAvailableRouteTimetables() {
         4,
         4000,
         {},
-        config,
+        config
       )
         .then(res => res.json())
         .then(
@@ -189,21 +189,21 @@ function setUpAvailableRouteTimetables() {
               1440,
               60000,
               {},
-              config,
+              config
             )
               .then(res => res.json())
               .then(
                 result => {
                   config.timetables.HSL.setAvailableRouteTimetables(result);
                   console.log(
-                    'availableRouteTimetables.HSL loaded after retry',
+                    'availableRouteTimetables.HSL loaded after retry'
                   );
                 },
                 error => {
                   console.log(error);
-                },
+                }
               );
-          },
+          }
         );
     } else {
       resolve();
@@ -222,7 +222,7 @@ function processTicketTypeResult(result) {
         }
         config.availableTickets[ticketFeed][ticket.fareId] = {
           price: ticket.price,
-          zones: ticket.zones,
+          zones: ticket.zones
         };
       });
       console.log('availableTickets loaded');
@@ -231,7 +231,7 @@ function processTicketTypeResult(result) {
     }
   } else {
     console.log(
-      'availableTickets not loaded, missing availableTickets object from config-file',
+      'availableTickets not loaded, missing availableTickets object from config-file'
     );
   }
 }
@@ -241,7 +241,7 @@ function setUpAvailableTickets() {
     const options = {
       method: 'POST',
       body: '{ ticketTypes { price fareId zones } }',
-      headers: { 'Content-Type': 'application/graphql' },
+      headers: { 'Content-Type': 'application/graphql' }
     };
     const queryParameters = config.hasAPISubscriptionQueryParameter
       ? `?${config.API_SUBSCRIPTION_QUERY_PARAMETER_NAME}=${config.API_SUBSCRIPTION_TOKEN}`
@@ -270,7 +270,7 @@ function setUpAvailableTickets() {
               `${config.URL.OTP}gtfs/v1${queryParameters}`,
               1440,
               60000,
-              options,
+              options
             )
               .then(res => res.json())
               .then(
@@ -279,10 +279,10 @@ function setUpAvailableTickets() {
                 },
                 error => {
                   console.log(error);
-                },
+                }
               );
           }
-        },
+        }
       );
   });
 }
@@ -291,7 +291,7 @@ function getZoneUrl(json) {
   const zoneLayer =
     !json.noZoneSharing &&
     json.layers.find(
-      layer => layer.name.fi === 'Vyöhykkeet' || layer.name.en === 'Zones',
+      layer => layer.name.fi === 'Vyöhykkeet' || layer.name.en === 'Zones'
     );
   if (zoneLayer && !allZones) {
     // use a geoJson source to initialize combined zone data
@@ -322,13 +322,13 @@ function collectGeoJsonZones() {
               fetchGeoJsonConfig(geoJson.layerConfigUrl).then(data => {
                 resolve(getZoneUrl(data));
               });
-            }),
+            })
           );
         } else {
           promises.push(
             new Promise(resolve => {
               resolve(getZoneUrl(geoJson));
-            }),
+            })
           );
         }
       }
@@ -349,8 +349,8 @@ function collectGeoJsonZones() {
 function startServer() {
   const server = app.listen(port, () =>
     console.log(
-      `\n   Digitransit-ui available on port=[${server.address().port}]. \n`,
-    ),
+      `\n   Digitransit-ui available on port=[${server.address().port}]. \n`
+    )
   );
 }
 
@@ -359,7 +359,7 @@ async function fetchCitybikeSeasons() {
   const database = client.database(process.env.CITYBIKE_DATABASE);
   const container = database.container('schedules');
   const query = {
-    query: 'SELECT * FROM c',
+    query: 'SELECT * FROM c'
   };
 
   const { resources } = await container.items.query(query).fetchAll();
@@ -376,18 +376,18 @@ function buildCitybikeConfig(seasonDef, configName) {
     season: {
       preSeasonStart: seasonDef.preSeason,
       start: inSeason[0],
-      end: inSeason[1],
-    },
+      end: inSeason[1]
+    }
   };
 }
 
 function handleCitybikeSeasonConfigurations(schedules, configName) {
   const seasonDefinitions = schedules.filter(
-    seasonDef => seasonDef.configName === configName,
+    seasonDef => seasonDef.configName === configName
   );
   const configurations = [];
   seasonDefinitions.forEach(def =>
-    configurations.push(buildCitybikeConfig(def, configName)),
+    configurations.push(buildCitybikeConfig(def, configName))
   );
   return configurations;
 }
@@ -412,9 +412,9 @@ function fetchCitybikeConfigurations() {
             promises.push(
               new Promise(resolve => {
                 resolve(
-                  handleCitybikeSeasonConfigurations(schedules, configName),
+                  handleCitybikeSeasonConfigurations(schedules, configName)
                 );
-              }),
+              })
             );
           }
         });
@@ -425,10 +425,10 @@ function fetchCitybikeConfigurations() {
             .flat()
             .filter(
               (v, i, a) =>
-                a.findIndex(v2 => v2.networkName === v.networkName) === i,
+                a.findIndex(v2 => v2.networkName === v.networkName) === i
             );
           console.log(
-            `fetched: ${seasonDefinitions.length} citybike season configuration`,
+            `fetched: ${seasonDefinitions.length} citybike season configuration`
           );
           console.log(seasonDefinitions);
           configTools.setAvailableCitybikeConfigurations(seasonDefinitions);
@@ -461,7 +461,7 @@ Promise.all([
   setUpAvailableRouteTimetables(),
   setUpAvailableTickets(),
   collectGeoJsonZones(),
-  fetchCitybikeConfigurations(),
+  fetchCitybikeConfigurations()
 ]).then(startServer);
 
 module.exports.app = app;

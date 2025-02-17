@@ -5,7 +5,7 @@ import { intlShape } from 'react-intl';
 import { saveRoutingSettings } from '../../../action/SearchSettingsActions';
 import SearchSettingsDropdown, {
   getFiveStepOptionsNumerical,
-  valueShape,
+  valueShape
 } from './SearchSettingsDropdown';
 import { addAnalyticsEvent } from '../../../util/analyticsUtils';
 import { findNearestOption } from '../../../util/planParamUtil';
@@ -22,7 +22,7 @@ class BikingOptionsSection extends React.Component {
       options.find(
         option =>
           option.value ===
-          findNearestOption(bikeSpeed, this.props.bikeSpeedOptions),
+          findNearestOption(bikeSpeed, this.props.bikeSpeedOptions)
       );
     return (
       <SearchSettingsDropdown
@@ -31,12 +31,12 @@ class BikingOptionsSection extends React.Component {
         defaultValue={defaultSettings.bikeSpeed}
         onOptionSelected={value => {
           this.context.executeAction(saveRoutingSettings, {
-            bikeSpeed: value,
+            bikeSpeed: value
           });
           addAnalyticsEvent({
             category: 'ItinerarySettings',
             action: 'ChangeBikingSpeed',
-            name: value,
+            name: value
           });
         }}
         options={options}
@@ -54,17 +54,17 @@ BikingOptionsSection.propTypes = {
   bikeSpeedOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
   // eslint-disable-next-line
   overrideStyle: PropTypes.object,
-  defaultSettings: settingsShape.isRequired,
+  defaultSettings: settingsShape.isRequired
 };
 
 BikingOptionsSection.defaultProps = {
-  overrideStyle: undefined,
+  overrideStyle: undefined
 };
 
 BikingOptionsSection.contextTypes = {
   match: matchShape.isRequired,
   intl: intlShape.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default BikingOptionsSection;

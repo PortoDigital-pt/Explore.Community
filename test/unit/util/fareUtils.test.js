@@ -3,7 +3,7 @@ import { getFaresFromLegs } from '../../../app/util/fareUtils';
 const defaultConfig = {
   showTicketInformation: true,
   fareMapping: fareId => fareId,
-  availableTickets: { HSL: { 'HSL:AB': { price: 3.1, zones: ['A', 'B'] } } },
+  availableTickets: { HSL: { 'HSL:AB': { price: 3.1, zones: ['A', 'B'] } } }
 };
 
 describe('fareUtils', () => {
@@ -26,9 +26,9 @@ describe('fareUtils', () => {
       const fares = [
         {
           fareProducts: [{ id: 1, product: { id: 'HSL:AB', price: '3.1' } }],
-          route: { agency: {} },
+          route: { agency: {} }
         },
-        { fareProducts: [], route: { agency: {} } },
+        { fareProducts: [], route: { agency: {} } }
       ];
       expect(getFaresFromLegs(fares, defaultConfig)).to.have.lengthOf(2);
     });
@@ -42,8 +42,8 @@ describe('fareUtils', () => {
       const fares = [
         {
           fareProducts: [{ id: 1, product: { id: 'HSL:AB', price: '3.1' } }],
-          route: { agency: {} },
-        },
+          route: { agency: {} }
+        }
       ];
       const result = getFaresFromLegs(fares, defaultConfig);
       expect(result).to.have.lengthOf(1);
@@ -55,15 +55,15 @@ describe('fareUtils', () => {
           fareProducts: [
             {
               id: '1',
-              product: { id: 'HSL:AB', price: { amount: 3.1 } },
-            },
+              product: { id: 'HSL:AB', price: { amount: 3.1 } }
+            }
           ],
-          route: { agency: { id: 'HSL:HSL' } },
-        },
+          route: { agency: { id: 'HSL:HSL' } }
+        }
       ];
       const config = {
         ...defaultConfig,
-        fareMapping: fareId => `${fareId.split(':')[1]}`,
+        fareMapping: fareId => `${fareId.split(':')[1]}`
       };
       expect(getFaresFromLegs(fares, config)[0].ticketName).to.equal('AB');
     });
@@ -74,21 +74,21 @@ describe('fareUtils', () => {
           fareProducts: [
             {
               id: '1',
-              product: { id: 'HSL:AB', price: { amount: 3.1 } },
-            },
+              product: { id: 'HSL:AB', price: { amount: 3.1 } }
+            }
           ],
-          route: { agency: { id: 'HSL:HSL' } },
-        },
+          route: { agency: { id: 'HSL:HSL' } }
+        }
       ];
       const config = {
         ...defaultConfig,
-        fareMapping: fareId => fareId.replace('HSL:', ''),
+        fareMapping: fareId => fareId.replace('HSL:', '')
       };
       expect(getFaresFromLegs(fares, config)[0].fareProducts).to.deep.equal([
         {
           id: '1',
-          product: { id: 'HSL:AB', price: { amount: 3.1 } },
-        },
+          product: { id: 'HSL:AB', price: { amount: 3.1 } }
+        }
       ]);
     });
 
@@ -98,26 +98,26 @@ describe('fareUtils', () => {
           fareProducts: [
             {
               id: '1',
-              product: { id: 'HSL:AB', price: { amount: 3.1 } },
-            },
+              product: { id: 'HSL:AB', price: { amount: 3.1 } }
+            }
           ],
           route: {
             agency: {
               name: 'foo',
               fareUrl: 'https://www.hsl.fi',
-              gtfsId: 'bar',
-            },
-          },
-        },
+              gtfsId: 'bar'
+            }
+          }
+        }
       ];
       const config = {
         ...defaultConfig,
-        fareMapping: fareId => fareId.replace('HSL:', ''),
+        fareMapping: fareId => fareId.replace('HSL:', '')
       };
       expect(getFaresFromLegs(fares, config)[0].agency).to.deep.equal({
         name: 'foo',
         fareUrl: 'https://www.hsl.fi',
-        gtfsId: 'bar',
+        gtfsId: 'bar'
       });
     });
   });
@@ -128,15 +128,15 @@ describe('fareUtils', () => {
         fareProducts: [
           {
             id: '1',
-            product: { id: 'HSL:AB', price: { amount: 3.1 } },
-          },
+            product: { id: 'HSL:AB', price: { amount: 3.1 } }
+          }
         ],
         route: {
           agency: {
-            gtfsId: 'HSL:HSL',
+            gtfsId: 'HSL:HSL'
           },
-          gtfsId: 'HSL:1003',
-        },
+          gtfsId: 'HSL:1003'
+        }
       },
       {
         fareProducts: [],
@@ -144,12 +144,12 @@ describe('fareUtils', () => {
           agency: {
             fareUrl: 'foobaz',
             gtfsId: 'FOO:BAR',
-            name: 'Merisataman lauttaliikenne',
+            name: 'Merisataman lauttaliikenne'
           },
           gtfsId: 'FOO:1234',
-          longName: 'Merisataman lautta',
-        },
-      },
+          longName: 'Merisataman lautta'
+        }
+      }
     ];
 
     const result = getFaresFromLegs(fares, defaultConfig);
@@ -160,7 +160,7 @@ describe('fareUtils', () => {
     expect(unknown.agency).to.deep.equal({
       fareUrl: 'foobaz',
       gtfsId: 'FOO:BAR',
-      name: 'Merisataman lauttaliikenne',
+      name: 'Merisataman lauttaliikenne'
     });
     expect(unknown.routeGtfsId).to.equal('FOO:1234');
     expect(unknown.routeName).to.equal('Merisataman lautta');
@@ -174,9 +174,9 @@ describe('fareUtils', () => {
           gtfsId: 'HSL:1003',
           longName: 'Olympiaterminaali - Eira - Kallio - Meilahti',
           agency: {
-            gtfsId: 'HSL:HSL',
-          },
-        },
+            gtfsId: 'HSL:HSL'
+          }
+        }
       },
       {
         fareProducts: [],
@@ -186,10 +186,10 @@ describe('fareUtils', () => {
           agency: {
             fareUrl: 'foobaz',
             gtfsId: 'FOO:BAR',
-            name: 'Merisataman lauttaliikenne',
-          },
-        },
-      },
+            name: 'Merisataman lauttaliikenne'
+          }
+        }
+      }
     ];
 
     const result = getFaresFromLegs(fares, defaultConfig);
@@ -200,11 +200,11 @@ describe('fareUtils', () => {
     expect(unknown.agency).to.deep.equal({
       fareUrl: undefined,
       gtfsId: 'HSL:HSL',
-      name: undefined,
+      name: undefined
     });
     expect(unknown.routeGtfsId).to.equal('HSL:1003');
     expect(unknown.routeName).to.equal(
-      'Olympiaterminaali - Eira - Kallio - Meilahti',
+      'Olympiaterminaali - Eira - Kallio - Meilahti'
     );
   });
 
@@ -214,10 +214,10 @@ describe('fareUtils', () => {
         fareProducts: [{ id: 1, product: { id: 'HSL:AB', price: '3.1' } }],
         route: {
           agency: {
-            gtfsId: 'HSL:HSL',
-          },
-        },
-      },
+            gtfsId: 'HSL:HSL'
+          }
+        }
+      }
     ];
     const result = getFaresFromLegs(fares, defaultConfig);
     expect(result).to.have.lengthOf(1);

@@ -66,6 +66,6 @@ export function getCapacityForLeg(config, leg) {
   return getCapacity(
     config,
     leg.trip?.occupancy?.occupancyStatus,
-    legTime(leg.start),
+    legTime(leg.start)
   );
 }

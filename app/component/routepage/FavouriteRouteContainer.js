@@ -16,7 +16,7 @@ const FavouriteRouteContainer = connectToStores(
       addAnalyticsEvent({
         category: 'Route',
         action: 'MarkRouteAsFavourite',
-        name: !context.getStore('FavouriteStore').isFavourite(gtfsId, 'route'),
+        name: !context.getStore('FavouriteStore').isFavourite(gtfsId, 'route')
       });
     },
     deleteFavourite: () => {
@@ -27,21 +27,21 @@ const FavouriteRouteContainer = connectToStores(
       addAnalyticsEvent({
         category: 'Route',
         action: 'MarkRouteAsFavourite',
-        name: !context.getStore('FavouriteStore').isFavourite(gtfsId, 'route'),
+        name: !context.getStore('FavouriteStore').isFavourite(gtfsId, 'route')
       });
     },
     requireLoggedIn: !context.config.allowFavouritesFromLocalstorage,
     isLoggedIn:
       context.config.allowLogin &&
       context.getStore('UserStore').getUser().sub !== undefined,
-    language: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    language: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 FavouriteRouteContainer.contextTypes = {
   getStore: PropTypes.func.isRequired,
   executeAction: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default FavouriteRouteContainer;

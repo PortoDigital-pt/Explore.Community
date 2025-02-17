@@ -18,25 +18,25 @@ const TerminalPageMeta = compose(
     const title = intl.formatMessage(
       {
         id: 'terminal-page.title',
-        defaultMessage: 'Terminal - {name}',
+        defaultMessage: 'Terminal - {name}'
       },
-      station,
+      station
     );
     const description = intl.formatMessage(
       {
         id: 'terminal-page.description',
-        defaultMessage: 'Terminal - {name} {code}, {desc}',
+        defaultMessage: 'Terminal - {name} {code}, {desc}'
       },
-      station,
+      station
     );
     return generateMetaData(
       {
         description,
-        title,
+        title
       },
-      config,
+      config
     );
-  }),
+  })
 )(Helmet);
 
 export default createFragmentContainer(TerminalPageMeta, {
@@ -46,5 +46,5 @@ export default createFragmentContainer(TerminalPageMeta, {
       code
       desc
     }
-  `,
+  `
 });

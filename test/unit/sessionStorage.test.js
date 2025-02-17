@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import {
   getSessionStorage,
   getSessionMessageIds,
-  setSessionMessageIds,
+  setSessionMessageIds
 } from '../../app/store/sessionStorage';
 
 describe('sessionStorage', () => {

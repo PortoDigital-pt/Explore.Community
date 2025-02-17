@@ -32,18 +32,18 @@ Toggle.propTypes = {
   toggled: PropTypes.bool,
   onToggle: PropTypes.func.isRequired,
   title: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.string
 };
 
 Toggle.defaultProps = {
   toggled: true,
   title: undefined,
-  id: null,
+  id: null
 };
 
 Toggle.contextTypes = {
   config: configShape.isRequired,
   intl: intlShape.isRequired,
   router: routerShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };

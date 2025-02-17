@@ -7,7 +7,7 @@ import { routerShape, RedirectException } from 'found';
 import {
   configShape,
   vehicleRentalStationShape,
-  errorShape,
+  errorShape
 } from '../util/shapes';
 import VehicleRentalStation from './VehicleRentalStation';
 import ParkOrStationHeader from './ParkOrStationHeader';
@@ -20,7 +20,7 @@ import { TransportMode } from '../constants';
 
 const VehicleRentalStationContent = (
   { vehicleRentalStation, breakpoint, language, router, error },
-  { config },
+  { config }
 ) => {
   const [isClient, setClient] = useState(false);
 
@@ -48,7 +48,7 @@ const VehicleRentalStationContent = (
 
   const networkConfig = getRentalNetworkConfig(
     vehicleRentalStation.rentalNetwork.networkId,
-    config,
+    config
   );
   const cityBikeNetworkUrl = networkConfig?.url?.[language];
   let returnInstructionsUrl;
@@ -128,27 +128,27 @@ VehicleRentalStationContent.propTypes = {
   breakpoint: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
   router: routerShape.isRequired,
-  error: errorShape,
+  error: errorShape
 };
 
 VehicleRentalStationContent.defaultProps = {
-  error: undefined,
+  error: undefined
 };
 
 VehicleRentalStationContent.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 const VehicleRentalStationContentWithBreakpoint = withBreakpoint(
-  VehicleRentalStationContent,
+  VehicleRentalStationContent
 );
 
 const connectedComponent = connectToStores(
   VehicleRentalStationContentWithBreakpoint,
   ['PreferencesStore'],
   context => ({
-    language: context.getStore('PreferencesStore').getLanguage(),
-  }),
+    language: context.getStore('PreferencesStore').getLanguage()
+  })
 );
 
 const containerComponent = createFragmentContainer(connectedComponent, {
@@ -170,10 +170,10 @@ const containerComponent = createFragmentContainer(connectedComponent, {
       stationId
       operative
     }
-  `,
+  `
 });
 
 export {
   containerComponent as default,
-  VehicleRentalStationContentWithBreakpoint as Component,
+  VehicleRentalStationContentWithBreakpoint as Component
 };

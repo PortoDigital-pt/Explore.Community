@@ -28,7 +28,7 @@ function MainMenu(props, { config, intl, executeAction }) {
           className="close-button cursor-pointer"
           aria-label={intl.formatMessage({
             id: 'main-menu-label-close',
-            defaultMessage: 'Close the main menu',
+            defaultMessage: 'Close the main menu'
           })}
         >
           <Icon img="icon-icon_close" className="medium" />
@@ -48,7 +48,7 @@ function MainMenu(props, { config, intl, executeAction }) {
                   addAnalyticsEvent({
                     category: 'Navigation',
                     action: 'Home',
-                    name: null,
+                    name: null
                   });
                   props.closeMenu();
                 }}
@@ -104,11 +104,11 @@ function MainMenu(props, { config, intl, executeAction }) {
                   onToggle={() => {
                     setCountries({
                       ...countries,
-                      [country]: !countries[country],
+                      [country]: !countries[country]
                     });
                     executeAction(updateCountries, {
                       ...countries,
-                      [country]: !countries[country],
+                      [country]: !countries[country]
                     });
                     // Update searchContext to reflect changes in config
                     intializeSearchContext({ config }, searchContext);
@@ -131,7 +131,7 @@ function MainMenu(props, { config, intl, executeAction }) {
                 addAnalyticsEvent({
                   category: 'Navigation',
                   action: 'appBarLink',
-                  name: null,
+                  name: null
                 });
               }}
               rel="noreferrer"
@@ -144,7 +144,7 @@ function MainMenu(props, { config, intl, executeAction }) {
       <section className="menu-section secondary-links">
         <MainMenuLinks
           content={((config.menu && config.menu.content) || []).filter(
-            item => item.href || item.route,
+            item => item.href || item.route
           )}
           closeMenu={props.closeMenu}
         />
@@ -161,19 +161,19 @@ MainMenu.propTypes = {
   closeMenu: PropTypes.func.isRequired,
   homeUrl: PropTypes.string.isRequired,
   countries: PropTypes.objectOf(PropTypes.bool),
-  currentLanguage: PropTypes.string,
+  currentLanguage: PropTypes.string
 };
 
 MainMenu.defaultProps = {
   currentLanguage: 'fi',
-  countries: undefined,
+  countries: undefined
 };
 
 MainMenu.contextTypes = {
   getStore: PropTypes.func.isRequired,
   config: configShape.isRequired,
   intl: intlShape.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 const connectedComponent = connectToStores(
@@ -181,8 +181,8 @@ const connectedComponent = connectToStores(
   ['CountryStore', 'PreferencesStore'],
   ({ getStore }) => ({
     countries: getStore('CountryStore').getCountries(),
-    currentLanguage: getStore('PreferencesStore').getLanguage(),
-  }),
+    currentLanguage: getStore('PreferencesStore').getLanguage()
+  })
 );
 
 export { connectedComponent as default, MainMenu as Component };

@@ -20,7 +20,7 @@ const currentLocationIcon = isBrowser
   ? L.divIcon({
       html: Icon.asString({ img: 'icon-icon_current-location' }),
       className: 'current-location-marker',
-      iconSize: [40, 40],
+      iconSize: [40, 40]
     })
   : null;
 
@@ -40,11 +40,11 @@ function PositionMarker({ coordinates }) {
 }
 
 PositionMarker.propTypes = {
-  coordinates: locationShape,
+  coordinates: locationShape
 };
 
 PositionMarker.defaultProps = {
-  coordinates: null,
+  coordinates: null
 };
 
 export default connectToStores(
@@ -58,9 +58,9 @@ export default connectToStores(
         ? {
             lat: coordinates.lat,
             lon: coordinates.lon,
-            address: coordinates.address,
+            address: coordinates.address
           }
-        : null,
+        : null
     };
-  },
+  }
 );

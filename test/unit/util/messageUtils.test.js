@@ -14,7 +14,7 @@ describe('failedFavouriteMessage', () => {
     expect(routeMessage.content.en[0].type).to.equal('heading');
     expect(stopMessage.content.en[0].type).to.equal('heading');
     expect(routeMessage.content.en[0].content).to.not.equal(
-      stopMessage.content.en[0].content,
+      stopMessage.content.en[0].content
     );
   });
 
@@ -24,7 +24,7 @@ describe('failedFavouriteMessage', () => {
     expect(saveMessage.content.en[0].type).to.equal('heading');
     expect(deleteMessage.content.en[0].type).to.equal('heading');
     expect(saveMessage.content.en[0].content).to.not.equal(
-      deleteMessage.content.en[0].content,
+      deleteMessage.content.en[0].content
     );
   });
 });

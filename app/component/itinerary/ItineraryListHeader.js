@@ -8,7 +8,7 @@ export default function ItineraryListHeader({
   translationId,
   defaultMessage,
   showBikeBoardingInfo,
-  showCarBoardingInfo,
+  showCarBoardingInfo
 }) {
   return (
     <div className="itinerary-summary-subtitle-container">
@@ -55,11 +55,11 @@ ItineraryListHeader.propTypes = {
   translationId: PropTypes.string.isRequired,
   defaultMessage: PropTypes.string,
   showBikeBoardingInfo: PropTypes.bool,
-  showCarBoardingInfo: PropTypes.bool,
+  showCarBoardingInfo: PropTypes.bool
 };
 
 ItineraryListHeader.defaultProps = {
   defaultMessage: '',
   showBikeBoardingInfo: false,
-  showCarBoardingInfo: false,
+  showCarBoardingInfo: false
 };

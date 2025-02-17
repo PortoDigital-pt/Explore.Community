@@ -18,7 +18,7 @@ class DestinationStore extends Store {
   }
 
   static handlers = {
-    SetDestination: 'setDestination',
+    SetDestination: 'setDestination'
   };
 }
 

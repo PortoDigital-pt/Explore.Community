@@ -4,7 +4,7 @@ import { retryFetch } from './fetchUtils';
 
 export function getUser() {
   const options = {
-    credentials: 'include',
+    credentials: 'include'
   };
   return retryFetch('/api/user', 2, 200, options).then(res => res.json());
 }
@@ -17,12 +17,12 @@ export function updateFavourites(data) {
   const options = {
     method: 'PUT',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': 'application/json'
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   };
   return retryFetch('/api/user/favourites', 0, 0, options).then(res =>
-    res.json(),
+    res.json()
   );
 }
 
@@ -30,12 +30,12 @@ export function deleteFavourites(data) {
   const options = {
     method: 'DELETE',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': 'application/json'
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   };
   return retryFetch('/api/user/favourites', 0, 0, options).then(res =>
-    res.json(),
+    res.json()
   );
 }
 
@@ -48,13 +48,13 @@ export function getWeatherData(baseURL, time, lat, lon) {
   return retryFetch(
     `${baseURL}&latlon=${lat},${lon}&starttime=${searchTime}&endtime=${searchTime}`,
     2,
-    200,
+    200
   )
     .then(res => res.text())
     .then(str => {
       const parser = new XMLParser({
         ignoreAttributes: true,
-        removeNSPrefix: true,
+        removeNSPrefix: true
       });
       const json = parser.parse(str);
       const data = json.FeatureCollection.member.map(elem => elem.BsWfsElement);

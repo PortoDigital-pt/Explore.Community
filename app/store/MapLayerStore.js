@@ -6,7 +6,7 @@ import { TransportMode } from '../constants';
 
 class MapLayerStore extends Store {
   static handlers = {
-    UpdateMapLayers: 'updateMapLayers',
+    UpdateMapLayers: 'updateMapLayers'
   };
 
   static storeName = 'MapLayerStore';
@@ -20,17 +20,17 @@ class MapLayerStore extends Store {
       rail: true,
       subway: true,
       tram: true,
-      funicular: true,
+      funicular: true
     },
     terminal: {
       bus: true,
       ferry: true,
       rail: true,
       subway: true,
-      tram: true,
+      tram: true
     },
     vehicles: false,
-    geoJson: {},
+    geoJson: {}
   };
 
   constructor(dispatcher) {
@@ -40,14 +40,14 @@ class MapLayerStore extends Store {
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,
       config,
-      TransportMode.Citybike,
+      TransportMode.Citybike
     );
     this.mapLayers.scooter =
       config.transportModes.scooter?.showIfSelectedForRouting &&
       showRentalVehiclesOfType(
         config.vehicleRental?.networks,
         config,
-        TransportMode.Scooter,
+        TransportMode.Scooter
       );
     if (config.hideMapLayersByDefault) {
       this.mapLayers.stop = Object.keys(this.mapLayers.stop).map(() => false);
@@ -60,7 +60,7 @@ class MapLayerStore extends Store {
       this.mapLayers = {
         ...this.mapLayers,
         ...storedMapLayers,
-        terminal: { ...this.mapLayers.terminal, ...storedMapLayers.terminal },
+        terminal: { ...this.mapLayers.terminal, ...storedMapLayers.terminal }
       };
     }
   }
@@ -103,8 +103,8 @@ class MapLayerStore extends Store {
       ...mapLayers,
       stop: {
         ...this.mapLayers.stop,
-        ...mapLayers.stop,
-      },
+        ...mapLayers.stop
+      }
     };
     setMapLayerSettings({ ...this.mapLayers });
     this.emitChange();
@@ -121,17 +121,17 @@ export const mapLayerShape = PropTypes.shape({
     rail: PropTypes.bool,
     subway: PropTypes.bool,
     tram: PropTypes.bool,
-    funicular: PropTypes.bool,
+    funicular: PropTypes.bool
   }).isRequired,
   terminal: PropTypes.shape({
     bus: PropTypes.bool,
     rail: PropTypes.bool,
-    subway: PropTypes.bool,
+    subway: PropTypes.bool
   }).isRequired,
   vehicles: PropTypes.bool,
   // eslint-disable-next-line
   geoJson: PropTypes.object,
-  scooter: PropTypes.bool,
+  scooter: PropTypes.bool
 });
 
 export default MapLayerStore;

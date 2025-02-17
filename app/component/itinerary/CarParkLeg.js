@@ -17,7 +17,7 @@ function CarParkLeg(props, { config, intl }) {
   const distance = displayDistance(
     parseInt(props.leg.distance, 10),
     config,
-    intl.formatNumber,
+    intl.formatNumber
   );
   const duration = durationToString(props.leg.duration * 1000);
   const firstLegClassName = props.index === 0 ? 'first' : '';
@@ -35,7 +35,7 @@ function CarParkLeg(props, { config, intl }) {
               to: legDestination(intl, props.leg),
               origin: props.leg.from ? props.leg.from.name : '',
               destination: props.leg.to ? props.leg.to.name : '',
-              duration,
+              duration
             }}
           />
         )}
@@ -100,7 +100,7 @@ function CarParkLeg(props, { config, intl }) {
             className={cx(
               'itinerary-leg-action',
               'car',
-              'itinerary-leg-action-content',
+              'itinerary-leg-action-content'
             )}
           >
             <FormattedMessage
@@ -125,17 +125,17 @@ CarParkLeg.propTypes = {
   focusAction: PropTypes.func.isRequired,
   children: PropTypes.node,
   carPark: parkShape.isRequired,
-  noWalk: PropTypes.bool,
+  noWalk: PropTypes.bool
 };
 
 CarParkLeg.defaultProps = {
   children: undefined,
-  noWalk: false,
+  noWalk: false
 };
 
 CarParkLeg.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default CarParkLeg;

@@ -16,14 +16,14 @@ const Title = ({ msgId }) => (
   </div>
 );
 Title.propTypes = {
-  msgId: PropTypes.string.isRequired,
+  msgId: PropTypes.string.isRequired
 };
 const ErrorCard = ({
   msgId,
   titleId,
   iconImg,
   iconType = ICON_TYPE_CAUTION,
-  children,
+  children
 }) => {
   const background = iconImg.replace('icon-icon_', '');
 
@@ -60,7 +60,7 @@ ErrorCard.propTypes = {
   titleId: PropTypes.string,
   iconImg: PropTypes.string,
   iconType: PropTypes.string,
-  children: childrenShape,
+  children: childrenShape
 };
 
 ErrorCard.defaultProps = {
@@ -68,7 +68,7 @@ ErrorCard.defaultProps = {
   titleId: null,
   iconImg: ICON_CAUTION,
   iconType: ICON_TYPE_CAUTION,
-  children: [],
+  children: []
 };
 
 export default ErrorCard;

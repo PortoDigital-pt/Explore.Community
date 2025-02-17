@@ -12,7 +12,7 @@
 
 export default function dayRangeAllowedDiff(
   arrayOfDayNumbers,
-  currentDayNumber,
+  currentDayNumber
 ) {
   const sortedUniqueDayNumbers = Array.from(new Set(arrayOfDayNumbers.sort()));
   const joinedDayNumbers = sortedUniqueDayNumbers.join('');

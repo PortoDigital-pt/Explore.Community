@@ -12,12 +12,12 @@ import Icon from '../Icon';
 
 const BikeParkLeg = (
   { leg, index, focusAction, bikePark },
-  { intl, config },
+  { intl, config }
 ) => {
   const distance = displayDistance(
     parseInt(leg.distance, 10),
     config,
-    intl.formatNumber,
+    intl.formatNumber
   );
   const duration = durationToString(leg.duration * 1000);
   const time = legTimeStr(leg.start);
@@ -32,7 +32,7 @@ const BikeParkLeg = (
             to: legDestination(intl, leg),
             origin: leg.from ? leg.from.name : '',
             destination: leg.to ? leg.to.name : '',
-            duration,
+            duration
           }}
         />
       </span>
@@ -83,7 +83,7 @@ const BikeParkLeg = (
           className={cx(
             'itinerary-leg-action',
             'bike',
-            'itinerary-leg-action-content',
+            'itinerary-leg-action-content'
           )}
         >
           <FormattedMessage
@@ -102,14 +102,14 @@ const BikeParkLeg = (
 };
 BikeParkLeg.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 BikeParkLeg.propTypes = {
   index: PropTypes.number.isRequired,
   focusAction: PropTypes.func.isRequired,
   bikePark: parkShape.isRequired,
-  leg: legShape.isRequired,
+  leg: legShape.isRequired
 };
 
 export default BikeParkLeg;

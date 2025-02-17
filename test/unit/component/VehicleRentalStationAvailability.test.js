@@ -13,15 +13,15 @@ describe('<VehicleRentalStationAvailability />', () => {
       fewAvailableCount: 3,
       fewerAvailableCount: 2,
       type: 'citybike',
-      useSpacesAvailable: true,
+      useSpacesAvailable: true
     };
     const wrapper = mountWithIntl(<VehicleRentalAvailability {...props} />, {
       context: {
         config: {
-          cityBike: { useSpacesAvailable: true },
-        },
+          cityBike: { useSpacesAvailable: true }
+        }
       },
-      childContextTypes: { ...mockChildContextTypes },
+      childContextTypes: { ...mockChildContextTypes }
     });
     expect(wrapper.find(Availability)).to.have.lengthOf(1);
     expect(wrapper.find('.availability-header')).to.have.lengthOf(1);

@@ -13,7 +13,7 @@ class TimeTableOptionsPanel extends React.Component {
   static propTypes = {
     stop: stopShape.isRequired,
     showRoutes: PropTypes.arrayOf(PropTypes.string).isRequired,
-    showFilterModal: PropTypes.func.isRequired,
+    showFilterModal: PropTypes.func.isRequired
   };
 
   getRouteNames = routes => {
@@ -23,12 +23,12 @@ class TimeTableOptionsPanel extends React.Component {
         arr.push({
           id: o.pattern.code,
           shortName: o.pattern.route.shortName,
-          agencyName: o.pattern.route.agency.name,
+          agencyName: o.pattern.route.agency.name
         });
       }
     });
     return uniqBy(arr, key =>
-      key.shortName === null ? key.agencyName : key.shortName,
+      key.shortName === null ? key.agencyName : key.shortName
     );
   };
 
@@ -50,7 +50,7 @@ class TimeTableOptionsPanel extends React.Component {
         } else {
           showRoutesDiv[0] = `${showRoutesDiv[0].substr(
             0,
-            MAX_ROUTEFILTER_LEN - 1,
+            MAX_ROUTEFILTER_LEN - 1
           )}\u{02026}`;
         }
         break;
@@ -65,7 +65,7 @@ class TimeTableOptionsPanel extends React.Component {
     if (stopVehicle === 'bus') {
       stopVehicle = this.props.stop.stoptimesForServiceDate.some(
         stopTime =>
-          stopTime.pattern.route.type === ExtendedRouteTypes.BusExpress,
+          stopTime.pattern.route.type === ExtendedRouteTypes.BusExpress
       )
         ? 'bus-express'
         : stopVehicle;
@@ -91,7 +91,7 @@ class TimeTableOptionsPanel extends React.Component {
               addAnalyticsEvent({
                 category: 'Stop',
                 action: 'ChooseTimetableRoutes',
-                name: null,
+                name: null
               });
             }}
           >

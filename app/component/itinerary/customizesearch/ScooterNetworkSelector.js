@@ -8,13 +8,13 @@ import {
   getRentalNetworkName,
   getRentalNetworkConfig,
   updateVehicleNetworks,
-  getScooterNetworks,
+  getScooterNetworks
 } from '../../../util/vehicleRentalUtils';
 import { TransportMode } from '../../../constants';
 
 const ScooterNetworkSelector = (
   { currentOptions },
-  { config, getStore, executeAction },
+  { config, getStore, executeAction }
 ) => (
   <React.Fragment>
     {mapDefaultNetworkProperties(config)
@@ -40,7 +40,7 @@ const ScooterNetworkSelector = (
             <span className="mode-name">
               {getRentalNetworkName(
                 getRentalNetworkConfig(network.networkName, config),
-                getStore('PreferencesStore').getLanguage(),
+                getStore('PreferencesStore').getLanguage()
               )}
             </span>
             <Toggle
@@ -49,14 +49,14 @@ const ScooterNetworkSelector = (
                 !!currentOptions &&
                 currentOptions.filter(
                   option =>
-                    option.toLowerCase() === network.networkName.toLowerCase(),
+                    option.toLowerCase() === network.networkName.toLowerCase()
                 ).length > 0
               }
               onToggle={() => {
                 const newNetworks = updateVehicleNetworks(
                   getScooterNetworks(config),
                   network.networkName,
-                  network.type,
+                  network.type
                 );
                 const newSettings = { scooterNetworks: newNetworks };
                 executeAction(saveRoutingSettings, newSettings);
@@ -69,19 +69,19 @@ const ScooterNetworkSelector = (
 );
 
 ScooterNetworkSelector.propTypes = {
-  currentOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentOptions: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 ScooterNetworkSelector.contextTypes = {
   config: PropTypes.shape({
     transportModes: PropTypes.shape({
       scooter: PropTypes.shape({
-        networks: PropTypes.arrayOf(PropTypes.string),
-      }),
-    }),
+        networks: PropTypes.arrayOf(PropTypes.string)
+      })
+    })
   }).isRequired,
   getStore: PropTypes.func.isRequired,
-  executeAction: PropTypes.func.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default ScooterNetworkSelector;

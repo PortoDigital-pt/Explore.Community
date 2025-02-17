@@ -21,7 +21,7 @@ function LegAgencyInfo({ leg }, { config }) {
 
 LegAgencyInfo.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 LegAgencyInfo.propTypes = { leg: legShape.isRequired };
@@ -35,5 +35,5 @@ export default createFragmentContainer(LegAgencyInfo, {
         fareUrl
       }
     }
-  `,
+  `
 });

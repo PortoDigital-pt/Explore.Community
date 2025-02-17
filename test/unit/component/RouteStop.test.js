@@ -11,15 +11,15 @@ describe('<RouteStop />', () => {
       currentTime: 1471515614,
       color: '',
       stop: {
-        alerts: [],
-      },
+        alerts: []
+      }
     };
     const context = {
       config: {
         CONFIG: 'default',
         minutesToDepartureLimit: 0,
-        zones: { stops: true },
-      },
+        zones: { stops: true }
+      }
     };
     const wrapper = mountWithIntl(<RouteStop {...props} />, { context });
     expect(wrapper.find(ServiceAlertIcon).isEmptyRender()).to.equal(true);
@@ -31,18 +31,18 @@ describe('<RouteStop />', () => {
       stop: {
         alerts: [
           {
-            alertSeverityLevel: AlertSeverityLevelType.Warning,
-          },
-        ],
+            alertSeverityLevel: AlertSeverityLevelType.Warning
+          }
+        ]
       },
-      color: '',
+      color: ''
     };
     const context = {
       config: {
         CONFIG: 'default',
         minutesToDepartureLimit: 0,
-        zones: { stops: true },
-      },
+        zones: { stops: true }
+      }
     };
     const wrapper = mountWithIntl(<RouteStop {...props} />, { context });
     expect(wrapper.find(ServiceAlertIcon).isEmptyRender()).to.equal(false);
@@ -58,17 +58,17 @@ describe('<RouteStop />', () => {
         alerts: [
           {
             alertSeverityLevel: AlertSeverityLevelType.Warning,
-            effectiveStartDate: 1471515615,
-          },
-        ],
-      },
+            effectiveStartDate: 1471515615
+          }
+        ]
+      }
     };
     const context = {
       config: {
         CONFIG: 'default',
         minutesToDepartureLimit: 0,
-        zones: { stops: true },
-      },
+        zones: { stops: true }
+      }
     };
     const wrapper = mountWithIntl(<RouteStop {...props} />, { context });
     expect(wrapper.find(ServiceAlertIcon).isEmptyRender()).to.equal(true);

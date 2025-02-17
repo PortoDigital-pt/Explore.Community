@@ -13,23 +13,23 @@ export default compose(
     const { mode, place, origin } = match.params;
     const title = intl.formatMessage({
       id: 'stops-near-you.title',
-      defaultMessage: 'Lähipysäkkien aikataulut',
+      defaultMessage: 'Lähipysäkkien aikataulut'
     });
     const description = intl.formatMessage({
       id: 'stops-near-you.description',
-      defaultMessage: 'Lähialueesi pysäkkiaikataulut ja ajoneuvot kartalla.',
+      defaultMessage: 'Lähialueesi pysäkkiaikataulut ja ajoneuvot kartalla.'
     });
     return generateMetaData(
       {
         description,
-        title,
+        title
       },
       config,
       {
         pathname: `/${encodeURIComponent(mode)}/${encodeURIComponent(
-          place,
-        )}/${encodeURIComponent(origin)}/`,
-      },
+          place
+        )}/${encodeURIComponent(origin)}/`
+      }
     );
-  }),
+  })
 )(Helmet);

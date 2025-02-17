@@ -62,15 +62,15 @@ AirportCollectLuggageLeg.propTypes = {
   index: PropTypes.number.isRequired,
   leg: legShape.isRequired,
   focusAction: PropTypes.func.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 AirportCollectLuggageLeg.defaultProps = {
-  children: undefined,
+  children: undefined
 };
 
 AirportCollectLuggageLeg.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default AirportCollectLuggageLeg;

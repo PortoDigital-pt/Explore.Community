@@ -17,23 +17,23 @@ describe('<WalkLeg />', () => {
         duration: 289,
         from: {
           name: 'Veturitori',
-          stop: null,
+          stop: null
         },
         to: {
           name: 'Testipaikka',
-          stop: null,
+          stop: null
         },
         mode: 'WALK',
         rentedBike: false,
         start: { scheduledTime: new Date(1529589709000).toISOString() },
-        end: { scheduledTime: new Date(1529589701000).toISOString() },
-      },
+        end: { scheduledTime: new Date(1529589701000).toISOString() }
+      }
     };
 
     const wrapper = shallowWithIntl(<WalkLeg {...props} />, {
       context: {
-        config: {},
-      },
+        config: {}
+      }
     });
 
     expect(wrapper.find('.itinerary-leg-row').text()).to.contain('Veturitori');
@@ -49,23 +49,23 @@ describe('<WalkLeg />', () => {
         duration: 289,
         from: {
           name: 'Veturitori',
-          stop: null,
+          stop: null
         },
         to: {
           name: 'Testipaikka',
-          stop: null,
+          stop: null
         },
         mode: 'WALK',
         rentedBike: false,
         start: { scheduledTime: new Date(1529589709000).toISOString() },
-        end: { scheduledTime: new Date(1529589701000).toISOString() },
+        end: { scheduledTime: new Date(1529589701000).toISOString() }
       },
       previousLeg: {
         distance: 3297.017000000001,
         duration: 904,
         from: {
           name: 'Kaisaniemenpuisto',
-          stop: null,
+          stop: null
         },
         mode: 'BICYCLE',
         rentedBike: true,
@@ -73,19 +73,19 @@ describe('<WalkLeg />', () => {
         end: { scheduledTime: new Date(1529589701000).toISOString() },
         to: {
           name: 'Mannerheimin tie 1',
-          stop: null,
-        },
-      },
+          stop: null
+        }
+      }
     };
 
     const wrapper = shallowWithIntl(<WalkLeg {...props} />, {
       context: {
-        config: {},
-      },
+        config: {}
+      }
     });
 
     expect(wrapper.find(FormattedMessage).at(0).prop('id')).to.equal(
-      'return-cycle-to',
+      'return-cycle-to'
     );
   });
 
@@ -105,29 +105,29 @@ describe('<WalkLeg />', () => {
               {
                 alertSeverityLevel: AlertSeverityLevelType.Info,
                 effectiveEndDate: startTime / 1000 + 1,
-                effectiveStartDate: startTime / 1000 - 1,
-              },
+                effectiveStartDate: startTime / 1000 - 1
+              }
             ],
-            gtfsId: 'HSL:10000',
-          },
+            gtfsId: 'HSL:10000'
+          }
         },
         to: {
           name: 'Testipaikka',
-          stop: null,
+          stop: null
         },
         mode: 'WALK',
         rentedBike: false,
         start: { scheduledTime: new Date(startTime).toISOString() },
-        end: { scheduledTime: new Date(1529589701000).toISOString() },
-      },
+        end: { scheduledTime: new Date(1529589701000).toISOString() }
+      }
     };
 
     const wrapper = shallowWithIntl(<WalkLeg {...props} />, {
-      context: { config: { colors: { primary: '#007ac9' } } },
+      context: { config: { colors: { primary: '#007ac9' } } }
     });
 
     expect(wrapper.find(ServiceAlertIcon).prop('severityLevel')).to.equal(
-      AlertSeverityLevelType.Info,
+      AlertSeverityLevelType.Info
     );
   });
 
@@ -143,25 +143,25 @@ describe('<WalkLeg />', () => {
           name: 'Foo',
           stop: {
             gtfsId: 'foo',
-            vehicleMode: null,
-          },
+            vehicleMode: null
+          }
         },
         to: {
           name: 'Bar',
           stop: {
             gtfsId: 'bar',
-            vehicleMode: null,
-          },
+            vehicleMode: null
+          }
         },
         mode: 'WALK',
         rentedBike: false,
         start: { scheduledTime: new Date(1668600030868).toISOString() },
-        end: { scheduledTime: new Date(1668600108525).toISOString() },
-      },
+        end: { scheduledTime: new Date(1668600108525).toISOString() }
+      }
     };
 
     shallowWithIntl(<WalkLeg {...props} />, {
-      context: { config: { colors: { primary: '#007ac9' } } },
+      context: { config: { colors: { primary: '#007ac9' } } }
     });
   });
 });

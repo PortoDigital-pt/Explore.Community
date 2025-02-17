@@ -9,7 +9,7 @@ const port = 9000;
 app.use('/proxy', proxy('http://localhost:8080/'));
 
 const server = app.listen(port, () =>
-  console.log('Digitransit-ui available on port %d', server.address().port),
+  console.log('Digitransit-ui available on port %d', server.address().port)
 );
 
 /*

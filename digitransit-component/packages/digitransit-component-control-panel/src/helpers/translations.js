@@ -14,7 +14,7 @@ const translations = {
     'placeholder-route-stop-station': 'Enter route, stop or station',
     'title-route-stop-station': 'Haltestellen und Linien in der Nähe',
     'title-origin-to-destination': 'Wohin?',
-    'use-own-position': 'Verwende aktuelle Position',
+    'use-own-position': 'Verwende aktuelle Position'
   },
   en: {
     'close-teaser-modal': 'Close',
@@ -34,7 +34,7 @@ const translations = {
     'use-own-position': 'Use current location',
     'nearby-stops-teaser-header': 'Try the new map views showing nearby stops',
     'nearby-stops-teaser-content':
-      'Real-time timetables for nearby stops and vehicles on map.',
+      'Real-time timetables for nearby stops and vehicles on map.'
   },
   fi: {
     'close-teaser-modal': 'Sulje',
@@ -54,7 +54,7 @@ const translations = {
     'use-own-position': 'Käytä nykyistä sijaintia',
     'nearby-stops-teaser-header': 'Kokeile uusia lähipysäkkinäkymiä',
     'nearby-stops-teaser-content':
-      'Reaaliaikaiset lähipysäkkiesi aikataulut ja ajoneuvot kartalla.',
+      'Reaaliaikaiset lähipysäkkiesi aikataulut ja ajoneuvot kartalla.'
   },
   pl: {
     'close-teaser-modal': 'Zamknij',
@@ -75,7 +75,7 @@ const translations = {
     'nearby-stops-teaser-header':
       'Wypróbuj nowy widok mapy pokazujący przystanki w pobliżu',
     'nearby-stops-teaser-content':
-      'Rozkłady jazdy w czasie rzeczywistym dla pobliskich przystanków i pojazdów na mapie.',
+      'Rozkłady jazdy w czasie rzeczywistym dla pobliskich przystanków i pojazdów na mapie.'
   },
   pt: {
     'close-teaser-modal': 'Fechar',
@@ -96,7 +96,7 @@ const translations = {
     'nearby-stops-teaser-header':
       'Experimente as novas visualizações de mapas que mostram as paragens próximas',
     'nearby-stops-teaser-content':
-      'Horários em tempo real para paragens e veículos próximos no mapa.',
+      'Horários em tempo real para paragens e veículos próximos no mapa.'
   },
   sv: {
     'close-teaser-modal': 'Stäng',
@@ -117,8 +117,8 @@ const translations = {
     'nearby-stops-teaser-header':
       'Prova de nya kartavyerna som visar hållplatserna i närheten',
     'nearby-stops-teaser-content':
-      'Fordonen och tidtabellerna i realtid för hållplatserna nära dig på kartan.',
-  },
+      'Fordonen och tidtabellerna i realtid för hållplatserna nära dig på kartan.'
+  }
 };
 
 export default translations;

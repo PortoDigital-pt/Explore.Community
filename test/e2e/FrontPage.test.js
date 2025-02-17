@@ -22,10 +22,10 @@ describe(`Front page with ${config} config`, () => {
     let image;
     if (!isMobile) {
       const mainContent = await page.$(
-        '#mainContent > .desktop > .main-content',
+        '#mainContent > .desktop > .main-content'
       );
       image = await mainContent.screenshot({
-        timeout,
+        timeout
       });
     } else {
       image = await page.screenshot({ fullPage: true });
@@ -34,7 +34,7 @@ describe(`Front page with ${config} config`, () => {
     const snapshotConfig = getConfig(
       snapshotName,
       `${customSnapshotsDir}/${browserName}/${config}/`,
-      `${customDiffDir}/${browserName}/${config}/`,
+      `${customDiffDir}/${browserName}/${config}/`
     );
     expect(image).toMatchImageSnapshot(snapshotConfig);
   });

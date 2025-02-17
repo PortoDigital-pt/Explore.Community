@@ -10,7 +10,7 @@ const useUTMCampaignParams = (props = {}) => {
     hasDest = false,
     utmSource = 'reittiopas-elementti',
     utmCampaign = 'reittiopas-elementti',
-    utmMedium = 'web',
+    utmMedium = 'web'
   } = props;
   const size = useWindowSize();
 
@@ -20,7 +20,7 @@ const useUTMCampaignParams = (props = {}) => {
       mode,
       'screen-width': getClientBreakpoint(size.outer.width),
       'has-origin': hasOrigin ? 1 : 0,
-      'has-dest': hasDest ? 1 : 0,
+      'has-dest': hasDest ? 1 : 0
     };
 
     const content = toPairs(analyticsContent)
@@ -31,7 +31,7 @@ const useUTMCampaignParams = (props = {}) => {
       utm_source: utmSource,
       utm_campaign: utmCampaign,
       utm_medium: utmMedium,
-      utm_content: content,
+      utm_content: content
     };
   }, [size, mode]);
 };

@@ -9,7 +9,7 @@ import VehicleMarker from './VehicleMarker';
 
 class VehicleMarkerContainer extends React.Component {
   static contextTypes = {
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -17,9 +17,9 @@ class VehicleMarkerContainer extends React.Component {
       map: PropTypes.shape({
         getZoom: PropTypes.func.isRequired,
         on: PropTypes.func.isRequired,
-        off: PropTypes.func.isRequired,
-      }).isRequired,
-    }).isRequired,
+        off: PropTypes.func.isRequired
+      }).isRequired
+    }).isRequired
   };
 
   componentDidMount() {

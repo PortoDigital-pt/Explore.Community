@@ -8,12 +8,12 @@ import { Component as StopPageTabs } from '../../../app/component/stop/StopPageT
 const context = {
   match: {
     location: {
-      pathname: 'foobar',
+      pathname: 'foobar'
     },
     params: {
-      stopId: 'HSL:2211275',
-    },
-  },
+      stopId: 'HSL:2211275'
+    }
+  }
 };
 
 describe('<StopPageTabs />', () => {
@@ -22,10 +22,10 @@ describe('<StopPageTabs />', () => {
       breakpoint: 'large',
       children: <div />,
       routes: [],
-      stop: null,
+      stop: null
     };
     const wrapper = shallowWithIntl(<StopPageTabs {...props} />, {
-      context,
+      context
     });
     expect(wrapper.isEmptyRender()).to.equal(true);
   });

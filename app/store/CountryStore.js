@@ -3,7 +3,7 @@ import { getCountries, setCountries } from './localStorage';
 
 class CountryStore extends Store {
   static handlers = {
-    UpdateCountries: 'updateCountries',
+    UpdateCountries: 'updateCountries'
   };
 
   static storeName = 'CountryStore';

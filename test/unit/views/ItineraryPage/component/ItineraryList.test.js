@@ -3,7 +3,7 @@ import React from 'react';
 import { Component as ItineraryList } from '../../../../../app/component/itinerary/ItineraryList';
 import {
   mockChildContextTypes,
-  mockContext,
+  mockContext
 } from '../../../helpers/mock-context';
 import { mountWithIntl } from '../../../helpers/mock-intl-enzyme';
 
@@ -17,7 +17,7 @@ const LOCATIONS_STATE_TEMPLATE = {
   hasLocation: false,
   isLocationingInProgress: false,
   isReverseGeocodingInProgress: false,
-  locationingFailed: false,
+  locationingFailed: false
 };
 
 const PROPS_TEMPLATE = {
@@ -35,7 +35,7 @@ const PROPS_TEMPLATE = {
   biking: false,
   showAlternativePlan: false,
   loading: false,
-  driving: false,
+  driving: false
 };
 
 describe('<ItineraryList />', () => {
@@ -44,13 +44,13 @@ describe('<ItineraryList />', () => {
     const props = {
       ...PROPS_TEMPLATE,
       currentTime: 1234567890,
-      searchTime: 1234567890,
+      searchTime: 1234567890
     };
     const wrapper = mountWithIntl(
       <div>
         <ItineraryList {...props} />
       </div>,
-      { context: mockContext, childContextTypes: mockChildContextTypes },
+      { context: mockContext, childContextTypes: mockChildContextTypes }
     );
     // TODO: purposeful test case definition missing -> skip test
     expect(wrapper.debug()).to.equal(undefined);
@@ -58,14 +58,14 @@ describe('<ItineraryList />', () => {
 
   it('should render without crashing', () => {
     const props = {
-      ...PROPS_TEMPLATE,
+      ...PROPS_TEMPLATE
     };
 
     const wrapper = mountWithIntl(
       <div>
         <ItineraryList {...props} />
       </div>,
-      { context: mockContext, childContextTypes: mockChildContextTypes },
+      { context: mockContext, childContextTypes: mockChildContextTypes }
     );
 
     expect(wrapper.isEmptyRender()).to.equal(false);

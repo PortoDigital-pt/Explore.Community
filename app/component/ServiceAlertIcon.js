@@ -29,15 +29,15 @@ ServiceAlertIcon.propTypes = {
     AlertSeverityLevelType.Info,
     AlertSeverityLevelType.Severe,
     AlertSeverityLevelType.Unknown,
-    AlertSeverityLevelType.Warning,
+    AlertSeverityLevelType.Warning
   ]),
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 ServiceAlertIcon.defaultProps = {
   className: undefined,
   severityLevel: undefined,
-  color: undefined,
+  color: undefined
 };
 
 export default ServiceAlertIcon;

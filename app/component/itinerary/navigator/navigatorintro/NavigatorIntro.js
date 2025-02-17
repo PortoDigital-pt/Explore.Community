@@ -58,17 +58,17 @@ const NavigatorIntro = ({ logo, onPrimaryClick, onClose }, context) => {
 NavigatorIntro.propTypes = {
   logo: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-  onPrimaryClick: PropTypes.func,
+  onPrimaryClick: PropTypes.func
 };
 
 NavigatorIntro.defaultProps = {
   logo: undefined,
-  onPrimaryClick: undefined,
+  onPrimaryClick: undefined
 };
 
 NavigatorIntro.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default NavigatorIntro;

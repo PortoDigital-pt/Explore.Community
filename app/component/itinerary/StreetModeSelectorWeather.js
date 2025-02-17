@@ -52,11 +52,11 @@ StreetModeSelectorWeather.propTypes = {
     PropTypes.shape({
       temperature: PropTypes.number.isRequired,
       windSpeed: PropTypes.number.isRequired,
-      iconId: PropTypes.number.isRequired,
-    }),
-  ]),
+      iconId: PropTypes.number.isRequired
+    })
+  ])
 };
 
 StreetModeSelectorWeather.defaultProps = {
-  weatherData: {},
+  weatherData: {}
 };

@@ -25,8 +25,8 @@ const testdata = {
     region: 'Uusimaa',
     region_gid: 'whosonfirst:region:85683067',
     source: 'gtfshsl',
-    source_id: 'gtfs:hsl:1293163#1636',
-  },
+    source_id: 'gtfs:hsl:1293163#1636'
+  }
 };
 
 describe('suggestionUtils', () => {
@@ -39,18 +39,18 @@ describe('suggestionUtils', () => {
     it('should include agency in the plaintext for routes', () => {
       const properties = {
         agency: {
-          name: 'Tampereen joukkoliikenne',
+          name: 'Tampereen joukkoliikenne'
         },
         layer: 'route-BUS',
         longName: 'TAYS - Hervanta - Hatanpää-Tampella',
-        shortName: '32',
+        shortName: '32'
       };
 
       const label = getNameLabel(properties, true);
       expect(label).to.deep.equal([
         '32',
         'TAYS - Hervanta - Hatanpää-Tampella',
-        'Tampereen joukkoliikenne',
+        'Tampereen joukkoliikenne'
       ]);
     });
 
@@ -59,14 +59,14 @@ describe('suggestionUtils', () => {
         agency: null,
         layer: 'route-BUS',
         longName: 'TAYS - Hervanta - Hatanpää-Tampella',
-        shortName: '32',
+        shortName: '32'
       };
 
       const label = getNameLabel(properties, true);
       expect(label).to.deep.equal([
         '32',
         'TAYS - Hervanta - Hatanpää-Tampella',
-        undefined,
+        undefined
       ]);
     });
   });

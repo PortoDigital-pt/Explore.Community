@@ -9,11 +9,11 @@ export default {
   className: 'bp-large',
   serviceDay: '20190306',
   relay: {
-    setVariables: () => {},
+    setVariables: () => {}
   },
   params: {
     routeId: 'HSL:1010',
-    patternId: 'HSL:1010:0:01',
+    patternId: 'HSL:1010:0:01'
   },
   route: {
     patterns: [
@@ -22,14 +22,14 @@ export default {
         headsign: 'Pikku Huopalahti',
         stops: [
           {
-            name: 'Korppaanmäki',
+            name: 'Korppaanmäki'
           },
           {
-            name: 'Johanneksenkirkko',
+            name: 'Johanneksenkirkko'
           },
           {
-            name: 'Tarkk´ampujankatu',
-          },
+            name: 'Tarkk´ampujankatu'
+          }
         ],
         tripsForDate: [
           {
@@ -39,18 +39,18 @@ export default {
                 scheduledDeparture: 600,
                 serviceDay: moment().getTime / 100,
                 stop: {
-                  id: 'U3RvcDpIU0w6MTI5MTQwNA==',
-                },
+                  id: 'U3RvcDpIU0w6MTI5MTQwNA=='
+                }
               },
               {
                 scheduledArrival: 720,
                 scheduledDeparture: 720,
                 serviceDay: moment().getTime / 100,
                 stop: {
-                  id: 'U3RvcDpIU0w6MTI5MTQwMg==',
-                },
-              },
-            ],
+                  id: 'U3RvcDpIU0w6MTI5MTQwMg=='
+                }
+              }
+            ]
           },
           {
             stoptimes: [
@@ -59,34 +59,34 @@ export default {
                 scheduledDeparture: 840,
                 serviceDay: moment().getTime / 100,
                 stop: {
-                  id: 'U3RvcDpIU0w6MTI5MTQwNA==',
-                },
+                  id: 'U3RvcDpIU0w6MTI5MTQwNA=='
+                }
               },
               {
                 scheduledArrival: 960,
                 scheduledDeparture: 960,
                 serviceDay: moment().getTime / 100,
                 stop: {
-                  id: 'U3RvcDpIU0w6MTI5MTQwMg==',
-                },
-              },
-            ],
-          },
-        ],
+                  id: 'U3RvcDpIU0w6MTI5MTQwMg=='
+                }
+              }
+            ]
+          }
+        ]
       },
       {
         code: 'HSL:1010:1:01',
         headsign: 'Korppaanmäki',
         stops: [
           {
-            name: 'Pikku Huopalahti',
+            name: 'Pikku Huopalahti'
           },
           {
-            name: 'Johanneksenkirkko',
+            name: 'Johanneksenkirkko'
           },
           {
-            name: 'Tarkk´ampujankatu',
-          },
+            name: 'Tarkk´ampujankatu'
+          }
         ],
         tripsForDate: [
           {
@@ -96,21 +96,21 @@ export default {
                 scheduledDeparture: 600,
                 serviceDay: moment().getTime / 100,
                 stop: {
-                  id: 'U3RvcDpIU0w6MTI5MTQwNA==',
-                },
+                  id: 'U3RvcDpIU0w6MTI5MTQwNA=='
+                }
               },
               {
                 scheduledArrival: 720,
                 scheduledDeparture: 720,
                 serviceDay: moment().getTime / 100,
                 stop: {
-                  id: 'U3RvcDpIU0w6MTI5MTQwMg==',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
+                  id: 'U3RvcDpIU0w6MTI5MTQwMg=='
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 };

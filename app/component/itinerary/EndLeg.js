@@ -28,7 +28,7 @@ function EndLeg(props, context) {
           id="itinerary-details.end-leg"
           values={{
             time,
-            destination: props.to.name,
+            destination: props.to.name
           }}
         />
       </span>
@@ -70,12 +70,12 @@ EndLeg.propTypes = {
   endTime: PropTypes.string.isRequired,
   to: stopShape.isRequired,
   index: PropTypes.number.isRequired,
-  focusAction: PropTypes.func.isRequired,
+  focusAction: PropTypes.func.isRequired
 };
 
 EndLeg.contextTypes = {
   intl: intlShape.isRequired,
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 export default EndLeg;

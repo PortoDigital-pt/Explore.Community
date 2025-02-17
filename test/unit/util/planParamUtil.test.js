@@ -9,24 +9,24 @@ const from = 'Kera, Espoo::60.217992,24.75494';
 const to = 'Leppävaara, Espoo::60.219235,24.81329';
 const defaultProps = {
   params: { from, to },
-  location: { query: {} },
+  location: { query: {} }
 };
 
 const config = {
   modeToOTP: {
     bus: 'BUS',
     walk: 'WALK',
-    citybike: 'BICYCLE_RENT',
+    citybike: 'BICYCLE_RENT'
   },
   transportModes: {
     bus: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: true
     },
     citybike: {
       availableForSelection: true,
-      defaultValue: false,
-    },
+      defaultValue: false
+    }
   },
   modePolygons: {},
   vehicleRental: {
@@ -36,21 +36,21 @@ const config = {
         name: {
           fi: 'Helsinki ja Espoo',
           sv: 'Helsingfors och Esbo',
-          en: 'Helsinki and Espoo',
+          en: 'Helsinki and Espoo'
         },
-        type: 'citybike',
-      },
-    },
+        type: 'citybike'
+      }
+    }
   },
   defaultSettings: {
     walkSpeed: 1.2,
-    bikeSpeed: 5.55,
+    bikeSpeed: 5.55
   },
   defaultOptions: {
     walkSpeed: [0.69, 0.97, 1.2, 1.67, 2.22],
-    bikeSpeed: [2.77, 4.15, 5.55, 6.94, 8.33],
+    bikeSpeed: [2.77, 4.15, 5.55, 6.94, 8.33]
   },
-  modesWithNoBike: [],
+  modesWithNoBike: []
 };
 
 describe('planParamUtil', () => {
@@ -59,7 +59,7 @@ describe('planParamUtil', () => {
       const params = utils.getPlanParams(
         config,
         defaultProps,
-        utils.PLANTYPE.TRANSIT,
+        utils.PLANTYPE.TRANSIT
       );
       const modes = params.modes.transit.transit;
       expect(modes).to.deep.equal([{ mode: 'BUS' }]);
@@ -71,7 +71,7 @@ describe('planParamUtil', () => {
         config,
         defaultProps,
         utils.PLANTYPE.TRANSIT,
-        true,
+        true
       );
       const modes = params.modes.transit.transit;
       expect(modes).to.deep.equal([{ mode: 'BUS' }]);
@@ -82,11 +82,11 @@ describe('planParamUtil', () => {
       const params = utils.getPlanParams(
         defaultConfig,
         defaultProps,
-        utils.PLANTYPE.TRANSIT,
+        utils.PLANTYPE.TRANSIT
       );
       const { bikeSpeed } = params;
       expect(bikeSpeed).to.equal(
-        Math.max(...defaultConfig.defaultOptions.bikeSpeed),
+        Math.max(...defaultConfig.defaultOptions.bikeSpeed)
       );
     });
 
@@ -97,10 +97,10 @@ describe('planParamUtil', () => {
           defaultConfig,
           {
             params: { from, to },
-            location: { query: {} },
+            location: { query: {} }
           },
-          utils.PLANTYPE.TRANSIT,
-        ),
+          utils.PLANTYPE.TRANSIT
+        )
       );
       const missing = defaultKeys.filter(key => !paramsKeys.includes(key));
       expect(missing).to.deep.equal([]);
@@ -108,20 +108,20 @@ describe('planParamUtil', () => {
 
     it('should not include CITYBIKE in bikepark modes', () => {
       setCustomizedSettings({
-        modes: ['CITYBIKE', 'BUS'],
+        modes: ['CITYBIKE', 'BUS']
       });
       const params = utils.getPlanParams(
         defaultConfig,
         {
           params: {
             from,
-            to,
+            to
           },
           location: {
-            query: {},
-          },
+            query: {}
+          }
         },
-        utils.PLANTYPE.TRANSIT,
+        utils.PLANTYPE.TRANSIT
       );
       const modes = params.modes.transit.transit;
       expect(modes).to.deep.equal([{ mode: 'BUS' }]);
@@ -144,7 +144,7 @@ describe('planParamUtil', () => {
 
     it('setting custom settings should make default settings differ from current settings', () => {
       setCustomizedSettings({
-        modes: ['BUS', 'TRAM', 'FERRY', 'SUBWAY', 'RAIL', 'WALK'],
+        modes: ['BUS', 'TRAM', 'FERRY', 'SUBWAY', 'RAIL', 'WALK']
       });
 
       const defaultSettings = utils.getDefaultSettings(defaultConfig);
@@ -155,7 +155,7 @@ describe('planParamUtil', () => {
     it('order of set custom settings should not affect default and current settings comparison', () => {
       const defaultSettings = utils.getDefaultSettings(defaultConfig);
       setCustomizedSettings({
-        modes: defaultSettings.modes.slice().reverse(),
+        modes: defaultSettings.modes.slice().reverse()
       });
       const currentSettings = utils.getSettings(defaultConfig);
       expect(defaultSettings).to.deep.equal(currentSettings);
@@ -163,7 +163,7 @@ describe('planParamUtil', () => {
 
     it('unavailable modes should not exist in current settings', () => {
       setCustomizedSettings({
-        modes: ['BUS', 'WALK', 'FOO'],
+        modes: ['BUS', 'WALK', 'FOO']
       });
       const currentSettings = utils.getSettings(defaultConfig);
       expect(currentSettings.modes.length).to.equal(1);

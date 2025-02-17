@@ -10,7 +10,7 @@ import Message from '../../app/component/Message';
 describe('<Checkbox />', () => {
   it('should render a checkbox', () => {
     const props = {
-      onChange: () => {},
+      onChange: () => {}
     };
     const wrapper = mountWithIntl(<Checkbox {...props} />);
     expect(wrapper.length).to.equal(1);
@@ -20,7 +20,7 @@ describe('<Checkbox />', () => {
     const props = {
       labelId: 'citybike',
       onChange: () => {},
-      showLabel: true,
+      showLabel: true
     };
     const wrapper = mountWithIntl(<Checkbox {...props} />);
     expect(wrapper.length).to.equal(1);
@@ -31,15 +31,15 @@ describe('<Checkbox />', () => {
 
   it('Should work also without labelId', () => {
     const props = {
-      defaultMessage: 'ei tarvitse kääntää',
+      defaultMessage: 'ei tarvitse kï¿½ï¿½ntï¿½ï¿½',
       onChange: () => {},
-      showLabel: true,
+      showLabel: true
     };
     const wrapper = mountWithIntl(<Checkbox {...props} />);
     expect(wrapper.length).to.equal(1);
     const label = wrapper.find(Message);
     expect(label.length).to.equal(1);
-    expect(label.text()).to.have.string('ei tarvitse kääntää');
+    expect(label.text()).to.have.string('ei tarvitse kï¿½ï¿½ntï¿½ï¿½');
   });
 
   it('should invoke onChange', () => {
@@ -47,7 +47,7 @@ describe('<Checkbox />', () => {
     const props = {
       onChange: () => {
         wasCalled = true;
-      },
+      }
     };
 
     const wrapper = mountWithIntl(<Checkbox {...props} />);
@@ -61,7 +61,7 @@ describe('<Checkbox />', () => {
       disabled: true,
       onChange: () => {
         wasCalled = true;
-      },
+      }
     };
 
     const wrapper = mountWithIntl(<Checkbox {...props} />);
@@ -76,7 +76,7 @@ describe('<Checkbox />', () => {
       onChange: e => {
         wasCalled = true;
         expect(e.target.checked).to.equal(false);
-      },
+      }
     };
 
     const wrapper = mountWithIntl(<Checkbox {...props} />);

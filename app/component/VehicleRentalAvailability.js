@@ -13,7 +13,7 @@ const VehicleRentalAvailability = mapProps(
     fewAvailableCount,
     fewerAvailableCount,
     type,
-    useSpacesAvailable,
+    useSpacesAvailable
   }) => {
     const total = Number.isNaN(totalSpaces) ? 0 : totalSpaces;
     const available = Number.isNaN(vehiclesAvailable) ? 0 : vehiclesAvailable;
@@ -26,7 +26,7 @@ const VehicleRentalAvailability = mapProps(
             <FormattedMessage id="bike-station-disabled" />
           </p>
         ),
-        showStatusBar: useSpacesAvailable,
+        showStatusBar: useSpacesAvailable
       };
     }
     return {
@@ -47,9 +47,9 @@ const VehicleRentalAvailability = mapProps(
           {useSpacesAvailable && <React.Fragment>/{total}</React.Fragment>}
         </p>
       ),
-      showStatusBar: useSpacesAvailable,
+      showStatusBar: useSpacesAvailable
     };
-  },
+  }
 )(Availability);
 
 VehicleRentalAvailability.displayName = 'CityBikeAvailability';
@@ -59,10 +59,10 @@ VehicleRentalAvailability.propTypes = {
   totalSpaces: PropTypes.number.isRequired,
   fewAvailableCount: PropTypes.number.isRequired,
   type: PropTypes.string,
-  useSpacesAvailable: PropTypes.bool.isRequired,
+  useSpacesAvailable: PropTypes.bool.isRequired
 };
 VehicleRentalAvailability.defaultProps = {
-  type: 'citybike',
+  type: 'citybike'
 };
 
 export default VehicleRentalAvailability;
