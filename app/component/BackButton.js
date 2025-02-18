@@ -74,6 +74,7 @@ export default class BackButton extends React.Component {
         url = config.URL.ROOTLINK;
       }
     }
+
     return (
       <div className={this.props.className} style={{ display: 'flex' }}>
         {this.props.title && !this.props.titleClassName && (
@@ -100,6 +101,7 @@ export default class BackButton extends React.Component {
             img={this.props.icon}
             color={this.props.color || this.context.config.colors.primary}
             className={`${this.props.iconClassName} cursor-pointer`}
+            viewBox="0 0 24 24"
           />
         </button>
       </div>

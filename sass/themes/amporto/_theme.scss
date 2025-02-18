@@ -1,10 +1,10 @@
 @import '../default/theme';
 
 // pallete
-$primary-main: #000F9F;
-$primary-light: #CFDBE8;
-$primary-dark: #00095F;
-$primary-contrastText: #FAFAFA;
+$primary-main: #000f9f;
+$primary-light: #cfdbe8;
+$primary-dark: #00095f;
+$primary-contrastText: #fafafa;
 $gradient: linear-gradient(270deg, $primary-dark 0%, rgba(0, 9, 95, 0.75) 100%);
 
 /* fonts */
@@ -28,3 +28,6 @@ $link-color: $primary-color;
 $desktop-title-color: $primary-color;
 $desktop-title-arrow-icon-color: $secondary-color;
 $top-bar-color: $primary-color;
+
+// shadows
+$top-nav-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);

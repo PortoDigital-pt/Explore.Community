@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment-timezone';
@@ -9,7 +10,7 @@ import i18next from 'i18next';
 import Icon from '@digitransit-component/digitransit-component-icon';
 import DesktopDatetimepicker from './DesktopDatetimepicker';
 import translations from './translations';
-import styles from './styles.scss';
+import styles from '../../../../../sass/themes/amporto/digitransit-components/datetime-picker.scss';
 import { isMobile } from './mobileDetection';
 import dateTimeInputIsSupported from './dateTimeInputIsSupported';
 import MobilePickerModal from './MobilePickerModal';

@@ -1,0 +1,270 @@
+@import '~@hsl-fi/sass/colors';
+@import '~@hsl-fi/sass/mixins/screen';
+@import '~@hsl-fi/sass/mixins/text';
+@import '../theme';
+
+.suggestion-item-container {
+  display: flex;
+  min-height: 25px;
+
+  &.futureroute {
+    min-height: 79px;
+  }
+}
+
+.mobile {
+  height: 59px;
+  margin: 0 10px;
+
+  &.CurrentLocation {
+    height: 50px;
+  }
+
+  &.SelectFromMap {
+    height: 50px;
+  }
+}
+
+li:not(:first-child) > div.suggestion-item-container {
+  border-top: 1px solid $grey-light-down;
+}
+
+li:last-child > div.suggestion-item-container.mobile {
+  border-top: none;
+}
+
+.search-result {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media screen and (max-width: 900px) {
+    margin-left: 0;
+    border-radius: 200px;
+    background: $grey-light-down;
+    width: 32px;
+    height: 32px;
+    margin-top: 12px;
+  }
+
+  &.futureroute {
+    min-height: 79px;
+  }
+
+  .suggestion-result {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: absolute;
+    padding-left: 49px;
+    padding-right: 27px;
+
+    .suggestion-name {
+      margin: 0;
+      font-weight: $font-weight-book;
+      color: $grey-dark-down;
+      font-size: 16px !important;
+      letter-spacing: -0.5px;
+      line-height: 1.5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @include min-width(tablet) {
+        font-size: 13px !important;
+        letter-spacing: -0.43px;
+        line-height: 1;
+      }
+
+      &.favouriteCustom {
+        color: #0074be;
+        font-size: 15px;
+      }
+
+      &.futureroute {
+        line-height: 1.33;
+        position: relative;
+        left: 2px;
+
+        &.normal {
+          font-weight: normal;
+          position: relative;
+          left: 0.5px;
+        }
+      }
+    }
+
+    .suggestion-label {
+      margin: 0;
+      color: $grey-dark-down;
+      font-size: 12px !important;
+      font-weight: $font-weight-book;
+      letter-spacing: -0.43px;
+      line-height: 1.38;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      top: -1px;
+
+      @include min-width(tablet) {
+        font-size: 11px !important;
+        letter-spacing: -0.37px;
+        line-height: 1.64;
+      }
+
+      .stop-code {
+        border-radius: 3px;
+        font-size: 9px;
+        padding: 1px 2px 1px;
+        font-weight: var(--font-weight-medium);
+        border: 1px solid #ddd;
+        margin: 0 4px;
+      }
+
+      .platform {
+        display: inline-block;
+        background: #f4f4f5;
+        color: #333;
+        border-radius: 3px;
+        font-weight: 500;
+        text-align: center;
+        margin-left: 5px;
+        height: 16px;
+        width: 24px;
+        align-self: center;
+        font-family: $font-family;
+      }
+
+      &.futureroute {
+        height: 18px;
+        position: relative;
+        left: 2px;
+        top: 4px;
+      }
+    }
+  }
+
+  .arrow-icon {
+    display: flex;
+    width: 27px;
+    align-items: center;
+    position: absolute;
+    right: 0;
+
+    svg {
+      fill: var(--accessible-primary-color) !important;
+      width: 24px;
+      height: 24px;
+      transform: rotate(40deg);
+    }
+
+    &.mobile {
+      &.fill-input {
+        border-left: 1px solid #ddd;
+        width: 48px;
+        height: 40px;
+        padding-right: 10px;
+        padding-left: 20px;
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      right: 24px;
+    }
+  }
+}
+
+.suggestion-icon {
+  width: 49px;
+  text-align: center;
+  padding-top: 6px;
+
+  // Default size
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .place,
+  .subway,
+  .busstop,
+  .select-from-map {
+    svg {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+    }
+  }
+
+  .search-bus-stop-digitransit {
+    svg {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
+  }
+
+  .locate,
+  .edit {
+    svg {
+      width: 22px;
+      height: 22px;
+      padding: 0;
+    }
+  }
+
+  .star,
+  .work {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .school,
+  .sport,
+  .shopping {
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .arrow {
+    svg {
+      width: 17px;
+      height: 17px;
+      transform: rotate(180deg);
+    }
+  }
+
+  .future-route {
+    svg {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      top: -11px;
+    }
+  }
+
+  .station {
+    svg {
+      width: 25px;
+      height: 24px;
+    }
+  }
+}
+
+.sr-only:not(:focus, :active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

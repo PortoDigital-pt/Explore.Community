@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 /* eslint-disable import/no-extraneous-dependencies */
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -9,7 +10,7 @@ import Icon from '@digitransit-component/digitransit-component-icon';
 import isEmpty from 'lodash/isEmpty';
 import Select from './helpers/Select';
 import translations from './helpers/translations';
-import styles from './helpers/styles.scss';
+import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest-panel.scss';
 
 i18next.init({
   lng: 'fi',
@@ -662,7 +663,7 @@ class DTAutosuggestPanel extends React.Component {
         <div className={styles['destination-input-container']}>
           <DTAutoSuggest
             appElement={this.props.appElement}
-            icon="mapMarker"
+            icon="mapPin"
             id="destination"
             autoFocus={
               disableAutoFocus === true

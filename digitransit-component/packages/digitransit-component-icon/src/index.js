@@ -1,40 +1,41 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Airplane from './assets/airplane.svg';
-import Arrow from './assets/arrow.svg';
+import Arrow from './assets/amporto/arrow.svg';
 import Bus from './assets/bus.svg';
 import Busstop from './assets/bus_stop.svg';
 import City from './assets/city.svg';
 import Edit from './assets/edit.svg';
 import Ferry from './assets/ferry.svg';
-import Home from './assets/home.svg';
-import Locate from './assets/locate.svg';
-import Place from './assets/place.svg';
+import Home from './assets/amporto/home.svg';
+import Locate from './assets/amporto/locate.svg';
+import Place from './assets/amporto/place.svg';
 import Rail from './assets/rail.svg';
 import School from './assets/school.svg';
 import Shopping from './assets/shopping.svg';
 import Sport from './assets/sport.svg';
 import Star from './assets/star.svg';
 import Station from './assets/station.svg';
-import Subway from './assets/subway.svg';
+import Subway from './assets/amporto/subway.svg';
 import Tram from './assets/tram.svg';
-import Work from './assets/work.svg';
+import Work from './assets/amporto/work.svg';
 import Map from './assets/map.svg';
 import Close from './assets/close.svg';
-import Mapmarker from './assets/mapmarker.svg';
+import Mapmarker from './assets/amporto/mapmarker.svg';
 import MapmarkerVia from './assets/mapmarker-via.svg';
-import Search from './assets/search.svg';
+import MapPin from './assets/amporto/map-pin.svg';
+import Search from './assets/amporto/search.svg';
 import Plus from './assets/plus.svg';
 import Attention from './assets/attention.svg';
 import Dropdown from './assets/dropdown.svg';
 import CarPark from './assets/car-park.svg';
 import BikePark from './assets/bike-park.svg';
-import Time from './assets/time.svg';
+import Time from './assets/amporto/time.svg';
 import Ellipsis from './assets/ellipsis.svg';
 import Opposite from './assets/opposite.svg';
 import Viapoint from './assets/viapoint.svg';
 import Calendar from './assets/calendar.svg';
-import SelectFromMap from './assets/select-from-map.svg';
+import SelectFromMap from './assets/amporto/select-from-map.svg';
 import CautionWhite from './assets/caution_white_exclamation.svg';
 import Trash from './assets/trash.svg';
 import ModeBus from './assets/mode_bus.svg';
@@ -71,7 +72,7 @@ import CityBikeRentalStationDigitransit from './assets/citybike-stop-digitransit
 import CityBikeRentalStationDigitransitSecondary from './assets/citybike-stop-digitransit-secondary.svg';
 import SearchAirplaneDigitransit from './assets/search-airplane-digitransit.svg';
 import SearchBusStationDigitransit from './assets/search-bus-station-digitransit.svg';
-import SearchBusStopDigitransit from './assets/search-bus-stop-digitransit.svg';
+import SearchBusStopDigitransit from './assets/amporto/search-bus-stop-digitransit.svg';
 import SearchBusTramStopDigitransit from './assets/search-bustram-stop-digitransit.svg';
 import SearchFerryDigitransit from './assets/search-ferry-digitransit.svg';
 import SearchFerryStopDigitransit from './assets/search-ferry-stop-digitransit.svg';
@@ -79,6 +80,7 @@ import SearchRailStopDigitransit from './assets/search-rail-stop-digitransit.svg
 import SearchRailStationDigitransit from './assets/search-rail-station-digitransit.svg';
 import SearchTramStopDigitransit from './assets/search-tram-stop-digitransit.svg';
 import Funicular from './assets/funicular.svg';
+import ClearLocation from './assets/amporto/clear-location.svg';
 
 const IconMap = style => {
   return {
@@ -186,7 +188,9 @@ const IconMap = style => {
       <SearchRailStationDigitransit style={style} />
     ),
     'search-tram-stop-digitransit': <SearchTramStopDigitransit style={style} />,
-    funicular: <Funicular style={style} />
+    funicular: <Funicular style={style} />,
+    mapPin: <MapPin style={style} />,
+    clearLocation: <ClearLocation style={style} />
   };
 };
 
@@ -209,9 +213,9 @@ const Icon = ({ color, img, height, width, rotate }) => {
     transform: rotate ? `rotate(${rotate}deg)` : null
   };
   const icons = IconMap(style);
-  if (img === 'locate' && color && color.toUpperCase() !== '#007AC9') {
-    return icons.position;
-  }
+  // if (img === 'locate' && color && color.toUpperCase() !== '#007AC9') {
+  //   return icons.position;
+  // }
   return icons[img];
 };
 

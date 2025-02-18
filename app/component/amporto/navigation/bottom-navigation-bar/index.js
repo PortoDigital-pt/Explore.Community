@@ -24,6 +24,7 @@ const NAVIGATION_ITEMS_PATH_MAP = {
 };
 
 const notNavigateExpression = new RegExp(
+  // eslint-disable-next-line no-useless-escape
   `^\/(?!(${NAVIGATION_ITEMS.EXPLORE}|${NAVIGATION_ITEMS.ITINERARIES}|${NAVIGATION_ITEMS.BLOCKS}|${NAVIGATION_ITEMS.FAVOURITES}))(\w*)`,
   'i'
 );

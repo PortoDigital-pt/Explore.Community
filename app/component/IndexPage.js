@@ -363,7 +363,8 @@ class IndexPage extends React.Component {
       fontWeights,
       modeIconColors: colors.iconColors,
       modeSet: config.iconModeSet,
-      geocodingSize: 25
+      geocodingSize: 25,
+      mobileSearchPrefixIconId: 'search'
     };
 
     if (config.stopSearchFilter) {
@@ -391,7 +392,7 @@ class IndexPage extends React.Component {
             >
               <div
                 style={{ display: 'block' }}
-                className="scrollable-content-wrapper momentum-scroll"
+                className="scrollable-content-wrapper momentum-scroll ctrl-panel-container"
               >
                 <h1 className="sr-only">
                   <FormattedMessage
@@ -452,10 +453,8 @@ class IndexPage extends React.Component {
             >
               {(showSpinner && <OverlayWithSpinner />) || null}
               <div
-                style={{
-                  display: 'block',
-                  backgroundColor: '#ffffff'
-                }}
+                className="ctrl-panel-container"
+                style={{ display: 'block' }}
               >
                 <CtrlPanel
                   instance="hsl"

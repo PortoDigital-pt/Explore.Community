@@ -1,3 +1,4 @@
+/* eslint-disable import/no-relative-packages */
 /* eslint-disable dot-notation */
 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 /* eslint react/forbid-prop-types: 0 */
@@ -5,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
 import i18next from 'i18next';
 import Icon from '@digitransit-component/digitransit-component-icon';
-import styles from './helpers/styles.scss';
+import styles from '../../../../sass/themes/amporto/digitransit-components/control-panel.scss';
 import translations from './helpers/translations';
 
 i18next.init({
