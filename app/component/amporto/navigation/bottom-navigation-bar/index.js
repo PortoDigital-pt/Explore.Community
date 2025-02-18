@@ -1,41 +1,26 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { useRouter } from 'found';
 import classnames from 'classnames';
 import { string } from 'prop-types';
 import getContext from 'recompose/getContext';
 import { intlShape } from 'react-intl';
-import { configShape } from '../../../util/shapes';
+import { configShape } from '../../../../util/shapes';
 import { NavTab } from './tab';
-import withBreakpoint from '../../../util/withBreakpoint';
+import withBreakpoint from '../../../../util/withBreakpoint';
+import {
+  COMMON_NAVIGATION_ITEMS,
+  COMMON_NAVIGATION_ITEMS_PATH_MAP,
+  generateNavigationItemsConfig
+} from '../common';
 
 const NAVIGATION_ITEMS = {
-  EXPLORE: 'explore',
-  NAVIGATE: 'navigate',
-  ITINERARIES: 'itineraries',
-  BLOCKS: 'blocks',
+  ...COMMON_NAVIGATION_ITEMS,
   FAVOURITES: 'favourites'
 };
 
 const NAVIGATION_ITEMS_PATH_MAP = {
-  [NAVIGATION_ITEMS.EXPLORE]: `/${NAVIGATION_ITEMS.EXPLORE}`,
-  [NAVIGATION_ITEMS.NAVIGATE]: '/',
-  [NAVIGATION_ITEMS.ITINERARIES]: `/${NAVIGATION_ITEMS.ITINERARIES}`,
-  [NAVIGATION_ITEMS.BLOCKS]: `/${NAVIGATION_ITEMS.BLOCKS}`,
+  ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
   [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
-};
-
-const filterNavigationItems = ({ showItineraries, showBlocks }) => {
-  const navToRender = { ...NAVIGATION_ITEMS };
-
-  if (!showItineraries) {
-    delete navToRender.ITINERARIES;
-  }
-
-  if (!showBlocks) {
-    delete navToRender.BLOCKS;
-  }
-
-  return navToRender;
 };
 
 const notNavigateExpression = new RegExp(
@@ -48,21 +33,33 @@ const isActive = ({ pathname, item }) =>
     ? notNavigateExpression.test(pathname)
     : pathname.startsWith(`/${item}`);
 
-const NavigationBar = (
+const BottomNavigationBar = (
   { breakpoint },
-  { config: { showItineraries, showBlocks }, intl }
+  { config: { optionalNavigationItems }, intl }
 ) => {
+  const [client, setClient] = useState(false);
   const { match, router } = useRouter();
 
   const navigationItems = useMemo(
-    () => filterNavigationItems({ showItineraries, showBlocks }),
-    [showItineraries, showBlocks]
+    () =>
+      generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),
+    [optionalNavigationItems]
   );
 
-  const onNavigation = useCallback(
+  const navigate = useCallback(
     item => router.push(NAVIGATION_ITEMS_PATH_MAP[item]),
     [router.push]
   );
+
+  useEffect(() => {
+    if (!client) {
+      setClient(true);
+    }
+  }, [client, setClient]);
+
+  if (!client) {
+    return null;
+  }
 
   return (
     <nav
@@ -74,7 +71,8 @@ const NavigationBar = (
         <NavTab
           key={item}
           item={item}
-          onClick={() => onNavigation(item)}
+          onClick={() => navigate(item)}
+          aria={intl.messages[`nav-item-aria-${item}`]}
           description={intl.messages[`nav-item-${item}`]}
           active={isActive({ pathname: match.location.pathname, item })}
         />
@@ -83,11 +81,11 @@ const NavigationBar = (
   );
 };
 
-NavigationBar.propTypes = {
+BottomNavigationBar.propTypes = {
   breakpoint: string.isRequired
 };
 
-NavigationBar.contextTypes = {
+BottomNavigationBar.contextTypes = {
   config: configShape.isRequired,
   intl: intlShape.isRequired
 };
@@ -95,4 +93,4 @@ NavigationBar.contextTypes = {
 export default getContext({
   config: configShape.isRequired,
   intl: intlShape.isRequired
-})(withBreakpoint(NavigationBar));
+})(withBreakpoint(BottomNavigationBar));

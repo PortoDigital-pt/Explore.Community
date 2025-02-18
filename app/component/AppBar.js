@@ -12,6 +12,7 @@ import LogoSmall from './LogoSmall';
 import CanceledLegsBar from './CanceledLegsBar';
 import LoginButton from './LoginButton';
 import UserMenu from './UserMenu';
+import SidebarMenu from './amporto/navigation/sidebar';
 
 export default function AppBar(
   { showLogo, title, homeUrl, logo, user, breakpoint, titleClicked },
@@ -97,20 +98,23 @@ export default function AppBar(
             />
           )}
           {config.mainMenu.show ? (
-            <div className="icon-holder cursor-pointer main-menu-toggle">
-              <button
-                type="button"
-                id="openMenuButton"
-                aria-label={intl.formatMessage({
-                  id: 'main-menu-label-open',
-                  defaultMessage: 'Open the main menu'
-                })}
-                onClick={() => setMenuOpenWithAnalytics(true)}
-                className="noborder cursor-pointer"
-              >
-                <Icon img="icon-icon_menu" className="icon" />
-              </button>
-            </div>
+            <>
+              <div className="icon-holder cursor-pointer main-menu-toggle">
+                <button
+                  type="button"
+                  id="openMenuButton"
+                  aria-label={intl.formatMessage({
+                    id: 'main-menu-label-open',
+                    defaultMessage: 'Open the main menu'
+                  })}
+                  onClick={() => setMenuOpenWithAnalytics(true)}
+                  className="noborder cursor-pointer"
+                >
+                  <Icon img="icon-icon_menu" className="icon" />
+                </button>
+              </div>
+              <SidebarMenu />
+            </>
           ) : null}
         </section>
       </nav>

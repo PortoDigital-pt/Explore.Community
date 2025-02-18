@@ -12,7 +12,7 @@ const language = (lang, highlight, match, intl) => {
         { id: 'search-current-suggestion' },
         { selection: lang }
       )
-    : intl.formatMessage({ id: 'language-selection' }, { language: lang });
+    : intl.formatMessage({ id: 'lang-selection' }, { language: lang });
   return (
     <a
       id={`lang-${lang}`}
@@ -29,7 +29,7 @@ const language = (lang, highlight, match, intl) => {
 const LangSelect = ({ currentLanguage }, { config, match, intl }) => {
   if (isBrowser) {
     return (
-      <div key="lang-select" id="lang-select">
+      <div key="lang-select" id="language-select">
         {config.availableLanguages.map(lang =>
           language(lang, lang === currentLanguage, match, intl)
         )}

@@ -11,21 +11,21 @@ $gray-blue: #78909c;
 $gray-blue-light: rgb(182, 193, 199);
 
 // Default
-$primary-main: #493e90;
-$primary-light: #e6f1f4;
-$primary-dark: #0c534a;
-$primary-contrastText: #fafafa;
-$gradient: linear-gradient(
-  270deg,
-  $primary-dark 0%,
-  rgba(12, 83, 74, 0.75) 100%
-);
-$background-default: #fafafa;
-$background-light: #ecf1f6;
-$grey-light-up: #f4f4f4;
-$grey-light-down: #eaeaea;
-$grey-medium: #c8c8c8;
-$grey-dark-up: #8e8e8e;
+$primary-main: #493E90;
+$primary-light: #E6F1F4;
+$primary-dark: #0C534A;
+$primary-contrastText: #FAFAFA;
+$gradient: linear-gradient(270deg, $primary-dark 0%, rgba(12, 83, 74, 0.75) 100%);
+
+$background-default: #FAFAFA;
+$background-light: #ECF1F6;
+
+$neutral: #BFBFBF;
+
+$grey-light-up: #F4F4F4;
+$grey-light-down: #EAEAEA;
+$grey-medium: #C8C8C8;
+$grey-dark-up: #8E8E8E;
 $grey-dark-down: #212121;
 
 /* Operator palette */
