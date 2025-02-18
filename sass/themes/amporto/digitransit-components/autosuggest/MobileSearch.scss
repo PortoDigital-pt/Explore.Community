@@ -21,7 +21,7 @@ input[type='text'] {
   height: 100%;
   top: 0;
   left: 0;
-  background: #fff;
+  background: $primary-contrastText;
   z-index: 1000;
 }
 
@@ -164,7 +164,7 @@ button.clear-input {
   letter-spacing: -0.6px;
   color: #333;
   font-weight: $font-weight-medium;
-  background: #fff;
+  background: $primary-contrastText;
   margin: 0;
   padding: 0 24px;
 }
@@ -191,7 +191,7 @@ button.clear-input {
     list-style: none;
     padding-left: 0;
     margin: 0;
-    background: #f4f4f5;
+    background: $primary-contrastText;
   }
 }
 
