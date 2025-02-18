@@ -315,14 +315,7 @@ export default class Map extends React.Component {
     return (
       <div ref={mapLayerRef}>
         <span>{this.props.topButtons}</span>
-        <span
-          className="overlay-mover"
-          style={{
-            transform: `translate(0, -${this.props.bottomPadding}px)`
-          }}
-        >
-          {this.props.bottomButtons}
-        </span>
+        {this.props.bottomButtons}
         <div aria-hidden="true">
           <LeafletMap
             {...naviProps}
@@ -370,7 +363,7 @@ export default class Map extends React.Component {
                 position={config.map.controls.scale.position}
               />
             )}
-            {config.map.showZoomControl && (
+            {this.props.breakpoint === 'large' && config.map.showZoomControl && (
                 <ZoomControl
                   position={config.map.controls.zoom.position}
                   zoomInText={zoomInText}
