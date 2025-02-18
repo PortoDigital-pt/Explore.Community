@@ -281,7 +281,7 @@
   border-top: 1px solid #ddd;
   width: 100%;
   margin-bottom: -1px;
-  background-color: $white;
+  background-color: $background-default;
 
   .show-alternatives {
     background: $background-color-lighter;
@@ -398,7 +398,7 @@
   height: 40px;
   width: 100%;
   color: $primary-color;
-  background-color: $white;
+  background-color: $background-default;
   text-align: left;
   padding-left: 81px;
   font-weight: $font-weight-medium;
@@ -420,7 +420,7 @@
   }
 
   &.bottom-btn {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $grey-light-down;
     font-size: $font-size-normal;
     height: 50px;
   }

@@ -66,6 +66,23 @@
   position: relative;
   animation: fadeIn 0.7s;
 
+  @media screen and (max-width: 900px) {
+    margin: 16px;
+    border-radius: 8px;
+    background: $background-default;
+    box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.16);
+
+    .itinerary-start-time-and-end-time,
+    .itinerary-duration {
+      color: $primary-dark;
+      font-family: $font-family;
+      font-size: $font-size-s;
+      font-style: normal;
+      font-weight: $font-weight-medium;
+      line-height: 16px;
+    }
+  }
+
   &.no-border::before {
     border-left: none;
   }
@@ -106,7 +123,7 @@
     display: flex;
 
     .itinerary-start-date {
-      padding-right: 5px;
+      // padding-right: 5px;
       text-transform: capitalize;
 
       .tomorrow {
@@ -207,12 +224,19 @@
       overflow: auto;
       white-space: normal;
 
+      font-family: $font-family;
+      font-size: $font-size-s;
+      font-style: normal;
+      font-weight: $font-weight-regular;
+      line-height: 16px;
+
       .platform-or-track {
         text-transform: lowercase;
       }
 
       .start-time {
         font-weight: $font-weight-medium;
+        color: $primary-dark;
       }
     }
 
@@ -375,6 +399,14 @@
 
             .vehicle-number {
               align-self: center;
+              @media screen and (max-width: 900px) {
+                color: $background-default;
+                font-family: $font-family;
+                font-size: $font-size-s;
+                font-style: normal;
+                font-weight: $font-weight-regular;
+                line-height: 16px;
+              }
             }
           }
 
@@ -528,8 +560,12 @@
 
         .leg-duration-container {
           .leg-duration {
-            font-size: 13px;
-            color: $black;
+            font-size: 12px;
+            color: $grey-dark-down;
+            font-family: $font-family;
+            font-size: $font-size-s;
+            font-style: normal;
+            font-weight: $font-weight-regular;
           }
 
           &.citybike {
@@ -690,6 +726,10 @@
 
       .vehicle-number {
         font-size: $font-size-small;
+      }
+
+      @media screen and (max-width: 900px) {
+        height: 22px;
       }
     }
 

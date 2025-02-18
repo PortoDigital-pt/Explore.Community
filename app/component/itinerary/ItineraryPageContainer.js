@@ -20,13 +20,13 @@ const ItineraryPageWithStores = connectToStores(
   ['MapLayerStore'],
   ({ getStore }) => ({
     mapLayers: getStore('MapLayerStore').getMapLayers({
-      notThese: ['stop', 'citybike', 'vehicles', 'scooter']
+      notThese: ['stop', 'citybike', 'vehicles', 'scooter'],
     }),
     mapLayerOptions: getMapLayerOptions({
       lockedMapLayers: ['vehicles', 'citybike', 'stop'],
-      selectedMapLayers: ['vehicles']
-    })
-  })
+      selectedMapLayers: ['vehicles'],
+    }),
+  }),
 );
 
 export default function ItineraryPageContainer(props) {
@@ -41,7 +41,7 @@ export default function ItineraryPageContainer(props) {
   }
   return (
     <Suspense fallback={<Loading />}>
-      <ItineraryPageWithStores {...props} />
+      <ItineraryPageWithStores {...props} hideAltBar />
     </Suspense>
   );
 }
