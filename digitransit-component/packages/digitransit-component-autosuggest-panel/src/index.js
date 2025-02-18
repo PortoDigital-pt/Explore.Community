@@ -233,7 +233,6 @@ class DTAutosuggestPanel extends React.Component {
     updateViaPoints: PropTypes.func,
     handleViaPointLocationSelected: PropTypes.func,
     swapOrder: PropTypes.func,
-    searchPanelText: PropTypes.string,
     searchContext: PropTypes.shape({
       URL_PELIAS: PropTypes.string
     }).isRequired,
@@ -274,7 +273,6 @@ class DTAutosuggestPanel extends React.Component {
     swapOrder: undefined,
     updateViaPoints: () => {},
     lang: 'fi',
-    searchPanelText: undefined,
     sources: [],
     targets: [],
     filterResults: undefined,
@@ -422,7 +420,6 @@ class DTAutosuggestPanel extends React.Component {
   render() {
     const {
       origin,
-      searchPanelText,
       searchContext,
       disableAutoFocus,
       viaPoints,
@@ -431,7 +428,8 @@ class DTAutosuggestPanel extends React.Component {
       fontWeights,
       onFocusChange,
       showSwapControl,
-      showViapointControl
+      showViapointControl,
+      lang
     } = this.props;
     const { activeSlackInputs } = this.state;
     const slackTime = getSlackTimeOptions();
@@ -456,14 +454,12 @@ class DTAutosuggestPanel extends React.Component {
         }}
       >
         {' '}
-        {searchPanelText ? (
-          <div>
-            <h1 className={styles['autosuggest-searchpanel-text']}>
-              {' '}
-              {searchPanelText}
-            </h1>
-          </div>
-        ) : null}
+        <div>
+          <h1 className={styles['autosuggest-searchpanel-text']}>
+            {' '}
+            {i18next.t('where', { lng: lang })}
+          </h1>
+        </div>
         <div className={styles['origin-input-container']}>
           <DTAutoSuggest
             appElement={this.props.appElement}

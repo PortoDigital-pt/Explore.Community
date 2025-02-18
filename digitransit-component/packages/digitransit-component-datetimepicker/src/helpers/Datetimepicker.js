@@ -97,7 +97,12 @@ function Datetimepicker({
 
   useEffect(() => {
     Object.keys(translations).forEach(language =>
-      i18next.addResourceBundle(language, 'translation', translations[lang])
+      i18next.addResourceBundle(
+        language,
+        'translation',
+        translations[lang],
+        true
+      )
     );
   }, []);
 
