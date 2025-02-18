@@ -76,7 +76,7 @@ export default class BackButton extends React.Component {
     }
 
     return (
-      <div className={this.props.className} style={{ display: 'flex' }}>
+      <div className={this.props.className}>
         {this.props.title && !this.props.titleClassName && (
           <h1 className="h1">{this.props.title}</h1>
         )}

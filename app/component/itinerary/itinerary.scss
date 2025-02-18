@@ -234,6 +234,7 @@ $itinerary-tab-switch-height: 48px;
 .itinerary-co2-information {
   &.mobile {
     padding-left: 5px;
+    padding-bottom: 0 !important;
 
     .divider-bottom {
       width: 365px;
@@ -311,6 +312,7 @@ $itinerary-tab-switch-height: 48px;
     &.mobile {
       flex-direction: row;
       margin: 11px 10px 10px 6px;
+      padding-bottom: 0 !important;
     }
 
     @include min-width(tablet) {
