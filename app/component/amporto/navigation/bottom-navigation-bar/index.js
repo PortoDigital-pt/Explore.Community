@@ -23,14 +23,14 @@ const NAVIGATION_ITEMS_PATH_MAP = {
   [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
 };
 
-const notNavigateExpression = new RegExp(
+const notBrowseExpression = new RegExp(
   // eslint-disable-next-line no-useless-escape
-  `^\/(?!(${NAVIGATION_ITEMS.EXPLORE}|${NAVIGATION_ITEMS.ITINERARIES}|${NAVIGATION_ITEMS.BLOCKS}|${NAVIGATION_ITEMS.FAVOURITES}))(\w*)`,
+  `^\/(?!(${NAVIGATION_ITEMS.EXPLORE}|${NAVIGATION_ITEMS.ROUTES}|${NAVIGATION_ITEMS.BLOCKS}|${NAVIGATION_ITEMS.FAVOURITES}))(\w*)`,
   'i'
 );
 const isActive = ({ pathname, item }) =>
-  item === NAVIGATION_ITEMS.NAVIGATE
-    ? notNavigateExpression.test(pathname)
+  item === NAVIGATION_ITEMS.BROWSE
+    ? notBrowseExpression.test(pathname)
     : pathname.startsWith(`/${item}`);
 
 const BottomNavigationBar = (

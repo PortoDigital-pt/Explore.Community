@@ -48,7 +48,7 @@ const {
   NARROW_NEAR_YOU_BUTTONS,
   MESSAGE_BAR_ALERTS,
   SHOW_CO2_IN_ITINERARY_SUMMARY,
-  SHOW_ITINERARIES,
+  SHOW_ROUTES,
   SHOW_BLOCKS,
   PRIVACY_POLICY,
   COOKIES_POLICY
@@ -97,7 +97,7 @@ export default {
 
   // navbar items
   optionalNavigationItems: {
-    itineraries: SHOW_ITINERARIES === 'true',
+    routes: SHOW_ROUTES === 'true',
     blocks: SHOW_BLOCKS === 'true'
   },
 

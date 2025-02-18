@@ -3,9 +3,9 @@ import React from 'react';
 import { graphql } from 'react-relay';
 import Route from 'found/Route';
 import Redirect from 'found/Redirect';
-import Error404 from '../../component/404';
-import { prepareWeekDays } from '../../util/dateParamUtils';
-import { isBrowser } from '../../util/browser';
+import Error404 from '../../component/404.js';
+import { prepareWeekDays } from '../../util/dateParamUtils.js';
+import { isBrowser } from '../../util/browser.js';
 import {
   PREFIX_ITINERARY_SUMMARY,
   PREFIX_NEARYOU,
@@ -17,13 +17,13 @@ import {
   TAB_NEARBY,
   TAB_FAVOURITES,
   EMBEDDED_SEARCH_PATH
-} from '../../util/path';
+} from '../../util/path.js';
 import {
   getDefault,
   errorLoading,
   getComponentOrLoadingRenderer,
   getComponentOrNullRenderer
-} from '../../util/routerUtils';
+} from '../../util/routerUtils.js';
 
 import getStopRoutes from './stop.js';
 import getRouteRoutes from './route.js';
@@ -34,7 +34,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/Title'
+            /* webpackChunkName: "itinerary" */ '../../component/Title.js'
           ).then(getDefault)
         }
       />
@@ -43,7 +43,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/IndexPage'
+            /* webpackChunkName: "itinerary" */ '../../component/IndexPage.js'
           ).then(getDefault)
         }
       />
@@ -52,7 +52,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/IndexPageMeta'
+            /* webpackChunkName: "itinerary" */ '../../component/IndexPageMeta.js'
           ).then(getDefault)
         }
       />
@@ -72,7 +72,7 @@ export default config => {
   const itineraryPageGeolocatorProps = {
     getComponent: () =>
       import(
-        /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
+        /* webpackChunkName: "itinerary" */ '../../component/Geolocator.js'
       ).then(getDefault),
     render: ({ Component, props }) => {
       if (Component) {
@@ -93,14 +93,14 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "vehiclepark" */ '../../component/ParkContainer'
+            /* webpackChunkName: "vehiclepark" */ '../../component/ParkContainer.js'
           )
             .then(getDefault)
             .catch(errorLoading)
         }
         prepareVariables={prepareWeekDays}
         query={graphql`
-          query navigate_routes_VehiclePark_Query($id: String!) {
+          query browse_routes_VehiclePark_Query($id: String!) {
             vehicleParking(id: $id) {
               ...ParkContainer_vehicleParking
             }
@@ -124,13 +124,13 @@ export default config => {
         path="(.*)?"
         getComponent={() =>
           import(
-            /* webpackChunkName: "vehiclepark" */ '../../component/VehicleParkMapContainer'
+            /* webpackChunkName: "vehiclepark" */ '../../component/VehicleParkMapContainer.js'
           ).then(getDefault)
         }
         // TODO remove prepareVariables after hsl.fi has updated its vehicle parking addresses
         prepareVariables={prepareWeekDays}
         query={graphql`
-          query navigate_routes_VehicleParkMap_Query($id: String!) {
+          query browse_routes_VehicleParkMap_Query($id: String!) {
             vehicleParking(id: $id) {
               ...VehicleParkMapContainer_vehiclePark
             }
@@ -152,11 +152,11 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationContent'
+                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationContent.js'
                 ).then(getDefault)
               }
               query={graphql`
-                query navigate_routes_VehicleRentalStation_Query($id: String!) {
+                query browse_routes_VehicleRentalStation_Query($id: String!) {
                   vehicleRentalStation(id: $id) {
                     ...VehicleRentalStationContent_vehicleRentalStation
                   }
@@ -180,11 +180,11 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationMapContainer'
+                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationMapContainer.js'
                 ).then(getDefault)
               }
               query={graphql`
-                query navigate_routes_VehicleRentalStationMap_Query(
+                query browse_routes_VehicleRentalStationMap_Query(
                   $id: String!
                 ) {
                   vehicleRentalStation(id: $id) {
@@ -219,7 +219,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "nearyou" */ '../../component/nearyou/NearYouPage'
+                  /* webpackChunkName: "nearyou" */ '../../component/nearyou/NearYouPage.js'
                 ).then(getDefault)
               }
               render={({ Component, props, error }) => {
@@ -239,7 +239,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/nearyou/NearYouPageMeta'
+                  /* webpackChunkName: "itinerary" */ '../../component/nearyou/NearYouPageMeta.js'
                 ).then(getDefault)
               }
             />
@@ -251,10 +251,12 @@ export default config => {
           content: (
             <Route
               getComponent={() =>
-                import('../../component/RentalVehicleContent').then(getDefault)
+                import('../../component/RentalVehicleContent.js').then(
+                  getDefault
+                )
               }
               query={graphql`
-                query navigate_routes_RentalVehicle_Query($id: String!) {
+                query browse_routes_RentalVehicle_Query($id: String!) {
                   rentalVehicle(id: $id) {
                     ...RentalVehicleContent_rentalVehicle
                   }
@@ -277,12 +279,12 @@ export default config => {
             <Route
               path="(.*)?"
               getComponent={() =>
-                import('../../component/RentalVehiclePageMapContainer').then(
+                import('../../component/RentalVehiclePageMapContainer.js').then(
                   getDefault
                 )
               }
               query={graphql`
-                query navigate_routes_RentalVehicleMap_Query($id: String!) {
+                query browse_routes_RentalVehicleMap_Query($id: String!) {
                   rentalVehicle(id: $id) {
                     ...RentalVehiclePageMapContainer_rentalVehicle
                   }
@@ -321,7 +323,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageTitle'
+                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageTitle.js'
                 ).then(getDefault)
               }
             />
@@ -331,10 +333,10 @@ export default config => {
               getComponent={() =>
                 isBrowser
                   ? import(
-                      /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageContainer'
+                      /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageContainer.js'
                     ).then(getDefault)
                   : import(
-                      /* webpackChunkName: "loading" */ '../../component/Loading'
+                      /* webpackChunkName: "loading" */ '../../component/Loading.js'
                     ).then(getDefault)
               }
               render={getComponentOrNullRenderer}
@@ -346,7 +348,7 @@ export default config => {
                     <Route
                       getComponent={() =>
                         import(
-                          /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryDetails'
+                          /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryDetails.js'
                         ).then(getDefault)
                       }
                       render={getComponentOrLoadingRenderer}
@@ -361,7 +363,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageMeta'
+                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageMeta.js'
                 ).then(getDefault)
               }
             />
@@ -372,7 +374,7 @@ export default config => {
         path={config.URL.EMBEDDED_SEARCH_GENERATION}
         getComponent={() =>
           import(
-            /* webpackChunkName: "embedded-search-generator" */ '../../component/embedded/EmbeddedSearchGenerator'
+            /* webpackChunkName: "embedded-search-generator" */ '../../component/embedded/EmbeddedSearchGenerator.js'
           ).then(getDefault)
         }
       />
@@ -380,7 +382,7 @@ export default config => {
         path={EMBEDDED_SEARCH_PATH}
         getComponent={() =>
           import(
-            /* webpackChunkName: "embedded-search" */ '../../component/embedded/EmbeddedSearchContainer'
+            /* webpackChunkName: "embedded-search" */ '../../component/embedded/EmbeddedSearchContainer.js'
           ).then(getDefault)
         }
         topBarOptions={{ hidden: true }}
@@ -407,7 +409,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
+                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator.js'
                 ).then(getDefault)
               }
               render={({ Component, props }) => {
@@ -436,7 +438,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
+                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator.js'
                 ).then(getDefault)
               }
               render={({ Component, props }) => {
@@ -491,7 +493,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/Title'
+                  /* webpackChunkName: "itinerary" */ '../../component/Title.js'
                 ).then(getDefault)
               }
             >
@@ -502,7 +504,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/IndexPage'
+                  /* webpackChunkName: "itinerary" */ '../../component/IndexPage.js'
                 ).then(getDefault)
               }
             />
