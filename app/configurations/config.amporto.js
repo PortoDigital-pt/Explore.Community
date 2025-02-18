@@ -130,6 +130,7 @@ export default {
   timeZone: TIME_ZONE,
 
   map: {
+    showLayerSelector: false,
     attribution: MAP_ATTRIBUTION,
     areaBounds: {
       corner1: [minLat, minLon],
