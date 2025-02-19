@@ -17,7 +17,7 @@ import {
   getDialogState,
   getLatestNavigatorItinerary,
   setDialogState,
-  setLatestNavigatorItinerary,
+  setLatestNavigatorItinerary
 } from '../../store/localStorage';
 import { addAnalyticsEvent } from '../../util/analyticsUtils';
 import { getWeatherData } from '../../util/apiUtils';
@@ -26,19 +26,19 @@ import { boundWithMinimumArea } from '../../util/geo-utils';
 import {
   getIntermediatePlaces,
   otpToLocation,
-  parseLatLon,
+  parseLatLon
 } from '../../util/otpStrings';
 import { getItineraryPagePath, streetHash } from '../../util/path';
 import {
   PLANTYPE,
   getPlanParams,
   getSettings,
-  planQueryNeeded,
+  planQueryNeeded
 } from '../../util/planParamUtil';
 import {
   configShape,
   mapLayerOptionsShape,
-  relayShape,
+  relayShape
 } from '../../util/shapes';
 import { epochToTime } from '../../util/timeUtils';
 import { getAllNetworksOfType } from '../../util/vehicleRentalUtils';
@@ -72,7 +72,7 @@ import {
   setCurrentTimeToURL,
   settingsLimitRouting,
   stopClient,
-  updateClient,
+  updateClient
 } from './ItineraryPageUtils';
 import ItineraryTabs from './ItineraryTabs';
 import planConnection from './PlanConnection';
@@ -87,19 +87,19 @@ const streetHashes = [
   streetHash.bikeAndVehicle,
   streetHash.car,
   streetHash.carAndVehicle,
-  streetHash.parkAndRide,
+  streetHash.parkAndRide
 ];
 const altTransitHash = [
   streetHash.bikeAndVehicle,
   streetHash.carAndVehicle,
-  streetHash.parkAndRide,
+  streetHash.parkAndRide
 ];
 const noTransitHash = [streetHash.walk, streetHash.bike, streetHash.car];
 
 const LOADSTATE = {
   UNSET: 'unset',
   LOADING: 'loading',
-  DONE: 'done',
+  DONE: 'done'
 };
 
 const showVehiclesThresholdMinutes = 720;
@@ -115,7 +115,7 @@ const emptyState = {
   bottomNote: undefined,
   loading: LOADSTATE.DONE,
   startCursor: undefined,
-  endCursor: undefined,
+  endCursor: undefined
 };
 
 const emptyPlan = { plan: {}, loading: LOADSTATE.DONE };
@@ -131,14 +131,14 @@ export default function ItineraryPage(props, context) {
   const mapLayerRef = useRef();
   const [state, setState] = useState({
     ...emptyState,
-    loading: LOADSTATE.UNSET,
+    loading: LOADSTATE.UNSET
   });
   const [relaxState, setRelaxState] = useState(emptyPlan);
   const [relaxScooterState, setRelaxScooterState] = useState(emptyPlan);
   const [scooterState, setScooterState] = useState(unset);
   const [combinedState, setCombinedState] = useState(emptyPlan);
   const [isNavigatorIntroDismissed, setNavigatorIntroDismissed] = useState(
-    getDialogState('navi-intro'),
+    getDialogState('navi-intro')
   );
 
   const altStates = {
@@ -148,7 +148,7 @@ export default function ItineraryPage(props, context) {
     [PLANTYPE.BIKEPARK]: useState(unset),
     [PLANTYPE.BIKETRANSIT]: useState(unset),
     [PLANTYPE.PARKANDRIDE]: useState(unset),
-    [PLANTYPE.CARTRANSIT]: useState(unset),
+    [PLANTYPE.CARTRANSIT]: useState(unset)
   };
   // combination of bikePark and bikeTransit
   const [bikePublicState, setBikePublicState] = useState({ plan: {} });
@@ -157,14 +157,14 @@ export default function ItineraryPage(props, context) {
 
   const [settingsState, setSettingsState] = useState({
     settingsOpen: false,
-    settingsChanged: 0,
+    settingsChanged: 0
   });
   const [weatherState, setWeatherState] = useState({ loading: false });
   const [topicsState, setTopicsState] = useState(null);
   const [mapState, setMapState] = useState({});
   const [naviMode, setNaviMode] = useState(false);
   const [storedItinerary, setStoredItinerary] = useState(
-    getLatestNavigatorItinerary(),
+    getLatestNavigatorItinerary()
   );
 
   const { config, router } = context;
@@ -176,13 +176,13 @@ export default function ItineraryPage(props, context) {
 
   function altLoading() {
     return Object.values(altStates).some(
-      st => st[0].loading === LOADSTATE.LOADING,
+      st => st[0].loading === LOADSTATE.LOADING
     );
   }
 
   function altLoadingDone() {
     return Object.values(altStates).every(
-      st => st[0].loading === LOADSTATE.DONE,
+      st => st[0].loading === LOADSTATE.DONE
     );
   }
 
@@ -195,11 +195,11 @@ export default function ItineraryPage(props, context) {
     addAnalyticsEvent({
       category: 'Itinerary',
       action: 'OpenItineraryDetailsWithMode',
-      name: newStreetMode,
+      name: newStreetMode
     });
     const newLocationState = {
       ...location,
-      state: { selectedItineraryIndex: 0 },
+      state: { selectedItineraryIndex: 0 }
     };
     const basePath = getItineraryPagePath(params.from, params.to);
     let pagePath = basePath;
@@ -218,8 +218,8 @@ export default function ItineraryPage(props, context) {
         ...location,
         state: {
           ...location.state,
-          selectedItineraryIndex: 0,
-        },
+          selectedItineraryIndex: 0
+        }
       });
     }
   };
@@ -277,7 +277,7 @@ export default function ItineraryPage(props, context) {
               windSpeed,
               // Icon spec: www.ilmatieteenlaitos.fi/latauspalvelun-pikaohje -> Sääsymbolien selitykset ennusteissa
               iconId: checkDayNight(iconIndex, time, from.lat, from.lon),
-              time: epochToTime(time, config),
+              time: epochToTime(time, config)
             };
           }
         }
@@ -300,8 +300,8 @@ export default function ItineraryPage(props, context) {
         planConnection,
         planParams,
         {
-          force: true,
-        },
+          force: true
+        }
       ).toPromise();
       if (!plan) {
         plan = result.plan;
@@ -310,18 +310,18 @@ export default function ItineraryPage(props, context) {
           ...plan,
           pageInfo: {
             ...plan.pageInfo,
-            startCursor: result.plan.pageInfo.startCursor,
+            startCursor: result.plan.pageInfo.startCursor
           },
-          edges: plan.edges.concat(result.plan.edges),
+          edges: plan.edges.concat(result.plan.edges)
         };
       } else {
         plan = {
           ...plan,
           pageInfo: {
             ...plan.pageInfo,
-            endCursor: result.plan.pageInfo.endCursor,
+            endCursor: result.plan.pageInfo.endCursor
           },
-          edges: plan.edges.concat(result.plan.edges),
+          edges: plan.edges.concat(result.plan.edges)
         };
       }
       if (quitIteration(plan, result.plan, planParams, startTime)) {
@@ -404,7 +404,7 @@ export default function ItineraryPage(props, context) {
       config,
       match,
       PLANTYPE.SCOOTERTRANSIT,
-      false, // no relaxed settings
+      false // no relaxed settings
     );
 
     try {
@@ -425,19 +425,19 @@ export default function ItineraryPage(props, context) {
     setRelaxScooterState({ loading: LOADSTATE.LOADING });
     const allScooterNetworks = getAllNetworksOfType(
       context.config,
-      TransportMode.Scooter,
+      TransportMode.Scooter
     );
 
     const planParams = getPlanParams(
       config,
       match,
       PLANTYPE.SCOOTERTRANSIT,
-      true, // force relaxed settings
+      true // force relaxed settings
     );
 
     const tunedParams = {
       ...planParams,
-      allowedRentalNetworks: allScooterNetworks,
+      allowedRentalNetworks: allScooterNetworks
     };
     try {
       const plan = await iterateQuery(tunedParams);
@@ -453,7 +453,7 @@ export default function ItineraryPage(props, context) {
       event: 'sendMatomoEvent',
       category: 'Itinerary',
       action: 'ShowLaterItineraries',
-      name: null,
+      name: null
     });
 
     const relaxed =
@@ -476,7 +476,7 @@ export default function ItineraryPage(props, context) {
 
     setState({
       ...state,
-      loadingMore: arriveBy ? spinnerPosition.top : spinnerPosition.bottom,
+      loadingMore: arriveBy ? spinnerPosition.top : spinnerPosition.bottom
     });
     ariaRef.current = 'itinerary-page.loading-itineraries';
 
@@ -500,7 +500,7 @@ export default function ItineraryPage(props, context) {
     const newState = {
       ...state,
       loadingMore: undefined,
-      endCursor: plan.pageInfo.endCursor,
+      endCursor: plan.pageInfo.endCursor
     };
     // place separators. First click sets feedback button to place
     // where user clicked before/after button. Further clicks above the itinerary list
@@ -511,13 +511,13 @@ export default function ItineraryPage(props, context) {
         ? {
             separatorPosition: edges.length,
             routingFeedbackPosition:
-              state.routingFeedbackPosition + edges.length,
+              state.routingFeedbackPosition + edges.length
           }
         : { routingFeedbackPosition: edges.length };
       setState({
         ...newState,
         ...separators,
-        earlierEdges: [...edges, ...state.earlierEdges],
+        earlierEdges: [...edges, ...state.earlierEdges]
       });
     } else {
       // user clicked button below itinerary list
@@ -527,7 +527,7 @@ export default function ItineraryPage(props, context) {
           origPlan.edges.length +
           state.earlierEdges.length +
           state.laterEdges.length,
-        laterEdges: [...state.laterEdges, ...edges],
+        laterEdges: [...state.laterEdges, ...edges]
       });
     }
     if (arriveBy) {
@@ -540,7 +540,7 @@ export default function ItineraryPage(props, context) {
       event: 'sendMatomoEvent',
       category: 'Itinerary',
       action: 'ShowLaterItineraries',
-      name: null,
+      name: null
     });
 
     const relaxed =
@@ -564,7 +564,7 @@ export default function ItineraryPage(props, context) {
 
     setState({
       ...state,
-      loadingMore: arriveBy ? spinnerPosition.bottom : spinnerPosition.top,
+      loadingMore: arriveBy ? spinnerPosition.bottom : spinnerPosition.top
     });
     ariaRef.current = 'itinerary-page.loading-itineraries';
 
@@ -587,7 +587,7 @@ export default function ItineraryPage(props, context) {
     const newState = {
       ...state,
       loadingMore: undefined,
-      startCursor: plan.pageInfo.startCursor,
+      startCursor: plan.pageInfo.startCursor
     };
     if (arriveBy) {
       // user clicked button below itinerary list
@@ -597,7 +597,7 @@ export default function ItineraryPage(props, context) {
           origPlan.edges.length +
           state.earlierEdges.length +
           state.laterEdges.length,
-        laterEdges: [...state.laterEdges, ...edges],
+        laterEdges: [...state.laterEdges, ...edges]
       });
     } else {
       // user clicked button above itinerary list
@@ -605,13 +605,13 @@ export default function ItineraryPage(props, context) {
         ? {
             separatorPosition: edges.length,
             routingFeedbackPosition:
-              state.routingFeedbackPosition + edges.length,
+              state.routingFeedbackPosition + edges.length
           }
         : { routingFeedbackPosition: edges.length };
       setState({
         ...newState,
         ...separators,
-        earlierEdges: [...edges, ...state.earlierEdges],
+        earlierEdges: [...edges, ...state.earlierEdges]
       });
     }
     if (!arriveBy) {
@@ -635,7 +635,7 @@ export default function ItineraryPage(props, context) {
     return [
       ...(state.earlierEdges || []),
       ...(mapHashToPlan()?.edges || []),
-      ...(state.laterEdges || []),
+      ...(state.laterEdges || [])
     ];
   };
 
@@ -682,8 +682,8 @@ export default function ItineraryPage(props, context) {
         arriveBy: query.arriveBy,
         time: query.time,
         hash,
-        secondHash,
-      },
+        secondHash
+      }
     };
     setLatestNavigatorItinerary(itineraryWithParams);
     setStoredItinerary(itineraryWithParams);
@@ -713,11 +713,11 @@ export default function ItineraryPage(props, context) {
           gid: label,
           layer,
           label,
-          localadmin: names[names.length - 1],
+          localadmin: names[names.length - 1]
         },
-        type: 'Feature',
+        type: 'Feature'
       },
-      type: 'endpoint',
+      type: 'endpoint'
     });
   }
 
@@ -747,13 +747,13 @@ export default function ItineraryPage(props, context) {
     const itinerarySearch = {
       origin: {
         address: originArray[0],
-        ...parseLatLon(originArray[1]),
+        ...parseLatLon(originArray[1])
       },
       destination: {
         address: destinationArray[0],
-        ...parseLatLon(destinationArray[1]),
+        ...parseLatLon(destinationArray[1])
       },
-      query,
+      query
     };
     context.executeAction(saveFutureRoute, itinerarySearch);
   }
@@ -812,7 +812,7 @@ export default function ItineraryPage(props, context) {
     params.to,
     query.time,
     query.arriveBy,
-    query.intermediatePlaces,
+    query.intermediatePlaces
   ]);
 
   useEffect(() => {
@@ -866,7 +866,7 @@ export default function ItineraryPage(props, context) {
     altStates[PLANTYPE.PARKANDRIDE][0].plan,
     location.state?.selectedItineraryIndex,
     relaxScooterState.plan,
-    naviMode,
+    naviMode
   ]);
 
   useEffect(() => {
@@ -883,13 +883,13 @@ export default function ItineraryPage(props, context) {
     ) {
       const plan = mergeBikeTransitPlans(
         altStates[PLANTYPE.BIKEPARK][0].plan,
-        altStates[PLANTYPE.BIKETRANSIT][0].plan,
+        altStates[PLANTYPE.BIKETRANSIT][0].plan
       );
       setBikePublicState({ plan });
     }
   }, [
     altStates[PLANTYPE.BIKEPARK][0].plan,
-    altStates[PLANTYPE.BIKETRANSIT][0].plan,
+    altStates[PLANTYPE.BIKETRANSIT][0].plan
   ]);
 
   // merge direct car and car transit plans into one
@@ -903,7 +903,7 @@ export default function ItineraryPage(props, context) {
     ) {
       const plan = mergeCarDirectAndTransitPlans(
         altStates[PLANTYPE.CAR][0].plan,
-        altStates[PLANTYPE.CARTRANSIT][0].plan,
+        altStates[PLANTYPE.CARTRANSIT][0].plan
       );
       setCarPublicState({ plan });
     }
@@ -918,7 +918,7 @@ export default function ItineraryPage(props, context) {
       const plan = mergeScooterTransitPlan(
         scooterState.plan,
         state.plan,
-        config.vehicleRental.allowDirectScooterJourneys,
+        config.vehicleRental.allowDirectScooterJourneys
       );
       setCombinedState({ plan, loading: LOADSTATE.DONE });
       resetItineraryPageSelection();
@@ -947,11 +947,11 @@ export default function ItineraryPage(props, context) {
         .concat(
           [
             [leg.from.lat, leg.from.lon],
-            [leg.to.lat, leg.to.lon],
+            [leg.to.lat, leg.to.lon]
           ],
-          polyline.decode(leg.legGeometry.points),
+          polyline.decode(leg.legGeometry.points)
         )
-        .filter(a => a[0] && a[1]),
+        .filter(a => a[0] && a[1])
     );
     setMapState({ bounds, center: undefined, zoom: undefined });
     setTimeout(() => mwtRef.current?.map?.updateZoom(), 1);
@@ -964,16 +964,16 @@ export default function ItineraryPage(props, context) {
       event: 'sendMatomoEvent',
       category: 'Itinerary',
       action: 'OpenItineraryDetails',
-      name: index,
+      name: index
     });
 
     const newLocationState = {
       ...location,
-      state: { selectedItineraryIndex: index },
+      state: { selectedItineraryIndex: index }
     };
     const pagePath = `${getItineraryPagePath(
       params.from,
-      params.to,
+      params.to
     )}${subPath}/${index}`;
 
     newLocationState.pathname = pagePath;
@@ -985,7 +985,7 @@ export default function ItineraryPage(props, context) {
       event: 'sendMatomoEvent',
       category: 'ItinerarySettings',
       action: 'ExtraSettingsPanelClick',
-      name: open ? 'ExtraSettingsPanelOpen' : 'ExtraSettingsPanelClose',
+      name: open ? 'ExtraSettingsPanelOpen' : 'ExtraSettingsPanelClose'
     });
 
     if (open) {
@@ -993,15 +993,15 @@ export default function ItineraryPage(props, context) {
         ...settingsState,
         settingsOpen: true,
         settingsOnOpen: getSettings(config),
-        changeScooterSettings,
+        changeScooterSettings
       });
       if (breakpoint !== 'large') {
         router.push({
           ...location,
           state: {
             ...location.state,
-            itinerarySettingsOpen: true,
-          },
+            itinerarySettingsOpen: true
+          }
         });
       }
       return;
@@ -1014,13 +1014,13 @@ export default function ItineraryPage(props, context) {
       addAnalyticsEvent({
         category: 'ItinerarySettings',
         action: 'SettingsEnableScooterNetwork',
-        name: 'AfterOnlyScooterRoutesFound',
+        name: 'AfterOnlyScooterRoutesFound'
       });
     }
 
     const settingsChanged = !isEqual(
       settingsState.settingsOnOpen,
-      getSettings(config),
+      getSettings(config)
     )
       ? settingsState.settingsChanged + 1
       : settingsState.settingsChanged;
@@ -1028,7 +1028,7 @@ export default function ItineraryPage(props, context) {
       ...settingsState,
       settingsOpen: false,
       settingsChanged,
-      changeScooterSettings: false,
+      changeScooterSettings: false
     });
 
     if (settingsChanged && detailView) {
@@ -1075,7 +1075,7 @@ export default function ItineraryPage(props, context) {
 
     const objectsToHide = getRentalStationsToHideOnMap(
       itineraryContainsDepartureFromVehicleRentalStation,
-      planEdges?.[activeIndex]?.node,
+      planEdges?.[activeIndex]?.node
     );
 
     const explicitItinerary =
@@ -1148,7 +1148,7 @@ export default function ItineraryPage(props, context) {
       itinerary: combinedEdges[selectedIndex],
       focusToPoint,
       from,
-      to,
+      to
     });
   }
 
@@ -1168,7 +1168,7 @@ export default function ItineraryPage(props, context) {
           viaPoints,
           combinedEdges,
           selectedIndex,
-          detailView,
+          detailView
         );
 
   const desktop = breakpoint === 'large';
@@ -1234,7 +1234,7 @@ export default function ItineraryPage(props, context) {
         !desktop && config.experimental?.navigation && !pastSearch
           ? () =>
               storeItineraryAndStartNavigation(
-                combinedEdges[selectedIndex]?.node,
+                combinedEdges[selectedIndex]?.node
               )
           : undefined;
       carEmissions = carEmissions ? Math.round(carEmissions) : undefined;

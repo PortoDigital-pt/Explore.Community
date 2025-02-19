@@ -360,19 +360,31 @@
 }
 
 .mobile {
-  background-color: white;
+  background-color: $background-default;
 
   .summary-navigation-container {
-    margin: 0 9px 0 1.25em;
+    display: block;
+    margin: 12px 16px 0 -12px;
+
+    .summary-navigation-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .summary-navigation-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
     .back-button {
-      position: static;
+      position: sticky;
 
       .icon-holder {
         position: absolute;
         box-shadow: none;
         font-size: 16px;
-        top: 1.5em;
+        top: 0;
 
         .icon-container {
           height: inherit;
@@ -386,12 +398,43 @@
         margin: 1.7em 0 25px 0;
       }
     }
+
+    .section-control-back-button {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+
+    .section-control-origin-destination-bar {
+      flex-grow: 6;
+      flex-basis: 0;
+    }
+
+    .section-control-definitions {
+      flex-grow: 1;
+      flex-basis: 0;
+      margin-left: 30px;
+    }
+
+    @media screen and (min-width: 413px) {
+      .section-control-origin-destination-bar {
+        flex-grow: 7;
+        flex-basis: 0;
+      }
+    }
+
+    @media screen and (min-width: 699px) {
+      .section-control-origin-destination-bar {
+        flex-grow: 8;
+        flex-basis: 0;
+      }
+    }
   }
 }
 
 .summary-navigation-container {
-  background-color: #fff;
+  background-color: $background-default;
   flex: 0 0 auto;
+  margin-top: 12px;
 }
 
 .time-navigation-btn {
@@ -428,6 +471,7 @@
 
 .mobile .time-navigation-btn {
   padding-left: 28px;
+  color: $primary-dark;
 
   &.extra-whitespace {
     height: 120px;

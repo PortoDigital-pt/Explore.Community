@@ -989,30 +989,30 @@ const Itinerary = (
                 </div>
               ))}
           </div>
-          {mobile(breakpoint) !== true && (
-            <div
-              tabIndex="0"
-              role="button"
-              title={formatMessage({
-                id: 'itinerary-page.show-details'
-              })}
-              key="arrow"
-              className="action-arrow-click-area flex-vertical noborder"
-              onClick={e => {
-                e.stopPropagation();
-                props.onSelectImmediately(props.hash);
-              }}
-              onKeyPress={e =>
-                isKeyboardSelectionEvent(e) &&
-                props.onSelectImmediately(props.hash)
-              }
-              aria-label={ariaLabelMessage}
-            >
-              <div className="action-arrow flex-grow">
-                <Icon img="icon-icon_arrow-collapse--right" />
-              </div>
+          {/* {mobile(breakpoint) !== true && ( */}
+          <div
+            tabIndex="0"
+            role="button"
+            title={formatMessage({
+              id: 'itinerary-page.show-details'
+            })}
+            key="arrow"
+            className="action-arrow-click-area flex-vertical noborder"
+            onClick={e => {
+              e.stopPropagation();
+              props.onSelectImmediately(props.hash);
+            }}
+            onKeyPress={e =>
+              isKeyboardSelectionEvent(e) &&
+              props.onSelectImmediately(props.hash)
+            }
+            aria-label={ariaLabelMessage}
+          >
+            <div className="action-arrow flex-grow">
+              <Icon img="icon-icon_arrow-collapse--right" />
             </div>
-          )}
+          </div>
+          {/* // )} */}
         </div>
         <span className="itinerary-details-container" aria-expanded="false" />
       </div>

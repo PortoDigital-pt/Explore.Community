@@ -12,7 +12,7 @@ import {
   PREFIX_TERMINALS,
   PREFIX_BIKESTATIONS
 } from '../util/path';
-import AppBarContainer from './AppBarContainer';
+// import AppBarContainer from './AppBarContainer';
 import MobileView from './MobileView';
 import DesktopView from './DesktopView';
 import ErrorBoundary from './ErrorBoundary';
@@ -71,6 +71,7 @@ class TopLevel extends React.Component {
       import(
         /* webpackChunkName: "main" */ `../configurations/images/${this.context.config.logo}`
       ).then(logo => {
+        // eslint-disable-next-line react/no-unused-state
         this.setState({ logo: logo.default });
       });
     }
@@ -139,6 +140,7 @@ class TopLevel extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line react/no-unused-class-component-methods
     this.topBarOptions = Object.assign(
       {},
       ...this.props.match.routes.map(route => route.topBarOptions)
@@ -150,6 +152,7 @@ class TopLevel extends React.Component {
 
     let content;
 
+    // eslint-disable-next-line no-unused-vars
     const homeUrl = getHomeUrl(
       this.props.origin,
       this.context.config.indexPath
