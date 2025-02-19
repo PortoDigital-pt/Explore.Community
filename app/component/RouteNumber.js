@@ -198,7 +198,7 @@ function RouteNumber(props, context) {
           props.isTransitLeg === false &&
           props.duration > 0 && (
             <div className={`leg-duration-container ${mode} `}>
-              <span className="leg-duration">{props.duration}</span>
+              <span className="leg-duration">{props.duration} min</span>
             </div>
           )}
         {isScooter && !props.vertical && (
