@@ -3,9 +3,9 @@ import React from 'react';
 import { graphql } from 'react-relay';
 import Route from 'found/Route';
 import Redirect from 'found/Redirect';
-import Error404 from '../../component/404.js';
-import { prepareWeekDays } from '../../util/dateParamUtils.js';
-import { isBrowser } from '../../util/browser.js';
+import Error404 from '../../component/404';
+import { prepareWeekDays } from '../../util/dateParamUtils';
+import { isBrowser } from '../../util/browser';
 import {
   PREFIX_ITINERARY_SUMMARY,
   PREFIX_NEARYOU,
@@ -17,16 +17,16 @@ import {
   TAB_NEARBY,
   TAB_FAVOURITES,
   EMBEDDED_SEARCH_PATH
-} from '../../util/path.js';
+} from '../../util/path';
 import {
   getDefault,
   errorLoading,
   getComponentOrLoadingRenderer,
   getComponentOrNullRenderer
-} from '../../util/routerUtils.js';
+} from '../../util/routerUtils';
 
-import getStopRoutes from './stop.js';
-import getRouteRoutes from './route.js';
+import getStopRoutes from './stop';
+import getRouteRoutes from './route';
 
 export default config => {
   const indexPageComponents = {
@@ -34,7 +34,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/Title.js'
+            /* webpackChunkName: "itinerary" */ '../../component/Title'
           ).then(getDefault)
         }
       />
@@ -43,7 +43,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/IndexPage.js'
+            /* webpackChunkName: "itinerary" */ '../../component/IndexPage'
           ).then(getDefault)
         }
       />
@@ -52,7 +52,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/IndexPageMeta.js'
+            /* webpackChunkName: "itinerary" */ '../../component/IndexPageMeta'
           ).then(getDefault)
         }
       />
@@ -62,7 +62,7 @@ export default config => {
         disableMapOnMobile={false}
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/map/IndexPageMap.js'
+            /* webpackChunkName: "itinerary" */ '../../component/map/IndexPageMap'
           ).then(getDefault)
         }
       />
@@ -72,7 +72,7 @@ export default config => {
   const itineraryPageGeolocatorProps = {
     getComponent: () =>
       import(
-        /* webpackChunkName: "itinerary" */ '../../component/Geolocator.js'
+        /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
       ).then(getDefault),
     render: ({ Component, props }) => {
       if (Component) {
@@ -93,7 +93,7 @@ export default config => {
       <Route
         getComponent={() =>
           import(
-            /* webpackChunkName: "vehiclepark" */ '../../component/ParkContainer.js'
+            /* webpackChunkName: "vehiclepark" */ '../../component/ParkContainer'
           )
             .then(getDefault)
             .catch(errorLoading)
@@ -124,7 +124,7 @@ export default config => {
         path="(.*)?"
         getComponent={() =>
           import(
-            /* webpackChunkName: "vehiclepark" */ '../../component/VehicleParkMapContainer.js'
+            /* webpackChunkName: "vehiclepark" */ '../../component/VehicleParkMapContainer'
           ).then(getDefault)
         }
         // TODO remove prepareVariables after hsl.fi has updated its vehicle parking addresses
@@ -152,7 +152,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationContent.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationContent'
                 ).then(getDefault)
               }
               query={graphql`
@@ -180,7 +180,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationMapContainer.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/VehicleRentalStationMapContainer'
                 ).then(getDefault)
               }
               query={graphql`
@@ -219,7 +219,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "nearyou" */ '../../component/nearyou/NearYouPage.js'
+                  /* webpackChunkName: "nearyou" */ '../../component/nearyou/NearYouPage'
                 ).then(getDefault)
               }
               render={({ Component, props, error }) => {
@@ -239,7 +239,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/nearyou/NearYouPageMeta.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/nearyou/NearYouPageMeta'
                 ).then(getDefault)
               }
             />
@@ -251,7 +251,7 @@ export default config => {
           content: (
             <Route
               getComponent={() =>
-                import('../../component/RentalVehicleContent.js').then(
+                import('../../component/RentalVehicleContent').then(
                   getDefault
                 )
               }
@@ -279,7 +279,7 @@ export default config => {
             <Route
               path="(.*)?"
               getComponent={() =>
-                import('../../component/RentalVehiclePageMapContainer.js').then(
+                import('../../component/RentalVehiclePageMapContainer').then(
                   getDefault
                 )
               }
@@ -323,7 +323,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageTitle.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageTitle'
                 ).then(getDefault)
               }
             />
@@ -333,10 +333,10 @@ export default config => {
               getComponent={() =>
                 isBrowser
                   ? import(
-                      /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageContainer.js'
+                      /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageContainer'
                     ).then(getDefault)
                   : import(
-                      /* webpackChunkName: "loading" */ '../../component/Loading.js'
+                      /* webpackChunkName: "loading" */ '../../component/Loading'
                     ).then(getDefault)
               }
               render={getComponentOrNullRenderer}
@@ -348,7 +348,7 @@ export default config => {
                     <Route
                       getComponent={() =>
                         import(
-                          /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryDetails.js'
+                          /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryDetails'
                         ).then(getDefault)
                       }
                       render={getComponentOrLoadingRenderer}
@@ -363,7 +363,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageMeta.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/itinerary/ItineraryPageMeta'
                 ).then(getDefault)
               }
             />
@@ -374,7 +374,7 @@ export default config => {
         path={config.URL.EMBEDDED_SEARCH_GENERATION}
         getComponent={() =>
           import(
-            /* webpackChunkName: "embedded-search-generator" */ '../../component/embedded/EmbeddedSearchGenerator.js'
+            /* webpackChunkName: "embedded-search-generator" */ '../../component/embedded/EmbeddedSearchGenerator'
           ).then(getDefault)
         }
       />
@@ -382,7 +382,7 @@ export default config => {
         path={EMBEDDED_SEARCH_PATH}
         getComponent={() =>
           import(
-            /* webpackChunkName: "embedded-search" */ '../../component/embedded/EmbeddedSearchContainer.js'
+            /* webpackChunkName: "embedded-search" */ '../../component/embedded/EmbeddedSearchContainer'
           ).then(getDefault)
         }
         topBarOptions={{ hidden: true }}
@@ -409,7 +409,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
                 ).then(getDefault)
               }
               render={({ Component, props }) => {
@@ -438,7 +438,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/Geolocator'
                 ).then(getDefault)
               }
               render={({ Component, props }) => {
@@ -493,7 +493,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/Title.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/Title'
                 ).then(getDefault)
               }
             >
@@ -504,7 +504,7 @@ export default config => {
             <Route
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "itinerary" */ '../../component/IndexPage.js'
+                  /* webpackChunkName: "itinerary" */ '../../component/IndexPage'
                 ).then(getDefault)
               }
             />
