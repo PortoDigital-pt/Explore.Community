@@ -363,7 +363,8 @@ export default class Map extends React.Component {
                 position={config.map.controls.scale.position}
               />
             )}
-            {this.props.breakpoint === 'large' && config.map.showZoomControl && (
+            {this.props.breakpoint === 'large' &&
+              config.map.showZoomControl && (
                 <ZoomControl
                   position={config.map.controls.zoom.position}
                   zoomInText={zoomInText}
