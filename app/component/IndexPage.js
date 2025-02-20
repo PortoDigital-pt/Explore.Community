@@ -292,7 +292,7 @@ class IndexPage extends React.Component {
 
   /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
   render() {
-    const { intl, config } = this.context;
+    const { config } = this.context;
     const { trafficNowLink, colors, fontWeights } = config;
     const color = colors.primary;
     const hoverColor = colors.hover || LightenDarkenColor(colors.primary, -20);
@@ -330,10 +330,6 @@ class IndexPage extends React.Component {
       hoverColor,
       accessiblePrimaryColor,
       refPoint,
-      searchPanelText: intl.formatMessage({
-        id: 'where',
-        defaultMessage: 'Where to?'
-      }),
       originPlaceHolder: 'search-origin-index',
       destinationPlaceHolder: 'search-destination-index',
       selectHandler: this.onSelectLocation,

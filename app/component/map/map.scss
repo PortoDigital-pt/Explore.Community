@@ -91,6 +91,7 @@ div.map {
         border-radius: 15px 15px 0 0;
         padding-top: 15px;
         background-color: $primary-contrastText;
+        padding-bottom: calc(#{$mobile-navigation-bar-height} - 15px);
       }
     }
   }
@@ -113,8 +114,8 @@ div.map {
   }
 
   .map-with-tracking-buttons {
-    right: 15px;
-    bottom: 45px;
+    right: 8px;
+    top: 56px;
   }
 
   .back-button {
@@ -166,31 +167,39 @@ div.below-map {
 }
 
 div.leaflet-bottom.leaflet-right div.leaflet-control-zoom {
-  width: 36px;
-  height: 73px;
-  border-radius: 5px;
-  background-color: #fff;
-  margin-right: 30px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin-right: 8px;
+  margin-bottom: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  position: relative;
+
+  @media (min-width: 900px) {
+    margin-right: 24px;
+    margin-bottom: 24px; 
+  }
 
   &.leaflet-bar {
     border: none;
+    box-shadow: none !important;
   }
 
   .icon {
-    font-size: 18px;
+    width: 24px;
+    height: 24px;
   }
 
   a {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 36px;
-    height: 36px;
-    line-height: 18px;
-    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background-color: $background-default;
     color: $primary-color;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
   }
 }
 
@@ -257,21 +266,15 @@ div.leaflet-marker-icon.vehicle-icon {
 
 .map-with-tracking-buttons {
   z-index: 401;
-  bottom: 192px;
+  bottom: 200px;
   display: flex;
   flex-direction: column;
-  right: 30px;
+  right: 24px;
   max-width: calc(100% - 2em);
   position: absolute;
 
   [role='button'] {
-    max-height: 36px;
-    max-width: 36px;
     cursor: pointer;
-
-    &:hover {
-      background: #f4f4f4;
-    }
   }
 
   & > * {
@@ -288,11 +291,12 @@ div.leaflet-marker-icon.vehicle-icon {
 }
 
 .toggle-positioning-container {
-  background-color: $white;
-  padding: 6px;
-  border-radius: 5px;
-  line-height: 0.5;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  background-color: $background-default;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
 }
 
 .cookie-settings-button {
@@ -408,7 +412,8 @@ div.leaflet-marker-icon.vehicle-icon {
 }
 
 .icon-mapMarker-toggle-positioning {
-  font-size: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 .vehicle-popup {
