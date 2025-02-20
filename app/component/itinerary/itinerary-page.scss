@@ -359,6 +359,102 @@
   padding: 0 $padding-small;
 }
 
+.summary-navigation-container {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 12px 8px 0 0;
+  background: $primary-dark;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid $primary-dark;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15);
+}
+
+.desktop {
+  .back-button {
+    position: relative !important;
+
+    .icon-holder {
+      position: absolute;
+      box-shadow: none;
+      font-size: 16px;
+      top: 12px;
+      left: 0;
+      background: transparent;
+      border-radius: 0;
+
+      .icon-container {
+        height: inherit;
+        color: $background-default;
+      }
+    }
+
+    h1 {
+      font-family: $heading-font-family;
+      width: 100%;
+      text-align: center;
+      margin: 1.7em 0 25px 0;
+    }
+  }
+
+  #datetimepicker-1-open {
+    color: $background-default;
+  }
+
+  .settings-button-text span {
+    color: $background-default;
+  }
+
+  .summary-navigation-container {
+    .searchsettings-container {
+      background-color: transparent;
+
+      .time-icon {
+        color: $background-default;
+        margin-top: -2px;
+      }
+    }
+
+    .origin-destination-bar {
+      background-color: transparent;
+
+      h1 {
+        display: none;
+        color: $background-default;
+      }
+    }
+
+    .summary-navigation-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .summary-navigation-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .section-control-back-button {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+
+    .section-control-origin-destination-bar {
+      flex-grow: 12;
+      flex-basis: 0;
+      margin-left: -30px;
+      margin-right: -50px;
+    }
+
+    .section-control-definitions {
+      flex-grow: 1;
+      flex-basis: 0;
+      margin-left: -30px;
+      margin-right: -50px;
+    }
+  }
+}
+
 .mobile {
   #datetimepicker-1-open {
     color: $background-default;
@@ -372,12 +468,6 @@
 
   .summary-navigation-container {
     display: block;
-    margin: 0;
-    padding: 12px 8px 0 0;
-    background: $primary-dark;
-    border-radius: 0 0 8px 8px;
-    border: 1px solid $primary-dark;
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15);
 
     .searchsettings-container {
       background-color: transparent;
@@ -458,12 +548,6 @@
       }
     }
   }
-}
-
-.summary-navigation-container {
-  background-color: $background-default;
-  flex: 0 0 auto;
-  margin-top: 12px;
 }
 
 .time-navigation-btn {

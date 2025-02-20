@@ -67,25 +67,26 @@ class ItineraryPageControls extends React.Component {
         <div className="summary-navigation-column">
           <div className="summary-navigation-row">
             <div className="section-control-back-button">
-              {this.props.breakpoint !== 'large' && (
-                <BackButton
-                  // title={
-                  //   <FormattedMessage
-                  //     id="summary-page.title"
-                  //     defaultMessage="Itinerary suggestions"
-                  //   />
-                  // }
-                  icon="icon-icon_arrow-collapse--left"
-                  iconClassName="arrow-icon"
-                  fallback={
-                    params.hash === streetHash.bikeAndVehicle ||
-                    params.hash === streetHash.carAndVehicle ||
-                    params.hash === streetHash.parkAndRide
-                      ? 'pop'
-                      : undefined
-                  }
-                />
-              )}
+              {/* {this.props.breakpoint !== 'large' && ( */}
+
+              <BackButton
+                // title={
+                //   <FormattedMessage
+                //     id="summary-page.title"
+                //     defaultMessage="Itinerary suggestions"
+                //   />
+                // }
+                icon="icon-icon_arrow-collapse--left"
+                iconClassName="arrow-icon"
+                fallback={
+                  params.hash === streetHash.bikeAndVehicle ||
+                  params.hash === streetHash.carAndVehicle ||
+                  params.hash === streetHash.parkAndRide
+                    ? 'pop'
+                    : undefined
+                }
+              />
+              {/* )} */}
               {/* <span className="sr-only">
             <FormattedMessage
               id="search-fields.sr-instructions"

@@ -58,29 +58,25 @@
   padding-left: 15px;
   padding-right: 15px;
   overflow: hidden;
-  background-color: $white;
   display: flex;
   user-select: none;
   font-size: $font-size-normal;
   white-space: nowrap;
   position: relative;
   animation: fadeIn 0.7s;
+  margin: 16px;
+  border-radius: 8px;
+  background: $background-default;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
 
-  @media screen and (max-width: 900px) {
-    margin: 16px;
-    border-radius: 8px;
-    background: $background-default;
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
-
-    .itinerary-start-time-and-end-time,
-    .itinerary-duration {
-      color: $primary-dark;
-      font-family: $font-family;
-      font-size: $font-size-s;
-      font-style: normal;
-      font-weight: $font-weight-medium;
-      line-height: 16px;
-    }
+  .itinerary-start-time-and-end-time,
+  .itinerary-duration {
+    color: $primary-dark;
+    font-family: $font-family;
+    font-size: $font-size-s;
+    font-style: normal;
+    font-weight: $font-weight-medium;
+    line-height: 16px;
   }
 
   &.no-border::before {
