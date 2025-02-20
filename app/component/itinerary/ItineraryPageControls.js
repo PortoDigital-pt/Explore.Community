@@ -100,13 +100,23 @@ class ItineraryPageControls extends React.Component {
                 destination={parseLocation(params.to)}
                 isMobile={this.props.breakpoint !== 'large'}
                 modeSet={this.context.config.iconModeSet}
+                iconColor={
+                  this.context.config.colors.originDestination?.icon
+                    ?.inverseColor
+                }
               />
             </div>
           </div>
 
           <div className="section-control-definitions">
             {isBrowser && (
-              <SearchSettings toggleSettings={this.props.toggleSettings} />
+              <SearchSettings
+                toggleSettings={this.props.toggleSettings}
+                color={
+                  this.context.config.colors.originDestination?.icon
+                    ?.inverseColor
+                }
+              />
             )}
           </div>
         </div>

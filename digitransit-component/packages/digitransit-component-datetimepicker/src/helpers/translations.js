@@ -109,7 +109,7 @@ const translations = {
     arrival: 'Chegada',
     date: 'Data',
     departure: 'Partida',
-    'departure-now': 'Partindo agora',
+    'departure-now': 'Sair agora',
     time: 'Hora',
     'choose-time': 'Escolher hora',
     ready: 'Pronto',

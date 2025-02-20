@@ -6,7 +6,7 @@ import Icon from '../Icon';
 import { isKeyboardSelectionEvent } from '../../util/browser';
 
 export default function RightOffcanvasToggle(
-  { onToggleClick, defaultMessage, translationId },
+  { onToggleClick, defaultMessage, translationId, color },
   { intl: { formatMessage }, config }
 ) {
   const label = formatMessage({
@@ -26,7 +26,10 @@ export default function RightOffcanvasToggle(
       >
         <div>
           <div className="icon-holder">
-            <Icon img="icon-icon_settings" color={config.colors.primary} />
+            <Icon
+              img="icon-icon_settings"
+              color={color || config.colors.primary}
+            />
           </div>
           <span className="settings-button-text">
             <FormattedMessage
@@ -43,12 +46,14 @@ export default function RightOffcanvasToggle(
 RightOffcanvasToggle.propTypes = {
   onToggleClick: PropTypes.func.isRequired,
   defaultMessage: PropTypes.string,
-  translationId: PropTypes.string
+  translationId: PropTypes.string,
+  color: PropTypes.string
 };
 
 RightOffcanvasToggle.defaultProps = {
   defaultMessage: 'Settings',
-  translationId: 'settings'
+  translationId: 'settings',
+  color: undefined
 };
 
 RightOffcanvasToggle.contextTypes = {

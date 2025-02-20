@@ -25,8 +25,8 @@ import {
   getComponentOrNullRenderer
 } from '../../util/routerUtils';
 
-import getStopRoutes from './stop.js';
-import getRouteRoutes from './route.js';
+import getStopRoutes from './stop';
+import getRouteRoutes from './route';
 
 export default config => {
   const indexPageComponents = {
@@ -62,7 +62,7 @@ export default config => {
         disableMapOnMobile={false}
         getComponent={() =>
           import(
-            /* webpackChunkName: "itinerary" */ '../../component/map/IndexPageMap.js'
+            /* webpackChunkName: "itinerary" */ '../../component/map/IndexPageMap'
           ).then(getDefault)
         }
       />
@@ -100,7 +100,7 @@ export default config => {
         }
         prepareVariables={prepareWeekDays}
         query={graphql`
-          query navigate_routes_VehiclePark_Query($id: String!) {
+          query browse_routes_VehiclePark_Query($id: String!) {
             vehicleParking(id: $id) {
               ...ParkContainer_vehicleParking
             }
@@ -130,7 +130,7 @@ export default config => {
         // TODO remove prepareVariables after hsl.fi has updated its vehicle parking addresses
         prepareVariables={prepareWeekDays}
         query={graphql`
-          query navigate_routes_VehicleParkMap_Query($id: String!) {
+          query browse_routes_VehicleParkMap_Query($id: String!) {
             vehicleParking(id: $id) {
               ...VehicleParkMapContainer_vehiclePark
             }
@@ -156,7 +156,7 @@ export default config => {
                 ).then(getDefault)
               }
               query={graphql`
-                query navigate_routes_VehicleRentalStation_Query($id: String!) {
+                query browse_routes_VehicleRentalStation_Query($id: String!) {
                   vehicleRentalStation(id: $id) {
                     ...VehicleRentalStationContent_vehicleRentalStation
                   }
@@ -184,7 +184,7 @@ export default config => {
                 ).then(getDefault)
               }
               query={graphql`
-                query navigate_routes_VehicleRentalStationMap_Query(
+                query browse_routes_VehicleRentalStationMap_Query(
                   $id: String!
                 ) {
                   vehicleRentalStation(id: $id) {
@@ -254,7 +254,7 @@ export default config => {
                 import('../../component/RentalVehicleContent').then(getDefault)
               }
               query={graphql`
-                query navigate_routes_RentalVehicle_Query($id: String!) {
+                query browse_routes_RentalVehicle_Query($id: String!) {
                   rentalVehicle(id: $id) {
                     ...RentalVehicleContent_rentalVehicle
                   }
@@ -282,7 +282,7 @@ export default config => {
                 )
               }
               query={graphql`
-                query navigate_routes_RentalVehicleMap_Query($id: String!) {
+                query browse_routes_RentalVehicleMap_Query($id: String!) {
                   rentalVehicle(id: $id) {
                     ...RentalVehiclePageMapContainer_rentalVehicle
                   }

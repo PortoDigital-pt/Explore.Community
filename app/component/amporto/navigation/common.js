@@ -3,8 +3,8 @@
  */
 export const COMMON_NAVIGATION_ITEMS = {
   EXPLORE: 'explore',
-  NAVIGATE: 'navigate',
-  ITINERARIES: 'itineraries',
+  BROWSE: 'browse',
+  ROUTES: 'routes',
   BLOCKS: 'blocks'
 };
 
@@ -13,13 +13,13 @@ export const COMMON_NAVIGATION_ITEMS = {
  */
 export const COMMON_NAVIGATION_ITEMS_PATH_MAP = {
   [COMMON_NAVIGATION_ITEMS.EXPLORE]: `/${COMMON_NAVIGATION_ITEMS.EXPLORE}`,
-  [COMMON_NAVIGATION_ITEMS.NAVIGATE]: '/',
-  [COMMON_NAVIGATION_ITEMS.ITINERARIES]: `/${COMMON_NAVIGATION_ITEMS.ITINERARIES}`,
+  [COMMON_NAVIGATION_ITEMS.BROWSE]: '/',
+  [COMMON_NAVIGATION_ITEMS.ROUTES]: `/${COMMON_NAVIGATION_ITEMS.ROUTES}`,
   [COMMON_NAVIGATION_ITEMS.BLOCKS]: `/${COMMON_NAVIGATION_ITEMS.BLOCKS}`
 };
 
 /**
- * Generate a new Navigation item configuration for the items to be shown
+ * Generate a new Navigation item configuration for the items to be shown.
  *
  * @param {object} optionalNavigationItems configuration of the optional Navigation items to hide/show
  * @param {object} items the Navigation items
@@ -29,9 +29,6 @@ export const COMMON_NAVIGATION_ITEMS_PATH_MAP = {
 export const generateNavigationItemsConfig = (optionalNavigationItems, items) =>
   Object.entries(items).reduce(
     (acc, [key, value]) =>
-      optionalNavigationItems[value] === undefined ||
-      optionalNavigationItems[value]
-        ? { ...acc, [key]: value }
-        : acc,
+      optionalNavigationItems[value] === false ? acc : { ...acc, [key]: value },
     {}
   );

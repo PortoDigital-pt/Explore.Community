@@ -320,6 +320,8 @@ $content-background-color: $background-color;
 }
 
 .back-button {
+  display: flex;
+
   button {
     font-size: 15px;
     position: absolute;
@@ -754,6 +756,7 @@ section.content {
 
 .mobile-main-content-container {
   flex-grow: 1;
+  z-index: 10;
 }
 
 .mobile-footer {

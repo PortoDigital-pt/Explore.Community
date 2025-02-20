@@ -360,11 +360,37 @@
 }
 
 .mobile {
+  #datetimepicker-1-open {
+    color: $background-default;
+  }
+
+  .settings-button-text span {
+    color: $background-default;
+  }
+
   background-color: $background-default;
 
   .summary-navigation-container {
     display: block;
-    margin: 12px 16px 0 -12px;
+    margin: 0;
+    padding: 12px 8px 0 0;
+    background: $primary-dark;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid $primary-dark;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15);
+
+    .searchsettings-container {
+      background-color: transparent;
+
+      .time-icon {
+        color: $background-default;
+        margin-top: -2px;
+      }
+    }
+
+    .origin-destination-bar {
+      background-color: transparent;
+    }
 
     .summary-navigation-column {
       display: flex;
@@ -385,10 +411,12 @@
         box-shadow: none;
         font-size: 16px;
         top: 0;
-        background: $background-default;
+        background: transparent;
+        border-radius: 0;
 
         .icon-container {
           height: inherit;
+          color: $background-default;
         }
       }
 
@@ -413,7 +441,7 @@
     .section-control-definitions {
       flex-grow: 1;
       flex-basis: 0;
-      margin-left: 30px;
+      padding-left: 20px;
     }
 
     @media screen and (min-width: 413px) {

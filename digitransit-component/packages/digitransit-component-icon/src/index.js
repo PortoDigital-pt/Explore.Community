@@ -27,7 +27,7 @@ import MapPin from './assets/amporto/map-pin.svg';
 import Search from './assets/amporto/search.svg';
 import Plus from './assets/plus.svg';
 import Attention from './assets/attention.svg';
-import Dropdown from './assets/dropdown.svg';
+import Dropdown from './assets/amporto/dropdown.svg';
 import CarPark from './assets/car-park.svg';
 import BikePark from './assets/bike-park.svg';
 import Time from './assets/amporto/time.svg';
