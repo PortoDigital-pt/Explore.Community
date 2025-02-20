@@ -5603,8 +5603,8 @@ const translations = {
     'splash-you-can-also': 'ou',
     stop: 'Paragem',
     'stop-number': 'Número da paragem',
-    'stop-page.description': 'Paragem {stop_name} - {stop_code}',
-    'stop-page.title': 'Paragem {stop_name} - {stop_code}',
+    'stop-page.description': 'Paragem {name} - {code}',
+    'stop-page.title': 'Paragem {name} - {code}',
     'stop-page.title-short': 'Paragem',
     'stop-virtual-monitor': 'Virtual monitor',
     stops: 'Paragens',
@@ -5800,7 +5800,7 @@ const translations = {
       'A lista das próximas partidas e horários de partida será atualizada em tempo real.',
     'departure-page-sr':
       'Informações sobre Trip {shortName} {destination} {time}',
-    'departure-time-sr': '{quando} relógio {hora}. {realTime}',
+    'departure-time-sr': '{when} relógio {time}. {realTime}',
     'departures-by-hour': 'Partidas por hora',
     'departures-by-hour-minutes-route': '(minutos/percurso)',
     'departures-not-found':
