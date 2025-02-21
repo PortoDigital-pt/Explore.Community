@@ -77,6 +77,14 @@ Leg.defaultProps = {
   renderModeIcons: false
 };
 
+const RealTimeIcon = () => {
+  return (
+    <span className="icon-real-time-container">
+      <Icon img="icon-icon_realtime" className="itinerary-icon" />
+    </span>
+  );
+};
+
 export function RouteLeg(
   {
     leg,
@@ -689,6 +697,8 @@ const Itinerary = (
                 <span
                   className={cx('time', { realtime: firstDeparture.realTime })}
                 >
+                  {firstDeparture.realTime && <RealTimeIcon />}
+
                   {legTimeStr(firstDeparture.start)}
                 </span>
               ),
@@ -726,6 +736,8 @@ const Itinerary = (
                     realtime: firstDeparture.realTime
                   })}
                 >
+                  {firstDeparture.realTime && <RealTimeIcon />}
+
                   {legTimeStr(firstDeparture.start)}
                 </span>
               ),

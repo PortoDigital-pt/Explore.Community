@@ -7,6 +7,7 @@ import IconWithBigCaution from './IconWithBigCaution';
 import IconWithIcon from './IconWithIcon';
 import Icon from './Icon';
 import { TransportMode } from '../constants';
+import { LightenDarkenColor } from '../util/colorUtils';
 
 const LONG_ROUTE_NUMBER_LENGTH = 6;
 
@@ -17,6 +18,7 @@ function RouteNumber(props, context) {
 
   // Perform text-related processing
   let filteredText = props.text;
+
   if (
     props.shortenLongText &&
     context.config.disabledLegTextModes?.includes(mode) &&
@@ -57,12 +59,13 @@ function RouteNumber(props, context) {
     hasDisruption,
     badgeFill,
     badgeText,
-    badgeTextFill
+    badgeTextFill,
+    altColor
   ) => {
     if (isCallAgency) {
       return (
         <IconWithIcon
-          color={color}
+          color={altColor || color}
           className={`${mode} call`}
           img={icon || `icon-icon_${mode}`}
           subIcon="icon-icon_call"
@@ -75,7 +78,7 @@ function RouteNumber(props, context) {
         <React.Fragment>
           <IconWithBigCaution
             alertSeverityLevel={alertSeverityLevel}
-            color={color}
+            color={altColor || color}
             className={mode}
             img={icon || `icon-icon_${mode}`}
           />
@@ -101,7 +104,7 @@ function RouteNumber(props, context) {
           badgeFill={badgeFill}
           badgeText={badgeText}
           badgeTextFill={badgeTextFill}
-          color={color}
+          color={altColor || color}
           className={cx(mode, {
             [['secondary']]:
               mode === 'citybike' &&
@@ -147,14 +150,15 @@ function RouteNumber(props, context) {
           <div className={cx('empty', props.appendClass)} />
         )}
         {props.isTransitLeg === true ? (
-          <div className={`special-icon ${mode}`}>
+          <div className={`special-icon ${mode} bar-icon-leg`}>
             {getIcon(
               props.icon,
               props.isCallAgency,
               props.hasDisruption,
               props.badgeFill,
               props.badgeText,
-              props.badgeTextFill
+              props.badgeTextFill,
+              '#212121'
             )}
           </div>
         ) : (
@@ -171,6 +175,11 @@ function RouteNumber(props, context) {
         )}
         {filteredText && (
           <div
+            style={{
+              backgroundColor: getColor(),
+              padding: '0 5px',
+              borderRadius: '4px'
+            }}
             className={cx(
               'vehicle-number-container-v'.concat(props.card ? '-map' : ''),
               {
@@ -218,9 +227,21 @@ function RouteNumber(props, context) {
     </span>
   );
 
+  const originalColor = getColor();
+
+  const lightOrDefault = originalColor
+    ? LightenDarkenColor(originalColor, 70)
+    : originalColor;
+
   return props.withBar ? (
     <div className={cx('bar-container', { long: hasNoShortName })}>
-      <div className={cx('bar', mode)} style={{ backgroundColor: getColor() }}>
+      <div
+        className={cx('bar', mode)}
+        style={{
+          backgroundColor: lightOrDefault,
+          border: 'none'
+        }}
+      >
         {rNumber}
       </div>
     </div>

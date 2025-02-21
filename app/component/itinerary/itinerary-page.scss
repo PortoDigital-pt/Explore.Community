@@ -305,6 +305,34 @@
   position: relative;
   z-index: 9;
 
+  .icon-real-time-container {
+    margin-left: 22px;
+    margin-right: -8px;
+    padding: 0;
+
+    svg {
+      color: $primary-main;
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .subway {
+    .icon-container {
+      svg {
+        color: $grey-dark-down;
+      }
+    }
+  }
+
+  .bus {
+    > span:first-child > .icon-container svg {
+      color: $grey-dark-down;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
   @keyframes loadingTopAnimation {
     from {
       transform: translateY(-100px);
@@ -577,7 +605,7 @@
 
   &.bottom-btn {
     border-top: 1px solid $grey-light-down;
-    font-size: $font-size-normal;
+    font-size: 13px;
     height: 50px;
   }
 }
@@ -645,4 +673,8 @@
   width: 100%;
   position: relative;
   top: -1px;
+}
+
+.bar-icon-leg {
+  color: $grey-dark-down !important;
 }
