@@ -174,7 +174,7 @@ async function init() {
     historyMiddlewares,
     routeConfig
   });
-  
+
   await getStoreRenderArgs({
     store,
     resolver

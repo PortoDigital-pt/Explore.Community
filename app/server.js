@@ -214,12 +214,12 @@ export default async function serve(req, res, next) {
       resolver,
       render
     });
-    
+
     if (redirect) {
-        res.redirect(302, redirect.url);
-        return;
+      res.redirect(302, redirect.url);
+      return;
     }
-    
+
     if (
       element &&
       element.props &&
@@ -235,13 +235,12 @@ export default async function serve(req, res, next) {
       res.status(404);
     }
 
-
     const context = application.createContext({
       url: req.url,
       headers: req.headers,
       config
     });
-  
+
     if (!req.cookies.onboarded && !req.cookies['first-access']) {
       // We only need this for 1 day (ms)
       res.cookie('first-access', req.url, { maxAge: 24 * 60 * 60 * 1000 });
@@ -253,9 +252,9 @@ export default async function serve(req, res, next) {
 
     if (req.cookies['first-access']) {
       context
-      .getComponentContext()
-      .getStore('PreferencesStore')
-      .setFirstAccess(req.cookies['first-access']);
+        .getComponentContext()
+        .getStore('PreferencesStore')
+        .setFirstAccess(req.cookies['first-access']);
     }
 
     context

@@ -86,7 +86,7 @@ class PreferencesStore extends Store {
       secure: true,
       sameSite: 'Strict'
     });
-    
+
     this.allowedCookies = allowedCookies;
     this.emitChange();
   }
@@ -99,7 +99,7 @@ class PreferencesStore extends Store {
   static handlers = {
     SetLanguage: 'setLanguage',
     SetOnboarded: 'setOnboarded',
-    SetAllowedCookies: 'setAllowedCookies' 
+    SetAllowedCookies: 'setAllowedCookies'
   };
 }
 

@@ -23,22 +23,22 @@ export default config => {
 
   return (
     <>
-    {getOnboarding()}
-    <Route path='/' Component={Main}>
-      <Route Component={TopLevel} allowAsIndex>
-        <Route path="/js/*" Component={Error404} />
-        <Route path="/css/*" Component={Error404} />
-        <Route path="/assets/*" Component={Error404} />
-        {getProfileRoutes()}
-        {getExploreRoutes()}
-        {getFavouritesRoutes()}
-        {routes && getRoutesRoutes()}
-        {blocks && getBlocksRoutes()}
-        {getBrowseRoutes(config) /* Digitransit routes */}
-        {/* For all the rest render 404 */}
-        <Route path="*" Component={Error404} />
+      {getOnboarding()}
+      <Route path="/" Component={Main}>
+        <Route Component={TopLevel} allowAsIndex>
+          <Route path="/js/*" Component={Error404} />
+          <Route path="/css/*" Component={Error404} />
+          <Route path="/assets/*" Component={Error404} />
+          {getProfileRoutes()}
+          {getExploreRoutes()}
+          {getFavouritesRoutes()}
+          {routes && getRoutesRoutes()}
+          {blocks && getBlocksRoutes()}
+          {getBrowseRoutes(config) /* Digitransit routes */}
+          {/* For all the rest render 404 */}
+          <Route path="*" Component={Error404} />
+        </Route>
       </Route>
-    </Route>
     </>
   );
 };
