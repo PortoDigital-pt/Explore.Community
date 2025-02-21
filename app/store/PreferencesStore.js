@@ -27,10 +27,21 @@ class PreferencesStore extends Store {
     } else {
       this.language = language;
     }
+
+    this.onboarded = this.cookies.get('onboarded') ?? false;
+    this.allowedCookies = this.cookies.get('cookies') ?? false;
   }
 
   getLanguage() {
     return this.language;
+  }
+
+  getOnboarded() {
+    return this.onboarded;
+  }
+
+  getAllowedCookies() {
+    return this.allowedCookies;
   }
 
   setLanguage(language) {
@@ -49,8 +60,36 @@ class PreferencesStore extends Store {
     this.emitChange();
   }
 
+  setOnboarded(onboarded) {
+    this.cookies.set('onboarded', onboarded, {
+      // Good up to one year
+      maxAge: 365 * 24 * 60 * 60,
+      path: '/',
+      Secure: true,
+      SameSite: 'Strict'
+    });
+
+    this.onboarded = onboarded;
+    this.emitChange();
+  }
+
+  setAllowedCookies(allowedCookies) {
+    this.cookies.set('cookies', allowedCookies, {
+      // Good up to one year
+      maxAge: 365 * 24 * 60 * 60,
+      path: '/',
+      Secure: true,
+      SameSite: 'Strict'
+    });
+    
+    this.allowedCookies = allowedCookies;
+    this.emitChange();
+  }
+
   static handlers = {
-    SetLanguage: 'setLanguage'
+    SetLanguage: 'setLanguage',
+    SetOnboarded: 'setOnboarded',
+    SetAllowedCookies: 'setAllowedCookies' 
   };
 }
 

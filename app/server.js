@@ -205,19 +205,21 @@ export default async function serve(req, res, next) {
 
     const resolver = new Resolver(environment);
 
+    const routeConfig = makeRouteConfig(application.getComponent());
+
     const { redirect, status, element } = await getFarceResult({
       url: req.url,
       historyMiddlewares,
-      routeConfig: makeRouteConfig(application.getComponent()),
+      routeConfig,
       resolver,
       render
     });
-
+    
     if (redirect) {
-      res.redirect(302, redirect.url);
-      return;
+        res.redirect(302, redirect.url);
+        return;
     }
-
+    
     if (
       element &&
       element.props &&
@@ -233,11 +235,17 @@ export default async function serve(req, res, next) {
       res.status(404);
     }
 
+
     const context = application.createContext({
       url: req.url,
       headers: req.headers,
       config
     });
+    
+    context
+      .getComponentContext()
+      .getStore('PreferencesStore')
+      .setOnboarded(req.cookies.onboarded === 'true');
 
     context
       .getComponentContext()

@@ -12,6 +12,7 @@ import getRoutesRoutes from './routes';
 import getBlocksRoutes from './blocks';
 import getProfileRoutes from './profile';
 import getAboutRoutes from './about';
+import Main from './top-level';
 
 export const historyMiddlewares = [queryMiddleware];
 
@@ -21,19 +22,23 @@ export default config => {
   const { routes, blocks } = config.optionalNavigationItems;
 
   return (
-    <Route Component={TopLevel}>
-      <Route path="/js/*" Component={Error404} />
-      <Route path="/css/*" Component={Error404} />
-      <Route path="/assets/*" Component={Error404} />
-      {getAboutRoutes()}
-      {getProfileRoutes()}
-      {getExploreRoutes()}
-      {getFavouritesRoutes()}
-      {routes && getRoutesRoutes()}
-      {blocks && getBlocksRoutes()}
-      {getBrowseRoutes(config) /* Digitransit routes */}
-      {/* For all the rest render 404 */}
-      <Route path="*" Component={Error404} />
+    <>
+    {getAboutRoutes()}
+    <Route path='/' Component={Main}>
+      <Route Component={TopLevel} allowAsIndex>
+        <Route path="/js/*" Component={Error404} />
+        <Route path="/css/*" Component={Error404} />
+        <Route path="/assets/*" Component={Error404} />
+        {getProfileRoutes()}
+        {getExploreRoutes()}
+        {getFavouritesRoutes()}
+        {routes && getRoutesRoutes()}
+        {blocks && getBlocksRoutes()}
+        {getBrowseRoutes(config) /* Digitransit routes */}
+        {/* For all the rest render 404 */}
+        <Route path="*" Component={Error404} />
+      </Route>
     </Route>
+    </>
   );
 };

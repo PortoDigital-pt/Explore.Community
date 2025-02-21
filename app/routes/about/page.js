@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import Link from 'found/Link';
+import { func, string } from 'prop-types';
+import useRouter from 'found/useRouter';
 import { FormattedMessage } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { configShape } from '../../util/shapes';
+import { setOnboarded } from '../../action/userPreferencesActions';
 
 // TODO: review this
 
-const AboutPage = ({ currentLanguage }, { config }) => {
+const AboutPage = ({ currentLanguage }, { config, executeAction }) => {
+  const { router } = useRouter();
   return (
     <div className="about-page fullscreen">
       <div className="page-frame fullscreen momentum-scroll">
@@ -37,24 +39,27 @@ const AboutPage = ({ currentLanguage }, { config }) => {
             false
           )
         )}
-        <Link to="/">
-          <div className="call-to-action-button">
+          <div className="call-to-action-button" onClick={()=> {
+            executeAction(setOnboarded, true);
+            router.push('/');
+          }}>
             <FormattedMessage
               id="back-to-front-page"
               defaultMessage="Back to front page"
             />
           </div>
-        </Link>
+      
       </div>
     </div>
   );
 };
 
 AboutPage.propTypes = {
-  currentLanguage: PropTypes.string.isRequired
+  currentLanguage: string.isRequired
 };
 
 AboutPage.contextTypes = {
+  executeAction: func.isRequired,
   config: configShape.isRequired
 };
 
