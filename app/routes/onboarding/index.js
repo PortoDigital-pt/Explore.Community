@@ -3,7 +3,7 @@ import Route from 'found/Route';
 
 export default () => (
   <Route
-    path="/about"
+    path="/onboarding"
     getComponent={() => import('./page').then(module => module.default)}
   />
 );

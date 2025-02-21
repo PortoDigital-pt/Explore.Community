@@ -30,6 +30,7 @@ class PreferencesStore extends Store {
 
     this.onboarded = this.cookies.get('onboarded') ?? false;
     this.allowedCookies = this.cookies.get('cookies') ?? false;
+    this.firstAccess = this.cookies.get('first-access') ?? '/';
   }
 
   getLanguage() {
@@ -44,6 +45,10 @@ class PreferencesStore extends Store {
     return this.allowedCookies;
   }
 
+  getFirstAccess() {
+    return this.firstAccess;
+  }
+
   setLanguage(language) {
     if (this.availableLanguages.indexOf(language) === -1) {
       return;
@@ -53,8 +58,8 @@ class PreferencesStore extends Store {
       // Good up to one year
       maxAge: 365 * 24 * 60 * 60,
       path: '/',
-      Secure: true,
-      SameSite: 'Strict'
+      secure: true,
+      sameSite: 'Strict'
     });
     this.language = language;
     this.emitChange();
@@ -65,8 +70,8 @@ class PreferencesStore extends Store {
       // Good up to one year
       maxAge: 365 * 24 * 60 * 60,
       path: '/',
-      Secure: true,
-      SameSite: 'Strict'
+      secure: true,
+      sameSite: 'Strict'
     });
 
     this.onboarded = onboarded;
@@ -78,11 +83,16 @@ class PreferencesStore extends Store {
       // Good up to one year
       maxAge: 365 * 24 * 60 * 60,
       path: '/',
-      Secure: true,
-      SameSite: 'Strict'
+      secure: true,
+      sameSite: 'Strict'
     });
     
     this.allowedCookies = allowedCookies;
+    this.emitChange();
+  }
+
+  setFirstAccess(firstAccess) {
+    this.firstAccess = firstAccess;
     this.emitChange();
   }
 

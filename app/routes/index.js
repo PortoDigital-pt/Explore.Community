@@ -11,7 +11,7 @@ import getFavouritesRoutes from './favourites';
 import getRoutesRoutes from './routes';
 import getBlocksRoutes from './blocks';
 import getProfileRoutes from './profile';
-import getAboutRoutes from './about';
+import getOnboarding from './onboarding';
 import Main from './top-level';
 
 export const historyMiddlewares = [queryMiddleware];
@@ -23,7 +23,7 @@ export default config => {
 
   return (
     <>
-    {getAboutRoutes()}
+    {getOnboarding()}
     <Route path='/' Component={Main}>
       <Route Component={TopLevel} allowAsIndex>
         <Route path="/js/*" Component={Error404} />

@@ -1,18 +1,19 @@
 import React from 'react';
 import { RedirectException } from 'found';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import { bool} from 'prop-types';
+import { bool, node } from 'prop-types';
 
 const TopLevelContainer = ({ onboarded, children }) => {
     if (!onboarded) {
-        throw new RedirectException('/about', 302);
+        throw new RedirectException('/onboarding', 302);
     }
 
     return <>{children}</>;
 };
 
 TopLevelContainer.propTypes = {
-    onboarded: bool.isRequired
+    onboarded: bool.isRequired,
+    children: node.isRequired
 };
 
 export default connectToStores(

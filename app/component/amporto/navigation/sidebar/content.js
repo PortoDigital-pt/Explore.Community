@@ -12,12 +12,12 @@ import {
 } from '../common';
 
 const NAVIGATION_PROFILE = 'profile';
-const NAVIGATION_ABOUT = 'about';
+const NAVIGATION_ONBOARDING = 'onboarding';
 
 const NAVIGATION_ITEMS_PATH_MAP = {
   ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
   [NAVIGATION_PROFILE]: `/${NAVIGATION_PROFILE}`,
-  [NAVIGATION_ABOUT]: `/${NAVIGATION_ABOUT}`
+  [NAVIGATION_ONBOARDING]: `/${NAVIGATION_ONBOARDING}`
 };
 
 const Content = (
@@ -88,17 +88,17 @@ const Content = (
           </button>
           <hr />
           <button
-            onClick={() => navigate(NAVIGATION_ABOUT)}
+            onClick={() => navigate(NAVIGATION_ONBOARDING)}
             type="button"
             aria-label={intl.formatMessage(
-              { id: `nav-item-aria-${NAVIGATION_ABOUT}` },
+              { id: `nav-item-aria-${NAVIGATION_ONBOARDING}` },
               { app: title }
             )}
           >
-            <Icon img={`icon-${NAVIGATION_ABOUT}`} viewBox="0 0 24 24" />
+            <Icon img={`icon-${NAVIGATION_ONBOARDING}`} viewBox="0 0 24 24" />
             <span>
               {intl.formatMessage(
-                { id: `nav-item-${NAVIGATION_ABOUT}` },
+                { id: `nav-item-${NAVIGATION_ONBOARDING}` },
                 { app: title }
               )}
             </span>
