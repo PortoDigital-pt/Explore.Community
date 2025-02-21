@@ -22,7 +22,7 @@ import Work from './assets/amporto/work.svg';
 import Map from './assets/map.svg';
 import Close from './assets/close.svg';
 import Mapmarker from './assets/amporto/mapmarker.svg';
-import MapmarkerVia from './assets/mapmarker-via.svg';
+import MapmarkerVia from './assets/amporto/mapmarker-via.svg';
 import MapPin from './assets/amporto/map-pin.svg';
 import Search from './assets/amporto/search.svg';
 import Plus from './assets/plus.svg';
