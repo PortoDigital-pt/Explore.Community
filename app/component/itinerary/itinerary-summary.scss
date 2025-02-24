@@ -230,7 +230,11 @@
 
       .start-time {
         font-weight: $font-weight-medium;
-        color: $primary-dark;
+        color: $primary-main;
+      }
+
+      .realtime {
+        color: $primary-main;
       }
     }
 
