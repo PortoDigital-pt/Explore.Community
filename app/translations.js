@@ -5378,7 +5378,7 @@ const translations = {
     'itinerary-walk.title': 'Distância total a pé',
     'journeyplanner.title': 'Explore Porto' /* HSL Journey Planner */,
     later: 'Mais tarde' /* Depois */,
-    leaves: 'Partida',
+    leaves: 'Sair agora',
     'leaving-at': 'Hora de partida' /* Leaving at */,
     'likely-to-recommend':
       'Qual a probabilidade de recomendar o nosso serviço aos seus amigos ou colegas?',
@@ -5578,7 +5578,7 @@ const translations = {
     'set-time-earlier-button-label': 'Set travel time to earlier',
     'set-time-later-button-label': 'Set travel time to later',
     'set-time-now-button-label': 'Set travel time to current',
-    settings: 'Definições',
+    settings: 'Opções',
     'settings-label-change': 'Alterar definições',
     'settings-loadbutton': 'Carregar definições',
     'settings-loaded': 'Definições carregadas!',
@@ -5878,7 +5878,7 @@ const translations = {
     'itinerary-summary-page-street-mode.update-alert':
       'Resultados de caminhada e ciclismo atualizados',
     'itinerary-summary-row.first-leg-start-time':
-      'Sai em {firstDepartureTime} {firstDepartureStopType} {firstDepartureStop}{firstDeparturePlatform}',
+      'Saída às {firstDepartureTime} {firstDepartureStopType} {firstDepartureStop}{firstDeparturePlatform}',
     'itinerary-summary-row.first-leg-start-time-citybike':
       'Partida em {firstDepartureTime} da estação de bicicletas {firstDepartureStop}',
     'itinerary-summary-row.first-leg-start-time-scooter':
@@ -6098,7 +6098,7 @@ const translations = {
     'search-destination-index': 'Insira o destino',
     'search-fields.sr-instructions':
       'A pesquisa de rotas ocorrerá automaticamente quando você inserir origem e destino. A alteração dos parâmetros de pesquisa desencadeará uma nova pesquisa. Navegue até os campos de pesquisa usando a tecla tab',
-    'search-origin-index': 'Insira a origem',
+    'search-origin-index': 'A sua localização',
     'select-all-routes': 'Selecione todas as rotas',
     'select-from-map-destination': 'Selecione o destino',
     'select-from-map-favourite': 'Selecionar a partir do mapa',

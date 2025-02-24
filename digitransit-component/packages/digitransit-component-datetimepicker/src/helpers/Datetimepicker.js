@@ -486,11 +486,11 @@ function Datetimepicker({
                       : 'arrival',
                     translationSettings
                   )}
-                  {` ${
+                  {/* {` ${
                     moment().isSame(moment(displayTimestamp), 'day')
                       ? ''
                       : getDateDisplay(displayTimestamp).toLowerCase()
-                  } ${getTimeDisplay(displayTimestamp)}`}
+                  } ${getTimeDisplay(displayTimestamp)}`} */}
                 </>
               )}
             </span>
