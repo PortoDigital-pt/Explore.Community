@@ -176,6 +176,12 @@ export default {
       'mode-tram': '#A2874F',
       'mode-subway': '#00095F',
       'mode-citybike': '#FFE99D'
+    },
+    originDestination: {
+      icon: {
+        color: '#00095F',
+        inverseColor: '#FAFAFA'
+      }
     }
   },
 

@@ -1308,6 +1308,7 @@ export default function ItineraryPage(props, context) {
   const showCarPublicPlan = carPublicPlan.carPublicItineraryCount > 0;
 
   const showAltBar =
+    !props.hideAltBar &&
     !detailView &&
     !panelHidden &&
     !streetHashes.includes(hash) &&
@@ -1403,10 +1404,12 @@ ItineraryPage.propTypes = {
   breakpoint: PropTypes.string.isRequired,
   relayEnvironment: relayShape.isRequired,
   mapLayers: mapLayerShape.isRequired,
-  mapLayerOptions: mapLayerOptionsShape.isRequired
+  mapLayerOptions: mapLayerOptionsShape.isRequired,
+  hideAltBar: PropTypes.bool
 };
 
 ItineraryPage.defaultProps = {
   content: undefined,
-  map: undefined
+  map: undefined,
+  hideAltBar: false
 };

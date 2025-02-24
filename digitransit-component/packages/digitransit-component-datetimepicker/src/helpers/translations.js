@@ -108,7 +108,7 @@ const translations = {
       'Alterar os parâmetros de hora iniciará uma nova pesquisa.',
     arrival: 'Chegada',
     date: 'Data',
-    departure: 'Partida',
+    departure: 'Sair agora',
     'departure-now': 'Sair agora',
     time: 'Hora',
     'choose-time': 'Escolher hora',

@@ -41,7 +41,7 @@ export default function ItineraryPageContainer(props) {
   }
   return (
     <Suspense fallback={<Loading />}>
-      <ItineraryPageWithStores {...props} />
+      <ItineraryPageWithStores {...props} hideAltBar />
     </Suspense>
   );
 }

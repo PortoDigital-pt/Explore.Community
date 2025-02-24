@@ -281,7 +281,7 @@
   border-top: 1px solid #ddd;
   width: 100%;
   margin-bottom: -1px;
-  background-color: $white;
+  background-color: $background-default;
 
   .show-alternatives {
     background: $background-color-lighter;
@@ -304,6 +304,34 @@
 .summary-list-items {
   position: relative;
   z-index: 9;
+
+  .icon-real-time-container {
+    margin-left: 22px;
+    margin-right: -8px;
+    padding: 0;
+
+    svg {
+      color: $primary-main;
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .subway {
+    .icon-container {
+      svg {
+        color: $grey-dark-down;
+      }
+    }
+  }
+
+  .bus {
+    > span:first-child > .icon-container svg {
+      color: $grey-dark-down;
+      width: 20px;
+      height: 20px;
+    }
+  }
 
   @keyframes loadingTopAnimation {
     from {
@@ -359,23 +387,168 @@
   padding: 0 $padding-small;
 }
 
-.mobile {
-  background-color: white;
+.summary-navigation-container {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 12px 8px 0 0;
+  background: $primary-dark;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid $primary-dark;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15);
+}
+
+.desktop {
+  .back-button {
+    position: relative !important;
+
+    .icon-holder {
+      position: absolute;
+      box-shadow: none;
+      font-size: 16px;
+      top: 12px;
+      left: 0;
+      background: transparent;
+      border-radius: 0;
+
+      .icon-container {
+        height: inherit;
+        color: $background-default;
+      }
+    }
+
+    h1 {
+      font-family: $heading-font-family;
+      width: 100%;
+      text-align: center;
+      margin: 1.7em 0 25px 0;
+    }
+  }
+
+  .settings-button-text span {
+    color: $background-default;
+  }
 
   .summary-navigation-container {
-    margin: 0 9px 0 1.25em;
+    .searchsettings-container {
+      background-color: transparent;
+
+      .time-icon {
+        color: $background-default;
+        margin-top: -2px;
+      }
+
+      .datetimepicker-container {
+        button {
+          color: $background-default;
+        }
+      }
+    }
+
+    .origin-destination-bar {
+      background-color: transparent;
+
+      h1 {
+        display: none;
+        color: $background-default;
+      }
+    }
+
+    .summary-navigation-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .summary-navigation-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .section-control-back-button {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+
+    .section-control-origin-destination-bar {
+      flex-grow: 12;
+      flex-basis: 0;
+      margin-left: -30px;
+      margin-right: -50px;
+    }
+
+    .section-control-definitions {
+      flex-grow: 1;
+      flex-basis: 0;
+      margin-left: -30px;
+      margin-right: -50px;
+    }
+  }
+}
+
+.right-offcanvas-toggle {
+  .icon-holder {
+    svg {
+      color: $background-default;
+    }
+  }
+}
+
+.mobile {
+  .settings-button-text {
+    span {
+      color: $background-default;
+    }
+  }
+
+  background-color: $background-default;
+
+  .summary-navigation-container {
+    display: block;
+
+    .searchsettings-container {
+      background-color: transparent;
+
+      .time-icon {
+        color: $background-default;
+        margin-top: -2px;
+      }
+
+      .datetimepicker-container {
+        button {
+          color: $background-default;
+        }
+      }
+    }
+
+    .origin-destination-bar {
+      background-color: transparent;
+    }
+
+    .summary-navigation-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .summary-navigation-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
     .back-button {
-      position: static;
+      position: sticky;
 
       .icon-holder {
         position: absolute;
         box-shadow: none;
         font-size: 16px;
-        top: 1.5em;
+        top: 0;
+        background: transparent;
+        border-radius: 0;
 
         .icon-container {
           height: inherit;
+          color: $background-default;
         }
       }
 
@@ -386,19 +559,44 @@
         margin: 1.7em 0 25px 0;
       }
     }
-  }
-}
 
-.summary-navigation-container {
-  background-color: #fff;
-  flex: 0 0 auto;
+    .section-control-back-button {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+
+    .section-control-origin-destination-bar {
+      flex-grow: 6;
+      flex-basis: 0;
+    }
+
+    .section-control-definitions {
+      flex-grow: 1;
+      flex-basis: 0;
+      padding-left: 20px;
+    }
+
+    @media screen and (min-width: 413px) {
+      .section-control-origin-destination-bar {
+        flex-grow: 7;
+        flex-basis: 0;
+      }
+    }
+
+    @media screen and (min-width: 699px) {
+      .section-control-origin-destination-bar {
+        flex-grow: 8;
+        flex-basis: 0;
+      }
+    }
+  }
 }
 
 .time-navigation-btn {
   height: 40px;
   width: 100%;
   color: $primary-color;
-  background-color: $white;
+  background-color: $background-default;
   text-align: left;
   padding-left: 81px;
   font-weight: $font-weight-medium;
@@ -420,14 +618,15 @@
   }
 
   &.bottom-btn {
-    border-top: 1px solid #ddd;
-    font-size: $font-size-normal;
+    border-top: 1px solid $grey-light-down;
+    font-size: 13px;
     height: 50px;
   }
 }
 
 .mobile .time-navigation-btn {
   padding-left: 28px;
+  color: $primary-dark;
 
   &.extra-whitespace {
     height: 120px;
@@ -488,4 +687,8 @@
   width: 100%;
   position: relative;
   top: -1px;
+}
+
+.bar-icon-leg {
+  color: $grey-dark-down !important;
 }

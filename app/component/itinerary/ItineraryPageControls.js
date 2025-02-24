@@ -2,7 +2,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { matchShape, routerShape } from 'found';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { configShape } from '../../util/shapes';
 import OriginDestinationBar from './OriginDestinationBar';
 import SearchSettings from './SearchSettings';
@@ -64,41 +64,63 @@ class ItineraryPageControls extends React.Component {
     const { params } = this.props;
     return (
       <div className="summary-navigation-container">
-        {this.props.breakpoint !== 'large' && (
-          <BackButton
-            title={
-              <FormattedMessage
-                id="summary-page.title"
-                defaultMessage="Itinerary suggestions"
+        <div className="summary-navigation-column">
+          <div className="summary-navigation-row">
+            <div className="section-control-back-button">
+              {/* {this.props.breakpoint !== 'large' && ( */}
+
+              <BackButton
+                // title={
+                //   <FormattedMessage
+                //     id="summary-page.title"
+                //     defaultMessage="Itinerary suggestions"
+                //   />
+                // }
+                icon="icon-icon_arrow-collapse--left"
+                iconClassName="arrow-icon"
+                fallback={
+                  params.hash === streetHash.bikeAndVehicle ||
+                  params.hash === streetHash.carAndVehicle ||
+                  params.hash === streetHash.parkAndRide
+                    ? 'pop'
+                    : undefined
+                }
               />
-            }
-            icon="icon-icon_arrow-collapse--left"
-            iconClassName="arrow-icon"
-            fallback={
-              params.hash === streetHash.bikeAndVehicle ||
-              params.hash === streetHash.carAndVehicle ||
-              params.hash === streetHash.parkAndRide
-                ? 'pop'
-                : undefined
-            }
-          />
-        )}
-        <span className="sr-only">
-          <FormattedMessage
-            id="search-fields.sr-instructions"
-            defaultMessage="The search is triggered automatically when origin and destination are set. Changing any search parameters triggers a new search"
-          />
-        </span>
-        <OriginDestinationBar
-          className={className}
-          origin={parseLocation(params.from)}
-          destination={parseLocation(params.to)}
-          isMobile={this.props.breakpoint !== 'large'}
-          modeSet={this.context.config.iconModeSet}
-        />
-        {isBrowser && (
-          <SearchSettings toggleSettings={this.props.toggleSettings} />
-        )}
+              {/* )} */}
+              {/* <span className="sr-only">
+            <FormattedMessage
+              id="search-fields.sr-instructions"
+              defaultMessage="The search is triggered automatically when origin and destination are set. Changing any search parameters triggers a new search"
+            />
+          </span> */}
+            </div>
+            <div className="section-control-origin-destination-bar">
+              <OriginDestinationBar
+                className={className}
+                origin={parseLocation(params.from)}
+                destination={parseLocation(params.to)}
+                isMobile={this.props.breakpoint !== 'large'}
+                modeSet={this.context.config.iconModeSet}
+                iconColor={
+                  this.context.config.colors.originDestination?.icon
+                    ?.inverseColor
+                }
+              />
+            </div>
+          </div>
+
+          <div className="section-control-definitions">
+            {isBrowser && (
+              <SearchSettings
+                toggleSettings={this.props.toggleSettings}
+                color={
+                  this.context.config.colors.originDestination?.icon
+                    ?.inverseColor
+                }
+              />
+            )}
+          </div>
+        </div>
       </div>
     );
   }

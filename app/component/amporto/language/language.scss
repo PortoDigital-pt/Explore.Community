@@ -1,29 +1,29 @@
 .language-select {
+  display: flex;
+  position: relative;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  .language {
+    max-height: 40px;
+    padding: 8px;
+    color: $primary-light;
+    font-size: $font-size-l;
+    font-weight: $font-weight-semibold;
     display: flex;
     position: relative;
-    margin-top: 0 !important;
-    padding-bottom: 0 !important;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
 
-    .language {
-        max-height: 40px;
-        padding: 8px;
-        color: $primary-light;
-        font-size: $font-size-l;
-        font-weight: $font-weight-semibold;
-        display: flex;
-        position: relative;
-        text-transform: uppercase;
-        cursor: pointer;
-        text-decoration: none;
-
-        &.selected {
-            color: $primary-contrastText;
-            text-decoration: underline;
-            text-underline-offset: 7px;
-            text-decoration-thickness: 2px;
-        }
+    &.selected {
+      color: $primary-contrastText;
+      text-decoration: underline;
+      text-underline-offset: 7px;
+      text-decoration-thickness: 2px;
     }
+  }
 }

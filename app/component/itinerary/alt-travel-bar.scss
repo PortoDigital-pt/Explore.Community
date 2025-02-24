@@ -196,6 +196,7 @@
 
 .mobile .searchsettings-container {
   margin: 0 auto;
+  background: $background-default;
 
   .bottom-row .select-wrapper {
     flex: 1 1 auto;
@@ -215,7 +216,7 @@
 
 .right-offcanvas-toggle {
   .settings-button-text {
-    margin-left: 12px;
+    margin-right: 10px;
     margin-top: 3px;
   }
 

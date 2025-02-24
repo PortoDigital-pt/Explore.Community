@@ -11,21 +11,22 @@ $gray-blue: #78909c;
 $gray-blue-light: rgb(182, 193, 199);
 
 // Default
-$primary-main: #493E90;
-$primary-light: #E6F1F4;
-$primary-dark: #0C534A;
-$primary-contrastText: #FAFAFA;
-$gradient: linear-gradient(270deg, $primary-dark 0%, rgba(12, 83, 74, 0.75) 100%);
-
-$background-default: #FAFAFA;
-$background-light: #ECF1F6;
-
-$neutral: #BFBFBF;
-
-$grey-light-up: #F4F4F4;
-$grey-light-down: #EAEAEA;
-$grey-medium: #C8C8C8;
-$grey-dark-up: #8E8E8E;
+$primary-main: #493e90;
+$primary-light: #e6f1f4;
+$primary-dark: #0c534a;
+$primary-contrastText: #fafafa;
+$gradient: linear-gradient(
+  270deg,
+  $primary-dark 0%,
+  rgba(12, 83, 74, 0.75) 100%
+);
+$background-default: #fafafa;
+$background-light: #ecf1f6;
+$neutral: #bfbfbf;
+$grey-light-up: #f4f4f4;
+$grey-light-down: #eaeaea;
+$grey-medium: #c8c8c8;
+$grey-dark-up: #8e8e8e;
 $grey-dark-down: #212121;
 
 /* Operator palette */
@@ -54,7 +55,7 @@ $cancelation-black: #666;
 $cancelation-background: #fbe0ea;
 $disruption-color: $cancelation-red;
 $banner-disruption-color: $disruption-color;
-$realtime-color: #3b7f00;
+$realtime-color: $primary-main;
 $current-location-color: $primary-color;
 $desktop-title-color: $primary-color;
 $desktop-title-arrow-icon-color: $secondary-color;
@@ -93,7 +94,7 @@ $ferry-color: $livi-ferry-blue;
 $funicular-color: $livi-funicular-pink;
 $citybike-color: #f2b62d;
 $citybike-off-color: #919191;
-$walk-color: #000;
+$walk-color: #e6e6e6;
 $wait-color: #979797;
 $bicycle-color: #666;
 $car-color: #333;

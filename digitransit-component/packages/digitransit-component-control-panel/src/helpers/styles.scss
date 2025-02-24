@@ -93,8 +93,8 @@
   .near-you-buttons-container {
     display: flex;
 
-    &>a:not(:last-child),
-    &>div:not(:last-child) {
+    & > a:not(:last-child),
+    & > div:not(:last-child) {
       margin-right: 7px;
 
       @include min-width(tablet) {
@@ -102,13 +102,13 @@
       }
     }
 
-    &>a:last-child,
-    &>div:last-child {
+    & > a:last-child,
+    & > div:last-child {
       margin-bottom: 32px;
     }
 
-    &>a,
-    &>div {
+    & > a,
+    & > div {
       display: flex;
       flex: 1;
       width: 100%;
@@ -182,9 +182,8 @@
   }
 
   .near-you-buttons-container-wide {
-
-    &>a:not(:last-child),
-    &>div:not(:last-child) {
+    & > a:not(:last-child),
+    & > div:not(:last-child) {
       margin-right: 9px;
 
       @include min-width(tablet) {
@@ -192,13 +191,13 @@
       }
     }
 
-    &>a:last-child,
-    &>div:last-child {
+    & > a:last-child,
+    & > div:last-child {
       margin-bottom: 24px;
     }
 
-    &>a,
-    &>div {
+    & > a,
+    & > div {
       width: 100%;
       height: 48px;
 
