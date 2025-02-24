@@ -424,10 +424,6 @@
     }
   }
 
-  #datetimepicker-1-open {
-    color: $background-default;
-  }
-
   .settings-button-text span {
     color: $background-default;
   }
@@ -439,6 +435,12 @@
       .time-icon {
         color: $background-default;
         margin-top: -2px;
+      }
+
+      .datetimepicker-container {
+        button {
+          color: $background-default;
+        }
       }
     }
 
@@ -483,9 +485,20 @@
   }
 }
 
+.right-offcanvas-toggle {
+  .icon-holder {
+    svg {
+      color: $background-default;
+    }
+  }
+}
+
+
 .mobile {
-  .settings-button-text span {
-    color: $background-default;
+  .settings-button-text {
+    span {
+      color: $background-default;
+    }
   }
 
   background-color: $background-default;
