@@ -1,17 +1,20 @@
-/* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useState } from 'react';
 import { func, string } from 'prop-types';
+import classnames from 'classnames';
 import useRouter from 'found/useRouter';
-import { FormattedMessage } from 'react-intl';
+import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
+import LanguageSelect from '../../component/amporto/language';
 import { configShape } from '../../util/shapes';
 import { setOnboarded } from '../../action/userPreferencesActions';
+import withBreakpoint from '../../util/withBreakpoint';
+import { Content } from './content';
 
 // TODO: onboarding
 
 const OnboardingPage = (
-  { currentLanguage, firstAccess },
-  { config, executeAction }
+  { breakpoint, currentLanguage, firstAccess },
+  { config: { title }, executeAction, intl }
 ) => {
   const {
     match: { location },
@@ -28,22 +31,50 @@ const OnboardingPage = (
     }, 10);
   }
   */
+ 
 
-  return <div className="onboarding" />;
+  return (
+    <div className="onboarding">
+      <div className="top">
+        <h1>{title}</h1>
+        <LanguageSelect
+          classname={classnames({
+            hide: breakpoint === 'small'
+          })}
+        />
+      </div>
+      <LanguageSelect
+        classname={classnames({
+          hide: breakpoint !== 'small'
+        })}
+      />
+      <Content />
+
+      <button 
+        aria-label={intl.messages['onboarding-start-exploring']}
+        type="button"
+        onClick={()=> {}} 
+      >
+        {intl.messages['onboarding-start-exploring']}
+      </button>
+    </div>
+  );
 };
 
 OnboardingPage.propTypes = {
+  breakpoint: string.isRequired,
   currentLanguage: string.isRequired,
   firstAccess: string.isRequired
 };
 
 OnboardingPage.contextTypes = {
   executeAction: func.isRequired,
-  config: configShape.isRequired
+  config: configShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const connectedComponent = connectToStores(
-  OnboardingPage,
+  withBreakpoint(OnboardingPage),
   ['PreferencesStore'],
   context => ({
     currentLanguage: context.getStore('PreferencesStore').getLanguage(),

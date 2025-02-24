@@ -5,6 +5,140 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
     padding: 24px;
     background: $gradient;
+    row-gap: 30px;
+
+    @media (min-width: 400px) {
+        align-items: center;
+    }
+
+    > button {
+        width: 100%;
+        position: relative;
+        display: flex;
+        padding: 8px 16px;
+        justify-content: center;
+        align-items: center;
+        background: $background-default;
+        border-radius: 8px;
+        color: $primary-color;
+        font-size: $font-size-l;
+        font-weight: $font-weight-bold;
+        cursor: pointer;
+
+        @media (min-width: 600px) {
+            width: 500px;
+        } 
+    }
+
+    .top {
+        width: 100%;
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        flex-direction: row;
+
+        h1 {
+            font-size: $font-size-heading-s;
+            line-height: 0;
+            color: $primary-contrastText;
+            font-weight: $font-weight-bold;
+
+            @media (min-width: 700px) {
+                font-size: $font-size-heading-xl;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        @media (min-width: 600px) {
+            width: 500px;
+        }
+
+        .swipe-scroll-wrapper {
+            background-color: transparent !important;
+            
+            .scrollable-content-wrapper {
+                height: 100%;
+                display: flex !important;
+
+                .swipe-scroll-container {
+                    .react-swipe-container {
+                        height: 100%;
+
+                        div {
+                            height: 100%;
+
+                            .tab {
+                                height: 100%;
+                                width: 100%;
+                                display: flex;
+                                justify-content: flex-start;
+                                flex-direction: column;
+                                row-gap: 24px;
+
+                                h2 {
+                                    color: $primary-contrastText;
+                                    font-weight: $font-weight-regular;
+                                    font-size: $font-size-heading-base;
+                                    margin: 0;
+                                    line-height: 48px;
+
+                                    @media (min-width: 700px) {
+                                        font-size: $font-size-heading-l;
+                                        line-height: 64px;
+                                    }
+                                }
+
+                                p {
+                                    color: $primary-contrastText;
+                                    font-weight: $font-weight-regular;
+                                    font-size: $font-size-l;
+                                    margin: 0;
+                                    line-height: 24px;
+
+                                    @media (min-width: 700px) {
+                                        font-size: $font-size-heading-s;
+                                        line-height: normal;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .swipe-header-container {
+                .desktop-view-divider {
+                    border-top: 1px solid transparent;
+                }
+                .swipe-header {
+                    .swipe-tab-indicator {
+                        .swipe-tab-ball {
+                            width: 8px;
+                            height: 8px;
+                            border-radius: 50%;
+                            border: solid 2px $primary-contrastText;
+                            background-color: transparent;
+                            transition: 0.5s;
+                            margin-right: 5px;
+                            margin-left: 5px;
+                            cursor: pointer;
+
+                            &.selected {
+                                background-color: $primary-contrastText;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
 }

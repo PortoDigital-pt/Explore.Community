@@ -1,4 +1,3 @@
-import React from 'react';
 import { RedirectException } from 'found';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { bool, node } from 'prop-types';

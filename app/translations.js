@@ -1834,7 +1834,8 @@ const translations = {
     'privacy-policy-aria': 'Consult privacy policy',
     'cookies-policy-aria': 'Consult cookies policy',
     'nav-menu-close': 'Close navigation menu',
-    'nav-menu-open': 'Open navigation menu'
+    'nav-menu-open': 'Open navigation menu',
+    'onboarding-start-exploring': 'Start exploring'
   },
 
   es: {
@@ -6263,7 +6264,8 @@ const translations = {
     'privacy-policy-aria': 'Consultar a política de privacidade',
     'cookies-policy-aria': 'Consultar a política de cookies',
     'nav-menu-close': 'Fechar o menu de navegação',
-    'nav-menu-open': 'Abrir o menu de navegação'
+    'nav-menu-open': 'Abrir o menu de navegação',
+    'onboarding-start-exploring': 'Começar a explorar'
   },
 
   sv: {
