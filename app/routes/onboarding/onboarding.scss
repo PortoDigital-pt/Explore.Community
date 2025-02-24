@@ -39,10 +39,11 @@
         position: relative;
         justify-content: space-between;
         flex-direction: row;
+        align-items: center;
 
         h1 {
+            margin: 0;
             font-size: $font-size-heading-s;
-            line-height: 0;
             color: $primary-contrastText;
             font-weight: $font-weight-bold;
 
@@ -50,9 +51,25 @@
                 font-size: $font-size-heading-xl;
             }
         }
+
+        .top-right {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            column-gap: 24px;
+
+            .menu {
+                background-color: transparent;
+
+                .icon {
+                    color: $primary-contrastText;
+                }
+            }
+        }
     }
 
     .content {
+        padding-top: 32px;
         display: flex;
         position: relative;
         width: 100%;
