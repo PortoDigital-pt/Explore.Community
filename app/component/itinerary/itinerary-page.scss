@@ -504,6 +504,12 @@
         color: $background-default;
         margin-top: -2px;
       }
+
+      .datetimepicker-container {
+        button {
+          color: $background-default;
+        }
+      }
     }
 
     .origin-destination-bar {
