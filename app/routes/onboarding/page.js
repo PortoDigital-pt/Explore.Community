@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { func, string } from 'prop-types';
+import { func, string, bool } from 'prop-types';
 import classnames from 'classnames';
 import useRouter from 'found/useRouter';
 import { intlShape } from 'react-intl';
@@ -20,7 +20,7 @@ const OnboardingPage = (
     router
   } = useRouter();
 
-  const onStartExploring = useCallback(() => { 
+  const onStartExploring = useCallback(() => {
     executeAction(setOnboarded, true);
     // execute navigation in the next event loop tick - allowing time to process the store update.
     // this ensures onboarded store state updates before the Main component reads it on the next page.
@@ -28,7 +28,7 @@ const OnboardingPage = (
       router.push(firstAccess === location.pathname ? '/' : firstAccess);
     }, 10);
   }, [executeAction, firstAccess, router.push, location.pathname]);
- 
+
   return (
     <div className="onboarding">
       <div className="top">
@@ -47,16 +47,16 @@ const OnboardingPage = (
           hide: breakpoint !== 'small'
         })}
       />
-      <Content pages={onboarding} currentLanguage={currentLanguage}/>
-
-{!onboarded && <button 
-        aria-label={intl.messages['onboarding-start-exploring']}
-        type="button"
-        onClick={onStartExploring} 
-      >
-        {intl.messages['onboarding-start-exploring']}
-      </button>}
-      
+      <Content pages={onboarding} currentLanguage={currentLanguage} />
+      {!onboarded && (
+        <button
+          aria-label={intl.messages['onboarding-start-exploring']}
+          type="button"
+          onClick={onStartExploring}
+        >
+          {intl.messages['onboarding-start-exploring']}
+        </button>
+      )}
     </div>
   );
 };
@@ -64,7 +64,8 @@ const OnboardingPage = (
 OnboardingPage.propTypes = {
   breakpoint: string.isRequired,
   currentLanguage: string.isRequired,
-  firstAccess: string.isRequired
+  firstAccess: string.isRequired,
+  onboarded: bool.isRequired
 };
 
 OnboardingPage.contextTypes = {

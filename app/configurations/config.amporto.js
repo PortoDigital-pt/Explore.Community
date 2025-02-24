@@ -354,5 +354,5 @@ export default {
         pt: 'Todos os dias a cidade do Porto tem sugestões de eventos para si.'
       }
     }
-  } 
+  }
 };
