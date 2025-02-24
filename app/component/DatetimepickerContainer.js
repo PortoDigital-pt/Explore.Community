@@ -9,7 +9,7 @@ import { replaceQueryParams } from '../util/queryUtils';
 import { addAnalyticsEvent } from '../util/analyticsUtils';
 
 function DatetimepickerContainer(
-  { realtime, embedWhenClosed, embedWhenOpen, lang, color },
+  { realtime, embedWhenClosed, embedWhenOpen, lang, color, iconColor },
   context
 ) {
   const { router, match, config } = context;
@@ -109,6 +109,7 @@ function DatetimepickerContainer(
       onOpen={onOpen}
       onClose={onClose}
       openPicker={openPicker}
+      iconColor={iconColor}
     />
   );
 }
@@ -118,14 +119,16 @@ DatetimepickerContainer.propTypes = {
   embedWhenClosed: PropTypes.node,
   embedWhenOpen: PropTypes.node,
   lang: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  iconColor: PropTypes.string
 };
 
 DatetimepickerContainer.defaultProps = {
   embedWhenClosed: null,
   embedWhenOpen: null,
   lang: 'en',
-  color: '#007ac9'
+  color: '#007ac9',
+  iconColor: '#007ac9'
 };
 
 DatetimepickerContainer.contextTypes = {

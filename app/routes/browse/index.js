@@ -251,9 +251,7 @@ export default config => {
           content: (
             <Route
               getComponent={() =>
-                import('../../component/RentalVehicleContent').then(
-                  getDefault
-                )
+                import('../../component/RentalVehicleContent').then(getDefault)
               }
               query={graphql`
                 query browse_routes_RentalVehicle_Query($id: String!) {

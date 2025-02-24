@@ -656,7 +656,6 @@ export function drawCitybikeIcon(
   showAvailability,
   isHilighted
 ) {
-  
   const zoom = tile.coords.z - 1;
   const styles = getStopIconStyles('citybike', zoom, isHilighted);
   const { style } = styles;

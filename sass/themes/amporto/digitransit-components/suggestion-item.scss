@@ -39,12 +39,12 @@ li:last-child > div.suggestion-item-container.mobile {
   align-items: center;
 
   @media screen and (max-width: 900px) {
-    margin-left: 0;
-    border-radius: 200px;
-    background: $grey-light-down;
-    width: 32px;
-    height: 32px;
-    margin-top: 12px;
+    // margin-left: 0;
+    // border-radius: 200px;
+    // background: $grey-light-down;
+    // width: 32px;
+    // height: 32px;
+    // margin-top: 12px;
   }
 
   &.futureroute {
@@ -183,6 +183,15 @@ li:last-child > div.suggestion-item-container.mobile {
   text-align: center;
   padding-top: 6px;
 
+  @media screen and (max-width: 900px) {
+    padding: 6px 0 0 1px;
+    border-radius: 200px;
+    background: $grey-light-down;
+    width: 32px;
+    height: 32px;
+    margin: 0;
+  }
+
   // Default size
   svg {
     width: 22px;
@@ -208,7 +217,14 @@ li:last-child > div.suggestion-item-container.mobile {
     }
   }
 
-  .locate,
+  .locate {
+    svg {
+      width: 24px;
+      height: 24px;
+      margin: -1px 1px 0 1px;
+    }
+  }
+
   .edit {
     svg {
       width: 22px;

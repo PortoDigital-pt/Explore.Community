@@ -77,6 +77,14 @@ Leg.defaultProps = {
   renderModeIcons: false
 };
 
+const RealTimeIcon = () => {
+  return (
+    <span className="icon-real-time-container">
+      <Icon img="icon-icon_realtime" className="itinerary-icon" />
+    </span>
+  );
+};
+
 export function RouteLeg(
   {
     leg,
@@ -689,6 +697,8 @@ const Itinerary = (
                 <span
                   className={cx('time', { realtime: firstDeparture.realTime })}
                 >
+                  {firstDeparture.realTime && <RealTimeIcon />}
+
                   {legTimeStr(firstDeparture.start)}
                 </span>
               ),
@@ -726,6 +736,8 @@ const Itinerary = (
                     realtime: firstDeparture.realTime
                   })}
                 >
+                  {firstDeparture.realTime && <RealTimeIcon />}
+
                   {legTimeStr(firstDeparture.start)}
                 </span>
               ),
@@ -989,30 +1001,30 @@ const Itinerary = (
                 </div>
               ))}
           </div>
-          {mobile(breakpoint) !== true && (
-            <div
-              tabIndex="0"
-              role="button"
-              title={formatMessage({
-                id: 'itinerary-page.show-details'
-              })}
-              key="arrow"
-              className="action-arrow-click-area flex-vertical noborder"
-              onClick={e => {
-                e.stopPropagation();
-                props.onSelectImmediately(props.hash);
-              }}
-              onKeyPress={e =>
-                isKeyboardSelectionEvent(e) &&
-                props.onSelectImmediately(props.hash)
-              }
-              aria-label={ariaLabelMessage}
-            >
-              <div className="action-arrow flex-grow">
-                <Icon img="icon-icon_arrow-collapse--right" />
-              </div>
+          {/* {mobile(breakpoint) !== true && ( */}
+          <div
+            tabIndex="0"
+            role="button"
+            title={formatMessage({
+              id: 'itinerary-page.show-details'
+            })}
+            key="arrow"
+            className="action-arrow-click-area flex-vertical noborder"
+            onClick={e => {
+              e.stopPropagation();
+              props.onSelectImmediately(props.hash);
+            }}
+            onKeyPress={e =>
+              isKeyboardSelectionEvent(e) &&
+              props.onSelectImmediately(props.hash)
+            }
+            aria-label={ariaLabelMessage}
+          >
+            <div className="action-arrow flex-grow">
+              <Icon img="icon-icon_arrow-collapse--right" />
             </div>
-          )}
+          </div>
+          {/* // )} */}
         </div>
         <span className="itinerary-details-container" aria-expanded="false" />
       </div>

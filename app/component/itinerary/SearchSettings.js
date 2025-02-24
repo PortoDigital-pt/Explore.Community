@@ -8,7 +8,8 @@ import DatetimepickerContainer from '../DatetimepickerContainer';
 
 class SearchSettings extends React.Component {
   static propTypes = {
-    toggleSettings: PropTypes.func.isRequired
+    toggleSettings: PropTypes.func.isRequired,
+    color: PropTypes.string
   };
   /* eslint-enable react/no-unused-prop-types */
 
@@ -19,7 +20,7 @@ class SearchSettings extends React.Component {
   state = {};
 
   render() {
-    const { toggleSettings } = this.props;
+    const { toggleSettings, color } = this.props;
 
     return (
       <div className={cx(['searchsettings-container'])}>
@@ -29,7 +30,10 @@ class SearchSettings extends React.Component {
             embedWhenClosed={
               !this.context.config.hideItinerarySettings && (
                 <div className="open-advanced-settings">
-                  <RightOffcanvasToggle onToggleClick={toggleSettings} />
+                  <RightOffcanvasToggle
+                    onToggleClick={toggleSettings}
+                    color={color}
+                  />
                 </div>
               )
             }
@@ -37,12 +41,16 @@ class SearchSettings extends React.Component {
               <div className="open-embed-container">
                 <div className="open-advanced-settings open-embed">
                   {!this.context.config.hideItinerarySettings && (
-                    <RightOffcanvasToggle onToggleClick={toggleSettings} />
+                    <RightOffcanvasToggle
+                      onToggleClick={toggleSettings}
+                      color={color}
+                    />
                   )}
                 </div>
               </div>
             }
             color={this.context.config.colors.primary}
+            iconColor={color}
           />
         </div>
       </div>

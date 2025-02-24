@@ -77,7 +77,8 @@ function Datetimepicker({
   serviceTimeRange,
   onOpen,
   onClose,
-  openPicker
+  openPicker,
+  iconColor
 }) {
   moment.tz.setDefault(timeZone);
   const [isOpen, changeOpen] = useState(openPicker || false);
@@ -362,7 +363,7 @@ function Datetimepicker({
                 }}
               >
                 <span className={styles['close-icon']}>
-                  <Icon img="close" color={color} />
+                  <Icon img="close" color={iconColor} />
                 </span>
                 <span className={styles['sr-only']}>
                   {i18next.t('accessible-close', translationSettings)}
@@ -390,7 +391,7 @@ function Datetimepicker({
                   <span
                     className={`${styles['combobox-icon']} ${styles['date-input-icon']}`}
                   >
-                    <Icon img="calendar" color={color} />
+                    <Icon img="calendar" color={iconColor} />
                   </span>
                 }
                 id={`${htmlId}-date`}
@@ -412,7 +413,7 @@ function Datetimepicker({
                   <span
                     className={`${styles['combobox-icon']} ${styles['time-input-icon']}`}
                   >
-                    <Icon img="time" color={color} />
+                    <Icon img="time" color={iconColor} />
                   </span>
                 }
                 id={`${htmlId}-time`}
@@ -452,8 +453,8 @@ function Datetimepicker({
         }
       >
         <label className={styles['label-open']} htmlFor={`${htmlId}-open`}>
-          <span className={styles['time-icon']}>
-            <Icon img="time" color={color} />
+          <span className={`time-icon ${styles['time-icon']}`}>
+            <Icon img="time" color={iconColor} />
           </span>
           <span className={styles['sr-only']}>
             {i18next.t('accessible-open', translationSettings)}
@@ -485,16 +486,16 @@ function Datetimepicker({
                       : 'arrival',
                     translationSettings
                   )}
-                  {` ${
+                  {/* {` ${
                     moment().isSame(moment(displayTimestamp), 'day')
                       ? ''
                       : getDateDisplay(displayTimestamp).toLowerCase()
-                  } ${getTimeDisplay(displayTimestamp)}`}
+                  } ${getTimeDisplay(displayTimestamp)}`} */}
                 </>
               )}
             </span>
             <span className={styles['dropdown-icon']}>
-              <Icon img="arrow-dropdown" color={color} />
+              <Icon img="arrow-dropdown" color={iconColor} />
             </span>
           </button>
         </label>
@@ -526,7 +527,8 @@ Datetimepicker.propTypes = {
   serviceTimeRange: PropTypes.number.isRequired,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
-  openPicker: PropTypes.bool
+  openPicker: PropTypes.bool,
+  iconColor: PropTypes.string
 };
 
 Datetimepicker.defaultProps = {
@@ -537,7 +539,8 @@ Datetimepicker.defaultProps = {
   timeZone: 'Europe/Helsinki',
   onOpen: null,
   onClose: null,
-  openPicker: undefined
+  openPicker: undefined,
+  iconColor: undefined
 };
 
 export default Datetimepicker;

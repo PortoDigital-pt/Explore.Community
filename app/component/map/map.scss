@@ -122,7 +122,7 @@ div.map {
     .icon-holder,
     .icon-holder:focus,
     .icon-holder:hover {
-      padding: 0.55em 0.2em 0 0 !important;
+      padding: 11px 32px 0 0;
       font-size: 16px;
       z-index: index($zindex, map-buttons);
       background: white;
@@ -176,7 +176,7 @@ div.leaflet-bottom.leaflet-right div.leaflet-control-zoom {
 
   @media (min-width: 900px) {
     margin-right: 24px;
-    margin-bottom: 24px; 
+    margin-bottom: 24px;
   }
 
   &.leaflet-bar {
@@ -199,7 +199,7 @@ div.leaflet-bottom.leaflet-right div.leaflet-control-zoom {
     background-color: $background-default;
     color: $primary-color;
     border-radius: 8px;
-    box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
+    box-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
   }
 }
 
@@ -296,7 +296,7 @@ div.leaflet-marker-icon.vehicle-icon {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
+  box-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
 }
 
 .cookie-settings-button {
