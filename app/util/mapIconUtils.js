@@ -656,6 +656,7 @@ export function drawCitybikeIcon(
   showAvailability,
   isHilighted
 ) {
+  
   const zoom = tile.coords.z - 1;
   const styles = getStopIconStyles('citybike', zoom, isHilighted);
   const { style } = styles;
@@ -708,6 +709,7 @@ export function drawCitybikeIcon(
     if (!operative) {
       icon = 'icon-icon_citybike_station_closed_large';
     }
+
     getImageFromSpriteCache(icon, width, height).then(image => {
       tile.ctx.drawImage(image, x, y);
       x = x + width - smallCircleRadius;
@@ -892,7 +894,6 @@ export function drawAvailabilityBadge(
   ) {
     throw Error("Supported badges are 'good', 'poor', and 'no'");
   }
-
   getImageFromSpriteCache(
     `icon-icon_${availability}-availability`,
     badgeSize,

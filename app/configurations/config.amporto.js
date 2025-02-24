@@ -167,10 +167,15 @@ export default {
     href: APP_BAR_LINK_HREF
   },
 
+  sprites: 'assets/svg-sprite.amporto.svg',
+
   colors: {
     primary: '#243E8B',
     iconColors: {
-      'mode-bus': '#243E8B'
+      'mode-bus': '#A7D9FE',
+      'mode-tram': '#A2874F',
+      'mode-subway': '#00095F',
+      'mode-citybike': '#FFE99D'
     },
     originDestination: {
       icon: {
