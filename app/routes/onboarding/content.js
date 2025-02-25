@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { objectOf, shape, string } from 'prop-types';
+import { objectOf, shape, string, bool } from 'prop-types';
 import SwipeableTabs from '../../component/SwipeableTabs';
 
 const parseBoldText = text => {
@@ -16,7 +16,7 @@ const parseBoldText = text => {
   });
 };
 
-export const Content = ({ pages, currentLanguage }) => {
+export const Content = ({ pages, currentLanguage, hideArrows }) => {
   const [page, setPage] = useState(0);
 
   const tabs = useMemo(
@@ -37,7 +37,7 @@ export const Content = ({ pages, currentLanguage }) => {
         tabIndex={page}
         onSwipe={page => setPage(page)}
         classname="swipe-desktop-view"
-        hideArrows
+        hideArrows={hideArrows}
         navigationOnBottom
         ariaFrom="swipe-onboarding"
         ariaFromHeader="swipe-onboarding"
@@ -54,5 +54,6 @@ Content.propTypes = {
       paragraph: shape({ pt: string.isRequired, en: string.isRequired })
     })
   ).isRequired,
-  currentLanguage: string.isRequired
+  currentLanguage: string.isRequired,
+  hideArrows: bool.isRequired
 };

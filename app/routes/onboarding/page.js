@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { func, string, bool } from 'prop-types';
-import classnames from 'classnames';
 import useRouter from 'found/useRouter';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
@@ -38,21 +37,17 @@ const OnboardingPage = (
       <div className="top">
         <h1>{title}</h1>
         <div className="top-right">
-          <LanguageSelect
-            classname={classnames({
-              hide: breakpoint === 'small'
-            })}
-          />
+          {breakpoint !== 'small' && <LanguageSelect />}
           {onboarded && <SidebarMenu />}
         </div>
       </div>
-      <LanguageSelect
-        classname={classnames({
-          hide: breakpoint !== 'small'
-        })}
-      />
+      {breakpoint === 'small' && <LanguageSelect />}
       <div className="content-wrapper">
-        <Content pages={onboarding} currentLanguage={currentLanguage} />
+        <Content
+          pages={onboarding}
+          currentLanguage={currentLanguage}
+          hideArrows={breakpoint === 'small'}
+        />
         <div className="image">
           <img src="/img/onboarding.jpg" alt="onboarding" />
         </div>
