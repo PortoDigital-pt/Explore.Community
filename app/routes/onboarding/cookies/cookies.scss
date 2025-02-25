@@ -78,8 +78,10 @@
     column-gap: 8px;
 
     button {
+      width: 100%;
       display: flex;
       position: relative;
+      justify-content: center;
       padding: 8px 16px;
       border-radius: 8px;
       cursor: pointer;
