@@ -5,14 +5,12 @@ import getContext from 'recompose/getContext';
 import { intlShape } from 'react-intl';
 import { configShape } from '../../../../util/shapes';
 import Icon from '../../../Icon';
+import useModal from '../../../../hooks/useModal';
 
 const Menu = lazy(() => import('./menu'));
 
 const SidebarMenu = ({ shadow = false }, { intl }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const open = useCallback(() => setIsOpen(true), []);
-  const close = useCallback(() => setIsOpen(false), []);
+  const { isOpen, open, close } = useModal();
 
   return (
     <>
