@@ -28,8 +28,8 @@ class PreferencesStore extends Store {
       this.language = language;
     }
 
-    this.onboarded = this.cookies.get('onboarded') ?? false;
-    this.allowedCookies = this.cookies.get('cookies') ?? false;
+    this.onboarded = this.cookies.get('onboarded') === 'true';
+    this.allowedCookies = this.cookies.get('cookies') === 'true';
     this.firstAccess = this.cookies.get('first-access') ?? '/';
   }
 

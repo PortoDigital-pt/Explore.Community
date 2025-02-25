@@ -1696,6 +1696,7 @@ const translations = {
     'swipe-stops-near-you-header': 'Stops near you swipe result tabs',
     'swipe-summary-page': 'Itinerary swipe result tabs',
     'swipe-summary-page-header': 'Itinerary swipe result tabs.',
+    'swipe-onboarding': 'Swipe through the onboarding',
     'terminal-page.description': 'Terminal {name}',
     'terminal-page.title': 'Terminal {name}',
     'terminal-page.title-short': 'Terminal',
@@ -5940,7 +5941,7 @@ const translations = {
     'modes.to-tram': 'paragem de elétrico',
     'more-departures': 'Mais partidas',
     'move-on-map': 'Mover-se no mapa',
-    'move-to-tab': 'Ir para o separador {número}',
+    'move-to-tab': 'Ir para o separador {number}',
     'navidest-show-on-map': 'Mostrar rota no mapa',
     'navigation-abort-trip':
       'TODO_Valitettavasti matkasi ei toteudu suunnitellusti.',
@@ -6173,7 +6174,7 @@ const translations = {
     'swipe-result-tab-right':
       'Prima Enter ou Espaço para mostrar o separador seguinte.',
     'swipe-result-tabs': 'Alterne as guias usando as teclas de seta.',
-    'swipe-sr-new-tab-opened': 'Tab {número} aberto.',
+    'swipe-sr-new-tab-opened': 'Tab {number} aberto.',
     'swipe-stops-near-you':
       'Para perto de si, deslize os separadores de resultados.',
     'swipe-stops-near-you-header':
@@ -6181,6 +6182,7 @@ const translations = {
     'swipe-summary-page': 'Guias de resultados de deslizamento de itinerário',
     'swipe-summary-page-header':
       'Guias de resultados de deslizamento de itinerário.',
+    'swipe-onboarding': 'Percorrer o onboarding',
     'to-bicycle': 'bicicleta',
     'to-bus': 'ônibus',
     'to-e-scooter': 'scooter',

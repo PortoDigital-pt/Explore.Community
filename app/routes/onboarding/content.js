@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { shape, string } from 'prop-types';
+import { objectOf, shape, string } from 'prop-types';
 import SwipeableTabs from '../../component/SwipeableTabs';
 
 const parseBoldText = text => {
@@ -27,7 +27,7 @@ export const Content = ({ pages, currentLanguage }) => {
           {paragraph && <p>{parseBoldText(paragraph[currentLanguage])}</p>}
         </div>
       )),
-    [currentLanguage]
+    [pages, currentLanguage]
   );
 
   return (
@@ -47,6 +47,12 @@ export const Content = ({ pages, currentLanguage }) => {
 };
 
 Content.propTypes = {
-  pages: shape.isRequired,
+  pages: objectOf(
+    shape({
+      heading: shape({ pt: string.isRequired, en: string.isRequired })
+        .isRequired,
+      paragraph: shape({ pt: string.isRequired, en: string.isRequired })
+    })
+  ).isRequired,
   currentLanguage: string.isRequired
 };

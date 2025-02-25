@@ -47,7 +47,12 @@ const OnboardingPage = (
           hide: breakpoint !== 'small'
         })}
       />
-      <Content pages={onboarding} currentLanguage={currentLanguage} />
+      <div className="content-wrapper">
+        <Content pages={onboarding} currentLanguage={currentLanguage} />
+        <div className="image">
+          <img src="/img/onboarding.jpg" alt="onboarding" />
+        </div>
+      </div>
       {!onboarded && (
         <button
           aria-label={intl.messages['onboarding-start-exploring']}

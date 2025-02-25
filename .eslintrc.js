@@ -9,6 +9,7 @@ module.exports = {
   rules: {
     curly: ['error', 'all'],
     'lines-between-class-members': 'warn',
+    'no-shadow': 'off',
     'no-else-return': 'warn',
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-console': 'error',
