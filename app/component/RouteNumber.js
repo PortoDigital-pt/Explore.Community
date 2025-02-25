@@ -111,7 +111,7 @@ function RouteNumber(props, context) {
               props.icon &&
               props.icon.includes('secondary') // Vantaa citybike station
           })}
-          img={icon || `icon-icon_${mode}_no_map`}
+          img={`icon-icon_${mode}_no_map`}
           subIcon=""
           mode={mode}
         />
