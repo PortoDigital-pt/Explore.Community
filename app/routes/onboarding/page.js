@@ -25,7 +25,11 @@ const OnboardingPage = (
     // execute navigation in the next event loop tick - allowing time to process the store update.
     // this ensures onboarded store state updates before the Main component reads it on the next page.
     setTimeout(() => {
-      router.push(firstAccess === location.pathname ? '/' : firstAccess);
+      router.push(
+        !firstAccess || firstAccess === location.pathname
+          ? '/explore'
+          : firstAccess
+      );
     }, 10);
   }, [executeAction, firstAccess, router.push, location.pathname]);
 
