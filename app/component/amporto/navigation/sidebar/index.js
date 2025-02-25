@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useCallback, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { bool } from 'prop-types';
 import classnames from 'classnames';
 import getContext from 'recompose/getContext';

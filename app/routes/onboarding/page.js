@@ -9,9 +9,10 @@ import { setOnboarded } from '../../action/userPreferencesActions';
 import withBreakpoint from '../../util/withBreakpoint';
 import { Content } from './content';
 import SidebarMenu from '../../component/amporto/navigation/sidebar';
+import Cookies from './cookies';
 
 const OnboardingPage = (
-  { breakpoint, currentLanguage, firstAccess, onboarded },
+  { breakpoint, currentLanguage, firstAccess, onboarded, allowedCookies },
   { config: { title, onboarding }, executeAction, intl }
 ) => {
   const {
@@ -61,6 +62,7 @@ const OnboardingPage = (
           {intl.messages['onboarding-start-exploring']}
         </button>
       )}
+      <Cookies startOpen={!onboarded && !allowedCookies} />
     </div>
   );
 };
@@ -69,7 +71,8 @@ OnboardingPage.propTypes = {
   breakpoint: string.isRequired,
   currentLanguage: string.isRequired,
   firstAccess: string.isRequired,
-  onboarded: bool.isRequired
+  onboarded: bool.isRequired,
+  allowedCookies: bool.isRequired
 };
 
 OnboardingPage.contextTypes = {
@@ -84,6 +87,7 @@ export default connectToStores(
   context => ({
     currentLanguage: context.getStore('PreferencesStore').getLanguage(),
     firstAccess: context.getStore('PreferencesStore').getFirstAccess(),
-    onboarded: context.getStore('PreferencesStore').getOnboarded()
+    onboarded: context.getStore('PreferencesStore').getOnboarded(),
+    allowedCookies: context.getStore('PreferencesStore').getAllowedCookies()
   })
 );
