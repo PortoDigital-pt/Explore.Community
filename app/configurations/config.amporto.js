@@ -245,23 +245,9 @@ export default {
   privacyPolicyLink: PRIVACY_POLICY,
   cookiesPolicyLink: COOKIES_POLICY,
 
-  aboutThisService: {
-    en: [
-      {
-        header: 'About this service',
-        paragraphs: [
-          'This service is provided by APD for route planning in AMP region. The service covers public transport, walking, cycling, and some private car use. Service is built on Digitransit platform.'
-        ]
-      }
-    ],
-    pt: [
-      {
-        header: 'Sobre este serviço',
-        paragraphs: [
-          'Este serviço é prestado pela APD para o planeamento de rotas na região AMP. O serviço cobre transporte público, caminhada, ciclismo e algum uso de carro particular. O serviço é construído na plataforma Digitransit.'
-        ]
-      }
-    ]
+  cookiesDescription: {
+    pt: 'A Explore.Porto recolhe e armazena informações através de cookies para melhorar a sua experiência. Ao clicar em aceitar, concorda com o uso de cookies. Saiba mais na nossa *link*Política de Privacidade*link*.',
+    en: 'Explore.Porto collects and stores information through cookies to improve your experience. By clicking accept, you agree to the use of cookies. Find out more in our *link*Privacy Policy*link*.'
   },
 
   themeMap: {

@@ -12,7 +12,7 @@ const classNames = {
 
 Modal.setAppElement('#app');
 
-const Cookies = ({ startOpen }) => {
+const Cookies = ({ startOpen, ...props }) => {
   const { isOpen, close } = useModal({ startOpen });
 
   return (
@@ -22,7 +22,7 @@ const Cookies = ({ startOpen }) => {
       className={classNames}
       overlayClassName="overlay"
     >
-      <Content onClose={close} />
+      <Content onClose={close} {...props} />
     </Modal>
   );
 };

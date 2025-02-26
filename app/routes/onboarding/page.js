@@ -5,7 +5,10 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import LanguageSelect from '../../component/amporto/language';
 import { configShape } from '../../util/shapes';
-import { setOnboarded } from '../../action/userPreferencesActions';
+import {
+  setOnboarded,
+  setAllowedCookies
+} from '../../action/userPreferencesActions';
 import withBreakpoint from '../../util/withBreakpoint';
 import { Content } from './content';
 import SidebarMenu from '../../component/amporto/navigation/sidebar';
@@ -32,6 +35,14 @@ const OnboardingPage = (
       );
     }, 10);
   }, [executeAction, firstAccess, router.push, location.pathname]);
+
+  const onAcceptCookies = useCallback(() => {
+    executeAction(setAllowedCookies, true);
+  }, [executeAction]);
+
+  const onRejectCookies = useCallback(() => {
+    executeAction(setAllowedCookies, false);
+  }, [executeAction]);
 
   return (
     <div className="onboarding">
@@ -62,7 +73,12 @@ const OnboardingPage = (
           {intl.messages['onboarding-start-exploring']}
         </button>
       )}
-      <Cookies startOpen={!onboarded && !allowedCookies} />
+      <Cookies
+        startOpen={!onboarded && !allowedCookies}
+        language={currentLanguage}
+        onAcceptCookies={onAcceptCookies}
+        onRejectCookies={onRejectCookies}
+      />
     </div>
   );
 };
