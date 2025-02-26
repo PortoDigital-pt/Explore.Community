@@ -36,7 +36,7 @@ const Content = (
   <>
     <button
       className="close"
-      onClick={()=> {
+      onClick={() => {
         onRejectCookies();
         onClose();
       }}

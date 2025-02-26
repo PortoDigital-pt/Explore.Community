@@ -12,6 +12,7 @@ import {
   COMMON_NAVIGATION_ITEMS_PATH_MAP,
   generateNavigationItemsConfig
 } from '../common';
+import { PATH_PREFIXES } from '../../../../util/path';
 
 const NAVIGATION_ITEMS = {
   ...COMMON_NAVIGATION_ITEMS,
@@ -51,6 +52,14 @@ const BottomNavigationBar = (
     [router.push]
   );
 
+  const canShow = useMemo(
+    () =>
+      !Object.values(PATH_PREFIXES).find(path =>
+        match.location.pathname.includes(path)
+      ),
+    [match.location.pathname]
+  );
+
   useEffect(() => {
     if (!client) {
       setClient(true);
@@ -64,7 +73,7 @@ const BottomNavigationBar = (
   return (
     <nav
       className={classnames('navbar', {
-        hide: breakpoint === 'large'
+        hide: !canShow || breakpoint === 'large'
       })}
     >
       {Object.values(navigationItems).map(item => (

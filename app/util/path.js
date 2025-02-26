@@ -21,6 +21,20 @@ export const LOCAL_STORAGE_EMITTER_PATH = '/local-storage-emitter';
 export const EMBEDDED_SEARCH_PATH = '/haku';
 export const PREFIX_RENTALVEHICLES = 'skuutit';
 
+export const PATH_PREFIXES = {
+  PREFIX_ROUTES,
+  PREFIX_NEARYOU,
+  PREFIX_STOPS,
+  PREFIX_BIKESTATIONS,
+  PREFIX_BIKEPARK,
+  PREFIX_CARPARK,
+  PREFIX_TERMINALS,
+  PREFIX_ITINERARY_SUMMARY,
+  PREFIX_DISRUPTION,
+  PREFIX_TIMETABLE,
+  PREFIX_RENTALVEHICLES
+};
+
 /**
  * Join argument with slash separator.
  *
