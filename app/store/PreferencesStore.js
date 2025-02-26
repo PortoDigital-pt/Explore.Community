@@ -27,10 +27,26 @@ class PreferencesStore extends Store {
     } else {
       this.language = language;
     }
+
+    this.onboarded = this.cookies.get('onboarded') === 'true';
+    this.allowedCookies = this.cookies.get('cookies') === 'true';
+    this.firstAccess = this.cookies.get('first-access') ?? '/';
   }
 
   getLanguage() {
     return this.language;
+  }
+
+  getOnboarded() {
+    return this.onboarded;
+  }
+
+  getAllowedCookies() {
+    return this.allowedCookies;
+  }
+
+  getFirstAccess() {
+    return this.firstAccess;
   }
 
   setLanguage(language) {
@@ -42,15 +58,48 @@ class PreferencesStore extends Store {
       // Good up to one year
       maxAge: 365 * 24 * 60 * 60,
       path: '/',
-      Secure: true,
-      SameSite: 'Strict'
+      secure: true,
+      sameSite: 'Strict'
     });
     this.language = language;
     this.emitChange();
   }
 
+  setOnboarded(onboarded) {
+    this.cookies.set('onboarded', onboarded, {
+      // Good up to one year
+      maxAge: 365 * 24 * 60 * 60,
+      path: '/',
+      secure: true,
+      sameSite: 'Strict'
+    });
+
+    this.onboarded = onboarded;
+    this.emitChange();
+  }
+
+  setAllowedCookies(allowedCookies) {
+    this.cookies.set('cookies', allowedCookies, {
+      // Good up to one year
+      maxAge: 365 * 24 * 60 * 60,
+      path: '/',
+      secure: true,
+      sameSite: 'Strict'
+    });
+
+    this.allowedCookies = allowedCookies;
+    this.emitChange();
+  }
+
+  setFirstAccess(firstAccess) {
+    this.firstAccess = firstAccess;
+    this.emitChange();
+  }
+
   static handlers = {
-    SetLanguage: 'setLanguage'
+    SetLanguage: 'setLanguage',
+    SetOnboarded: 'setOnboarded',
+    SetAllowedCookies: 'setAllowedCookies'
   };
 }
 

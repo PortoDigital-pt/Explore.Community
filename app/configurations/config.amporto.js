@@ -245,23 +245,9 @@ export default {
   privacyPolicyLink: PRIVACY_POLICY,
   cookiesPolicyLink: COOKIES_POLICY,
 
-  aboutThisService: {
-    en: [
-      {
-        header: 'About this service',
-        paragraphs: [
-          'This service is provided by APD for route planning in AMP region. The service covers public transport, walking, cycling, and some private car use. Service is built on Digitransit platform.'
-        ]
-      }
-    ],
-    pt: [
-      {
-        header: 'Sobre este serviço',
-        paragraphs: [
-          'Este serviço é prestado pela APD para o planeamento de rotas na região AMP. O serviço cobre transporte público, caminhada, ciclismo e algum uso de carro particular. O serviço é construído na plataforma Digitransit.'
-        ]
-      }
-    ]
+  cookiesDescription: {
+    pt: 'A Explore.Porto recolhe e armazena informações através de cookies para melhorar a sua experiência. Ao clicar em aceitar, concorda com o uso de cookies. Saiba mais na nossa *link*Política de Privacidade*link*.',
+    en: 'Explore.Porto collects and stores information through cookies to improve your experience. By clicking accept, you agree to the use of cookies. Find out more in our *link*Privacy Policy*link*.'
   },
 
   themeMap: {
@@ -311,5 +297,54 @@ export default {
   // Notice! Turning on this setting forces the search for car routes (for the CO2 comparison only).
   showCO2InItinerarySummary: SHOW_CO2_IN_ITINERARY_SUMMARY === 'true',
 
-  availableTickets: null
+  availableTickets: null,
+
+  onboarding: {
+    page1: {
+      heading: {
+        en: 'Explore the city of Porto at **your** **own** **pace**',
+        pt: 'Explore a cidade do Porto **ao** **seu** **ritmo**'
+      }
+    },
+    page2: {
+      heading: {
+        en: 'A new way to get **around** **the** **city** of Porto',
+        pt: 'Uma nova forma de se **deslocar** **na** **cidade** do Porto'
+      },
+      paragraph: {
+        en: 'All schedules and transport information available **at** **your** **fingertips**.',
+        pt: 'Todos os horários e informaçãos sobre transportes disponíveis **na** **palma** **da** **sua** **mão**.'
+      }
+    },
+    page3: {
+      heading: {
+        en: 'No ideas on what to **visit**?',
+        pt: 'Sem ideias do que **visitar**?'
+      },
+      paragraph: {
+        en: 'We have prepared themed routes based on your preferences: historical tours, parks and gardens, and much more.',
+        pt: 'Preparámos roteiros temáticos de acordo com as suas preferências: roteiros históricos, parques e jardins e muito mais.'
+      }
+    },
+    page4: {
+      heading: {
+        en: "Discover the essence of Porto in the city's **different** **blocks**",
+        pt: 'Conheça a essência Portuense nos diferentes **quarteirões** **da** **cidade**'
+      },
+      paragraph: {
+        en: 'Discover what the city of Porto has to offer beyond the historic center.',
+        pt: 'Descubra o que a cidade do Porto tem para oferecer fora do centro histórico.'
+      }
+    },
+    page5: {
+      heading: {
+        en: 'Stay up to date with all **cultural** **events**',
+        pt: 'Fique por dentro de todos os **eventos** **culturais**'
+      },
+      paragraph: {
+        en: 'Every day, the city of Porto has event suggestions for you.',
+        pt: 'Todos os dias a cidade do Porto tem sugestões de eventos para si.'
+      }
+    }
+  }
 };

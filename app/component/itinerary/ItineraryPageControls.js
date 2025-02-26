@@ -76,7 +76,7 @@ class ItineraryPageControls extends React.Component {
                 //     defaultMessage="Itinerary suggestions"
                 //   />
                 // }
-                icon="icon-icon_arrow-collapse--left"
+                icon="icon-icon_arrow-collapse--left_new"
                 iconClassName="arrow-icon"
                 fallback={
                   params.hash === streetHash.bikeAndVehicle ||

@@ -1,0 +1,124 @@
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  flex-grow: 1;
+  z-index: 10002;
+}
+
+.modal-content {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: $background-default;
+  width: 100%;
+  z-index: 10003;
+  padding: 24px;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+  transition: transform 450ms cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translate(0, 100%);
+  row-gap: 24px;
+
+  .close {
+    display: flex;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      color: $primary-color;
+    }
+  }
+
+  .badge {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    column-gap: 16px;
+    width: calc(100% - 32px);
+    align-items: center;
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      color: $primary-color;
+    }
+
+    h5 {
+      color: $primary-color;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-l;
+      line-height: 24px;
+      margin: 0;
+    }
+  }
+
+  p {
+    display: block;
+    position: relative;
+    color: $grey-dark-down;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-l;
+    margin: 0;
+
+    a {
+      display: inline-block;
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+    }
+  }
+
+  .action {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: row;
+    column-gap: 8px;
+
+    button {
+      width: 100%;
+      display: flex;
+      position: relative;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid $primary-color;
+      font-size: $font-size-l;
+      font-weight: $font-weight-bold;
+      align-items: center;
+
+      @media (min-width: 900px) {
+        width: 400px;
+      }
+
+      &.accept {
+        background-color: $primary-color;
+        color: $primary-contrastText;
+      }
+
+      &.reject {
+        background-color: $background-default;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.modal-content-close {
+  transform: translate(0, 100%) !important;
+}
+
+.modal-content-open {
+  transform: translate(0, 0);
+}

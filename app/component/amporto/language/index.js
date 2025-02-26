@@ -7,7 +7,7 @@ import { setLanguage } from '../../../action/userPreferencesActions';
 import { configShape } from '../../../util/shapes';
 
 const LanguageSelect = (
-  { currentLanguage },
+  { currentLanguage, classname },
   { config, executeAction, intl }
 ) => (
   <div className="language-select">
@@ -24,7 +24,7 @@ const LanguageSelect = (
         <button
           key={language}
           aria-label={aria}
-          className={classnames('language', { selected })}
+          className={classnames('language', classname, { selected })}
           type="button"
           onClick={() => executeAction(setLanguage, language)}
         >
@@ -36,7 +36,8 @@ const LanguageSelect = (
 );
 
 LanguageSelect.propTypes = {
-  currentLanguage: string.isRequired
+  currentLanguage: string.isRequired,
+  classname: string
 };
 
 LanguageSelect.contextTypes = {

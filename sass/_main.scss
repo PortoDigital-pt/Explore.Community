@@ -73,6 +73,8 @@ $body-font-weight: $font-weight-medium;
 @import '../app/component/amporto/navigation/sidebar/sidebar';
 @import '../app/component/amporto/language/language';
 @import '../app/component/amporto/topbar/topbar';
+@import '../app/routes/onboarding/onboarding';
+@import '../app/routes/onboarding/cookies/cookies';
 
 /* Modal */
 @import '~foundation-apps/scss/helpers/breakpoints';

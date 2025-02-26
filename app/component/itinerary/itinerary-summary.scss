@@ -493,7 +493,8 @@
 
           &.citybike {
             .icon {
-              width: 24px;
+              width: 16px;
+              color: $grey-dark-down;
             }
 
             .secondary {
@@ -568,7 +569,7 @@
 
           &.citybike {
             .leg-duration {
-              padding-left: 1px;
+              padding-left: 0.8em;
             }
           }
 
@@ -621,7 +622,7 @@
       }
 
       &.wait {
-        background-color: white;
+        background-color: $wait-color;
         border: 1px solid $light-gray;
       }
 

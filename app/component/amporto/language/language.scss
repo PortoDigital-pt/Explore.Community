@@ -5,8 +5,10 @@
   padding-bottom: 0 !important;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
 
   .language {
+    max-height: 40px;
     padding: 8px;
     color: $primary-light;
     font-size: $font-size-l;

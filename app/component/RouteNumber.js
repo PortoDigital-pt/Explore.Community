@@ -67,7 +67,7 @@ function RouteNumber(props, context) {
         <IconWithIcon
           color={altColor || color}
           className={`${mode} call`}
-          img={icon || `icon-icon_${mode}`}
+          img={icon || `icon-icon_${mode}_no_map`}
           subIcon="icon-icon_call"
         />
       );
@@ -80,7 +80,7 @@ function RouteNumber(props, context) {
             alertSeverityLevel={alertSeverityLevel}
             color={altColor || color}
             className={mode}
-            img={icon || `icon-icon_${mode}`}
+            img={icon || `icon-icon_${mode}_no_map`}
           />
 
           {withBicycle && (
@@ -111,7 +111,7 @@ function RouteNumber(props, context) {
               props.icon &&
               props.icon.includes('secondary') // Vantaa citybike station
           })}
-          img={icon || `icon-icon_${mode}`}
+          img={`icon-icon_${mode}_no_map`}
           subIcon=""
           mode={mode}
         />

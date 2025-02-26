@@ -1696,6 +1696,7 @@ const translations = {
     'swipe-stops-near-you-header': 'Stops near you swipe result tabs',
     'swipe-summary-page': 'Itinerary swipe result tabs',
     'swipe-summary-page-header': 'Itinerary swipe result tabs.',
+    'swipe-onboarding': 'Swipe through the onboarding',
     'terminal-page.description': 'Terminal {name}',
     'terminal-page.title': 'Terminal {name}',
     'terminal-page.title-short': 'Terminal',
@@ -1821,20 +1822,25 @@ const translations = {
     'nav-item-blocks': 'Blocks',
     'nav-item-favourites': 'Favourites',
     'nav-item-profile': 'Profile',
-    'nav-item-about': 'About {app}',
+    'nav-item-onboarding': 'About {app}',
     'nav-item-aria-explore': 'Go to explore',
     'nav-item-aria-browse': 'Go to browse',
     'nav-item-aria-routes': 'Go to routes',
     'nav-item-aria-blocks': 'Go to blocks',
     'nav-item-aria-favourites': 'Go to favourites',
     'nav-item-aria-profile': 'Go to profile',
-    'nav-item-aria-about': 'Learn more about {app}',
+    'nav-item-aria-onboarding': 'Learn more about {app}',
     'privacy-policy': 'Privacy policy',
     'cookies-policy': 'Cookies policy',
     'privacy-policy-aria': 'Consult privacy policy',
     'cookies-policy-aria': 'Consult cookies policy',
     'nav-menu-close': 'Close navigation menu',
-    'nav-menu-open': 'Open navigation menu'
+    'nav-menu-open': 'Open navigation menu',
+    'onboarding-start-exploring': 'Start exploring',
+    'cookies-title': 'We value your privacy',
+    'cookies-accept': 'Accept cookies',
+    'cookies-reject': 'Reject',
+    'cookies-reject-aria': 'Reject cookies'
   },
 
   es: {
@@ -5939,7 +5945,7 @@ const translations = {
     'modes.to-tram': 'paragem de elétrico',
     'more-departures': 'Mais partidas',
     'move-on-map': 'Mover-se no mapa',
-    'move-to-tab': 'Ir para o separador {número}',
+    'move-to-tab': 'Ir para o separador {number}',
     'navidest-show-on-map': 'Mostrar rota no mapa',
     'navigation-abort-trip':
       'TODO_Valitettavasti matkasi ei toteudu suunnitellusti.',
@@ -6172,7 +6178,7 @@ const translations = {
     'swipe-result-tab-right':
       'Prima Enter ou Espaço para mostrar o separador seguinte.',
     'swipe-result-tabs': 'Alterne as guias usando as teclas de seta.',
-    'swipe-sr-new-tab-opened': 'Tab {número} aberto.',
+    'swipe-sr-new-tab-opened': 'Tab {number} aberto.',
     'swipe-stops-near-you':
       'Para perto de si, deslize os separadores de resultados.',
     'swipe-stops-near-you-header':
@@ -6180,6 +6186,7 @@ const translations = {
     'swipe-summary-page': 'Guias de resultados de deslizamento de itinerário',
     'swipe-summary-page-header':
       'Guias de resultados de deslizamento de itinerário.',
+    'swipe-onboarding': 'Percorrer o onboarding',
     'to-bicycle': 'bicicleta',
     'to-bus': 'ônibus',
     'to-e-scooter': 'scooter',
@@ -6250,20 +6257,25 @@ const translations = {
     'nav-item-blocks': 'Quarteirões',
     'nav-item-favourites': 'Favoritos',
     'nav-item-profile': 'Perfil',
-    'nav-item-about': 'Sobre o {app}',
+    'nav-item-onboarding': 'Sobre o {app}',
     'nav-item-aria-explore': 'Ir para a página explorar',
     'nav-item-aria-browse': 'Ir para a página navegar',
     'nav-item-aria-routes': 'Ir para a página roteiros',
     'nav-item-aria-blocks': 'Ir para a página quarteirões',
     'nav-item-aria-favourites': 'Ir para os favoritos',
     'nav-item-aria-profile': 'Ir para o perfil',
-    'nav-item-aria-about': 'Aprender mais sobre {app}',
+    'nav-item-aria-onboarding': 'Aprender mais sobre {app}',
     'privacy-policy': 'Política de privacidade',
     'cookies-policy': 'Política de cookies',
     'privacy-policy-aria': 'Consultar a política de privacidade',
     'cookies-policy-aria': 'Consultar a política de cookies',
     'nav-menu-close': 'Fechar o menu de navegação',
-    'nav-menu-open': 'Abrir o menu de navegação'
+    'nav-menu-open': 'Abrir o menu de navegação',
+    'onboarding-start-exploring': 'Começar a explorar',
+    'cookies-title': 'Valorizamos a sua privacidade',
+    'cookies-accept': 'Aceitar cookies',
+    'cookies-reject': 'Rejeitar',
+    'cookies-reject-aria': 'Rejeitar cookies'
   },
 
   sv: {

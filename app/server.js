@@ -205,10 +205,12 @@ export default async function serve(req, res, next) {
 
     const resolver = new Resolver(environment);
 
+    const routeConfig = makeRouteConfig(application.getComponent());
+
     const { redirect, status, element } = await getFarceResult({
       url: req.url,
       historyMiddlewares,
-      routeConfig: makeRouteConfig(application.getComponent()),
+      routeConfig,
       resolver,
       render
     });
@@ -238,6 +240,27 @@ export default async function serve(req, res, next) {
       headers: req.headers,
       config
     });
+
+    if (!req.cookies.onboarded && !req.cookies['first-access']) {
+      // We only need this for 1 day (ms)
+      res.cookie('first-access', req.url, { maxAge: 24 * 60 * 60 * 1000 });
+      context
+        .getComponentContext()
+        .getStore('PreferencesStore')
+        .setFirstAccess(req.url);
+    }
+
+    if (req.cookies['first-access']) {
+      context
+        .getComponentContext()
+        .getStore('PreferencesStore')
+        .setFirstAccess(req.cookies['first-access']);
+    }
+
+    context
+      .getComponentContext()
+      .getStore('PreferencesStore')
+      .setOnboarded(req.cookies.onboarded === 'true');
 
     context
       .getComponentContext()

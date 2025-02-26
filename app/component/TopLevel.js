@@ -219,7 +219,7 @@ class TopLevel extends React.Component {
 
 export default connectToStores(
   TopLevel,
-  ['OriginStore', 'UserStore'],
+  ['OriginStore', 'UserStore', 'PreferencesStore'],
   ({ getStore }) => ({
     origin: getStore('OriginStore').getOrigin(),
     user: getStore('UserStore').getUser()
