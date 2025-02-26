@@ -4,22 +4,22 @@ import trimStart from 'lodash/trimStart';
 import toPairs from 'lodash/toPairs';
 import { otpToLocation, locationToOTP, locationToUri } from './otpStrings';
 
-export const TAB_NEARBY = 'lahellasi';
-export const TAB_FAVOURITES = 'suosikit';
-export const PREFIX_ROUTES = 'linjat';
+export const TAB_NEARBY = 'nearby';
+export const TAB_FAVOURITES = 'favourites';
+export const PREFIX_ROUTES = 'routes';
 export const PREFIX_NEARYOU = TAB_NEARBY;
-export const PREFIX_STOPS = 'pysakit';
-export const PREFIX_BIKESTATIONS = 'pyoraasemat';
-export const PREFIX_BIKEPARK = 'pyoraparkit';
-export const PREFIX_CARPARK = 'autoparkit';
-export const PREFIX_TERMINALS = 'terminaalit';
-export const PREFIX_ITINERARY_SUMMARY = 'reitti';
-export const PREFIX_DISRUPTION = 'hairiot';
-export const PREFIX_TIMETABLE = 'aikataulu';
+export const PREFIX_STOPS = 'stops';
+export const PREFIX_BIKESTATIONS = 'bikestations';
+export const PREFIX_BIKEPARK = 'bikepark';
+export const PREFIX_CARPARK = 'carpark';
+export const PREFIX_TERMINALS = 'terminals';
+export const PREFIX_ITINERARY_SUMMARY = 'itinerary';
+export const PREFIX_DISRUPTION = 'disruption';
+export const PREFIX_TIMETABLE = 'timetable';
 export const stopUrl = id => id;
 export const LOCAL_STORAGE_EMITTER_PATH = '/local-storage-emitter';
-export const EMBEDDED_SEARCH_PATH = '/haku';
-export const PREFIX_RENTALVEHICLES = 'skuutit';
+export const EMBEDDED_SEARCH_PATH = '/search';
+export const PREFIX_RENTALVEHICLES = 'scooters';
 
 export const PATH_PREFIXES = {
   PREFIX_ROUTES,
