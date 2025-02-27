@@ -593,7 +593,6 @@ section.content {
     flex-direction: column;
     height: 100%;
     position: relative;
-    padding-bottom: $mobile-navigation-bar-height;
 
     .back-button {
       left: 0;
@@ -691,8 +690,16 @@ section.content {
         z-index: 1000;
         padding: 24px;
         justify-content: flex-start;
+        align-items: center;
         column-gap: 8px;
         flex-direction: row;
+
+        h5 {
+          margin: 0;
+          font-size: $font-size-heading-s;
+          font-weight: $font-weight-regular;
+          color: $primary-color;
+        }
       }
 
       .scrollable-content-wrapper {
