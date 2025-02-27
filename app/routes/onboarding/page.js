@@ -59,20 +59,15 @@ const OnboardingPage = (
           pages={onboarding}
           currentLanguage={currentLanguage}
           hideArrows={breakpoint === 'small'}
+          onExplore={onStartExploring}
+          showOnExplore={!onboarded}
+          onExploreDescription={intl.messages['onboarding-start-exploring']}
         />
         <div className="image">
           <img src="/img/onboarding.jpg" alt="onboarding" />
         </div>
       </div>
-      {!onboarded && (
-        <button
-          aria-label={intl.messages['onboarding-start-exploring']}
-          type="button"
-          onClick={onStartExploring}
-        >
-          {intl.messages['onboarding-start-exploring']}
-        </button>
-      )}
+
       <Cookies
         startOpen={!onboarded && !allowedCookies}
         language={currentLanguage}

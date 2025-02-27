@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { string } from 'prop-types';
 import SidebarMenu from '../navigation/sidebar';

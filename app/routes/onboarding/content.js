@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { objectOf, shape, string, bool } from 'prop-types';
+import { objectOf, shape, string, bool, func } from 'prop-types';
 import SwipeableTabs from '../../component/SwipeableTabs';
 
 const parseBoldText = text => {
@@ -16,7 +16,14 @@ const parseBoldText = text => {
   });
 };
 
-export const Content = ({ pages, currentLanguage, hideArrows }) => {
+export const Content = ({
+  pages,
+  currentLanguage,
+  hideArrows,
+  onExplore,
+  showOnExplore,
+  onExploreDescription
+}) => {
   const [page, setPage] = useState(0);
 
   const tabs = useMemo(
@@ -42,6 +49,16 @@ export const Content = ({ pages, currentLanguage, hideArrows }) => {
         ariaFrom="swipe-onboarding"
         ariaFromHeader="swipe-onboarding"
       />
+
+      {showOnExplore && (
+        <button
+          aria-label={onExploreDescription}
+          type="button"
+          onClick={onExplore}
+        >
+          {onExploreDescription}
+        </button>
+      )}
     </div>
   );
 };
@@ -55,5 +72,8 @@ Content.propTypes = {
     })
   ).isRequired,
   currentLanguage: string.isRequired,
-  hideArrows: bool.isRequired
+  hideArrows: bool.isRequired,
+  onExplore: func.isRequired,
+  showOnExplore: string.isRequired,
+  onExploreDescription: string.isRequired
 };
