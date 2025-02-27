@@ -51,7 +51,7 @@ const RentalVehicleContent = (
     return (
       <div className="scooter-page-container">
         <div className="scooter-cluster-back-button-container">
-          {breakpoint === 'large' && <BackButton/>}
+          {breakpoint === 'large' && <BackButton />}
         </div>
         <div className="scooter-sub-header scooters-available">
           <FormattedMessage id="e-scooters-available" />

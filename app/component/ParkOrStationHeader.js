@@ -14,10 +14,7 @@ const modules = {
   FavouriteVehicleRentalStationContainer: () =>
     importLazy(import('./FavouriteVehicleRentalStationContainer'))
 };
-const ParkOrBikeStationHeader = (
-  { parkOrStation, parkType },
-  { config }
-) => {
+const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
   const [zoneId, setZoneId] = useState(undefined);
   useEffect(() => {
     const searchParams = {

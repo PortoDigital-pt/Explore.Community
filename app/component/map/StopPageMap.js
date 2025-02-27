@@ -134,9 +134,7 @@ function StopPageMap(
       children.push(<CookieSettingsButton key="cookiesettings" />);
     }
   } else {
-    children.push(
-      <BackButton key="stop-page-back-button"/>
-    );
+    children.push(<BackButton key="stop-page-back-button" />);
   }
 
   if (walk) {

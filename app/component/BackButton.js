@@ -16,21 +16,14 @@ export default class BackButton extends React.Component {
   static propTypes = {
     icon: PropTypes.string,
     color: PropTypes.string,
-    iconClassName: PropTypes.string,
-    title: PropTypes.node,
-    titleClassName: PropTypes.string,
+    title: PropTypes.string,
     onBackBtnClick: PropTypes.func,
-    fallback: PropTypes.string
+    fallback: PropTypes.string,
+    subtitle: PropTypes.string
   };
 
   static defaultProps = {
-    icon: 'icon-icon_arrow-collapse--left_new',
-    color: undefined,
-    iconClassName: '',
-    title: undefined,
-    titleClassName: undefined,
-    fallback: undefined,
-    onBackBtnClick: undefined
+    icon: 'icon-icon_arrow-collapse--left_new'
   };
 
   goBack = url => {
@@ -100,7 +93,6 @@ export default class BackButton extends React.Component {
             {this.props.title && <h2>{this.props.title}</h2>}
             {this.props.subtitle && <h5>{this.props.subtitle}</h5>}
           </div>
-
         </div>
       </div>
     );

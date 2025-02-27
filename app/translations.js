@@ -5368,16 +5368,14 @@ const translations = {
     'itinerary-summary-page.description': 'Sugestão de rotas',
     'itinerary-summary-page.title': 'Sugestão de rotas',
     'itinerary-summary-row.biking-distance':
-      'Total biking distance {totalDistance}.',
-    'itinerary-summary-row.clickable-area-description': 'Show on map',
-    'itinerary-summary-row.description':
-      'Itinerary departing at {departureDate} {departureTime} and arriving at {arrivalDate} {arrivalTime}. {firstDeparture} {transfers} Total time {totalTime}. {distance}',
+      'Distância de bicicleta {totalDistance}.',
+    'itinerary-summary-row.clickable-area-description': 'Mostrar no mapa',
     'itinerary-summary-row.first-departure':
-      '{vehicle} leaves at {departureTime} from stop {stopName}.',
+      '{vehicle} sai às {departureTime} da paragem {stopName}.',
     'itinerary-summary-row.transfers':
-      'Transfer to {vehicle} on stop {stopName}',
+      'Trocar para o {vehicle} na paragem {stopName}',
     'itinerary-summary-row.walking-distance':
-      'Total walking distance {totalDistance}.',
+      'Distância a caminhar {totalDistance}.',
     'itinerary-ticket.title': 'Título necessário',
     'itinerary-tickets.title': 'Títulos necessários',
     'itinerary-time.title': 'Duração',
@@ -5724,7 +5722,8 @@ const translations = {
       'Total de caminhadas {duration}, {distance} ',
     'itinerary-summary-row.description':
       'Itinerário com partida às {departureDate} {departureTime} e chegada às {arrivalDate} {arrivalTime}. {firstDeparture} {transfers} Tempo total {totalTime}.',
-    'itinerary-page.show-details-label': 'Mostrar detalhes do itinerário {number}',
+    'itinerary-page.show-details-label':
+      'Mostrar detalhes do itinerário {number}',
     'as-destination': 'Destino',
     'as-origin': 'Origem',
     'as-viapoint': 'Viapoint',

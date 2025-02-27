@@ -151,10 +151,12 @@ export default config => {
           header: (
             <Route
               path="(.*)?"
-              getComponent={() => import(
-                /* webpackChunkName: generic header */ '../../component/GenericHeader'
-              ).then(getDefault)
-            }/>
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: generic header */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
           ),
           content: (
             <Route

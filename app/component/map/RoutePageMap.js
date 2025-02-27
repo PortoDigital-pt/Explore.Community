@@ -169,9 +169,7 @@ class RoutePageMap extends React.Component {
         onMapTracking={this.stopTracking}
         setMWTRef={this.setMWTRef}
       >
-        {breakpoint !== 'large' && (
-          <BackButton />
-        )}
+        {breakpoint !== 'large' && <BackButton />}
         {this.context.config.useCookiesPrompt && <CookieSettingsButton />}
       </MapWithTracking>
     );

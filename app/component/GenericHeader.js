@@ -1,18 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { string } from 'prop-types';
 import BackButton from './BackButton';
 import withBreakpoint from '../util/withBreakpoint';
 
-const GenericCardHeader = ({ breakpoint })  => {
-  return (
-    <Fragment>
-      {breakpoint === 'large' && <BackButton />}
-    </Fragment>
-  );
-}
+const GenericCardHeader = ({ breakpoint }) => {
+  return breakpoint === 'large' && <BackButton />;
+};
 
 GenericCardHeader.propTypes = {
-  breakpoint: string.isRequired,
+  breakpoint: string.isRequired
 };
 
 export default withBreakpoint(GenericCardHeader);

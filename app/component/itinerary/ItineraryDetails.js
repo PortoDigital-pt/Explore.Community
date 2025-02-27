@@ -31,7 +31,6 @@ import {
   isTomorrow
 } from '../../util/timeUtils';
 import { BreakpointConsumer } from '../../util/withBreakpoint';
-import BackButton from '../BackButton';
 import Emissions from './Emissions';
 import EmissionsInfo from './EmissionsInfo';
 import FareDisclaimer from './FareDisclaimer';

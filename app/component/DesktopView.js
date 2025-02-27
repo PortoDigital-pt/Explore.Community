@@ -20,12 +20,9 @@ export default function DesktopView({
       <div className="main-content" role="main">
         <DesktopNavigation />
         {bckBtnVisible && (
-              <BackButton
-                title={title}
-                fallback={bckBtnFallback}
-              />
+          <BackButton title={title} fallback={bckBtnFallback} />
         )}
-         {header}
+        {header}
         <ScrollableWrapper scrollable={scrollable}>
           <ErrorBoundary>{content}</ErrorBoundary>
         </ScrollableWrapper>
