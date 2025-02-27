@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { configShape } from '../util/shapes';
 import StopCode from './StopCode';
-import BackButton from './BackButton';
 import LazilyLoad, { importLazy } from './LazilyLoad';
 import { getJson } from '../util/xhrPromise';
 import getZoneId from '../util/zoneIconUtils';
 import ZoneIcon from './ZoneIcon';
-import withBreakpoint from '../util/withBreakpoint';
 import { hasVehicleRentalCode } from '../util/vehicleRentalUtils';
 import { getIdWithoutFeed } from '../util/feedScopedIdUtils';
 
@@ -17,7 +15,7 @@ const modules = {
     importLazy(import('./FavouriteVehicleRentalStationContainer'))
 };
 const ParkOrBikeStationHeader = (
-  { parkOrStation, breakpoint, parkType },
+  { parkOrStation, parkType },
   { config }
 ) => {
   const [zoneId, setZoneId] = useState(undefined);
@@ -52,7 +50,6 @@ const ParkOrBikeStationHeader = (
 
   return (
     <div className="bike-station-header">
-      {breakpoint === 'large' && <BackButton />}
       <div className="header">
         <h1>{name}</h1>
         <div className="bike-station-sub-header">
@@ -83,7 +80,6 @@ const ParkOrBikeStationHeader = (
 };
 
 ParkOrBikeStationHeader.propTypes = {
-  breakpoint: PropTypes.string.isRequired,
   parkOrStation: PropTypes.shape({
     name: PropTypes.string.isRequired,
     stationId: PropTypes.string,
@@ -99,8 +95,4 @@ ParkOrBikeStationHeader.contextTypes = {
   config: configShape.isRequired
 };
 
-const ParkOrBikeStationHeaderWithBreakpoint = withBreakpoint(
-  ParkOrBikeStationHeader
-);
-
-export default ParkOrBikeStationHeaderWithBreakpoint;
+export default ParkOrBikeStationHeader;
