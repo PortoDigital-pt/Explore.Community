@@ -96,6 +96,7 @@ class StopCardHeader extends React.Component {
 
     return (
       <CardHeader
+        showBackButton={breakpoint === 'large'}
         className={className}
         headingStyle={headingStyle}
         description={this.getDescription()}

@@ -5715,13 +5715,16 @@ const translations = {
       'Também {leg1} em {startTime1} e {leg2} em {startTime2}',
     'alternative-legs-single': 'Também {leg1} em {startTime1}',
     'aria-itinerary-summary':
-      'Tempo total de viagem {duração}. Partindo em {inFuture} {departureTime} e chegando em {arrivalTime}',
+      'Tempo total de viagem {duration}. Partindo em {inFuture} {departureTime} e chegando em {arrivalTime}',
     'aria-itinerary-summary-bike-distance':
       'Total de ciclismo {duration}, {distance} ',
     'aria-itinerary-summary-car-distance':
-      'Total de condução {duração}, {distância} ',
+      'Total de condução {duration}, {distance} ',
     'aria-itinerary-summary-walk-distance':
-      'Total de caminhadas {duração}, {distância} ',
+      'Total de caminhadas {duration}, {distance} ',
+    'itinerary-summary-row.description':
+      'Itinerário com partida às {departureDate} {departureTime} e chegada às {arrivalDate} {arrivalTime}. {firstDeparture} {transfers} Tempo total {totalTime}.',
+    'itinerary-page.show-details-label': 'Mostrar detalhes do itinerário {number}',
     'as-destination': 'Destino',
     'as-origin': 'Origem',
     'as-viapoint': 'Viapoint',
@@ -5767,7 +5770,7 @@ const translations = {
     'capacity-modal.standing-room-only-heading': 'Quase cheio',
     'capacity-modal.subheading':
       'Informações de capacidade em tempo real estão disponíveis para alguns veículos',
-    'car-distance-no-duration': 'Conduzir {distância}',
+    'car-distance-no-duration': 'Conduzir {distance}',
     'car-park': 'Estacionar e passear',
     'car-park-disclaimer':
       'Você pode combinar convenientemente carro e transporte público: deixe seu carro em um Park & Ride e continue de trem, ônibus, metrô ou bonde. O estacionamento é gratuito e não há limite de tempo.',
@@ -5779,9 +5782,9 @@ const translations = {
     'citybike-duration-general-header':
       'Aplica-se um custo adicional a vários troços do percurso a serem completados por uma bicicleta urbana.',
     'citybike-duration-info':
-      'Você pode andar de bicicleta urbana por até {duração} minutos de cada vez, após o qual você será cobrado extra.',
+      'Você pode andar de bicicleta urbana por até {duration} minutos de cada vez, após o qual você será cobrado extra.',
     'citybike-duration-info-header':
-      'O troço de percurso a completar por uma bicicleta citadina demora mais do que {duração} minutos.',
+      'O troço de percurso a completar por uma bicicleta citadina demora mais do que {duration} minutos.',
     'citybike-duration-info-short':
       'A seção da rota leva mais de {duration} min. Aplica-se um custo adicional.',
     'citybike-purchase-link': 'Comprar',
@@ -5863,9 +5866,9 @@ const translations = {
     'itinerary-co2.description-simple':
       '{co2value} g de emissões de CO₂ serão geradas nesta viagem.',
     'itinerary-co2.description-simple-sr':
-      '{CO2value} g de emissões de dióxido de carbono serão geradas nesta viagem.',
+      '{co2value} g de emissões de dióxido de carbono serão geradas nesta viagem.',
     'itinerary-co2.description-sr':
-      '{CO2value} g de emissões de dióxido de carbono serão geradas nesta viagem. Um carro geraria {carCo2Value} g de dióxido de carbono na mesma viagem.',
+      '{co2value} g de emissões de dióxido de carbono serão geradas nesta viagem. Um carro geraria {carCo2Value} g de dióxido de carbono na mesma viagem.',
     'itinerary-co2.link': 'É assim que reduzimos as emissões ›',
     'itinerary-co2.title': 'Emissões de CO₂ da viagem',
     'itinerary-co2.title-sr': 'Emissões de dióxido de carbono da viagem',
@@ -5879,8 +5882,6 @@ const translations = {
     'itinerary-page.itineraries-loaded': 'Resultados da pesquisa descarregados',
     'itinerary-page.itineraries-updated': 'Resultados da pesquisa atualizados',
     'itinerary-page.loading-itineraries': 'Download dos resultados da pesquisa',
-    'itinerary-page.show-details-label':
-      'Mostrar detalhes do itinerário {número}',
     'itinerary-summary-page-street-mode.update-alert':
       'Resultados de caminhada e ciclismo atualizados',
     'itinerary-summary-row.first-leg-start-time':
@@ -6154,15 +6155,15 @@ const translations = {
     'stops-near-you.description': 'Pare horários e veículos perto do seu',
     'stops-near-you.title': 'Perto dos horários das paragens',
     'street-mode-bike-aria':
-      'Mostrar ciclovia. Duração {duração}, distância {comprimento}',
+      'Mostrar ciclovia. Duração {duration}, distância {comprimento}',
     'street-mode-bikeandvehicle-aria':
-      'Mostre uma combinação de ciclismo e transporte público. Duração {duração}, distância {comprimento}',
+      'Mostre uma combinação de ciclismo e transporte público. Duração {duration}, distância {comprimento}',
     'street-mode-car-aria':
-      'Mostrar rota de condução. Duração {duração}, distância {comprimento}',
+      'Mostrar rota de condução. Duração {duration}, distância {comprimento}',
     'street-mode-parkandride-aria':
-      'Mostrar parque e rota de passeio. Duração {duração}, distância de condução {comprimento}',
+      'Mostrar parque e rota de passeio. Duração {duration}, distância de condução {comprimento}',
     'street-mode-walk-aria':
-      'Mostrar percurso pedestre. Duração {duração}, distância {comprimento}',
+      'Mostrar percurso pedestre. Duração {duration}, distância {comprimento}',
     surveillance_cameras: 'Vigilância por câmaras',
     swedish: 'Sueco',
     'swipe-disruption-info':

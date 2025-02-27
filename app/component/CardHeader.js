@@ -33,7 +33,7 @@ export default function CardHeader(
   const headerTitle = stop.name ? stop.name : name;
   return (
     <Fragment>
-       {showBackButton && <BackButton />}
+      {showBackButton && <BackButton />}
       <div className={cx('card-header', className)}>
         <div className="card-header-content">
           {icon ? (

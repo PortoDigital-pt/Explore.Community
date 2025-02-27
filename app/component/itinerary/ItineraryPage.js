@@ -1360,12 +1360,12 @@ export default function ItineraryPage(props, context) {
     // in detail view or parkride and bike+public, back button should pop out last path segment
     const bckBtnFallback =
       detailView || altTransitHash.includes(hash) ? 'pop' : undefined;
-
+    console.log('DETAIL VIEW: ', detailView);
     return (
       <DesktopView
-        bckBtnVisible={false}
         title={title}
         header={header}
+        bckBtnVisible={detailView !== undefined}
         bckBtnFallback={bckBtnFallback}
         content={content}
         settingsDrawer={settingsDrawer}
