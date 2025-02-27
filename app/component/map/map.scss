@@ -117,31 +117,6 @@ div.map {
     top: 56px;
   }
 
-  .back-button {
-    .icon-holder,
-    .icon-holder:focus,
-    .icon-holder:hover {
-      padding: 11px 32px 0 0;
-      font-size: 16px;
-      z-index: index($zindex, map-buttons);
-      background: white;
-      height: 2.5em;
-      width: 2.5em;
-      border-radius: 50%;
-      box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
-      left: 20px;
-      top: 25px;
-
-      button {
-        outline: none;
-      }
-
-      .icon-container {
-        height: inherit;
-      }
-    }
-  }
-
   .location-popup-wrapper {
     .zone-icon-container {
       margin-bottom: 15px;
@@ -296,6 +271,10 @@ div.leaflet-marker-icon.vehicle-icon {
   height: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
+
+  &.move-down {
+    margin-top: 40px;
+  }
 }
 
 .cookie-settings-button {
@@ -343,6 +322,14 @@ div.leaflet-marker-icon.vehicle-icon {
     background: #fff;
     outline: 1px solid black;
     color: $primary-color;
+  }
+
+  &.move-down {
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: fit-content;
+    top: 100px;
   }
 
   .map-routing-button-icon {
@@ -1414,9 +1401,8 @@ div.leaflet-control-scale-line {
   z-index: 3000;
   height: 50px;
   width: 60%;
-  border-radius: 25px;
+  border-radius: 8px;
   bottom: 15%;
-  background-color: var(--color);
   font-family: $button-font-family;
   font-size: 18px;
   font-weight: $font-weight-medium;
@@ -1425,22 +1411,26 @@ div.leaflet-control-scale-line {
   line-height: normal;
   letter-spacing: -0.6px;
   text-align: center;
-  color: #fff;
+  background: $primary-color;
+  color: $primary-contrastText;
   max-width: 300px;
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
-    border-color: var(--hover-color);
-    background-color: var(--hover-color);
-    color: #fff;
+    background: $primary-color;
+    color: $primary-contrastText;
   }
 
   &.select-from-map-confirm-button[disabled]:hover {
-    background-color: #bbb;
+    background-color: $neutral;
     opacity: 1;
   }
 
   &.disabled {
-    background-color: #bbb;
+    background-color: $neutral;
     opacity: 1;
   }
 }

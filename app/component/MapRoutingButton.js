@@ -82,7 +82,7 @@ export default function MapRoutingButton(
     <>
       <button
         type="button"
-        className="map-routing-button"
+        className="map-routing-button move-down"
         onClick={() => {
           setShowModal(true);
         }}

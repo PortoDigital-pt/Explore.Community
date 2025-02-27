@@ -1365,6 +1365,7 @@ export default function ItineraryPage(props, context) {
       <DesktopView
         title={title}
         header={header}
+        bckBtnVisible={detailView !== undefined}
         bckBtnFallback={bckBtnFallback}
         content={content}
         settingsDrawer={settingsDrawer}

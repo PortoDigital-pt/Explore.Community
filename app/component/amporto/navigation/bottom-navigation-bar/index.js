@@ -66,7 +66,7 @@ const BottomNavigationBar = (
   return (
     <nav
       className={classnames('navbar', {
-        hide: !canShow || breakpoint === 'large'
+        hide: breakpoint === 'large' || !canShow
       })}
     >
       {Object.values(navigationItems).map(item => (

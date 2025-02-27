@@ -16,23 +16,14 @@ export default class BackButton extends React.Component {
   static propTypes = {
     icon: PropTypes.string,
     color: PropTypes.string,
-    iconClassName: PropTypes.string,
-    title: PropTypes.node,
-    titleClassName: PropTypes.string,
-    className: PropTypes.string,
+    title: PropTypes.string,
     onBackBtnClick: PropTypes.func,
-    fallback: PropTypes.string
+    fallback: PropTypes.string,
+    subtitle: PropTypes.string
   };
 
   static defaultProps = {
-    icon: 'icon-icon_arrow-left',
-    color: undefined,
-    iconClassName: '',
-    title: undefined,
-    titleClassName: undefined,
-    className: 'back-button',
-    fallback: undefined,
-    onBackBtnClick: undefined
+    icon: 'icon-icon_arrow-collapse--left_new'
   };
 
   goBack = url => {
@@ -76,34 +67,33 @@ export default class BackButton extends React.Component {
     }
 
     return (
-      <div className={this.props.className}>
-        {this.props.title && !this.props.titleClassName && (
-          <h1 className="h1">{this.props.title}</h1>
-        )}
-        {this.props.title && this.props.titleClassName && (
-          <span className={this.props.titleClassName}>{this.props.title}</span>
-        )}
-        <button
-          type="button"
-          className="icon-holder noborder cursor-pointer"
-          onClick={
-            this.props.onBackBtnClick
-              ? this.props.onBackBtnClick
-              : () => this.goBack(url)
-          }
-          aria-label={this.context.intl.formatMessage({
-            id: 'back-button-title',
-            defaultMessage: 'Go back to previous page'
-          })}
-          tabIndex={0}
-        >
-          <Icon
-            img={this.props.icon}
-            color={this.props.color || this.context.config.colors.primary}
-            className={`${this.props.iconClassName} cursor-pointer`}
-            viewBox="0 0 24 24"
-          />
-        </button>
+      <div className="back-button">
+        <div className="route">
+          <button
+            type="button"
+            className="icon-button"
+            onClick={
+              this.props.onBackBtnClick
+                ? this.props.onBackBtnClick
+                : () => this.goBack(url)
+            }
+            aria-label={this.context.intl.formatMessage({
+              id: 'back-button-title',
+              defaultMessage: 'Go back to previous page'
+            })}
+            tabIndex={0}
+          >
+            <Icon
+              img={this.props.icon}
+              color={this.props.color || this.context.config.colors.primary}
+              viewBox="0 0 24 24"
+            />
+          </button>
+          <div className="title">
+            {this.props.title && <h2>{this.props.title}</h2>}
+            {this.props.subtitle && <h5>{this.props.subtitle}</h5>}
+          </div>
+        </div>
       </div>
     );
   }

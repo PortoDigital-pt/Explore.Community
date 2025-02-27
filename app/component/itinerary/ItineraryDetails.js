@@ -31,7 +31,6 @@ import {
   isTomorrow
 } from '../../util/timeUtils';
 import { BreakpointConsumer } from '../../util/withBreakpoint';
-import BackButton from '../BackButton';
 import Emissions from './Emissions';
 import EmissionsInfo from './EmissionsInfo';
 import FareDisclaimer from './FareDisclaimer';
@@ -48,7 +47,6 @@ class ItineraryDetails extends React.Component {
     focusToPoint: PropTypes.func.isRequired,
     focusToLeg: PropTypes.func.isRequired,
     isMobile: PropTypes.bool.isRequired,
-    hideTitle: PropTypes.bool,
     carEmissions: PropTypes.number,
     currentLanguage: PropTypes.string,
     changeHash: PropTypes.func,
@@ -60,7 +58,6 @@ class ItineraryDetails extends React.Component {
   };
 
   static defaultProps = {
-    hideTitle: false,
     currentLanguage: 'fi',
     changeHash: () => {},
     bikePublicItineraryCount: 0,
@@ -266,23 +263,6 @@ class ItineraryDetails extends React.Component {
         </h2>
         <BreakpointConsumer>
           {breakpoint => [
-            breakpoint === 'large' && !this.props.hideTitle && (
-              <div className="desktop-title" key="header">
-                <div className="title-container h2">
-                  <BackButton
-                    title={
-                      <FormattedMessage
-                        id="itinerary-page.title"
-                        defaultMessage="Itinerary suggestions"
-                      />
-                    }
-                    icon="icon-icon_arrow-collapse--left"
-                    iconClassName="arrow-icon"
-                    fallback="pop"
-                  />
-                </div>
-              </div>
-            ),
             <ItinerarySummary
               itinerary={itinerary}
               key="summary"

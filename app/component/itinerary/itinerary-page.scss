@@ -7,7 +7,7 @@
 }
 
 .summary {
-  background-color: $white;
+  background-color: $background-default;
 }
 
 .summary-no-route-found {
@@ -398,32 +398,6 @@
 }
 
 .desktop {
-  .back-button {
-    position: relative !important;
-
-    .icon-holder {
-      position: absolute;
-      box-shadow: none;
-      font-size: 16px;
-      top: 12px;
-      left: 0;
-      background: transparent;
-      border-radius: 0;
-
-      .icon-container {
-        height: inherit;
-        color: $background-default;
-      }
-    }
-
-    h1 {
-      font-family: $heading-font-family;
-      width: 100%;
-      text-align: center;
-      margin: 1.7em 0 25px 0;
-    }
-  }
-
   .settings-button-text span {
     color: $background-default;
   }
@@ -464,23 +438,14 @@
       justify-content: space-between;
     }
 
-    .section-control-back-button {
-      flex-grow: 1;
-      flex-basis: 0;
-    }
-
     .section-control-origin-destination-bar {
       flex-grow: 12;
       flex-basis: 0;
-      margin-left: -30px;
-      margin-right: -50px;
     }
 
     .section-control-definitions {
       flex-grow: 1;
       flex-basis: 0;
-      margin-left: -30px;
-      margin-right: -50px;
     }
   }
 }
@@ -533,36 +498,6 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-    }
-
-    .back-button {
-      position: sticky;
-
-      .icon-holder {
-        position: absolute;
-        box-shadow: none;
-        font-size: 16px;
-        top: 0;
-        background: transparent;
-        border-radius: 0;
-
-        .icon-container {
-          height: inherit;
-          color: $background-default;
-        }
-      }
-
-      h1 {
-        font-family: $heading-font-family;
-        width: 100%;
-        text-align: center;
-        margin: 1.7em 0 25px 0;
-      }
-    }
-
-    .section-control-back-button {
-      flex-grow: 1;
-      flex-basis: 0;
     }
 
     .section-control-origin-destination-bar {

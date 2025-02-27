@@ -17,7 +17,6 @@ function ItineraryTabs({ planEdges, tabIndex, isMobile, changeHash, ...rest }) {
       >
         <ItineraryDetails
           itinerary={edge.node}
-          hideTitle={!isMobile}
           changeHash={isMobile ? changeHash : undefined}
           isMobile={isMobile}
           {...rest}

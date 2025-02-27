@@ -148,6 +148,16 @@ export default config => {
       {getRouteRoutes(config)}
       <Route path={`/${PREFIX_BIKESTATIONS}/:id`}>
         {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
           content: (
             <Route
               getComponent={() =>

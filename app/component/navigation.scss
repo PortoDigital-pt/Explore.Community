@@ -319,38 +319,9 @@ $content-background-color: $background-color;
   right: 0;
 }
 
-.back-button {
-  display: flex;
-
-  button {
-    font-size: 15px;
-    position: absolute;
-    left: -2px;
-    top: 4px;
-
-    .icon {
-      height: 1.3em;
-      width: 1.3em;
-    }
-  }
-
-  h1 {
-    font-size: 1.2em;
-    margin: 0 0 0 2.5em;
-    font-weight: $font-weight-medium;
-    font-family: $heading-font-family;
-
-    &::first-letter {
-      text-transform: capitalize;
-    }
-  }
-}
-
 .select-from-map-nav-container {
   display: flex;
   align-items: center;
-  height: 55px;
-  background-color: #fff;
 }
 
 .select-from-map-nav-title {
@@ -593,10 +564,6 @@ section.content {
     flex-direction: column;
     height: 100%;
     position: relative;
-
-    .back-button {
-      left: 0;
-    }
   }
 
   .desktop {
@@ -634,15 +601,6 @@ section.content {
         color: #333;
         margin: 50px 0 16px 0;
         line-height: 1;
-
-        .back-button {
-          position: static;
-
-          button {
-            left: 0.5em;
-            top: auto;
-          }
-        }
       }
 
       h1 {
@@ -661,11 +619,6 @@ section.content {
         margin: 2px 1em;
         color: $desktop-title-arrow-icon-color;
       }
-    }
-
-    .back-button {
-      position: absolute;
-      left: 24px;
     }
 
     .main-content {

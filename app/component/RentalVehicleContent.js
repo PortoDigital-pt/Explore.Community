@@ -51,12 +51,7 @@ const RentalVehicleContent = (
     return (
       <div className="scooter-page-container">
         <div className="scooter-cluster-back-button-container">
-          {breakpoint === 'large' && (
-            <BackButton
-              icon="icon-icon_arrow-collapse--left"
-              iconClassName="arrow-icon"
-            />
-          )}
+          {breakpoint === 'large' && <BackButton />}
         </div>
         <div className="scooter-sub-header scooters-available">
           <FormattedMessage id="e-scooters-available" />
@@ -89,12 +84,7 @@ const RentalVehicleContent = (
         <div className="scooter-content-container">
           <Icon img={vehicleIcon} />
           <div className="scooter-header">
-            {breakpoint === 'large' && (
-              <BackButton
-                icon="icon-icon_arrow-collapse--left"
-                iconClassName="arrow-icon"
-              />
-            )}
+            {breakpoint === 'large' && <BackButton />}
             <div className="header">
               <h1>
                 {networkConfig.name[language] ||

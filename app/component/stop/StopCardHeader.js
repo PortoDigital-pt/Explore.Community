@@ -96,12 +96,12 @@ class StopCardHeader extends React.Component {
 
     return (
       <CardHeader
+        showBackButton={breakpoint === 'large'}
         className={className}
         headingStyle={headingStyle}
         description={this.getDescription()}
         code={this.headerConfig.showStopCode && stop.code ? stop.code : null}
         icons={icons}
-        showBackButton={breakpoint === 'large'}
         stop={stop}
         headerConfig={!!this.headerConfig}
         isTerminal={isTerminal}
