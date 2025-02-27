@@ -329,7 +329,7 @@ div.leaflet-marker-icon.vehicle-icon {
     right: 0;
     margin: auto;
     width: fit-content;
-    top: 100px; 
+    top: 100px;
   }
 
   .map-routing-button-icon {
@@ -1401,9 +1401,8 @@ div.leaflet-control-scale-line {
   z-index: 3000;
   height: 50px;
   width: 60%;
-  border-radius: 25px;
+  border-radius: 8px;
   bottom: 15%;
-  background-color: var(--color);
   font-family: $button-font-family;
   font-size: 18px;
   font-weight: $font-weight-medium;
@@ -1412,22 +1411,26 @@ div.leaflet-control-scale-line {
   line-height: normal;
   letter-spacing: -0.6px;
   text-align: center;
-  color: #fff;
+  background: $primary-color;
+  color: $primary-contrastText;
   max-width: 300px;
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
-    border-color: var(--hover-color);
-    background-color: var(--hover-color);
-    color: #fff;
+    background: $primary-color;
+    color: $primary-contrastText;
   }
 
   &.select-from-map-confirm-button[disabled]:hover {
-    background-color: #bbb;
+    background-color: $neutral;
     opacity: 1;
   }
 
   &.disabled {
-    background-color: #bbb;
+    background-color: $neutral;
     opacity: 1;
   }
 }
