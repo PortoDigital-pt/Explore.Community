@@ -170,10 +170,7 @@ class RoutePageMap extends React.Component {
         setMWTRef={this.setMWTRef}
       >
         {breakpoint !== 'large' && (
-          <BackButton
-            icon="icon-icon_arrow-collapse--left"
-            iconClassName="arrow-icon"
-          />
+          <BackButton />
         )}
         {this.context.config.useCookiesPrompt && <CookieSettingsButton />}
       </MapWithTracking>

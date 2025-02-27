@@ -1,0 +1,76 @@
+.back-button {
+    position: relative;
+    display: flex;
+    border-radius: 0px 0px 8px 8px;
+    background: $primary-color;
+    box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
+    width: 100%;
+    padding: 16px 8px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+
+    @media (min-width: 600px) {
+        padding: 24px 13px;
+    }
+
+    @media (min-width: 900px) {
+        z-index: 1;
+    }
+
+    .route {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        column-gap: 4px;
+        align-items: center;
+        padding: 9px 0;
+
+        .icon-button {
+            display: flex;
+            position: relative;
+            cursor: pointer;
+            align-items: center;
+            padding: 5px;
+
+            .icon {
+                display: flex;
+                position: relative;
+                width: 24px;
+                height: 24px;
+                color: $primary-contrastText;
+            }
+        }
+
+        .title {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            flex-grow: 1;
+
+            h2 {
+                color: $primary-contrastText;
+                margin: 0;
+                display: flex;
+                position: relative;
+                font-size: $font-size-l;
+                font-weight: $font-weight-bold;
+                text-transform: none;
+                line-height: 24px;
+            }
+
+            h5 {
+                color: $primary-contrastText;
+                margin: 0;
+                display: flex;
+                position: relative;
+                font-size: $font-size-s;
+                font-weight: $font-weight-regular;
+                text-transform: none;
+                line-height: 16px;
+            }
+        }
+        
+    }
+}

@@ -4,6 +4,7 @@ import { string } from 'prop-types';
 import SidebarMenu from '../navigation/sidebar';
 import withBreakpoint from '../../../util/withBreakpoint';
 
+// TODO: convert to smar topbar
 const Topbar = ({ breakpoint }) => {
   const [client, setClient] = useState(false);
 

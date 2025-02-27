@@ -117,31 +117,6 @@ div.map {
     top: 56px;
   }
 
-  .back-button {
-    .icon-holder,
-    .icon-holder:focus,
-    .icon-holder:hover {
-      padding: 11px 32px 0 0;
-      font-size: 16px;
-      z-index: index($zindex, map-buttons);
-      background: white;
-      height: 2.5em;
-      width: 2.5em;
-      border-radius: 50%;
-      box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
-      left: 20px;
-      top: 25px;
-
-      button {
-        outline: none;
-      }
-
-      .icon-container {
-        height: inherit;
-      }
-    }
-  }
-
   .location-popup-wrapper {
     .zone-icon-container {
       margin-bottom: 15px;

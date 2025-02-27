@@ -1363,6 +1363,7 @@ export default function ItineraryPage(props, context) {
 
     return (
       <DesktopView
+        bckBtnVisible={false}
         title={title}
         header={header}
         bckBtnFallback={bckBtnFallback}

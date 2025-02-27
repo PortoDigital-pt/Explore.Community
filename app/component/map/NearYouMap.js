@@ -422,8 +422,6 @@ function NearYouMap(
   return (
     <>
       <BackButton
-        icon="icon-icon_arrow-collapse--left"
-        iconClassName="arrow-icon"
         color={context.config.colors.primary}
         fallback="back"
       />

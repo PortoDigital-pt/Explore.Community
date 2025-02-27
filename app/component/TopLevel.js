@@ -178,7 +178,6 @@ class TopLevel extends React.Component {
               map={this.props.map}
               content={this.props.content}
               header={this.props.header}
-              bckBtnVisible={false}
             />
           )}
         />
