@@ -9,13 +9,10 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  z-index: 10;
-
-  @media (min-width: 600px) {
-    padding: 24px 13px;
-  }
+  z-index: 1000;
 
   @media (min-width: 900px) {
+    padding: 24px 13px;
     z-index: 1;
   }
 

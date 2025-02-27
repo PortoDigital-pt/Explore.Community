@@ -153,7 +153,7 @@ export default config => {
               path="(.*)?"
               getComponent={() =>
                 import(
-                  /* webpackChunkName: generic header */ '../../component/GenericHeader'
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
                 ).then(getDefault)
               }
             />

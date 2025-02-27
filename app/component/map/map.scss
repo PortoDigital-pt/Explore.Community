@@ -271,6 +271,10 @@ div.leaflet-marker-icon.vehicle-icon {
   height: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
+
+  &.move-down {
+    margin-top: 40px;
+  }
 }
 
 .cookie-settings-button {
@@ -318,6 +322,14 @@ div.leaflet-marker-icon.vehicle-icon {
     background: #fff;
     outline: 1px solid black;
     color: $primary-color;
+  }
+
+  &.move-down {
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: fit-content;
+    top: 100px; 
   }
 
   .map-routing-button-icon {

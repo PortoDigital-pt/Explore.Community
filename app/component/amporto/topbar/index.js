@@ -3,25 +3,15 @@ import classnames from 'classnames';
 import { string } from 'prop-types';
 import SidebarMenu from '../navigation/sidebar';
 import withBreakpoint from '../../../util/withBreakpoint';
+import useSmartNavigation from '../navigation/useSmartNavigation';
 
-// TODO: convert to smar topbar
 const Topbar = ({ breakpoint }) => {
-  const [client, setClient] = useState(false);
-
-  useEffect(() => {
-    if (!client) {
-      setClient(true);
-    }
-  }, [client, setClient]);
-
-  if (!client) {
-    return null;
-  }
+  const canShow = useSmartNavigation();
 
   return (
     <div
       className={classnames('transparent-topbar', {
-        hide: breakpoint === 'large'
+        hide: breakpoint === 'large' || !canShow
       })}
     >
       <SidebarMenu shadow />
