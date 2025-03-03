@@ -48,25 +48,27 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
 
   .hidden {
     display: none;
+    padding: 0 !important;
   }
 
   .datetimepicker-open-container {
-    background-color: #f4f4f5;
-    border-radius: 5px;
-    padding: 15px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
   }
 
   .top-row-container {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-
-    &.closed {
-      margin: 11px 0 6px 8px;
-    }
-
-    @include max-width(mobile-small) {
-      margin-left: 14px;
-    }
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    padding-top: 10px;
+    align-items: center;
 
     .time-icon {
       svg {
@@ -88,9 +90,10 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
 
     .close-icon {
       svg {
-        width: 12px;
-        height: 12px;
+        width: 15px;
+        height: 15px;
         border-radius: 1px;
+        fill: $primary-dark;
 
         path {
           stroke-width: 30;
@@ -105,13 +108,6 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
         align-items: flex-start;
         display: flex;
       }
-    }
-
-    button,
-    label {
-      font-size: 1em;
-      letter-spacing: -0.5px;
-      line-height: 1;
     }
   }
 
@@ -128,58 +124,60 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     }
 
     &.active {
-      color: $primary-dark;
+      color: $primary-main;
     }
   }
 
   .combobox-left {
     position: relative;
     margin-right: 4px;
-    width: 63%;
+    width: 115px; 
   }
 
   .combobox-right {
     position: relative;
     margin-left: 4px;
-    width: 37%;
+    width: 110px; 
   }
 
   .departure-or-arrival-container {
-    height: calc(1rem + 20px);
-    background-color: #ddd;
+    background-color: transparent;
     border-radius: 8px;
+    width: fit-content;
     display: flex;
-    width: calc(5px + 13em);
+    position: relative;
+    flex-direction: row;
+    flex-grow: 1;
   }
 
   .radio-textbutton-label {
-    color: #333;
-    margin: 2px;
-    background: none;
-    border-radius: 6px;
-    padding: 9px 0;
-    width: 50%;
+    display: flex;
+    position: relative;
+    width: 42%;
+    min-width: 70px;
+    color: $primary-color;
+    background: $background-default;
+    padding: 8px;
     cursor: pointer;
-    height: calc(1rem + 16px);
-    text-align: center;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
-    letter-spacing: -0.03em;
+    border: 1px solid $grey-light-down;
+    font-weight: $font-weight-regular;
+    border-radius: 0px 8px 8px 0px;
+    font-size: $font-size-base;
+    align-items: center;
+    justify-content: center;
 
     &.active {
-      font-weight: 500;
-      background: white;
+      font-weight: $font-weight-semibold !important;
+      background: $primary-color;
+      color: $primary-contrastText;
     }
 
     &:focus-within {
       @include default-focus-outline;
     }
 
-    &.first-radio {
-      margin: 0;
-      display: flex;
-      align-items: flex-start;
+    &.left {
+      border-radius: 8px 0px 0px 8px;
     }
   }
 
@@ -194,16 +192,21 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
   }
 
   .departure-now-button {
+    min-width: 90px;
     font-family: inherit;
-    letter-spacing: -0.02em;
-    height: calc(1rem + 18px);
-    color: var(--color);
-    padding: 8px 0;
-    width: 6.6875rem;
-    background: white;
-    border: 1px solid #888;
-    border-radius: 30px;
-    margin-left: 11px;
+    padding: 8px;
+    border: 1px solid $grey-light-down;
+    border-radius: 8px;
+    font-weight: $font-weight-regular !important;
+    font-size: $font-size-base !important;
+    color: $primary-color !important;
+    background: $background-default;
+
+    &.active {
+      font-weight: $font-weight-semibold !important;
+      background: $primary-color;
+      color: $primary-contrastText !important;
+    }
   }
 
   .open-button {
@@ -214,20 +217,14 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
   }
 
   button.close-button {
-    transition: transform 0.2s;
-    position: relative;
-    top: -8px;
-    right: -8px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
     border: 0;
     font-weight: normal;
     background: none;
-    color: var(--color);
     padding: 0;
     line-height: normal;
-
-    &:hover {
-      transform: scale(1.2);
-    }
   }
 
   .right-edge {
@@ -252,11 +249,12 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
       display: flex;
       align-items: center;
       padding: 0;
-      margin-left: 14px;
+      color: $primary-dark;
+      margin-left: 8px;
 
       svg {
-        width: 20px;
-        height: 18px;
+        width: 22px;
+        height: 22px;
       }
     }
 
@@ -265,6 +263,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
       align-items: center;
       padding: 0;
       margin-left: 8px;
+      color: $primary-color;
 
       svg {
         margin-top: 1px;
@@ -282,40 +281,58 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
 
   .datetimepicker-select-container {
     position: relative;
+    display: flex;
     height: 40px;
-
+   
     // use global scope because react-select is not quite compatible with csss module local scoping
     :global .datetimepicker-select__control {
+      display: flex;
+      position: relative;
       cursor: inherit;
-      height: 40px;
-      border: 1px solid #888;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      background-color: $background-default;
+      border: 1px solid $grey-light-down;
+      border-radius: 8px;
     }
 
     :global .datetimepicker-select__value-container {
+      display: flex;
+      position: relative;
       padding: 0;
+
+      > div {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        color: $primary-dark;
+      }
     }
 
     :global .datetimepicker-select__single-value {
-      margin: 0 0 0 47px;
+      margin: 0 0 0 30px;
+      color: $primary-color;
+      font-size: $font-size-base;
+      font-weight: $font-weight-regular;
     }
 
     :global .datetimepicker-select__input {
       background: inherit;
       position: relative;
-      margin-left: 40px;
+      display: flex;
+      height: auto;
+      margin-left: 30px;
+      color: $primary-color;
+      font-size: $font-size-base;
+      font-weight: $font-weight-regular;
 
       input {
         opacity: 1 !important; // TODO
         background: inherit;
         box-shadow: none;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.33;
-        letter-spacing: -0.5px;
-        color: #333;
-        font-family: inherit;
-        font-size: 15px;
-        font-weight: var(--font-weight-medium);
 
         &:focus {
           box-shadow: none;
@@ -328,11 +345,12 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     :global .datetimepicker-select__menu {
       z-index: index($zindex, 'autosuggest-suggestion-container');
       padding: 0;
-      background: #fff;
+      background: $background-default;
       max-height: 250px;
-      border-radius: 5px;
+      border-radius: 8px;
       box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.06);
-      border: 1px rgba(0, 0, 0, 0.1) solid;
+      border: 1px rgba(0, 0, 0, 0.30) solid;
+      overflow: hidden;
 
       :global .datetimepicker-select__menu-list {
         max-height: 250px;
@@ -340,17 +358,19 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
 
         :global .datetimepicker-select__option {
           height: 50px;
-          border-top: 1px solid #ddd;
+          border-bottom: 0.5px rgba(0, 0, 0, 0.30) solid;
           padding: 13px 0 0 12px;
+          font-weight: $font-weight-regular;
+          font-size: $font-size-l;
           letter-spacing: -0.6px;
-          color: #333;
+          color: rgba(0, 0, 0, 0.96);
 
           &--is-selected {
-            background: inherit;
+            background: $grey-light-down;
           }
 
           &--is-focused {
-            background: #dfe5e8;
+            background: $grey-light-up;
           }
         }
       }
@@ -358,8 +378,9 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
   }
 
   .picker-container {
-    margin: 14px 0 0 0;
+    margin: 14px calc(100% - 84% - 16px) 0 0;
     display: flex;
+    justify-content: flex-end;
   }
 
   .combobox-mobile-container {
