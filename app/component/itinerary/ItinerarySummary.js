@@ -5,16 +5,18 @@ import Duration from './Duration';
 import Distance from './Distance';
 import { itineraryShape } from '../../util/shapes';
 
-function ItinerarySummary({
-  itinerary,
-  walking,
-  biking,
-  driving,
-  futureText,
-  isMultiRow,
-  isMobile,
-  hideBottomDivider
-}) {
+function ItinerarySummary(props) {
+  const {
+    itinerary,
+    walking,
+    biking,
+    driving,
+    futureText,
+    isMobile,
+    isMultiRow,
+    hideBottomDivider
+  } = props;
+
   return (
     <div className="itinerary-summary">
       {!isMobile && <div className="divider-top" />}

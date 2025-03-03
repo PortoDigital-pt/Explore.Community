@@ -10,7 +10,7 @@ import { displayDistance } from '../../util/geo-utils';
 export default function Distance(props, { config, intl }) {
   const distance = displayDistance(props.distance, config, intl.formatNumber);
 
-  const icon = `icon-${props.icon || 'icon_walk'}`;
+  const icon = `icon-${props.icon || 'icon_walk_no_map'}`;
 
   const duration = durationToString(props.duration * 1000);
 
@@ -23,6 +23,7 @@ export default function Distance(props, { config, intl }) {
         />
       </span>
       <Icon img={icon} className={cx(props.mode)} />
+
       {!(config.hideCarSuggestionDuration && props.mode === 'car') ? (
         <span aria-hidden className="walk-distance">
           {duration}

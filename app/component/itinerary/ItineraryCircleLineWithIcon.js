@@ -29,6 +29,7 @@ class ItineraryCircleLineWithIcon extends React.Component {
   };
 
   state = {
+    // eslint-disable-next-line react/no-unused-state
     imageUrl: 'none'
   };
 
@@ -40,6 +41,7 @@ class ItineraryCircleLineWithIcon extends React.Component {
     import(
       /* webpackChunkName: "dotted-line" */ `../../configurations/images/default/dotted-line.svg`
     ).then(imageUrl => {
+      // eslint-disable-next-line react/no-unused-state
       this.setState({ imageUrl: `url(${imageUrl.default})` });
     });
   }
@@ -113,7 +115,7 @@ class ItineraryCircleLineWithIcon extends React.Component {
         this.props.modeClassName === 'bicycle_walk')
     ) {
       // eslint-disable-next-line global-require
-      legBeforeLineStyle.backgroundImage = this.state.imageUrl;
+      // legBeforeLineStyle.backgroundImage = this.state.imageUrl;
     }
     return (
       <div

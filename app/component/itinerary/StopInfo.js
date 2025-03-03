@@ -57,7 +57,7 @@ export default function StopInfo(
         </span>
         {intermediateStopCount !== 0 && (
           <Icon
-            img="icon-icon_arrow-collapse--right"
+            img="icon-icon_arrow-collapse--right_new"
             className="itinerary-search-icon"
             color={config.colors.primary}
           />

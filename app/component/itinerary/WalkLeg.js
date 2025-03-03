@@ -119,9 +119,8 @@ function WalkLeg(
                 {address}
                 {leg[toOrFrom].stop && (
                   <Icon
-                    img="icon-icon_arrow-collapse--right"
+                    img="icon-icon_arrow-collapse--right_new"
                     className="itinerary-arrow-icon"
-                    color={config.colors.primary}
                   />
                 )}
               </div>
@@ -158,9 +157,8 @@ function WalkLeg(
                   )}
                   {leg[toOrFrom].stop && (
                     <Icon
-                      img="icon-icon_arrow-collapse--right"
+                      img="icon-icon_arrow-collapse--right_new"
                       className="itinerary-arrow-icon"
-                      color={config.colors.primary}
                     />
                   )}
                   <ServiceAlertIcon
@@ -191,9 +189,8 @@ function WalkLeg(
                   )}
                   {leg[toOrFrom].stop && (
                     <Icon
-                      img="icon-icon_arrow-collapse--right"
+                      img="icon-icon_arrow-collapse--right_new"
                       className="itinerary-arrow-icon"
-                      color={config.colors.primary}
                     />
                   )}
                   <ServiceAlertIcon

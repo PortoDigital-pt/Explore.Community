@@ -159,9 +159,8 @@ function IntermediateLeg(
               />
             )}
             <Icon
-              img="icon-icon_arrow-collapse--right"
+              img="icon-icon_arrow-collapse--right_new"
               className="itinerary-arrow-icon"
-              color={config.colors.primary}
             />
           </div>
         </Link>

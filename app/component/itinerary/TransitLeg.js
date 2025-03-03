@@ -102,6 +102,7 @@ class TransitLeg extends React.Component {
     }));
   };
 
+  // eslint-disable-next-line react/no-unused-class-component-methods
   getZoneChange() {
     const { leg } = this.props;
     const startZone = leg.from.stop.zoneId;
@@ -308,7 +309,7 @@ class TransitLeg extends React.Component {
       }
       alertSeverityDescription = <FormattedMessage id={id} />;
     }
-    const zoneIcons = this.getZoneChange();
+    // const zoneIcons = this.getZoneChange();
     // Checks if route only has letters without identifying numbers and
     // length doesn't fit in the tab view
     const hasNoShortName =
@@ -369,9 +370,8 @@ class TransitLeg extends React.Component {
         >
           {createNotification(notification)}
           <Icon
-            img="icon-icon_arrow-collapse--right"
+            img="icon-icon_arrow-collapse--right_new"
             className="disruption-link-arrow"
-            color={config.colors.primary}
           />
         </a>
       );
@@ -431,7 +431,19 @@ class TransitLeg extends React.Component {
                 </span>
               </span>
             </div>
-            {zoneIcons}
+            <div
+              style={{
+                color: leg.route ? `#${leg.route.color}` : 'currentColor'
+              }}
+              className={`itinerary-transit-leg-${mode}-icon-container`}
+            >
+              <Icon
+                img={`icon-icon_${mode}_no_map`}
+                className="icon-icon_bus_no_map"
+              />
+            </div>
+
+            {/* {zoneIcons} */}
           </span>
         </div>
         <span className="sr-only">{textVersionAfterLink}</span>
@@ -486,9 +498,8 @@ class TransitLeg extends React.Component {
                   />
                 )}
                 <Icon
-                  img="icon-icon_arrow-collapse--right"
+                  img="icon-icon_arrow-collapse--right_new"
                   className="itinerary-arrow-icon"
-                  color={config.colors.primary}
                 />
               </Link>
               <ServiceAlertIcon
@@ -581,9 +592,8 @@ class TransitLeg extends React.Component {
                       : alert.alertDescriptionText}
                   </div>
                   <Icon
-                    img="icon-icon_arrow-collapse--right"
+                    img="icon-icon_arrow-collapse--right_new"
                     className="disruption-link-arrow"
-                    color={config.colors.primary}
                   />
                 </Link>
               </div>

@@ -22,6 +22,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
   font-style: normal;
   font-weight: 700;
   line-height: 24px;
+  display: none;
 
   @include min-width(tablet) {
     letter-spacing: -0.8px;

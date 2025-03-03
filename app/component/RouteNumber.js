@@ -13,7 +13,8 @@ const LONG_ROUTE_NUMBER_LENGTH = 6;
 
 function RouteNumber(props, context) {
   const mode = props.mode.toLowerCase();
-  const { alertSeverityLevel, color, withBicycle, withCar } = props;
+  const { alertSeverityLevel, color, withBicycle, withCar, hideModeIcon } =
+    props;
   const isScooter = mode === TransportMode.Scooter.toLowerCase();
 
   // Perform text-related processing
@@ -134,6 +135,7 @@ function RouteNumber(props, context) {
   const rNumber = (
     <span
       className={cx('route-number', {
+        'itinerary-detail-no-icon': hideModeIcon,
         vertical: props.vertical
       })}
     >
@@ -149,30 +151,31 @@ function RouteNumber(props, context) {
           props.appendClass === 'scooter') && (
           <div className={cx('empty', props.appendClass)} />
         )}
-        {props.isTransitLeg === true ? (
-          <div className={`special-icon ${mode} bar-icon-leg`}>
-            {getIcon(
-              props.icon,
-              props.isCallAgency,
-              props.hasDisruption,
-              props.badgeFill,
-              props.badgeText,
-              props.badgeTextFill,
-              '#212121'
-            )}
-          </div>
-        ) : (
-          <div className={`icon ${mode}`}>
-            {getIcon(
-              props.icon,
-              props.isCallAgency,
-              props.hasDisruption,
-              props.badgeFill,
-              props.badgeText,
-              props.badgeTextFill
-            )}
-          </div>
-        )}
+        {!hideModeIcon &&
+          (props.isTransitLeg === true ? (
+            <div className={`special-icon ${mode} bar-icon-leg`}>
+              {getIcon(
+                props.icon,
+                props.isCallAgency,
+                props.hasDisruption,
+                props.badgeFill,
+                props.badgeText,
+                props.badgeTextFill,
+                '#212121'
+              )}
+            </div>
+          ) : (
+            <div className={`icon ${mode}`}>
+              {getIcon(
+                props.icon,
+                props.isCallAgency,
+                props.hasDisruption,
+                props.badgeFill,
+                props.badgeText,
+                props.badgeTextFill
+              )}
+            </div>
+          ))}
         {filteredText && (
           <div
             style={{
@@ -272,7 +275,8 @@ RouteNumber.propTypes = {
   card: PropTypes.bool,
   appendClass: PropTypes.string,
   occupancyStatus: PropTypes.string,
-  shortenLongText: PropTypes.bool
+  shortenLongText: PropTypes.bool,
+  hideModeIcon: PropTypes.bool
 };
 
 RouteNumber.defaultProps = {
@@ -296,7 +300,8 @@ RouteNumber.defaultProps = {
   color: undefined,
   duration: undefined,
   occupancyStatus: undefined,
-  shortenLongText: false
+  shortenLongText: false,
+  hideModeIcon: false
 };
 
 RouteNumber.contextTypes = {

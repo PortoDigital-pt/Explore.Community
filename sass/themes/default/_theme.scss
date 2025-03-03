@@ -162,3 +162,21 @@ $spinner-image: url('../default/default-spinner.png');
 /* Navbar dimensions */
 $nav-logo-height: 100%;
 $mobile-navigation-bar-height: 64px;
+
+@mixin typography-body-s-bold {
+  color: $grey-dark-down;
+  font-family: $font-family;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: $font-weight-bold;
+  line-height: 16px;
+}
+
+@mixin typography-label-base {
+  color: $grey-dark-down;
+  font-family: $font-family;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: $font-weight-regular;
+  line-height: 16px;
+}

@@ -1696,7 +1696,7 @@ $itinerary-tab-switch-height: 48px;
 
       @include font-medium;
 
-      padding: 0.625em 0;
+      padding: 9px 0;
       border-top: 1px solid #ddd;
       font-size: 0.9375rem;
 
@@ -3190,6 +3190,343 @@ $font-print-decrease: 0.7;
       font-size: 15px;
       color: $link-color;
       text-decoration: none;
+    }
+  }
+}
+
+.itinerary-details-page {
+  .itinerary-main {
+    margin: 24px;
+  }
+
+  .itinerary-row {
+    .itinerary-instruction-column {
+      .itinerary-leg-first-row {
+        .icon-container .icon.itinerary-arrow-icon {
+          margin-left: 0;
+          margin-top: 0;
+          position: absolute;
+
+          @media only screen and (min-width: 420px) {
+            margin-top: 1px;
+          }
+
+          @media only screen and (min-width: 600px) {
+            margin-top: 2px;
+          }
+
+          @media only screen and (min-width: 719px) {
+            margin-top: 4px;
+          }
+
+          @media only screen and (min-width: 899px) {
+            margin-top: 0;
+          }
+        }
+
+        .address-container {
+          svg.icon.itinerary-arrow-icon {
+            color: $grey-dark-down;
+            width: 16px;
+            height: 17px;
+          }
+        }
+
+        div {
+          &.address-container,
+          &.itinerary-leg-row a {
+            @include typography-body-s-bold;
+          }
+        }
+
+        .itinerary-leg-row a {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .itinerary-icon-container.start {
+    left: 3px;
+  }
+
+  .itinerary-icon-container {
+    left: 0;
+
+    svg.from {
+      color: $primary-dark;
+    }
+
+    .icon-icon_mapMarker-to_no_map {
+      left: 3px;
+    }
+  }
+
+  .route-number {
+    .icon-container {
+      svg {
+        color: $grey-dark-down;
+      }
+    }
+
+    color: $primary-dark;
+  }
+
+  .itinerary-summary {
+    width: 100%;
+    color: $primary-dark;
+    font-size: $font-size-s;
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: $font-weight-medium;
+    line-height: 16px;
+
+    .duration--itinerary-summary {
+      padding: 0 0 18px 0;
+
+      svg.clock {
+        width: 24px;
+        height: 24px;
+        top: 3px;
+      }
+
+      .duration {
+        color: $primary-dark;
+        font-size: $font-size-s;
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: $font-weight-medium;
+        line-height: 16px;
+        align-self: center;
+      }
+    }
+
+    .distance--itinerary-summary {
+      .walk-distance {
+        color: $primary-dark;
+        font-size: $font-size-s;
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: $font-weight-medium;
+        line-height: 16px;
+        align-self: center;
+      }
+
+      svg.walk,
+      svg.bike {
+        color: $primary-dark;
+        width: 24px;
+        height: 24px;
+      }
+
+      .total-distance-info {
+        align-self: center;
+      }
+    }
+  }
+
+  .row.itinerary-row .itinerary-time-column .itinerary-time-column-time {
+    @include typography-label-base;
+  }
+
+  span.route-number.vertical {
+    left: -40px;
+  }
+
+  .icon-icon_mapMarker-to_no_map {
+    color: $primary-dark;
+  }
+
+  .row.itinerary-row {
+    .leg-before {
+      &.wait {
+        .route-number {
+          left: -40px;
+        }
+      }
+
+      .leg-before-line.walk.bottom {
+        display: none;
+      }
+
+      .leg-before-line.wait.bottom {
+        display: none;
+      }
+
+      .leg-before-line {
+        left: 10px;
+        border-left: 1px solid;
+
+        &.walk {
+          border-left: 2px dotted $primary-dark;
+          height: 98%;
+        }
+
+        &.wait {
+          height: 98%;
+          border: 1px solid;
+        }
+      }
+    }
+
+    .itinerary-instruction-column {
+      .itinerary-leg-row a .icon-container {
+        svg {
+          color: $grey-dark-down;
+          width: 16px;
+          height: 17px;
+        }
+      }
+
+      .icon.itinerary-arrow-icon,
+      .disruption-link-arrow {
+        color: $primary-dark;
+        width: 16px;
+        height: 17px;
+      }
+
+      .divider {
+        display: none;
+      }
+
+      .itinerary-leg-action,
+      .itinerary-leg-first-row {
+        border-top: none !important;
+
+        .icon-container {
+          svg {
+            color: $grey-dark-down;
+          }
+        }
+
+        &.wait {
+          .icon-container {
+            svg {
+              color: $grey-dark-down;
+            }
+          }
+        }
+      }
+
+      .alternative-legs-information {
+        @include typography-label-base;
+      }
+
+      .intermediate-stops-button-container {
+        .intermediate-stop-info-container {
+          .intermediate-stops-amount,
+          .intermediate-stops-duration {
+            @include typography-label-base;
+          }
+
+          .itinerary-search-icon {
+            width: 17px;
+            height: 16px;
+            color: $grey-dark-down;
+          }
+        }
+      }
+
+      .itinerary-leg-action-content {
+        @include typography-label-base;
+      }
+
+      .alternative-legs-info-container .itinerary-search-icon {
+        height: 16px;
+        width: 17px;
+        color: $grey-dark-down;
+      }
+
+      .disruption-link-container {
+        .icon-container {
+          svg {
+            color: $grey-dark-down;
+          }
+        }
+      }
+
+      .itinerary-leg-row-intermediate {
+        .itinerary-intermediate-stop-name {
+          @include typography-body-s-bold;
+        }
+
+        .icon-container {
+          svg {
+            height: 16px;
+            width: 17px;
+            color: $grey-dark-down;
+          }
+        }
+      }
+    }
+
+    .itinerary-transit-leg-route-bike {
+      .link-to-stop .icon-container svg {
+        color: $grey-dark-down;
+      }
+    }
+  }
+
+  .itinerary-transit-leg-subway-icon-container,
+  .itinerary-transit-leg-bus-icon-container {
+    position: relative;
+    padding-top: 35px;
+  }
+
+  .bar-container-empty-icon {
+    height: 1.5em;
+    width: 0;
+    display: block;
+  }
+
+  .itinerary-detail-no-icon.route-number {
+    .vehicle-number-container-v {
+      height: 21px;
+      margin: 2px 4px;
+
+      .vehicle-number {
+        color: white !important;
+        padding: 3px;
+      }
+    }
+  }
+
+  .itinerary-map-action .icon-container {
+    padding-right: 0;
+    margin-top: 0;
+  }
+
+  .itinerary-profile-container {
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 16px;
+
+    .itinerary-profile-item-title {
+      font-family: $font-family;
+      color: $primary-dark;
+      font-weight: 700;
+    }
+
+    .itinerary-profile-item-value {
+      font-family: $font-family;
+      color: $primary-dark;
+      font-weight: 600;
+    }
+  }
+
+  .icon.walk .icon-container svg {
+    color: $grey-dark-down;
+  }
+
+  .itinerary-icon.from-it {
+    margin-left: -4px;
+  }
+
+  .itinerary-leg-first-row:last-of-type {
+    .address-container {
+      .address {
+        color: $primary-dark;
+      }
     }
   }
 }

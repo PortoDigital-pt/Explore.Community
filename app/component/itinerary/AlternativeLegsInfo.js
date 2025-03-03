@@ -107,7 +107,7 @@ export default function AlternativeLegsInfo({
       <div className="alternative-legs-information">
         {message}
         <Icon
-          img="icon-icon_arrow-collapse--right"
+          img="icon-icon_arrow-collapse--right_new"
           className="itinerary-search-icon"
         />
       </div>
