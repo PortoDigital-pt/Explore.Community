@@ -1021,7 +1021,7 @@ const Itinerary = (
             aria-label={ariaLabelMessage}
           >
             <div className="action-arrow flex-grow">
-              <Icon img="icon-icon_arrow-collapse--right" />
+              <Icon img="icon-icon_arrow-collapse--right_new" />
             </div>
           </div>
           {/* // )} */}

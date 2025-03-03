@@ -38,13 +38,8 @@ li:last-child > div.suggestion-item-container.mobile {
   flex-direction: row;
   align-items: center;
 
-  @media screen and (max-width: 900px) {
-    // margin-left: 0;
-    // border-radius: 200px;
-    // background: $grey-light-down;
-    // width: 32px;
-    // height: 32px;
-    // margin-top: 12px;
+  @media screen and (min-width: 800px) {
+    min-height: 49px;
   }
 
   &.futureroute {
@@ -74,6 +69,13 @@ li:last-child > div.suggestion-item-container.mobile {
         font-size: 13px !important;
         letter-spacing: -0.43px;
         line-height: 1;
+      }
+
+      @media screen and (min-width: 767px) {
+        font-size: 15px !important;
+        letter-spacing: -0.43px;
+        line-height: 1;
+        font-weight: 600;
       }
 
       &.favouriteCustom {

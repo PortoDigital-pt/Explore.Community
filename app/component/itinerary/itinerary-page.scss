@@ -390,7 +390,7 @@
 .summary-navigation-container {
   flex: 0 0 auto;
   margin: 0;
-  padding: 12px 8px 0 0;
+  padding: 24px 8px 0 0;
   background: $primary-dark;
   border-radius: 0 0 8px 8px;
   border: 1px solid $primary-dark;
@@ -626,4 +626,17 @@
 
 .bar-icon-leg {
   color: $grey-dark-down !important;
+}
+
+.section-control-back-button {
+  .back-button {
+    .icon-container {
+      position: relative;
+      top: -22px;
+
+      @media screen and (min-width: 899px) {
+        top: -28px;
+      }
+    }
+  }
 }

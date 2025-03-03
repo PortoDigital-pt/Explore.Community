@@ -11,10 +11,7 @@ import { PREFIX_STOPS } from '../../util/path';
 import { legTimeStr } from '../../util/legUtils';
 
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-function WaitLeg(
-  { children, leg, start, waitTime, focusAction, index, icon },
-  { config }
-) {
+function WaitLeg({ children, leg, start, waitTime, focusAction, index, icon }) {
   const modeClassName = 'wait';
   return (
     <div className="row itinerary-row">
@@ -57,9 +54,8 @@ function WaitLeg(
                 />
               )}
               <Icon
-                img="icon-icon_arrow-collapse--right"
+                img="icon-icon_arrow-collapse--right_new"
                 className="itinerary-arrow-icon"
-                color={config.colors.primary}
               />
             </Link>
             <div className="stop-code-container">{children}</div>

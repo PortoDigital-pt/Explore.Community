@@ -15,20 +15,20 @@ describe('<RouteNumber />', () => {
       context: mockContext
     });
     expect(wrapper.find(IconWithIcon).prop('img')).to.equal(
-      'icon-icon_citybike'
+      'icon-icon_citybike_no_map'
     );
   });
 
   it('should use the given icon', () => {
     const props = {
-      icon: 'icon-icon_scooter',
+      icon: 'icon-icon_citybike_no_map',
       mode: 'CITYBIKE'
     };
     const wrapper = shallowWithIntl(<RouteNumber {...props} />, {
       context: mockContext
     });
     expect(wrapper.find(IconWithIcon).prop('img')).to.equal(
-      'icon-icon_scooter'
+      'icon-icon_citybike_no_map'
     );
   });
 

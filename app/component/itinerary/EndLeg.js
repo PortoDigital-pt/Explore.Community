@@ -39,8 +39,8 @@ function EndLeg(props, context) {
         <div className={`leg-before-circle circle ${modeClassName}`} />
         <div className="itinerary-icon-container">
           <Icon
-            img="icon-icon_mapMarker-to"
-            className="itinerary-icon to to-it"
+            img="icon-icon_mapMarker-to_no_map"
+            className="itinerary-icon to to-it icon-icon_mapMarker-to_no_map"
           />
         </div>
       </div>

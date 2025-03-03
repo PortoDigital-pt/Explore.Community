@@ -13,10 +13,11 @@ export default function Duration(props) {
   const futureText = props.futureText
     ? props.futureText.charAt(0).toUpperCase() + props.futureText.slice(1)
     : '';
+  const { hideItineraryTime } = props;
 
   const departureTime = futureText ? `${futureText}, ${startTime}` : startTime;
   return (
-    <span className={cx(props.className)}>
+    <span className={cx(props.className)} style={{ whiteSpace: 'nowrap' }}>
       <span className="sr-only">
         <FormattedMessage
           id="aria-itinerary-summary"
@@ -34,13 +35,15 @@ export default function Duration(props) {
         {props.futureText !== '' && props.multiRow && (
           <span data-text={futureText} />
         )}
-        <span
-          data-text={
-            props.multiRow && props.futureText !== ''
-              ? `${startTime} - ${endTime}`
-              : `${futureText} ${startTime} - ${endTime}`
-          }
-        />
+        {!hideItineraryTime && (
+          <span
+            data-text={
+              props.multiRow && props.futureText !== ''
+                ? `${startTime} - ${endTime}`
+                : `${futureText} ${startTime} - ${endTime}`
+            }
+          />
+        )}
       </span>
     </span>
   );
@@ -56,11 +59,13 @@ Duration.propTypes = {
   startTime: PropTypes.string.isRequired,
   endTime: PropTypes.string.isRequired,
   futureText: PropTypes.string,
-  multiRow: PropTypes.bool
+  multiRow: PropTypes.bool,
+  hideItineraryTime: PropTypes.bool
 };
 
 Duration.defaultProps = {
   className: '',
   futureText: '',
-  multiRow: false
+  multiRow: false,
+  hideItineraryTime: false
 };

@@ -252,7 +252,7 @@ class ItineraryDetails extends React.Component {
     }
 
     return (
-      <div className="itinerary-tab">
+      <div className="itinerary-tab itinerary-details-page">
         <h2 className="sr-only" key="srlabel">
           <FormattedMessage
             id="summary-page.row-label"
