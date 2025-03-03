@@ -170,7 +170,7 @@ export default {
   sprites: 'assets/svg-sprite.amporto.svg',
 
   colors: {
-    primary: '#243E8B',
+    primary: '#000F9F',
     iconColors: {
       'mode-bus': '#A7D9FE',
       'mode-tram': '#A2874F',

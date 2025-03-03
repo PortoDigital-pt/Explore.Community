@@ -68,7 +68,7 @@ function DatetimepickerStateContainer({
     initialTimestamp ? initialTimestamp * 1000 : initialNow
   );
   const [departureOrArrival, changeDepartureOrArrival] = useState(
-    initialArriveBy === true ? 'arrival' : 'departure'
+    initialArriveBy === true ? 'arrival' : undefined
   );
 
   // update state if props change
@@ -118,7 +118,7 @@ function DatetimepickerStateContainer({
   }, 10);
 
   const nowClicked = () => {
-    changeDepartureOrArrival('departure');
+    changeDepartureOrArrival(undefined);
     const newTimestamp = realtime ? null : moment().valueOf();
     changeTimestampState(newTimestamp);
     onNowClick(Math.round(newTimestamp / 1000));

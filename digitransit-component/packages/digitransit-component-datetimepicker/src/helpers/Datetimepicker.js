@@ -12,8 +12,6 @@ import DesktopDatetimepicker from './DesktopDatetimepicker';
 import translations from './translations';
 import styles from '../../../../../sass/themes/amporto/digitransit-components/datetime-picker.scss';
 import { isMobile } from './mobileDetection';
-import dateTimeInputIsSupported from './dateTimeInputIsSupported';
-import MobilePickerModal from './MobilePickerModal';
 
 moment.locale('en');
 i18next.init({
@@ -72,7 +70,6 @@ function Datetimepicker({
   lang,
   color,
   timeZone,
-  onModalSubmit,
   fontWeights,
   serviceTimeRange,
   onOpen,
@@ -89,7 +86,6 @@ function Datetimepicker({
   const [timerId, setTimer] = useState(null);
   // for input labels
   const [htmlId] = useState(uniqueId('datetimepicker-'));
-  const [useMobileInputs] = useState(isMobile() && dateTimeInputIsSupported());
   const openPickerRef = useRef();
   const inputRef = useRef();
   const alertRef = useRef();
@@ -232,42 +228,6 @@ function Datetimepicker({
   }
 
   function renderOpen() {
-    if (useMobileInputs) {
-      return (
-        isOpen && (
-          <MobilePickerModal
-            departureOrArrival={departureOrArrival}
-            onNowClick={() => {
-              changeOpen(false);
-              showScreenreaderCloseAlert();
-              onNowClick();
-            }}
-            lang={lang}
-            color={color}
-            onSubmit={(newTimestamp, newDepartureOrArrival) => {
-              onModalSubmit(newTimestamp, newDepartureOrArrival);
-              changeOpen(false);
-              showScreenreaderCloseAlert();
-            }}
-            onCancel={() => {
-              changeOpen(false);
-              showScreenreaderCloseAlert();
-              if (onClose) {
-                onClose();
-              }
-            }}
-            getTimeDisplay={getTimeDisplay}
-            timeZone={timeZone}
-            timestamp={displayTimestamp}
-            getDateDisplay={getDateDisplay}
-            dateSelectItemCount={serviceTimeRange}
-            getDisplay={getTimeDisplay}
-            fontWeights={fontWeights}
-          />
-        )
-      );
-    }
-
     return (
       <>
         <div
@@ -286,6 +246,29 @@ function Datetimepicker({
             <span role="alert" className={styles['sr-only']} ref={alertRef} />
             <span />
             {/* This empty span prevents a weird focus bug on chrome */}
+            <button
+              id={`${htmlId}-now`}
+              type="button"
+              className={`${styles['departure-now-button']} ${
+                styles[
+                  departureOrArrival !== 'departure' &&
+                  departureOrArrival !== 'arrival'
+                    ? 'active'
+                    : undefined
+                ]
+              }`}
+              onClick={() => {
+                changeOpen(false);
+                showScreenreaderCloseAlert();
+                if (onClose) {
+                  onClose();
+                }
+                onNowClick();
+              }}
+              ref={inputRef}
+            >
+              {i18next.t('departure-now', translationSettings)}
+            </button>
             <span className={styles['departure-or-arrival-container']}>
               <label
                 htmlFor={`${htmlId}-departure`}
@@ -294,7 +277,7 @@ function Datetimepicker({
                   styles[
                     departureOrArrival === 'departure' ? 'active' : undefined
                   ]
-                }`}
+                } ${styles.left}`}
               >
                 {i18next.t('departure', translationSettings)}
                 <input
@@ -333,44 +316,27 @@ function Datetimepicker({
               </label>
             </span>
             <button
-              id={`${htmlId}-now`}
               type="button"
-              className={styles['departure-now-button']}
+              className={styles['close-button']}
+              aria-controls={`${htmlId}-root`}
+              aria-expanded="true"
               onClick={() => {
                 changeOpen(false);
                 showScreenreaderCloseAlert();
                 if (onClose) {
                   onClose();
                 }
-                onNowClick();
               }}
-              ref={inputRef}
             >
-              {i18next.t('departure-now', translationSettings)}
+              <span className={styles['close-icon']}>
+                <Icon img="close" color={iconColor} />
+              </span>
+              <span className={styles['sr-only']}>
+                {i18next.t('accessible-close', translationSettings)}
+              </span>
             </button>
-            <span className={styles['right-edge']}>
-              <button
-                type="button"
-                className={styles['close-button']}
-                aria-controls={`${htmlId}-root`}
-                aria-expanded="true"
-                onClick={() => {
-                  changeOpen(false);
-                  showScreenreaderCloseAlert();
-                  if (onClose) {
-                    onClose();
-                  }
-                }}
-              >
-                <span className={styles['close-icon']}>
-                  <Icon img="close" color={iconColor} />
-                </span>
-                <span className={styles['sr-only']}>
-                  {i18next.t('accessible-close', translationSettings)}
-                </span>
-              </button>
-            </span>
           </div>
+
           <div
             className={
               isOpen
@@ -476,7 +442,7 @@ function Datetimepicker({
             ref={openPickerRef}
           >
             <span>
-              {nowSelected && departureOrArrival === 'departure' ? (
+              {departureOrArrival === undefined ? (
                 i18next.t('departure-now', translationSettings)
               ) : (
                 <>
@@ -512,7 +478,7 @@ Datetimepicker.propTypes = {
   timeZone: PropTypes.string,
   onTimeChange: PropTypes.func.isRequired,
   onDateChange: PropTypes.func.isRequired,
-  departureOrArrival: PropTypes.oneOf(['departure', 'arrival']).isRequired,
+  departureOrArrival: PropTypes.oneOf(['departure', 'arrival']),
   onNowClick: PropTypes.func.isRequired,
   onDepartureClick: PropTypes.func.isRequired,
   onArrivalClick: PropTypes.func.isRequired,
@@ -520,7 +486,6 @@ Datetimepicker.propTypes = {
   embedWhenOpen: PropTypes.node,
   lang: PropTypes.string.isRequired,
   color: PropTypes.string,
-  onModalSubmit: PropTypes.func.isRequired,
   fontWeights: PropTypes.shape({
     medium: PropTypes.number.isRequired
   }).isRequired,

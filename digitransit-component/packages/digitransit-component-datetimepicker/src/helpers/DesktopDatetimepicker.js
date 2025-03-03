@@ -4,8 +4,8 @@ import moment from 'moment-timezone';
 import Select from 'react-select';
 import i18next from 'i18next';
 import cx from 'classnames';
+import styles from '../../../../../sass/themes/amporto/digitransit-components/datetime-picker.scss';
 import { parseTypedTime, validateInput, getTs } from './utils';
-import styles from './styles.scss';
 
 /**
  * Component to display a date or time input on desktop.

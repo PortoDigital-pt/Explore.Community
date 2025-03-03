@@ -34,7 +34,7 @@ import Time from './assets/amporto/time.svg';
 import Ellipsis from './assets/ellipsis.svg';
 import Opposite from './assets/opposite.svg';
 import Viapoint from './assets/viapoint.svg';
-import Calendar from './assets/calendar.svg';
+import Calendar from './assets/amporto/calendar.svg';
 import SelectFromMap from './assets/amporto/select-from-map.svg';
 import CautionWhite from './assets/caution_white_exclamation.svg';
 import Trash from './assets/trash.svg';

@@ -350,7 +350,7 @@ const translations = {
     currentposition: 'Situação atual',
     delete: 'Suprimir',
     'delete-old-searches-header': 'Deseja limpar o histórico de pesquisa?',
-    departure: 'Sair agora',
+    departure: 'Saída',
     destination: 'Destino',
     favourite: 'Favorito',
     ferry: 'Balsa',
