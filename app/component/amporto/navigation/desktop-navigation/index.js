@@ -11,7 +11,7 @@ const NAVIGATION_ITEMS = {
 };
 
 const getCurrentRoute = pathname => {
-  const path = pathname.split('/')[0];
+  const path = pathname.split('/')[1];
   return NAVIGATION_ITEMS[path?.toUpperCase()] ?? NAVIGATION_ITEMS.BROWSE;
 };
 

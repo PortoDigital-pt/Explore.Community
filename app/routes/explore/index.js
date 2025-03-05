@@ -1,31 +1,44 @@
 import React from 'react';
 import Route from 'found/Route';
+import { getDefault } from '../../util/routerUtils';
 
 function Test() {
   return <span>Explore/test</span>;
 }
 
-function Content() {
-  return <div>Explore content</div>;
-}
+const explorePageComponents = {
+  content: (
+    <Route
+      getComponent={() =>
+        import(/* webpackChunkName: "explore" */ './page').then(getDefault)
+      }
+    />
+  ),
+  map: (
+    <Route
+      disableMapOnMobile={false}
+      getComponent={() =>
+        import(
+          /* webpackChunkName: "itinerary" */ '../../component/map/IndexPageMap'
+        ).then(getDefault)
+      }
+    />
+  )
+};
 
-function ExploreMapContent() {
-  return <div>Explore/map content</div>;
-}
-
-function ExploreMapMap() {
-  return <div>Explore/map map</div>;
-}
-
-export default () => (
+export default config => (
   <Route path="/explore">
-    <Route Component={Content} allowAsIndex />
-    <Route path="test" Component={Test} />
-    <Route path="map">
-      {{
-        content: <Route getComponent={() => ExploreMapContent} />,
-        map: <Route getComponent={() => ExploreMapMap} />
-      }}
+    <Route path="/">{explorePageComponents}</Route>
+    <Route
+      path={`${config.indexPath === '' ? '' : `/${config.indexPath}`}/:from/-`}
+    >
+      {explorePageComponents}
     </Route>
+    <Route
+      path={`${config.indexPath === '' ? '' : `/${config.indexPath}`}/-/:to`}
+    >
+      {explorePageComponents}
+    </Route>
+    <Route path="test" Component={Test} />
   </Route>
 );

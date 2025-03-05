@@ -1,0 +1,12 @@
+.explore {
+    margin-top: 35px;
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+
+
+
+    @media (min-width: 900px) {
+        margin-top: 88px;
+      }
+}

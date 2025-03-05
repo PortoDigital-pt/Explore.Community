@@ -121,19 +121,27 @@ export const sameLocations = (l1, l2) => {
   );
 };
 
-export const getIndexPath = (origin, destination, indexPath) => {
+export const getIndexPath = (origin, destination, indexPath, currentPath) => {
   if (isEmpty(origin) && isEmpty(destination)) {
-    return indexPath === '' ? '/' : `/${indexPath}`;
+    if (currentPath) {
+      return indexPath === ''
+        ? `/${currentPath}`
+        : `/${indexPath}/${currentPath}`;
+    }
+    return indexPath === '' ? `/` : `/${indexPath}`;
   }
   if (indexPath === '') {
     return [
       indexPath,
+      currentPath ?? '',
       encodeURIComponent(isEmpty(origin) ? '-' : origin),
       encodeURIComponent(isEmpty(destination) ? '-' : destination)
     ].join('/');
   }
+
   return [
     '',
+    currentPath ?? '',
     indexPath,
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
     encodeURIComponent(isEmpty(destination) ? '-' : destination)
@@ -187,11 +195,21 @@ export function definesItinerarySearch(origin, destination) {
 /**
  * use objects instead of strings If both are set it's itinerary search...
  */
-export function getPathWithEndpointObjects(origin, destination, rootPath) {
+export function getPathWithEndpointObjects(
+  origin,
+  destination,
+  rootPath,
+  currentPath
+) {
   return rootPath === PREFIX_ITINERARY_SUMMARY ||
     definesItinerarySearch(origin, destination)
     ? getItineraryPagePath(locationToUri(origin), locationToUri(destination))
-    : getIndexPath(locationToOTP(origin), locationToOTP(destination), rootPath);
+    : getIndexPath(
+        locationToOTP(origin),
+        locationToOTP(destination),
+        rootPath,
+        currentPath
+      );
 }
 
 /**
