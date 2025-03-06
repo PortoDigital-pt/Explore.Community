@@ -91,7 +91,7 @@ const ExplorePageMap = (
       leafletObjs={leafletObjs}
       locationPopup="origindestination"
       onSelectLocation={selectLocation}
-      vehicles
+      showExplore
     />
   );
 };

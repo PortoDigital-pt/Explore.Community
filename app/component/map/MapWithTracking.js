@@ -212,6 +212,7 @@ class MapWithTrackingStateHandler extends React.Component {
     if (isEmpty(forcedLayers)) {
       return this.props.mapLayers;
     }
+
     const merged = {
       ...this.props.mapLayers,
       ...forcedLayers,
@@ -316,7 +317,6 @@ class MapWithTrackingStateHandler extends React.Component {
       : this.state.mapTracking
         ? this.context.intl.formatMessage({ id: 'tracking-button-on' })
         : this.context.intl.formatMessage({ id: 'tracking-button-off' });
-
     const mergedMapLayers = this.getMapLayers();
     return (
       <>

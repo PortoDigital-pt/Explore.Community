@@ -260,10 +260,10 @@ export default class Map extends React.Component {
     const mapUrl = config.hasAPISubscriptionQueryParameter
       ? `${mapBaseUrl}{z}/{x}/{y}{size}.png?${config.API_SUBSCRIPTION_QUERY_PARAMETER_NAME}=${config.API_SUBSCRIPTION_TOKEN}`
       : `${mapBaseUrl}{z}/{x}/{y}{size}.png`;
-
     const leafletObjNew = leafletObjs.concat([
       <VectorTileLayerContainer
         key="vectorTileLayerContainer"
+        {...this.props}
         hilightedStops={this.props.hilightedStops}
         mergeStops={this.props.mergeStops}
         stopsToShow={this.props.stopsToShow}

@@ -8,6 +8,7 @@ import ParkAndRideForCars from './ParkAndRideForCars';
 import ParkAndRideForBikes from './ParkAndRideForBikes';
 import { mapLayerShape } from '../../../store/MapLayerStore';
 import RentalVehicles from './RentalVehicles';
+import Explore from './Explore';
 
 export default function VectorTileLayerContainer(props, { config }) {
   const layers = [];
@@ -25,6 +26,10 @@ export default function VectorTileLayerContainer(props, { config }) {
   }
   if (props.mapLayers.scooter) {
     layers.push(RentalVehicles);
+  }
+
+  if (props.showExplore) {
+    layers.push(Explore);
   }
   return (
     <TileLayerContainer
@@ -51,7 +56,8 @@ VectorTileLayerContainer.propTypes = {
   objectsToHide: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
   mergeStops: PropTypes.bool,
   locationPopup: PropTypes.string,
-  onSelectLocation: PropTypes.func
+  onSelectLocation: PropTypes.func,
+  showExplore: PropTypes.bool
 };
 
 VectorTileLayerContainer.defaultProps = {
@@ -60,7 +66,8 @@ VectorTileLayerContainer.defaultProps = {
   stopsToShow: undefined,
   mergeStops: false,
   onSelectLocation: undefined,
-  locationPopup: undefined
+  locationPopup: undefined,
+  showExplore: false
 };
 
 VectorTileLayerContainer.contextTypes = {

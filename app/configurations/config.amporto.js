@@ -51,7 +51,8 @@ const {
   SHOW_ROUTES,
   SHOW_BLOCKS,
   PRIVACY_POLICY,
-  COOKIES_POLICY
+  COOKIES_POLICY,
+  POI_URL
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -72,6 +73,9 @@ export default {
       default: MAP_URL,
       en: MAP_URL
     },
+    POI_MAP: {
+      default: POI_URL
+    },
     STOP_MAP: {
       default: `${OTP_URL}routers/default/vectorTiles/stops,stations/`
     },
@@ -89,6 +93,8 @@ export default {
     },
     FONT: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800'
   },
+
+  exploreMinZoom: 13,
 
   title: APP_TITLE,
   indexPath: INDEX_PATH,
@@ -175,7 +181,10 @@ export default {
       'mode-bus': '#A7D9FE',
       'mode-tram': '#A2874F',
       'mode-subway': '#00095F',
-      'mode-citybike': '#FFE99D'
+      'mode-citybike': '#FFE99D',
+      pois: '#99DCD5',
+      events: '#FEC8A7',
+      accesspoints: '#D5B6FF' // TODO: change
     },
     originDestination: {
       icon: {

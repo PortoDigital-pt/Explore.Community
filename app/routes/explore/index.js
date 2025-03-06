@@ -19,7 +19,7 @@ const explorePageComponents = {
       disableMapOnMobile={false}
       getComponent={() =>
         import(
-          /* webpackChunkName: "itinerary" */ '../../component/map/IndexPageMap'
+          /* webpackChunkName: "itinerary" */ '../../component/map/ExplorePageMap'
         ).then(getDefault)
       }
     />
