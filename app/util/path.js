@@ -130,18 +130,15 @@ export const getIndexPath = (origin, destination, indexPath, currentPath) => {
     }
     return indexPath === '' ? `/` : `/${indexPath}`;
   }
-  if (indexPath === '') {
+  if (currentPath) {
     return [
       indexPath,
-      currentPath ?? '',
+      currentPath,
       encodeURIComponent(isEmpty(origin) ? '-' : origin),
       encodeURIComponent(isEmpty(destination) ? '-' : destination)
     ].join('/');
   }
-
   return [
-    '',
-    currentPath ?? '',
     indexPath,
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
     encodeURIComponent(isEmpty(destination) ? '-' : destination)

@@ -138,7 +138,6 @@ class ExplorePage extends React.Component {
         config.indexPath,
         'explore'
       );
-
       if (path !== location.pathname) {
         const newLocation = {
           ...location,

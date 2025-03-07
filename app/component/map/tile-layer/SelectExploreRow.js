@@ -22,7 +22,7 @@ const SelectExploreRow = ({ language, type, properties }, { config }) => {
   if (type === 'accesspoints') {
     return null;
   }
-
+  
   return (
     <Link
       className="stop-popup-choose-row"

@@ -946,7 +946,7 @@ export function getExploreIconStyles(zoom, isHilighted) {
 }
 
 /**
- * Draw explore icon based on its name.
+ * Draw explore icon based on its type.
  * Determine size from zoom level.
  */
 
