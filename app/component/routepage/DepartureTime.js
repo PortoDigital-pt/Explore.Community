@@ -8,6 +8,7 @@ import Icon from '../Icon';
 
 export default function DepartureTime(props, context) {
   let shownTime;
+
   const timeDiffInMinutes = Math.floor(
     (props.departureTime - props.currentTime) / 60
   );
@@ -17,6 +18,12 @@ export default function DepartureTime(props, context) {
     shownTime = context.intl.formatMessage(
       { id: 'departure-time-in-minutes', defaultMessage: '{minutes} min' },
       { minutes: timeDiffInMinutes }
+    );
+  }
+
+  if (props.showOnlyHours) {
+    return (
+      <span>{epochToTime(props.departureTime * 1000, context.config)}</span>
     );
   }
 
@@ -38,19 +45,23 @@ export default function DepartureTime(props, context) {
                   defaultMessage: 'Departure time was at'
                 })}
           </span>
-          <span
-            className={cx(
-              'time',
-              {
-                realtime: props.realtime,
-                canceled: props.canceled
-              },
-              props.className
-            )}
-            aria-hidden
-          >
-            {shownTime}
-          </span>
+
+          {shownTime && (
+            <span
+              className={cx(
+                'time',
+                {
+                  realtime: props.realtime,
+                  canceled: props.canceled
+                },
+                props.className
+              )}
+              aria-hidden
+            >
+              {shownTime}
+            </span>
+          )}
+
           {props.realtime && (
             <span className="sr-only">
               {context.intl.formatMessage({
@@ -101,7 +112,8 @@ DepartureTime.propTypes = {
   departureTime: PropTypes.number.isRequired,
   realtime: PropTypes.bool,
   showCancelationIcon: PropTypes.bool,
-  isNextDeparture: PropTypes.bool
+  isNextDeparture: PropTypes.bool,
+  showOnlyHours: PropTypes.bool
 };
 
 DepartureTime.defaultProps = {
@@ -109,7 +121,8 @@ DepartureTime.defaultProps = {
   canceled: false,
   realtime: false,
   showCancelationIcon: false,
-  isNextDeparture: false
+  isNextDeparture: false,
+  showOnlyHours: false
 };
 
 DepartureTime.contextTypes = {
@@ -149,12 +162,14 @@ export const fromStopTime = (
   stoptime,
   currentTime,
   showCancelationIcon = true,
-  isNextDeparture = false
+  isNextDeparture = false,
+  showOnlyHours = false
 ) => (
   <DepartureTime
     currentTime={currentTime}
     {...mapStopTime(stoptime)}
     showCancelationIcon={showCancelationIcon}
     isNextDeparture={isNextDeparture}
+    showOnlyHours={showOnlyHours}
   />
 );

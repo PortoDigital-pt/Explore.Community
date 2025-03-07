@@ -94,7 +94,7 @@ $itinerary-tab-switch-height: 48px;
 }
 
 .itinerary-tabs__scroll {
-  background: $white;
+  background: $background-default;
   padding: 0 50px;
   position: relative;
 }
@@ -2540,7 +2540,7 @@ div.itinerary-container-content {
 }
 
 .itinerary-tab .itinerary-timeframe {
-  background-color: $white;
+  background-color: $background-default;
 }
 
 .timeframe-nextday {
@@ -3013,7 +3013,7 @@ $font-print-decrease: 0.7;
   .itinerary-tab {
     position: relative;
     z-index: 2;
-    background-color: white;
+    background-color: $background-default;
   }
 
   .itinerary-tabs__scroll {
@@ -3064,7 +3064,7 @@ $font-print-decrease: 0.7;
     justify-content: unset;
     font-weight: $font-weight-book;
     padding: 0;
-    background: transparent;
+    background: $background-default;
     font-size: 15px;
     top: 0;
     margin-left: 0;

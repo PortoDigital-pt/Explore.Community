@@ -11,7 +11,7 @@ $border-radius-rounded: 30px;
 }
 
 .card-header {
-  background-color: $white;
+  background-color: $background-default;
   padding: 0.4em 0 0.5em;
 
   .card-header-content {
@@ -141,7 +141,7 @@ $border-radius-rounded: 30px;
 
 .favourite-icon {
   padding: 0;
-  background: white;
+  background: $background-default;
   stroke: #ddd;
   fill: transparent;
 

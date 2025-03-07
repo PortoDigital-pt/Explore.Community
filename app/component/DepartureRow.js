@@ -152,7 +152,10 @@ export default function DepartureRow(
         className={cx('route-number-container', {
           long: shortName && shortName.length <= 6 && shortName.length >= 5
         })}
-        style={{ backgroundColor: `#${departure.trip.route.color}` }}
+        style={{
+          backgroundColor: '#f5f5f5',
+          color: `#${departure.trip.route.color}`
+        }}
       >
         {renderWithLink(
           <>
@@ -185,25 +188,13 @@ export default function DepartureRow(
       <td className="time-cell">
         {renderWithLink(
           <>
-            {shownTime && (
-              <span
-                className={cx('route-arrival', {
-                  realtime: departure.realtime,
-                  canceled
-                })}
-                aria-hidden="true"
-              >
-                {shownTime}
-              </span>
-            )}
-            <span
-              className={cx('route-time', {
-                realtime: departure.realtime,
-                canceled
-              })}
-              aria-hidden="true"
-            >
-              {time}
+            <span className="new-stop-time-container">
+              <Icon
+                img={`icon-icon_${shownTime ? 'realtime' : 'clock'}`}
+                color={config.colors.primary}
+                className="time-cell-time-icon"
+              />
+              <span className="time-cell-time-label">{shownTime || time}</span>
             </span>
             <span className="sr-only">
               {intl.formatMessage(
@@ -256,6 +247,17 @@ export default function DepartureRow(
           </span>
         </td>
       )}
+      <td className="right-arrow-cell">
+        {renderWithLink(
+          <span>
+            <Icon
+              img="icon-icon_arrow-collapse--right_new"
+              color={config.colors.primary}
+              className="departure-row-arrow-icon"
+            />
+          </span>
+        )}
+      </td>
     </tr>
   );
 }

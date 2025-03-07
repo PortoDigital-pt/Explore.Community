@@ -5305,11 +5305,10 @@ const translations = {
       'Os resultados são baseados em tempos de viagem estimados. As ligações de transporte sugeridas não podem ser garantidas.',
     disruption: 'Redução de serviço',
     'disruption-info': 'Informação de redução de serviço',
-    'disruption-info-no-alerts':
-      'Não são conhecidas reduções ou alterações de serviço.',
+    'disruption-info-no-alerts': 'Não há interrupções ou desvios conhecidos.',
     'disruption-info-route-no-alerts':
       'Não são conhecidas reduções ou alterações à rota.',
-    disruptions: 'Avisos',
+    disruptions: 'Alertas',
     'distance-between': 'Distância {distance1} m — {distance2} m',
     'distance-total': 'Distância total',
     'distance-under': 'Distância inferior a {distance} m',
@@ -5637,7 +5636,7 @@ const translations = {
     'time-navigation-buttons': 'Botões de navegação do tempo',
     'time-selector-hours-label': 'Hora',
     'time-selector-minutes-label': 'Minuto',
-    timetable: 'Tabela de horário',
+    timetable: 'Horários',
     'to-stop': 'Distância',
     today: 'Hoje',
     tomorrow: 'Amanhã',

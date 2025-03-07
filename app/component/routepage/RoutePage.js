@@ -106,64 +106,71 @@ class RoutePage extends React.Component {
           aria-live="polite"
         >
           {breakpoint === 'large' && <BackButton />}
-          <div className="route-header">
-            <div aria-hidden="true">
-              <RouteNumber
-                color={route.color ? `#${route.color}` : null}
-                mode={mode}
-                text=""
-              />
-            </div>
-            <div className="route-info">
-              <h1
-                className={cx('route-short-name', mode.toLowerCase())}
-                style={{ color: route.color ? `#${route.color}` : null }}
-              >
-                <span className="sr-only" style={{ whiteSpace: 'pre' }}>
-                  {this.context.intl.formatMessage({
-                    id: mode.toLowerCase()
-                  })}{' '}
-                  {label?.toLowerCase()}
-                </span>
-                <span aria-hidden="true">{label}</span>
-              </h1>
-              {tripId && headsign && (
-                <div className="trip-destination">
-                  <Icon className="in-text-arrow" img="icon-icon_arrow-right" />
-                  <div className="destination-headsign">{headsign}</div>
-                </div>
+
+          <div className="route-page-header-section-container">
+            <div className="route-header">
+              <div aria-hidden="true">
+                <RouteNumber
+                  color={route.color ? `#${route.color}` : null}
+                  mode={mode}
+                  text=""
+                />
+              </div>
+              <div className="route-info">
+                <h1
+                  className={cx('route-short-name', mode.toLowerCase())}
+                  style={{ color: route.color ? `#${route.color}` : null }}
+                >
+                  <span className="sr-only" style={{ whiteSpace: 'pre' }}>
+                    {this.context.intl.formatMessage({
+                      id: mode.toLowerCase()
+                    })}{' '}
+                    {label?.toLowerCase()}
+                  </span>
+                  <span aria-hidden="true">{label}</span>
+                </h1>
+                {tripId && headsign && (
+                  <div className="trip-destination">
+                    <Icon
+                      className="in-text-arrow"
+                      img="icon-icon_arrow-right"
+                    />
+                    <div className="destination-headsign">{headsign}</div>
+                  </div>
+                )}
+              </div>
+              {!tripId && (
+                <LazilyLoad modules={modules}>
+                  {({ FavouriteRouteContainer }) => (
+                    <FavouriteRouteContainer
+                      className="route-page-header"
+                      gtfsId={route.gtfsId}
+                    />
+                  )}
+                </LazilyLoad>
               )}
             </div>
-            {!tripId && (
-              <LazilyLoad modules={modules}>
-                {({ FavouriteRouteContainer }) => (
-                  <FavouriteRouteContainer
-                    className="route-page-header"
-                    gtfsId={route.gtfsId}
-                  />
-                )}
-              </LazilyLoad>
+            {tripId && hasMeaningfulData(filteredAlerts) && (
+              <div className="trip-page-alert-container">
+                <AlertBanner
+                  alerts={filteredAlerts}
+                  linkAddress={`/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_DISRUPTION}/${this.props.match.params.patternId}`}
+                />
+              </div>
             )}
+            <RouteAgencyInfo route={route} />
+
+            {route &&
+              route.patterns &&
+              this.props.match.params.type === PREFIX_DISRUPTION && (
+                <RouteControlPanel
+                  match={this.props.match}
+                  route={route}
+                  breakpoint={breakpoint}
+                />
+              )}
           </div>
-          {tripId && hasMeaningfulData(filteredAlerts) && (
-            <div className="trip-page-alert-container">
-              <AlertBanner
-                alerts={filteredAlerts}
-                linkAddress={`/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_DISRUPTION}/${this.props.match.params.patternId}`}
-              />
-            </div>
-          )}
-          <RouteAgencyInfo route={route} />
         </div>
-        {route &&
-          route.patterns &&
-          this.props.match.params.type === PREFIX_DISRUPTION && (
-            <RouteControlPanel
-              match={this.props.match}
-              route={route}
-              breakpoint={breakpoint}
-            />
-          )}
       </div>
     );
   }
