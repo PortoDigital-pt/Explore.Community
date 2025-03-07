@@ -955,7 +955,7 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHilighted) {
   const zoom = tile.coords.z - 1;
 
   const styles = getExploreIconStyles(zoom, isHilighted);
-  let { width, height  } = styles;
+  let { width, height } = styles;
   width *= tile.scaleratio;
   height *= tile.scaleratio;
 

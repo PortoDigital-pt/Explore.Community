@@ -36,7 +36,7 @@ function SelectStopRow(
     case 'TRAM':
       iconOptions.iconId = terminal
         ? 'icon-icon_tram'
-        : 'icon-icon_tram-stop-lollipop';
+        : 'icon-icon_tram_no_map';
       iconOptions.className = 'tram-stop';
       break;
     case 'RAIL':
@@ -46,9 +46,7 @@ function SelectStopRow(
       iconOptions.className = 'rail-stop';
       break;
     case 'BUS':
-      iconOptions.iconId = terminal
-        ? 'icon-icon_bus'
-        : 'icon-icon_bus-stop-lollipop';
+      iconOptions.iconId = terminal ? 'icon-icon_bus' : 'icon-icon_bus_no_map';
       iconOptions.className = 'bus-stop';
       break;
     case 'bus-express':
@@ -58,7 +56,7 @@ function SelectStopRow(
       iconOptions.className = 'bus-stop';
       break;
     case 'SUBWAY':
-      iconOptions.iconId = 'icon-icon_subway';
+      iconOptions.iconId = 'icon-icon_subway_no_map';
       iconOptions.className = 'subway-stop';
       break;
     case 'FUNICULAR':
@@ -97,6 +95,7 @@ function SelectStopRow(
     >
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon
+          viewBox="0 0 44px 44px"
           className={iconOptions.className}
           img={iconOptions.iconId}
           color={iconOptions.color || null}

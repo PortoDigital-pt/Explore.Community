@@ -200,6 +200,23 @@ class TileLayerContainer extends GridLayer {
       } = this.props;
       const { coords: prevCoords } = this.state;
       const popup = map._popup; // eslint-disable-line no-underscore-dangle
+
+      if (
+        selectableTargets.length === 1 &&
+        selectableTargets[0].layer === 'explore'
+      ) {
+        const [{ feature }] = selectableTargets;
+        if (feature.type === 'accesspoints') {
+          return;
+        }
+
+        // set data with location? Might be able to avoid request on the next page if data is already present.
+        this.context.router.push(
+          `/explore/${feature.type}/${feature.properties.id}`
+        );
+        return;
+      }
+
       // navigate to citybike stop page if single stop is clicked
       if (
         selectableTargets.length === 1 &&

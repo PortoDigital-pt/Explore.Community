@@ -36,8 +36,9 @@ class Explore {
 
             for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
               const feature = layer.feature(i);
+              feature.type = type;
               [[feature.geom]] = feature.loadGeometry();
-              this.features.push(pick(feature, ['geom', 'properties']));
+              this.features.push(pick(feature, ['geom', 'properties', 'type']));
 
               drawExploreIcon(
                 this.tile,
@@ -45,7 +46,6 @@ class Explore {
                 type,
                 this.config.colors.iconColors
               );
-                  
             }
           });
         },

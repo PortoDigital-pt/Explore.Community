@@ -2,8 +2,11 @@ import React from 'react';
 import Route from 'found/Route';
 import { getDefault } from '../../util/routerUtils';
 
-function Test() {
-  return <span>Explore/test</span>;
+function TestEvents() {
+  return <span>Explore/events/id</span>;
+}
+function TestPois() {
+  return <span>Explore/pois/id</span>;
 }
 
 const explorePageComponents = {
@@ -39,6 +42,19 @@ export default config => (
     >
       {explorePageComponents}
     </Route>
-    <Route path="test" Component={Test} />
+    <Route path="events">
+      <Route path=":id">
+        {{
+          content: <Route getComponent={() => TestEvents} />
+        }}
+      </Route>
+    </Route>
+    <Route path="pois">
+      <Route path=":id">
+        {{
+          content: <Route getComponent={() => TestPois} />
+        }}
+      </Route>
+    </Route>
   </Route>
 );

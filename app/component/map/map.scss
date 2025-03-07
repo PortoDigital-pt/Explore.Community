@@ -25,6 +25,10 @@ div.map {
     top: 12px;
     right: 4px;
     padding: 0;
+
+    &:hover {
+      color: $primary-color !important;
+    }
   }
 
   .leaflet-container .leaflet-control-attribution a {
@@ -550,7 +554,8 @@ div.leaflet-marker-icon.vehicle-icon {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 0;
     margin-bottom: 5px;
-    border-radius: 5px;
+    border-radius: $border-radius;
+    background: $background-default !important;
   }
 
   .leaflet-popup-content {
