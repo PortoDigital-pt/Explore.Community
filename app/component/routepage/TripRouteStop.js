@@ -15,6 +15,7 @@ import { estimateItineraryDistance } from '../../util/geo-utils';
 import ZoneIcon from '../ZoneIcon';
 import { getZoneLabel } from '../../util/legUtils';
 import getVehicleState from '../../util/vehicleStateUtils';
+import Icon from '../Icon';
 
 const TripRouteStop = (props, { config }) => {
   const {
@@ -100,6 +101,7 @@ const TripRouteStop = (props, { config }) => {
     props.vehicles.map(
       vehicle => vehicle.route === props.route && getVehiclePatternLink(vehicle)
     );
+
   return (
     <div
       className={cx(
@@ -109,7 +111,12 @@ const TripRouteStop = (props, { config }) => {
       )}
     >
       {vehicles}
-      <div className={cx('route-stop-now_circleline', mode)}>
+      <div
+        className={cx(
+          'route-stop-now_circleline trip-route-stop-container',
+          mode
+        )}
+      >
         <svg
           width="16"
           height="16"
@@ -152,11 +159,14 @@ const TripRouteStop = (props, { config }) => {
                   />
                 </div>
               </div>
-              <div className="departure-times-container">
-                <div className="route-stop-time">
-                  {!isEmpty(stoptime) && fromStopTime(stoptime, currentTime)}
-                </div>
-              </div>
+              {!isEmpty(stoptime) && (
+                <span className="new-stop-time-container">
+                  <Icon img="icon-icon_clock" className="time-cell-time-icon" />
+                  <span className="time-cell-time-label">
+                    {fromStopTime(stoptime, currentTime, false, false, false)}
+                  </span>
+                </span>
+              )}
             </div>
             <div className="route-details-bottom-row">
               <AddressRow desc={stop.desc} code={stop.code} />

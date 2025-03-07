@@ -8,8 +8,6 @@ import Link from 'found/Link';
 import { configShape } from '../util/shapes';
 import ExternalLink from './ExternalLink';
 import Icon from './Icon';
-import RouteNumber from './RouteNumber';
-import ServiceAlertIcon from './ServiceAlertIcon';
 import { PREFIX_ROUTES, PREFIX_STOPS } from '../util/path';
 import {
   entityCompare,
@@ -92,7 +90,6 @@ export default function AlertRow(
     entities,
     feed,
     header,
-    severityLevel,
     showLinks,
     startTime,
     url,
@@ -166,30 +163,26 @@ export default function AlertRow(
     url && (url.match(/^[a-zA-Z]+:\/\//) ? url : `http://${url}`);
 
   return (
-    <div className="alert-row" role="listitem">
-      {(entityType === AlertEntityType.Route && (
-        <RouteNumber
-          alertSeverityLevel={severityLevel}
-          color={routeColor}
-          mode={routeMode}
-        />
-      )) ||
-        (entityType === AlertEntityType.Stop && (
-          <div className="route-number">
-            {severityLevel === 'INFO' ? (
-              <Icon img="icon-icon_info" className="stop-disruption info" />
-            ) : (
-              <Icon
-                img="icon-icon_caution"
-                className="stop-disruption warning"
-              />
-            )}
-          </div>
-        )) || (
-          <div className="route-number">
-            <ServiceAlertIcon severityLevel={severityLevel} />
-          </div>
-        )}
+    <div
+      className="alert-row"
+      role="listitem"
+      style={{ flexDirection: 'column' }}
+    >
+      {showTime && (
+        <span className="row-alert-time">
+          {getTimePeriod({
+            currentTime: moment.unix(currentTime),
+            startTime: moment.unix(startTime),
+            endTime: endTime ? moment.unix(endTime) : undefined,
+            intl
+          })}
+        </span>
+      )}
+
+      {header && <span className="row-alert-header">{header}</span>}
+
+      {description && <div className="alert-body">{description}</div>}
+
       <div className="alert-contents">
         {mapAlertSource(config, intl.locale, feed)}
         <div className="alert-top-row">
@@ -212,28 +205,21 @@ export default function AlertRow(
               (!showLinks && (
                 <div className={routeMode}>{entityIdentifiers.join(' ')}</div>
               )))}
-          {showTime && (
-            <>
-              {getTimePeriod({
-                currentTime: moment.unix(currentTime),
-                startTime: moment.unix(startTime),
-                endTime: endTime ? moment.unix(endTime) : undefined,
-                intl
-              })}
-            </>
-          )}
         </div>
-        {description && (
-          <div className="alert-body">
-            {description}
-            {url && (
-              <ExternalLink className="alert-url" href={checkedUrl}>
-                {intl.formatMessage({ id: 'extra-info' })}
-              </ExternalLink>
-            )}
-          </div>
-        )}
       </div>
+
+      {url && (
+        <div className="alert-url-container">
+          <ExternalLink className="alert-url" href={checkedUrl}>
+            {intl.formatMessage({ id: 'extra-info' })}
+          </ExternalLink>
+
+          <Icon
+            img="icon-icon_arrow-collapse--right_new"
+            className="row-alert-icon-arrow"
+          />
+        </div>
+      )}
     </div>
   );
 }
@@ -248,7 +234,6 @@ AlertRow.propTypes = {
       gtfsId: PropTypes.string.isRequired
     })
   ),
-  severityLevel: PropTypes.string,
   startTime: PropTypes.number,
   url: PropTypes.string,
   showLinks: PropTypes.bool,
@@ -267,7 +252,6 @@ AlertRow.defaultProps = {
   description: undefined,
   currentTime: moment().unix(),
   endTime: undefined,
-  severityLevel: undefined,
   startTime: undefined,
   feed: undefined,
   header: undefined,

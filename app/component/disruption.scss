@@ -46,8 +46,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  background: $white;
-  padding: 0 20px 0 20px;
+  background: $background-default;
+  padding: 0;
 
   &.bp-large {
     padding: 0 3.5rem 0 3.5rem;
@@ -74,7 +74,7 @@
 }
 
 .alerts-list {
-  background: $white;
+  background: $background-default;
   padding-bottom: 0.7em;
   flex: 1;
   flex-basis: 0;
@@ -87,8 +87,12 @@
 
   .alert-row {
     display: flex;
-    padding: 0.8em 0.8em 0.8em 0.8em;
     position: relative;
+    border-radius: 8px;
+    background: #fafafa;
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.31);
+    margin: 16px;
+    padding: 24px 16px 16px 16px;
 
     .icon.stop-disruption {
       width: 2em;
@@ -159,17 +163,46 @@
     }
 
     .alert-body {
-      font-size: $font-size-small;
-      font-weight: $disruption-message-font-weight;
-      white-space: pre-wrap;
+      color: $grey-dark-down;
+      font-family: $font-family;
+      font-size: $font-size-base;
+      font-style: normal;
+      font-weight: $font-weight-book;
+      line-height: normal;
+    }
+
+    .alert-url-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
 
       .alert-url {
-        color: $primary-color;
-        margin-left: 5px;
+        span.external-link-container {
+          border: none;
+          padding: 0;
 
-        .external-link {
-          color: $primary-color;
+          a {
+            color: $primary-main;
+            font-family: $font-family;
+            font-size: $font-size-s;
+            font-style: normal;
+            font-weight: $font-weight-book;
+            line-height: 16px;
+            text-decoration-line: underline;
+            text-decoration-style: solid;
+            text-decoration-skip-ink: none;
+            text-decoration-thickness: auto;
+            text-underline-offset: auto;
+            text-underline-position: from-font;
+          }
         }
+      }
+
+      span.icon-container {
+        display: flex;
+        align-self: baseline;
+        color: $primary-main;
       }
     }
 
@@ -184,5 +217,30 @@
         filter: contrast(0.6) brightness(1.5);
       }
     }
+
+    .row-alert-time {
+      color: $grey-dark-up;
+      font-family: $font-family;
+      font-size: $font-size-s;
+      font-style: normal;
+      font-weight: $font-weight-book;
+      line-height: 16px;
+    }
+
+    .row-alert-header {
+      color: $primary-dark;
+      font-family: $font-family;
+      font-size: $font-size-base;
+      font-style: normal;
+      font-weight: $font-weight-medium;
+      line-height: 24px;
+      margin-top: 12px;
+    }
+  }
+}
+
+.desktop {
+  .alerts-content-wrapper {
+    padding: 0 45px 0 40px;
   }
 }

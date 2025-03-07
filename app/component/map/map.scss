@@ -68,7 +68,7 @@ div.map {
 
     .drawer-content {
       min-height: 50vh;
-      background: white;
+      background: $background-default;
       position: relative;
       z-index: index($zindex, mobile-drawer);
 
