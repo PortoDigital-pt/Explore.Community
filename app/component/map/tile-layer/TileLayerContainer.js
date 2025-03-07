@@ -445,6 +445,7 @@ class TileLayerContainer extends GridLayer {
               options={this.state.selectableTargets}
               colors={this.context.config.colors}
               zoom={this.state.zoom}
+              lang={this.props.lang}
             />
           </Popup>
         );

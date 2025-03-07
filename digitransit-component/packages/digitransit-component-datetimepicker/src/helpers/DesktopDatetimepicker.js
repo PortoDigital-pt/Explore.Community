@@ -4,8 +4,7 @@ import moment from 'moment-timezone';
 import Select from 'react-select';
 import i18next from 'i18next';
 import cx from 'classnames';
-// eslint-disable-next-line import/no-unresolved
-import styles from 'digitransit-ui/sass/themes/amporto/digitransit-components/datetime-picker.scss';
+import styles from '../../../../../sass/themes/amporto/digitransit-components/datetime-picker.scss';
 import { parseTypedTime, validateInput, getTs } from './utils';
 
 /**

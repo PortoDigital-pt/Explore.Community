@@ -184,7 +184,7 @@ export default {
       'mode-citybike': '#FFE99D',
       pois: '#99DCD5',
       events: '#FEC8A7',
-      accesspoints: '#D5B6FF' // TODO: change
+      accesspoints: '#000F9F'
     },
     originDestination: {
       icon: {

@@ -95,7 +95,7 @@ function SelectStopRow(
     >
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon
-          viewBox="0 0 44px 44px"
+          viewBox="0 0 44 44"
           className={iconOptions.className}
           img={iconOptions.iconId}
           color={iconOptions.color || null}
