@@ -26,7 +26,7 @@ export const poiToDto = poi => {
     category: getLanguageValuesAndDecode(category_lang.value),
     contacts: contactPoint.value,
     description: getLanguageValuesAndDecode(description_lang.value),
-    location: { coordinates: location.value.coordinates },
+    location: { coordinates: { lon: location.value.coordinates[0], lat: location.value.coordinates[1] } },
     name: getLanguageValuesAndDecode(name_lang.value)
   };
 };
@@ -60,7 +60,7 @@ export const eventToDto = event => {
     endDate: endDate?.value,
     priceFrom: eventPriceFrom?.value ?? null,
     priceTo: eventPriceTo?.value ?? null,
-    location: { coordinates: location.value.coordinates },
+    location: { coordinates: { lon: location.value.coordinates[0], lat: location.value.coordinates[1] } },
     name: decodeURIComponent(name?.value)
   };
 };

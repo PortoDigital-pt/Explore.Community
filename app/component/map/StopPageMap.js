@@ -117,7 +117,7 @@ function StopPageMap(
   if (locationState.loadingPosition) {
     return <Loading />;
   }
-
+  
   const leafletObjs = [];
   const children = [];
   if (config.showVehiclesOnStopPage) {

@@ -210,7 +210,6 @@ class TileLayerContainer extends GridLayer {
           return;
         }
 
-        // set data with location? Might be able to avoid request on the next page if data is already present.
         this.context.router.push(
           `/explore/${feature.type}/${feature.properties.id}`
         );

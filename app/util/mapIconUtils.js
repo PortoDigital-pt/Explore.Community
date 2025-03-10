@@ -950,11 +950,11 @@ export function getExploreIconStyles(zoom, isHilighted) {
  * Determine size from zoom level.
  */
 
-export function drawExploreIcon(tile, geom, type, iconColors, isHilighted) {
+export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
   const color = iconColors[type];
   const zoom = tile.coords.z - 1;
 
-  const styles = getExploreIconStyles(zoom, isHilighted);
+  const styles = getExploreIconStyles(zoom, isHighlighted);
   let { width, height } = styles;
   width *= tile.scaleratio;
   height *= tile.scaleratio;
@@ -967,7 +967,7 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHilighted) {
     x = geom.x / tile.ratio - radius;
     y = geom.y / tile.ratio - radius;
 
-    return getMemoizedStopIcon(type, radius, color, isHilighted).then(image => {
+    return getMemoizedStopIcon(type, radius, color, isHighlighted).then(image => {
       tile.ctx.drawImage(image, x, y);
     });
   }
@@ -975,7 +975,7 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHilighted) {
   x = geom.x / tile.ratio - width / 2;
   y = geom.y / tile.ratio - height;
 
-  if (isHilighted) {
+  if (isHighlighted) {
     const selectedCircleOffset = getSelectedIconCircleOffset(zoom, tile.ratio);
     tile.ctx.beginPath();
     // eslint-disable-next-line no-param-reassign

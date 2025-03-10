@@ -5,9 +5,6 @@ import { getDefault } from '../../util/routerUtils';
 function TestEvents() {
   return <span>Explore/events/id</span>;
 }
-function TestPois() {
-  return <span>Explore/pois/id</span>;
-}
 
 const explorePageComponents = {
   content: (
@@ -22,7 +19,7 @@ const explorePageComponents = {
       disableMapOnMobile={false}
       getComponent={() =>
         import(
-          /* webpackChunkName: "itinerary" */ '../../component/map/ExplorePageMap'
+          /* webpackChunkName: "explore-map" */ '../../component/map/ExplorePageMap'
         ).then(getDefault)
       }
     />
@@ -52,7 +49,19 @@ export default config => (
     <Route path="pois">
       <Route path=":id">
         {{
-          content: <Route getComponent={() => TestPois} />
+          content:<Route
+          getComponent={() =>
+          import(/* webpackChunkName: "pois" */ './pois/page').then(getDefault)
+        }
+      />,
+          map: <Route
+            disableMapOnMobile={false}
+            getComponent={() =>
+            import(
+              /* webpackChunkName: "pois-map" */ '../../component/map/PoisPageMap'
+            ).then(getDefault)
+          }
+        />
         }}
       </Route>
     </Route>

@@ -48,12 +48,14 @@ class Explore {
               feature.type = type;
               [[feature.geom]] = feature.loadGeometry();
               this.features.push(pick(feature, ['geom', 'properties', 'type']));
+              const isHighlighted = this.tile.hilightedStops?.includes(feature.properties.id)
 
               drawExploreIcon(
                 this.tile,
                 feature.geom,
                 type,
-                this.config.colors.iconColors
+                this.config.colors.iconColors,
+                isHighlighted
               );
             }
           });
