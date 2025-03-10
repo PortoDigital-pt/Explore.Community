@@ -15,9 +15,9 @@ class Explore {
 
   getPromise() {
     fetch(
-      `${this.config.URL.POI_MAP.default}` +
-        `${this.tile.coords.z + (this.tile.props.zoomOffset || 0)}/` +
-        `${this.tile.coords.x}/${this.tile.coords.y}.pbf`
+      `${this.config.URL.EXPLORE_TILES.default}/${
+        this.tile.coords.z + (this.tile.props.zoomOffset || 0)
+      }/${this.tile.coords.x}/${this.tile.coords.y}.pbf`
     ).then(res => {
       if (res.status !== 200) {
         return undefined;
@@ -36,6 +36,15 @@ class Explore {
 
             for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
               const feature = layer.feature(i);
+
+              //  due to data inconsistency
+              if (
+                feature.properties.data_provider ===
+                'http:%2F%2Fwww.portoenorte.pt%2Fapi%2Fv1'
+              ) {
+                continue;
+              }
+
               feature.type = type;
               [[feature.geom]] = feature.loadGeometry();
               this.features.push(pick(feature, ['geom', 'properties', 'type']));
