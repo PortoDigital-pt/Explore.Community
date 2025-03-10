@@ -14,13 +14,12 @@
 }
 
 .dd-header-title {
-  position: relative;
+  color: $primary-dark;
+  font-family: $font-family;
+  font-size: $font-size-s;
   font-style: normal;
-  font-weight: normal;
-  font-size: 13px;
+  font-weight: $font-weight-bold;
   line-height: 16px;
-  letter-spacing: -0.03em;
-  color: #666;
 
   &.alignRight {
     text-align: right;
@@ -34,10 +33,11 @@
   .dd__control,
   .dd-right__control,
   .dd-timerange__control {
-    border-style: none;
-    max-height: 24px;
-    min-height: 24px;
-    box-shadow: none;
+    height: 40px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid $grey-medium;
+    background: $background-default;
 
     &:focus-within {
       outline: 2px auto #333 !important;
@@ -80,14 +80,12 @@
   .dd__single-value,
   .dd-right__single-value,
   .dd-timerange__single-value {
+    color: $grey-dark-down;
+    font-family: $font-family;
+    font-size: 0.9375rem;
     font-style: normal;
-    font-weight: $font-weight-medium;
-    font-size: 15px;
-    line-height: 18px;
-    letter-spacing: -0.03em;
-    color: $primary-color;
-    white-space: nowrap;
-    margin: 0;
+    font-weight: $font-weight-regular;
+    line-height: normal;
 
     svg {
       margin-left: 5px;
@@ -111,7 +109,7 @@
     border: solid 1px #ddd;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: white;
+    background-color: $background-default;
     position: absolute;
     top: 21px;
     text-align: left;

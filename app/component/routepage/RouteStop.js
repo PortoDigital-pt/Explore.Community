@@ -239,8 +239,12 @@ const RouteStop = (
               {patternExists && (
                 <div
                   key={firstDeparture.scheduledDeparture}
-                  className="route-stop-time"
+                  className="route-stop-time with-background"
                 >
+                  <Icon
+                    img="icon-icon_clock"
+                    className="stop-route-time-icon"
+                  />
                   {!hideDepartures && fromStopTime(firstDeparture, currentTime)}
                 </div>
               )}

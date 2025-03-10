@@ -46,15 +46,28 @@ $margin-left-right: 21.3px;
 }
 
 .mobile {
-  background-color: $white;
+  background-color: $background-default;
 
   .route-page-container {
     padding-top: 0;
-    background-color: transparent;
+    background-color: $background-default;
     position: relative;
 
     .route-page-control-panel-container {
       margin: 0 21.3px;
+    }
+
+    .route-page-header-section-container {
+      display: flex;
+      flex-direction: column;
+
+      .route-agency {
+        padding: 0;
+      }
+
+      .route-page-control-panel-container.disruption {
+        margin: 0;
+      }
     }
   }
 
@@ -70,10 +83,14 @@ $margin-left-right: 21.3px;
       }
     }
   }
+
+  .route-agency {
+    padding: 0 0 0 20px;
+  }
 }
 
 .route-page-container {
-  background-color: $white;
+  background-color: $background-default;
   padding-top: 48px;
 }
 
@@ -154,7 +171,7 @@ $margin-left-right: 21.3px;
   padding-bottom: 24px;
   flex: 1 0;
   flex-basis: 0;
-  background: $white;
+  background: $background-default;
   transition:
     flex-grow 500ms cubic-bezier(0.215, 0.61, 0.355, 1),
     flex-basis 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -181,7 +198,7 @@ $margin-left-right: 21.3px;
 .route-stop-list {
   @include font-narrow-medium;
 
-  background-color: $white;
+  background-color: $background-default;
   margin: 0 0 0 2px;
   padding: 0;
 
@@ -475,6 +492,8 @@ $margin-left-right: 21.3px;
           margin-left: 0;
           height: 0.9375rem;
           margin-right: 5px;
+          background-color: #e6e6e6;
+          color: $grey-dark-down;
         }
 
         .route-stop-address {
@@ -621,6 +640,10 @@ $margin-left-right: 21.3px;
       height: 30px;
       width: 30px;
     }
+
+    .icon.subway {
+      margin-top: 4px;
+    }
   }
 
   .route-info {
@@ -707,6 +730,7 @@ $margin-left-right: 21.3px;
 
 .route-schedule-list {
   padding-bottom: 0.7em;
+  padding-top: 16px;
   flex: 1;
   overflow: hidden;
 
@@ -804,6 +828,7 @@ $margin-left-right: 21.3px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 8px;
 
   @media print {
     display: none;
@@ -841,23 +866,38 @@ $margin-left-right: 21.3px;
   display: flex;
   justify-content: space-between;
   min-height: 24px;
-  margin-bottom: 13px;
+  margin-bottom: 15px;
   margin-top: 25px;
   flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 
   .current-range {
     flex: 1;
     white-space: nowrap;
+    color: $primary-dark;
+    font-family: $font-family;
+    font-size: $font-size-base;
     font-style: normal;
-    font-weight: $font-weight-medium;
-    font-size: 18px;
-    line-height: 22px;
-    letter-spacing: -0.03em;
-    color: #333;
+    font-weight: $font-weight-bold;
+    line-height: 24px;
   }
 
   .other-ranges-dropdown {
     flex: 1 0 6rem;
+
+    .dd-timerange__control {
+      border-style: none;
+
+      .dd-timerange__placeholder {
+        color: $primary-dark;
+        font-family: $font-family;
+        font-size: $font-size-s;
+        font-style: normal;
+        font-weight: $font-weight-bold;
+        line-height: 16px;
+      }
+    }
 
     @media print {
       display: none;
@@ -913,38 +953,49 @@ $margin-left-right: 21.3px;
 
 .trip-separator {
   width: 100%;
-  border-top: 2px solid #888;
+  border-top: 2px solid $primary-dark;
   height: 1px;
   margin-top: 14px;
   margin-left: 19px;
   margin-right: 19px;
 
   svg {
+    color: $primary-dark;
     position: relative;
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
     left: calc(100% - 6px);
     top: -16px;
+
+    @media screen and (min-width: 556px) {
+      top: -17px;
+    }
+
+    @media screen and (min-width: 757px) {
+      top: -18px;
+    }
+
+    @media screen and (min-width: 890px) {
+      top: -19px;
+    }
+
+    @media screen and (min-width: 899px) {
+      top: -16px;
+    }
   }
 }
 
-/*
-.trip-separator:after {
-  content: "";
-  width: 100%;
-  position: absolute;
-  top: 10px;
-  left: 0;
-  border-top: 1px solid $light-gray;
-}
-*/
 .trip-from,
 .trip-to {
-  background: #fff;
-  width: 50px;
-  font-size: $font-size-small;
   text-align: left;
   min-width: 3em;
+
+  color: $grey-dark-down;
+  font-family: $font-family;
+  font-size: $font-size-l;
+  font-style: normal;
+  font-weight: $font-weight-regular;
+  line-height: normal;
 
   @media print {
     font-size: 21px;
@@ -976,7 +1027,7 @@ $margin-left-right: 21.3px;
   justify-content: flex-start;
   padding-left: 60px;
   display: flex;
-  background-color: #fff;
+  background-color: $background-default;
 
   .printable-date-container {
     display: none;
@@ -1072,7 +1123,7 @@ $margin-left-right: 21.3px;
 }
 
 .route-container {
-  background-color: white;
+  background-color: $background-default;
   margin: 5px 20px 0 20px;
   padding-bottom: 5px;
 
@@ -1088,7 +1139,7 @@ $margin-left-right: 21.3px;
 }
 
 .route-page-control-panel-container {
-  padding-bottom: 28px;
+  padding-bottom: 5px;
 
   &.hairiot {
     margin: 0 56px;
@@ -1110,8 +1161,8 @@ $margin-left-right: 21.3px;
   height: 2.5em;
   min-height: 2.5em;
   display: flex;
-  background-color: $light-gray;
-  border: 2px solid $light-gray;
+  background-color: $grey-light-down;
+  border: 2px solid $grey-light-down;
   border-radius: 8px;
   margin: 0;
 
@@ -1142,10 +1193,6 @@ $margin-left-right: 21.3px;
         color: inherit;
         background: $white;
       }
-    }
-
-    .no-alerts > span {
-      color: #888;
     }
   }
 
@@ -1199,29 +1246,29 @@ $margin-left-right: 21.3px;
   margin: 1px 0 18px 0;
 
   .route-pattern-toggle {
-    border: 1px solid #888;
+    border: 1px solid $grey-medium;
     width: 100%;
-    min-height: 44px;
-    background: $white;
-    border-radius: 5px;
+    min-height: 40px;
+    background: $background-default;
+    border-radius: 8px;
     display: block;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 18px;
     letter-spacing: -0.03em;
     padding: 13px 32px 13px 16px;
     text-align: left;
-    color: #333;
+    color: $grey-dark-down;
 
     &:focus {
       outline: none;
       border-color: $primary-color;
-      background: #fff;
+      background: $background-default;
       border: solid 1px $primary-color;
       box-shadow: 0 0 2px 1px $secondary-color;
     }
 
     .toggle-icon {
-      color: $link-color;
+      color: $grey-dark-down;
       position: absolute;
       right: 16px;
       transform: rotate(90deg);
@@ -1229,7 +1276,7 @@ $margin-left-right: 21.3px;
   }
 
   .icon {
-    color: $primary-color;
+    color: $grey-dark-down;
     position: absolute;
     right: 1rem;
     top: 15px;
@@ -1251,11 +1298,12 @@ $margin-left-right: 21.3px;
 
   .react-autosuggest__container {
     width: 100%;
-    min-height: 44px;
-    background: white;
-    border: 1px solid #888;
-    border-radius: 4px;
+    min-height: 40px;
+    background: $background-default;
+    border: 1px solid $grey-medium;
+    border-radius: 8px;
     position: relative;
+    height: 40px;
 
     &:focus-within {
       outline: none;
@@ -1271,7 +1319,8 @@ $margin-left-right: 21.3px;
       font-size: 15px;
       line-height: 18px;
       letter-spacing: -0.03em;
-      padding: 13px 32px 13px 16px;
+      padding: 10px 32px 13px 16px;
+      color: $grey-dark-down;
     }
 
     .react-autosuggest__input {
@@ -1464,6 +1513,40 @@ nav.top-bar .title .route-number {
 }
 
 .desktop {
+  .route-page-container {
+    padding-top: 0;
+
+    .route-container {
+      margin: 0;
+
+      .back-button {
+        margin-bottom: 10px;
+      }
+
+      .route-page-header-section-container {
+        padding: 0 60px 0 55px;
+        display: flex;
+        flex-direction: column;
+
+        .route-agency {
+          padding: 0;
+
+          .agency-link-container {
+            .agency-link {
+              .external-link-container {
+                width: 100% !important;
+
+                .overflow-fade {
+                  mask-image: none !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   .route-agency {
     padding: 0 0 0 20px;
   }
@@ -1509,4 +1592,181 @@ nav.top-bar .title .route-number {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.route-stop-time.with-background {
+  background-color: #e6e6e6;
+  padding: 2px;
+  border-radius: 2px;
+  height: 22px;
+  min-width: 60px;
+  align-items: center !important;
+
+  .icon-container {
+    align-self: center;
+    display: flex;
+
+    svg {
+      color: $primary-dark;
+    }
+  }
+
+  span.time {
+    @include typography-label-base;
+  }
+}
+
+#trip-route-page-content {
+  .location-details_container {
+    .route-stop-name {
+      span {
+        color: $grey-dark-down;
+        font-family: $font-family;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        text-decoration-skip-ink: none;
+        text-decoration-thickness: auto;
+        text-underline-offset: auto;
+        text-underline-position: from-font;
+      }
+    }
+
+    .new-stop-time-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 22px;
+      min-width: 60px;
+      background-color: #e6e6e6;
+      border-radius: 2px;
+      padding: 0 4px;
+
+      .icon-container {
+        .time-cell-time-icon {
+          color: $primary-dark;
+        }
+      }
+
+      .time-cell-time-label {
+        padding-left: 4px;
+
+        @include typography-label-base;
+      }
+
+      .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 24px;
+        max-height: 24px;
+        padding: 0;
+        margin: 0;
+        color: $primary-dark;
+      }
+    }
+  }
+  .location-details_container.passed {
+    span {
+      color: $neutral;
+    }
+
+    .icon-container {
+      .time-cell-time-icon {
+        color: $neutral;
+      }
+    }
+
+    .time-cell-time-label {
+      color: $neutral;
+    }
+  }
+}
+
+.route-page-control-panel-container {
+  min-height: 97px;
+
+  .route-control-panel {
+    .route-tabs {
+      border: 1px solid $grey-light-down !important;
+      background-color: $primary-contrastText;
+      border-radius: 8px;
+      min-height: 32px !important;
+      height: 32px !important;
+
+      button {
+        margin: 0;
+        color: $primary-dark;
+        text-align: center;
+        font-family: $font-family;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: $font-weight-book;
+        line-height: normal;
+        border: 0;
+        border-left: 1px solid $grey-light-down;
+        border-radius: 0;
+      }
+
+      button:first-of-type {
+        border-radius: 8px 0 0 8px;
+        border-left: 0;
+      }
+
+      button:last-of-type {
+        border-radius: 0 8px 8px 0;
+      }
+
+      button.is-active,
+      button.is-active:hover {
+        color: $grey-light-down;
+        background-color: $primary-dark;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.route-schedule-container {
+  .route-tabs {
+    border: 1px solid $grey-light-down !important;
+    background-color: $primary-contrastText;
+    border-radius: 8px;
+    min-height: 32px !important;
+    height: 32px !important;
+
+    button {
+      margin: 0;
+      color: $primary-dark;
+      text-align: center;
+      font-family: $font-family;
+      font-size: $font-size-base;
+      font-style: normal;
+      font-weight: $font-weight-book;
+      line-height: normal;
+      border: 0;
+      border-left: 1px solid $grey-light-down;
+      border-radius: 0;
+    }
+
+    button:first-of-type {
+      border-radius: 8px 0 0 8px;
+      border-left: 0;
+    }
+
+    button:last-of-type {
+      border-radius: 0 8px 8px 0;
+    }
+
+    button.is-active,
+    button.is-active:hover {
+      color: $grey-light-down;
+      background-color: $primary-dark;
+      font-weight: $font-weight-bold;
+    }
+  }
 }

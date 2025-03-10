@@ -296,7 +296,7 @@
   font-weight: normal;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid $grey-light-down;
 
   td {
     position: relative;
@@ -317,6 +317,18 @@
     .platform-code {
       display: flex;
       justify-content: center;
+    }
+
+    .departure-row-arrow-icon {
+      width: 24px;
+      height: 24px;
+      justify-content: center;
+      align-items: center;
+      color: $primary-dark;
+    }
+
+    .time-cell-time-icon {
+      color: $primary-dark;
     }
   }
 
@@ -372,7 +384,7 @@
       display: flex;
       height: 100%;
       line-height: 1;
-      color: $white;
+      color: currentcolor;
       min-width: unset;
       white-space: nowrap;
       overflow: hidden;
