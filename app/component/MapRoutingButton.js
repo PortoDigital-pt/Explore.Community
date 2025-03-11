@@ -19,7 +19,11 @@ export default function MapRoutingButton(
   const [showModal, setShowModal] = useState(false);
   const [buttonText, setButtonText] = useState(null);
   useEffect(() => {
-    if (stop?.vehicleParkingId) {
+    if (stop.type === 'pois') {
+      setButtonText('route-to-pois');
+    } else if (stop.type === 'events') {
+      setButtonText('route-to-events');
+    } else if (stop?.vehicleParkingId) {
       setButtonText('route-to-park');
     } else if (stop?.vehicleMode === 'FERRY') {
       setButtonText('route-to-ferry');
@@ -35,16 +39,22 @@ export default function MapRoutingButton(
   const locationWithoutQuery = { ...location, query: {}, search: '' };
   const time = Math.floor(Date.now() / 1000);
   const onSelectLocation = (item, id) => {
-    const address =
-      item.name.toLowerCase() === 'scooter'
-        ? intl.formatMessage({ id: 'e-scooter' })
-        : item.name;
+    let address;
+    if (item.type === 'pois' || item.type === 'events') {
+      address = item.address;
+    } else {
+      address =
+        item.name.toLowerCase() === 'scooter'
+          ? intl.formatMessage({ id: 'e-scooter' })
+          : item.name;
+    }
     let newLocation;
     const place = {
       ...item,
       address,
       gtfsId: match.params.stopId || match.params.terminalId
     };
+
     if (id === 'origin') {
       newLocation = {
         ...locationWithoutQuery,

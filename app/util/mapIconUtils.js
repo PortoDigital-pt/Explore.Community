@@ -967,9 +967,11 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
     x = geom.x / tile.ratio - radius;
     y = geom.y / tile.ratio - radius;
 
-    return getMemoizedStopIcon(type, radius, color, isHighlighted).then(image => {
-      tile.ctx.drawImage(image, x, y);
-    });
+    return getMemoizedStopIcon(type, radius, color, isHighlighted).then(
+      image => {
+        tile.ctx.drawImage(image, x, y);
+      }
+    );
   }
 
   x = geom.x / tile.ratio - width / 2;

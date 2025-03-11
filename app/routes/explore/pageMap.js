@@ -3,26 +3,25 @@ import PropTypes from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { matchShape } from 'found';
 import { intlShape } from 'react-intl';
-import MapWithTracking from './MapWithTracking';
+import MapWithTracking from '../../component/map/MapWithTracking';
 import { sameLocations } from '../../util/path';
-import OriginStore from '../../store/OriginStore';
-import DestinationStore from '../../store/DestinationStore';
-import LazilyLoad, { importLazy } from '../LazilyLoad';
+import LazilyLoad, { importLazy } from '../../component/LazilyLoad';
 import { configShape, locationShape } from '../../util/shapes';
 import storeOrigin from '../../action/originActions';
 import storeDestination from '../../action/destinationActions';
-// eslint-disable-next-line import/no-named-as-default
 import { mapLayerShape } from '../../store/MapLayerStore';
 
 const locationMarkerModules = {
   LocationMarker: () =>
-    importLazy(import(/* webpackChunkName: "map" */ './LocationMarker'))
+    importLazy(
+      import(/* webpackChunkName: "map" */ '../../component/map/LocationMarker')
+    )
 };
 
 let focus = {};
 const mwtProps = {};
 
-const ExplorePageMap = (
+const PageMap = (
   { match, origin, destination, mapLayers },
   { config, executeAction }
 ) => {
@@ -96,38 +95,30 @@ const ExplorePageMap = (
   );
 };
 
-ExplorePageMap.propTypes = {
+PageMap.propTypes = {
   match: matchShape.isRequired,
-  lang: PropTypes.string.isRequired,
   origin: locationShape,
   destination: locationShape,
   mapLayers: mapLayerShape.isRequired
 };
 
-ExplorePageMap.defaultProps = {
+PageMap.defaultProps = {
   origin: {},
   destination: {}
 };
 
-ExplorePageMap.contextTypes = {
+PageMap.contextTypes = {
   config: configShape.isRequired,
   executeAction: PropTypes.func.isRequired,
   intl: intlShape.isRequired
 };
 
 export default connectToStores(
-  ExplorePageMap,
-  [OriginStore, DestinationStore, 'PreferencesStore', 'MapLayerStore'],
-  ({ getStore }) => {
-    const origin = getStore(OriginStore).getOrigin();
-    const destination = getStore(DestinationStore).getDestination();
-    const lang = getStore('PreferencesStore').getLanguage();
-
-    return {
-      origin,
-      destination,
-      lang,
-      mapLayers: getStore('MapLayerStore').getMapLayers()
-    };
-  }
+  PageMap,
+  ['OriginStore', 'DestinationStore', 'MapLayerStore'],
+  ({ getStore }) => ({
+    origin: getStore('OriginStore').getOrigin(),
+    destination: getStore('DestinationStore').getDestination(),
+    mapLayers: getStore('MapLayerStore').getMapLayers()
+  })
 );

@@ -5,15 +5,8 @@ import Icon from '../../Icon';
 import { configShape } from '../../../util/shapes';
 
 const getName = (language, properties) => {
-  const name = properties[`name_${language}`];
-
-  if (language === 'pt' && !name) {
-    return `It has no name`;
-  }
-
-  if (language === 'en' && !name) {
-    return `${properties.name_pt ?? 'Missing PORTUGUESE'}. Missing ENGLISH`;
-  }
+  const names = properties.name ?? JSON.parse(properties.name_lang);
+  const name = typeof names === 'object' ? names[language] ?? names.pt : names;
 
   return decodeURIComponent(name);
 };

@@ -256,6 +256,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
 
   const userAuthenticated = function (req, res, next) {
     res.set('Cache-Control', 'no-store');
+    // eslint-disable-next-line no-unused-expressions
     req.isAuthenticated() ? next() : res.sendStatus(401);
   };
 

@@ -42,13 +42,16 @@ class Explore {
                 feature.properties.data_provider ===
                 'http:%2F%2Fwww.portoenorte.pt%2Fapi%2Fv1'
               ) {
+                // eslint-disable-next-line no-continue
                 continue;
               }
 
               feature.type = type;
               [[feature.geom]] = feature.loadGeometry();
               this.features.push(pick(feature, ['geom', 'properties', 'type']));
-              const isHighlighted = this.tile.hilightedStops?.includes(feature.properties.id)
+              const isHighlighted = this.tile.hilightedStops?.includes(
+                feature.properties.id
+              );
 
               drawExploreIcon(
                 this.tile,

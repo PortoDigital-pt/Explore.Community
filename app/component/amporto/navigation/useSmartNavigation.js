@@ -12,7 +12,7 @@ const useSmartNavigation = () => {
       ),
     [match.location.pathname]
   );
-  
+
   return canShow;
 };
 

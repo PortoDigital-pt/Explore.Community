@@ -14,9 +14,9 @@ const explorePageComponents = {
     <Route
       disableMapOnMobile={false}
       getComponent={() =>
-        import(
-          /* webpackChunkName: "explore-map" */ '../../component/map/ExplorePageMap'
-        ).then(getDefault)
+        import(/* webpackChunkName: "explore-map" */ './pageMap').then(
+          getDefault
+        )
       }
     />
   )
@@ -38,7 +38,7 @@ export default config => (
     <Route path="pois">
       <Route path=":id">
         {{
-           header: (
+          header: (
             <Route
               path="(.*)?"
               getComponent={() =>
@@ -50,13 +50,21 @@ export default config => (
           ),
           content: (
             <Route
-              getComponent={() => import(/* webpackChunkName: "pois" */ './pois/page').then(getDefault)}
+              getComponent={() =>
+                import(/* webpackChunkName: "pois" */ './pois/page').then(
+                  getDefault
+                )
+              }
             />
           ),
           map: (
             <Route
               disableMapOnMobile={false}
-              getComponent={() => import(/* webpackChunkName: "pois-map" */ '../../component/map/PoisPageMap').then(getDefault)}
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "pois-map" */ './pois/pageMap'
+                ).then(getDefault)
+              }
             />
           )
         }}
@@ -65,9 +73,33 @@ export default config => (
     <Route path="events">
       <Route path=":id">
         {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
           content: (
             <Route
-              getComponent={() => import(/* webpackChunkName: "events" */ './events/page').then(getDefault)}
+              getComponent={() =>
+                import(/* webpackChunkName: "events" */ './events/page').then(
+                  getDefault
+                )
+              }
+            />
+          ),
+          map: (
+            <Route
+              disableMapOnMobile={false}
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "events-map" */ './events/pageMap'
+                ).then(getDefault)
+              }
             />
           )
         }}

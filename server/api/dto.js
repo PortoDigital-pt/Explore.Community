@@ -1,13 +1,15 @@
+/* eslint-disable camelcase */
+
 const getLanguageValuesAndDecode = values =>
-  !values ? 
-  null :
-  Object.entries(values).reduce(
-    (acc, [language, value]) => ({
-      ...acc,
-      [language]: value ? decodeURIComponent(value.value ?? value) : null
-    }),
-    {}
-  );
+  !values
+    ? null
+    : Object.entries(values).reduce(
+        (acc, [language, value]) => ({
+          ...acc,
+          [language]: value ? decodeURIComponent(value.value ?? value) : null
+        }),
+        {}
+      );
 
 export const poiToDto = poi => {
   const {
@@ -22,11 +24,12 @@ export const poiToDto = poi => {
 
   return {
     id,
-    address: getLanguageValuesAndDecode(address.value),
+    address: address.value.streetAddress,
     category: getLanguageValuesAndDecode(category_lang.value),
-    contacts: contactPoint.value,
+    contacts: getLanguageValuesAndDecode(contactPoint.value),
     description: getLanguageValuesAndDecode(description_lang.value),
-    location: { coordinates: { lon: location.value.coordinates[0], lat: location.value.coordinates[1] } },
+    lon: location.value.coordinates[0],
+    lat: location.value.coordinates[1],
     name: getLanguageValuesAndDecode(name_lang.value)
   };
 };
@@ -49,18 +52,21 @@ export const eventToDto = event => {
 
   return {
     id,
-    address: decodeURIComponent(address?.value),
+    address: address.value,
     category: category?.value,
     contacts: {
-      image: decodeURIComponent(contentUrl?.value) ?? null,
-      website: decodeURIComponent(webSite?.value)
+      image: contentUrl?.value ? decodeURIComponent(contentUrl.value) : null,
+      website: webSite?.value ? decodeURIComponent(webSite.value) : null
     },
-    description: decodeURIComponent(description?.value),
-    startDate: startDate?.value,
-    endDate: endDate?.value,
+    description: description?.value
+      ? decodeURIComponent(description.value)
+      : null,
+    startDate: startDate?.value ?? null,
+    endDate: endDate?.value ?? null,
     priceFrom: eventPriceFrom?.value ?? null,
     priceTo: eventPriceTo?.value ?? null,
-    location: { coordinates: { lon: location.value.coordinates[0], lat: location.value.coordinates[1] } },
+    lon: location.value.coordinates[0],
+    lat: location.value.coordinates[1],
     name: decodeURIComponent(name?.value)
   };
 };
