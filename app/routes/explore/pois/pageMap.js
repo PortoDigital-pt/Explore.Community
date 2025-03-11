@@ -11,7 +11,11 @@ import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedPoi } from './useSelectedPoi';
 
 const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
-  const selectedPoi = useSelectedPoi({ id: match.params.id, language });
+  const { selectedPoi, error } = useSelectedPoi({ id: match.params.id, language });
+
+  if (error) {
+    return null;
+  } 
 
   if (!selectedPoi) {
     return <Loading />;

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { string } from 'prop-types';
-import { matchShape } from 'found';
+import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
 import { useSelectedPoi } from './useSelectedPoi';
 
-const Page = ({ language, breakpoint }, { match }) => {
-  const selectedPoi = useSelectedPoi({ id: match.params.id, language });
+const Page = ({ language, breakpoint }, { match, router }) => {
+  const { selectedPoi, error } = useSelectedPoi({ id: match.params.id, language });
 
+  useEffect(() => {
+    if (error) {
+      // force 404 page
+      router.push('/explore/pois');
+    }
+  }, [error, router.push]);
+  
   if (!selectedPoi) {
     return <Loading />;
   }
@@ -17,7 +24,8 @@ const Page = ({ language, breakpoint }, { match }) => {
 };
 
 Page.contextTypes = {
-  match: matchShape.isRequired
+  match: matchShape.isRequired,
+  router: routerShape.isRequired,
 };
 
 Page.propTypes = {

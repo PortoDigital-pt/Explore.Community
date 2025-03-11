@@ -79,13 +79,9 @@ export function getRefPoint(origin, destination, location) {
 }
 
 export function getPoiById(id) {
-  return retryFetch(`/api/pois/${id}`, 2, 200).then(response =>
-    response.json()
-  );
+  return retryFetch(`/api/pois/${id}`, 2, 200).then(response => response.json());
 }
 
 export function getEventById(id) {
-  return retryFetch(`/api/events/${id}`, 2, 200).then(response =>
-    response.json()
-  );
+  return retryFetch(`/api/events/${id}`, 2, 200).then(response => response.json());
 }

@@ -1,6 +1,10 @@
 import React from 'react';
 import Route from 'found/Route';
-import { getDefault } from '../../util/routerUtils';
+import {
+  getDefault,
+  getComponentOrLoadingRenderer
+} from '../../util/routerUtils';
+import Error404 from '../../component/404';
 
 const explorePageComponents = {
   content: (
@@ -36,6 +40,7 @@ export default config => (
       {explorePageComponents}
     </Route>
     <Route path="pois">
+      <Route Component={Error404} />
       <Route path=":id">
         {{
           header: (
@@ -55,6 +60,7 @@ export default config => (
                   getDefault
                 )
               }
+              render={getComponentOrLoadingRenderer}
             />
           ),
           map: (
@@ -65,12 +71,14 @@ export default config => (
                   /* webpackChunkName: "pois-map" */ './pois/pageMap'
                 ).then(getDefault)
               }
+              render={getComponentOrLoadingRenderer}
             />
           )
         }}
       </Route>
     </Route>
     <Route path="events">
+      <Route Component={Error404} />
       <Route path=":id">
         {{
           header: (

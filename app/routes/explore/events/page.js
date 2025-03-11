@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { string } from 'prop-types';
-import { matchShape } from 'found';
+import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
 import { useSelectedEvent } from './useSelectedEvent';
 
-const Page = ({ language, breakpoint }, { match }) => {
-  const selectedEvent = useSelectedEvent({ id: match.params.id });
+const Page = ({ language, breakpoint }, { match, router }) => {
+  const { selectedEvent, error } = useSelectedEvent({ id: match.params.id });
+
+  useEffect(() => {
+    if (error) {
+      // force 404 page
+      router.push('/explore/events');
+    }
+  }, [error, router.push]);
 
   if (!selectedEvent) {
     return <Loading />;
@@ -21,7 +28,8 @@ const Page = ({ language, breakpoint }, { match }) => {
 };
 
 Page.contextTypes = {
-  match: matchShape.isRequired
+  match: matchShape.isRequired,
+  router: routerShape.isRequired,
 };
 
 Page.propTypes = {

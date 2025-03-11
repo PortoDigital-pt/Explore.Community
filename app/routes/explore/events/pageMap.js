@@ -11,7 +11,11 @@ import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedEvent } from './useSelectedEvent';
 
 const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
-  const selectedEvent = useSelectedEvent({ id: match.params.id });
+  const { selectedEvent, error } = useSelectedEvent({ id: match.params.id });
+
+  if (error) {
+    return null;
+  }
 
   if (!selectedEvent) {
     return <Loading />;
