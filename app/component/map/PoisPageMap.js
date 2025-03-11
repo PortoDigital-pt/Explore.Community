@@ -11,7 +11,10 @@ import MapWithTracking from './MapWithTracking';
 import SelectedStopPopup from './popups/SelectedStopPopup';
 import SelectedStopPopupContent from '../SelectedStopPopupContent';
 import withBreakpoint from '../../util/withBreakpoint';
+import { getPoiById } from '../../util/apiUtils';
 import Loading from '../Loading';
+import BackButton from '../BackButton';
+//import MapRoutingButton from '../MapRoutingButton';
 
 function PoisPageMap(
   { breakpoint, mapLayers },
@@ -20,16 +23,14 @@ function PoisPageMap(
   const [poiData, setPoiData] = useState(null);
   
   useEffect(()=> {
-    fetch(`/api/pois/${match.params.id}`)
-    .then(response => response.json())
-    .then(setPoiData);
+    getPoiById(match.params.id).then(setPoiData);
   }, [match.params.id]);
 
   if (!poiData) {
     return <Loading />;
   }
   console.log('Poi Data: ', poiData);
-  const leafletObjs = [];
+  //const leafletObjs = [];
 /* 
   if (breakpoint === 'large') {
     leafletObjs.push(
@@ -48,8 +49,11 @@ function PoisPageMap(
       lat={poiData.location.coordinates.lat}
       lon={poiData.location.coordinates.lon}
       mapLayers={mapLayers}
+      //topButtons={<MapRoutingButton stop={stop} />}
       showExplore
-     />
+     >
+      {[breakpoint !== 'large' && <BackButton key="poi-back"/>]}
+    </MapWithTracking>
   );
 }
 

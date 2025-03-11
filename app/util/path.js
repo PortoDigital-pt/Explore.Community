@@ -21,6 +21,9 @@ export const LOCAL_STORAGE_EMITTER_PATH = '/local-storage-emitter';
 export const EMBEDDED_SEARCH_PATH = '/search';
 export const PREFIX_RENTALVEHICLES = 'scooters';
 
+const PREFIX_POIS = 'pois';
+const PREFIX_EVENTS = 'events';
+
 export const PATH_PREFIXES = {
   PREFIX_ROUTES,
   PREFIX_NEARYOU,
@@ -32,7 +35,9 @@ export const PATH_PREFIXES = {
   PREFIX_ITINERARY_SUMMARY,
   PREFIX_DISRUPTION,
   PREFIX_TIMETABLE,
-  PREFIX_RENTALVEHICLES
+  PREFIX_RENTALVEHICLES,
+  PREFIX_POIS,
+  PREFIX_EVENTS
 };
 
 /**
