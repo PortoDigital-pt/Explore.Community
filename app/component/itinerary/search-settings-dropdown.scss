@@ -37,8 +37,8 @@
       }
 
       &.selected {
-        border: 1px solid #888;
-        background-color: #fff;
+        border: 1px solid $primary-dark;
+        background-color: $background-default;
 
         .selected-checkmark {
           color: $primary-color;

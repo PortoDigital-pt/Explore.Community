@@ -17,7 +17,7 @@ const AlertBanner = ({ alerts, linkAddress }, { config }) => {
     alert.alertSeverityLevel !== 'INFO'
       ? 'icon-icon_caution_white_exclamation'
       : 'icon-icon_info';
-  const iconColor = alert.alertSeverityLevel !== 'INFO' ? '#DC0451' : '#888';
+
   return (
     <Link
       className={`alert-banner-link ${alert.alertSeverityLevel.toLowerCase()}`}
@@ -27,7 +27,7 @@ const AlertBanner = ({ alerts, linkAddress }, { config }) => {
       to={`${linkAddress}`}
     >
       <div className="alert-container">
-        <Icon img={icon} color={iconColor} />
+        <Icon img={icon} className="alert-banner-caution-icon" />
         <div className="alert-text">
           <TruncateMarkup lines={2} ellipsis={<span>... </span>}>
             <div>{header || message}</div>

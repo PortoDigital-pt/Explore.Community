@@ -196,6 +196,14 @@ export default {
   },
 
   transportModes: {
+    airplane: {
+      availableForSelection: false,
+      defaultValue: false
+    },
+    rail: {
+      availableForSelection: false,
+      defaultValue: false
+    },
     ferry: {
       availableForSelection: MODES_FERRY_AVAILABLE_SELECTION === 'true',
       defaultValue: MODES_FERRY_DEFAULT === 'true'

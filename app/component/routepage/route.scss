@@ -1721,6 +1721,10 @@ nav.top-bar .title .route-number {
         border-radius: 0 8px 8px 0;
       }
 
+      button:only-of-type {
+        border-radius: 8px;
+      }
+
       button.is-active,
       button.is-active:hover {
         color: $grey-light-down;
@@ -1760,6 +1764,10 @@ nav.top-bar .title .route-number {
 
     button:last-of-type {
       border-radius: 0 8px 8px 0;
+    }
+
+    button:only-of-type {
+      border-radius: 8px;
     }
 
     button.is-active,
