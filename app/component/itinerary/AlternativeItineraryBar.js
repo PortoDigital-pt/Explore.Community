@@ -31,7 +31,7 @@ export default function AlternativeItineraryBar(
           )}
           {walkPlan?.edges?.length > 0 && (
             <StreetModeSelectorButton
-              icon="icon-icon_walk"
+              icon="icon-icon_walk_no_map"
               name={streetHash.walk}
               plan={walkPlan}
               onClick={selectStreetMode}

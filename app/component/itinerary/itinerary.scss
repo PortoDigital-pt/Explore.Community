@@ -3397,6 +3397,10 @@ $font-print-decrease: 0.7;
           svg {
             color: $grey-dark-down;
           }
+
+          svg.itinerary-search-icon {
+            color: $primary-dark;
+          }
         }
 
         &.wait {
@@ -3441,6 +3445,10 @@ $font-print-decrease: 0.7;
         .icon-container {
           svg {
             color: $grey-dark-down;
+          }
+
+          svg.caution {
+            color: $primary-dark;
           }
         }
       }

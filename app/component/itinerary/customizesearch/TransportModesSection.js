@@ -47,7 +47,7 @@ const TransportModesSection = ({ config }, { executeAction }) => {
               <div className="mode-icon">
                 <Icon
                   className={`${mode}-icon`}
-                  img={`icon-icon_${mode.toLowerCase()}`}
+                  img={`icon-icon_${mode.toLowerCase()}_with_background`}
                   color={
                     iconColors[
                       mode.toLowerCase() === 'subway'

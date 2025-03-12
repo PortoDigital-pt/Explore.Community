@@ -34,8 +34,6 @@ const RentalNetworkSelector = (
               <Icon
                 className={`${network.icon}-icon`}
                 img={`icon-icon_${network.icon}`}
-                height={1}
-                width={1}
               />
             </div>
             <span className="mode-name">

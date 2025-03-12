@@ -147,8 +147,8 @@ class SearchSettingsDropdown extends React.Component {
               {option.value === this.props.currentSelection.value && (
                 <Icon
                   className="selected-checkmark"
-                  img="icon-icon_check"
-                  viewBox="0 0 15 11"
+                  img="icon-icon_check_new"
+                  viewBox="0 0 24 24"
                 />
               )}
             </span>
