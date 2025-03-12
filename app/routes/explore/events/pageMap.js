@@ -4,12 +4,11 @@ import { matchShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import { mapLayerShape } from '../../../store/MapLayerStore';
 import MapWithTracking from '../../../component/map/MapWithTracking';
-import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
 import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedEvent } from './useSelectedEvent';
 
-const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
+const PageMap = ({ language, mapLayers }, { match }) => {
   const { selectedEvent, error } = useSelectedEvent({ id: match.params.id });
 
   if (error) {
@@ -40,13 +39,12 @@ PageMap.contextTypes = {
 };
 
 PageMap.propTypes = {
-  breakpoint: string.isRequired,
   language: string.isRequired,
   mapLayers: mapLayerShape.isRequired
 };
 
 export default connectToStores(
-  withBreakpoint(PageMap),
+  PageMap,
   ['PreferencesStore', 'MapLayerStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),
