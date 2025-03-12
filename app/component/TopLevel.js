@@ -179,6 +179,7 @@ class TopLevel extends React.Component {
               content={this.props.content}
               header={this.props.header}
               bckBtnVisible={false}
+              scrollable
             />
           )}
         />

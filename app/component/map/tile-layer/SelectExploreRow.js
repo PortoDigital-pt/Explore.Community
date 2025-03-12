@@ -10,10 +10,7 @@ const getName = (language, properties) => {
   return decodeURIComponent(name);
 };
 
-const SelectExploreRow = (
-  { language, type, properties },
-  { config }
-) => {
+const SelectExploreRow = ({ language, type, properties }, { config }) => {
   if (type === 'accesspoints') {
     return null;
   }

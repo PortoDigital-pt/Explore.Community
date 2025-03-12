@@ -6,7 +6,6 @@ import { mapLayerShape } from '../../../store/MapLayerStore';
 import MapWithTracking from '../../../component/map/MapWithTracking';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
-import BackButton from '../../../component/BackButton';
 import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedEvent } from './useSelectedEvent';
 
@@ -32,17 +31,7 @@ const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
         <MapRoutingButton stop={{ type: 'events', ...selectedEvent }} />
       }
       showExplore
-    >
-      {[
-        breakpoint !== 'large' && (
-          <BackButton
-            key={selectedEvent.id}
-            title={selectedEvent.name}
-            subtitle={selectedEvent.category}
-          />
-        )
-      ]}
-    </MapWithTracking>
+    />
   );
 };
 

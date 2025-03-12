@@ -822,6 +822,7 @@ const translations = {
   },
 
   en: {
+    'details': 'Check details',
     'know-more': 'Know more',
     'poi-tickets': 'Tickets',
     'opening-hours': 'Opening hours',
@@ -5202,6 +5203,7 @@ const translations = {
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
 
+    'details': 'Ver detalhes',
     'know-more': 'Saber mais',
     'poi-tickets': 'Bilhetes',
     'opening-hours': 'Horário de funcionamento',

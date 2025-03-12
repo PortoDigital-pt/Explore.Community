@@ -6,7 +6,6 @@ import { mapLayerShape } from '../../../store/MapLayerStore';
 import MapWithTracking from '../../../component/map/MapWithTracking';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
-import BackButton from '../../../component/BackButton';
 import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedPoi } from './useSelectedPoi';
 
@@ -33,17 +32,7 @@ const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
       mapLayers={mapLayers}
       topButtons={<MapRoutingButton stop={{ type: 'pois', ...selectedPoi }} />}
       showExplore
-    >
-      {[
-        breakpoint !== 'large' && (
-          <BackButton
-            key={selectedPoi.id}
-            title={selectedPoi.name}
-            subtitle={selectedPoi.category}
-          />
-        )
-      ]}
-    </MapWithTracking>
+    />
   );
 };
 
