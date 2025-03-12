@@ -410,7 +410,6 @@ export function drawStopIcon(
   let { width, height } = styles;
   width *= tile.scaleratio;
   height *= tile.scaleratio;
-
   const radius = width / 2;
   let x;
   let y;

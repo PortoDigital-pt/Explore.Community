@@ -33,7 +33,7 @@ const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
       }
       showExplore
     >
-      {[breakpoint !== 'large' && <BackButton key="event-back" />]}
+      {[breakpoint !== 'large' && <BackButton key={selectedEvent.id} title={selectedEvent.name} subtitle={selectedEvent.category}/>]}
     </MapWithTracking>
   );
 };

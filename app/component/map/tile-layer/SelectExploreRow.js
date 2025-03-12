@@ -1,5 +1,6 @@
 import React from 'react';
 import { string, oneOf, shape } from 'prop-types';
+import { matchShape } from 'found';
 import Link from 'found/Link';
 import Icon from '../../Icon';
 import { configShape } from '../../../util/shapes';
@@ -7,15 +8,15 @@ import { configShape } from '../../../util/shapes';
 const getName = (language, properties) => {
   const names = properties.name ?? JSON.parse(properties.name_lang);
   const name = typeof names === 'object' ? names[language] ?? names.pt : names;
-
+  console.log('Names: ', names);
   return decodeURIComponent(name);
 };
 
-const SelectExploreRow = ({ language, type, properties }, { config }) => {
+const SelectExploreRow = ({ language, type, properties }, { config, match }) => {
   if (type === 'accesspoints') {
     return null;
   }
-
+  console.log('properties: ', properties); 
   return (
     <Link
       className="stop-popup-choose-row"
@@ -45,7 +46,8 @@ SelectExploreRow.propTypes = {
 };
 
 SelectExploreRow.contextTypes = {
-  config: configShape.isRequired
+  config: configShape.isRequired,
+  match: matchShape.isRequired,
 };
 
 export default SelectExploreRow;

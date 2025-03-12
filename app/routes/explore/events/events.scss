@@ -1,8 +1,9 @@
-.events {
-  display: flex;
-  position: relative;
-  width: 100%;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: flex-start;
+@import '../common';
+
+.details-page {
+  .contacts {
+    div:nth-of-type(1) {
+      flex-direction: row;
+    }
+  }
 }

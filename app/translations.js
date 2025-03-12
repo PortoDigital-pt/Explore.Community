@@ -822,6 +822,10 @@ const translations = {
   },
 
   en: {
+    'know-more': 'Know more',
+    'poi-tickets': 'Tickets',
+    'opening-hours': 'Opening hours',
+    about: 'About',
     'about-service-feedback': 'About the service and feedback',
     'about-these-pages': 'About the web pages',
     'about-this-service': 'About the service',
@@ -5198,6 +5202,9 @@ const translations = {
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
 
+    'know-more': 'Saber mais',
+    'poi-tickets': 'Bilhetes',
+    'opening-hours': 'Horário de funcionamento',
     about: 'Sobre',
     'about-this-service': 'Sobre este serviço',
     accessibility: 'Acessibilidade',
@@ -5843,7 +5850,7 @@ const translations = {
     'ferry-external-with-route-number': 'Ferry {routeNumber} {headSign}',
     'few-seats-available': 'Poucos lugares disponíveis',
     finnish: 'Finlandês',
-    'free-of-charge': 'Grátis',
+    'free-of-charge': 'Gratuito',
     'from-bus': 'ônibus',
     'from-ferry': 'balsa',
     'from-rail': 'Comboio',

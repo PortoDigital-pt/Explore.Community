@@ -29,17 +29,19 @@ export default class BackButton extends React.Component {
   goBack = url => {
     const { router, match } = this.context;
     const { location } = match;
-
+    
     if (
       location.index > 0 ||
       // eslint-disable-next-line no-restricted-globals
       (history.length > 1 && this.props.fallback === 'back')
     ) {
+      console.log('1');
       router.go(-1);
     } else if (
       this.props.fallback === 'pop' &&
       location.pathname.split('/').length > 1
     ) {
+      console.log('2');
       const parts = location.pathname.split('/');
       parts.pop();
       const newLoc = {
@@ -48,6 +50,7 @@ export default class BackButton extends React.Component {
       };
       router.replace(newLoc);
     } else if (url) {
+      console.log('3');
       window.location.href = url;
     } else {
       router.push('/');

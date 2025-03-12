@@ -5,6 +5,7 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { setLanguage } from '../../../action/userPreferencesActions';
 import { configShape } from '../../../util/shapes';
+import configureMoment from '../../../util/configure-moment';
 
 const LanguageSelect = (
   { currentLanguage, classname },
@@ -26,7 +27,10 @@ const LanguageSelect = (
           aria-label={aria}
           className={classnames('language', classname, { selected })}
           type="button"
-          onClick={() => executeAction(setLanguage, language)}
+          onClick={() => {
+            configureMoment(language, config);
+            executeAction(setLanguage, language);
+          }}
         >
           {language}
         </button>

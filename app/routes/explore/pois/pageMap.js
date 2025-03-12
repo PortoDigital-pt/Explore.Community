@@ -31,7 +31,7 @@ const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
       topButtons={<MapRoutingButton stop={{ type: 'pois', ...selectedPoi }} />}
       showExplore
     >
-      {[breakpoint !== 'large' && <BackButton key="poi-back" />]}
+      {[breakpoint !== 'large' && <BackButton key={selectedPoi.id} title={selectedPoi.name} subtitle={selectedPoi.category} />]}
     </MapWithTracking>
   );
 };

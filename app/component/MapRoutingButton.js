@@ -39,15 +39,10 @@ export default function MapRoutingButton(
   const locationWithoutQuery = { ...location, query: {}, search: '' };
   const time = Math.floor(Date.now() / 1000);
   const onSelectLocation = (item, id) => {
-    let address;
-    if (item.type === 'pois' || item.type === 'events') {
-      address = item.address;
-    } else {
-      address =
-        item.name.toLowerCase() === 'scooter'
-          ? intl.formatMessage({ id: 'e-scooter' })
-          : item.name;
-    }
+    let address =
+      item.name.toLowerCase() === 'scooter'
+        ? intl.formatMessage({ id: 'e-scooter' })
+        : item.name;
     let newLocation;
     const place = {
       ...item,

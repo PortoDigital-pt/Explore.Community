@@ -21,10 +21,10 @@ export const poiToDto = poi => {
     location,
     name_lang
   } = poi;
-
+  
   return {
     id,
-    address: address.value.streetAddress,
+    address: decodeURIComponent(address.value.streetAddress),
     category: getLanguageValuesAndDecode(category_lang.value),
     contacts: getLanguageValuesAndDecode(contactPoint.value),
     description: getLanguageValuesAndDecode(description_lang.value),
@@ -52,8 +52,8 @@ export const eventToDto = event => {
 
   return {
     id,
-    address: address.value,
-    category: category?.value,
+    address: decodeURIComponent(address.value),
+    category: decodeURIComponent(category?.value),
     contacts: {
       image: contentUrl?.value ? decodeURIComponent(contentUrl.value) : null,
       website: webSite?.value ? decodeURIComponent(webSite.value) : null
