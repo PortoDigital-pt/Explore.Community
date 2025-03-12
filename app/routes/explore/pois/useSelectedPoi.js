@@ -4,9 +4,14 @@ import { getPoiById } from '../../../util/apiUtils';
 const dtoToPoi = (language, poiDto) => {
   return {
     ...poiDto,
-    category: poiDto.category?.[language] ?? poiDto.category?.pt ?? 'No information at all',
+    category:
+      poiDto.category?.[language] ??
+      poiDto.category?.pt ??
+      'No information at all',
     description:
-      poiDto.description?.[language] ?? poiDto.description?.pt ?? 'No information at all',
+      poiDto.description?.[language] ??
+      poiDto.description?.pt ??
+      'No information at all',
     name: poiDto.name?.[language] ?? poiDto.name?.pt ?? 'No information at all'
   };
 };
@@ -16,7 +21,9 @@ export const useSelectedPoi = ({ id, language }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getPoiById(id).then(poiDto => setSelectedPoi(dtoToPoi(language, poiDto))).catch(setError);
+    getPoiById(id)
+      .then(poiDto => setSelectedPoi(dtoToPoi(language, poiDto)))
+      .catch(setError);
   }, [id, language]);
 
   return { selectedPoi, error };

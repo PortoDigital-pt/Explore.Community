@@ -209,7 +209,7 @@ class TileLayerContainer extends GridLayer {
         if (feature.type === 'accesspoints') {
           return;
         }
-        
+
         this.context.router.push(
           `/explore/${feature.type}/${feature.properties.id}`
         );

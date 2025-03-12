@@ -11,11 +11,14 @@ import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedPoi } from './useSelectedPoi';
 
 const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
-  const { selectedPoi, error } = useSelectedPoi({ id: match.params.id, language });
+  const { selectedPoi, error } = useSelectedPoi({
+    id: match.params.id,
+    language
+  });
 
   if (error) {
     return null;
-  } 
+  }
 
   if (!selectedPoi) {
     return <Loading />;
@@ -31,7 +34,15 @@ const PageMap = ({ language, breakpoint, mapLayers }, { match }) => {
       topButtons={<MapRoutingButton stop={{ type: 'pois', ...selectedPoi }} />}
       showExplore
     >
-      {[breakpoint !== 'large' && <BackButton key={selectedPoi.id} title={selectedPoi.name} subtitle={selectedPoi.category} />]}
+      {[
+        breakpoint !== 'large' && (
+          <BackButton
+            key={selectedPoi.id}
+            title={selectedPoi.name}
+            subtitle={selectedPoi.category}
+          />
+        )
+      ]}
     </MapWithTracking>
   );
 };

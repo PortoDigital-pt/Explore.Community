@@ -21,7 +21,7 @@ export const poiToDto = poi => {
     location,
     name_lang
   } = poi;
-  
+
   return {
     id,
     address: decodeURIComponent(address.value.streetAddress),
