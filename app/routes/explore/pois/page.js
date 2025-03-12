@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, Fragment } from 'react';
 import { string } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
@@ -7,6 +7,7 @@ import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
 import BackButton from '../../../component/BackButton';
 import Icon from '../../../component/Icon';
+import ScrollableWrapper from '../../../component/ScrollableWrapper';
 import { useSelectedPoi } from './useSelectedPoi';
 import useModal from '../../../hooks/useModal';
 import DetailsModal from '../modal';
@@ -43,6 +44,7 @@ const Page = ({ language, breakpoint }, { match, router, intl }) => {
                 selectedPoi={selectedPoi}
                 intl={intl}
                 onBackBtnClick={close}
+                modal
               />
           </DetailsModal>
         </Suspense>
@@ -81,7 +83,7 @@ const MobileContent = ({ onDetails, intl, selectedPoi }) => {
       <div className="image" />
       <div className="details">
         <div className="contacts">
-          <div className='category'>{selectedPoi.category}</div>
+          <div>{selectedPoi.category}</div>
           <div>
             <Icon img="icon-time" viewBox="0 0 16 16" />
             <p>{`No info`}</p>
@@ -104,7 +106,9 @@ const MobileContent = ({ onDetails, intl, selectedPoi }) => {
   );
 };
 
-const Content = ({ selectedPoi, intl, onBackBtnClick }) => (
+const Content = ({ selectedPoi, intl, onBackBtnClick, modal = false }) => {
+const Wrapper = modal ? ScrollableWrapper : Fragment;
+ return (
   <>
     <BackButton
       key={selectedPoi.id}
@@ -112,7 +116,8 @@ const Content = ({ selectedPoi, intl, onBackBtnClick }) => (
       subtitle={selectedPoi.category}
       onBackBtnClick={onBackBtnClick}
     />
-    <div className="image" />
+      <Wrapper scrollable>
+      <div className="image" />
     <div className="details">
       <div className="description">
         <h3>{intl.messages.about}</h3>
@@ -143,5 +148,7 @@ const Content = ({ selectedPoi, intl, onBackBtnClick }) => (
         </div>
       </div>
     </div>
+      </Wrapper>
   </>
 );
+}

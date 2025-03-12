@@ -10,6 +10,7 @@
     padding-bottom: $mobile-navigation-bar-height;
 
     &.modal {
+        padding: 0;
         opacity: 1;
         margin-top: 0;
         height: 100%;
@@ -19,6 +20,25 @@
           rgba(0, 0, 0, 0.23) 0 3px 10px;
         //transition: transform 450ms cubic-bezier(0.23, 1, 0.32, 1);
         //transform: translate(0, 100%);
+
+        .back-button {
+            display: flex;
+            position: sticky;
+            width: 100%;
+        }
+
+        .before-scrollable-area {
+            margin-top: -72px;
+        }
+
+        .image {
+            margin-top: 0;
+            height: 240px;
+        }
+
+        .details {
+            margin-top: 24px;
+        }
     }
 
     .back-button {
@@ -146,6 +166,8 @@
             column-gap: 10px;
 
             .icon {
+                display: flex;
+                position: relative;
                 width: 24px;
                 height: 24px;
             }
@@ -173,16 +195,18 @@
             .details {
                 padding: 0;
 
-                .category {
-                    width: auto;
-                    display: flex;
-                    position: relative;
-                    padding: 4px 8px;
-                    border-radius: 8px;
-                    background-color: #E6E6E6;
-                    color: $primary-main;
-                    font-weight: $font-weight-bold;
-                    font-size: $font-size-label;
+                .contacts {
+                    div:nth-of-type(1) {
+                        width: fit-content;
+                        display: flex;
+                        position: relative;
+                        padding: 4px 8px;
+                        border-radius: 4px;
+                        background-color: #E6E6E6;
+                        color: $primary-main;
+                        font-weight: $font-weight-bold;
+                        font-size: $font-size-label;
+                    }
                 }
             }
         }
