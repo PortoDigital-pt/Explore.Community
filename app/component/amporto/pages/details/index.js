@@ -12,7 +12,7 @@ import Modal from '../../modal';
 import ScrollableWrapper from '../../../ScrollableWrapper';
 import BackButton from '../../../BackButton';
 
-const Page = (
+const DetailsPage = (
   {
     language,
     breakpoint,
@@ -88,13 +88,13 @@ const Page = (
   );
 };
 
-Page.contextTypes = {
+DetailsPage.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
   intl: intlShape.isRequired
 };
 
-Page.propTypes = {
+DetailsPage.propTypes = {
   language: string.isRequired,
   breakpoint: string.isRequired,
   location: locationShape.isRequired,
@@ -105,7 +105,7 @@ Page.propTypes = {
 };
 
 export default connectToStores(
-  withBreakpoint(Page),
+  withBreakpoint(DetailsPage),
   ['PreferencesStore', 'PositionStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),

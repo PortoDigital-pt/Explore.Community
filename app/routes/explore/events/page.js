@@ -8,17 +8,6 @@ import { showDistance } from '../../../util/geo-utils';
 import { useSelectedEvent } from './useSelectedEvent';
 import Details from '../../../component/amporto/pages/details';
 
-const EventsPage = () => (
-  <Details
-    useSelectedData={useSelectedEvent}
-    onErrorPath="/explore/events"
-    PageContent={PageContent}
-    MobileContent={MobileContent}
-  />
-);
-
-export default EventsPage;
-
 const getPrice = ({ priceFrom, priceTo }) => {
   if (priceFrom && priceTo) {
     return `${priceFrom} - ${priceTo} €`;
@@ -177,3 +166,14 @@ PageContent.propTypes = {
   selectedData: shape().isRequired,
   intl: intlShape.isRequired
 };
+
+const EventDetailsPage = () => (
+  <Details
+    useSelectedData={useSelectedEvent}
+    onErrorPath="/explore/events"
+    PageContent={PageContent}
+    MobileContent={MobileContent}
+  />
+);
+
+export default EventDetailsPage;

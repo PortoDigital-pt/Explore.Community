@@ -6,17 +6,6 @@ import { showDistance } from '../../../util/geo-utils';
 import { useSelectedPoi } from './useSelectedPoi';
 import Details from '../../../component/amporto/pages/details';
 
-const PoisPage = () => (
-  <Details
-    useSelectedData={useSelectedPoi}
-    onErrorPath="/explore/pois"
-    PageContent={PageContent}
-    MobileContent={MobileContent}
-  />
-);
-
-export default PoisPage;
-
 const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
   <div className="mobile-view">
     <div className="header">
@@ -111,3 +100,14 @@ PageContent.propTypes = {
   selectedData: shape().isRequired,
   intl: intlShape.isRequired
 };
+
+const PoiDetailsPage = () => (
+  <Details
+    useSelectedData={useSelectedPoi}
+    onErrorPath="/explore/pois"
+    PageContent={PageContent}
+    MobileContent={MobileContent}
+  />
+);
+
+export default PoiDetailsPage;
