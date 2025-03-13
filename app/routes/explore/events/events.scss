@@ -1,9 +1,11 @@
-// @import '../common'; TODO: check if needed
+ @import '../common';
 
 .details-page {
   .contacts {
-    div:nth-of-type(1) {
+    .dates {
       flex-direction: row;
+      flex-wrap: wrap;
+      row-gap: 8px;
     }
   }
 }

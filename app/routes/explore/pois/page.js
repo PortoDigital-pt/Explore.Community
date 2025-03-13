@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, Fragment } from 'react';
-import { string } from 'prop-types';
+import { string, func, shape, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
@@ -85,7 +85,7 @@ const MobileContent = ({ onDetails, intl, selectedPoi }) => (
         <div className="image" />
         <div className="details">
           <div className="contacts">
-            <div>{selectedPoi.category}</div>
+            <div className="category">{selectedPoi.category}</div>
             <div>
               <Icon img="icon-time" viewBox="0 0 16 16" />
               <p>No info</p>
@@ -102,16 +102,22 @@ const MobileContent = ({ onDetails, intl, selectedPoi }) => (
         </div>
       </div>
       <div className="bottom">
-        <button type="button" onClick={onDetails}>
+        <button type="button" onClick={onDetails} aria-label={intl.messages.details}>
           {intl.messages.details}
         </button>
       </div>
     </div>
 );
 
+MobileContent.propTypes = {
+  onDetails: func.isRequired,
+  intl: intlShape.isRequired,
+  selectedPoi: shape().isRequired
+}; 
+
 const Content = ({ selectedPoi, intl, onBackBtnClick, modal = false }) => {
   const Wrapper = modal ? ScrollableWrapper : Fragment;
-  
+
   return (
     <>
       <BackButton
@@ -158,3 +164,10 @@ const Content = ({ selectedPoi, intl, onBackBtnClick, modal = false }) => {
     </>
   );
 };
+
+Content.propTypes = {
+  selectedPoi: shape().isRequired,
+  intl: intlShape.isRequired,
+  onBackBtnClick: func,
+  modal: bool
+}; 
