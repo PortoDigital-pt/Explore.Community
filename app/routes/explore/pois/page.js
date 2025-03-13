@@ -1,7 +1,9 @@
-import React, { Suspense, useEffect, Fragment } from 'react';
-import { string, func, shape, bool } from 'prop-types';
+import React, { Suspense, useEffect, useMemo, Fragment } from 'react';
+import { string, func, shape, bool, number } from 'prop-types';
+import distance from '@digitransit-search-util/digitransit-search-util-distance';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
+import { locationShape } from '../../../util/shapes';
 import { connectToStores } from 'fluxible-addons-react';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
@@ -18,7 +20,15 @@ const Page = ({ language, breakpoint, location }, { match, router, intl }) => {
     id: match.params.id,
     language
   });
-  console.log('Location: ', location);
+
+  const distanceToPoi = useMemo(() => {
+    if (!selectedPoi || !location.hasLocation) {
+      return null;
+    }
+
+    return distance(selectedPoi, location);
+  }, [location.hasLocation, selectedPoi]);
+
   useEffect(() => {
     if (error) {
       // force 404 page
@@ -35,7 +45,7 @@ const Page = ({ language, breakpoint, location }, { match, router, intl }) => {
       {breakpoint === 'large' ? (
         <Content selectedPoi={selectedPoi} intl={intl} />
       ) : (
-        <MobileContent onDetails={open} selectedPoi={selectedPoi} intl={intl} />
+        <MobileContent onDetails={open} selectedPoi={selectedPoi} intl={intl} distance={distanceToPoi}/>
       )}
       {isOpen && (
         <Suspense fallback="">
@@ -61,7 +71,8 @@ Page.contextTypes = {
 
 Page.propTypes = {
   language: string.isRequired,
-  breakpoint: string.isRequired
+  breakpoint: string.isRequired,
+  location: locationShape.isRequired
 };
 
 export default connectToStores(
@@ -73,14 +84,17 @@ export default connectToStores(
   })
 );
 
-const MobileContent = ({ onDetails, intl, selectedPoi }) => (
+const MobileContent = ({ onDetails, intl, selectedPoi, distance }) => (
     <div className="mobile-view">
       <div className="header">
-        <Icon
-          img="icon-explore-icon_pois_with_background"
-          viewBox="0 0 44 44"
-        />
-        <h3>{selectedPoi.name}</h3>
+        <div className="top">
+          <Icon
+            img="icon-explore-icon_pois_with_background"
+            viewBox="0 0 44 44"
+          />
+          <h3>{selectedPoi.name}</h3>
+        </div>
+        <div className='distance'>{distance && `at ${distance} m`}</div>
       </div>
       <div className="content">
         <div className="image" />
@@ -113,7 +127,8 @@ const MobileContent = ({ onDetails, intl, selectedPoi }) => (
 MobileContent.propTypes = {
   onDetails: func.isRequired,
   intl: intlShape.isRequired,
-  selectedPoi: shape().isRequired
+  selectedPoi: shape().isRequired,
+  distance: number
 }; 
 
 const Content = ({ selectedPoi, intl, onBackBtnClick, modal = false }) => {

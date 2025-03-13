@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useMemo, Suspense, Fragment } from 'react';
 import moment from 'moment';
-import { string, func, shape, bool } from 'prop-types';
+import { string, func, shape, bool, number } from 'prop-types';
 import distance from '@digitransit-search-util/digitransit-search-util-distance';
 import { intlShape } from 'react-intl';
 import { locationShape } from '../../../util/shapes';
@@ -52,7 +52,7 @@ const Page = ({ language, breakpoint, location }, { match, router, intl }) => {
         {breakpoint === 'large' ? (
         <Content selectedEvent={selectedEvent} intl={intl} />
       ) : (
-        <MobileContent onDetails={open} selectedEvent={selectedEvent} intl={intl} />
+        <MobileContent onDetails={open} selectedEvent={selectedEvent} intl={intl} distance={distanceToEvent}/>
       )}
       {isOpen && (
         <Suspense fallback="">
@@ -143,14 +143,17 @@ DateSection.propTypes = {
   endDate: string
 };
 
-const MobileContent = ({ onDetails, intl, selectedEvent }) => (
+const MobileContent = ({ onDetails, intl, selectedEvent, distance }) => (
   <div className="mobile-view">
     <div className="header">
-      <Icon
-        img="icon-explore-icon_events_with_background"
-        viewBox="0 0 44 44"
-      />
-      <h3>{selectedEvent.name}</h3>
+        <div className="top">
+          <Icon
+            img="icon-explore-icon_events_with_background"
+            viewBox="0 0 44 44"
+          />
+          <h3>{selectedEvent.name}</h3>
+        </div>
+        <div className='distance'>{distance && `at ${distance} m`}</div>
     </div>
     <div className="content">
       <div className="image" />
@@ -185,7 +188,8 @@ const MobileContent = ({ onDetails, intl, selectedEvent }) => (
 MobileContent.propTypes = {
   onDetails: func.isRequired,
   intl: intlShape.isRequired,
-  selectedEvent: shape().isRequired
+  selectedEvent: shape().isRequired,
+  distance: number
 }; 
 
 const Content = ({ selectedEvent, intl, onBackBtnClick, modal = false }) => {
