@@ -94,7 +94,7 @@ const MobileContent = ({ onDetails, intl, selectedPoi, distance }) => (
           />
           <h3>{selectedPoi.name}</h3>
         </div>
-        <div className='distance'>{distance && `at ${distance} m`}</div>
+        <div className='distance'>{distance && `${intl.messages['at-distance']} ${distance} m`}</div>
       </div>
       <div className="content">
         <div className="image" />

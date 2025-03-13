@@ -822,6 +822,7 @@ const translations = {
   },
 
   en: {
+    'at-distance': 'at',
     details: 'Check details',
     'know-more': 'Know more',
     'poi-tickets': 'Tickets',
@@ -5203,6 +5204,7 @@ const translations = {
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
 
+    'at-distance': 'a',
     details: 'Ver detalhes',
     'know-more': 'Saber mais',
     'poi-tickets': 'Bilhetes',
