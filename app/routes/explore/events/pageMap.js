@@ -9,25 +9,25 @@ import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedEvent } from './useSelectedEvent';
 
 const PageMap = ({ language, mapLayers }, { match }) => {
-  const { selectedEvent, error } = useSelectedEvent({ id: match.params.id });
+  const { selectedData, error } = useSelectedEvent({ id: match.params.id });
 
   if (error) {
     return null;
   }
 
-  if (!selectedEvent) {
+  if (!selectedData) {
     return <Loading />;
   }
 
   return (
     <MapWithTracking
-      hilightedStops={[selectedEvent.id]}
+      hilightedStops={[selectedData.id]}
       zoom={18}
-      lat={selectedEvent.lat}
-      lon={selectedEvent.lon}
+      lat={selectedData.lat}
+      lon={selectedData.lon}
       mapLayers={mapLayers}
       topButtons={
-        <MapRoutingButton stop={{ type: 'events', ...selectedEvent }} />
+        <MapRoutingButton stop={{ type: 'events', ...selectedData }} />
       }
       showExplore
     />

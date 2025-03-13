@@ -134,12 +134,19 @@
             flex-direction: column;
             row-gap: 8px;
 
+            .dates {
+                flex-direction: row;
+                flex-wrap: wrap;
+                row-gap: 8px;
+            }
+
             div {
                 display: flex;
                 position: relative;
                 flex-direction: row;
                 column-gap: 8px;
                 justify-content: flex-start;
+                align-items: center;
 
                 .icon {
                     display: flex;

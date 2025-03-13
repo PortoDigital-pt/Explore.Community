@@ -122,6 +122,12 @@ export function displayDistance(meters, config, formatNumber) {
   return `${Math.round(meters / 10000) * 10} km`; // tens of kilometers
 }
 
+export function showDistance(meters) {
+  const distance = Math.round(meters);
+
+  return `${distance} ${distance >= 1000 ? 'km' : 'm'}`;
+}
+
 /* export function displayDistance2(meters) {
   return `${(meters / 1000).toFixed(1)}  km`;
 }

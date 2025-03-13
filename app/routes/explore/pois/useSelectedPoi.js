@@ -26,5 +26,5 @@ export const useSelectedPoi = ({ id, language }) => {
       .catch(setError);
   }, [id, language]);
 
-  return { selectedPoi, error };
+  return { selectedData: selectedPoi, error };
 };

@@ -431,6 +431,7 @@ class TileLayerContainer extends GridLayer {
         ) {
           showPopup = false;
         }
+
         popup = (
           <Popup
             key={this.state.coords.toString()}

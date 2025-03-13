@@ -9,7 +9,7 @@ import MapRoutingButton from '../../../component/MapRoutingButton';
 import { useSelectedPoi } from './useSelectedPoi';
 
 const PageMap = ({ language, mapLayers }, { match }) => {
-  const { selectedPoi, error } = useSelectedPoi({
+  const { selectedData, error } = useSelectedPoi({
     id: match.params.id,
     language
   });
@@ -18,18 +18,18 @@ const PageMap = ({ language, mapLayers }, { match }) => {
     return null;
   }
 
-  if (!selectedPoi) {
+  if (!selectedData) {
     return <Loading />;
   }
 
   return (
     <MapWithTracking
-      hilightedStops={[selectedPoi.id]}
+      hilightedStops={[selectedData.id]}
       zoom={18}
-      lat={selectedPoi.lat}
-      lon={selectedPoi.lon}
+      lat={selectedData.lat}
+      lon={selectedData.lon}
       mapLayers={mapLayers}
-      topButtons={<MapRoutingButton stop={{ type: 'pois', ...selectedPoi }} />}
+      topButtons={<MapRoutingButton stop={{ type: 'pois', ...selectedData }} />}
       showExplore
     />
   );

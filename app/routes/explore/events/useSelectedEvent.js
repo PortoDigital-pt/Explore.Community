@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getEventById } from '../../../util/apiUtils';
 
-export const useSelectedEvent = ({ id }) => {
+export const useSelectedEvent = ({ id, language }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [error, setError] = useState(null);
 
@@ -9,5 +9,5 @@ export const useSelectedEvent = ({ id }) => {
     getEventById(id).then(setSelectedEvent).catch(setError);
   }, [id]);
 
-  return { selectedEvent, error };
+  return { selectedData: selectedEvent, error };
 };
