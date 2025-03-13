@@ -1,8 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, Suspense, Fragment } from 'react';
+import React, { useEffect, useMemo, Suspense, Fragment } from 'react';
 import moment from 'moment';
 import { string, func, shape, bool } from 'prop-types';
+import distance from '@digitransit-search-util/digitransit-search-util-distance';
 import { intlShape } from 'react-intl';
+import { locationShape } from '../../../util/shapes';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import withBreakpoint from '../../../util/withBreakpoint';
@@ -22,9 +24,17 @@ const getPrice = ({ priceFrom, priceTo }) => {
   return priceFrom || priceTo ? `${priceFrom ?? priceTo} €` : null;
 };
 
-const Page = ({ language, breakpoint }, { match, router, intl }) => {
+const Page = ({ language, breakpoint, location }, { match, router, intl }) => {
   const { isOpen, open, close } = useModal();
   const { selectedEvent, error } = useSelectedEvent({ id: match.params.id });
+
+  const distanceToEvent = useMemo(() => {
+    if (!selectedEvent || !location.hasLocation) {
+      return null;
+    }
+
+    return distance(selectedEvent, location);
+  }, [location.hasLocation, selectedEvent]);
 
   useEffect(() => {
     if (error) {
@@ -36,7 +46,7 @@ const Page = ({ language, breakpoint }, { match, router, intl }) => {
   if (!selectedEvent) {
     return <Loading />;
   }
-
+  console.log('Distance: ', distanceToEvent);
   return (
     <section className="details-page">
         {breakpoint === 'large' ? (
@@ -64,19 +74,21 @@ const Page = ({ language, breakpoint }, { match, router, intl }) => {
 Page.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 Page.propTypes = {
   language: string.isRequired,
-  breakpoint: string.isRequired
+  breakpoint: string.isRequired,
+  location: locationShape.isRequired
 };
 
 export default connectToStores(
   withBreakpoint(Page),
-  ['PreferencesStore', 'MapLayerStore'],
+  ['PreferencesStore', 'PositionStore'],
   ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage()
+    language: getStore('PreferencesStore').getLanguage(),
+    location: getStore('PositionStore').getLocationState()
   })
 );
 

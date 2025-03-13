@@ -12,13 +12,13 @@ import { useSelectedPoi } from './useSelectedPoi';
 import useModal from '../../../hooks/useModal';
 import DetailsModal from '../modal';
 
-const Page = ({ language, breakpoint }, { match, router, intl }) => {
+const Page = ({ language, breakpoint, location }, { match, router, intl }) => {
   const { isOpen, open, close } = useModal();
   const { selectedPoi, error } = useSelectedPoi({
     id: match.params.id,
     language
   });
-
+  console.log('Location: ', location);
   useEffect(() => {
     if (error) {
       // force 404 page
@@ -66,9 +66,10 @@ Page.propTypes = {
 
 export default connectToStores(
   withBreakpoint(Page),
-  ['PreferencesStore', 'MapLayerStore'],
+  ['PreferencesStore', 'PositionStore'],
   ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage()
+    language: getStore('PreferencesStore').getLanguage(),
+    location: getStore('PositionStore').getLocationState()
   })
 );
 
