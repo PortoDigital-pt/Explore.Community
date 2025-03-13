@@ -61,6 +61,7 @@ class CustomizeSearch extends React.Component {
 
   render() {
     const { config, intl } = this.context;
+    // eslint-disable-next-line no-unused-vars
     const { onToggleClick, customizedSettings, mobile } = this.props;
     // Merge default and customized settings
     const currentSettings = { ...this.defaultSettings, ...customizedSettings };
@@ -78,42 +79,42 @@ class CustomizeSearch extends React.Component {
         return a.split('').reverse() > b.split('').reverse() ? 1 : -1;
       });
     }
-    const backIcon = mobile ? (
-      <Icon className="close-icon" img="icon-icon_arrow-collapse--left" />
-    ) : (
-      <Icon className="close-icon" img="icon-icon_close" />
-    );
+
+    const backIcon = <Icon className="close-icon" img="icon-icon_close" />;
+
     return (
       <form className="customize-search">
-        <button
-          aria-label={intl.formatMessage({
-            id: 'close-settings'
-          })}
-          type="button"
-          className="close-offcanvas"
-          onClick={() => {
-            // Move focus back to the button that opened settings window
-            const openSettingsButton = document.querySelector(
-              '.open-advanced-settings-window-button'
-            );
-            if (openSettingsButton) {
-              openSettingsButton.focus();
-            }
-            onToggleClick();
-          }}
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus
-        >
-          {backIcon}
-        </button>
-        <div className="settings-option-container">
-          <h2>
+        <span className="header-btn-close-container">
+          <span className="header-btn-close-button">
+            <button
+              aria-label={intl.formatMessage({
+                id: 'close-settings'
+              })}
+              type="button"
+              className="close-offcanvas"
+              onClick={() => {
+                // Move focus back to the button that opened settings window
+                const openSettingsButton = document.querySelector(
+                  '.open-advanced-settings-window-button'
+                );
+                if (openSettingsButton) {
+                  openSettingsButton.focus();
+                }
+                onToggleClick();
+              }}
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus
+            >
+              {backIcon}
+            </button>
+          </span>
+          <span className="header-btn-close-title">
             {intl.formatMessage({
               id: 'settings',
               defaultMessage: 'Settings'
             })}
-          </h2>
-        </div>
+          </span>
+        </span>
         <ScrollableWrapper>
           <div className="settings-section compact-settings-section">
             <WalkingOptionsSection

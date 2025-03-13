@@ -57,7 +57,7 @@
     .close-offcanvas {
       top: 1.5em;
       left: 0.9375em;
-      border: solid 1px #ddd;
+      border: none;
       height: 40px;
       width: 40px;
       border-radius: 50%;
@@ -116,11 +116,112 @@
   }
 }
 
+.mobile,
+.desktop {
+  .customize-search {
+    .citybike-icon {
+      svg {
+        width: 24px !important;
+        height: 24px !important;
+      }
+    }
+
+    .settings-section {
+      background: $background-default;
+
+      fieldset {
+        legend {
+          background: $background-default;
+        }
+      }
+
+      svg.selected-checkmark {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    span.accessibility-label,
+    .toggle-label-text,
+    .settings-dropdown-label-text {
+      color: $grey-dark-down !important;
+      font-family: $font-family !important;
+      font-size: 0.9375rem !important;
+      font-style: normal !important;
+      font-weight: 700 !important;
+      line-height: 16px !important;
+    }
+
+    .header-btn-close-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
+      background-color: $background-default;
+      height: 50px;
+      margin-bottom: 16px;
+
+      .header-btn-close-button {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        align-self: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        min-height: 35px;
+        flex-basis: 0;
+
+        button {
+          all: initial;
+          width: 100%;
+          height: 100%;
+          min-height: 35px;
+
+          .icon-container {
+            display: flex;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+
+            @media screen and (min-width: 899px) {
+              display: block;
+              position: relative;
+              top: 4px;
+            }
+
+            svg {
+              color: $primary-dark;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+
+      .header-btn-close-title {
+        display: flex;
+        color: $primary-dark;
+        flex-grow: 10;
+        justify-content: left;
+        align-items: center;
+        text-align: center;
+        font-family: $font-family;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
 .customize-search {
   height: auto;
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: $background-default;
   color: $black;
   line-height: 35px;
   position: relative;
@@ -191,8 +292,8 @@
 }
 
 .settings-section {
-  border-bottom: 10px solid #f4f4f5;
-  background: #fff;
+  border-bottom: 2px solid #f4f4f5;
+  background: $background-default;
   padding-bottom: 0.5em;
 
   .settings-option-container:last-child {
@@ -242,14 +343,17 @@
 }
 
 .settings-header {
-  font-size: $font-size-normal;
-  color: $gray;
-  font-weight: normal;
   padding: 0 0 0 1em;
+  color: $grey-dark-up;
+  font-family: $font-family;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
 }
 
 .mode-option-container {
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 2px solid #e3e3e3;
   font-size: $font-size-small;
   flex-wrap: wrap;
 
@@ -284,7 +388,7 @@
 
     .icon {
       font-size: 2.5em;
-      margin-top: 0.2em;
+      margin-top: 0.1em;
     }
 
     .mode-icon {
@@ -296,6 +400,11 @@
         height: 16px;
         margin-left: 0.1em;
         margin-top: -0.8em;
+      }
+
+      svg.citybike-icon {
+        width: 60px !important;
+        height: 60px !important;
       }
     }
 
@@ -440,7 +549,7 @@
 
 .settings-mode-option-container {
   min-height: 51px;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 1px solid $grey-light-down;
   margin-left: 3.2em;
 
   .settings-mode-option-label {
@@ -450,7 +559,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0;
-    background: unset;
+    background: $background-default;
     width: 100%;
     font-size: unset;
     letter-spacing: inherit;
