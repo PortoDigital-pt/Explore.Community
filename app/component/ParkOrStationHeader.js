@@ -41,44 +41,43 @@ const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
     });
   }, []);
 
-  const { name, stationId } = parkOrStation;
+  // eslint-disable-next-line no-unused-vars
+  const { stationId } = parkOrStation;
   const parkHeaderId = parkType === 'bike' ? 'bike-park' : 'car-park';
   const isRentalStation = stationId;
 
   return (
-    <div className="bike-station-header">
-      <div className="header">
-        <h1>{name}</h1>
-        <div className="bike-station-sub-header">
-          <FormattedMessage
-            id={isRentalStation ? 'citybike-station-no-id' : parkHeaderId}
-          />
-          {isRentalStation && hasVehicleRentalCode(stationId) && (
-            <StopCode code={getIdWithoutFeed(stationId)} />
-          )}
-          {zoneId && (
-            <span className="bike-station-zone-icon">
-              <ZoneIcon zoneId={zoneId.toUpperCase()} />
-            </span>
-          )}
-        </div>
+    <>
+      <div className="rental-bike-header-item title">
+        <FormattedMessage
+          id={isRentalStation ? 'citybike-station-no-id' : parkHeaderId}
+        />
+        {isRentalStation && hasVehicleRentalCode(stationId) && (
+          <StopCode code={getIdWithoutFeed(stationId)} />
+        )}
+        {zoneId && (
+          <span className="bike-station-zone-icon">
+            <ZoneIcon zoneId={zoneId.toUpperCase()} />
+          </span>
+        )}
       </div>
-      {isRentalStation && (
-        <LazilyLoad modules={modules}>
-          {({ FavouriteVehicleRentalStationContainer }) => (
-            <FavouriteVehicleRentalStationContainer
-              vehicleRentalStation={parkOrStation}
-            />
-          )}
-        </LazilyLoad>
-      )}
-    </div>
+      <div className="rental-bike-header-item share-and-favorite">
+        {isRentalStation && (
+          <LazilyLoad modules={modules}>
+            {({ FavouriteVehicleRentalStationContainer }) => (
+              <FavouriteVehicleRentalStationContainer
+                vehicleRentalStation={parkOrStation}
+              />
+            )}
+          </LazilyLoad>
+        )}
+      </div>
+    </>
   );
 };
 
 ParkOrBikeStationHeader.propTypes = {
   parkOrStation: PropTypes.shape({
-    name: PropTypes.string.isRequired,
     stationId: PropTypes.string,
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired

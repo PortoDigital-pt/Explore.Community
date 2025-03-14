@@ -150,6 +150,7 @@ $border-radius-rounded: 30px;
     width: 30px;
     stroke: #ddd;
     fill: white;
+    color: $primary-dark;
 
     &.selected {
       stroke: transparent;
