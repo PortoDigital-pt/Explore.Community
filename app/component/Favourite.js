@@ -125,8 +125,8 @@ export default function Favourite(
         })}
         img={
           favourite && (!requireLoggedIn || isLoggedIn)
-            ? 'icon-icon_star-with-circle'
-            : 'icon-icon_star-unselected'
+            ? 'icon-favorite-on_with_background'
+            : 'icon-favorite-off_with_background'
         }
       />
       {renderLoginModal()}

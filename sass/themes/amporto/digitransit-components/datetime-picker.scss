@@ -131,13 +131,13 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
   .combobox-left {
     position: relative;
     margin-right: 4px;
-    width: 115px; 
+    width: 115px;
   }
 
   .combobox-right {
     position: relative;
     margin-left: 4px;
-    width: 110px; 
+    width: 110px;
   }
 
   .departure-or-arrival-container {
@@ -161,7 +161,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     cursor: pointer;
     border: 1px solid $grey-light-down;
     font-weight: $font-weight-regular;
-    border-radius: 0px 8px 8px 0px;
+    border-radius: 0 8px 8px 0;
     font-size: $font-size-base;
     align-items: center;
     justify-content: center;
@@ -177,7 +177,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     }
 
     &.left {
-      border-radius: 8px 0px 0px 8px;
+      border-radius: 8px 0 0 8px;
     }
   }
 
@@ -283,7 +283,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     position: relative;
     display: flex;
     height: 40px;
-   
+
     // use global scope because react-select is not quite compatible with csss module local scoping
     :global .datetimepicker-select__control {
       display: flex;
@@ -349,7 +349,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
       max-height: 250px;
       border-radius: 8px;
       box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.06);
-      border: 1px rgba(0, 0, 0, 0.30) solid;
+      border: 1px rgba(0, 0, 0, 0.3) solid;
       overflow: hidden;
 
       :global .datetimepicker-select__menu-list {
@@ -358,7 +358,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
 
         :global .datetimepicker-select__option {
           height: 50px;
-          border-bottom: 0.5px rgba(0, 0, 0, 0.30) solid;
+          border-bottom: 0.5px rgba(0, 0, 0, 0.3) solid;
           padding: 13px 0 0 12px;
           font-weight: $font-weight-regular;
           font-size: $font-size-l;

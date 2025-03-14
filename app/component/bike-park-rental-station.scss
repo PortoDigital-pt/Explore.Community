@@ -2,7 +2,7 @@
   .bike-station-page-container {
     height: calc(100% - 20rem);
     padding: 18px 1.563em 2em;
-    background-color: white;
+    background-color: $background-default;
     border-radius: 15px 15px 0 0;
     box-shadow: 0 -5px 5px 0 rgba(0, 0, 0, 0.2);
     position: relative;
@@ -110,7 +110,173 @@
 }
 
 .bike-station-page-container {
-  margin: 0 3.75em;
+  display: flex;
+  flex-flow: column wrap;
+  margin: 27px 12px 12px 12px;
+  gap: 10px;
+  padding: 5px;
+
+  .rental-bike-header-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    gap: 2px;
+
+    .row {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      .rental-bike-header-item {
+        display: flex;
+        margin: 0;
+
+        &.bike-icon {
+          max-width: 30px;
+          min-width: 30px;
+
+          svg {
+            display: flex;
+            position: relative;
+            top: 8px;
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        &.title {
+          flex-grow: 8;
+          color: $primary-color;
+          font-family: $font-family;
+          font-size: $font-size-l;
+          font-style: normal;
+          font-weight: $font-weight-bold;
+        }
+
+        &.share-and-favorite {
+          justify-content: flex-end;
+          align-items: center;
+          max-width: 80px !important;
+          min-width: 80px;
+
+          button.favourite-icon {
+            span {
+              display: flex;
+              width: 35px;
+              height: 35px;
+
+              svg {
+                position: relative;
+                top: 4px;
+                left: 3px;
+                width: 30px;
+                height: 30px;
+                color: $primary-dark;
+              }
+            }
+          }
+        }
+
+        &.distance {
+          display: flex;
+          align-items: flex-start;
+          padding-left: 30px;
+          min-height: 16px;
+          font-size: $font-size-s;
+          color: $primary-color;
+          line-height: 16px;
+          font-weight: $font-weight-regular;
+        }
+      }
+    }
+  }
+
+  .rental-bike-content-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    gap: 2px;
+
+    .row {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      .rental-bike-content-item {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        flex-basis: 1;
+        margin: 0;
+
+        &.label {
+          flex-grow: 10;
+          justify-content: flex-start;
+          align-items: center;
+          color: $grey-dark-down;
+          font-family: $font-family;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: $font-weight-book;
+          line-height: normal;
+        }
+
+        &.value {
+          flex-grow: 1;
+          justify-content: flex-end;
+          align-items: center;
+
+          span {
+            border: 1px solid whitesmoke;
+            padding: 2px;
+            text-align: center;
+            max-width: 35px;
+            min-width: 35px;
+            background-color: #e6e6e6;
+            border-radius: 2px;
+            color: $grey-dark-down;
+            font-family: $font-family;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: $font-weight-book;
+            line-height: normal;
+          }
+        }
+      }
+    }
+  }
+
+  .rental-bike-button-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+
+    .rental-bike-btn-item {
+      display: flex;
+      min-width: 100%;
+
+      a {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        min-width: 100%;
+        text-decoration: none;
+        border-radius: 8px;
+        border: 2px solid $primary-dark;
+        background: $primary-contrastText;
+        color: $primary-dark;
+        font-family: $font-family;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: $font-weight-medium;
+        line-height: 24px;
+      }
+    }
+  }
 
   .citybike-full-station-guide {
     display: grid;
