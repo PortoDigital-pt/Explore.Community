@@ -74,7 +74,7 @@
 
   .stop-page {
     &.card-header {
-      padding: 0 16px 0 16px;
+      padding: 20px 16px 0 16px;
       z-index: 2;
       position: relative;
     }
@@ -88,6 +88,7 @@
       font-size: 18px;
       line-height: 22px;
       letter-spacing: -0.03em;
+      color: $primary-color;
     }
 
     .card-sub-header {

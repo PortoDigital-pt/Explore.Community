@@ -23,7 +23,7 @@ const noBottomSheetResetAtContentChange = [
   PREFIX_ITINERARY_SUMMARY
 ];
 
-const BOTTOM_SHEET_OFFSET = 20;
+const BOTTOM_SHEET_OFFSET = 0;
 const topBarHeight = 64;
 
 function getMiddlePosition() {
@@ -93,9 +93,15 @@ const MobileView = forwardRef(
 
     const onScroll = e => {
       if (e.target.className === 'drawer-container') {
+        if (e.target.scrollTop < 40) {
+            scrollRef.current.scrollTop = 40;
+            return;
+        }
+
         mapRef?.setBottomPadding(e.target.scrollTop);
         setBottomPadding(e.target.scrollTop);
       }
+      
     };
 
     const changeBottomPadding = (padding, slowly) => {
