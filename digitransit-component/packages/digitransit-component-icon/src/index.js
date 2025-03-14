@@ -14,7 +14,7 @@ import Rail from './assets/rail.svg';
 import School from './assets/school.svg';
 import Shopping from './assets/shopping.svg';
 import Sport from './assets/sport.svg';
-import Star from './assets/star.svg';
+import Star from './assets/amporto/star.svg';
 import Station from './assets/station.svg';
 import Subway from './assets/amporto/subway.svg';
 import Tram from './assets/tram.svg';

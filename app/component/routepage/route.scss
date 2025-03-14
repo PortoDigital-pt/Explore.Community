@@ -860,6 +860,48 @@ $margin-left-right: 21.3px;
   @media print {
     max-height: none;
   }
+
+  .route-tabs {
+    border: 1px solid $grey-light-down !important;
+    background-color: $primary-contrastText;
+    border-radius: 8px;
+    min-height: 32px !important;
+    height: 32px !important;
+
+    button {
+      margin: 0;
+      color: $primary-dark;
+      text-align: center;
+      font-family: $font-family;
+      font-size: $font-size-base;
+      font-style: normal;
+      font-weight: $font-weight-book;
+      line-height: normal;
+      border: 0;
+      border-left: 1px solid $grey-light-down;
+      border-radius: 0;
+    }
+
+    button:first-of-type {
+      border-radius: 8px 0 0 8px;
+      border-left: 0;
+    }
+
+    button:last-of-type {
+      border-radius: 0 8px 8px 0;
+    }
+
+    button:only-of-type {
+      border-radius: 8px;
+    }
+
+    button.is-active,
+    button.is-active:hover {
+      color: $grey-light-down;
+      background-color: $primary-dark;
+      font-weight: $font-weight-bold;
+    }
+  }
 }
 
 .route-schedule-ranges {
@@ -989,7 +1031,6 @@ $margin-left-right: 21.3px;
 .trip-to {
   text-align: left;
   min-width: 3em;
-
   color: $grey-dark-down;
   font-family: $font-family;
   font-size: $font-size-l;
@@ -1135,20 +1176,6 @@ $margin-left-right: 21.3px;
   .trip-page-alert-container {
     display: flex;
     height: 50px;
-  }
-}
-
-.route-page-control-panel-container {
-  padding-bottom: 5px;
-
-  &.hairiot {
-    margin: 0 56px;
-  }
-
-  @media print {
-    .route-tabs {
-      display: none;
-    }
   }
 }
 
@@ -1646,6 +1673,16 @@ nav.top-bar .title .route-number {
       padding: 0 4px;
 
       .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 24px;
+        max-height: 24px;
+        padding: 0;
+        margin: 0;
+        color: $primary-dark;
+
         .time-cell-time-icon {
           color: $primary-dark;
         }
@@ -1656,20 +1693,9 @@ nav.top-bar .title .route-number {
 
         @include typography-label-base;
       }
-
-      .icon-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        max-width: 24px;
-        max-height: 24px;
-        padding: 0;
-        margin: 0;
-        color: $primary-dark;
-      }
     }
   }
+
   .location-details_container.passed {
     span {
       color: $neutral;
@@ -1689,6 +1715,17 @@ nav.top-bar .title .route-number {
 
 .route-page-control-panel-container {
   min-height: 97px;
+  padding-bottom: 5px;
+
+  &.hairiot {
+    margin: 0 56px;
+  }
+
+  @media print {
+    .route-tabs {
+      display: none;
+    }
+  }
 
   .route-control-panel {
     .route-tabs {
@@ -1731,50 +1768,6 @@ nav.top-bar .title .route-number {
         background-color: $primary-dark;
         font-weight: 700;
       }
-    }
-  }
-}
-
-.route-schedule-container {
-  .route-tabs {
-    border: 1px solid $grey-light-down !important;
-    background-color: $primary-contrastText;
-    border-radius: 8px;
-    min-height: 32px !important;
-    height: 32px !important;
-
-    button {
-      margin: 0;
-      color: $primary-dark;
-      text-align: center;
-      font-family: $font-family;
-      font-size: $font-size-base;
-      font-style: normal;
-      font-weight: $font-weight-book;
-      line-height: normal;
-      border: 0;
-      border-left: 1px solid $grey-light-down;
-      border-radius: 0;
-    }
-
-    button:first-of-type {
-      border-radius: 8px 0 0 8px;
-      border-left: 0;
-    }
-
-    button:last-of-type {
-      border-radius: 0 8px 8px 0;
-    }
-
-    button:only-of-type {
-      border-radius: 8px;
-    }
-
-    button.is-active,
-    button.is-active:hover {
-      color: $grey-light-down;
-      background-color: $primary-dark;
-      font-weight: $font-weight-bold;
     }
   }
 }
