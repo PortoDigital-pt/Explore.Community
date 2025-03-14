@@ -47,7 +47,7 @@ const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
   const isRentalStation = stationId;
 
   return (
-    <>
+    <div className="rental-bike">
       <div className="rental-bike-header-item title">
         <FormattedMessage
           id={isRentalStation ? 'citybike-station-no-id' : parkHeaderId}
@@ -72,7 +72,7 @@ const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
           </LazilyLoad>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -987,7 +987,7 @@ const translations = {
     'choose-stop-or-vehicle': 'Select vehicle or stop',
     'choose-vehicle': 'Select vehicle',
     citybike: 'City bike',
-    'citybike-available-bikes': 'Available bikes',
+    'citybike-available-bikes': 'Available vehicles',
     'citybike-distance-duration': 'Bike {duration} ({distance})',
     'citybike-duration-general-header':
       'Extra charge applies to several sections of route to be completed by a city bike.',
@@ -5272,7 +5272,7 @@ const translations = {
     'char-left': 'caracteres',
     'choose-stop': 'Selecionar',
     citybike: 'Bicicleta da cidade',
-    'citybike-available-bikes': 'Bicicletas disponíveis',
+    'citybike-available-bikes': 'Veículos disponíveis',
     'citybike-distance-duration': 'Bicicleta {distance} ({duration})',
     'citybike-network-headers': 'Bicicletas',
     'citybike-off-season':

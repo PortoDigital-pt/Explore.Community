@@ -63,10 +63,8 @@ const VehicleRentalStationContent = (
   return (
     <div className="bike-station-page-container">
       <div className="rental-bike-header-container">
-        <div className="row">
-          <div className="rental-bike-header-item bike-icon">
-            <Icon img="icon-icon_citybike" />
-          </div>
+        <div className="row-bike">
+          <Icon img="icon-icon_citybike" viewBox="0 0 24 24" />
 
           <ParkOrStationHeader
             parkOrStation={vehicleRentalStation}
@@ -74,13 +72,15 @@ const VehicleRentalStationContent = (
           />
         </div>
 
-        <div className="row">
-          <div className="rental-bike-header-item distance">&nbsp;</div>
+        <div className="row-bike">
+          <div className="rental-bike">
+            <div className="rental-bike-header-item distance">&nbsp;</div>
+          </div>
         </div>
       </div>
 
       <div className="rental-bike-content-container">
-        <div className="row">
+        <div className="row-bike">
           <div className="rental-bike-content-item label">
             <FormattedMessage id="citybike-available-bikes" />
           </div>
