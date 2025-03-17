@@ -176,13 +176,20 @@
 
             &.distance {
               display: flex;
-              align-items: flex-start;
-              padding-left: 30px;
-              min-height: 16px;
-              font-size: $font-size-s;
+              position: relative;
               color: $primary-color;
               line-height: 16px;
+              font-size: $font-size-s;
               font-weight: $font-weight-regular;
+              padding-left: 40px;
+              min-height: 16px;
+
+              @media (min-width: 900px) {
+                font-size: $font-size-l;
+                padding-left: 50px;
+                line-height: 18px;
+                min-height: 18px;
+              }
             }
           }
         }

@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, Suspense, Fragment } from 'react';
+import React, { useEffect, Suspense, Fragment } from 'react';
 import { string, func, node, shape, bool } from 'prop-types';
-import distance from '@digitransit-search-util/digitransit-search-util-distance';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
@@ -8,6 +7,7 @@ import { locationShape } from '../../../../util/shapes';
 import withBreakpoint from '../../../../util/withBreakpoint';
 import Loading from '../../../Loading';
 import useModal from '../../../../hooks/useModal';
+import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 import Modal from '../../modal';
 import ScrollableWrapper from '../../../ScrollableWrapper';
 import BackButton from '../../../BackButton';
@@ -22,21 +22,18 @@ const DetailsPage = (
     PageContent,
     MobileContent
   },
-  { match, router, intl }
+  { match, router, intl, executeAction }
 ) => {
   const { isOpen, open, close } = useModal();
   const { selectedData, error } = useSelectedData({
     id: match.params.id,
     language
   });
-
-  const distanceToDataPoint = useMemo(() => {
-    if (!selectedData || !location.hasLocation) {
-      return null;
-    }
-
-    return distance(selectedData, location);
-  }, [location.hasLocation, selectedData]);
+  const distanceToDataPoint = useDistanceToTarget({
+    executeAction,
+    location,
+    targetPoint: selectedData
+  });
 
   useEffect(() => {
     if (error) {
@@ -91,7 +88,8 @@ const DetailsPage = (
 DetailsPage.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  executeAction: func.isRequired
 };
 
 DetailsPage.propTypes = {

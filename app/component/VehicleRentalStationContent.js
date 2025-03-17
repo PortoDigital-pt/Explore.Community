@@ -2,26 +2,34 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import { routerShape, RedirectException } from 'found';
 import {
   configShape,
   vehicleRentalStationShape,
-  errorShape
+  errorShape,
+  locationShape
 } from '../util/shapes';
 import ParkOrStationHeader from './ParkOrStationHeader';
 import Icon from './Icon';
 import withBreakpoint from '../util/withBreakpoint';
 import { getRentalNetworkConfig } from '../util/vehicleRentalUtils';
 import { isBrowser } from '../util/browser';
+import { showDistance } from '../util/geo-utils';
 import { PREFIX_BIKESTATIONS } from '../util/path';
 import { TransportMode } from '../constants';
+import useDistanceToTarget from '../hooks/useDistanceToTarget';
 
 const VehicleRentalStationContent = (
-  { vehicleRentalStation, breakpoint, language, router, error },
-  { config }
+  { vehicleRentalStation, breakpoint, language, router, error, location },
+  { config, intl, executeAction }
 ) => {
-  const [isClient, setClient] = useState(false);
+  const [client, setClient] = useState(false);
+  const distanceToStop = useDistanceToTarget({
+    executeAction,
+    location,
+    targetPoint: vehicleRentalStation
+  });
 
   useEffect(() => {
     // To prevent SSR from rendering something https://reactjs.org/docs/react-dom.html#hydrate
@@ -29,7 +37,7 @@ const VehicleRentalStationContent = (
   });
 
   // throw error in client side relay query fails
-  if (isClient && error && !vehicleRentalStation) {
+  if (client && error && !vehicleRentalStation) {
     throw error.message;
   }
 
@@ -74,7 +82,13 @@ const VehicleRentalStationContent = (
 
         <div className="row-bike">
           <div className="rental-bike">
-            <div className="rental-bike-header-item distance">&nbsp;</div>
+            <div className="rental-bike-header-item distance">
+              {breakpoint !== 'large' &&
+                !!distanceToStop &&
+                `${intl.messages['at-distance']} ${showDistance(
+                  distanceToStop
+                )}`}
+            </div>
           </div>
         </div>
       </div>
@@ -116,7 +130,7 @@ const VehicleRentalStationContent = (
                     </a>
                   )}
                 </div>
-                {isClient && cityBikeBuyUrl && (
+                {client && cityBikeBuyUrl && (
                   <a
                     onClick={e => {
                       e.stopPropagation();
@@ -161,7 +175,8 @@ VehicleRentalStationContent.propTypes = {
   breakpoint: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
   router: routerShape.isRequired,
-  error: errorShape
+  error: errorShape,
+  location: locationShape.isRequired
 };
 
 VehicleRentalStationContent.defaultProps = {
@@ -169,7 +184,9 @@ VehicleRentalStationContent.defaultProps = {
 };
 
 VehicleRentalStationContent.contextTypes = {
-  config: configShape.isRequired
+  config: configShape.isRequired,
+  intl: intlShape.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 const VehicleRentalStationContentWithBreakpoint = withBreakpoint(
@@ -178,9 +195,10 @@ const VehicleRentalStationContentWithBreakpoint = withBreakpoint(
 
 const connectedComponent = connectToStores(
   VehicleRentalStationContentWithBreakpoint,
-  ['PreferencesStore'],
+  ['PreferencesStore', 'PositionStore'],
   context => ({
-    language: context.getStore('PreferencesStore').getLanguage()
+    language: context.getStore('PreferencesStore').getLanguage(),
+    location: context.getStore('PositionStore').getLocationState()
   })
 );
 
