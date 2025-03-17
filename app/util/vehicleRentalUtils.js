@@ -187,12 +187,13 @@ export const mapVehicleRentalFromStore = vehicleRentalStation => {
   const stationId = originalId.startsWith(network)
     ? originalId
     : `${network}:${originalId}`;
-
+ 
   const newStation = {
     ...vehicleRentalStation,
     network,
     stationId
   };
+ 
   delete newStation.networks;
   return newStation;
 };

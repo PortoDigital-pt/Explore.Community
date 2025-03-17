@@ -1,5 +1,5 @@
-import React, { useEffect, Suspense, Fragment } from 'react';
-import { string, func, node, shape, bool } from 'prop-types';
+import React, { useEffect, Suspense, useMemo } from 'react';
+import { string, func, shape, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
@@ -98,8 +98,8 @@ DetailsPage.propTypes = {
   location: locationShape.isRequired,
   useSelectedData: func.isRequired,
   onErrorPath: string.isRequired,
-  PageContent: node.isRequired,
-  MobileContent: node.isRequired
+  PageContent: func.isRequired,
+  MobileContent: func.isRequired
 };
 
 export default connectToStores(
@@ -118,7 +118,18 @@ const Content = ({
   modal = false,
   PageContent
 }) => {
-  const Wrapper = modal ? ScrollableWrapper : Fragment;
+  const Component = useMemo(()=> {
+    if (modal) {
+      return () => ( 
+        <ScrollableWrapper scrollable className="page">
+          <PageContent selectedData={selectedData} intl={intl} />
+        </ScrollableWrapper>
+      );
+    }
+
+    return () => <PageContent selectedData={selectedData} intl={intl} />; 
+  }, [modal]);
+
 
   return (
     <>
@@ -128,9 +139,7 @@ const Content = ({
         subtitle={selectedData.category}
         onBackBtnClick={onBackBtnClick}
       />
-      <Wrapper scrollable className="page">
-        <PageContent selectedData={selectedData} intl={intl} />
-      </Wrapper>
+      <Component />
     </>
   );
 };
@@ -140,5 +149,5 @@ Content.propTypes = {
   intl: intlShape.isRequired,
   onBackBtnClick: func,
   modal: bool,
-  PageContent: node.isRequired
+  PageContent: func.isRequired
 };
