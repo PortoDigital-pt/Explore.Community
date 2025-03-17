@@ -37,6 +37,7 @@ const { CosmosClient } = require('@azure/cosmos');
 const { getJson } = require('../app/util/xhrPromise');
 const { retryFetch } = require('../app/util/fetchUtils');
 const configTools = require('../app/config');
+const { setupApiRoutes } = require('./api');
 
 const config = configTools.getConfiguration();
 
@@ -453,6 +454,7 @@ function fetchCitybikeConfigurations() {
 if (process.env.OIDC_CLIENT_ID) {
   setUpOpenId();
 }
+setupApiRoutes(app);
 setUpStaticFolders();
 setUpMiddleware();
 setUpRoutes();

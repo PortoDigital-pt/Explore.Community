@@ -74,6 +74,6 @@ Content.propTypes = {
   currentLanguage: string.isRequired,
   hideArrows: bool.isRequired,
   onExplore: func.isRequired,
-  showOnExplore: string.isRequired,
+  showOnExplore: bool.isRequired,
   onExploreDescription: string.isRequired
 };

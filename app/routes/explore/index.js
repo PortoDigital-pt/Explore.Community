@@ -1,31 +1,117 @@
 import React from 'react';
 import Route from 'found/Route';
+import {
+  getDefault,
+  getComponentOrLoadingRenderer
+} from '../../util/routerUtils';
+import Error404 from '../../component/404';
 
-function Test() {
-  return <span>Explore/test</span>;
-}
+const explorePageComponents = {
+  content: (
+    <Route
+      getComponent={() =>
+        import(/* webpackChunkName: "explore" */ './page').then(getDefault)
+      }
+    />
+  ),
+  map: (
+    <Route
+      disableMapOnMobile={false}
+      getComponent={() =>
+        import(/* webpackChunkName: "explore-map" */ './pageMap').then(
+          getDefault
+        )
+      }
+    />
+  )
+};
 
-function Content() {
-  return <div>Explore content</div>;
-}
-
-function ExploreMapContent() {
-  return <div>Explore/map content</div>;
-}
-
-function ExploreMapMap() {
-  return <div>Explore/map map</div>;
-}
-
-export default () => (
+export default config => (
   <Route path="/explore">
-    <Route Component={Content} allowAsIndex />
-    <Route path="test" Component={Test} />
-    <Route path="map">
-      {{
-        content: <Route getComponent={() => ExploreMapContent} />,
-        map: <Route getComponent={() => ExploreMapMap} />
-      }}
+    <Route path="/">{explorePageComponents}</Route>
+    <Route
+      path={`${config.indexPath === '' ? '' : `/${config.indexPath}`}/:from/-`}
+    >
+      {explorePageComponents}
+    </Route>
+    <Route
+      path={`${config.indexPath === '' ? '' : `/${config.indexPath}`}/-/:to`}
+    >
+      {explorePageComponents}
+    </Route>
+    <Route path="pois">
+      <Route Component={Error404} />
+      <Route path=":id">
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(/* webpackChunkName: "pois" */ './pois/page').then(
+                  getDefault
+                )
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          ),
+          map: (
+            <Route
+              disableMapOnMobile={false}
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "pois-map" */ './pois/pageMap'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          )
+        }}
+      </Route>
+    </Route>
+    <Route path="events">
+      <Route Component={Error404} />
+      <Route path=":id">
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(/* webpackChunkName: "events" */ './events/page').then(
+                  getDefault
+                )
+              }
+            />
+          ),
+          map: (
+            <Route
+              disableMapOnMobile={false}
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "events-map" */ './events/pageMap'
+                ).then(getDefault)
+              }
+            />
+          )
+        }}
+      </Route>
     </Route>
   </Route>
 );

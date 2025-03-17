@@ -90,15 +90,22 @@
     .speedtram-stop {
       color: $speedtram-color;
     }
+
+    .citybike-stop {
+      color: $citybike-color; 
+    }
   }
 
   .choose-row-center-column {
+    max-width: 250px;
     display: inline-flex;
     flex-direction: column;
     flex-grow: 1;
   }
 
   .choose-row-header {
+    display: flex;
+    flex-wrap: wrap;
     font-size: 13px;
     font-weight: $font-weight-medium;
     font-stretch: normal;

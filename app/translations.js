@@ -822,6 +822,12 @@ const translations = {
   },
 
   en: {
+    'at-distance': 'at',
+    details: 'Check details',
+    'know-more': 'Know more',
+    'poi-tickets': 'Tickets',
+    'opening-hours': 'Opening hours',
+    about: 'About',
     'about-service-feedback': 'About the service and feedback',
     'about-these-pages': 'About the web pages',
     'about-this-service': 'About the service',
@@ -977,11 +983,11 @@ const translations = {
     cause: 'cause',
     'char-left': 'characters',
     'choose-freely': 'Optional',
-    'choose-stop': 'Select stop',
+    'choose-stop': 'Select',
     'choose-stop-or-vehicle': 'Select vehicle or stop',
     'choose-vehicle': 'Select vehicle',
     citybike: 'City bike',
-    'citybike-available-bikes': 'Available bikes',
+    'citybike-available-bikes': 'Available vehicles',
     'citybike-distance-duration': 'Bike {duration} ({distance})',
     'citybike-duration-general-header':
       'Extra charge applies to several sections of route to be completed by a city bike.',
@@ -1534,6 +1540,8 @@ const translations = {
     'route-to-park': 'Route to the park',
     'route-to-station': 'Route to the station',
     'route-to-stop': 'Route to the stop',
+    'route-to-pois': 'Route to the point of interest',
+    'route-to-events': 'Route to the event',
     'router-change-departure-time': 'Change departure time ›',
     'router-location-not-found':
       'Please select location on the road network or at a stop.',
@@ -1603,7 +1611,7 @@ const translations = {
     'separate-ticket-required-for-call-agency-disclaimer':
       'The journey includes demand responsive transport service. Please check the payment methods and practices on ',
     'set-specific-settings': 'Set more specific settings',
-    'set-stop-as-routes': "Set the stop as route's",
+    'set-stop-as-routes': "Set as route's",
     settings: 'Settings',
     'settings-alternative-name-rail': 'Train',
     'settings-change-itinerary-settings': 'Change settings',
@@ -5197,6 +5205,11 @@ const translations = {
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
 
+    'at-distance': 'a',
+    details: 'Ver detalhes',
+    'know-more': 'Saber mais',
+    'poi-tickets': 'Bilhetes',
+    'opening-hours': 'Horário de funcionamento',
     about: 'Sobre',
     'about-this-service': 'Sobre este serviço',
     accessibility: 'Acessibilidade',
@@ -5257,9 +5270,9 @@ const translations = {
     'car-withoutBox': 'Carro',
     cause: 'causa',
     'char-left': 'caracteres',
-    'choose-stop': 'Selecionar paragem',
+    'choose-stop': 'Selecionar',
     citybike: 'Bicicleta da cidade',
-    'citybike-available-bikes': 'Bicicletas disponíveis',
+    'citybike-available-bikes': 'Veículos disponíveis',
     'citybike-distance-duration': 'Bicicleta {distance} ({duration})',
     'citybike-network-headers': 'Bicicletas',
     'citybike-off-season':
@@ -5843,7 +5856,7 @@ const translations = {
     'ferry-external-with-route-number': 'Ferry {routeNumber} {headSign}',
     'few-seats-available': 'Poucos lugares disponíveis',
     finnish: 'Finlandês',
-    'free-of-charge': 'Grátis',
+    'free-of-charge': 'Gratuito',
     'from-bus': 'ônibus',
     'from-ferry': 'balsa',
     'from-rail': 'Comboio',
@@ -6067,6 +6080,8 @@ const translations = {
     'route-to-park': 'Rota para o parque',
     'route-to-station': 'Percurso até à estação',
     'route-to-stop': 'Percurso até à paragem',
+    'route-to-pois': 'Percurso até ao ponto de interesse',
+    'route-to-events': 'Percurso até ao evento',
     'router-change-departure-time': 'Alterar horário de partida ›',
     'router-location-not-found':
       'Por favor, selecione a localização na rede rodoviária ou em uma parada.',
@@ -6117,7 +6132,7 @@ const translations = {
     'separate-ticket-required-for-call-agency-disclaimer':
       'A viagem inclui um serviço de transporte com capacidade de resposta à procura. Por favor, verifique os métodos e práticas de pagamento em ',
     'set-specific-settings': 'Definir configurações mais específicas',
-    'set-stop-as-routes': 'Definir a paragem como rota',
+    'set-stop-as-routes': 'Definir como rota',
     'settings-alternative-name-rail': 'Comboio',
     'settings-change-itinerary-settings': 'Alterar configurações',
     'settings-dropdown-close-label': 'Opções de fechamento',

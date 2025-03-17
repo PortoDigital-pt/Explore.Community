@@ -41,3 +41,4 @@ dump.rdb
 amporto.sh
 amporto-create-patch.sh
 hsl.sh
+.sonarlint

@@ -1,4 +1,34 @@
 /**
+ * Checks if explore map layer is enabled.
+ *
+ * @param {object} mapLayers The map layer configuration.
+ */
+export const isExploreEnabled = mapLayers => {
+  if (!mapLayers) {
+    return false;
+  }
+  const { explore } = mapLayers;
+
+  return explore.showLayer;
+};
+
+/**
+ * Checks if a specific explore layer feature is enabled.
+ * (pois, accesspoints, events)
+ *
+ * @param {'pois'|'accesspoints'|'events'} featureName The name of the explore feature.
+ * @param {object} mapLayers The map layer configuration.
+ */
+export const isExploreFeatureEnabled = (featureName, mapLayers) => {
+  if (!featureName || !mapLayers) {
+    return false;
+  }
+  const { explore } = mapLayers;
+
+  return explore[featureName];
+};
+
+/**
  * Checks if the given map layer is enabled in the configuration.
  *
  * @param {string} layerName The name of the layer.

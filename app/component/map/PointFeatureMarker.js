@@ -118,7 +118,6 @@ const PointFeatureMarker = ({
   if (!isPointTypeGeometry(geometry)) {
     return null;
   }
-
   const { icon } = properties;
   const header = getPropertyValueOrDefault(properties, 'name', language);
   const address = getPropertyValueOrDefault(properties, 'address', language);

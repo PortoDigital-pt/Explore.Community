@@ -1,6 +1,6 @@
 import React from 'react';
 import { bool, func } from 'prop-types';
-import Modal from 'react-modal';
+import Modal from '../../modal';
 import Content from './content';
 
 const classNames = {
@@ -14,12 +14,9 @@ const overlayClassNames = {
   beforeClose: 'sidebar-overlay-close'
 };
 
-Modal.setAppElement('#app');
-
 const Menu = ({ isOpen, onClose }) => (
   <Modal
     isOpen={isOpen}
-    closeTimeoutMS={450}
     className={classNames}
     overlayClassName={overlayClassNames}
     onRequestClose={onClose}

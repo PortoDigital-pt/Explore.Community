@@ -6,6 +6,7 @@ import SelectVehicleRentalRow from './SelectVehicleRentalRow';
 import SelectVehicleRentalClusterRow from './SelectRentalVehicleClusterRow';
 import SelectParkAndRideRow from './SelectParkAndRideRow';
 import SelectVehicleContainer from './SelectVehicleContainer';
+import SelectExploreRow from './SelectExploreRow';
 import { popupColorShape } from '../../../util/shapes';
 import { PREFIX_BIKESTATIONS, PREFIX_RENTALVEHICLES } from '../../../util/path';
 
@@ -28,6 +29,16 @@ function MarkerSelectPopup(props, { intl }) {
     );
 
   const rows = props.options.map(option => {
+    if (option.layer === 'explore') {
+      return (
+        <SelectExploreRow
+          key={option.feature.properties.id}
+          language={props.lang}
+          {...option.feature}
+        />
+      );
+    }
+
     if (option.layer === 'stop') {
       return (
         <SelectStopRow
@@ -145,7 +156,8 @@ MarkerSelectPopup.propTypes = {
   ).isRequired,
   selectRow: PropTypes.func.isRequired,
   colors: popupColorShape.isRequired,
-  zoom: PropTypes.number
+  zoom: PropTypes.number,
+  lang: PropTypes.string
 };
 
 MarkerSelectPopup.defaultProps = {

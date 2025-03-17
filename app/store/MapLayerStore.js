@@ -30,7 +30,14 @@ class MapLayerStore extends Store {
       tram: true
     },
     vehicles: false,
-    geoJson: {}
+    geoJson: {},
+
+    explore: {
+      showLayer: true,
+      pois: true,
+      accesspoints: true,
+      events: true
+    }
   };
 
   constructor(dispatcher) {

@@ -21,6 +21,9 @@ export const LOCAL_STORAGE_EMITTER_PATH = '/local-storage-emitter';
 export const EMBEDDED_SEARCH_PATH = '/search';
 export const PREFIX_RENTALVEHICLES = 'scooters';
 
+const PREFIX_POIS = 'pois';
+const PREFIX_EVENTS = 'events';
+
 export const PATH_PREFIXES = {
   PREFIX_ROUTES,
   PREFIX_NEARYOU,
@@ -33,6 +36,8 @@ export const PATH_PREFIXES = {
   PREFIX_DISRUPTION,
   PREFIX_TIMETABLE,
   PREFIX_RENTALVEHICLES
+  // PREFIX_POIS,
+  // PREFIX_EVENTS
 };
 
 /**
@@ -121,19 +126,24 @@ export const sameLocations = (l1, l2) => {
   );
 };
 
-export const getIndexPath = (origin, destination, indexPath) => {
+export const getIndexPath = (origin, destination, indexPath, currentPath) => {
   if (isEmpty(origin) && isEmpty(destination)) {
-    return indexPath === '' ? '/' : `/${indexPath}`;
+    if (currentPath) {
+      return indexPath === ''
+        ? `/${currentPath}`
+        : `/${indexPath}/${currentPath}`;
+    }
+    return indexPath === '' ? `/` : `/${indexPath}`;
   }
-  if (indexPath === '') {
+  if (currentPath) {
     return [
       indexPath,
+      currentPath,
       encodeURIComponent(isEmpty(origin) ? '-' : origin),
       encodeURIComponent(isEmpty(destination) ? '-' : destination)
     ].join('/');
   }
   return [
-    '',
     indexPath,
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
     encodeURIComponent(isEmpty(destination) ? '-' : destination)
@@ -187,11 +197,21 @@ export function definesItinerarySearch(origin, destination) {
 /**
  * use objects instead of strings If both are set it's itinerary search...
  */
-export function getPathWithEndpointObjects(origin, destination, rootPath) {
+export function getPathWithEndpointObjects(
+  origin,
+  destination,
+  rootPath,
+  currentPath
+) {
   return rootPath === PREFIX_ITINERARY_SUMMARY ||
     definesItinerarySearch(origin, destination)
     ? getItineraryPagePath(locationToUri(origin), locationToUri(destination))
-    : getIndexPath(locationToOTP(origin), locationToOTP(destination), rootPath);
+    : getIndexPath(
+        locationToOTP(origin),
+        locationToOTP(destination),
+        rootPath,
+        currentPath
+      );
 }
 
 /**

@@ -1,8 +1,8 @@
 import React from 'react';
 import { bool } from 'prop-types';
-import Modal from 'react-modal';
 import Content from './content';
 import useModal from '../../../hooks/useModal';
+import Modal from '../../../component/amporto/modal';
 
 const classNames = {
   base: 'modal-content',
@@ -10,18 +10,11 @@ const classNames = {
   beforeClose: 'modal-content-close'
 };
 
-Modal.setAppElement('#app');
-
 const Cookies = ({ startOpen, ...props }) => {
   const { isOpen, close } = useModal({ startOpen });
 
   return (
-    <Modal
-      isOpen={isOpen}
-      closeTimeoutMS={450}
-      className={classNames}
-      overlayClassName="overlay"
-    >
+    <Modal isOpen={isOpen} className={classNames} overlayClassName="overlay">
       <Content onClose={close} {...props} />
     </Modal>
   );

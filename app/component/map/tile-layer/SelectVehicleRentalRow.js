@@ -18,9 +18,7 @@ function SelectVehicleRentalRow(
 ) {
   const img =
     icon ||
-    `${getRentalNetworkIcon(
-      getRentalNetworkConfig(network, config)
-    )}-stop-lollipop`;
+    `${getRentalNetworkIcon(getRentalNetworkConfig(network, config))}_no_map`;
 
   const linkAddress = `/${prefix}/${encodeURIComponent(id)}`;
 
@@ -28,7 +26,7 @@ function SelectVehicleRentalRow(
   return (
     <Link className="stop-popup-choose-row" to={linkAddress}>
       <span className="choose-row-left-column" aria-hidden="true">
-        <Icon img={img} />
+        <Icon img={img} viewBox="0 0 44 44" className="citybike-stop" />
       </span>
       <span className="choose-row-center-column">
         <h5 className="choose-row-header">{name}</h5>

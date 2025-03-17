@@ -200,6 +200,22 @@ class TileLayerContainer extends GridLayer {
       } = this.props;
       const { coords: prevCoords } = this.state;
       const popup = map._popup; // eslint-disable-line no-underscore-dangle
+
+      if (
+        selectableTargets.length === 1 &&
+        selectableTargets[0].layer === 'explore'
+      ) {
+        const [{ feature }] = selectableTargets;
+        if (feature.type === 'accesspoints') {
+          return;
+        }
+
+        this.context.router.push(
+          `/explore/${feature.type}/${feature.properties.id}`
+        );
+        return;
+      }
+
       // navigate to citybike stop page if single stop is clicked
       if (
         selectableTargets.length === 1 &&
@@ -415,6 +431,7 @@ class TileLayerContainer extends GridLayer {
         ) {
           showPopup = false;
         }
+
         popup = (
           <Popup
             key={this.state.coords.toString()}
@@ -428,6 +445,7 @@ class TileLayerContainer extends GridLayer {
               options={this.state.selectableTargets}
               colors={this.context.config.colors}
               zoom={this.state.zoom}
+              lang={this.props.lang}
             />
           </Popup>
         );

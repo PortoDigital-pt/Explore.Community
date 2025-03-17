@@ -30,7 +30,7 @@ export default config => {
           <Route path="/css/*" Component={Error404} />
           <Route path="/assets/*" Component={Error404} />
           {getProfileRoutes()}
-          {getExploreRoutes()}
+          {getExploreRoutes(config)}
           {getFavouritesRoutes()}
           {routes && getRoutesRoutes()}
           {blocks && getBlocksRoutes()}

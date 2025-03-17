@@ -410,7 +410,6 @@ export function drawStopIcon(
   let { width, height } = styles;
   width *= tile.scaleratio;
   height *= tile.scaleratio;
-
   const radius = width / 2;
   let x;
   let y;
@@ -905,5 +904,99 @@ export function drawAvailabilityBadge(
 export function drawIcon(icon, tile, geom, imageSize) {
   return getImageFromSpriteCache(icon, imageSize, imageSize).then(image => {
     drawIconImage(image, tile, geom, imageSize, imageSize);
+  });
+}
+
+export function getExploreIconStyles(zoom, isHilighted) {
+  const styles = {
+    13: {
+      style: 'small',
+      width: 10,
+      height: 10
+    },
+    14: {
+      style: 'large',
+      width: 18,
+      height: 18
+    },
+    15: {
+      style: 'large',
+      width: 22,
+      height: 22
+    },
+    16: {
+      style: 'large',
+      width: 27,
+      height: 27
+    }
+  };
+
+  if (zoom < 16 && isHilighted) {
+    return styles[15];
+  }
+  if (zoom < 13) {
+    return styles[13];
+  }
+  if (zoom > 16) {
+    return styles[16];
+  }
+
+  return styles[zoom];
+}
+
+/**
+ * Draw explore icon based on its type.
+ * Determine size from zoom level.
+ */
+
+export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
+  const color = iconColors[type];
+  const zoom = tile.coords.z - 1;
+
+  const styles = getExploreIconStyles(zoom, isHighlighted);
+  let { width, height } = styles;
+  width *= tile.scaleratio;
+  height *= tile.scaleratio;
+
+  const radius = width / 2;
+  let x;
+  let y;
+
+  if (styles.style === 'small') {
+    x = geom.x / tile.ratio - radius;
+    y = geom.y / tile.ratio - radius;
+
+    return getMemoizedStopIcon(type, radius, color, isHighlighted).then(
+      image => {
+        tile.ctx.drawImage(image, x, y);
+      }
+    );
+  }
+
+  x = geom.x / tile.ratio - width / 2;
+  y = geom.y / tile.ratio - height;
+
+  if (isHighlighted) {
+    const selectedCircleOffset = getSelectedIconCircleOffset(zoom, tile.ratio);
+    tile.ctx.beginPath();
+    // eslint-disable-next-line no-param-reassign
+    tile.ctx.lineWidth = 2;
+    tile.ctx.arc(
+      x + selectedCircleOffset,
+      y + selectedCircleOffset,
+      radius + 2,
+      0,
+      FULL_CIRCLE
+    );
+    tile.ctx.stroke();
+  }
+
+  return getImageFromSpriteCache(
+    `icon-explore-icon_${type.toLowerCase()}`,
+    width,
+    height,
+    color
+  ).then(image => {
+    tile.ctx.drawImage(image, x, y);
   });
 }

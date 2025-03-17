@@ -123,6 +123,7 @@ export default function Favourite(
         className={cx('favourite', {
           selected: favourite && (!requireLoggedIn || isLoggedIn)
         })}
+        viewBox="0 0 40 40"
         img={
           favourite && (!requireLoggedIn || isLoggedIn)
             ? 'icon-favorite-on_with_background'

@@ -7,7 +7,6 @@ const {
   API_URL,
   OTP_URL,
   MAP_URL,
-  POI_MAP_PREFIX,
   APP_TITLE,
   APP_DESCRIPTION,
   BOUNDING_BOX,
@@ -51,7 +50,8 @@ const {
   SHOW_ROUTES,
   SHOW_BLOCKS,
   PRIVACY_POLICY,
-  COOKIES_POLICY
+  COOKIES_POLICY,
+  EXPLORE_TILES_URL
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -72,6 +72,9 @@ export default {
       default: MAP_URL,
       en: MAP_URL
     },
+    EXPLORE_TILES: {
+      default: EXPLORE_TILES_URL
+    },
     STOP_MAP: {
       default: `${OTP_URL}routers/default/vectorTiles/stops,stations/`
     },
@@ -81,14 +84,10 @@ export default {
     REALTIME_RENTAL_STATION_MAP: {
       default: `${OTP_URL}routers/default/vectorTiles/realtimeRentalStations/`
     },
-    PARK_AND_RIDE_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParking/`
-    },
-    PARK_AND_RIDE_GROUP_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`
-    },
     FONT: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800'
   },
+
+  exploreMinZoom: 13,
 
   title: APP_TITLE,
   indexPath: INDEX_PATH,
@@ -175,7 +174,10 @@ export default {
       'mode-bus': '#A7D9FE',
       'mode-tram': '#A2874F',
       'mode-subway': '#00095F',
-      'mode-citybike': '#FFE99D'
+      'mode-citybike': '#FFE99D',
+      pois: '#99DCD5',
+      events: '#FEC8A7',
+      accesspoints: '#000F9F'
     },
     originDestination: {
       icon: {

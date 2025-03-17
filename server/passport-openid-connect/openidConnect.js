@@ -242,15 +242,6 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     }
   });
 
-  app.use('/api', function (req, res, next) {
-    res.set('Cache-Control', 'no-store');
-    if (req.isAuthenticated()) {
-      next();
-    } else {
-      res.sendStatus(401);
-    }
-  });
-
   const errorHandler = function (res, err) {
     const status = err?.message && err.message.includes('timeout') ? 408 : 500;
 
@@ -263,21 +254,14 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     }
   };
 
+  const userAuthenticated = function (req, res, next) {
+    res.set('Cache-Control', 'no-store');
+    // eslint-disable-next-line no-unused-expressions
+    req.isAuthenticated() ? next() : res.sendStatus(401);
+  };
+
   /* GET the profile of the current authenticated user */
-  app.get('/api/user', function (req, res) {
-    /*
-    axios
-      .get(`${OIDCHost}/openid/userinfo`, {
-        headers: { Authorization: `Bearer ${req.user.token.access_token}` },
-      })
-      .then(function (response) {
-        if (response && response.status && response.data) {
-          res.status(response.status).send(response.data);
-        } else {
-          errorHandler(res);
-        }
-      })
-    */
+  app.get('/api/user', userAuthenticated, function (req, res) {
     oic.client
       .userinfo(req.user.token.access_token)
       .then(function (response) {
@@ -287,27 +271,6 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
         errorHandler(res, err);
       });
   });
-
-  // Temporary solution for checking if user is authenticated
-  const userAuthenticated = function (req, res, next) {
-    /*
-    axios
-      .get(`${OIDCHost}/openid/userinfo`, {
-        headers: { Authorization: `Bearer ${req.user.token.access_token}` },
-      })
-      .then(function () {
-        next();
-      })
-    */
-    oic.client
-      .userinfo(req.user.token.access_token)
-      .then(function () {
-        next();
-      })
-      .catch(function (err) {
-        errorHandler(res, err);
-      });
-  };
 
   app.use('/api/user/favourites', userAuthenticated, function (req, res) {
     axios({

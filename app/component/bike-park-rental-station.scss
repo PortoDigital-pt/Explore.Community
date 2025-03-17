@@ -1,7 +1,7 @@
 .mobile {
   .bike-station-page-container {
     height: calc(100% - 20rem);
-    padding: 18px 1.563em 2em;
+    padding: 30px 16px 0 16px;
     background-color: $background-default;
     border-radius: 15px 15px 0 0;
     box-shadow: 0 -5px 5px 0 rgba(0, 0, 0, 0.2);
@@ -117,77 +117,82 @@
   padding: 5px;
 
   .rental-bike-header-container {
+    position: relative;
     display: flex;
     flex-flow: column wrap;
     justify-content: flex-start;
     gap: 2px;
 
-    .row {
+    .row-bike {
       display: flex;
+      position: relative;
       flex-flow: row wrap;
       align-items: center;
+      justify-content: flex-start;
+      column-gap: 10px;
 
-      .rental-bike-header-item {
-        display: flex;
-        margin: 0;
+        .icon {
+          display: flex;
+          position:  relative;
+          width: 30px;
+          height: 30px;
 
-        &.bike-icon {
-          max-width: 30px;
-          min-width: 30px;
-
-          svg {
-            display: flex;
-            position: relative;
-            top: 8px;
+          @media (min-width: 900px) {
             width: 40px;
             height: 40px;
-          }
+        }
         }
 
-        &.title {
-          flex-grow: 8;
-          color: $primary-color;
-          font-family: $font-family;
-          font-size: $font-size-l;
-          font-style: normal;
-          font-weight: $font-weight-bold;
-        }
-
-        &.share-and-favorite {
-          justify-content: flex-end;
+        .rental-bike {
+          display: flex;
+          position: relative;
+          justify-content: space-between;
           align-items: center;
-          max-width: 80px !important;
-          min-width: 80px;
+          flex-grow: 1;
 
-          button.favourite-icon {
-            span {
+          .rental-bike-header-item {
+            display: flex;
+            position: relative;
+
+            &.title {
               display: flex;
-              width: 35px;
-              height: 35px;
+              position: relative;
+              flex-grow: 1;
+              color: $primary-color;
+              font-family: $font-family;
+              font-size: 20px;
+              font-weight: $font-weight-bold;
+    
+              @media (min-width: 900px) {
+                font-size: $font-size-heading-s;
+              }
+            }
 
-              svg {
-                position: relative;
-                top: 4px;
-                left: 3px;
-                width: 30px;
-                height: 30px;
-                color: $primary-dark;
+            .share-and-favorite {
+              display: flex;
+              position: relative;
+              align-items: center;
+            }
+
+            &.distance {
+              display: flex;
+              position: relative;
+              color: $primary-color;
+              line-height: 16px;
+              font-size: $font-size-s;
+              font-weight: $font-weight-regular;
+              padding-left: 40px;
+              min-height: 16px;
+
+              @media (min-width: 900px) {
+                font-size: $font-size-l;
+                padding-left: 50px;
+                line-height: 18px;
+                min-height: 18px;
               }
             }
           }
         }
-
-        &.distance {
-          display: flex;
-          align-items: flex-start;
-          padding-left: 30px;
-          min-height: 16px;
-          font-size: $font-size-s;
-          color: $primary-color;
-          line-height: 16px;
-          font-weight: $font-weight-regular;
-        }
-      }
     }
   }
 
@@ -197,7 +202,7 @@
     justify-content: flex-start;
     gap: 2px;
 
-    .row {
+    .row-bike {
       display: flex;
       flex-flow: row wrap;
       align-items: center;
@@ -215,10 +220,12 @@
           align-items: center;
           color: $grey-dark-down;
           font-family: $font-family;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: $font-weight-book;
-          line-height: normal;
+          font-size: $font-size-l;
+          font-weight: $font-weight-regular;
+
+          @media (min-width: 900px) {
+            font-size: 18px;
+          }
         }
 
         &.value {
@@ -227,19 +234,22 @@
           align-items: center;
 
           span {
-            border: 1px solid whitesmoke;
             padding: 2px;
             text-align: center;
-            max-width: 35px;
-            min-width: 35px;
+            max-width: 30px;
+            min-width: 30px;
             background-color: #e6e6e6;
-            border-radius: 2px;
+            border-radius: 4px;
             color: $grey-dark-down;
             font-family: $font-family;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: $font-weight-book;
-            line-height: normal;
+            font-size: $font-size-l;
+            font-weight: $font-weight-regular;
+  
+            @media (min-width: 900px) {
+              font-size: 20px;
+              max-width: 40px;
+              min-width: 40px;
+            }
           }
         }
       }
