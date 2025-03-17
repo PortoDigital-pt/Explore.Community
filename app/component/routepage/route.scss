@@ -1681,7 +1681,6 @@ nav.top-bar .title .route-number {
         max-height: 24px;
         padding: 0;
         margin: 0;
-        color: $primary-dark;
 
         .time-cell-time-icon {
           color: $primary-dark;
@@ -1694,21 +1693,24 @@ nav.top-bar .title .route-number {
         @include typography-label-base;
       }
     }
-  }
 
-  .location-details_container.passed {
-    span {
-      color: $neutral;
-    }
-
-    .icon-container {
-      .time-cell-time-icon {
+    &.passed {
+      .new-stop-time-container {
         color: $neutral;
-      }
-    }
 
-    .time-cell-time-label {
-      color: $neutral;
+        .icon-container {
+          svg.time-cell-time-icon,
+          #icon-icon_realtime {
+            color: $neutral !important;
+          }
+        }
+
+        .time-cell-time-label {
+          span {
+            color: $neutral;
+          }
+        }
+      }
     }
   }
 }
