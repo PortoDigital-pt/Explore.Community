@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'found/Link';
 import cx from 'classnames';
 import isEmpty from 'lodash/isEmpty';
@@ -34,6 +34,10 @@ const TripRouteStop = (props, { config }) => {
     last,
     prevStop
   } = props;
+
+  const isRealTime = useMemo(() => {
+    return stoptime.realtimeDeparture !== -1 && stoptime.realtime;
+  }, [stoptime.realtimeDeparture, stoptime.realtime]);
 
   const getVehiclePatternLink = vehicle => {
     const maxDistance = vehicle.mode === 'rail' ? 100 : 50;
@@ -161,7 +165,11 @@ const TripRouteStop = (props, { config }) => {
               </div>
               {!isEmpty(stoptime) && (
                 <span className="new-stop-time-container">
-                  <Icon img="icon-icon_clock" className="time-cell-time-icon" />
+                  <Icon
+                    img={`icon-icon_${isRealTime ? 'realtime' : 'clock'}`}
+                    className="time-cell-time-icon"
+                  />
+
                   <span className="time-cell-time-label">
                     {fromStopTime(stoptime, currentTime, false, false, false)}
                   </span>
@@ -209,7 +217,8 @@ TripRouteStop.propTypes = {
   stoptime: PropTypes.shape({
     realtimeDeparture: PropTypes.number,
     realtimeArrival: PropTypes.number,
-    serviceDay: PropTypes.number
+    serviceDay: PropTypes.number,
+    realtime: PropTypes.bool
   }).isRequired,
   currentTime: PropTypes.number.isRequired,
   pattern: PropTypes.string.isRequired,
