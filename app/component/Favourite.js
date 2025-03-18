@@ -23,7 +23,7 @@ export default function Favourite(
 ) {
   const [disable, handleDisable] = useState(false);
   const [showLoginModal, setLoginModalVisibility] = useState(false);
-  console.log('is favourite: ', favourite);
+
   useEffect(() => {
     handleDisable(isFetching);
   }, [isFetching]);
@@ -91,12 +91,12 @@ export default function Favourite(
     if (requireLoggedIn && !isLoggedIn) {
       setLoginModalVisibility(!isModalClosed);
       return;
-    } 
+    }
 
     if (disable) {
       return;
     }
-  
+
     handleDisable(true);
     favourite ? deleteFavourite() : addFavourite();
   };

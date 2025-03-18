@@ -22,7 +22,11 @@ const LayerType = {
   FavouritePlace: 'favouritePlace',
   FavouriteRoute: 'favouriteRoute',
   FavouriteVehicleRentalStation: 'favouriteVehicleRentalStation',
+  FavouritePois: 'favouritepois',
+  FavouriteEvents: 'favouriteevents',
   FutureRoute: 'futureRoute',
+  Pois: 'pois',
+  Events: 'events',
   Station: 'station',
   SelectFromMap: 'selectFromMap',
   SelectFromOwnLocations: 'ownLocations',
@@ -120,6 +124,8 @@ export const getLayerRank = (layer, source) => {
     case LayerType.FavouriteStop:
     case LayerType.FavouriteRoute:
     case LayerType.FavouriteVehicleRentalStation:
+    case LayerType.FavouritePois:
+    case LayerType.FavouriteEvents:
       return 0.45;
     case LayerType.FutureRoute:
       return 0.44;
@@ -129,10 +135,10 @@ export const getLayerRank = (layer, source) => {
       }
       return 0.42;
     }
+    case LayerType.Pois:
+    case LayerType.Events:
     case LayerType.CarPark:
-      return 0.38;
     case LayerType.BikePark:
-      return 0.38;
     case LayerType.VehicleRentalStation:
       return 0.38;
     case LayerType.Stop:

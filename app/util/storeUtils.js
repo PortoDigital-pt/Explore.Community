@@ -20,6 +20,10 @@ export const getFavouriteStops = context => {
   return context.getStore('FavouriteStore').getStopsAndStations();
 };
 
+export const getFavouriteExplore = context => {
+  return context.getStore('FavouriteStore').getExplore();
+};
+
 export const getFavouriteVehicleRentalStations = context => {
   return context.getStore('FavouriteStore').getVehicleRentalStations();
 };

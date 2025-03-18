@@ -100,6 +100,8 @@ function getIconProperties(
     ['favouritePlace', 'star'],
     ['favouriteRoute', 'star'],
     ['favouriteStop', 'star'],
+    ['favouritepois', 'star'],
+    ['favouriteevents', 'star'],
     ['favouriteStation', 'star'],
     ['favouriteVehicleRentalStation', 'star'],
     ['favourite', 'star'],
@@ -308,6 +310,7 @@ const SuggestionItem = pure(
         ? [ariaFavouriteString, suggestionType, name, label]
         : [suggestionType, name, label];
     }
+
     const ariaDescription = getAriaDescription(ariaParts);
     const acri = (
       <div className={styles['sr-only']}>
@@ -321,12 +324,16 @@ const SuggestionItem = pure(
     const isParkingArea =
       item.properties?.layer === 'carpark' ||
       item.properties?.layer === 'bikepark';
+    const isExplore =
+      item.properties?.layer.includes('pois') ||
+      item.properties?.layer.includes('events');
     const labelWithLocationType =
-      isVehicleRentalStation || isParkingArea
+      isVehicleRentalStation || isParkingArea || isExplore
         ? suggestionType.concat(
             item.properties.localadmin ? `, ${item.properties.localadmin}` : ''
           )
         : label;
+
     const ri = (
       <div
         aria-hidden="true"
@@ -359,7 +366,7 @@ const SuggestionItem = pure(
                   {name}
                 </div>
                 <div className={styles['suggestion-label']}>
-                  {isVehicleRentalStation || isParkingArea
+                  {isVehicleRentalStation || isParkingArea || isExplore
                     ? labelWithLocationType
                     : label}{' '}
                   {((!isVehicleRentalStation &&

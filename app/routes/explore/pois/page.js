@@ -12,13 +12,13 @@ const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
     <div className="header">
       <div className="top">
         <div className="title">
-        <Icon
-          img="icon-explore-icon_pois_with_background"
-          viewBox="0 0 44 44"
-        />
-        <h3>{selectedData.name}</h3>
+          <Icon
+            img="icon-explore-icon_pois_with_background"
+            viewBox="0 0 44 44"
+          />
+          <h3>{selectedData.name}</h3>
         </div>
-        <FavouriteExplore data={selectedData} type="pois"/>
+        <FavouriteExplore data={selectedData} type="pois" />
       </div>
       <div className="distance">
         {distance &&

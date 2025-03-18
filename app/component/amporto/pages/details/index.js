@@ -118,18 +118,17 @@ const Content = ({
   modal = false,
   PageContent
 }) => {
-  const Component = useMemo(()=> {
+  const Component = useMemo(() => {
     if (modal) {
-      return () => ( 
+      return () => (
         <ScrollableWrapper scrollable className="page">
           <PageContent selectedData={selectedData} intl={intl} />
         </ScrollableWrapper>
       );
     }
 
-    return () => <PageContent selectedData={selectedData} intl={intl} />; 
+    return () => <PageContent selectedData={selectedData} intl={intl} />;
   }, [modal]);
-
 
   return (
     <>

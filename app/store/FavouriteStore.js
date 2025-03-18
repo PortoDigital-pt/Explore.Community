@@ -107,7 +107,11 @@ export default class FavouriteStore extends Store {
 
   isFavourite(id, type) {
     return !!this.favourites.find(favourite => {
-      const favouriteId = favourite.id || favourite.gtfsId || favourite.gid || favourite.stationId;
+      const favouriteId =
+        favourite.id ||
+        favourite.gtfsId ||
+        favourite.gid ||
+        favourite.stationId;
       return favourite.type === type && favouriteId === id;
     });
   }
@@ -147,6 +151,12 @@ export default class FavouriteStore extends Store {
   getStopsAndStations() {
     return this.favourites.filter(
       favourite => favourite.type === 'stop' || favourite.type === 'station'
+    );
+  }
+
+  getExplore() {
+    return this.favourites.filter(
+      favourite => favourite.type === 'pois' || favourite.type === 'events'
     );
   }
 
@@ -202,7 +212,7 @@ export default class FavouriteStore extends Store {
       throw new Error(`New favourite is not a object:${JSON.stringify(data)}`);
     }
     this.fetchingOrUpdating();
-   
+
     const newFavourites = mapToStore(this.favourites);
     const editIndex = findIndex(
       newFavourites,
@@ -288,18 +298,16 @@ export default class FavouriteStore extends Store {
       onFail?.();
       throw new Error(`Favourite is not an object:${JSON.stringify(data)}`);
     }
-    
-    this.fetchingOrUpdating();
-    const newFavourites = mapToStore(this.favourites).filter(
-      favourite => {
-        if (favourite.id) {
-          return favourite.id !== data.id;
-        }
 
-        return favourite.favouriteId !== data.favouriteId;
+    this.fetchingOrUpdating();
+    const newFavourites = mapToStore(this.favourites).filter(favourite => {
+      if (favourite.id) {
+        return favourite.id !== data.id;
       }
-    );
-   
+
+      return favourite.favouriteId !== data.favouriteId;
+    });
+
     if (this.config.allowLogin) {
       // Delete favourite from backend service
       deleteFavourites([data.favouriteId])

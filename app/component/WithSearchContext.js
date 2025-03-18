@@ -37,6 +37,8 @@ export function getLocationSearchTargets(config, isMobile) {
     ];
   } else {
     // default setup
+    locationSearchTargets.push('Pois');
+    locationSearchTargets.push('Events');
     locationSearchTargets.push('Stations');
     locationSearchTargets.push('Stops');
     if (useCitybikes(config.vehicleRental?.networks, config)) {

@@ -12,6 +12,7 @@ import {
   getFavouriteRoutes,
   getOldSearches,
   getFavouriteStops,
+  getFavouriteExplore,
   getLanguage,
   clearOldSearches,
   getFutureRoutes,
@@ -53,6 +54,7 @@ export default function intializeSearchContext(context, searchContext) {
   searchContext.getOldSearches = getOldSearches;
   searchContext.getFavouriteLocations = getFavouriteLocations;
   searchContext.getFavouriteStops = getFavouriteStops;
+  searchContext.getFavouriteExplore = getFavouriteExplore;
   searchContext.getLanguage = getLanguage;
   searchContext.getFavouriteRoutes = getFavouriteRoutes;
   searchContext.getPositions = getPositions;

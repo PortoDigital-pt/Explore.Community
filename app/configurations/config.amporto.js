@@ -118,7 +118,7 @@ export default {
 
   searchSources: SEARCH_SOURCES?.split(',') || ['oa', 'osm', 'custom'],
   search: {
-    peliasLayer: PELIAS_LAYER?.split(',') || ['address', 'stop', 'venue_ropi'],
+    peliasLayer: PELIAS_LAYER?.split(',') || ['address', 'stop', 'venue'],
     minimalRegexp: new RegExp(MINIMAL_REGEXP)
   },
 

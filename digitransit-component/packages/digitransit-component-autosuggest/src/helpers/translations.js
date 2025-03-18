@@ -154,6 +154,8 @@ const translations = {
     'select-from-map': 'Select position from map',
     'select-from-own-locations': 'Select from own locations',
     vehiclerentalstation: 'Bike station',
+    pois: 'Point of interest',
+    events: 'Event',
     venue: 'Venue',
     'via-point': 'Via point',
     where: 'Where to?',
@@ -407,6 +409,8 @@ const translations = {
     tram: 'Elétrico',
     'use-own-position': 'Localização atual',
     vehiclerentalstation: 'Ponto de partilha',
+    pois: 'Ponto de interesse',
+    events: 'Evento',
     venue: 'Localização',
     'via-point': 'Ponto de passagem',
     where: 'Para onde?'

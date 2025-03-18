@@ -8,9 +8,7 @@ const FavouriteExplore = connectToStores(
   Favourite,
   ['FavouriteStore', 'UserStore', 'PreferencesStore'],
   (context, { data, type }) => ({
-    favourite: context
-      .getStore('FavouriteStore')
-      .isFavourite(data.id, type),
+    favourite: context.getStore('FavouriteStore').isFavourite(data.id, type),
     isFetching: context.getStore('FavouriteStore').getStatus() === 'fetching',
     addFavourite: () => {
       context.executeAction(saveFavourite, {
