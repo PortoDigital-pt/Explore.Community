@@ -139,6 +139,10 @@
         width: 20px;
         height: 20px;
       }
+
+      svg.BUS-icon {
+        color: $black !important;
+      }
     }
 
     span.accessibility-label,
@@ -400,11 +404,6 @@
         height: 16px;
         margin-left: 0.1em;
         margin-top: -0.8em;
-      }
-
-      svg.citybike-icon {
-        width: 60px !important;
-        height: 60px !important;
       }
     }
 

@@ -262,6 +262,12 @@
     background-color: $white;
     font-weight: $font-weight-medium;
     color: $primary-dark;
+
+    .icon-container {
+      svg {
+        color: white;
+      }
+    }
   }
 
   .active-disruption-alert {
@@ -279,11 +285,11 @@
   .active-service-alert {
     .icon-container {
       vertical-align: middle;
-      margin-right: 5px;
+      margin-right: 3px;
     }
 
     .service-alert-icon {
-      fill: rgba(136, 136, 136, 1);
+      color: $primary-dark;
     }
   }
 
@@ -650,6 +656,7 @@ hr.action-bar {
     margin-top: 2.5em;
     margin-left: 1em;
     text-align: center;
+    color: $primary-color;
   }
 
   .all-routes-header {
@@ -663,8 +670,10 @@ hr.action-bar {
 
   .all-routes-header-title {
     margin-top: 0.3em;
+    margin-left: 2em;
     font-size: $font-size-small;
     font-weight: $font-weight-medium;
+    color: $primary-color;
   }
 
   .routes-container {
@@ -694,28 +703,31 @@ hr.action-bar {
     }
 
     & label {
-      width: 2.3em;
-      height: 2.3em;
-      border: 1px solid #78909c;
-      border-radius: 4px;
+      width: 1.3em;
+      height: 1.3em;
+      border: 1px solid $primary-dark;
+      border-radius: 2px;
       background-color: $white;
       cursor: pointer;
       position: absolute;
-      top: -0.3em;
+      top: 0;
       left: 0;
 
       & .checkbox-icon {
-        width: 2.3em;
-        height: 2.3em;
+        width: 1.3em;
+        height: 1.3em;
+        color: $primary-dark;
       }
 
       &.checked {
         border: none;
       }
     }
+  }
 
-    input[type='checkbox']:focus + label {
-      outline: black solid 1px;
+  .all-routes-header .checkbox-container {
+    & label {
+      top: 0.3em;
     }
   }
 
@@ -838,6 +850,7 @@ hr.action-bar {
   .showroutes-icon-svg {
     width: 24px;
     height: 24px;
+    color: $primary-dark;
   }
 
   @media print {
