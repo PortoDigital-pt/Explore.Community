@@ -49,6 +49,7 @@ const {
   SHOW_CO2_IN_ITINERARY_SUMMARY,
   SHOW_ROUTES,
   SHOW_BLOCKS,
+  SHOW_FAVOURITES,
   PRIVACY_POLICY,
   COOKIES_POLICY,
   EXPLORE_TILES_URL
@@ -97,7 +98,8 @@ export default {
   // navbar items
   optionalNavigationItems: {
     routes: SHOW_ROUTES === 'true',
-    blocks: SHOW_BLOCKS === 'true'
+    blocks: SHOW_BLOCKS === 'true',
+    favourites: SHOW_FAVOURITES === 'true'
   },
 
   contactName: {
