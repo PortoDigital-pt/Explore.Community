@@ -17,7 +17,7 @@
   flex-basis: 200px;
 
   &:focus-within {
-    border-color: $primary-color;
+    border-color: $primary-dark !important;
   }
 
   &.route-schedule-date {
@@ -106,6 +106,7 @@
       margin: auto;
       width: 24px;
       height: 24px;
+      color: $primary-dark;
     }
   }
 
@@ -127,6 +128,10 @@
     border: none;
     margin: none;
     padding: none;
+
+    &:focus-within {
+      border: 2px solid $primary-dark !important;
+    }
 
     .route-schedule__value-container {
       overflow: visible;
@@ -189,13 +194,22 @@
     }
   }
 
+  .route-schedule__option:first-of-type {
+    border-top: none !important;
+  }
+
   .route-schedule__option {
     display: flex;
     justify-content: space-between;
-    font-weight: $font-weight-book;
+    font-weight: 600;
+    font-size: 15px;
+    border-top: 1px solid #eaeaea;
 
     svg {
       position: relative;
+      color: $primary-dark;
+      width: 20px;
+      height: 20px;
     }
   }
 

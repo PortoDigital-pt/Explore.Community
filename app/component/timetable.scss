@@ -251,3 +251,18 @@
     background: #e5f1f9;
   }
 }
+
+.ReactModalPortal .filter-stop-modal {
+  button svg {
+    width: 20px !important;
+    height: 20px !important;
+
+    path {
+      fill: $primary-dark !important;
+    }
+  }
+
+  button:hover {
+    transform: none !important;
+  }
+}
