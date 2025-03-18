@@ -626,11 +626,20 @@ class DTAutosuggest extends React.Component {
           if (useAll || targets.includes('Stops')) {
             newTargets.push('Stops');
           }
+          if (useAll || targets.includes('Stops')) {
+            newTargets.push('Stops');
+          }
           if (useAll || targets.includes('Stations')) {
             newTargets.push('Stations');
           }
           if (useAll || targets.includes('VehicleRentalStations')) {
             newTargets.push('VehicleRentalStations');
+          }
+          if (useAll || targets.includes('Pois')) {
+            newTargets.push('Pois');
+          }
+          if (useAll || targets.includes('Events')) {
+            newTargets.push('Events');
           }
         } else if (!useAll) {
           newTargets = [...targets];
