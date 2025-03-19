@@ -11,6 +11,7 @@ import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 import Modal from '../../modal';
 import ScrollableWrapper from '../../../ScrollableWrapper';
 import BackButton from '../../../BackButton';
+import FavouriteExplore from '../../../FavouriteExploreContainer';
 
 const DetailsPage = (
   {
@@ -20,7 +21,7 @@ const DetailsPage = (
     useSelectedData,
     onErrorPath,
     PageContent,
-    MobileContent
+    MobileContent,
   },
   { match, router, intl, executeAction }
 ) => {
@@ -137,7 +138,9 @@ const Content = ({
         title={selectedData.name}
         subtitle={selectedData.category}
         onBackBtnClick={onBackBtnClick}
-      />
+      >
+        <FavouriteExplore data={selectedData} white/>
+      </BackButton>
       <Component />
     </>
   );
@@ -148,5 +151,5 @@ Content.propTypes = {
   intl: intlShape.isRequired,
   onBackBtnClick: func,
   modal: bool,
-  PageContent: func.isRequired
+  PageContent: func.isRequired,
 };

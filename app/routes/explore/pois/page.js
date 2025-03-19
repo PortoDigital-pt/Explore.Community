@@ -18,7 +18,7 @@ const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
           />
           <h3>{selectedData.name}</h3>
         </div>
-        <FavouriteExplore data={selectedData} type="pois" />
+        <FavouriteExplore data={selectedData} />
       </div>
       <div className="distance">
         {distance &&

@@ -7,8 +7,8 @@ import { saveFavourite, deleteFavourite } from '../action/FavouriteActions';
 const FavouriteExplore = connectToStores(
   Favourite,
   ['FavouriteStore', 'UserStore', 'PreferencesStore'],
-  (context, { data, type }) => ({
-    favourite: context.getStore('FavouriteStore').isFavourite(data.id, type),
+  (context, { data, white }) => ({
+    favourite: context.getStore('FavouriteStore').isFavourite(data.id, data.type),
     isFetching: context.getStore('FavouriteStore').getStatus() === 'fetching',
     addFavourite: () => {
       context.executeAction(saveFavourite, {
@@ -16,7 +16,7 @@ const FavouriteExplore = connectToStores(
         lon: data.lon,
         name: data.name,
         id: data.id,
-        type
+        type: data.type
       });
     },
     deleteFavourite: () => {
@@ -26,7 +26,8 @@ const FavouriteExplore = connectToStores(
     isLoggedIn:
       context.config.allowLogin &&
       context.getStore('UserStore').getUser().sub !== undefined,
-    language: context.getStore('PreferencesStore').getLanguage()
+    language: context.getStore('PreferencesStore').getLanguage(),
+    white
   })
 );
 
