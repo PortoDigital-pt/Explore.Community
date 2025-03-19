@@ -626,9 +626,6 @@ class DTAutosuggest extends React.Component {
           if (useAll || targets.includes('Stops')) {
             newTargets.push('Stops');
           }
-          if (useAll || targets.includes('Stops')) {
-            newTargets.push('Stops');
-          }
           if (useAll || targets.includes('Stations')) {
             newTargets.push('Stations');
           }
