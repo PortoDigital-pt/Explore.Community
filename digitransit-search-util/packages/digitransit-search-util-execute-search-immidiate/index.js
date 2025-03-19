@@ -209,27 +209,7 @@ function filterOldSearches(oldSearches, input, dropLayers) {
 }
 
 function hasFavourites(searchContext) {
-  const favouriteLocations = searchContext.getFavouriteLocations(
-    searchContext.context
-  );
-
-  if (favouriteLocations?.length > 0) {
-    return true;
-  }
-
-  const favouriteExplore = searchContext.getFavouriteExplore(searchContext.context);
-  
-  if (favouriteExplore.length > 0) {
-    return true;
-  }
-
-  const favouriteVehicleRentalStations =
-    searchContext.getFavouriteVehicleRentalStations(searchContext.context);
-  if (favouriteVehicleRentalStations?.length > 0) {
-    return true;
-  }
-  const favouriteStops = searchContext.getFavouriteStops(searchContext.context);
-  return favouriteStops?.length > 0;
+  return searchContext.hasFavourites(searchContext.context);
 }
 
 const routeLayers = [
