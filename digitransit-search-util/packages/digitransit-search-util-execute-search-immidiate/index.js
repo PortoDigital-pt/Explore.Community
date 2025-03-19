@@ -217,6 +217,12 @@ function hasFavourites(searchContext) {
     return true;
   }
 
+  const favouriteExplore = searchContext.getFavouriteExplore(searchContext.context);
+  
+  if (favouriteExplore.length > 0) {
+    return true;
+  }
+
   const favouriteVehicleRentalStations =
     searchContext.getFavouriteVehicleRentalStations(searchContext.context);
   if (favouriteVehicleRentalStations?.length > 0) {
