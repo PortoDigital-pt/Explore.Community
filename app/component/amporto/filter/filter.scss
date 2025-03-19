@@ -1,0 +1,72 @@
+.filter-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-container {
+  display: flex;
+  position: relative;
+  margin: 10px;
+  background-color: transparent;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 6px;
+}
+
+.filter-container--content {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  max-height: 36px;
+
+  border-radius: 200px;
+  background-color: $primary-light;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.31);
+
+  color: $primary-dark;
+
+  &:hover,
+  &:focus {
+    background-color: $primary-light;
+    color: $primary-dark;
+  }
+
+  &.selected {
+    background-color: $primary-dark;
+    color: $primary-contrastText;
+  }
+
+  .icon-container {
+    display: flex;
+    position: relative;
+    width: 16px;
+    height: 16px;
+
+    .icon-prefix {
+      display: flex;
+      position: relative;
+      width: 16px;
+      height: 16px;
+    }
+
+    .icon-suffix {
+      display: flex;
+      position: relative;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .content-title {
+    font-family: $font-family;
+    font-size: $font-size-s;
+    font-style: normal;
+    font-weight: $font-weight-regular;
+    line-height: 10px;
+  }
+}

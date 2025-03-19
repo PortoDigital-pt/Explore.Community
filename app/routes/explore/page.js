@@ -21,6 +21,7 @@ import {
   checkPositioningPermission,
   startLocationWatch
 } from '../../action/PositionActions';
+import Filter from '../../component/amporto/filter';
 
 const modules = {
   OverlayWithSpinner: () =>
@@ -150,7 +151,12 @@ class ExplorePage extends React.Component {
   }
 
   render() {
-    return <div className="explore">Explore page</div>;
+    return (
+      <div className="explore">
+        Explore page
+        <Filter />
+      </div>
+    );
   }
 }
 
