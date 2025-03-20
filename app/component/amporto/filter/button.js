@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import { string, bool, node } from 'prop-types';
+import { string, bool, node, func } from 'prop-types';
 import Icon from '../../Icon';
 
-const FilterButton = ({ label, selected, icon }) => {
+const FilterButton = ({ label, selected, icon, handleClick }) => {
   const [isSelected, setSelected] = useState(selected);
 
   return (
@@ -12,7 +12,10 @@ const FilterButton = ({ label, selected, icon }) => {
       className={classnames('filter-container--content', {
         selected: isSelected ? 'selected' : ''
       })}
-      onClick={() => setSelected(!isSelected)}
+      onClick={() => {
+        setSelected(!isSelected);
+        handleClick();
+      }}
     >
       {icon}
 
@@ -28,7 +31,12 @@ const FilterButton = ({ label, selected, icon }) => {
 FilterButton.propTypes = {
   label: string.isRequired,
   selected: bool.isRequired,
-  icon: node.isRequired
+  icon: node.isRequired,
+  handleClick: func
+};
+
+FilterButton.defaultProps = {
+  handleClick: () => {}
 };
 
 export default FilterButton;

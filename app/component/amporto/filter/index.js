@@ -1,14 +1,9 @@
 import React from 'react';
+import { func } from 'prop-types';
 import Icon from '../../Icon';
 import FilterButton from './button';
 
 const filters = [
-  {
-    label: 'Todos os filtros',
-    icon: 'icon-icon_settings',
-    selected: true,
-    type: 'all',
-  },
   {
     label: 'Transportes',
     icon: 'icon-icon_bus_no_map',
@@ -35,9 +30,9 @@ const filters = [
   },
 ];
 
-const Filter = () => {
+const Filter = ({ openModal }) => {
   const renderFilters = () => {
-    return filters.map(it => {
+    const buttons = filters.map(it => {
       return (
         <FilterButton
           key={it.type}
@@ -46,14 +41,38 @@ const Filter = () => {
             <Icon img={it.icon} viewBox="0 0 16 16" className="icon-prefix" />
           }
           selected={it.selected}
+          handleClick={() => console.log(it.type)}
         />
       );
     });
+
+    buttons.unshift(
+      <FilterButton
+        key="all"
+        label="Todos os filtros"
+        icon={
+          <Icon
+            img="icon-icon_settings"
+            viewBox="0 0 16 16"
+            className="icon-prefix"
+          />
+        }
+        selected={false}
+        handleClick={() => openModal()}
+      />
+    );
+    return buttons;
   };
 
   return <div className="filter-container">{renderFilters()}</div>;
 };
 
-Filter.propTypes = {};
+Filter.propTypes = {
+  openModal: func,
+};
+
+Filter.defaultProps = {
+  openModal: () => {},
+};
 
 export default Filter;

@@ -1,0 +1,126 @@
+.accordion-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  .accordion {
+    background-color: $background-default;
+    color: #444;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    outline: none;
+
+    &:hover,
+    .active {
+      background-color: $background-default;
+    }
+
+    .accordion-header {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      flex-grow: 1;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      max-height: 36px;
+      min-height: 36px;
+      color: $primary-dark;
+      margin: 0 16px;
+      border-bottom: 1px solid #eaeaea;
+      padding: 24px 0;
+      background-color: $background-default;
+
+      .icon-container {
+        display: flex;
+        position: relative;
+        color: $primary-dark;
+        flex-grow: 0;
+
+        svg {
+          &.icon-prefix {
+            color: $grey-dark-down;
+            width: 32px;
+            height: 32px;
+          }
+
+          &.icon-suffix {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+
+      .accordion__title {
+        display: flex;
+        position: relative;
+        flex-grow: 4;
+
+        font-family: $font-family;
+        color: $grey-dark-down;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px; /* 150% */
+      }
+    }
+  }
+
+  .accordion__content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: $background-default;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+  }
+}
+
+.accordion-group-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: $background-default;
+  margin-top: 10px;
+
+  .accordion-category-list {
+    margin-left: 40px;
+
+    .category-item {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      flex-grow: 1;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      max-height: 36px;
+      min-height: 36px;
+      color: $primary-dark;
+      margin: 0 16px;
+      border-bottom: 1px solid #eaeaea;
+      padding: 24px 4px 24px 0;
+      background-color: $background-default;
+
+      .name {
+        display: flex;
+        position: relative;
+        color: #212121;
+
+        font-family: $font-family;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+      }
+
+      .check-icon {
+        display: flex;
+        position: relative;
+      }
+    }
+  }
+}
