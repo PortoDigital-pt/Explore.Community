@@ -1,78 +1,73 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { connectToStores } from 'fluxible-addons-react';
 import { func } from 'prop-types';
-import Icon from '../../Icon';
-import FilterButton from './button';
+import { configShape } from '../../../util/shapes';
+import { addCategory, removeCategory } from '../../../action/FiltersActions';
+import FilterBar from './filterBar';
+import CustomModal from '../modal';
+import useModal from '../../../hooks/useModal';
+import AccordionGroup from '../accordion/group/index';
 
-const filters = [
-  {
-    label: 'Transportes',
-    icon: 'icon-icon_bus_no_map',
-    selected: false,
-    type: 'transports',
-  },
-  {
-    label: 'Pontos de interesse',
-    icon: 'icon-camera',
-    selected: false,
-    type: 'pois',
-  },
-  {
-    label: 'Eventos',
-    icon: 'icon-events',
-    selected: false,
-    type: 'events',
-  },
-  {
-    label: 'Roteiros',
-    icon: 'icon-store',
-    selected: false,
-    type: 'itineraries',
-  },
-];
+const Container = ({ filtersState }, { config, executeAction }) => {
+  const { isOpen, open, close } = useModal();
 
-const Filter = ({ openModal }) => {
-  const renderFilters = () => {
-    const buttons = filters.map(it => {
-      return (
-        <FilterButton
-          key={it.type}
-          label={it.label}
-          icon={
-            <Icon img={it.icon} viewBox="0 0 16 16" className="icon-prefix" />
-          }
-          selected={it.selected}
-          handleClick={() => console.log(it.type)}
-        />
-      );
-    });
+  const updateFilters = (type, category, selected) => {
+    const data = { type, category };
 
-    buttons.unshift(
-      <FilterButton
-        key="all"
-        label="Todos os filtros"
-        icon={
-          <Icon
-            img="icon-icon_settings"
-            viewBox="0 0 16 16"
-            className="icon-prefix"
-          />
-        }
-        selected={false}
-        handleClick={() => openModal()}
-      />
-    );
-    return buttons;
+    if (selected) {
+      executeAction(addCategory, data);
+    } else {
+      executeAction(removeCategory, data);
+    }
   };
 
-  return <div className="filter-container">{renderFilters()}</div>;
+  return (
+    <>
+      <FilterBar selectedFilters={filtersState} openModal={() => open()} />
+      {isOpen && (
+        <Suspense fallback="">
+          <CustomModal
+            isOpen={isOpen}
+            className="filters-popup modal"
+            overlayClassName="overlay"
+            shouldFocusAfterRender
+            shouldCloseOnEsc
+          >
+            <button
+              type="button"
+              onClick={() => close()}
+              style={{
+                width: '100%',
+                height: '40px',
+                border: '1px solid whitesmoke',
+                backgroundColor: 'lightskyblue'
+              }}
+            >
+              back
+            </button>
+            <AccordionGroup
+              selectedFilters={filtersState}
+              updateFilters={updateFilters}
+            />
+          </CustomModal>
+        </Suspense>
+      )}
+    </>
+  );
 };
 
-Filter.propTypes = {
-  openModal: func,
+Container.contextTypes = {
+  config: configShape.isRequired,
+  executeAction: func.isRequired
 };
 
-Filter.defaultProps = {
-  openModal: () => {},
-};
+const FilterContainer = connectToStores(
+  Container,
+  ['FiltersStore'],
+  context => {
+    const filtersState = context.getStore('FiltersStore').getFilters();
+    return { filtersState, context };
+  }
+);
 
-export default Filter;
+export default FilterContainer;

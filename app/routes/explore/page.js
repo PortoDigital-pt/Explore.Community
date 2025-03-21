@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import connectToStores from 'fluxible-addons-react/connectToStores';
@@ -12,19 +12,16 @@ import {
   getPathWithEndpointObjects,
   parseLocation,
   definesItinerarySearch,
-  PREFIX_ITINERARY_SUMMARY,
+  PREFIX_ITINERARY_SUMMARY
 } from '../../util/path';
 import Geomover from '../../component/Geomover';
 import scrollTop from '../../util/scroll';
-import LazilyLoad, { importLazy } from '../../component/LazilyLoad';
+import { importLazy } from '../../component/LazilyLoad';
 import {
   checkPositioningPermission,
-  startLocationWatch,
+  startLocationWatch
 } from '../../action/PositionActions';
-import Filter from '../../component/amporto/filter';
-import Modal from '../../component/amporto/modal';
-import Accordion from '../../component/amporto/accordion';
-import AccordionGroup from '../../component/amporto/accordion/group';
+import FilterContainer from '../../component/amporto/filter';
 
 const modules = {
   OverlayWithSpinner: () =>
@@ -32,7 +29,7 @@ const modules = {
   FavouritesContainer: () =>
     importLazy(import('../../component/FavouritesContainer')),
   DatetimepickerContainer: () =>
-    importLazy(import('../../component/DatetimepickerContainer')),
+    importLazy(import('../../component/DatetimepickerContainer'))
 };
 
 class ExplorePage extends React.Component {
@@ -42,7 +39,7 @@ class ExplorePage extends React.Component {
     getStore: PropTypes.func.isRequired,
     router: routerShape.isRequired,
     match: matchShape.isRequired,
-    config: configShape.isRequired,
+    config: configShape.isRequired
   };
 
   static propTypes = {
@@ -53,23 +50,18 @@ class ExplorePage extends React.Component {
     query: PropTypes.object.isRequired,
     favouriteModalAction: PropTypes.string,
     fromMap: PropTypes.string,
-    locationState: locationShape.isRequired,
+    locationState: locationShape.isRequired
   };
 
   static defaultProps = {
     lang: 'pt',
     favouriteModalAction: '',
-    fromMap: undefined,
+    fromMap: undefined
   };
 
   constructor(props, context) {
     super(props, context);
-    this.state = { isOpen: false };
   }
-
-  setIsOpen = isOpen => {
-    this.setState({ isOpen: !isOpen });
-  };
 
   componentDidMount() {
     const { from } = this.context.match.params;
@@ -130,7 +122,7 @@ class ExplorePage extends React.Component {
         pathname: getPathWithEndpointObjects(
           origin,
           destination,
-          PREFIX_ITINERARY_SUMMARY,
+          PREFIX_ITINERARY_SUMMARY
         ),
       };
       if (newLocation.query.time === undefined) {
@@ -144,12 +136,12 @@ class ExplorePage extends React.Component {
         origin,
         destination,
         config.indexPath,
-        'explore',
+        'explore'
       );
       if (path !== location.pathname) {
         const newLocation = {
           ...location,
-          pathname: path,
+          pathname: path
         };
 
         router.replace(newLocation);
@@ -161,20 +153,7 @@ class ExplorePage extends React.Component {
     return (
       <div className="explore">
         Explore page
-        <Filter openModal={() => this.setIsOpen()} />
-        {this.state.isOpen && (
-          <Suspense fallback="">
-            <Modal
-              isOpen={this.state.isOpen}
-              className="details-page modal"
-              overlayClassName="overlay"
-              shouldFocusAfterRender
-              shouldCloseOnEsc
-            >
-              <AccordionGroup />
-            </Modal>
-          </Suspense>
-        )}
+        <FilterContainer />
       </div>
     );
   }
@@ -187,6 +166,7 @@ const ExplorePageWithStores = connectToStores(
     const origin = context.getStore('OriginStore').getOrigin();
     const destination = context.getStore('DestinationStore').getDestination();
     const locationState = context.getStore('PositionStore').getLocationState();
+
     const { location } = props.match;
     const newProps = {};
     const { query } = location;
@@ -203,14 +183,15 @@ const ExplorePageWithStores = connectToStores(
     newProps.destination = destination;
     newProps.lang = context.getStore('PreferencesStore').getLanguage();
     newProps.query = query;
+
     return newProps;
-  },
+  }
 );
 
 ExplorePageWithStores.contextTypes = {
   ...ExplorePageWithStores.contextTypes,
   executeAction: PropTypes.func.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default Geomover(ExplorePageWithStores);

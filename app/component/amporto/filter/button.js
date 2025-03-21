@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { string, bool, node, func } from 'prop-types';
 import Icon from '../../Icon';
 
-const FilterButton = ({ label, selected, icon, handleClick }) => {
-  const [isSelected, setSelected] = useState(selected);
+const FilterButton = ({
+  label,
+  selected,
+  icon,
+  handleClick,
+  alwaysUnselected
+}) => {
+  const [isSelected, setIsSelected] = useState(selected);
+
+  useEffect(() => {
+    setIsSelected(selected);
+  }, [selected]);
 
   return (
     <button
@@ -13,7 +23,7 @@ const FilterButton = ({ label, selected, icon, handleClick }) => {
         selected: isSelected ? 'selected' : ''
       })}
       onClick={() => {
-        setSelected(!isSelected);
+        setIsSelected(alwaysUnselected ? false : !isSelected);
         handleClick();
       }}
     >
@@ -32,7 +42,8 @@ FilterButton.propTypes = {
   label: string.isRequired,
   selected: bool.isRequired,
   icon: node.isRequired,
-  handleClick: func
+  handleClick: func,
+  alwaysUnselected: bool
 };
 
 FilterButton.defaultProps = {

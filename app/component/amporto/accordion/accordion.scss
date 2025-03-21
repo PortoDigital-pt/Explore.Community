@@ -1,3 +1,24 @@
+.filters-popup {
+  display: flex;
+  position: relative;
+  min-height: 100% !important;
+  margin-top: 8px;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: 24px;
+  padding-bottom: $mobile-navigation-bar-height;
+  background-color: $background-default !important;
+  overflow: auto !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+
 .accordion-container {
   display: flex;
   position: relative;
@@ -88,6 +109,9 @@
 
   .accordion-category-list {
     margin-left: 40px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
 
     .category-item {
       display: flex;

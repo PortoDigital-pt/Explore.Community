@@ -1,93 +1,55 @@
 import React from 'react';
+import { func } from 'prop-types';
+import { getContext } from 'recompose';
 import Accordion from '..';
-import Icon from '../../../Icon';
+import { configShape } from '../../../../util/shapes';
+import AccordionItem from './item';
 
-const config = {
-  categories: {
-    transports: ['Autocarro', 'Eletrico', 'Metro', 'Trem', 'Bicicletas'],
-    pois: [
-      'Casas de Fado',
-      'Caves de Vinhos e Quintas',
-      'Centros de exposições & Galerias de arte',
-      'Estátuas, Esculturas e Fontes',
-      'Marinas e Portos',
-      'Miradouros',
-      'Monumentos',
-      'Museus e Centros Temáticos',
-      'Parques e Jardins',
-      'Pontes',
-      'Postos de Turismo',
-      'Ruas e Praças',
-      'Salas de Concerto',
-      'Teatros',
-      'Templos Religiosos'
-    ],
-    events: [
-      'Ar livre',
-      'Aula',
-      'Canção',
-      'Cinema',
-      'Circo',
-      'Comédia',
-      'Concerto',
-      'Conversa',
-      'Dança',
-      'Escuta',
-      'Espetáculo',
-      'Exposição',
-      'Feira',
-      'Festa',
-      'Filme',
-      'Instalação',
-      'Leitura',
-      'Oficina',
-      'Ópera',
-      'Palestra',
-      'Performance',
-      'Provas',
-      'Teatro',
-      'Visita'
-    ]
-  }
-};
-
-const data = [
+const groups = [
   {
     type: 'transports',
     title: 'Transportes',
     icon: 'icon-icon_bus_with_background',
-    selected: false,
-    categories: config.categories.transports
+    selected: false
   },
   {
     type: 'pois',
     title: 'Pontos de interesse',
     icon: 'icon-explore-icon_pois_with_background',
-    selected: false,
-    categories: config.categories.pois
+    selected: false
   },
   {
     type: 'events',
     title: 'Eventos',
     icon: 'icon-explore-icon_events_with_background',
-    selected: false,
-    categories: config.categories.events
+    selected: false
   }
 ];
 
-function AccordionGroup() {
+function Container({
+  selectedFilters,
+  updateFilters,
+  config: { filters: defaultFilters },
+  executeAction
+}) {
   const getContentCategories = item => {
-    return item.categories.map(category => (
-      <div className="category-item" key={category}>
-        <span className="name">{category}</span>
+    return defaultFilters[item.type]?.map(category => {
+      const selected = selectedFilters[item.type]?.includes(category);
 
-        <Icon img="icon-icon_check_new" viewBox="0 0 24 24" />
-      </div>
-    ));
+      return (
+        <AccordionItem
+          type={item.type}
+          key={`${item.type}-${category}`}
+          isSelected={selected}
+          category={category}
+          onClick={updateFilters}
+        />
+      );
+    });
   };
 
   const buildAccordion = () => {
-    return data.map(it => {
+    return groups.map(it => {
       return (
         <Accordion key={it.type} title={it.title} iconId={it.icon}>
           <div className="accordion-category-list">
@@ -101,10 +63,15 @@ function AccordionGroup() {
   return <div className="accordion-group-container">{buildAccordion()}</div>;
 }
 
-AccordionGroup.propTypes = {
-  // title: string.isRequired,
-  // iconId: string.isRequired,
-  // children: node.isRequired,
+Container.propTypes = {
+  updateFilters: func.isRequired,
+  config: configShape.isRequired,
+  executeAction: func.isRequired
 };
+
+const AccordionGroup = getContext({
+  config: configShape.isRequired,
+  executeAction: func.isRequired
+})(Container);
 
 export default AccordionGroup;

@@ -356,5 +356,51 @@ export default {
         pt: 'Todos os dias a cidade do Porto tem sugestões de eventos para si.'
       }
     }
+  },
+  filters: {
+    transports: ['Autocarro', 'Elétrico', 'Metro', 'Comboio', 'Bicicletas'],
+    pois: [
+      'Casas de Fado',
+      'Caves de Vinhos e Quintas',
+      'Centros de exposições & Galerias de arte',
+      'Estátuas, Esculturas e Fontes',
+      'Marinas e Portos',
+      'Miradouros',
+      'Monumentos',
+      'Museus e Centros Temáticos',
+      'Parques e Jardins',
+      'Pontes',
+      'Postos de Turismo',
+      'Ruas e Praças',
+      'Salas de Concerto',
+      'Teatros',
+      'Templos Religiosos'
+    ],
+    events: [
+      'Ar livre',
+      'Aula',
+      'Canção',
+      'Cinema',
+      'Circo',
+      'Comédia',
+      'Concerto',
+      'Conversa',
+      'Dança',
+      'Escuta',
+      'Espetáculo',
+      'Exposição',
+      'Feira',
+      'Festa',
+      'Filme',
+      'Instalação',
+      'Leitura',
+      'Oficina',
+      'Ópera',
+      'Palestra',
+      'Performance',
+      'Provas',
+      'Teatro',
+      'Visita'
+    ]
   }
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { node, string } from 'prop-types';
 import Icon from '../../Icon';
 
@@ -6,10 +6,6 @@ function Accordion({ title, iconId, children }) {
   const [active, setActive] = useState(false);
   const content = useRef(null);
   const [height, setHeight] = useState('0px');
-
-  useEffect(() => {
-    console.log('Height for ', title, ': ', height);
-  }, [height]);
 
   function toggleAccordion() {
     setActive(!active);
@@ -52,7 +48,7 @@ function Accordion({ title, iconId, children }) {
 Accordion.propTypes = {
   title: string.isRequired,
   iconId: string.isRequired,
-  children: node.isRequired,
+  children: node.isRequired
 };
 
 export default Accordion;
