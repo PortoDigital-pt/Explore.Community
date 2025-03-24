@@ -28,7 +28,7 @@ const PATH_OPTS = {
 
 export function getLocationSearchTargets(config, isMobile) {
   let locationSearchTargets = ['Locations', 'CurrentPosition'];
- 
+
   if (config.locationSearchTargetsFromOTP) {
     // configurable setup
     locationSearchTargets = [
