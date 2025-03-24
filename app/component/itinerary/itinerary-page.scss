@@ -330,6 +330,22 @@
       color: $grey-dark-down;
       width: 20px;
       height: 20px;
+      display: flex;
+      position: relative;
+      top: 1px;
+      left: 2px;
+
+      @media screen and (min-width: 500px) {
+        top: 2px;
+      }
+
+      @media screen and (min-width: 600px) {
+        top: 4px;
+      }
+
+      @media screen and (min-width: 899px) {
+        top: 2px;
+      }
     }
   }
 
