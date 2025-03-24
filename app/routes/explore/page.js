@@ -123,7 +123,7 @@ class ExplorePage extends React.Component {
           origin,
           destination,
           PREFIX_ITINERARY_SUMMARY
-        ),
+        )
       };
       if (newLocation.query.time === undefined) {
         newLocation.query.time = Math.floor(Date.now() / 1000).toString();

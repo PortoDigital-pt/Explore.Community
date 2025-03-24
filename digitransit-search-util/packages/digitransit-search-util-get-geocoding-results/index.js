@@ -17,7 +17,7 @@ const DEFAULT_PELIAS_URL = 'https://api.digitransit.fi/geocoding/v1/search';
  * digitransit-search-util.getGeocodingResults("result");
  * //= e.g. {text:"result"}
  */
-export default function getGeocodingResults(
+export default async function getGeocodingResults(
   searchString,
   searchParams,
   lang,
@@ -46,6 +46,18 @@ export default function getGeocodingResults(
     opts = { ...opts, layers };
   }
   return getJson(PELIAS_URL, opts).then(res => {
-    return res.features;
+    return res.features.map(feature => {
+      if (
+        feature.properties.layer === 'venue' &&
+        feature.properties.source === 'custom'
+      ) {
+        return {
+          ...feature,
+          properties: { ...feature.properties, layer: 'pois' }
+        };
+      }
+
+      return feature;
+    });
   });
 }

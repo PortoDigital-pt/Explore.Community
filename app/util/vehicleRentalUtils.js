@@ -193,6 +193,7 @@ export const mapVehicleRentalFromStore = vehicleRentalStation => {
     network,
     stationId
   };
+
   delete newStation.networks;
   return newStation;
 };

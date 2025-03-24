@@ -7,11 +7,13 @@ import {
   // getAllVehicleRentalStations,  // Bike stations are fetched from Geocoding
 } from '@digitransit-search-util/digitransit-search-util-query-utils';
 import {
+  hasFavourites,
   getPositions,
   getFavouriteLocations,
   getFavouriteRoutes,
   getOldSearches,
   getFavouriteStops,
+  getFavouriteExplore,
   getLanguage,
   clearOldSearches,
   getFutureRoutes,
@@ -53,8 +55,10 @@ export default function intializeSearchContext(context, searchContext) {
   searchContext.getOldSearches = getOldSearches;
   searchContext.getFavouriteLocations = getFavouriteLocations;
   searchContext.getFavouriteStops = getFavouriteStops;
+  searchContext.getFavouriteExplore = getFavouriteExplore;
   searchContext.getLanguage = getLanguage;
   searchContext.getFavouriteRoutes = getFavouriteRoutes;
+  searchContext.hasFavourites = hasFavourites;
   searchContext.getPositions = getPositions;
   searchContext.getRoutesQuery = getRoutesQuery;
   searchContext.getStopAndStationsQuery = getStopAndStationsQuery;

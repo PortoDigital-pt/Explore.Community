@@ -8,7 +8,7 @@ export const addCategory = (actionContext, data) => {
 
   const newState = {
     ...filtersState,
-    [type]: [...filtersState[type], category],
+    [type]: [...filtersState[type], category]
   };
 
   setFilters(actionContext, newState);

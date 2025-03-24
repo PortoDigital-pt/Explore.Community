@@ -6,6 +6,12 @@
 .suggestion-item-container {
   display: flex;
   min-height: 25px;
+  width: 100%;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 20px;
+  flex-grow: 1;
 
   &.futureroute {
     min-height: 79px;
@@ -14,7 +20,6 @@
 
 .mobile {
   height: 59px;
-  margin: 0 10px;
 
   &.CurrentLocation {
     height: 50px;
@@ -35,11 +40,15 @@ li:last-child > div.suggestion-item-container.mobile {
 
 .search-result {
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  column-gap: 10px;
 
-  @media screen and (min-width: 800px) {
+  @media (min-width: 900px) {
     min-height: 49px;
+    column-gap: 0;
   }
 
   &.futureroute {
@@ -50,31 +59,29 @@ li:last-child > div.suggestion-item-container.mobile {
     display: flex;
     width: 100%;
     flex-direction: column;
-    position: absolute;
-    padding-left: 49px;
-    padding-right: 27px;
-
+    position: relative;
+   
     .suggestion-name {
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 27px);
       margin: 0;
       font-weight: $font-weight-book;
       color: $grey-dark-down;
       font-size: 16px !important;
       letter-spacing: -0.5px;
       line-height: 1.5;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
 
       @include min-width(tablet) {
         font-size: 13px !important;
         letter-spacing: -0.43px;
-        line-height: 1;
+       
       }
 
       @media screen and (min-width: 767px) {
         font-size: 15px !important;
         letter-spacing: -0.43px;
-        line-height: 1;
         font-weight: 600;
       }
 
@@ -97,6 +104,10 @@ li:last-child > div.suggestion-item-container.mobile {
     }
 
     .suggestion-label {
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 27px);
       margin: 0;
       color: $grey-dark-down;
       font-size: 12px !important;
@@ -104,8 +115,6 @@ li:last-child > div.suggestion-item-container.mobile {
       letter-spacing: -0.43px;
       line-height: 1.38;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       position: relative;
       top: -1px;
 
@@ -174,8 +183,6 @@ li:last-child > div.suggestion-item-container.mobile {
         width: 24px;
         height: 24px;
       }
-
-      right: 24px;
     }
   }
 }
@@ -196,8 +203,14 @@ li:last-child > div.suggestion-item-container.mobile {
 
   // Default size
   svg {
-    width: 22px;
-    height: 22px;
+    color: $primary-main;
+    width: 20px;
+    height: 20px;
+
+    @media (min-width: 900px) {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   .place,
@@ -249,14 +262,6 @@ li:last-child > div.suggestion-item-container.mobile {
     svg {
       width: 18px;
       height: 18px;
-    }
-  }
-
-  .arrow {
-    svg {
-      width: 17px;
-      height: 17px;
-      transform: rotate(180deg);
     }
   }
 

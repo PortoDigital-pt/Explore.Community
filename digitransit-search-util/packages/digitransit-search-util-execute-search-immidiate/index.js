@@ -209,20 +209,7 @@ function filterOldSearches(oldSearches, input, dropLayers) {
 }
 
 function hasFavourites(searchContext) {
-  const favouriteLocations = searchContext.getFavouriteLocations(
-    searchContext.context
-  );
-  if (favouriteLocations?.length > 0) {
-    return true;
-  }
-
-  const favouriteVehicleRentalStations =
-    searchContext.getFavouriteVehicleRentalStations(searchContext.context);
-  if (favouriteVehicleRentalStations?.length > 0) {
-    return true;
-  }
-  const favouriteStops = searchContext.getFavouriteStops(searchContext.context);
-  return favouriteStops?.length > 0;
+  return searchContext.hasFavourites(searchContext.context);
 }
 
 const routeLayers = [
@@ -234,7 +221,7 @@ const routeLayers = [
   'route-AIRPLANE',
   'route-FUNICULAR'
 ];
-const locationLayers = ['venue', 'venue_ropi', 'address', 'street'];
+const locationLayers = ['venue', 'address', 'street'];
 const parkingLayers = ['carpark', 'bikepark'];
 const stopLayers = ['stop', 'station'];
 
@@ -259,6 +246,7 @@ export function getSearchResults(
     getFavouriteLocations,
     getOldSearches,
     getFavouriteStops,
+    getFavouriteExplore,
     parkingAreaSources,
     getLanguage,
     getStopAndStationsQuery,
@@ -318,6 +306,7 @@ export function getSearchResults(
   if (allTargets || targets.includes('Locations')) {
     // eslint-disable-next-line prefer-destructuring
     const searchParams = geocodingSearchParams;
+
     if (sources.includes('Favourite')) {
       const favouriteLocations = getFavouriteLocations(context);
       searchComponents.push(
@@ -329,7 +318,7 @@ export function getSearchResults(
     }
 
     if (allSources || sources.includes('Datasource')) {
-      const geocodingLayers = ['venue', 'venue_ropi', 'address', 'street'];
+      const geocodingLayers = ['venue', 'address', 'street'];
       if (targets.includes('Stations')) {
         geocodingLayers.push('station'); // search stations from OSM
       }
@@ -395,6 +384,28 @@ export function getSearchResults(
 
   const useStops = targets.includes('Stops');
   const useStations = targets.includes('Stations');
+  const useExplore = targets.includes('Pois') || targets.includes('Events');
+
+  if (allTargets || useExplore) {
+    if (sources.includes('Favourite')) {
+      const favouriteExplore = getFavouriteExplore(context);
+      const poisAndEvents = Promise.resolve(
+        favouriteExplore.map(({ type, id, name, lon, lat }) => ({
+          type: `Favourite${type}`,
+          properties: {
+            id,
+            address: name,
+            layer: `favourite${type}`
+          },
+          geometry: { type: 'Point', coordinates: [lon, lat] }
+        }))
+      );
+      searchComponents.push(poisAndEvents);
+    }
+    if (allSources || sources.includes('History')) {
+      // TODO
+    }
+  }
 
   if (allTargets || useStops || useStations) {
     if (sources.includes('Favourite')) {
@@ -422,6 +433,7 @@ export function getSearchResults(
             return results;
           });
       }
+
       searchComponents.push(
         filterFavouriteStops(stopsAndStations, input, useStops, useStations)
       );
@@ -494,6 +506,7 @@ export function getSearchResults(
       }
     }
   }
+
   if (allTargets || targets.includes('Routes')) {
     if (sources.includes('Favourite')) {
       const favouriteRoutes = getFavouriteRoutes(context);

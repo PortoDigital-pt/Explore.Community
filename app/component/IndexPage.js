@@ -413,7 +413,7 @@ class IndexPage extends React.Component {
                   <div className="datetimepicker-container">
                     <DatetimepickerContainer realtime color={color} />
                   </div>
-                  {!config.hideFavourites && (
+                  {config.optionalNavigationItems.favourites && (
                     <>
                       <FavouritesContainer
                         favouriteModalAction={this.props.favouriteModalAction}
@@ -466,11 +466,13 @@ class IndexPage extends React.Component {
                   <div className="datetimepicker-container">
                     <DatetimepickerContainer realtime color={color} />
                   </div>
-                  <FavouritesContainer
-                    onClickFavourite={this.clickFavourite}
-                    lang={lang}
-                    isMobile
-                  />
+                  {config.optionalNavigationItems.favourites && (
+                    <FavouritesContainer
+                      onClickFavourite={this.clickFavourite}
+                      lang={lang}
+                      isMobile
+                    />
+                  )}
                   <CtrlPanel.SeparatorLine />
                   <>{this.NearStops(CtrlPanel)}</>
                   <div className="stop-route-search-container">
