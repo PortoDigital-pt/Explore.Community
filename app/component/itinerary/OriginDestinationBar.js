@@ -35,7 +35,6 @@ class OriginDestinationBar extends React.Component {
     destination: locationShape.isRequired,
     language: PropTypes.string,
     isMobile: PropTypes.bool,
-    showFavourites: PropTypes.bool.isRequired,
     viaPoints: PropTypes.arrayOf(locationShape),
     locationState: locationStateShape.isRequired,
     modeSet: PropTypes.string,
@@ -157,11 +156,7 @@ class OriginDestinationBar extends React.Component {
           addAnalyticsEvent={addAnalyticsEvent}
           swapOrder={this.swapEndpoints}
           selectHandler={this.onLocationSelect}
-          sources={[
-            'History',
-            'Datasource',
-            'Favourite' 
-          ]}
+          sources={['History', 'Datasource', 'Favourite']}
           targets={getLocationSearchTargets(config, props.isMobile)}
           lang={props.language}
           disableAutoFocus={props.isMobile}
