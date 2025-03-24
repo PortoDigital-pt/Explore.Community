@@ -6,10 +6,9 @@
   flex-grow: 1;
   flex-direction: column;
   justify-content: flex-start;
-  row-gap: 24px;
+  row-gap: 10px;
   padding-bottom: $mobile-navigation-bar-height;
   background-color: $background-default !important;
-  overflow: auto !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 
@@ -20,7 +19,7 @@
 
   .filters-top-bar {
     display: flex;
-    position: relative;
+    position: sticky;
     background-color: $background-default;
     max-height: 40px;
     min-height: 40px;
@@ -141,6 +140,11 @@
   flex-direction: column;
   background-color: $background-default;
   margin-top: 10px;
+  overflow: auto !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .accordion-category-list {
     margin-left: 40px;
