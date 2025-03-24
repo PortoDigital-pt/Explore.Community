@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, shape } from 'prop-types';
 import { getContext } from 'recompose';
 import Accordion from '..';
 import { configShape } from '../../../../util/shapes';
@@ -10,42 +10,61 @@ const groups = [
     type: 'transports',
     title: 'Transportes',
     icon: 'icon-icon_bus_with_background',
-    selected: false
+    selected: false,
   },
   {
     type: 'pois',
     title: 'Pontos de interesse',
     icon: 'icon-explore-icon_pois_with_background',
-    selected: false
+    selected: false,
   },
   {
     type: 'events',
     title: 'Eventos',
     icon: 'icon-explore-icon_events_with_background',
-    selected: false
-  }
+    selected: false,
+  },
 ];
 
 function Container({
   selectedFilters,
   updateFilters,
+  onCheckAll,
   config: { filters: defaultFilters },
-  executeAction
 }) {
   const getContentCategories = item => {
-    return defaultFilters[item.type]?.map(category => {
+    const allSelected =
+      selectedFilters[item.type]?.length === defaultFilters[item.type]?.length;
+
+    const items = [
+      <AccordionItem
+        type={item.type}
+        key={`${item.type}-parent`}
+        isSelected={allSelected}
+        category="Todos"
+        onClick={onCheckAll}
+        showIcon={allSelected}
+        className="category"
+      />,
+    ];
+
+    defaultFilters[item.type]?.forEach(category => {
       const selected = selectedFilters[item.type]?.includes(category);
 
-      return (
+      items.push(
         <AccordionItem
           type={item.type}
           key={`${item.type}-${category}`}
-          isSelected={selected}
           category={category}
           onClick={updateFilters}
-        />
+          isSelected={selected}
+          showIcon={!allSelected && selected}
+          className="sub-category"
+        />,
       );
     });
+
+    return items;
   };
 
   const buildAccordion = () => {
@@ -65,13 +84,13 @@ function Container({
 
 Container.propTypes = {
   updateFilters: func.isRequired,
+  onCheckAll: func.isRequired,
   config: configShape.isRequired,
-  executeAction: func.isRequired
+  selectedFilters: shape,
 };
 
 const AccordionGroup = getContext({
   config: configShape.isRequired,
-  executeAction: func.isRequired
 })(Container);
 
 export default AccordionGroup;

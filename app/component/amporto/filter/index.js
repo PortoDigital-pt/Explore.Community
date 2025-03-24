@@ -2,7 +2,11 @@ import React, { Suspense } from 'react';
 import { connectToStores } from 'fluxible-addons-react';
 import { func } from 'prop-types';
 import { configShape } from '../../../util/shapes';
-import { addCategory, removeCategory } from '../../../action/FiltersActions';
+import {
+  addCategory,
+  removeCategory,
+  categoryOnOff,
+} from '../../../action/FiltersActions';
 import FilterBar from './filterBar';
 import CustomModal from '../modal';
 import useModal from '../../../hooks/useModal';
@@ -11,7 +15,7 @@ import AccordionGroup from '../accordion/group/index';
 const Container = ({ filtersState }, { config, executeAction }) => {
   const { isOpen, open, close } = useModal();
 
-  const updateFilters = (type, category, selected) => {
+  const updateFilters = ({ type, category, selected }) => {
     const data = { type, category };
 
     if (selected) {
@@ -19,6 +23,11 @@ const Container = ({ filtersState }, { config, executeAction }) => {
     } else {
       executeAction(removeCategory, data);
     }
+  };
+
+  const checkAllByCategory = ({ type, selected }) => {
+    const data = { type, isSelected: selected };
+    executeAction(categoryOnOff, data);
   };
 
   return (
@@ -40,7 +49,7 @@ const Container = ({ filtersState }, { config, executeAction }) => {
                 width: '100%',
                 height: '40px',
                 border: '1px solid whitesmoke',
-                backgroundColor: 'lightskyblue'
+                backgroundColor: 'lightskyblue',
               }}
             >
               back
@@ -48,6 +57,7 @@ const Container = ({ filtersState }, { config, executeAction }) => {
             <AccordionGroup
               selectedFilters={filtersState}
               updateFilters={updateFilters}
+              onCheckAll={checkAllByCategory}
             />
           </CustomModal>
         </Suspense>
@@ -58,7 +68,7 @@ const Container = ({ filtersState }, { config, executeAction }) => {
 
 Container.contextTypes = {
   config: configShape.isRequired,
-  executeAction: func.isRequired
+  executeAction: func.isRequired,
 };
 
 const FilterContainer = connectToStores(
@@ -67,7 +77,7 @@ const FilterContainer = connectToStores(
   context => {
     const filtersState = context.getStore('FiltersStore').getFilters();
     return { filtersState, context };
-  }
+  },
 );
 
 export default FilterContainer;

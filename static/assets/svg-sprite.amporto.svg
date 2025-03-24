@@ -4698,5 +4698,13 @@
       fill="currentColor" />
   </symbol>
 
+  <symbol id="icon-check-with-circle" viewBox="0 0 20 20" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <rect width="20" height="20" rx="10" fill="#000F9F" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M15.8047 5.52851C16.0651 5.78886 16.0651 6.21097 15.8047 6.47132L8.4714 13.8047C8.21106 14.065 7.78894 14.065 7.5286 13.8047L4.19526 10.4713C3.93491 10.211 3.93491 9.78886 4.19526 9.52851C4.45561 9.26816 4.87772 9.26816 5.13807 9.52851L8 12.3904L14.8619 5.52851C15.1223 5.26816 15.5444 5.26816 15.8047 5.52851Z"
+      fill="currentColor" />
+  </symbol>
+
   </defs>
 </svg>

@@ -142,8 +142,11 @@
       }
 
       .check-icon {
-        display: flex;
-        position: relative;
+        color: $background-default;
+      }
+
+      &.category .name {
+       font-weight: 700;
       }
     }
   }
