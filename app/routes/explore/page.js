@@ -21,6 +21,7 @@ import {
   checkPositioningPermission,
   startLocationWatch
 } from '../../action/PositionActions';
+import PlacesSection from './page-sections/places';
 
 const modules = {
   OverlayWithSpinner: () =>
@@ -150,7 +151,12 @@ class ExplorePage extends React.Component {
   }
 
   render() {
-    return <div className="explore">Explore page</div>;
+    return (
+      <div className="explore">
+        <div>filters</div>
+        <PlacesSection />
+      </div>
+    );
   }
 }
 

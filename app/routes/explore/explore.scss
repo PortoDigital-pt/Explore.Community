@@ -1,3 +1,5 @@
+@import './page-sections/places/places.scss';
+
 .explore {
     margin-top: 35px;
     display: flex;
@@ -6,8 +8,12 @@
     flex-grow: 1;
     flex-direction: column;
     justify-content: flex-start;
+    row-gap: 20px;
+    padding-left: 16px;
 
     @media (min-width: 900px) {
         margin-top: 88px;
-      }
+        row-gap: 24px;
+        padding-left: 24px;
+    }
 }
