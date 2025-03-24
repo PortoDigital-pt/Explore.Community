@@ -160,7 +160,7 @@ class OriginDestinationBar extends React.Component {
           sources={[
             'History',
             'Datasource',
-            props.showFavourites ? 'Favourite' : ''
+            'Favourite' 
           ]}
           targets={getLocationSearchTargets(config, props.isMobile)}
           lang={props.language}
