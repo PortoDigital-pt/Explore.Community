@@ -17,7 +17,8 @@ export default function Favourite(
     className,
     requireLoggedIn,
     isLoggedIn,
-    language
+    language,
+    white
   },
   context
 ) {
@@ -88,18 +89,17 @@ export default function Favourite(
   };
 
   const onClick = () => {
-    if (!requireLoggedIn || isLoggedIn) {
-      if (!disable) {
-        handleDisable(true);
-        if (favourite) {
-          deleteFavourite();
-        } else {
-          addFavourite();
-        }
-      }
-    } else {
+    if (requireLoggedIn && !isLoggedIn) {
       setLoginModalVisibility(!isModalClosed);
+      return;
     }
+
+    if (disable) {
+      return;
+    }
+
+    handleDisable(true);
+    favourite ? deleteFavourite() : addFavourite();
   };
 
   return (
@@ -121,13 +121,14 @@ export default function Favourite(
     >
       <Icon
         className={cx('favourite', {
+          white,
           selected: favourite && (!requireLoggedIn || isLoggedIn)
         })}
         viewBox="0 0 40 40"
         img={
           favourite && (!requireLoggedIn || isLoggedIn)
-            ? 'icon-favorite-on_with_background'
-            : 'icon-favorite-off_with_background'
+            ? `icon-favorite-on${white ? '' : '_with_background'}`
+            : `icon-favorite-off${white ? '' : '_with_background'}`
         }
       />
       {renderLoginModal()}
@@ -148,7 +149,8 @@ Favourite.propTypes = {
   className: PropTypes.string,
   requireLoggedIn: PropTypes.bool.isRequired,
   isLoggedIn: PropTypes.bool,
-  language: PropTypes.string
+  language: PropTypes.string,
+  white: PropTypes.bool
 };
 
 Favourite.defaultProps = {

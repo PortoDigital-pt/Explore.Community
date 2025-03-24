@@ -4,6 +4,9 @@ export const getPositionStore = () => {
   return PositionStore;
 };
 
+export const hasFavourites = context =>
+  context.getStore('FavouriteStore').getFavourites().length > 0;
+
 export const getPositions = context => {
   return context.getStore('PositionStore').getLocationState();
 };
@@ -18,6 +21,10 @@ export const getFavouriteRoutes = context => {
 
 export const getFavouriteStops = context => {
   return context.getStore('FavouriteStore').getStopsAndStations();
+};
+
+export const getFavouriteExplore = context => {
+  return context.getStore('FavouriteStore').getExplore();
 };
 
 export const getFavouriteVehicleRentalStations = context => {

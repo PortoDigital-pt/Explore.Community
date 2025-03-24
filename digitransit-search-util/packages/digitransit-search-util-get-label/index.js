@@ -41,6 +41,8 @@ export default function getLabel(properties) {
     case 'ownLocations':
     case 'back':
       return parts[1] || parts[0];
+    case 'favouriteevents':
+    case 'favouritepois':
     case 'favouriteVehicleRentalStation':
     case 'favouritePlace':
       return parts[0];

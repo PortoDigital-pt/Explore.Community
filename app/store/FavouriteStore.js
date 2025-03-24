@@ -106,14 +106,14 @@ export default class FavouriteStore extends Store {
   }
 
   isFavourite(id, type) {
-    for (let i = 0; i < this.favourites.length; i++) {
-      const favourite = this.favourites[i];
-      const fid = favourite.gtfsId || favourite.gid || favourite.stationId;
-      if (favourite.type === type && fid === id) {
-        return true;
-      }
-    }
-    return false;
+    return !!this.favourites.find(favourite => {
+      const favouriteId =
+        favourite.id ||
+        favourite.gtfsId ||
+        favourite.gid ||
+        favourite.stationId;
+      return favourite.type === type && favouriteId === id;
+    });
   }
 
   clearFavourites() {
@@ -151,6 +151,12 @@ export default class FavouriteStore extends Store {
   getStopsAndStations() {
     return this.favourites.filter(
       favourite => favourite.type === 'stop' || favourite.type === 'station'
+    );
+  }
+
+  getExplore() {
+    return this.favourites.filter(
+      favourite => favourite.type === 'pois' || favourite.type === 'events'
     );
   }
 
@@ -200,16 +206,13 @@ export default class FavouriteStore extends Store {
    * and on fail callback function under onFail key
    */
   saveFavourite(actionData) {
-    let { ...data } = actionData;
-    const { onFail } = actionData;
+    const { onFail, ...data } = actionData;
     if (typeof data !== 'object') {
       onFail();
       throw new Error(`New favourite is not a object:${JSON.stringify(data)}`);
     }
     this.fetchingOrUpdating();
-    if (data.type === 'bikeStation') {
-      data = mapVehicleRentalToStore(data);
-    }
+
     const newFavourites = mapToStore(this.favourites);
     const editIndex = findIndex(
       newFavourites,
@@ -292,13 +295,19 @@ export default class FavouriteStore extends Store {
   deleteFavourite(actionData) {
     const { onFail, ...data } = actionData;
     if (typeof data !== 'object') {
-      onFail();
+      onFail?.();
       throw new Error(`Favourite is not an object:${JSON.stringify(data)}`);
     }
+
     this.fetchingOrUpdating();
-    const newFavourites = mapToStore(this.favourites).filter(
-      favourite => favourite.favouriteId !== data.favouriteId
-    );
+    const newFavourites = mapToStore(this.favourites).filter(favourite => {
+      if (favourite.id) {
+        return favourite.id !== data.id;
+      }
+
+      return favourite.favouriteId !== data.favouriteId;
+    });
+
     if (this.config.allowLogin) {
       // Delete favourite from backend service
       deleteFavourites([data.favouriteId])
@@ -306,7 +315,7 @@ export default class FavouriteStore extends Store {
           this.set(res);
         })
         .catch(() => {
-          onFail();
+          onFail?.();
           if (this.config.allowFavouritesFromLocalstorage) {
             this.set(newFavourites);
             setFavouriteStorage(newFavourites);

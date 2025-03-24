@@ -176,23 +176,30 @@
             .top {
                 display: flex;
                 position: relative;
-                flex-direction: row;
+                justify-content: space-between;
                 align-items: center;
-                column-gap: 10px;
 
-                .icon {
+                .title {
                     display: flex;
                     position: relative;
-                    width: 30px;
-                    height: 30px;
-                }
-    
-                h3 {
-                    display: flex;
-                    position: relative;
-                    color: $primary-color;
-                    font-size: $font-size-l; 
-                    font-weight: $font-weight-bold;
+                    flex-direction: row;
+                    align-items: center;
+                    column-gap: 10px;
+
+                    .icon {
+                        display: flex;
+                        position: relative;
+                        width: 30px;
+                        height: 30px;
+                    }
+        
+                    h3 {
+                        display: flex;
+                        position: relative;
+                        color: $primary-color;
+                        font-size: $font-size-l; 
+                        font-weight: $font-weight-bold;
+                    }
                 }
             }
 

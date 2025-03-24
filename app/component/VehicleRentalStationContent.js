@@ -74,10 +74,7 @@ const VehicleRentalStationContent = (
         <div className="row-bike">
           <Icon img="icon-icon_citybike" viewBox="0 0 24 24" />
 
-          <ParkOrStationHeader
-            parkOrStation={vehicleRentalStation}
-            breakpoint={breakpoint}
-          />
+          <ParkOrStationHeader parkOrStation={vehicleRentalStation} />
         </div>
 
         <div className="row-bike">

@@ -69,4 +69,19 @@
       }
     }
   }
+
+  .shortcuts {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    column-gap: 16px;
+
+    .favourite-icon {
+      .icon {
+        &.white {
+          color: $background-default;
+        }
+      }
+    }
+  }
 }

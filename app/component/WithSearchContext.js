@@ -28,7 +28,7 @@ const PATH_OPTS = {
 
 export function getLocationSearchTargets(config, isMobile) {
   let locationSearchTargets = ['Locations', 'CurrentPosition'];
-
+ 
   if (config.locationSearchTargetsFromOTP) {
     // configurable setup
     locationSearchTargets = [
@@ -37,6 +37,8 @@ export function getLocationSearchTargets(config, isMobile) {
     ];
   } else {
     // default setup
+    locationSearchTargets.push('Pois');
+    locationSearchTargets.push('Events');
     locationSearchTargets.push('Stations');
     locationSearchTargets.push('Stops');
     if (useCitybikes(config.vehicleRental?.networks, config)) {
@@ -209,6 +211,7 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
           break;
         default:
       }
+
       if (item.type === 'OldSearch' && item.properties.gid) {
         getJson(this.context.config.URL.PELIAS_PLACE, {
           ids: item.properties.gid

@@ -19,7 +19,8 @@ export default class BackButton extends React.Component {
     title: PropTypes.string,
     onBackBtnClick: PropTypes.func,
     fallback: PropTypes.string,
-    subtitle: PropTypes.string
+    subtitle: PropTypes.string,
+    children: PropTypes.func
   };
 
   static defaultProps = {
@@ -94,6 +95,7 @@ export default class BackButton extends React.Component {
             {this.props.subtitle && <h5>{this.props.subtitle}</h5>}
           </div>
         </div>
+        <div className="shortcuts">{this.props.children}</div>
       </div>
     );
   }

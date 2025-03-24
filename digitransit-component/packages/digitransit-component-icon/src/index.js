@@ -81,6 +81,7 @@ import SearchRailStationDigitransit from './assets/search-rail-station-digitrans
 import SearchTramStopDigitransit from './assets/search-tram-stop-digitransit.svg';
 import Funicular from './assets/funicular.svg';
 import ClearLocation from './assets/amporto/clear-location.svg';
+import Poi from './assets/amporto/poi.svg';
 
 const IconMap = style => {
   return {
@@ -190,7 +191,8 @@ const IconMap = style => {
     'search-tram-stop-digitransit': <SearchTramStopDigitransit style={style} />,
     funicular: <Funicular style={style} />,
     mapPin: <MapPin style={style} />,
-    clearLocation: <ClearLocation style={style} />
+    clearLocation: <ClearLocation style={style} />,
+    poi: <Poi style={style} />
   };
 };
 

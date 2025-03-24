@@ -141,8 +141,13 @@ $border-radius-rounded: 30px;
 
 .favourite-icon {
   padding: 0;
+  display: flex;
+  position: relative;
+  justify-content: center;
 
   .icon {
+      display: flex;
+      position: relative;
       width: 30px;
       height: 30px;
       color: $primary-color;

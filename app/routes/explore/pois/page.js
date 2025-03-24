@@ -5,16 +5,20 @@ import Icon from '../../../component/Icon';
 import { showDistance } from '../../../util/geo-utils';
 import { useSelectedPoi } from './useSelectedPoi';
 import Details from '../../../component/amporto/pages/details';
+import FavouriteExplore from '../../../component/FavouriteExploreContainer';
 
 const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
   <div className="mobile-view">
     <div className="header">
       <div className="top">
-        <Icon
-          img="icon-explore-icon_pois_with_background"
-          viewBox="0 0 44 44"
-        />
-        <h3>{selectedData.name}</h3>
+        <div className="title">
+          <Icon
+            img="icon-explore-icon_pois_with_background"
+            viewBox="0 0 44 44"
+          />
+          <h3>{selectedData.name}</h3>
+        </div>
+        <FavouriteExplore data={selectedData} />
       </div>
       <div className="distance">
         {distance &&

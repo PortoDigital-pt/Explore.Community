@@ -72,9 +72,23 @@ function getSuggestionContent(item) {
     if (item.type === 'SelectFromOwnLocations') {
       return ['', i18next.t('select-from-own-locations')];
     }
+
     /* eslint-disable-next-line prefer-const */
     let [name, label] = getNameLabel(item.properties, true);
     let suggestionType;
+    if (
+      item.properties.layer.toLowerCase().includes('pois') ||
+      item.properties.layer.toLowerCase().includes('events')
+    ) {
+      suggestionType = i18next.t(
+        `${
+          item.properties.layer.toLowerCase().includes('pois')
+            ? 'pois'
+            : 'events'
+        }`
+      );
+      return [suggestionType, name];
+    }
     if (
       item.properties.layer.toLowerCase().includes('bikerental') ||
       item.properties.layer.toLowerCase().includes('bikestation')
@@ -617,6 +631,12 @@ class DTAutosuggest extends React.Component {
           if (useAll || targets.includes('VehicleRentalStations')) {
             newTargets.push('VehicleRentalStations');
           }
+          if (useAll || targets.includes('Pois')) {
+            newTargets.push('Pois');
+          }
+          if (useAll || targets.includes('Events')) {
+            newTargets.push('Events');
+          }
         } else if (!useAll) {
           newTargets = [...targets];
           // in desktop, favorites are accessed via sub search
@@ -793,7 +813,9 @@ class DTAutosuggest extends React.Component {
             translatedText: translateFutureRouteSuggestionTime(item)
           }
         : item;
+
     const content = getSuggestionContent(item);
+
     return (
       <SuggestionItem
         item={newItem}
