@@ -30,26 +30,32 @@ const filters = [
     icon: 'icon-store',
     selected: false,
     type: 'itineraries'
-  }
+  },
 ];
 
 const FilterBar = ({
   selectedFilters,
   openModal,
   config: { filters: defaultFilters },
-  executeAction,
+  executeAction
 }) => {
   const renderFilters = () => {
     const buttons = filters.map(it => {
-      const selected =
+      const selected = selectedFilters[it.type]?.length > 0;
+      const allSelected =
         selectedFilters[it.type]?.length === defaultFilters[it.type]?.length;
+
+      const iconName =
+        !allSelected && selectedFilters[it.type]?.length
+          ? 'icon-icon_settings'
+          : it.icon;
 
       return (
         <FilterButton
           key={it.type}
           label={it.label}
           icon={
-            <Icon img={it.icon} viewBox="0 0 16 16" className="icon-prefix" />
+            <Icon img={iconName} viewBox="0 0 16 16" className="icon-prefix" />
           }
           selected={selected}
           handleClick={() => {
@@ -68,13 +74,6 @@ const FilterBar = ({
       <FilterButton
         key="all"
         label="Todos os filtros"
-        icon={
-          <Icon
-            img="icon-icon_settings"
-            viewBox="0 0 16 16"
-            className="icon-prefix"
-          />
-        }
         selected={false}
         handleClick={() => openModal()}
         alwaysUnselected
