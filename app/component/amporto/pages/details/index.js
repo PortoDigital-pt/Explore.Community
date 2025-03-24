@@ -21,7 +21,7 @@ const DetailsPage = (
     useSelectedData,
     onErrorPath,
     PageContent,
-    MobileContent,
+    MobileContent
   },
   { match, router, intl, executeAction }
 ) => {
@@ -139,7 +139,7 @@ const Content = ({
         subtitle={selectedData.category}
         onBackBtnClick={onBackBtnClick}
       >
-        <FavouriteExplore data={selectedData} white/>
+        <FavouriteExplore data={selectedData} white />
       </BackButton>
       <Component />
     </>
@@ -151,5 +151,5 @@ Content.propTypes = {
   intl: intlShape.isRequired,
   onBackBtnClick: func,
   modal: bool,
-  PageContent: func.isRequired,
+  PageContent: func.isRequired
 };

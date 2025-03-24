@@ -135,8 +135,6 @@ export const getLayerRank = (layer, source) => {
       }
       return 0.42;
     }
-    case LayerType.Pois:
-    case LayerType.Events:
     case LayerType.CarPark:
     case LayerType.BikePark:
     case LayerType.VehicleRentalStation:

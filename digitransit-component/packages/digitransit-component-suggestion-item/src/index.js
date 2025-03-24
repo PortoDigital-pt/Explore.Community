@@ -95,6 +95,7 @@ function getIconProperties(
     iconColor = color;
   }
   const layerIcon = new Map([
+    ['pois', 'poi'],
     ['bikestation', 'citybike'],
     ['currentPosition', 'locate'],
     ['favouritePlace', 'star'],
@@ -327,8 +328,9 @@ const SuggestionItem = pure(
     const isExplore =
       item.properties?.layer.includes('pois') ||
       item.properties?.layer.includes('events');
-    const labelWithLocationType =
-      isVehicleRentalStation || isParkingArea || isExplore
+    const labelWithLocationType = isExplore
+      ? suggestionType
+      : isVehicleRentalStation || isParkingArea
         ? suggestionType.concat(
             item.properties.localadmin ? `, ${item.properties.localadmin}` : ''
           )

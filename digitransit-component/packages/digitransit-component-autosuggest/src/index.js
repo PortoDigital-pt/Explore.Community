@@ -76,7 +76,6 @@ function getSuggestionContent(item) {
     /* eslint-disable-next-line prefer-const */
     let [name, label] = getNameLabel(item.properties, true);
     let suggestionType;
-
     if (
       item.properties.layer.toLowerCase().includes('pois') ||
       item.properties.layer.toLowerCase().includes('events')
@@ -814,6 +813,7 @@ class DTAutosuggest extends React.Component {
             translatedText: translateFutureRouteSuggestionTime(item)
           }
         : item;
+
     const content = getSuggestionContent(item);
 
     return (

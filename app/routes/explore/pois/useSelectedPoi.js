@@ -22,7 +22,9 @@ export const useSelectedPoi = ({ id, language }) => {
 
   useEffect(() => {
     getPoiById(id)
-      .then(poiDto => setSelectedPoi({ ...dtoToPoi(language, poiDto), type: 'pois' }))
+      .then(poiDto =>
+        setSelectedPoi({ ...dtoToPoi(language, poiDto), type: 'pois' })
+      )
       .catch(setError);
   }, [id, language]);
 

@@ -402,9 +402,6 @@ export function getSearchResults(
       );
       searchComponents.push(poisAndEvents);
     }
-    if (allSources || sources.includes('Datasource')) {
-      // TODO
-    }
     if (allSources || sources.includes('History')) {
       // TODO
     }

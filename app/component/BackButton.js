@@ -95,9 +95,7 @@ export default class BackButton extends React.Component {
             {this.props.subtitle && <h5>{this.props.subtitle}</h5>}
           </div>
         </div>
-        <div className="shortcuts">
-          {this.props.children}
-        </div>
+        <div className="shortcuts">{this.props.children}</div>
       </div>
     );
   }

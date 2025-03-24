@@ -4,7 +4,8 @@ export const getPositionStore = () => {
   return PositionStore;
 };
 
-export const hasFavourites = context => context.getStore('FavouriteStore').getFavourites().length > 0;
+export const hasFavourites = context =>
+  context.getStore('FavouriteStore').getFavourites().length > 0;
 
 export const getPositions = context => {
   return context.getStore('PositionStore').getLocationState();

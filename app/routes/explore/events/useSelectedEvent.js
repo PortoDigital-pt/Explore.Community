@@ -6,7 +6,9 @@ export const useSelectedEvent = ({ id, language }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getEventById(id).then(event => setSelectedEvent({ ...event, type: 'events' })).catch(setError);
+    getEventById(id)
+      .then(event => setSelectedEvent({ ...event, type: 'events' }))
+      .catch(setError);
   }, [id]);
 
   return { selectedData: selectedEvent, error };
