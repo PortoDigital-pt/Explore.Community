@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, shape } from 'prop-types';
 import { getContext } from 'recompose';
 import Icon from '../../Icon';
 import FilterButton from './button';
@@ -30,7 +30,7 @@ const filters = [
     icon: 'icon-store',
     selected: false,
     type: 'itineraries'
-  },
+  }
 ];
 
 const FilterBar = ({
@@ -86,7 +86,10 @@ const FilterBar = ({
 };
 
 FilterBar.propTypes = {
-  openModal: func
+  openModal: func,
+  config: configShape.isRequired,
+  selectedFilters: shape,
+  executeAction: func.isRequired
 };
 
 FilterBar.defaultProps = {

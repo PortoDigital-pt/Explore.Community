@@ -2,7 +2,6 @@
   display: flex;
   position: relative;
   min-height: 100% !important;
-  margin-top: 8px;
   width: 100%;
   flex-grow: 1;
   flex-direction: column;
@@ -11,13 +10,50 @@
   padding-bottom: $mobile-navigation-bar-height;
   background-color: $background-default !important;
   overflow: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 
+  
   &::-webkit-scrollbar {
     display: none;
   }
+
+  .filters-top-bar {
+    display: flex;
+    position: relative;
+    background-color: $background-default;
+    max-height: 40px;
+    min-height: 40px;
+    box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
+    padding-left: 20px;
+
+    button.btn-close {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      gap: 20px;
+
+      .icon-container .popup-close-icon {
+        display: flex;
+        position: relative;
+        align-self: center;
+        width: 16px;
+        height: 16px;
+        color: $primary-dark;
+      }
+
+      .title {
+        color: $primary-dark;
+        font-family: $font-family;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+      }
+    }
+  }
 }
-
-
 
 .accordion-container {
   display: flex;
@@ -51,7 +87,7 @@
       min-height: 36px;
       color: $primary-dark;
       margin: 0 16px;
-      border-bottom: 1px solid #eaeaea;
+      border-bottom: 1px solid $grey-light-down;
       padding: 24px 0;
       background-color: $background-default;
 
@@ -79,13 +115,12 @@
         display: flex;
         position: relative;
         flex-grow: 4;
-
         font-family: $font-family;
         color: $grey-dark-down;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
-        line-height: 24px; /* 150% */
+        line-height: 24px;
       }
     }
   }
@@ -125,15 +160,14 @@
       min-height: 36px;
       color: $primary-dark;
       margin: 0 16px;
-      border-bottom: 1px solid #eaeaea;
+      border-bottom: 1px solid $grey-light-down;
       padding: 24px 4px 24px 0;
       background-color: $background-default;
 
       .name {
         display: flex;
         position: relative;
-        color: #212121;
-
+        color: $grey-dark-down;
         font-family: $font-family;
         font-size: 12px;
         font-style: normal;
@@ -146,7 +180,7 @@
       }
 
       &.category .name {
-       font-weight: 700;
+        font-weight: 700;
       }
     }
   }

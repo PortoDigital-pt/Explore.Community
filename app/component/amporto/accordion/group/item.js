@@ -9,7 +9,7 @@ function AccordionItem({
   onClick,
   showIcon,
   className,
-  key,
+  key
 }) {
   const [selected, setSelected] = useState(isSelected);
 
@@ -47,14 +47,14 @@ AccordionItem.propTypes = {
   key: string,
   type: string,
   showIcon: bool,
-  className: string,
+  className: string
 };
 
 AccordionItem.defaultProps = {
   isSelected: false,
   onClick: () => {},
   showIcon: false,
-  className: '',
+  className: ''
 };
 
 export default AccordionItem;
