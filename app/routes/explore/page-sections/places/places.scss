@@ -1,0 +1,61 @@
+.explore {
+    .places {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        row-gap: 15px;
+  
+        h3 {
+          margin: 0;
+          position: relative;
+          display: flex;
+          color: $primary-color;
+          font-size: $font-size-heading-s;
+          font-weight: $font-weight-regular;
+        }
+
+
+        .list {
+            display: flex;
+            position: relative;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            flex-direction: row;
+            scroll-snap-type: x mandatory;
+            column-gap: 10px;
+            padding-right: 16px;
+
+            @media (min-width: 900px) {
+                padding-right: 24px;
+            }
+
+            .item {
+                display: flex;
+                position: relative;
+                scroll-snap-align: center;
+                min-width: 200px;
+                height: 190px;
+                border-radius: $border-radius;
+                overflow: hidden;
+                box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.16);
+            }
+        }
+
+        button {
+            display: flex;
+            position: relative;
+            cursor: pointer;
+            line-height: 16px;
+            font-weight: $font-weight-regular;
+            font-size: $font-size-s;
+            color: $primary-main;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+            text-decoration-thickness: 1px;
+      
+            @media (min-width: 400px) {
+              font-size: $font-size-base;
+            }
+          }
+    }
+}

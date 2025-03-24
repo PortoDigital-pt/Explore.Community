@@ -822,6 +822,8 @@ const translations = {
   },
 
   en: {
+    'place-to-visit': 'Places to visit',
+    'find-all-interest': 'Find all points of interest',
     'at-distance': 'at',
     details: 'Check details',
     'know-more': 'Know more',
@@ -5205,6 +5207,8 @@ const translations = {
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
 
+    'place-to-visit': 'Lugares a visitar',
+    'find-all-interest': 'Descubra todos os pontos de interesse',
     'at-distance': 'a',
     details: 'Ver detalhes',
     'know-more': 'Saber mais',
