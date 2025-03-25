@@ -22,6 +22,7 @@ import {
   startLocationWatch
 } from '../../action/PositionActions';
 import FilterContainer from '../../component/amporto/filter';
+import PlacesSection from './page-sections/places';
 
 const modules = {
   OverlayWithSpinner: () =>
@@ -152,8 +153,8 @@ class ExplorePage extends React.Component {
   render() {
     return (
       <div className="explore">
-        Explore page
         <FilterContainer />
+        <PlacesSection />
       </div>
     );
   }
