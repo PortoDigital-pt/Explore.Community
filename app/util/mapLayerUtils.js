@@ -19,13 +19,17 @@ export const isExploreEnabled = mapLayers => {
  * @param {'pois'|'accesspoints'|'events'} featureName The name of the explore feature.
  * @param {object} mapLayers The map layer configuration.
  */
-export const isExploreFeatureEnabled = (featureName, mapLayers) => {
+export const isExploreFeatureEnabled = (featureName, mapLayers, category) => {
   if (!featureName || !mapLayers) {
     return false;
   }
   const { explore } = mapLayers;
 
-  return explore[featureName];
+  if (category === undefined) {
+    return explore[featureName].showAll;
+  }
+ 
+  return explore[featureName][category] ?? false;
 };
 
 /**

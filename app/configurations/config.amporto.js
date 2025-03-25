@@ -360,49 +360,88 @@ export default {
     }
   },
   filters: {
-    transports: ['Autocarro', 'Elétrico', 'Metro', 'Comboio', 'Bicicletas'],
-    pois: [
-      'Casas de Fado',
-      'Caves de Vinhos e Quintas',
-      'Centros de exposições & Galerias de arte',
-      'Estátuas, Esculturas e Fontes',
-      'Marinas e Portos',
-      'Miradouros',
-      'Monumentos',
-      'Museus e Centros Temáticos',
-      'Parques e Jardins',
-      'Pontes',
-      'Postos de Turismo',
-      'Ruas e Praças',
-      'Salas de Concerto',
-      'Teatros',
-      'Templos Religiosos'
-    ],
-    events: [
-      'Ar livre',
-      'Aula',
-      'Canção',
-      'Cinema',
-      'Circo',
-      'Comédia',
-      'Concerto',
-      'Conversa',
-      'Dança',
-      'Escuta',
-      'Espetáculo',
-      'Exposição',
-      'Feira',
-      'Festa',
-      'Filme',
-      'Instalação',
-      'Leitura',
-      'Oficina',
-      'Ópera',
-      'Palestra',
-      'Performance',
-      'Provas',
-      'Teatro',
-      'Visita'
-    ]
+    stops: {
+      bus: { pt: 'Autocarro', en: 'Bus' },
+      tram: { pt: 'Elétrico', en: 'Tram' },
+      subway: { pt: 'Metro', en: 'Subway' },
+      rail: { pt: 'Comboio', en: 'Rail' },
+      citybike: { pt: 'Bicicletas', en: 'Citybikes' }
+    },
+    pois: {
+      fadoHouse: {
+        pt: 'Casas de Fado',
+        en: 'Fado Houses'
+      },
+      wineCellarsAndQuintas: {
+        pt: 'Caves de Vinhos e Quintas',
+        en: 'Wine Cellars and Farms'
+      },
+      exhibitionCentersAndArtGalleries: {
+        pt: 'Centros de exposições & Galerias de arte',
+        en: 'Exhibition Centers and Art Galleries'
+      },
+      statuesSculpturesAndFountains: {
+        pt: 'Estátuas, Esculturas e Fontes',
+        en: 'Statues, Sculptures and Fountains'
+      },
+      marinasAndPorts: {
+        pt: 'Marinas e Portos',
+        en: 'Marinas and Ports'
+      },
+      viewpoints: { pt: 'Miradouros', en: 'Viewpoints' },
+      monuments: { pt: 'Monumentos', en: 'Monuments' },
+      museumsAndThematicCenters: {
+        pt: 'Museus e Centros Temáticos',
+        en: 'Museums and Thematic Centers'
+      },
+      parksAndGardens: {
+        pt: 'Parques e Jardins',
+        en: 'Parks and Gardens'
+      },
+      bridges: { pt: 'Pontes', en: 'Bridges' },
+      tourismOffices: {
+        pt: 'Postos de Turismo',
+        en: 'Tourism Offices'
+      },
+      streetsAndSquares: {
+        pt: 'Ruas e Praças',
+        en: 'Streets and Squares'
+      },
+      concertHalls: {
+        pt: 'Salas de Concerto',
+        en: 'Concert Halls'
+      },
+      theaters: { pt: 'Teatros', en: 'Theaters' },
+      religiousTemples: {
+        pt: 'Templos Religiosos',
+        en: 'Religious Temples'
+      }
+    },
+    events: {
+      outdoor: { pt: 'Ar livre', en: 'Outdoor' },
+      class: { pt: 'Aula', en: 'Class' },
+      song: { pt: 'Canção', en: 'Song' },
+      cinema: { pt: 'Cinema', en: 'Cinema' },
+      circus: { pt: 'Circo', en: 'Circus' },
+      comedy: { pt: 'Comédia', en: 'Comedy' },
+      concert: { pt: 'Concerto', en: 'Concert' },
+      conversation: { pt: 'Conversa', en: 'Conversation' },
+      dance: { pt: 'Dança', en: 'Dance' },
+      listening: { pt: 'Escuta', en: 'Listening' },
+      show: { pt: 'Espetáculo', en: 'Show' },
+      exhibition: { pt: 'Exposição', en: 'Exhibition' },
+      fair: { pt: 'Feira', en: 'Fair' },
+      party: { pt: 'Festa', en: 'Party' },
+      film: { pt: 'Filme', en: 'Film' },
+      installation: { pt: 'Instalação', en: 'Installation' },
+      reading: { pt: 'Leitura', en: 'Reading' },
+      workshop: { pt: 'Oficina', en: 'Workshop' },
+      opera: { pt: 'Ópera', en: 'Opera' },
+      lecture: { pt: 'Palestra', en: 'Lecture' },
+      performance: { pt: 'Performance', en: 'Performance' },
+      tests: { pt: 'Provas', en: 'Tests' },
+      theater: { pt: 'Teatro', en: 'Theater' },
+      visit: { pt: 'Visita', en: 'Visit' }
+    }
   }
 };

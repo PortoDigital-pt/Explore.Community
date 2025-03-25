@@ -30,13 +30,14 @@ class MapLayerStore extends Store {
       tram: true
     },
     vehicles: false,
+    citybike: true,
     geoJson: {},
 
     explore: {
       showLayer: true,
-      pois: true,
+      pois: null,
+      events: null,
       accesspoints: true,
-      events: true
     }
   };
 
@@ -44,6 +45,9 @@ class MapLayerStore extends Store {
     super(dispatcher);
 
     const { config } = dispatcher.getContext();
+
+    this.mapLayers.explore.pois = { showAll: true, ...Object.keys(config.filters.pois).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
+    this.mapLayers.explore.events = { showAll: true, ...Object.keys(config.filters.events).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,
       config,
