@@ -8,6 +8,10 @@
   justify-content: flex-start;
   background-color: $background-default !important;
 
+  @media (min-width: 900px) {
+    width: 520px;
+  }
+
   .filters-top-bar {
     display: flex;
     position: sticky;
@@ -187,4 +191,8 @@
   left: 0;
   flex-grow: 1;
   z-index: 10002;
+
+  @media (min-width: 900px) {
+    width: 520px;
+  }
 }

@@ -9,7 +9,7 @@ import {
 import FilterBar from './filterBar';
 import CustomModal from '../modal';
 import useModal from '../../../hooks/useModal';
-import AccordionGroup from '../accordion/group/index';
+import AccordionGroup from './category';
 import Icon from '../../Icon';
 
 const Filters = ({ filtersState }, { executeAction }) => {
@@ -18,12 +18,8 @@ const Filters = ({ filtersState }, { executeAction }) => {
   const updateFilters = useCallback(
     ({ type, category, selected }) => {
       const data = { type, category };
-
-      if (selected) {
-        executeAction(addCategory, data);
-      } else {
-        executeAction(removeCategory, data);
-      }
+      const action = selected ? addCategory : removeCategory;
+      executeAction(action, data);
     },
     [executeAction]
   );
@@ -51,7 +47,7 @@ const Filters = ({ filtersState }, { executeAction }) => {
             <div className="filters-top-bar">
               <button
                 className="btn-close"
-                aria-label='close' // TODO: add translation
+                aria-label="close" // TODO: add translation
                 type="button"
                 onClick={close}
               >
@@ -60,7 +56,9 @@ const Filters = ({ filtersState }, { executeAction }) => {
                   viewBox="0 0 1024 1024"
                   className="popup-close-icon"
                 />
-                <span className="title">{/* TODO: add translation */'Filtros'}</span> 
+                <span className="title">
+                  {/* TODO: add translation */ 'Filtros'}
+                </span>
               </button>
             </div>
             <AccordionGroup
@@ -83,10 +81,6 @@ Filters.contextTypes = {
   executeAction: func.isRequired
 };
 
-export default connectToStores(
-  Filters,
-  ['FiltersStore'],
-  context => ({
-    filtersState: context.getStore('FiltersStore').getFilters()
-  })
-);
+export default connectToStores(Filters, ['FiltersStore'], context => ({
+  filtersState: context.getStore('FiltersStore').getFilters()
+}));

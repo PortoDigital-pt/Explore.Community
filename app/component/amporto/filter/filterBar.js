@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { func, shape } from 'prop-types';
+import classnames from 'classnames';
 import { getContext } from 'recompose';
 import Icon from '../../Icon';
-import FilterButton from './button';
 import { configShape } from '../../../util/shapes';
 import { setFilters } from '../../../action/FiltersActions';
 
-const filters = [
+const FILTERS = [
   {
     label: 'Transportes',
     icon: 'icon-icon_bus_no_map',
@@ -39,50 +39,64 @@ const FilterBar = ({
   config: { filters: defaultFilters },
   executeAction
 }) => {
-  const renderFilters = () => {
-    const buttons = filters.map(it => {
-      const selected = selectedFilters[it.type]?.length > 0;
+  const ButtonFilters = useMemo(() => {
+    const Component = FILTERS.map(filter => {
+      const selected = selectedFilters[filter.type]?.length > 0;
       const allSelected =
-        selectedFilters[it.type]?.length === defaultFilters[it.type]?.length;
+        selectedFilters[filter.type]?.length ===
+        defaultFilters[filter.type]?.length;
 
       const iconName =
-        !allSelected && selectedFilters[it.type]?.length
+        !allSelected && selectedFilters[filter.type]?.length
           ? 'icon-icon_settings'
-          : it.icon;
+          : filter.icon;
 
       return (
-        <FilterButton
-          key={it.type}
-          label={it.label}
-          icon={
-            <Icon img={iconName} viewBox="0 0 16 16" className="icon-prefix" />
-          }
-          selected={selected}
-          handleClick={() => {
+        <button
+          key={filter.type}
+          type="button"
+          aria-label={'name' /* TODO: add translation */}
+          className={classnames('filter-container--content', {
+            selected
+          })}
+          onClick={() => {
             const newState = {
               ...selectedFilters,
-              [it.type]: !selected ? [...defaultFilters[it.type]] : []
+              [filter.type]: !selected ? [...defaultFilters[filter.type]] : []
             };
 
             executeAction(setFilters, newState);
           }}
-        />
+        >
+          <Icon img={iconName} viewBox="0 0 16 16" className="icon-prefix" />
+          <span className="content-title">{filter.label}</span>
+          {selected && (
+            <Icon
+              img="icon-x-circle"
+              viewBox="0 0 16 16"
+              className="icon-suffix"
+            />
+          )}
+        </button>
       );
     });
 
-    buttons.unshift(
-      <FilterButton
-        key="all"
-        label="Todos os filtros"
-        selected={false}
-        handleClick={openModal}
-        alwaysUnselected
-      />
-    );
-    return buttons;
-  };
+    return () => Component;
+  }, [selectedFilters, executeAction]);
 
-  return <div className="filter-container">{renderFilters()}</div>;
+  return (
+    <div className="filter-container">
+      <button
+        type="button"
+        aria-label={'open filter' /* TODO: add translation */}
+        className="filter-container--content"
+        onClick={openModal}
+      >
+        <span className="content-title">Todos os filtros</span>
+      </button>
+      <ButtonFilters />
+    </div>
+  );
 };
 
 FilterBar.propTypes = {
