@@ -4,73 +4,41 @@ import classnames from 'classnames';
 import { getContext } from 'recompose';
 import Icon from '../../Icon';
 import { configShape } from '../../../util/shapes';
-import { setFilters } from '../../../action/FiltersActions';
 
-const FILTERS = [
-  {
-    label: 'Transportes',
-    icon: 'icon-icon_bus_no_map',
-    selected: false,
-    type: 'transports'
-  },
-  {
-    label: 'Pontos de interesse',
-    icon: 'icon-camera',
-    selected: false,
-    type: 'pois'
-  },
-  {
-    label: 'Eventos',
-    icon: 'icon-events',
-    selected: false,
-    type: 'events'
-  },
-  {
-    label: 'Roteiros',
-    icon: 'icon-store',
-    selected: false,
-    type: 'itineraries'
-  }
-];
+const FILTERS_ICON_MAP = {
+  stop: 'icon-icon_bus_no_map',
+  pois: 'icon-camera',
+  events: 'icon-events'
+}
 
 const FilterBar = ({
-  selectedFilters,
+  filters,
   openModal,
-  config: { filters: defaultFilters },
-  executeAction
-}) => {
+  onClick
+}, { config }) => {
+  console.log('FILTERS AS PROPS: ', filters);
   const ButtonFilters = useMemo(() => {
-    const Component = FILTERS.map(filter => {
-      const selected = selectedFilters[filter.type]?.length > 0;
-      const allSelected =
-        selectedFilters[filter.type]?.length ===
-        defaultFilters[filter.type]?.length;
+    const Component = Object.entries(filters).map(([type, {showAll, ...values}]) => {
+      const someSelected = Object.values(values).find(element => element);
 
       const iconName =
-        !allSelected && selectedFilters[filter.type]?.length
+        !showAll && someSelected
           ? 'icon-icon_settings'
-          : filter.icon;
+          : FILTERS_ICON_MAP[type];
 
       return (
         <button
-          key={filter.type}
+          key={type}
           type="button"
           aria-label={'name' /* TODO: add translation */}
           className={classnames('filter-container--content', {
-            selected
+            selected: someSelected
           })}
-          onClick={() => {
-            const newState = {
-              ...selectedFilters,
-              [filter.type]: !selected ? [...defaultFilters[filter.type]] : []
-            };
-
-            executeAction(setFilters, newState);
-          }}
+          onClick={() => onClick(type)}
         >
           <Icon img={iconName} viewBox="0 0 16 16" className="icon-prefix" />
-          <span className="content-title">{filter.label}</span>
-          {selected && (
+          <span className="content-title">{type /* TODO: check later */}</span>
+          {someSelected && (
             <Icon
               img="icon-x-circle"
               viewBox="0 0 16 16"
@@ -82,7 +50,7 @@ const FilterBar = ({
     });
 
     return () => Component;
-  }, [selectedFilters, executeAction]);
+  }, [filters, onClick]);
 
   return (
     <div className="filter-container">
@@ -101,12 +69,14 @@ const FilterBar = ({
 
 FilterBar.propTypes = {
   openModal: func.isRequired,
-  config: configShape.isRequired,
-  selectedFilters: shape,
-  executeAction: func.isRequired
+  onClick: func.isRequired,
+  filters: shape().isRequired
 };
+
+FilterBar.contextTypes = {
+  config: configShape.isRequired,
+}
 
 export default getContext({
   config: configShape.isRequired,
-  executeAction: func.isRequired
 })(FilterBar);

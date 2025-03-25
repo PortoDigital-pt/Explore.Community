@@ -15,6 +15,7 @@ class MapLayerStore extends Store {
     parkAndRide: false,
     parkAndRideForBikes: false,
     stop: {
+      showAll: true,
       bus: true,
       ferry: true,
       rail: true,
@@ -33,12 +34,11 @@ class MapLayerStore extends Store {
     citybike: true,
     geoJson: {},
 
-    explore: {
-      showLayer: true,
-      pois: null,
-      events: null,
-      accesspoints: true,
-    }
+    showExplore: true,
+
+    pois: null,
+    events: null,
+    accesspoints: true,
   };
 
   constructor(dispatcher) {
@@ -46,8 +46,8 @@ class MapLayerStore extends Store {
 
     const { config } = dispatcher.getContext();
 
-    this.mapLayers.explore.pois = { showAll: true, ...Object.keys(config.filters.pois).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
-    this.mapLayers.explore.events = { showAll: true, ...Object.keys(config.filters.events).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
+    this.mapLayers.pois = { showAll: true, ...Object.keys(config.filters.pois).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
+    this.mapLayers.events = { showAll: true, ...Object.keys(config.filters.events).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,
       config,
@@ -108,6 +108,12 @@ class MapLayerStore extends Store {
     return layers;
   };
 
+  getFilterLayers = () => ({
+    stop: { ...this.mapLayers.stop, citybike: this.mapLayers.citybike },
+    pois: this.mapLayers.pois,
+    events: this.mapLayers.events
+  });
+
   updateMapLayers = mapLayers => {
     this.mapLayers = {
       ...this.mapLayers,
@@ -115,6 +121,14 @@ class MapLayerStore extends Store {
       stop: {
         ...this.mapLayers.stop,
         ...mapLayers.stop
+      },
+      pois: {
+        ...this.mapLayers.pois,
+        ...mapLayers.pois
+      },
+      events: {
+        ...this.mapLayers.events,
+        ...mapLayers.events
       }
     };
     setMapLayerSettings({ ...this.mapLayers });

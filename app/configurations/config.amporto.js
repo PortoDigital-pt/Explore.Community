@@ -360,7 +360,7 @@ export default {
     }
   },
   filters: {
-    stops: {
+    stop: {
       bus: { pt: 'Autocarro', en: 'Bus' },
       tram: { pt: 'Elétrico', en: 'Tram' },
       subway: { pt: 'Metro', en: 'Subway' },

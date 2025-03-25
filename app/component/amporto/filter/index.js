@@ -7,13 +7,21 @@ import {
   categoryOnOff
 } from '../../../action/FiltersActions';
 import FilterBar from './filterBar';
+import { configShape } from '../../../util/shapes';
 import CustomModal from '../modal';
 import useModal from '../../../hooks/useModal';
 import AccordionGroup from './category';
 import Icon from '../../Icon';
+import { updateMapLayers } from '../../../action/MapLayerActions';
 
-const Filters = ({ filtersState }, { executeAction }) => {
+
+const Filters = ({ mapLayers }, { executeAction, config: { filters } }) => {
   const { isOpen, open, close } = useModal();
+ 
+  const updateLayers = useCallback(type => {
+    console.log('MAP LAYERS: ', mapLayers[type]);
+      executeAction(updateMapLayers, { [type]: { showAll: !mapLayers[type].showAll }});
+  }, [mapLayers]);
 
   const updateFilters = useCallback(
     ({ type, category, selected }) => {
@@ -34,7 +42,7 @@ const Filters = ({ filtersState }, { executeAction }) => {
 
   return (
     <>
-      <FilterBar selectedFilters={filtersState} openModal={open} />
+      <FilterBar filters={mapLayers} openModal={open} onClick={updateLayers}/>
       {isOpen && (
         <Suspense fallback="">
           <CustomModal
@@ -74,13 +82,18 @@ const Filters = ({ filtersState }, { executeAction }) => {
 };
 
 Filters.propTypes = {
-  filtersState: shape
+  mapLayers: shape().isRequired
 };
 
 Filters.contextTypes = {
+  config: configShape.isRequired,
   executeAction: func.isRequired
 };
 
-export default connectToStores(Filters, ['FiltersStore'], context => ({
-  filtersState: context.getStore('FiltersStore').getFilters()
-}));
+export default connectToStores(
+  Filters, 
+  ['MapLayerStore'], 
+  context => ({
+    mapLayers: context.getStore('MapLayerStore').getFilterLayers()
+  })
+);

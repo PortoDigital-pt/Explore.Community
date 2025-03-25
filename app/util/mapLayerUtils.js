@@ -7,9 +7,7 @@ export const isExploreEnabled = mapLayers => {
   if (!mapLayers) {
     return false;
   }
-  const { explore } = mapLayers;
-
-  return explore.showLayer;
+  return mapLayers.showExplore;
 };
 
 /**
@@ -23,13 +21,12 @@ export const isExploreFeatureEnabled = (featureName, mapLayers, category) => {
   if (!featureName || !mapLayers) {
     return false;
   }
-  const { explore } = mapLayers;
 
   if (category === undefined) {
-    return explore[featureName].showAll;
+    return mapLayers[featureName].showAll;
   }
  
-  return explore[featureName][category] ?? false;
+  return mapLayers[featureName][category] ?? false;
 };
 
 /**
