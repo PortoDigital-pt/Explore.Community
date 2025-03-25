@@ -12,7 +12,7 @@ import useModal from '../../../hooks/useModal';
 import AccordionGroup from '../accordion/group/index';
 import Icon from '../../Icon';
 
-const Container = ({ filtersState }, { executeAction }) => {
+const Filters = ({ filtersState }, { executeAction }) => {
   const { isOpen, open, close } = useModal();
 
   const updateFilters = useCallback(
@@ -38,12 +38,12 @@ const Container = ({ filtersState }, { executeAction }) => {
 
   return (
     <>
-      <FilterBar selectedFilters={filtersState} openModal={() => open()} />
+      <FilterBar selectedFilters={filtersState} openModal={open} />
       {isOpen && (
         <Suspense fallback="">
           <CustomModal
             isOpen={isOpen}
-            className="filters-popup modal"
+            className="filters-popup"
             overlayClassName="overlay"
             shouldFocusAfterRender
             shouldCloseOnEsc
@@ -51,15 +51,16 @@ const Container = ({ filtersState }, { executeAction }) => {
             <div className="filters-top-bar">
               <button
                 className="btn-close"
+                aria-label='close' // TODO: add translation
                 type="button"
-                onClick={() => close()}
+                onClick={close}
               >
                 <Icon
                   img="icon-icon_close"
                   viewBox="0 0 1024 1024"
                   className="popup-close-icon"
                 />
-                <span className="title">Filtros</span>
+                <span className="title">{/* TODO: add translation */'Filtros'}</span> 
               </button>
             </div>
             <AccordionGroup
@@ -74,21 +75,18 @@ const Container = ({ filtersState }, { executeAction }) => {
   );
 };
 
-Container.propTypes = {
+Filters.propTypes = {
   filtersState: shape
 };
 
-Container.contextTypes = {
+Filters.contextTypes = {
   executeAction: func.isRequired
 };
 
-const FilterContainer = connectToStores(
-  Container,
+export default connectToStores(
+  Filters,
   ['FiltersStore'],
-  context => {
-    const filtersState = context.getStore('FiltersStore').getFilters();
-    return { filtersState, context };
-  }
+  context => ({
+    filtersState: context.getStore('FiltersStore').getFilters()
+  })
 );
-
-export default FilterContainer;

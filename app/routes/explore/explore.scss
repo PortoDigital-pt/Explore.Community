@@ -9,7 +9,8 @@
     flex-direction: column;
     justify-content: flex-start;
     row-gap: 20px;
-    padding-left: 16px;
+    padding: 20px 0 $mobile-navigation-bar-height 16px;
+    overflow-y: auto;
 
     @media (min-width: 900px) {
         margin-top: 88px;

@@ -5,11 +5,15 @@
 .filter-container {
   display: flex;
   position: relative;
-  margin: 10px;
-  background-color: transparent;
+  align-items: center;
   overflow-x: auto;
   gap: 8px;
-  padding: 6px;
+  height: 42px;
+  padding-right: 16px;
+
+  @media (min-width: 900px) {
+      padding-right: 24px;
+  }
 }
 
 .filter-container--content {
@@ -63,10 +67,8 @@
   }
 
   .content-title {
-    font-family: $font-family;
     font-size: $font-size-s;
-    font-style: normal;
     font-weight: $font-weight-regular;
-    line-height: 10px;
+    line-height: 16px;
   }
 }

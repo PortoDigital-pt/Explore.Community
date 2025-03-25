@@ -24,6 +24,10 @@
             scroll-snap-type: x mandatory;
             column-gap: 10px;
             padding-right: 16px;
+            
+            &::-webkit-scrollbar {
+              display: none;
+            }
 
             @media (min-width: 900px) {
                 padding-right: 24px;

@@ -75,7 +75,7 @@ const FilterBar = ({
         key="all"
         label="Todos os filtros"
         selected={false}
-        handleClick={() => openModal()}
+        handleClick={openModal}
         alwaysUnselected
       />
     );
@@ -86,14 +86,10 @@ const FilterBar = ({
 };
 
 FilterBar.propTypes = {
-  openModal: func,
+  openModal: func.isRequired,
   config: configShape.isRequired,
   selectedFilters: shape,
   executeAction: func.isRequired
-};
-
-FilterBar.defaultProps = {
-  openModal: () => {}
 };
 
 export default getContext({

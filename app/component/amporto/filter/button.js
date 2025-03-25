@@ -19,6 +19,7 @@ const FilterButton = ({
   return (
     <button
       type="button"
+      aria-label={'open filter' /* TODO: add translation */}
       className={classnames('filter-container--content', {
         selected: isSelected ? 'selected' : ''
       })}
