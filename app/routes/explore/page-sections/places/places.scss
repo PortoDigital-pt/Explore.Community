@@ -4,6 +4,7 @@
         position: relative;
         flex-direction: column;
         row-gap: 15px;
+       
   
         h3 {
           margin: 0;
@@ -12,6 +13,12 @@
           color: $primary-color;
           font-size: $font-size-heading-s;
           font-weight: $font-weight-regular;
+
+          padding: 0 0 0 18px;
+
+          @media (min-width: 900px) {
+            padding: 0 0 0 24px;
+          }
         }
 
 
@@ -23,10 +30,14 @@
             flex-direction: row;
             scroll-snap-type: x mandatory;
             column-gap: 10px;
-            padding-right: 16px;
+            padding: 0 18px 0 18px;
 
             @media (min-width: 900px) {
-                padding-right: 24px;
+              padding: 0 24px 0 24px;
+            }
+            
+            &::-webkit-scrollbar {
+              display: none;
             }
 
             .item {
@@ -52,6 +63,12 @@
             text-decoration: underline;
             text-underline-offset: 5px;
             text-decoration-thickness: 1px;
+
+            padding: 0 0 0 18px;
+
+            @media (min-width: 900px) {
+              padding: 0 0 0 24px;
+            }
       
             @media (min-width: 400px) {
               font-size: $font-size-base;

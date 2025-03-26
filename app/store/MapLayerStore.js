@@ -6,7 +6,8 @@ import { TransportMode } from '../constants';
 
 class MapLayerStore extends Store {
   static handlers = {
-    UpdateMapLayers: 'updateMapLayers'
+    UpdateMapLayers: 'updateMapLayers',
+    UpdateMapLayersCustom: 'updateMapLayersCustom'
   };
 
   static storeName = 'MapLayerStore';
@@ -15,6 +16,7 @@ class MapLayerStore extends Store {
     parkAndRide: false,
     parkAndRideForBikes: false,
     stop: {
+      showAll: true,
       bus: true,
       ferry: true,
       rail: true,
@@ -30,20 +32,35 @@ class MapLayerStore extends Store {
       tram: true
     },
     vehicles: false,
+    citybike: true,
     geoJson: {},
 
-    explore: {
-      showLayer: true,
-      pois: true,
-      accesspoints: true,
-      events: true
-    }
+    showExplore: true,
+
+    pois: null,
+    events: null,
+    accesspoints: { showAll: true }
   };
 
   constructor(dispatcher) {
     super(dispatcher);
 
     const { config } = dispatcher.getContext();
+
+    this.mapLayers.pois = {
+      showAll: true,
+      ...Object.keys(config.filters.pois).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
+    this.mapLayers.events = {
+      showAll: true,
+      ...Object.keys(config.filters.events).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,
       config,
@@ -104,6 +121,38 @@ class MapLayerStore extends Store {
     return layers;
   };
 
+  getFilterLayers = () => ({
+    stop: { ...this.mapLayers.stop, citybike: this.mapLayers.citybike },
+    pois: this.mapLayers.pois,
+    events: this.mapLayers.events
+  });
+
+  updateMapLayersCustom = mapLayers => {
+    this.mapLayers = {
+      ...this.mapLayers,
+      ...mapLayers,
+      stop: {
+        ...this.mapLayers.stop,
+        ...mapLayers.stop
+      },
+      pois: {
+        ...this.mapLayers.pois,
+        ...mapLayers.pois
+      },
+      events: {
+        ...this.mapLayers.events,
+        ...mapLayers.events
+      }
+    };
+
+    if (mapLayers.stop) {
+      this.mapLayers.citybike = mapLayers.stop.citybike;
+    }
+
+    setMapLayerSettings({ ...this.mapLayers });
+    this.emitChange();
+  };
+
   updateMapLayers = mapLayers => {
     this.mapLayers = {
       ...this.mapLayers,
@@ -111,6 +160,14 @@ class MapLayerStore extends Store {
       stop: {
         ...this.mapLayers.stop,
         ...mapLayers.stop
+      },
+      pois: {
+        ...this.mapLayers.pois,
+        ...mapLayers.pois
+      },
+      events: {
+        ...this.mapLayers.events,
+        ...mapLayers.events
       }
     };
     setMapLayerSettings({ ...this.mapLayers });

@@ -16,11 +16,12 @@ import {
 } from '../../util/path';
 import Geomover from '../../component/Geomover';
 import scrollTop from '../../util/scroll';
-import LazilyLoad, { importLazy } from '../../component/LazilyLoad';
+import { importLazy } from '../../component/LazilyLoad';
 import {
   checkPositioningPermission,
   startLocationWatch
 } from '../../action/PositionActions';
+import FilterContainer from '../../component/amporto/filter';
 import PlacesSection from './page-sections/places';
 
 const modules = {
@@ -61,7 +62,6 @@ class ExplorePage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {};
   }
 
   componentDidMount() {
@@ -153,7 +153,7 @@ class ExplorePage extends React.Component {
   render() {
     return (
       <div className="explore">
-        <div>filters</div>
+        <FilterContainer />
         <PlacesSection />
       </div>
     );
@@ -167,6 +167,7 @@ const ExplorePageWithStores = connectToStores(
     const origin = context.getStore('OriginStore').getOrigin();
     const destination = context.getStore('DestinationStore').getDestination();
     const locationState = context.getStore('PositionStore').getLocationState();
+
     const { location } = props.match;
     const newProps = {};
     const { query } = location;
@@ -183,6 +184,7 @@ const ExplorePageWithStores = connectToStores(
     newProps.destination = destination;
     newProps.lang = context.getStore('PreferencesStore').getLanguage();
     newProps.query = query;
+
     return newProps;
   }
 );

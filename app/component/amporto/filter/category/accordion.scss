@@ -1,0 +1,198 @@
+.filters-popup {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $background-default !important;
+
+  @media (min-width: 900px) {
+    width: 520px;
+  }
+
+  .filters-top-bar {
+    display: flex;
+    position: sticky;
+    background-color: $background-default;
+    max-height: 40px;
+    min-height: 40px;
+    box-shadow: 0px 4px 4px 0px rgba(33, 33, 33, 0.15);
+    padding-left: 20px;
+    z-index: 1;
+
+    button.btn-close {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      gap: 20px;
+
+      .icon-container .popup-close-icon {
+        display: flex;
+        position: relative;
+        align-self: center;
+        width: 16px;
+        height: 16px;
+        color: $primary-dark;
+      }
+
+      .title {
+        color: $primary-dark;
+        font-family: $font-family;
+        font-size: $font-size-l;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+
+  .accordion-group-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: $background-default;
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .accordion-container {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+    
+      .accordion {
+        background-color: $background-default;
+        color: #444;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: none;
+        outline: none;
+    
+        &:hover,
+        .active {
+          background-color: $background-default;
+        }
+    
+        .accordion-header {
+          display: flex;
+          position: relative;
+          flex-direction: row;
+          flex-grow: 1;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+          max-height: 36px;
+          min-height: 36px;
+          color: $primary-dark;
+          margin: 0 16px;
+          border-bottom: 1px solid $grey-light-down;
+          padding: 24px 0;
+          background-color: $background-default;
+    
+          .icon-container {
+            display: flex;
+            position: relative;
+            color: $primary-dark;
+            flex-grow: 0;
+    
+            svg {
+              &.icon-prefix {
+                color: $grey-dark-down;
+                width: 32px;
+                height: 32px;
+              }
+    
+              &.icon-suffix {
+                width: 24px;
+                height: 24px;
+              }
+            }
+          }
+    
+          .accordion__title {
+            display: flex;
+            position: relative;
+            flex-grow: 4;
+            color: $grey-dark-down;
+            font-size: $font-size-l;
+            font-weight: $font-weight-bold;
+            line-height: 24px;
+          }
+        }
+      }
+    
+      .accordion__content {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        background-color: $background-default;
+        overflow: hidden;
+        transition: max-height 0.6s ease;
+      }
+    }
+  
+    .accordion-category-list {
+      margin-left: 40px;
+      display: flex;
+      position: relative;
+      flex-direction: column;
+  
+      .category-item {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        max-height: 36px;
+        min-height: 36px;
+        color: $primary-dark;
+        margin: 0 16px;
+        border-bottom: 1px solid $grey-light-down;
+        padding: 24px 4px 24px 0;
+        background-color: $background-default;
+  
+        .name {
+          display: flex;
+          position: relative;
+          color: $grey-dark-down;
+          font-size: $font-size-s;
+          font-weight: $font-weight-regular;
+          line-height: 16px;
+        }
+  
+        .check-icon {
+          color: $background-default;
+        }
+  
+        &.category .name {
+          font-weight: $font-weight-bold;
+        }
+      }
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  flex-grow: 1;
+  z-index: 10002;
+
+  @media (min-width: 900px) {
+    width: 520px;
+  }
+}

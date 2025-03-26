@@ -11,6 +11,7 @@ $spinner-size: 68px;
 html {
   /* Fix font display on webkit based browsers */
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 
   /* Disable touch delay on ms-devices */
   touch-action: manipulation;

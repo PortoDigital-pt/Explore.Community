@@ -1,8 +1,30 @@
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 import pick from 'lodash/pick';
-import { isExploreFeatureEnabled } from '../../../util/mapLayerUtils';
+import {
+  isExploreFeatureEnabled,
+  isCategoryEnabled
+} from '../../../util/mapLayerUtils';
 import { drawExploreIcon } from '../../../util/mapIconUtils';
+
+const mapCategoryDescriptionToId = (
+  filters,
+  type,
+  { properties: { category_lang, category } }
+) => {
+  let value = category;
+
+  if (category_lang) {
+    value = decodeURIComponent(JSON.parse(category_lang).pt);
+  }
+
+  const [categoryKey] = Object.entries(filters[type]).find(
+    // eslint-disable-next-line no-unused-vars
+    ([_, { pt }]) => pt === value
+  ) ?? [null];
+
+  return categoryKey;
+};
 
 class Explore {
   constructor(tile, config, mapLayers) {
@@ -36,6 +58,18 @@ class Explore {
 
             for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
               const feature = layer.feature(i);
+
+              if (
+                type !== 'accesspoints' &&
+                !isCategoryEnabled(
+                  type,
+                  this.mapLayers,
+                  mapCategoryDescriptionToId(this.config.filters, type, feature)
+                )
+              ) {
+                // eslint-disable-next-line no-continue
+                continue;
+              }
 
               //  due to data inconsistency
               if (

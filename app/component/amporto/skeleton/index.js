@@ -3,11 +3,11 @@ import classnames from 'classnames';
 import { string } from 'prop-types';
 
 const Skeleton = ({ className }) => (
-    <div className={classnames('skeleton', className)}/>
+  <div className={classnames('skeleton', className)} />
 );
 
 Skeleton.propTypes = {
-    className: string
-}
+  className: string
+};
 
 export default Skeleton;

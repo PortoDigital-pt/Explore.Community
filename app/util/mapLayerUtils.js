@@ -7,9 +7,7 @@ export const isExploreEnabled = mapLayers => {
   if (!mapLayers) {
     return false;
   }
-  const { explore } = mapLayers;
-
-  return explore.showLayer;
+  return mapLayers.showExplore;
 };
 
 /**
@@ -23,9 +21,23 @@ export const isExploreFeatureEnabled = (featureName, mapLayers) => {
   if (!featureName || !mapLayers) {
     return false;
   }
-  const { explore } = mapLayers;
 
-  return explore[featureName];
+  return mapLayers[featureName];
+};
+
+/**
+ * Checks if a specific category is enabled.
+ * (pois, events)
+ *
+ * @param {'pois'|'events'} featureName The name of the explore feature.
+ * @param {object} mapLayers The map layer configuration.
+ * @param {string | null} category The map layer configuration.
+ */
+export const isCategoryEnabled = (featureName, mapLayers, category) => {
+  if (!featureName || !mapLayers) {
+    return false;
+  }
+  return mapLayers[featureName][category] ?? false;
 };
 
 /**

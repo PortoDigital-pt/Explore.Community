@@ -822,6 +822,12 @@ const translations = {
   },
 
   en: {
+    'all-selected': 'All',
+    'filter-pois-title': 'Points of interest',
+    'filter-events-title': 'Events',
+    'filter-stop-title': 'Transports',
+    'filters-title': 'Filters',
+    'all-filters': 'All filters',
     'place-to-visit': 'Places to visit',
     'find-all-interest': 'Find all points of interest',
     'at-distance': 'at',
@@ -5207,6 +5213,12 @@ const translations = {
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
 
+    'all-selected': 'Todos',
+    'filter-pois-title': 'Pontos de interesse',
+    'filter-events-title': 'Eventos',
+    'filter-stop-title': 'Transportes',
+    'filters-title': 'Filtros',
+    'all-filters': 'Todos os filtros',
     'place-to-visit': 'Lugares a visitar',
     'find-all-interest': 'Descubra todos os pontos de interesse',
     'at-distance': 'a',
