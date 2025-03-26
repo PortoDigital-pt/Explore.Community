@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { string } from 'prop-types';
 import FavouriteExplore from '../../FavouriteExploreContainer';
 
-const Card = ({ className }) => (
+const Card = ({ className, type }) => (
   <div className={classnames('card', className)}>
     <div className="favourite-top">
       <FavouriteExplore data={{}} white />
@@ -12,6 +12,11 @@ const Card = ({ className }) => (
     <div className="content">
       <h3>Title</h3>
       <div className="categories">
+        {type === 'events' && (
+            <div className='details'>
+                event details
+            </div>
+        )}
         <div className="category">CATEGORY</div>
       </div>
     </div>
@@ -19,7 +24,8 @@ const Card = ({ className }) => (
 );
 
 Card.propTypes = {
-  className: string
+  className: string,
+  type: string
 };
 
 export default Card;

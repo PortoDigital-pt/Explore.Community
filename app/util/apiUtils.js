@@ -97,3 +97,11 @@ export function getPoisList() {
     5000
   );
 }
+
+export function getEventsList() {
+  return new Promise(
+    resolve =>
+      setTimeout(() => resolve([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])),
+    5000
+  );
+}

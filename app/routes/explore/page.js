@@ -23,6 +23,7 @@ import {
 } from '../../action/PositionActions';
 import Filters from '../../component/amporto/filter';
 import PoisSection from './sections/pois';
+import EventsSection from './sections/events';
 
 const modules = {
   OverlayWithSpinner: () =>
@@ -155,6 +156,7 @@ class ExplorePage extends React.Component {
       <div className="explore">
         <Filters />
         <PoisSection />
+        <EventsSection />
       </div>
     );
   }

@@ -4,19 +4,19 @@ import { intlShape } from 'react-intl';
 import { locationShape } from '../../../../util/shapes';
 import Skeleton from '../../../../component/amporto/skeleton';
 import Card from '../../../../component/amporto/card';
-import { usePoisList } from './usePoisList';
+import { useEventsList } from './useEventsList';
 // TODO: extract resusable code
 
-const PoisSection = ({ location }, { intl }) => {
-  const { pois, error } = usePoisList();
+const EventsSection = ({ location }, { intl }) => {
+  const { events, error } = useEventsList();
 
   // TODO: in case of error, show a message.
 
   return (
     <div className="section">
-      <h3 className="title">{intl.messages['place-to-visit']}</h3>
+      <h3 className="title">{intl.messages['happening-this-week']}</h3>
       <div className="list">
-        {pois?.map((_, i) => <Card key={i} className="item" />) ??
+        {events?.map((_, i) => <Card key={i} className="item" type="events" />) ??
           Array.from({ length: 10 }, (_, i) => (
             <Skeleton key={`${i}-item`} className="item" />
           ))}
@@ -24,24 +24,24 @@ const PoisSection = ({ location }, { intl }) => {
       <button
         className="show-all"
         type="button"
-        aria-label={intl.messages['find-all-interest']}
+        aria-label={intl.messages['find-all-events']}
       >
-        {intl.messages['find-all-interest']}
+        {intl.messages['find-all-events']}
       </button>
     </div>
   );
 };
 
-PoisSection.contextTypes = {
+EventsSection.contextTypes = {
   intl: intlShape.isRequired
 };
 
-PoisSection.propTypes = {
+EventsSection.propTypes = {
   location: locationShape.isRequired
 };
 
 export default connectToStores(
-  PoisSection,
+  EventsSection,
   ['PositionStore'],
   ({ getStore }) => ({
     location: getStore('PositionStore').getLocationState()
