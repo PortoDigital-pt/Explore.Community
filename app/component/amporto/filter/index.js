@@ -10,18 +10,28 @@ import FilterBar from './filterBar';
 import { configShape } from '../../../util/shapes';
 import CustomModal from '../modal';
 import useModal from '../../../hooks/useModal';
-import AccordionGroup from './category';
+import CategoryGroup from './category';
 import Icon from '../../Icon';
-import { updateMapLayers } from '../../../action/MapLayerActions';
-
+import { updateMapLayersCustom } from '../../../action/MapLayerActions';
 
 const Filters = ({ mapLayers }, { executeAction, config: { filters } }) => {
   const { isOpen, open, close } = useModal();
- 
-  const updateLayers = useCallback(type => {
-    console.log('MAP LAYERS: ', mapLayers[type]);
-      executeAction(updateMapLayers, { [type]: { showAll: !mapLayers[type].showAll }});
-  }, [mapLayers]);
+
+  const toggleCheckAll = useCallback(
+    type => {
+      console.log('MAP LAYERS: ', mapLayers[type]);
+      executeAction(updateMapLayersCustom, {
+        [type]: {
+          ...Object.entries(mapLayers[type]).reduce(
+            (acc, [key]) => ({ ...acc, [key]: !mapLayers[type].showAll }),
+            {}
+          ),
+          showAll: !mapLayers[type].showAll
+        }
+      });
+    },
+    [mapLayers]
+  );
 
   const updateFilters = useCallback(
     ({ type, category, selected }) => {
@@ -42,7 +52,11 @@ const Filters = ({ mapLayers }, { executeAction, config: { filters } }) => {
 
   return (
     <>
-      <FilterBar filters={mapLayers} openModal={open} onClick={updateLayers}/>
+      <FilterBar
+        filters={mapLayers}
+        openModal={open}
+        onClick={toggleCheckAll}
+      />
       {isOpen && (
         <Suspense fallback="">
           <CustomModal
@@ -69,8 +83,8 @@ const Filters = ({ mapLayers }, { executeAction, config: { filters } }) => {
                 </span>
               </button>
             </div>
-            <AccordionGroup
-              selectedFilters={filtersState}
+            <CategoryGroup
+              filters={mapLayers}
               updateFilters={updateFilters}
               onCheckAll={checkAllByCategory}
             />
@@ -90,10 +104,6 @@ Filters.contextTypes = {
   executeAction: func.isRequired
 };
 
-export default connectToStores(
-  Filters, 
-  ['MapLayerStore'], 
-  context => ({
-    mapLayers: context.getStore('MapLayerStore').getFilterLayers()
-  })
-);
+export default connectToStores(Filters, ['MapLayerStore'], context => ({
+  mapLayers: context.getStore('MapLayerStore').getFilterLayers()
+}));

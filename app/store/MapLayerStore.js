@@ -6,7 +6,8 @@ import { TransportMode } from '../constants';
 
 class MapLayerStore extends Store {
   static handlers = {
-    UpdateMapLayers: 'updateMapLayers'
+    UpdateMapLayers: 'updateMapLayers',
+    UpdateMapLayersCustom: 'updateMapLayersCustom'
   };
 
   static storeName = 'MapLayerStore';
@@ -38,7 +39,7 @@ class MapLayerStore extends Store {
 
     pois: null,
     events: null,
-    accesspoints: true,
+    accesspoints: { showAll: true }
   };
 
   constructor(dispatcher) {
@@ -46,8 +47,20 @@ class MapLayerStore extends Store {
 
     const { config } = dispatcher.getContext();
 
-    this.mapLayers.pois = { showAll: true, ...Object.keys(config.filters.pois).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
-    this.mapLayers.events = { showAll: true, ...Object.keys(config.filters.events).reduce((acc, key)=> ({...acc, [key]: true }), {}) }
+    this.mapLayers.pois = {
+      showAll: true,
+      ...Object.keys(config.filters.pois).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
+    this.mapLayers.events = {
+      showAll: true,
+      ...Object.keys(config.filters.events).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,
       config,
@@ -113,6 +126,32 @@ class MapLayerStore extends Store {
     pois: this.mapLayers.pois,
     events: this.mapLayers.events
   });
+
+  updateMapLayersCustom = mapLayers => {
+    this.mapLayers = {
+      ...this.mapLayers,
+      ...mapLayers,
+      stop: {
+        ...this.mapLayers.stop,
+        ...mapLayers.stop
+      },
+      pois: {
+        ...this.mapLayers.pois,
+        ...mapLayers.pois
+      },
+      events: {
+        ...this.mapLayers.events,
+        ...mapLayers.events
+      }
+    };
+
+    if (mapLayers.stop) {
+      this.mapLayers.citybike = mapLayers.stop.citybike;
+    }
+
+    setMapLayerSettings({ ...this.mapLayers });
+    this.emitChange();
+  };
 
   updateMapLayers = mapLayers => {
     this.mapLayers = {
