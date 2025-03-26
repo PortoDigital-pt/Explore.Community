@@ -22,7 +22,7 @@ export const isExploreFeatureEnabled = (featureName, mapLayers) => {
     return false;
   }
 
-  return mapLayers[featureName].showAll;
+  return mapLayers[featureName];
 };
 
 /**

@@ -1,11 +1,6 @@
 import React, { Suspense, useCallback } from 'react';
 import { connectToStores } from 'fluxible-addons-react';
 import { func, shape } from 'prop-types';
-import {
-  addCategory,
-  removeCategory,
-  categoryOnOff
-} from '../../../action/FiltersActions';
 import FilterBar from './filterBar';
 import { configShape } from '../../../util/shapes';
 import CustomModal from '../modal';
@@ -14,40 +9,40 @@ import CategoryGroup from './category';
 import Icon from '../../Icon';
 import { updateMapLayersCustom } from '../../../action/MapLayerActions';
 
-const Filters = ({ mapLayers }, { executeAction, config: { filters } }) => {
+const Filters = ({ mapLayers }, { executeAction, config }) => {
   const { isOpen, open, close } = useModal();
 
   const toggleCheckAll = useCallback(
     type => {
-      console.log('MAP LAYERS: ', mapLayers[type]);
       executeAction(updateMapLayersCustom, {
-        [type]: {
-          ...Object.entries(mapLayers[type]).reduce(
-            (acc, [key]) => ({ ...acc, [key]: !mapLayers[type].showAll }),
-            {}
-          ),
-          showAll: !mapLayers[type].showAll
-        }
+        [type]: Object.entries(mapLayers[type]).reduce(
+          (acc, [key]) => ({ ...acc, [key]: !mapLayers[type].showAll }),
+          {}
+        )
       });
     },
+    [mapLayers, executeAction]
+  );
+
+  const toggleSingleCategory = useCallback(
+    (type, category) => {
+      const data = {
+        [type]: {
+          ...mapLayers[type],
+          [category]: !mapLayers[type][category]
+        }
+      };
+
+      data[type] = {
+        ...data[type],
+        showAll: !Object.entries(data[type])
+          .filter(([key]) => key !== 'showAll')
+          .some(([_, value]) => !value)
+      };
+
+      executeAction(updateMapLayersCustom, data);
+    },
     [mapLayers]
-  );
-
-  const updateFilters = useCallback(
-    ({ type, category, selected }) => {
-      const data = { type, category };
-      const action = selected ? addCategory : removeCategory;
-      executeAction(action, data);
-    },
-    [executeAction]
-  );
-
-  const checkAllByCategory = useCallback(
-    ({ type, selected }) => {
-      const data = { type, isSelected: selected };
-      executeAction(categoryOnOff, data);
-    },
-    [executeAction]
   );
 
   return (
@@ -85,8 +80,8 @@ const Filters = ({ mapLayers }, { executeAction, config: { filters } }) => {
             </div>
             <CategoryGroup
               filters={mapLayers}
-              updateFilters={updateFilters}
-              onCheckAll={checkAllByCategory}
+              onAllCategories={toggleCheckAll}
+              onCategory={toggleSingleCategory}
             />
           </CustomModal>
         </Suspense>

@@ -21,6 +21,7 @@ const mapCategoryDescriptionToId = (
   const [categoryKey] = Object.entries(filters[type]).find(
     ([_, { pt }]) => pt === value
   ) ?? [null];
+
   return categoryKey;
 };
 

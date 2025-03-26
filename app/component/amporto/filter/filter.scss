@@ -11,10 +11,10 @@
   overflow-x: auto;
   gap: 8px;
   height: 42px;
-  padding-right: 16px;
+  padding: 0 18px 0 18px;
 
   @media (min-width: 900px) {
-      padding-right: 24px;
+    padding: 0 24px 0 24px;
   }
 }
 
