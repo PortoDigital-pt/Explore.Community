@@ -89,3 +89,11 @@ export function getEventById(id) {
     response.json()
   );
 }
+
+export function getPoisList() {
+  return new Promise(
+    resolve =>
+      setTimeout(() => resolve([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])),
+    5000
+  );
+}

@@ -1,3 +1,4 @@
+ /* eslint-disable camelcase */
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 import pick from 'lodash/pick';
