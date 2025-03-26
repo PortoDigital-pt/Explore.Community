@@ -1,15 +1,15 @@
 import React, { Suspense, useCallback } from 'react';
 import { connectToStores } from 'fluxible-addons-react';
+import { intlShape } from 'react-intl';
 import { func, shape } from 'prop-types';
 import FilterBar from './filterBar';
-import { configShape } from '../../../util/shapes';
 import CustomModal from '../modal';
 import useModal from '../../../hooks/useModal';
 import CategoryGroup from './category';
 import Icon from '../../Icon';
 import { updateMapLayersCustom } from '../../../action/MapLayerActions';
 
-const Filters = ({ mapLayers }, { executeAction, config }) => {
+const Filters = ({ mapLayers }, { executeAction, intl }) => {
   const { isOpen, open, close } = useModal();
 
   const toggleCheckAll = useCallback(
@@ -37,6 +37,7 @@ const Filters = ({ mapLayers }, { executeAction, config }) => {
         ...data[type],
         showAll: !Object.entries(data[type])
           .filter(([key]) => key !== 'showAll')
+          // eslint-disable-next-line no-unused-vars
           .some(([_, value]) => !value)
       };
 
@@ -64,7 +65,7 @@ const Filters = ({ mapLayers }, { executeAction, config }) => {
             <div className="filters-top-bar">
               <button
                 className="btn-close"
-                aria-label="close" // TODO: add translation
+                aria-label={intl.messages.close}
                 type="button"
                 onClick={close}
               >
@@ -73,9 +74,7 @@ const Filters = ({ mapLayers }, { executeAction, config }) => {
                   viewBox="0 0 1024 1024"
                   className="popup-close-icon"
                 />
-                <span className="title">
-                  {/* TODO: add translation */ 'Filtros'}
-                </span>
+                <span className="title">{intl.messages['filters-title']}</span>
               </button>
             </div>
             <CategoryGroup
@@ -95,7 +94,7 @@ Filters.propTypes = {
 };
 
 Filters.contextTypes = {
-  config: configShape.isRequired,
+  intl: intlShape.isRequired,
   executeAction: func.isRequired
 };
 

@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { func, shape } from 'prop-types';
+import { intlShape } from 'react-intl';
 import classnames from 'classnames';
 import { getContext } from 'recompose';
 import Icon from '../../Icon';
-import { configShape } from '../../../util/shapes';
 
 const FILTERS_ICON_MAP = {
   stop: 'icon-icon_bus_no_map',
@@ -11,7 +11,7 @@ const FILTERS_ICON_MAP = {
   events: 'icon-events'
 };
 
-const FilterBar = ({ filters, openModal, onClick }, { config }) => {
+const FilterBar = ({ filters, openModal, onClick }, { intl }) => {
   const ButtonFilters = useMemo(() => {
     const Component = Object.entries(filters).map(
       ([type, { showAll, ...values }]) => {
@@ -26,7 +26,7 @@ const FilterBar = ({ filters, openModal, onClick }, { config }) => {
           <button
             key={type}
             type="button"
-            aria-label={'name' /* TODO: add translation */}
+            aria-label={intl.messages[`filter-${type}-title`]}
             className={classnames('filter-container--content', {
               selected: someSelected
             })}
@@ -34,7 +34,7 @@ const FilterBar = ({ filters, openModal, onClick }, { config }) => {
           >
             <Icon img={iconName} viewBox="0 0 16 16" className="icon-prefix" />
             <span className="content-title">
-              {type /* TODO: check later */}
+              {intl.messages[`filter-${type}-title`]}
             </span>
             {someSelected && (
               <Icon
@@ -55,11 +55,11 @@ const FilterBar = ({ filters, openModal, onClick }, { config }) => {
     <div className="filter-container">
       <button
         type="button"
-        aria-label={'open filter' /* TODO: add translation */}
+        aria-label={intl.messages['all-filters']}
         className="filter-container--content"
         onClick={openModal}
       >
-        <span className="content-title">Todos os filtros</span>
+        <span className="content-title">{intl.messages['all-filters']}</span>
       </button>
       <ButtonFilters />
     </div>
@@ -73,9 +73,7 @@ FilterBar.propTypes = {
 };
 
 FilterBar.contextTypes = {
-  config: configShape.isRequired
+  intl: intlShape.isRequired
 };
 
-export default getContext({
-  config: configShape.isRequired
-})(FilterBar);
+export default getContext()(FilterBar);

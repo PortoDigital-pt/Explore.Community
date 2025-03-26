@@ -19,6 +19,7 @@ const mapCategoryDescriptionToId = (
   }
 
   const [categoryKey] = Object.entries(filters[type]).find(
+    // eslint-disable-next-line no-unused-vars
     ([_, { pt }]) => pt === value
   ) ?? [null];
 
@@ -66,6 +67,7 @@ class Explore {
                   mapCategoryDescriptionToId(this.config.filters, type, feature)
                 )
               ) {
+                // eslint-disable-next-line no-continue
                 continue;
               }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { string, shape, func } from 'prop-types';
+import { intlShape } from 'react-intl';
 import Accordion from './accordion';
 import { configShape } from '../../../../util/shapes';
 import AccordionItem from './item';
@@ -13,15 +14,20 @@ const MAP_LAYERS_ICON = {
 
 const CategoryGroup = (
   { language, onAllCategories, onCategory, filters },
-  { config }
+  { config, intl }
 ) => (
   <div className="accordion-group-container">
     {Object.entries(filters).map(([type, { showAll, ...categories }]) => (
-      <Accordion key={type} title={type} iconId={MAP_LAYERS_ICON[type]}>
+      <Accordion
+        key={type}
+        title={intl.messages[`filter-${type}-title`]}
+        iconId={MAP_LAYERS_ICON[type]}
+        ariaLabel={intl.messages['settings-dropdown-open-label']}
+      >
         <div className="accordion-category-list">
           <AccordionItem
             type={type}
-            category="Todos" // TODO: translation
+            category={intl.messages['all-selected']}
             onClick={() => onAllCategories(type)}
             showIcon={showAll}
             className="category"
@@ -56,7 +62,8 @@ CategoryGroup.propTypes = {
 };
 
 CategoryGroup.contextTypes = {
-  config: configShape.isRequired
+  config: configShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default connectToStores(

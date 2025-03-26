@@ -37,7 +37,6 @@ export const isCategoryEnabled = (featureName, mapLayers, category) => {
   if (!featureName || !mapLayers) {
     return false;
   }
-
   return mapLayers[featureName][category] ?? false;
 };
 

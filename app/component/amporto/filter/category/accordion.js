@@ -1,8 +1,9 @@
 import React, { useRef, useState, useCallback } from 'react';
+import classnames from 'classnames';
 import { node, string } from 'prop-types';
 import Icon from '../../../Icon';
 
-const Accordion = ({ title, iconId, children }) => {
+const Accordion = ({ title, iconId, ariaLabel, children }) => {
   const [active, setActive] = useState(false);
   const [height, setHeight] = useState('0px');
   const content = useRef(null);
@@ -16,15 +17,15 @@ const Accordion = ({ title, iconId, children }) => {
     <div className="accordion-container">
       <button
         type="button"
-        aria-label="toggle accordion" // TODO: translation
-        className={`accordion ${active ? 'active' : ''}`}
+        aria-label={ariaLabel}
+        className={classnames('accordion', { active })}
         onClick={toggleAccordion}
       >
         <div className="accordion-header">
           <Icon img={iconId} viewBox="0 0 32 32" className="icon-prefix" />
           <span className="accordion__title">{title}</span>
           <Icon
-            img={active ? 'icon-chevron-up' : 'icon-chevron-down'}
+            img={`icon-chevron-${active ? 'up' : 'down'}`}
             viewBox="0 0 24 24"
             className="icon-suffix"
           />
@@ -45,7 +46,8 @@ const Accordion = ({ title, iconId, children }) => {
 Accordion.propTypes = {
   title: string.isRequired,
   iconId: string.isRequired,
-  children: node.isRequired
+  children: node.isRequired,
+  ariaLabel: string.isRequired
 };
 
 export default Accordion;
