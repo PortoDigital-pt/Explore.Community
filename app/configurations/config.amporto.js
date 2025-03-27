@@ -52,7 +52,8 @@ const {
   SHOW_FAVOURITES,
   PRIVACY_POLICY,
   COOKIES_POLICY,
-  EXPLORE_TILES_URL
+  EXPLORE_TILES_URL,
+  CULTURAL_AGENDA
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -256,6 +257,14 @@ export default {
 
   privacyPolicyLink: PRIVACY_POLICY,
   cookiesPolicyLink: COOKIES_POLICY,
+  culturalAgendaLink: CULTURAL_AGENDA,
+
+  cards: {
+    events: {
+      pt: 'Desde exposições de arte emocionantes até concertos ao ar livre, mergulhe na vida cultural vibrante enquanto explora cada canto da cidade. Para ver mais eventos visite a página da *link*Agenda Cultural do Porto*link*.',
+      en: 'From exciting art exhibitions to open-air concerts, immerse yourself in the vibrant cultural life as you explore every corner of the city. For more events, visit the *link*Porto Cultural Agenda*link* page.'
+    }
+  },
 
   cookiesDescription: {
     pt: 'A Explore.Porto recolhe e armazena informações através de cookies para melhorar a sua experiência. Ao clicar em aceitar, concorda com o uso de cookies. Saiba mais na nossa *link*Política de Privacidade*link*.',

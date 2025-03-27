@@ -1,24 +1,26 @@
 import React from 'react';
+import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
-import { locationShape } from '../../../../util/shapes';
+import { locationShape, configShape } from '../../../../util/shapes';
+import { parseConfigDescriptionTextWithLink } from '../../../../util/textParseUtils';
 import Skeleton from '../../../../component/amporto/skeleton';
 import Card from '../../../../component/amporto/card';
 import { useEventsList } from './useEventsList';
 // TODO: extract resusable code
 
-const EventsSection = ({ location }, { intl }) => {
+const EventsSection = ({ language, location }, { config, intl }) => {
   const { events, error } = useEventsList();
 
   // TODO: in case of error, show a message.
-
   return (
     <div className="section">
       <h3 className="title">{intl.messages['happening-this-week']}</h3>
+      <p>{parseConfigDescriptionTextWithLink(config.cards.events[language], config.culturalAgendaLink)}</p>
       <div className="list">
-        {events?.map((_, i) => <Card key={i} className="item" type="events" />) ??
+        {events?.map((_, i) => <Card key={i} className="large" type="events" />) ??
           Array.from({ length: 10 }, (_, i) => (
-            <Skeleton key={`${i}-item`} className="item" />
+            <Skeleton key={`${i}-item`} className="large" />
           ))}
       </div>
       <button
@@ -33,17 +35,20 @@ const EventsSection = ({ location }, { intl }) => {
 };
 
 EventsSection.contextTypes = {
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  config: configShape.isRequired
 };
 
 EventsSection.propTypes = {
-  location: locationShape.isRequired
+  location: locationShape.isRequired,
+  language: string.isRequired
 };
 
 export default connectToStores(
   EventsSection,
-  ['PositionStore'],
+  ['PositionStore', 'PreferencesStore'],
   ({ getStore }) => ({
-    location: getStore('PositionStore').getLocationState()
+    location: getStore('PositionStore').getLocationState(),
+    language: getStore('PreferencesStore').getLanguage()
   })
 );

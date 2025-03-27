@@ -94,7 +94,7 @@ export function getPoisList() {
   return new Promise(
     resolve =>
       setTimeout(() => resolve([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])),
-    5000
+    10000
   );
 }
 
@@ -102,6 +102,6 @@ export function getEventsList() {
   return new Promise(
     resolve =>
       setTimeout(() => resolve([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])),
-    5000
+    10000
   );
 }

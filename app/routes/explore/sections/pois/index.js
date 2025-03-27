@@ -16,9 +16,9 @@ const PoisSection = ({ location }, { intl }) => {
     <div className="section">
       <h3 className="title">{intl.messages['place-to-visit']}</h3>
       <div className="list">
-        {pois?.map((_, i) => <Card key={i} className="item" />) ??
+        {pois?.map((_, i) => <Card key={i} className="small" />) ??
           Array.from({ length: 10 }, (_, i) => (
-            <Skeleton key={`${i}-item`} className="item" />
+            <Skeleton key={`${i}-item`} className="small" />
           ))}
       </div>
       <button

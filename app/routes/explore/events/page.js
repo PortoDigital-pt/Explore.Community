@@ -129,7 +129,7 @@ MobileContent.propTypes = {
   distance: number
 };
 
-const PageContent = ({ selectedData, intl }) => (
+const PageContent = ({ selectedData, intl, link }) => (
   <>
     <div className="image" />
     <div className="details">
@@ -155,7 +155,7 @@ const PageContent = ({ selectedData, intl }) => (
         <h3>{intl.messages.about}</h3>
         <p>{selectedData.description ?? 'No information at all'}</p>
         <a
-          href="https://www.agenda-porto.pt/"
+          href={link}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -168,7 +168,8 @@ const PageContent = ({ selectedData, intl }) => (
 
 PageContent.propTypes = {
   selectedData: shape().isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  link: string.isRequired
 };
 
 const EventDetailsPage = () => (

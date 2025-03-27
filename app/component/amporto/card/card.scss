@@ -6,6 +6,12 @@
     flex-direction: column;
     justify-content: flex-start;
 
+    &.large {
+        .image-cover {
+            height: 112px;
+        }
+    }
+
     .image-cover {
         display: flex;
         position: relative;
@@ -46,7 +52,7 @@
         flex-grow: 1;
         flex-direction: column;
         justify-content: space-between;
-        padding: 8px;
+        padding: 12px;
 
         h3 {
             display: flex;

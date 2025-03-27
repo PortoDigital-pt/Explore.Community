@@ -93,8 +93,8 @@ const MobileView = forwardRef(
 
     const onScroll = e => {
       if (e.target.className === 'drawer-container') {
-        if (e.target.scrollTop < 40) {
-          scrollRef.current.scrollTop = 40;
+        if (e.target.scrollTop < 60) {
+          scrollRef.current.scrollTop = 60;
           return;
         }
 

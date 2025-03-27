@@ -3,7 +3,7 @@ import { string, func, shape, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
-import { locationShape } from '../../../../util/shapes';
+import { locationShape, configShape } from '../../../../util/shapes';
 import withBreakpoint from '../../../../util/withBreakpoint';
 import Loading from '../../../Loading';
 import useModal from '../../../../hooks/useModal';
@@ -23,7 +23,7 @@ const DetailsPage = (
     PageContent,
     MobileContent
   },
-  { match, router, intl, executeAction }
+  { config, match, router, intl, executeAction }
 ) => {
   const { isOpen, open, close } = useModal();
   const { selectedData, error } = useSelectedData({
@@ -76,6 +76,7 @@ const DetailsPage = (
               selectedData={selectedData}
               intl={intl}
               onBackBtnClick={close}
+              link={config.culturalAgendaLink}
               modal
               PageContent={PageContent}
             />
@@ -89,6 +90,7 @@ const DetailsPage = (
 DetailsPage.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
+  config: configShape.isRequired,
   intl: intlShape.isRequired,
   executeAction: func.isRequired
 };
@@ -117,18 +119,19 @@ const Content = ({
   intl,
   onBackBtnClick,
   modal = false,
+  link,
   PageContent
 }) => {
   const Component = useMemo(() => {
     if (modal) {
       return () => (
         <ScrollableWrapper scrollable className="page">
-          <PageContent selectedData={selectedData} intl={intl} />
+          <PageContent selectedData={selectedData} intl={intl} link={link}/>
         </ScrollableWrapper>
       );
     }
 
-    return () => <PageContent selectedData={selectedData} intl={intl} />;
+    return () => <PageContent selectedData={selectedData} intl={intl} link={link}/>;
   }, [modal]);
 
   return (
@@ -151,5 +154,6 @@ Content.propTypes = {
   intl: intlShape.isRequired,
   onBackBtnClick: func,
   modal: bool,
-  PageContent: func.isRequired
+  PageContent: func.isRequired,
+  link: string
 };
