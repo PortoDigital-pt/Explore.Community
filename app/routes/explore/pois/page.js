@@ -6,6 +6,7 @@ import { showDistance } from '../../../util/geo-utils';
 import { useSelectedPoi } from './useSelectedPoi';
 import Details from '../../../component/amporto/pages/details';
 import FavouriteExplore from '../../../component/FavouriteExploreContainer';
+import ShareButton from '../../../component/amporto/share-button';
 
 const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
   <div className="mobile-view">
@@ -18,6 +19,7 @@ const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
           />
           <h3>{selectedData.name}</h3>
         </div>
+        <ShareButton withBackground />
         <FavouriteExplore data={selectedData} />
       </div>
       <div className="distance">
@@ -61,7 +63,7 @@ MobileContent.propTypes = {
   onDetails: func.isRequired,
   intl: intlShape.isRequired,
   selectedData: shape().isRequired,
-  distance: number
+  distance: number,
 };
 
 const PageContent = ({ selectedData, intl }) => (
@@ -102,7 +104,7 @@ const PageContent = ({ selectedData, intl }) => (
 
 PageContent.propTypes = {
   selectedData: shape().isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 const PoiDetailsPage = () => (
