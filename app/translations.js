@@ -822,6 +822,8 @@ const translations = {
   },
 
   en: {
+    'poi-share.text': 'Find out more about this place I found in ',
+    'poi-share.title': 'explore.porto.pt',
     'all-selected': 'All',
     'filter-pois-title': 'Points of interest',
     'filter-events-title': 'Events',

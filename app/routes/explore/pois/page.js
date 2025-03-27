@@ -63,7 +63,7 @@ MobileContent.propTypes = {
   onDetails: func.isRequired,
   intl: intlShape.isRequired,
   selectedData: shape().isRequired,
-  distance: number,
+  distance: number
 };
 
 const PageContent = ({ selectedData, intl }) => (
@@ -104,7 +104,7 @@ const PageContent = ({ selectedData, intl }) => (
 
 PageContent.propTypes = {
   selectedData: shape().isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const PoiDetailsPage = () => (

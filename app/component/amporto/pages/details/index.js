@@ -22,19 +22,19 @@ const DetailsPage = (
     useSelectedData,
     onErrorPath,
     PageContent,
-    MobileContent,
+    MobileContent
   },
-  { match, router, intl, executeAction },
+  { match, router, intl, executeAction }
 ) => {
   const { isOpen, open, close } = useModal();
   const { selectedData, error } = useSelectedData({
     id: match.params.id,
-    language,
+    language
   });
   const distanceToDataPoint = useDistanceToTarget({
     executeAction,
     location,
-    targetPoint: selectedData,
+    targetPoint: selectedData
   });
 
   useEffect(() => {
@@ -91,7 +91,7 @@ DetailsPage.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
   intl: intlShape.isRequired,
-  executeAction: func.isRequired,
+  executeAction: func.isRequired
 };
 
 DetailsPage.propTypes = {
@@ -101,7 +101,7 @@ DetailsPage.propTypes = {
   useSelectedData: func.isRequired,
   onErrorPath: string.isRequired,
   PageContent: func.isRequired,
-  MobileContent: func.isRequired,
+  MobileContent: func.isRequired
 };
 
 export default connectToStores(
@@ -109,8 +109,8 @@ export default connectToStores(
   ['PreferencesStore', 'PositionStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),
-    location: getStore('PositionStore').getLocationState(),
-  }),
+    location: getStore('PositionStore').getLocationState()
+  })
 );
 
 const Content = ({
@@ -118,7 +118,7 @@ const Content = ({
   intl,
   onBackBtnClick,
   modal = false,
-  PageContent,
+  PageContent
 }) => {
   const Component = useMemo(() => {
     if (modal) {
@@ -153,5 +153,5 @@ Content.propTypes = {
   intl: intlShape.isRequired,
   onBackBtnClick: func,
   modal: bool,
-  PageContent: func.isRequired,
+  PageContent: func.isRequired
 };

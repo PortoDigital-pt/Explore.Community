@@ -1,17 +1,22 @@
 import React from 'react';
 import { bool } from 'prop-types';
+import { intlShape } from 'react-intl';
 import Icon from '../../Icon';
 
-const ShareButton = ({ withBackground }) => {
-  const isShareAvailable = true; // typeof navigator.share === 'function';
+const ShareButton = ({ withBackground }, { intl }) => {
+  const isShareAvailable = typeof navigator.share === 'function';
 
   const share = async () => {
     try {
+      const url = window.location.href;
+
       await navigator.share({
-        url: 'https://localhost:3000'
+        title: intl.messages['poi-share.title'],
+        url,
+        text: `${intl.messages['poi-share.text']} ${url}`
       });
     } catch (err) {
-      console.trace('Error calling navigator.share', err);
+      console.trace('web-share api not available', err);
     }
   };
 
@@ -40,6 +45,10 @@ const ShareButton = ({ withBackground }) => {
 
 ShareButton.propTypes = {
   withBackground: bool
+};
+
+ShareButton.contextTypes = {
+  intl: intlShape.isRequired
 };
 
 export default ShareButton;
