@@ -41,7 +41,6 @@ const BottomNavigationBar = (
   const [client, setClient] = useState(false);
   const { match, router } = useRouter();
   const canShow = useSmartNavigation();
-
   const navigationItems = useMemo(
     () =>
       generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),

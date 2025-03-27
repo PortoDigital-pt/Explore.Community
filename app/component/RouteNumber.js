@@ -7,7 +7,6 @@ import IconWithBigCaution from './IconWithBigCaution';
 import IconWithIcon from './IconWithIcon';
 import Icon from './Icon';
 import { TransportMode } from '../constants';
-import { LightenDarkenColor } from '../util/colorUtils';
 
 const LONG_ROUTE_NUMBER_LENGTH = 6;
 
@@ -231,9 +230,9 @@ function RouteNumber(props, context) {
   );
 
   const originalColor = getColor();
-
   const lightOrDefault = originalColor
-    ? LightenDarkenColor(originalColor, 70)
+    // 33 -> hex code for 20% transparency
+    ? `${originalColor}33`
     : originalColor;
 
   return props.withBar ? (
