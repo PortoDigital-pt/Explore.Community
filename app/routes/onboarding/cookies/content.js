@@ -2,7 +2,7 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import { func, string } from 'prop-types';
 import { configShape } from '../../../util/shapes';
-import { parseConfigDescriptionTextWithLink } from '../../../util/textParseUtils';
+import { parseConfigDescriptionTextWithLink } from '../../../util/amporto/text';
 import Icon from '../../../component/Icon';
 
 const Content = (
@@ -28,7 +28,10 @@ const Content = (
     </div>
 
     <p>
-      {parseConfigDescriptionTextWithLink(cookiesDescription[language], privacyPolicyLink)}
+      {parseConfigDescriptionTextWithLink(
+        cookiesDescription[language],
+        privacyPolicyLink
+      )}
     </p>
 
     <div className="action">

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { getEventsList } from '../../../../util/apiUtils';
+import { getEventList } from '../../../../util/amporto/api';
 
 export const useEventsList = () => {
   const [events, setEvents] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getEventsList().then(setEvents).catch(setError);
+    getEventList().then(setEvents).catch(setError);
   }, []);
 
   return { events, error };

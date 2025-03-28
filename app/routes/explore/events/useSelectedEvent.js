@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getEventById } from '../../../util/apiUtils';
+import { getEventById } from '../../../util/amporto/api';
 
 export const useSelectedEvent = ({ id, language }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);

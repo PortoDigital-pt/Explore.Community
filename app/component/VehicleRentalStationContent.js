@@ -15,7 +15,7 @@ import Icon from './Icon';
 import withBreakpoint from '../util/withBreakpoint';
 import { getRentalNetworkConfig } from '../util/vehicleRentalUtils';
 import { isBrowser } from '../util/browser';
-import { showDistance } from '../util/geo-utils';
+import { showDistance } from '../util/amporto/geo';
 import { PREFIX_BIKESTATIONS } from '../util/path';
 import { TransportMode } from '../constants';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';

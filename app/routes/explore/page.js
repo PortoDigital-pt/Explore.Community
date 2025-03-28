@@ -66,23 +66,17 @@ class ExplorePage extends React.Component {
   }
 
   componentDidMount() {
-    const { from } = this.context.match.params;
-    /* initialize stores from URL params */
-    const origin = parseLocation(from);
-
     this.context.executeAction(storeOrigin, {});
     this.context.executeAction(storeDestination, {});
 
-    if (this.context.config.startSearchFromUserLocation && !origin.lat) {
-      checkPositioningPermission().then(permission => {
-        if (
-          permission.state === 'granted' &&
-          this.props.locationState.status === 'no-location'
-        ) {
-          this.context.executeAction(startLocationWatch);
-        }
-      });
-    }
+    checkPositioningPermission().then(permission => {
+      if (
+        permission.state === 'granted' &&
+        this.props.locationState.status === 'no-location'
+      ) {
+        this.context.executeAction(startLocationWatch);
+      }
+    });
     scrollTop();
   }
 

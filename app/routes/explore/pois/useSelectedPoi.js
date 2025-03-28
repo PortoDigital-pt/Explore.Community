@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getPoiById } from '../../../util/apiUtils';
+import { getPoiById } from '../../../util/amporto/api';
 
 const dtoToPoi = (language, poiDto) => {
   return {

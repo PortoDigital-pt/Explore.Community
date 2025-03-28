@@ -454,7 +454,7 @@ function fetchCitybikeConfigurations() {
 if (process.env.OIDC_CLIENT_ID) {
   setUpOpenId();
 }
-setupApiRoutes(app);
+setupApiRoutes(app, config);
 setUpStaticFolders();
 setUpMiddleware();
 setUpRoutes();

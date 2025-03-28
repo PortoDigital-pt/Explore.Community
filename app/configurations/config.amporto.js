@@ -381,7 +381,7 @@ export default {
         pt: 'Casas de Fado',
         en: 'Fado Houses'
       },
-      wineCellarsAndQuintas: {
+      wineCellarsAndFarms: {
         pt: 'Caves de Vinhos e Quintas',
         en: 'Wine Cellars and Farms'
       },
@@ -452,5 +452,15 @@ export default {
       theater: { pt: 'Teatro', en: 'Theater' },
       visit: { pt: 'Visita', en: 'Visit' }
     }
+  },
+  ngsi: {
+    dataProvider: '.*api.ropi.porto.digital.*',
+    coords: '41.150075,-8.610669' // default coordinates: câmara municipal do porto
+  },
+  coordinatesBounds: {
+    minLat,
+    maxLat,
+    minLon,
+    maxLon
   }
 };

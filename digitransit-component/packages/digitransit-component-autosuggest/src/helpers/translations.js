@@ -387,7 +387,7 @@ const translations = {
       'Ver resultados no separador "Destino" adjacente',
     'search-no-results': 'Sem localização',
     'search-origin': 'Pesquisar origem, rota ou paragem',
-    'search-origin-index': 'A sua localização',
+    'search-origin-index': 'Escolha a origem',
     'search-position': 'Detetar localização',
     'select-from-map': 'Escolher no mapa',
     'select-from-own-locations': 'Selecione a partir de locais próprios',

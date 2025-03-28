@@ -4,7 +4,7 @@ import moment from 'moment';
 import { string, func, shape, number } from 'prop-types';
 import { intlShape } from 'react-intl';
 import Icon from '../../../component/Icon';
-import { showDistance } from '../../../util/geo-utils';
+import { showDistance } from '../../../util/amporto/geo';
 import { useSelectedEvent } from './useSelectedEvent';
 import Details from '../../../component/amporto/pages/details';
 import FavouriteExplore from '../../../component/FavouriteExploreContainer';
@@ -154,11 +154,7 @@ const PageContent = ({ selectedData, intl, link }) => (
       <div className="description">
         <h3>{intl.messages.about}</h3>
         <p>{selectedData.description ?? 'No information at all'}</p>
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={link} target="_blank" rel="noopener noreferrer">
           {intl.messages['know-more']}
         </a>
       </div>

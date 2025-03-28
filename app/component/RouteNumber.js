@@ -231,8 +231,8 @@ function RouteNumber(props, context) {
 
   const originalColor = getColor();
   const lightOrDefault = originalColor
-    // 33 -> hex code for 20% transparency
-    ? `${originalColor}33`
+    ? // 33 -> hex code for 20% transparency
+      `${originalColor}33`
     : originalColor;
 
   return props.withBar ? (

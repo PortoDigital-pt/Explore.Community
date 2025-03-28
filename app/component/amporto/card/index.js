@@ -12,11 +12,7 @@ const Card = ({ className, type }) => (
     <div className="content">
       <h3>Title</h3>
       <div className="categories">
-        {type === 'events' && (
-            <div className='details'>
-                event details
-            </div>
-        )}
+        {type === 'events' && <div className="details">event details</div>}
         <div className="category">CATEGORY</div>
       </div>
     </div>

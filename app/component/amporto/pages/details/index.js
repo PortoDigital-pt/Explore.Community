@@ -126,12 +126,14 @@ const Content = ({
     if (modal) {
       return () => (
         <ScrollableWrapper scrollable className="page">
-          <PageContent selectedData={selectedData} intl={intl} link={link}/>
+          <PageContent selectedData={selectedData} intl={intl} link={link} />
         </ScrollableWrapper>
       );
     }
 
-    return () => <PageContent selectedData={selectedData} intl={intl} link={link}/>;
+    return () => (
+      <PageContent selectedData={selectedData} intl={intl} link={link} />
+    );
   }, [modal]);
 
   return (

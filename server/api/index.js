@@ -1,5 +1,45 @@
 import { poiToDto, eventToDto } from './dto';
 
+const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
+  const query = new URLSearchParams();
+
+  // if data does not contain categories query, we force filtering for only the valid ones,
+  // which it is the same as if the user has all selected. Needed to always show cards of valid categories
+  data.categories =
+    data.categories ??
+    Object.keys(
+      filters[data.type === 'PointOfInterest' ? 'pois' : 'events']
+    ).toString();
+
+  Object.entries(data).forEach(([key, value]) => {
+    if (value === undefined || value === null) {
+      return;
+    }
+
+    if (key === 'categories') {
+      const mappedCategories = value
+        .split(',')
+        .map(
+          categoryKey =>
+            `'${
+              filters[data.type === 'PointOfInterest' ? 'pois' : 'events'][
+                categoryKey
+              ].pt
+            }'`
+        );
+      const categoriesQueryValue = `category_lang.pt==${mappedCategories}${
+        dataProvider ? `;dataProvider~=${dataProvider}` : ''
+      }`;
+      query.set('q', categoriesQueryValue);
+      return;
+    }
+
+    query.set(key, value.toString());
+  });
+
+  return query.toString();
+};
+
 const customFetch = async url => {
   const response = await fetch(url);
   const preparedResponse = {
@@ -28,6 +68,44 @@ const getPoiDetail = async ({ params: { id } }, response) => {
   return response.status(status).json(poiToDto(data));
 };
 
+const defaultQueryParams = {
+  options: 'count',
+  georel: 'near;maxDistance:25000',
+  geometry: 'point',
+  orderBy: 'geo:distance',
+  limit: '20',
+  offset: '0',
+  attrs: 'dateCreated,dateModified,*'
+};
+
+const getPoiList = async (
+  {
+    query,
+    config: {
+      filters,
+      ngsi: { dataProvider, coords }
+    }
+  },
+  response
+) => {
+  const { data, status, text } = await customFetch(
+    `${process.env.NGSI_URL}?${buildNGSIQueryString({
+      filters,
+      dataProvider,
+      type: 'PointOfInterest',
+      coords,
+      ...defaultQueryParams,
+      ...query
+    })}`
+  );
+
+  if (!data) {
+    return response.status(status).send(text);
+  }
+
+  return response.status(status).json(data.map(poiToDto));
+};
+
 const getEventDetail = async ({ params: { id } }, response) => {
   const { data, status, text } = await customFetch(
     `${process.env.NGSI_URL}/${id}`
@@ -40,18 +118,43 @@ const getEventDetail = async ({ params: { id } }, response) => {
   return response.status(status).json(eventToDto(data));
 };
 
+const getEventList = async (request, response) => {
+  return new Promise(
+    resolve =>
+      setTimeout(() =>
+        resolve(
+          response.status(200).json([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
+        )
+      ),
+    10000
+  );
+};
+
 const setupCache = (request, response, next) => {
   // setting cache to 1 hour
   response.set('Cache-Control', 'max-age=3600, public');
   next();
 };
 
-const routes = {
-  '/api/pois/:id': getPoiDetail,
-  '/api/events/:id': getEventDetail
+const decorateRequest = (request, response, next, config) => {
+  request.config = config;
+  next();
 };
 
-export const setupApiRoutes = app =>
+const routes = {
+  '/api/pois/:id': getPoiDetail,
+  '/api/pois': getPoiList,
+  '/api/events/:id': getEventDetail,
+  '/api/events': getEventList
+};
+
+export const setupApiRoutes = (app, { filters, ngsi }) =>
   Object.entries(routes).forEach(([route, handler]) =>
-    app.get(route, setupCache, handler)
+    app.get(
+      route,
+      setupCache,
+      (request, response, next) =>
+        decorateRequest(request, response, next, { filters, ngsi }),
+      handler
+    )
   );

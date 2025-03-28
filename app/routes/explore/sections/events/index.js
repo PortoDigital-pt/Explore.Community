@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../../util/shapes';
-import { parseConfigDescriptionTextWithLink } from '../../../../util/textParseUtils';
+import { parseConfigDescriptionTextWithLink } from '../../../../util/amporto/text';
 import Skeleton from '../../../../component/amporto/skeleton';
 import Card from '../../../../component/amporto/card';
 import { useEventsList } from './useEventsList';
@@ -16,9 +16,16 @@ const EventsSection = ({ language, location }, { config, intl }) => {
   return (
     <div className="section">
       <h3 className="title">{intl.messages['happening-this-week']}</h3>
-      <p>{parseConfigDescriptionTextWithLink(config.cards.events[language], config.culturalAgendaLink)}</p>
+      <p>
+        {parseConfigDescriptionTextWithLink(
+          config.cards.events[language],
+          config.culturalAgendaLink
+        )}
+      </p>
       <div className="list">
-        {events?.map((_, i) => <Card key={i} className="large" type="events" />) ??
+        {events?.map((_, i) => (
+          <Card key={i} className="large" type="events" />
+        )) ??
           Array.from({ length: 10 }, (_, i) => (
             <Skeleton key={`${i}-item`} className="large" />
           ))}
