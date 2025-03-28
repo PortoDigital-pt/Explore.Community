@@ -631,9 +631,13 @@ $margin-left-right: 21.3px;
 
 .route-header {
   display: flex;
+  align-items: anchor-center;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 5px;
 
   .route-number {
-    min-width: 40px;
+    min-width: 30px;
 
     .icon {
       margin-top: 2px;
@@ -649,6 +653,7 @@ $margin-left-right: 21.3px;
   .route-info {
     display: flex;
     min-width: 0;
+    flex-grow: 1;
 
     .route-short-name {
       margin: 0;
@@ -670,10 +675,6 @@ $margin-left-right: 21.3px;
       letter-spacing: -0.43px;
       color: #666;
     }
-  }
-
-  .favourite-icon {
-    margin-left: auto;
   }
 
   .trip-destination {

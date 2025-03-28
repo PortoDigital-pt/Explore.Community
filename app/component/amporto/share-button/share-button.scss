@@ -11,6 +11,11 @@
         color: $primary-dark;
         width: 30px;
         height: 30px;
+
+        @media screen and (min-width: 899px) {
+          width: 40px;
+          height: 40px;
+        }
       }
 
       &.share {

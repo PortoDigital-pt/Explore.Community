@@ -25,6 +25,7 @@ const ShareButton = ({ withBackground }, { intl }) => {
       <div className="share-button-container">
         <button
           className="btn-share"
+          aria-label={intl.messages['poi-share-aria-label']}
           allow="web-share"
           type="button"
           onClick={e => {

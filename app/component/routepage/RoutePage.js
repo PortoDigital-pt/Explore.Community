@@ -24,6 +24,7 @@ import {
   isAlertValid
 } from '../../util/alertUtils';
 import { AlertEntityType } from '../../constants';
+import ShareButton from '../amporto/share-button';
 
 const modules = {
   FavouriteRouteContainer: () => importLazy(import('./FavouriteRouteContainer'))
@@ -139,15 +140,19 @@ class RoutePage extends React.Component {
                   </div>
                 )}
               </div>
+
               {!tripId && (
-                <LazilyLoad modules={modules}>
-                  {({ FavouriteRouteContainer }) => (
-                    <FavouriteRouteContainer
-                      className="route-page-header"
-                      gtfsId={route.gtfsId}
-                    />
-                  )}
-                </LazilyLoad>
+                <>
+                  <ShareButton withBackground />
+                  <LazilyLoad modules={modules}>
+                    {({ FavouriteRouteContainer }) => (
+                      <FavouriteRouteContainer
+                        className="route-page-header"
+                        gtfsId={route.gtfsId}
+                      />
+                    )}
+                  </LazilyLoad>
+                </>
               )}
             </div>
             {tripId && hasMeaningfulData(filteredAlerts) && (

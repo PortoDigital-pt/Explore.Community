@@ -822,6 +822,7 @@ const translations = {
   },
 
   en: {
+    'poi-share-aria-label': 'Share',
     'poi-share.text': 'Find out more about this place I found in ',
     'poi-share.title': 'explore.porto.pt',
     'all-selected': 'All',
@@ -5185,6 +5186,7 @@ const translations = {
     'poi-page.warning-tab': 'Aviso',
     'poi-page.title-short': 'Ponto de interesse',
     'poi-share.text': 'Descobre este local que encontrei no ',
+    'poi-share-aria-label': 'Partilhar',
     'poi-share.title': 'explore.porto.pt',
     'poi-share.link-copied': 'Link Copiado',
     'poi-share.twitter': 'Partilhar via twitter',
