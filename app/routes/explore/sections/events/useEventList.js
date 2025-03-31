@@ -16,7 +16,7 @@ export const useEventList = ({
       coords: isValidLocation(location, coordinatesBounds)
         ? `${location.lat},${location.lon}`
         : null,
-      categories: selectedCategories.length > 0 ? selectedCategories : null
+      categories: selectedCategories
     })
       .then(eventsDto =>
         setEvents(eventsDto.map(dto => ({ ...dto, type: 'events' })))

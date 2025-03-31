@@ -22,15 +22,6 @@ const defaultEventQueryParams = {
 const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
   const query = new URLSearchParams();
 
-  // if data does not contain categories query, we force filtering for only the valid ones,
-  // which it is the same as if the user has all selected. Needed to always show cards of valid categories
-  // eslint-disable-next-line no-param-reassign
-  data.categories =
-    data.categories ??
-    Object.keys(
-      filters[data.type === 'PointOfInterest' ? 'pois' : 'events']
-    ).toString();
-
   Object.entries(data).forEach(([key, value]) => {
     if (value === undefined || value === null) {
       return;

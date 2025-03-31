@@ -5,14 +5,14 @@ import { usePoiList } from './usePoiList';
 import Section from '../section';
 
 const PoisSection = ({ selectedCategories }) => (
-  <Section
+  selectedCategories && (<Section
     selectedCategories={selectedCategories}
     useDataList={usePoiList}
     title="place-to-visit"
     cardType="small"
     bottomButtonText="find-all-interest"
     errorMessage="pois-fetch-error"
-  />
+  />)
 );
 
 PoisSection.propTypes = {
@@ -31,7 +31,7 @@ export default connectToStores(
       .map(([category]) => category);
 
     return {
-      selectedCategories
+      selectedCategories: selectedCategories.length > 0 ? selectedCategories : null
     };
   }
 );

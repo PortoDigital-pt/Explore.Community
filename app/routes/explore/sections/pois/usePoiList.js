@@ -17,7 +17,7 @@ export const usePoiList = ({
       coords: isValidLocation(location, coordinatesBounds)
         ? `${location.lat},${location.lon}`
         : null,
-      categories: selectedCategories.length > 0 ? selectedCategories : null
+      categories: selectedCategories
     })
       .then(poisDto =>
         setPois(

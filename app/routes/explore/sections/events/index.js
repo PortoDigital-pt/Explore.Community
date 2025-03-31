@@ -20,7 +20,7 @@ const EventsSection = ({ selectedCategories, language }, { config }) => {
   );
 
   return (
-    <Section
+    selectedCategories && (<Section
       selectedCategories={selectedCategories}
       useDataList={useEventList}
       title="happening-this-week"
@@ -28,7 +28,7 @@ const EventsSection = ({ selectedCategories, language }, { config }) => {
       bottomButtonText="find-all-events"
       errorMessage="events-fetch-error"
       Intro={Intro}
-    />
+    />)
   );
 };
 
@@ -54,7 +54,7 @@ export default connectToStores(
 
     return {
       language: getStore('PreferencesStore').getLanguage(),
-      selectedCategories
+      selectedCategories: selectedCategories.length > 0 ? selectedCategories : null
     };
   }
 );
