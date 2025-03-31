@@ -1,5 +1,6 @@
 /* eslint-disable import/no-relative-packages */
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-nested-ternary */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import cx from 'classnames';
