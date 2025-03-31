@@ -88,7 +88,9 @@ export default function Favourite(
     );
   };
 
-  const onClick = () => {
+  const onClick = event => {
+    event.stopPropagation();
+
     if (requireLoggedIn && !isLoggedIn) {
       setLoginModalVisibility(!isModalClosed);
       return;

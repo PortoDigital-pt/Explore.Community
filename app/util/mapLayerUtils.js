@@ -80,6 +80,11 @@ export const isFeatureLayerEnabled = (
   if (!feature || !layerName || !mapLayers) {
     return false;
   }
+
+  if (layerName === 'explore') {
+    return mapLayers.showExplore;
+  }
+
   if (!Object.keys(mapLayers).includes(layerName)) {
     return false;
   }

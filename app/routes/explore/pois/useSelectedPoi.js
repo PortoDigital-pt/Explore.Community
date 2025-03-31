@@ -1,20 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getPoiById } from '../../../util/amporto/api';
-
-const dtoToPoi = (language, poiDto) => {
-  return {
-    ...poiDto,
-    category:
-      poiDto.category?.[language] ??
-      poiDto.category?.pt ??
-      'No information at all',
-    description:
-      poiDto.description?.[language] ??
-      poiDto.description?.pt ??
-      'No information at all',
-    name: poiDto.name?.[language] ?? poiDto.name?.pt ?? 'No information at all'
-  };
-};
+import { dtoToPoi } from '../dto';
 
 export const useSelectedPoi = ({ id, language }) => {
   const [selectedPoi, setSelectedPoi] = useState(null);

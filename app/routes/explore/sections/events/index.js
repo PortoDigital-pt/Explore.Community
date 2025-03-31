@@ -24,10 +24,14 @@ const EventsSection = ({ language, location }, { config, intl }) => {
       </p>
       <div className="list">
         {events?.map((_, i) => (
-          <Card key={i} className="large" type="events" />
+          <Card
+            key={i}
+            className="large-card"
+            data={{ type: 'events', name: 'Event name', category: 'XXXX' }}
+          />
         )) ??
           Array.from({ length: 10 }, (_, i) => (
-            <Skeleton key={`${i}-item`} className="large" />
+            <Skeleton key={`${i}-item`} className="large-card" />
           ))}
       </div>
       <button

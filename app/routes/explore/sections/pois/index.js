@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
+import { useRouter } from 'found';
 import { arrayOf, string } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../../util/shapes';
@@ -9,15 +10,21 @@ import { usePoiList } from './usePoisList';
 // TODO: extract resusable code
 
 const PoisSection = (
-  { location, selectedCategories },
+  { language, location, selectedCategories },
   { intl, config: { coordinatesBounds } }
 ) => {
   const { pois, error } = usePoiList({
+    language,
     location,
     coordinatesBounds,
     selectedCategories
   });
-  console.log('POIS: ', pois);
+  const { router } = useRouter();
+
+  const navigate = useCallback(
+    id => router.push(`/explore/pois/${id}`),
+    [router.push]
+  );
 
   return (
     <div className="section">
@@ -26,9 +33,16 @@ const PoisSection = (
         {error ? (
           <>error message</>
         ) : (
-          pois?.map((_, i) => <Card key={i} className="small" />) ??
+          pois?.map(poi => (
+            <Card
+              key={poi.id}
+              className="small-card"
+              onClick={() => navigate(poi.id)}
+              data={poi}
+            />
+          )) ??
           Array.from({ length: 10 }, (_, i) => (
-            <Skeleton key={`${i}-item`} className="small" />
+            <Skeleton key={`${i}-item`} className="small-card" />
           ))
         )}
       </div>
@@ -49,13 +63,14 @@ PoisSection.contextTypes = {
 };
 
 PoisSection.propTypes = {
+  language: string.isRequired,
   location: locationShape.isRequired,
   selectedCategories: arrayOf(string).isRequired
 };
 
 export default connectToStores(
   PoisSection,
-  ['PositionStore', 'MapLayerStore'],
+  ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
   ({ getStore }) => {
     const { pois } = getStore('MapLayerStore').getFilterLayers();
     const { showAll, ...categories } = pois;
@@ -64,6 +79,7 @@ export default connectToStores(
       .map(([category]) => category);
 
     return {
+      language: getStore('PreferencesStore').getLanguage(),
       location: getStore('PositionStore').getLocationState(),
       selectedCategories
     };
