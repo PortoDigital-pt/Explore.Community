@@ -33,5 +33,5 @@ export const usePoiList = ({
     language
   ]);
 
-  return { data: pois, error };
+  return { data: pois, error: true };
 };

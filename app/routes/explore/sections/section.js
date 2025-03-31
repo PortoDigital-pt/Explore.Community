@@ -6,6 +6,7 @@ import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
 import Skeleton from '../../../component/amporto/skeleton';
 import Card from '../../../component/amporto/card';
+import Icon from '../../../component/Icon';
 
 const Section = (
   {
@@ -15,7 +16,9 @@ const Section = (
     useDataList,
     title,
     cardType,
-    bottomButtonText
+    bottomButtonText,
+    errorMessage,
+    Intro
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -35,9 +38,13 @@ const Section = (
   return (
     <div className="section">
       <h3 className="title">{intl.messages[title]}</h3>
+      {Intro && <Intro />}
       <div className="list">
         {error ? (
-          <>error message</>
+          <div className="error">
+            {intl.messages[errorMessage]}
+            <Icon img="icon-icon_error_page_not_found" />
+          </div>
         ) : (
           data?.map(item => (
             <Card
@@ -52,13 +59,15 @@ const Section = (
           ))
         )}
       </div>
-      <button
-        className="show-all"
-        type="button"
-        aria-label={intl.messages[bottomButtonText]}
-      >
-        {intl.messages[bottomButtonText]}
-      </button>
+      {!error && (
+        <button
+          className="show-all"
+          type="button"
+          aria-label={intl.messages[bottomButtonText]}
+        >
+          {intl.messages[bottomButtonText]}
+        </button>
+      )}
     </div>
   );
 };
@@ -69,6 +78,8 @@ Section.contextTypes = {
 };
 
 Section.propTypes = {
+  Intro: func,
+  errorMessage: string.isRequired,
   bottomButtonText: string.isRequired,
   cardType: oneOf(['small', 'large']).isRequired,
   title: string.isRequired,
@@ -80,19 +91,9 @@ Section.propTypes = {
 
 export default connectToStores(
   Section,
-  ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
-  ({ getStore }) => {
-    const { pois } = getStore('MapLayerStore').getFilterLayers();
-    const { showAll, ...categories } = pois;
-    const selectedCategories = Object.entries(categories)
-      // eslint-disable-next-line no-unused-vars
-      .filter(([_, selected]) => selected)
-      .map(([category]) => category);
-
-    return {
-      language: getStore('PreferencesStore').getLanguage(),
-      location: getStore('PositionStore').getLocationState(),
-      selectedCategories
-    };
-  }
+  ['PositionStore', 'PreferencesStore'],
+  ({ getStore }) => ({
+    language: getStore('PreferencesStore').getLanguage(),
+    location: getStore('PositionStore').getLocationState()
+  })
 );

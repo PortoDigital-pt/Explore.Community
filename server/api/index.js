@@ -1,4 +1,23 @@
 import { poiToDto, eventToDto } from './dto';
+import { getDate, getDateInFutureDays } from './date';
+
+const defaultQueryParams = {
+  options: 'count',
+  georel: 'near;maxDistance:25000',
+  geometry: 'point',
+  orderBy: 'geo:distance',
+  limit: '20',
+  offset: '0',
+  attrs: 'dateCreated,dateModified,*'
+};
+const defaultPoiQueryParams = {
+  ...defaultQueryParams,
+  type: 'PointOfInterest'
+};
+const defaultEventQueryParams = {
+  ...defaultQueryParams,
+  type: 'Event'
+};
 
 const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
   const query = new URLSearchParams();
@@ -28,9 +47,14 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
               ].pt
             }'`
         );
-      const categoriesQueryValue = `category_lang.pt==${mappedCategories}${
-        dataProvider ? `;dataProvider~=${dataProvider}` : ''
-      }`;
+      const categoriesQueryValue =
+        data.type === 'PointOfInterest'
+          ? `category_lang.pt==${mappedCategories}${
+              dataProvider ? `;dataProvider~=${dataProvider}` : ''
+            }`
+          : `category==${mappedCategories};endDate>=${getDate()};startDate<=${getDateInFutureDays(
+              7
+            )}`;
       query.set('q', categoriesQueryValue);
       return;
     }
@@ -69,16 +93,6 @@ const getPoiDetail = async ({ params: { id } }, response) => {
   return response.status(status).json(poiToDto(data));
 };
 
-const defaultQueryParams = {
-  options: 'count',
-  georel: 'near;maxDistance:25000',
-  geometry: 'point',
-  orderBy: 'geo:distance',
-  limit: '20',
-  offset: '0',
-  attrs: 'dateCreated,dateModified,*'
-};
-
 const getPoiList = async (
   {
     query,
@@ -93,9 +107,8 @@ const getPoiList = async (
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
       dataProvider,
-      type: 'PointOfInterest',
       coords,
-      ...defaultQueryParams,
+      ...defaultPoiQueryParams,
       ...query
     })}`
   );
@@ -119,16 +132,31 @@ const getEventDetail = async ({ params: { id } }, response) => {
   return response.status(status).json(eventToDto(data));
 };
 
-const getEventList = async (request, response) => {
-  return new Promise(
-    resolve =>
-      setTimeout(() =>
-        resolve(
-          response.status(200).json([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
-        )
-      ),
-    10000
+const getEventList = async (
+  {
+    query,
+    config: {
+      filters,
+      ngsi: { dataProvider, coords }
+    }
+  },
+  response
+) => {
+  const { data, status, text } = await customFetch(
+    `${process.env.NGSI_URL}?${buildNGSIQueryString({
+      filters,
+      dataProvider,
+      coords,
+      ...defaultEventQueryParams,
+      ...query
+    })}`
   );
+
+  if (!data) {
+    return response.status(status).send(text);
+  }
+
+  return response.status(status).json(data.map(eventToDto));
 };
 
 const setupCache = (request, response, next) => {
