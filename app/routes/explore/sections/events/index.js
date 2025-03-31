@@ -20,15 +20,18 @@ const EventsSection = ({ selectedCategories, language }, { config }) => {
   );
 
   return (
-    selectedCategories && (<Section
-      selectedCategories={selectedCategories}
-      useDataList={useEventList}
-      title="happening-this-week"
-      cardType="large"
-      bottomButtonText="find-all-events"
-      errorMessage="events-fetch-error"
-      Intro={Intro}
-    />)
+    selectedCategories && (
+      <Section
+        selectedCategories={selectedCategories}
+        useDataList={useEventList}
+        title="happening-this-week"
+        cardType="large"
+        bottomButtonText="find-all-events"
+        errorMessage="events-fetch-error"
+        emptyMessage="events-empty"
+        Intro={Intro}
+      />
+    )
   );
 };
 
@@ -54,7 +57,8 @@ export default connectToStores(
 
     return {
       language: getStore('PreferencesStore').getLanguage(),
-      selectedCategories: selectedCategories.length > 0 ? selectedCategories : null
+      selectedCategories:
+        selectedCategories.length > 0 ? selectedCategories : null
     };
   }
 );

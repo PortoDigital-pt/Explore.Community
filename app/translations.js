@@ -826,6 +826,8 @@ const translations = {
       'An error occurred while searching for points of interest. Please try again later.',
     'events-fetch-error':
       'An error occurred while searching for events. Please try again later.',
+    'pois-empty': 'There are no points of interest for the selected categories.',
+    'events-empty': 'There are no events for the selected categories.',
     'all-selected': 'All',
     'filter-pois-title': 'Points of interest',
     'filter-events-title': 'Events',
@@ -5223,6 +5225,10 @@ const translations = {
       'Ocorreu um erro na pesquisa de pontos de interesse. Por favor tente mais tarde.',
     'events-fetch-error':
       'Ocorreu um erro na pesquisa de eventos. Por favor tente mais tarde.',
+    'pois-empty':
+      'Não existem pontos de interesse para as categorias selecionadas.',
+    'events-empty':
+      'Não existem eventos para as categorias selecionadas.',
     'all-selected': 'Todos',
     'filter-pois-title': 'Pontos de interesse',
     'filter-events-title': 'Eventos',

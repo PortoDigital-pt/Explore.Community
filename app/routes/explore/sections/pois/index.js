@@ -4,16 +4,18 @@ import { arrayOf, string } from 'prop-types';
 import { usePoiList } from './usePoiList';
 import Section from '../section';
 
-const PoisSection = ({ selectedCategories }) => (
-  selectedCategories && (<Section
-    selectedCategories={selectedCategories}
-    useDataList={usePoiList}
-    title="place-to-visit"
-    cardType="small"
-    bottomButtonText="find-all-interest"
-    errorMessage="pois-fetch-error"
-  />)
-);
+const PoisSection = ({ selectedCategories }) =>
+  selectedCategories && (
+    <Section
+      selectedCategories={selectedCategories}
+      useDataList={usePoiList}
+      title="place-to-visit"
+      cardType="small"
+      bottomButtonText="find-all-interest"
+      errorMessage="pois-fetch-error"
+      emptyMessage="pois-empty"
+    />
+  );
 
 PoisSection.propTypes = {
   selectedCategories: arrayOf(string).isRequired
@@ -31,7 +33,8 @@ export default connectToStores(
       .map(([category]) => category);
 
     return {
-      selectedCategories: selectedCategories.length > 0 ? selectedCategories : null
+      selectedCategories:
+        selectedCategories.length > 0 ? selectedCategories : null
     };
   }
 );

@@ -18,6 +18,7 @@ const Section = (
     cardType,
     bottomButtonText,
     errorMessage,
+    emptyMessage,
     Intro
   },
   { intl, config: { coordinatesBounds } }
@@ -42,20 +43,25 @@ const Section = (
       <div className="list">
         {error ? (
           <div className="error">
-            {intl.messages[errorMessage]}
+            <p>{intl.messages[errorMessage]}</p>
             <Icon img="icon-icon_error_page_not_found" />
           </div>
+        ) : data === null ? (
+          Array.from({ length: 10 }, (_, i) => (
+            <Skeleton key={`${i}-item`} className={`${cardType}-card`} />
+          ))
+        ) : data.length === 0 ? (
+          <div className="error">
+            <p>{intl.messages[emptyMessage]}</p>
+          </div>
         ) : (
-          data?.map(item => (
+          data.map(item => (
             <Card
               key={item.id}
               className={`${cardType}-card`}
               onClick={() => navigate(item.id, item.type)}
               data={item}
             />
-          )) ??
-          Array.from({ length: 10 }, (_, i) => (
-            <Skeleton key={`${i}-item`} className={`${cardType}-card`} />
           ))
         )}
       </div>
@@ -79,6 +85,7 @@ Section.contextTypes = {
 
 Section.propTypes = {
   Intro: func,
+  emptyMessage: string.isRequired,
   errorMessage: string.isRequired,
   bottomButtonText: string.isRequired,
   cardType: oneOf(['small', 'large']).isRequired,
