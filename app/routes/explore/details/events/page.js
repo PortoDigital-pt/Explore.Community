@@ -3,11 +3,11 @@ import React from 'react';
 import moment from 'moment';
 import { string, func, shape, number } from 'prop-types';
 import { intlShape } from 'react-intl';
-import Icon from '../../../component/Icon';
-import { showDistance } from '../../../util/amporto/geo';
+import Icon from '../../../../component/Icon';
+import { showDistance } from '../../../../util/amporto/geo';
 import { useSelectedEvent } from './useSelectedEvent';
-import Details from '../../../component/amporto/pages/details';
-import FavouriteExplore from '../../../component/FavouriteExploreContainer';
+import Details from '../details';
+import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 
 const getPrice = ({ priceFrom, priceTo }) => {
   if (priceFrom && priceTo) {

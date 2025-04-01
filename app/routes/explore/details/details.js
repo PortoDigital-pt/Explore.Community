@@ -3,15 +3,15 @@ import { string, func, shape, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
-import { locationShape, configShape } from '../../../../util/shapes';
-import withBreakpoint from '../../../../util/withBreakpoint';
-import Loading from '../../../Loading';
-import useModal from '../../../../hooks/useModal';
-import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
-import Modal from '../../modal';
-import ScrollableWrapper from '../../../ScrollableWrapper';
-import BackButton from '../../../BackButton';
-import FavouriteExplore from '../../../FavouriteExploreContainer';
+import { locationShape, configShape } from '../../../util/shapes';
+import withBreakpoint from '../../../util/withBreakpoint';
+import Loading from '../../../component/Loading';
+import useModal from '../../../hooks/useModal';
+import useDistanceToTarget from '../../../hooks/useDistanceToTarget';
+import Modal from '../../../component/amporto/modal';
+import ScrollableWrapper from '../../../component/ScrollableWrapper';
+import BackButton from '../../../component/BackButton';
+import FavouriteExplore from '../../../component/FavouriteExploreContainer';
 
 const DetailsPage = (
   {

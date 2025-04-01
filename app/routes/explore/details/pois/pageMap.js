@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelectedPoi } from './useSelectedPoi';
-import DetailsMap from '../../../component/amporto/pages/details-map';
+import DetailsMap from '../detailsMap';
 
 const PoiDetailsPageMap = () => (
   <DetailsMap useSelectedData={useSelectedPoi} dataType="pois" />

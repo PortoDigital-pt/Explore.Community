@@ -56,7 +56,7 @@ export default config => (
           content: (
             <Route
               getComponent={() =>
-                import(/* webpackChunkName: "pois" */ './pois/page').then(
+                import(/* webpackChunkName: "pois" */ './details/pois/page').then(
                   getDefault
                 )
               }
@@ -68,7 +68,7 @@ export default config => (
               disableMapOnMobile={false}
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "pois-map" */ './pois/pageMap'
+                  /* webpackChunkName: "pois-map" */ './details/pois/pageMap'
                 ).then(getDefault)
               }
               render={getComponentOrLoadingRenderer}
@@ -94,7 +94,7 @@ export default config => (
           content: (
             <Route
               getComponent={() =>
-                import(/* webpackChunkName: "events" */ './events/page').then(
+                import(/* webpackChunkName: "events" */ './details/events/page').then(
                   getDefault
                 )
               }
@@ -105,7 +105,7 @@ export default config => (
               disableMapOnMobile={false}
               getComponent={() =>
                 import(
-                  /* webpackChunkName: "events-map" */ './events/pageMap'
+                  /* webpackChunkName: "events-map" */ './details/events/pageMap'
                 ).then(getDefault)
               }
             />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getPoiById } from '../../../util/amporto/api';
-import { dtoToPoi } from '../dto';
+import { getPoiById } from '../../../../util/amporto/api';
+import { dtoToPoi } from '../../dto';
 
 export const useSelectedPoi = ({ id, language }) => {
   const [selectedPoi, setSelectedPoi] = useState(null);
