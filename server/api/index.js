@@ -38,14 +38,13 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
               ].pt
             }'`
         );
+
       const categoriesQueryValue =
         data.type === 'PointOfInterest'
           ? `category_lang.pt==${mappedCategories}${
               dataProvider ? `;dataProvider~=${dataProvider}` : ''
             }`
-          : `category==${mappedCategories};endDate>=${getDate()};startDate<=${getDateInFutureDays(
-              7
-            )}`;
+          : `category==${mappedCategories};endDate>=${getDate()};startDate<=${getDateInFutureDays(7)}`;
       query.set('q', categoriesQueryValue);
       return;
     }

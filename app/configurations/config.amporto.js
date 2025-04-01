@@ -427,6 +427,7 @@ export default {
       }
     },
     events: {
+      cultural: { pt: 'Cultural', en: 'Cultural' },
       outdoor: { pt: 'Ar livre', en: 'Outdoor' },
       class: { pt: 'Aula', en: 'Class' },
       song: { pt: 'Canção', en: 'Song' },

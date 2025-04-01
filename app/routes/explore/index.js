@@ -4,7 +4,6 @@ import {
   getDefault,
   getComponentOrLoadingRenderer
 } from '../../util/routerUtils';
-import Error404 from '../../component/404';
 
 const explorePageComponents = {
   content: (
@@ -40,25 +39,39 @@ export default config => (
       {explorePageComponents}
     </Route>
     <Route path="pois">
-      <Route Component={Error404} />
-      <Route path=":id">
+      <Route path="/">
         {{
-          header: (
-            <Route
-              path="(.*)?"
-              getComponent={() =>
-                import(
-                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
-                ).then(getDefault)
-              }
-            />
-          ),
           content: (
             <Route
               getComponent={() =>
-                import(/* webpackChunkName: "pois" */ './details/pois/page').then(
-                  getDefault
-                )
+                import(
+                  /* webpackChunkName: "pois-list" */ './list/pois/page'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          ),
+          map: (
+            <Route
+              disableMapOnMobile={false}
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "pois-list-map" */ './list/pois/pageMap'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          )
+        }}
+      </Route>
+      <Route path=":id">
+        {{
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "pois" */ './details/pois/page'
+                ).then(getDefault)
               }
               render={getComponentOrLoadingRenderer}
             />
@@ -78,25 +91,14 @@ export default config => (
       </Route>
     </Route>
     <Route path="events">
-      <Route Component={Error404} />
       <Route path=":id">
         {{
-          header: (
-            <Route
-              path="(.*)?"
-              getComponent={() =>
-                import(
-                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
-                ).then(getDefault)
-              }
-            />
-          ),
           content: (
             <Route
               getComponent={() =>
-                import(/* webpackChunkName: "events" */ './details/events/page').then(
-                  getDefault
-                )
+                import(
+                  /* webpackChunkName: "events" */ './details/events/page'
+                ).then(getDefault)
               }
             />
           ),

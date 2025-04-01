@@ -13,7 +13,9 @@ import Explore from './Explore';
 export default function VectorTileLayerContainer(props, { config }) {
   const layers = [];
 
-  layers.push(Stops);
+  if (props.mapLayers.stop) {
+    layers.push(Stops);
+  }
 
   if (props.mapLayers.citybike) {
     layers.push(VehicleRentalStations);
@@ -31,6 +33,7 @@ export default function VectorTileLayerContainer(props, { config }) {
   if (props.showExplore) {
     layers.push(Explore);
   }
+
   return (
     <TileLayerContainer
       key="tileLayer"

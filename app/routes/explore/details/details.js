@@ -36,6 +36,7 @@ const DetailsPage = (
     targetPoint: selectedData
   });
 
+  // TODO: refactor
   useEffect(() => {
     if (error) {
       // force 404 page

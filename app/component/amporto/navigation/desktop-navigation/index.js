@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import useRouter from 'found/useRouter';
 import { intlShape } from 'react-intl';
 import SidebarMenu from '../sidebar';
-import useSmartNavigation from '../useSmartNavigation';
-import { COMMON_NAVIGATION_ITEMS } from '../common';
+import {
+  COMMON_NAVIGATION_ITEMS,
+  COMMON_NAVIGATION_ITEMS_PATH_MAP
+} from '../common';
 
 const NAVIGATION_ITEMS = {
   ...COMMON_NAVIGATION_ITEMS,
   FAVOURITES: 'favourites'
+};
+
+const NAVIGATION_ITEMS_PATH_MAP = {
+  ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
+  [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
 };
 
 const getCurrentRoute = pathname => {
@@ -17,7 +24,15 @@ const getCurrentRoute = pathname => {
 
 const DesktopNavigation = (_, { intl }) => {
   const { match } = useRouter();
-  const canShow = useSmartNavigation();
+
+  // only show at exact path
+  const canShow = useMemo(
+    () =>
+      !!Object.values(NAVIGATION_ITEMS_PATH_MAP).find(
+        path => path === match.location.pathname
+      ),
+    [match.location.pathname]
+  );
 
   return (
     canShow && (

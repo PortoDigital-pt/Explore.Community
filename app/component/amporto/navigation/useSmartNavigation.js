@@ -5,6 +5,7 @@ import { PATH_PREFIXES } from '../../../util/path';
 const useSmartNavigation = () => {
   const { match } = useRouter();
 
+  // show everywhere except digitransit
   const canShow = useMemo(
     () =>
       !Object.values(PATH_PREFIXES).find(path =>

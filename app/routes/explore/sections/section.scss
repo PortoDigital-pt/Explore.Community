@@ -12,10 +12,10 @@
           color: $primary-color;
           font-size: $font-size-heading-s;
           font-weight: $font-weight-regular;
-          padding: 0 0 0 18px;
+          padding: 0 18px 0 18px;
 
           @media (min-width: 900px) {
-            padding: 0 0 0 24px;
+            padding: 0 24px 0 24px;
           }
         }
 

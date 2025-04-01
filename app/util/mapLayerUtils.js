@@ -7,7 +7,12 @@ export const isExploreEnabled = mapLayers => {
   if (!mapLayers) {
     return false;
   }
-  return mapLayers.showExplore;
+  return (
+    mapLayers.showExplore ??
+    mapLayers.pois ??
+    mapLayers.events ??
+    mapLayers.accesspoints
+  );
 };
 
 /**
