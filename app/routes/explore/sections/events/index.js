@@ -36,7 +36,7 @@ const EventsSection = ({ selectedCategories, language }, { config }) => {
 };
 
 EventsSection.propTypes = {
-  selectedCategories: arrayOf(string).isRequired,
+  selectedCategories: arrayOf(string),
   language: string.isRequired
 };
 

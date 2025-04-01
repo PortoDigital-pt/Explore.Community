@@ -18,7 +18,7 @@ const PoisSection = ({ selectedCategories }) =>
   );
 
 PoisSection.propTypes = {
-  selectedCategories: arrayOf(string).isRequired
+  selectedCategories: arrayOf(string)
 };
 
 export default connectToStores(

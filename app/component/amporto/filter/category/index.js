@@ -41,7 +41,9 @@ const CategoryGroup = (
             return (
               <AccordionItem
                 key={`${type}-${category}`}
-                category={config.filters[type][category][language]}
+                category={decodeURIComponent(
+                  config.filters[type][category][language]
+                )}
                 onClick={() => onCategory(type, category)}
                 showIcon={selected}
                 className="sub-category"

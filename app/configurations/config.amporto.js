@@ -378,57 +378,56 @@ export default {
     },
     pois: {
       fadoHouse: {
-        pt: 'Casas de Fado',
+        pt: 'Casas%20de%20Fado',
         en: 'Fado Houses'
       },
       wineCellarsAndFarms: {
-        pt: 'Caves de Vinhos e Quintas',
+        pt: 'Caves%20de%20Vinhos%20e%20Quintas',
         en: 'Wine Cellars and Farms'
       },
       exhibitionCentersAndArtGalleries: {
-        pt: 'Centros de exposições & Galerias de arte',
+        pt: 'Centros%20de%20exposições%20%26%20Galerias%20de%20arte',
         en: 'Exhibition Centers and Art Galleries'
       },
       statuesSculpturesAndFountains: {
-        pt: 'Estátuas, Esculturas e Fontes',
+        pt: 'Estátuas,%20Esculturas%20e%20Fontes',
         en: 'Statues, Sculptures and Fountains'
       },
       marinasAndPorts: {
-        pt: 'Marinas e Portos',
+        pt: 'Marinas%20e%20Portos',
         en: 'Marinas and Ports'
       },
       viewpoints: { pt: 'Miradouros', en: 'Viewpoints' },
       monuments: { pt: 'Monumentos', en: 'Monuments' },
       museumsAndThematicCenters: {
-        pt: 'Museus e Centros Temáticos',
+        pt: 'Museus%20e%20Centros%20Temáticos',
         en: 'Museums and Thematic Centers'
       },
       parksAndGardens: {
-        pt: 'Parques e Jardins',
+        pt: 'Parques%20e%20Jardins',
         en: 'Parks and Gardens'
       },
       bridges: { pt: 'Pontes', en: 'Bridges' },
       tourismOffices: {
-        pt: 'Postos de Turismo',
+        pt: 'Postos%20de%20Turismo',
         en: 'Tourism Offices'
       },
       streetsAndSquares: {
-        pt: 'Ruas e Praças',
+        pt: 'Ruas%20e%20Praças',
         en: 'Streets and Squares'
       },
       concertHalls: {
-        pt: 'Salas de Concerto',
+        pt: 'Salas%20de%20Concerto',
         en: 'Concert Halls'
       },
       theaters: { pt: 'Teatros', en: 'Theaters' },
       religiousTemples: {
-        pt: 'Templos Religiosos',
+        pt: 'Templos%20Religiosos',
         en: 'Religious Temples'
       }
     },
     events: {
-      cultural: { pt: 'Cultural', en: 'Cultural' },
-      outdoor: { pt: 'Ar livre', en: 'Outdoor' },
+      outdoor: { pt: 'Ar%20livre', en: 'Outdoor' },
       class: { pt: 'Aula', en: 'Class' },
       song: { pt: 'Canção', en: 'Song' },
       cinema: { pt: 'Cinema', en: 'Cinema' },
