@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import Icon from '../../Icon';
@@ -6,7 +6,7 @@ import Icon from '../../Icon';
 const ShareButton = ({ withBackground }, { intl }) => {
   const isShareAvailable = typeof navigator.share === 'function';
 
-  const share = async () => {
+  const share = useCallback(async () => {
     try {
       const url = window.location.href;
 
@@ -18,7 +18,7 @@ const ShareButton = ({ withBackground }, { intl }) => {
     } catch (err) {
       console.trace('web-share api not available', err);
     }
-  };
+  }, [intl]);
 
   return (
     isShareAvailable && (
