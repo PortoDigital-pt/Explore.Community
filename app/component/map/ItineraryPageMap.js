@@ -15,6 +15,7 @@ import ItineraryLine from './ItineraryLine';
 import LocationMarker from './LocationMarker';
 import MapWithTracking from './MapWithTracking';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
+import ShareButton from '../amporto/share-button';
 
 const POINT_FOCUS_ZOOM = 17; // default
 
@@ -122,7 +123,9 @@ function ItineraryPageMap(
       {...rest}
     >
       {showBackButton && breakpoint !== 'large' && (
-        <BackButton fallback="pop" />
+        <BackButton fallback="pop">
+          <ShareButton />
+        </BackButton>
       )}
 
       {breakpoint === 'large' && config.useCookiesPrompt && (

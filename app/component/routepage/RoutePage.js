@@ -106,7 +106,11 @@ class RoutePage extends React.Component {
           })}
           aria-live="polite"
         >
-          {breakpoint === 'large' && <BackButton />}
+          {breakpoint === 'large' && (
+            <BackButton>
+              <ShareButton />
+            </BackButton>
+          )}
 
           <div className="route-page-header-section-container">
             <div className="route-header">

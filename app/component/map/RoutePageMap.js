@@ -21,6 +21,7 @@ import { mapLayerShape } from '../../store/MapLayerStore';
 import { boundWithMinimumArea } from '../../util/geo-utils';
 import { getMapLayerOptions } from '../../util/mapLayerUtils';
 import CookieSettingsButton from '../CookieSettingsButton';
+import ShareButton from '../amporto/share-button';
 
 class RoutePageMap extends React.Component {
   constructor(props) {
@@ -169,7 +170,11 @@ class RoutePageMap extends React.Component {
         onMapTracking={this.stopTracking}
         setMWTRef={this.setMWTRef}
       >
-        {breakpoint !== 'large' && <BackButton />}
+        {breakpoint !== 'large' && (
+          <BackButton>
+            <ShareButton />
+          </BackButton>
+        )}
         {this.context.config.useCookiesPrompt && <CookieSettingsButton />}
       </MapWithTracking>
     );

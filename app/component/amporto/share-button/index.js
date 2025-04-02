@@ -16,6 +16,7 @@ const ShareButton = ({ withBackground }, { intl }) => {
         text: `${intl.messages['poi-share.text']} ${url}`
       });
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.trace('web-share api not available', err);
     }
   }, [intl]);
