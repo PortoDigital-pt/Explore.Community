@@ -12,6 +12,7 @@ import Modal from '../../modal';
 import ScrollableWrapper from '../../../ScrollableWrapper';
 import BackButton from '../../../BackButton';
 import FavouriteExplore from '../../../FavouriteExploreContainer';
+import ShareButton from '../../share-button';
 
 const DetailsPage = (
   {
@@ -139,6 +140,7 @@ const Content = ({
         subtitle={selectedData.category}
         onBackBtnClick={onBackBtnClick}
       >
+        <ShareButton />
         <FavouriteExplore data={selectedData} white />
       </BackButton>
       <Component />

@@ -4,6 +4,7 @@ import ErrorBoundary from './ErrorBoundary';
 import BackButton from './BackButton';
 import ScrollableWrapper from './ScrollableWrapper';
 import DesktopNavigation from './amporto/navigation/desktop-navigation';
+import ShareButton from './amporto/share-button';
 
 export default function DesktopView({
   title,
@@ -20,7 +21,9 @@ export default function DesktopView({
       <div className="main-content" role="main">
         <DesktopNavigation />
         {bckBtnVisible && (
-          <BackButton title={title} fallback={bckBtnFallback} />
+          <BackButton title={title} fallback={bckBtnFallback}>
+            <ShareButton />
+          </BackButton>
         )}
         {header}
         <ScrollableWrapper scrollable={scrollable}>

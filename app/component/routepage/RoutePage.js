@@ -24,6 +24,7 @@ import {
   isAlertValid
 } from '../../util/alertUtils';
 import { AlertEntityType } from '../../constants';
+import ShareButton from '../amporto/share-button';
 
 const modules = {
   FavouriteRouteContainer: () => importLazy(import('./FavouriteRouteContainer'))
@@ -105,7 +106,11 @@ class RoutePage extends React.Component {
           })}
           aria-live="polite"
         >
-          {breakpoint === 'large' && <BackButton />}
+          {breakpoint === 'large' && (
+            <BackButton>
+              <ShareButton />
+            </BackButton>
+          )}
 
           <div className="route-page-header-section-container">
             <div className="route-header">
@@ -139,15 +144,19 @@ class RoutePage extends React.Component {
                   </div>
                 )}
               </div>
+
               {!tripId && (
-                <LazilyLoad modules={modules}>
-                  {({ FavouriteRouteContainer }) => (
-                    <FavouriteRouteContainer
-                      className="route-page-header"
-                      gtfsId={route.gtfsId}
-                    />
-                  )}
-                </LazilyLoad>
+                <>
+                  <ShareButton withBackground />
+                  <LazilyLoad modules={modules}>
+                    {({ FavouriteRouteContainer }) => (
+                      <FavouriteRouteContainer
+                        className="route-page-header"
+                        gtfsId={route.gtfsId}
+                      />
+                    )}
+                  </LazilyLoad>
+                </>
               )}
             </div>
             {tripId && hasMeaningfulData(filteredAlerts) && (
