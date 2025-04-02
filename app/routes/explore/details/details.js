@@ -37,10 +37,8 @@ const DetailsPage = (
     targetPoint: selectedData
   });
 
-  // TODO: refactor
   useEffect(() => {
     if (error) {
-      // force 404 page
       router.push(onErrorPath);
     }
   }, [error, router.push]);
