@@ -57,7 +57,7 @@
     height: 100%;
     width: 100%;
     overflow-y: auto;
-  
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -66,7 +66,7 @@
       display: flex;
       position: relative;
       flex-direction: column;
-    
+
       .accordion {
         background-color: $background-default;
         color: #444;
@@ -76,12 +76,12 @@
         justify-content: space-between;
         border: none;
         outline: none;
-    
+
         &:hover,
         .active {
           background-color: $background-default;
         }
-    
+
         .accordion-header {
           display: flex;
           position: relative;
@@ -97,27 +97,27 @@
           border-bottom: 1px solid $grey-light-down;
           padding: 24px 0;
           background-color: $background-default;
-    
+
           .icon-container {
             display: flex;
             position: relative;
             color: $primary-dark;
             flex-grow: 0;
-    
+
             svg {
               &.icon-prefix {
                 color: $grey-dark-down;
                 width: 32px;
                 height: 32px;
               }
-    
+
               &.icon-suffix {
                 width: 24px;
                 height: 24px;
               }
             }
           }
-    
+
           .accordion__title {
             display: flex;
             position: relative;
@@ -129,7 +129,7 @@
           }
         }
       }
-    
+
       .accordion__content {
         display: flex;
         position: relative;
@@ -139,13 +139,13 @@
         transition: max-height 0.6s ease;
       }
     }
-  
+
     .accordion-category-list {
       margin-left: 40px;
       display: flex;
       position: relative;
       flex-direction: column;
-  
+
       .category-item {
         display: flex;
         position: relative;
@@ -161,7 +161,7 @@
         border-bottom: 1px solid $grey-light-down;
         padding: 24px 4px 24px 0;
         background-color: $background-default;
-  
+
         .name {
           display: flex;
           position: relative;
@@ -170,11 +170,11 @@
           font-weight: $font-weight-regular;
           line-height: 16px;
         }
-  
+
         .check-icon {
           color: $background-default;
         }
-  
+
         &.category .name {
           font-weight: $font-weight-bold;
         }

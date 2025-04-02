@@ -8,6 +8,7 @@ import ZoneIcon from './ZoneIcon';
 import SplitBars from './SplitBars';
 import BackButton from './BackButton';
 import { getZoneLabel } from '../util/legUtils';
+import ShareButton from './amporto/share-button';
 
 export default function CardHeader(
   {
@@ -72,6 +73,7 @@ export default function CardHeader(
             </div>
           </div>
           {icons && icons.length ? <SplitBars>{icons}</SplitBars> : null}
+          <ShareButton withBackground />
           {favouriteContainer}
         </div>
       </div>

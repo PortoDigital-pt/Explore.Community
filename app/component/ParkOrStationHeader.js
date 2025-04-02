@@ -9,6 +9,7 @@ import getZoneId from '../util/zoneIconUtils';
 import ZoneIcon from './ZoneIcon';
 import { hasVehicleRentalCode } from '../util/vehicleRentalUtils';
 import { getIdWithoutFeed } from '../util/feedScopedIdUtils';
+import ShareButton from './amporto/share-button';
 
 const modules = {
   FavouriteVehicleRentalStationContainer: () =>
@@ -63,13 +64,16 @@ const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
       </div>
       <div className="rental-bike-header-item share-and-favorite">
         {isRentalStation && (
-          <LazilyLoad modules={modules}>
-            {({ FavouriteVehicleRentalStationContainer }) => (
-              <FavouriteVehicleRentalStationContainer
-                vehicleRentalStation={parkOrStation}
-              />
-            )}
-          </LazilyLoad>
+          <>
+            <ShareButton withBackground />
+            <LazilyLoad modules={modules}>
+              {({ FavouriteVehicleRentalStationContainer }) => (
+                <FavouriteVehicleRentalStationContainer
+                  vehicleRentalStation={parkOrStation}
+                />
+              )}
+            </LazilyLoad>
+          </>
         )}
       </div>
     </div>

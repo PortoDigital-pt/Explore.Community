@@ -6,6 +6,7 @@ import { showDistance } from '../../../../util/amporto/geo';
 import { useSelectedPoi } from './useSelectedPoi';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
+import ShareButton from '../../../../component/amporto/share-button';
 
 const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
   <div className="mobile-view">
@@ -18,6 +19,7 @@ const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
           />
           <h3>{selectedData.name}</h3>
         </div>
+        <ShareButton withBackground />
         <FavouriteExplore data={selectedData} />
       </div>
       <div className="distance">

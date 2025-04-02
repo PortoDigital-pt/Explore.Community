@@ -4,6 +4,7 @@ import { string } from 'prop-types';
 import SidebarMenu from '../navigation/sidebar';
 import withBreakpoint from '../../../util/withBreakpoint';
 import useSmartNavigation from '../navigation/useSmartNavigation';
+import Weather from '../weather';
 
 const Topbar = ({ breakpoint }) => {
   const canShow = useSmartNavigation();
@@ -14,6 +15,7 @@ const Topbar = ({ breakpoint }) => {
         hide: breakpoint === 'large' || !canShow
       })}
     >
+      <Weather />
       <SidebarMenu shadow />
     </div>
   );

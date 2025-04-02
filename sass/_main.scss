@@ -81,6 +81,9 @@ $body-font-weight: $font-weight-medium;
 @import '../app/routes/explore/details/details';
 @import '../app/component/back-button';
 @import '../app/component/amporto/filter/filter';
+@import '../app/component/amporto/share-button/share-button';
+@import '../app/component/amporto/weather/weather';
+@import '../app/component/amporto/map-tool-bar/map-tool-bar';
 
 /* Modal */
 @import '~foundation-apps/scss/helpers/breakpoints';

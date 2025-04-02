@@ -12,6 +12,7 @@ import Modal from '../../../component/amporto/modal';
 import ScrollableWrapper from '../../../component/ScrollableWrapper';
 import BackButton from '../../../component/BackButton';
 import FavouriteExplore from '../../../component/FavouriteExploreContainer';
+import ShareButton from '../../../component/amporto/share-button';
 
 const DetailsPage = (
   {
@@ -145,6 +146,7 @@ const Content = ({
         subtitle={selectedData.category}
         onBackBtnClick={onBackBtnClick}
       >
+        <ShareButton />
         <FavouriteExplore data={selectedData} white />
       </BackButton>
       <Component />

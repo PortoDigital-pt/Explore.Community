@@ -53,7 +53,9 @@ const {
   PRIVACY_POLICY,
   COOKIES_POLICY,
   EXPLORE_TILES_URL,
-  CULTURAL_AGENDA
+  CULTURAL_AGENDA,
+  WEATHER_API,
+  WEATHER_CITY_CODE
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -461,5 +463,29 @@ export default {
     maxLat,
     minLon,
     maxLon
+  },
+  weatherApi: WEATHER_API,
+  weatherCityCode: WEATHER_CITY_CODE,
+  weather: {
+    cities: {
+      1131200: { pt: 'Porto', en: 'Porto' }
+    },
+    wind: {
+      0: { pt: 'Sem Informação', en: 'No Information' },
+      1: { pt: 'Fraco', en: 'Weak' },
+      2: { pt: 'Moderado', en: 'Moderate' },
+      3: { pt: 'Forte', en: 'Strong' },
+      4: { pt: 'Muito forte', en: 'Very Strong' }
+    },
+    windDirection: {
+      N: { pt: 'Norte', en: 'North' },
+      NE: { pt: 'Nordeste', en: 'Northeast' },
+      E: { pt: 'Leste', en: 'East' },
+      SE: { pt: 'Sudeste', en: 'Southeast' },
+      S: { pt: 'Sul', en: 'South' },
+      SW: { pt: 'Sudoeste', en: 'Southwest' },
+      W: { pt: 'Oeste', en: 'West' },
+      NW: { pt: 'Noroeste', en: 'Northwest' }
+    }
   }
 };

@@ -829,6 +829,11 @@ const translations = {
     'pois-empty':
       'There are no points of interest for the selected categories.',
     'events-empty': 'There are no events for the selected categories.',
+    'weather-uv': 'UV Radiation',
+    'weather-popup-title': 'Weather in the area',
+    'poi-share-aria-label': 'Share',
+    'poi-share.text': 'Find out more about this place I found in ',
+    'poi-share.title': 'explore.porto.pt',
     'all-selected': 'All',
     'filter-pois-title': 'Points of interest',
     'filter-events-title': 'Events',
@@ -5116,6 +5121,7 @@ const translations = {
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
 
+    'weather-popup-title': 'Meteorologia na área',
     'no-favourite-pois': 'Nenhum ponto de interesse favorito',
     'no-favourite-stops': 'Sem paragens favoritas',
     'poi-description': 'Descrição',
@@ -5192,6 +5198,7 @@ const translations = {
     'poi-page.warning-tab': 'Aviso',
     'poi-page.title-short': 'Ponto de interesse',
     'poi-share.text': 'Descobre este local que encontrei no ',
+    'poi-share-aria-label': 'Partilhar',
     'poi-share.title': 'explore.porto.pt',
     'poi-share.link-copied': 'Link Copiado',
     'poi-share.twitter': 'Partilhar via twitter',
