@@ -454,8 +454,7 @@ export default {
     }
   },
   ngsi: {
-    dataProvider: '.*api.ropi.porto.digital.*',
-    coords: '41.150075,-8.610669' // default coordinates: câmara municipal do porto
+    dataProvider: '.*api.ropi.porto.digital.*'
   },
   coordinatesBounds: {
     minLat,

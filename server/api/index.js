@@ -44,9 +44,9 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
           ? `category_lang.pt==${mappedCategories}${
               dataProvider ? `;dataProvider~=${dataProvider}` : ''
             }`
-          : `category==${mappedCategories};endDate>=${getDate()};startDate<=${getDateInFutureDays(
+          : `category==${mappedCategories};endDate>='${getDate()}';startDate<='${getDateInFutureDays(
               7
-            )}`;
+            )}'`;
       query.set('q', categoriesQueryValue);
       return;
     }
@@ -90,7 +90,8 @@ const getPoiList = async (
     query,
     config: {
       filters,
-      ngsi: { dataProvider, coords }
+      ngsi: { dataProvider },
+      defaultEndpoint: { lat, lon }
     }
   },
   response
@@ -99,7 +100,7 @@ const getPoiList = async (
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
       dataProvider,
-      coords,
+      coords: `${lat},${lon}`,
       ...defaultPoiQueryParams,
       ...query
     })}`
@@ -129,7 +130,8 @@ const getEventList = async (
     query,
     config: {
       filters,
-      ngsi: { dataProvider, coords }
+      ngsi: { dataProvider },
+      defaultEndpoint: { lat, lon }
     }
   },
   response
@@ -138,7 +140,7 @@ const getEventList = async (
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
       dataProvider,
-      coords,
+      coords: `${lat},${lon}`,
       ...defaultEventQueryParams,
       ...query
     })}`
@@ -169,13 +171,13 @@ const routes = {
   '/api/events': getEventList
 };
 
-export const setupApiRoutes = (app, { filters, ngsi }) =>
+export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
   Object.entries(routes).forEach(([route, handler]) =>
     app.get(
       route,
       setupCache,
       (request, response, next) =>
-        decorateRequest(request, response, next, { filters, ngsi }),
+        decorateRequest(request, response, next, { filters, ngsi, defaultEndpoint }),
       handler
     )
   );
