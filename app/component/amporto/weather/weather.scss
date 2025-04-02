@@ -1,0 +1,197 @@
+.weather-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 80px;
+  height: 40px;
+  border-radius: 8px;
+  background: $background-default;
+  box-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
+
+  &.floating {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    right: 24px;  
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background: $background-default;
+  }
+
+  .icon-container {
+    display: flex;
+    position: relative;
+    color: $primary-dark;
+    flex-grow: 0;
+
+    svg {
+      color: $primary-main;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .max-temperature {
+    display: flex;
+    position: relative;
+    color: $primary-main;
+    font-size: $font-size-s;
+    font-weight: $font-weight-bold;
+    line-height: 24px;
+  }
+}
+
+.weather-popup {
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 236px;
+  padding: 22px;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border-radius: 8px;
+  background-color: $white;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+
+  .weather-popup-content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    .header {
+      display: flex;
+      position: relative;
+      color: $primary-dark;
+      text-align: center;
+
+      font-family: $font-family;
+      font-size: $font-size-l;
+      font-style: normal;
+      font-weight: $font-weight-medium;
+    }
+
+    .temperature-container {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
+      .temperature {
+        display: flex;
+        position: relative;
+        align-self: center;
+        color: $primary-dark;
+        height: 80px;
+        flex-grow: 0;
+        font-size: 60px;
+      }
+
+      .icon-container {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        height: 80px;
+        flex-grow: 0;
+
+        svg {
+          display: flex;
+          position: relative;
+          color: $primary-dark;
+          width: 72px;
+          height: 72px;
+        }
+      }
+    }
+
+    .aditional-info-container {
+      display: flex;
+      position: relative;
+      align-content: center;
+      gap: 8px;
+
+      .icon-container {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        svg.icon-weather-wind {
+          display: flex;
+          position: relative;
+          color: $primary-dark;
+          width: 16px;
+          height: 16px;
+        }
+
+        svg.icon-uv-radiation {
+          display: flex;
+          position: relative;
+          color: $primary-dark;
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      .wind-info, .radiation-info {
+        display: flex;
+        position: relative;
+        color: $primary-dark;
+        font-family: $font-family;
+        font-size: $font-size-s;
+        font-style: normal;
+        font-weight: $font-weight-book;
+      }
+    }
+
+    button {
+      width: 100%;
+      display: flex;
+      position: relative;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid $primary-color;
+      font-size: $font-size-l;
+      font-weight: $font-weight-bold;
+      align-items: center;
+      background-color: $primary-color;
+      color: $primary-contrastText;
+
+      @media (min-width: 400px) {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+.weather-popup-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  flex-grow: 1;
+  z-index: 9999;
+  background: transparent;
+}

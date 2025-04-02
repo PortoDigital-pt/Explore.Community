@@ -822,6 +822,8 @@ const translations = {
   },
 
   en: {
+    'weather-uv': 'UV Radiation',
+    'weather-popup-title': 'Weather in the area',
     'poi-share-aria-label': 'Share',
     'poi-share.text': 'Find out more about this place I found in ',
     'poi-share.title': 'explore.porto.pt',
@@ -5110,6 +5112,7 @@ const translations = {
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
 
+    'weather-popup-title': 'Meteorologia na área',
     'no-favourite-pois': 'Nenhum ponto de interesse favorito',
     'no-favourite-stops': 'Sem paragens favoritas',
     'poi-description': 'Descrição',
