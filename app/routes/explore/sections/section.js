@@ -11,6 +11,7 @@ import Icon from '../../../component/Icon';
 
 const Section = (
   {
+    type,
     language,
     location,
     selectedCategories,
@@ -35,6 +36,11 @@ const Section = (
   const navigate = useCallback(
     (id, type) => router.push(`/explore/${type}/${id}`),
     [router.push]
+  );
+
+  const onShowAll = useCallback(
+    () => router.push(`/explore/${type}`),
+    [router.push, type]
   );
 
   return (
@@ -71,6 +77,7 @@ const Section = (
           className="show-all"
           type="button"
           aria-label={intl.messages[bottomButtonText]}
+          onClick={onShowAll}
         >
           {intl.messages[bottomButtonText]}
         </button>
@@ -85,6 +92,7 @@ Section.contextTypes = {
 };
 
 Section.propTypes = {
+  type: string.isRequired,
   Intro: func,
   emptyMessage: string.isRequired,
   errorMessage: string.isRequired,

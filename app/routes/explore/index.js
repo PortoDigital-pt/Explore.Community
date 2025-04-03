@@ -91,6 +91,31 @@ export default config => (
       </Route>
     </Route>
     <Route path="events">
+    <Route path="/">
+        {{
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "events-list" */ './list/events/page'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          ),
+          map: (
+            <Route
+              disableMapOnMobile={false}
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "events-list-map" */ './list/events/pageMap'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          )
+        }}
+      </Route>
       <Route path=":id">
         {{
           content: (

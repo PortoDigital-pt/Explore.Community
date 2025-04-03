@@ -30,6 +30,7 @@ const EventsSection = ({ selectedCategories, language }, { config }) => {
         errorMessage="events-fetch-error"
         emptyMessage="events-empty"
         Intro={Intro}
+        type="events"
       />
     )
   );

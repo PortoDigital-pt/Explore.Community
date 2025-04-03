@@ -14,6 +14,7 @@ const PoisSection = ({ selectedCategories }) =>
       bottomButtonText="find-all-interest"
       errorMessage="pois-fetch-error"
       emptyMessage="pois-empty"
+      type="pois"
     />
   );
 

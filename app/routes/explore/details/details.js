@@ -36,7 +36,7 @@ const DetailsPage = (
     location,
     targetPoint: selectedData
   });
-
+ 
   useEffect(() => {
     if (error) {
       router.push(onErrorPath);
@@ -134,7 +134,7 @@ const Content = ({
     return () => (
       <PageContent selectedData={selectedData} intl={intl} link={link} />
     );
-  }, [modal]);
+  }, [modal, selectedData, intl, link]);
 
   return (
     <>

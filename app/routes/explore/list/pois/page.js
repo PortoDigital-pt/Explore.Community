@@ -1,5 +1,6 @@
 import React from 'react';
+import ListPage from '../list';
 
-const PoiListPage = () => <div>List</div>;
+const PoiListPage = () => <ListPage />;
 
 export default PoiListPage;
