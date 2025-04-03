@@ -139,6 +139,7 @@ class FilterTimeTableModal extends React.Component {
           </div>
           <div className="route-mode">
             <Icon
+              viewBox="0 0 44 44"
               className={mode.toLowerCase()}
               img={`icon-icon_${mode.toLowerCase()}`}
             />
