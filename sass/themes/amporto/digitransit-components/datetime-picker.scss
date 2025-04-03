@@ -669,3 +669,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     }
   }
 }
+
+.hide-departure-and-arrival-container {
+  display: none !important;
+}
