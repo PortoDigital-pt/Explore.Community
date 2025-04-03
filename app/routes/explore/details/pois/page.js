@@ -3,7 +3,7 @@ import { func, shape, number } from 'prop-types';
 import { intlShape } from 'react-intl';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
-import { useSelectedPoi } from './useSelectedPoi';
+import { getPoiById } from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
@@ -109,7 +109,7 @@ PageContent.propTypes = {
 
 const PoiDetailsPage = () => (
   <Details
-    useSelectedData={useSelectedPoi}
+    getDataById={getPoiById}
     onErrorPath="/explore/pois"
     PageContent={PageContent}
     MobileContent={MobileContent}

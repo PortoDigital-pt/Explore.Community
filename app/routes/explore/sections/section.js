@@ -8,14 +8,15 @@ import { locationShape, configShape } from '../../../util/shapes';
 import Skeleton from '../../../component/amporto/skeleton';
 import Card from '../../../component/amporto/card';
 import Icon from '../../../component/Icon';
+import { useListData } from '../common/hooks';
 
 const Section = (
   {
     type,
     language,
     location,
-    selectedCategories,
-    useDataList,
+    categories,
+    getData,
     title,
     cardType,
     bottomButtonText,
@@ -25,11 +26,12 @@ const Section = (
   },
   { intl, config: { coordinatesBounds } }
 ) => {
-  const { data, error } = useDataList({
+  const { data, error } = useListData({
     language,
     location,
     coordinatesBounds,
-    selectedCategories
+    getData,
+    args: { categories }
   });
   const { router } = useRouter();
 
@@ -99,10 +101,10 @@ Section.propTypes = {
   bottomButtonText: string.isRequired,
   cardType: oneOf(['small', 'large']).isRequired,
   title: string.isRequired,
-  useDataList: func.isRequired,
+  getData: func.isRequired,
   language: string.isRequired,
   location: locationShape.isRequired,
-  selectedCategories: arrayOf(string).isRequired
+  categories: arrayOf(string).isRequired
 };
 
 export default connectToStores(

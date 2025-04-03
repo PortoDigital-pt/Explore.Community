@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import { string, arrayOf } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { parseConfigDescriptionTextWithLink } from '../../../../util/amporto/text';
-import { useEventList } from './useEventList';
+import { getEventList } from '../../../../util/amporto/api';
 import Section from '../section';
 import { configShape } from '../../../../util/shapes';
 
-const EventsSection = ({ selectedCategories, language }, { config }) => {
+const EventsSection = ({ categories, language }, { config }) => {
   const Intro = useMemo(
     () => () => (
       <p>
@@ -20,10 +20,10 @@ const EventsSection = ({ selectedCategories, language }, { config }) => {
   );
 
   return (
-    selectedCategories && (
+    categories && (
       <Section
-        selectedCategories={selectedCategories}
-        useDataList={useEventList}
+        categories={categories}
+        getData={getEventList}
         title="happening-this-week"
         cardType="large"
         bottomButtonText="find-all-events"
@@ -37,7 +37,7 @@ const EventsSection = ({ selectedCategories, language }, { config }) => {
 };
 
 EventsSection.propTypes = {
-  selectedCategories: arrayOf(string),
+  categories: arrayOf(string),
   language: string.isRequired
 };
 
@@ -58,8 +58,7 @@ export default connectToStores(
 
     return {
       language: getStore('PreferencesStore').getLanguage(),
-      selectedCategories:
-        selectedCategories.length > 0 ? selectedCategories : null
+      categories: selectedCategories.length > 0 ? selectedCategories : null
     };
   }
 );

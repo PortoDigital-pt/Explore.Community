@@ -94,7 +94,7 @@ export const isFeatureLayerEnabled = (
   if (!Object.keys(mapLayers).includes(layerName)) {
     return false;
   }
-  
+
   const featureType = (feature.properties.type || '').toLocaleLowerCase();
   if (isHybridStation) {
     const featureTypes = feature.properties.type.split(',');
@@ -109,7 +109,7 @@ export const isFeatureLayerEnabled = (
 
     return Boolean(mapLayers[layerName][featureType]);
   }
-  
+
   return isLayerEnabled(layerName, mapLayers);
 };
 

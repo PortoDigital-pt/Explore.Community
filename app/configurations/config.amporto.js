@@ -429,6 +429,7 @@ export default {
       }
     },
     events: {
+      cultural: { pt: 'Cultural', en: 'Cultural' }, // TODO: temporary, will be removed
       outdoor: { pt: 'Ar%20livre', en: 'Outdoor' },
       class: { pt: 'Aula', en: 'Class' },
       song: { pt: 'Canção', en: 'Song' },

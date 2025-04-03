@@ -91,7 +91,7 @@ export default config => (
       </Route>
     </Route>
     <Route path="events">
-    <Route path="/">
+      <Route path="/">
         {{
           content: (
             <Route

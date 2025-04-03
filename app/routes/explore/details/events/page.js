@@ -5,7 +5,7 @@ import { string, func, shape, number } from 'prop-types';
 import { intlShape } from 'react-intl';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
-import { useSelectedEvent } from './useSelectedEvent';
+import { getEventById } from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
@@ -172,7 +172,7 @@ PageContent.propTypes = {
 
 const EventDetailsPage = () => (
   <Details
-    useSelectedData={useSelectedEvent}
+    getDataById={getEventById}
     onErrorPath="/explore/events"
     PageContent={PageContent}
     MobileContent={MobileContent}

@@ -1,14 +1,14 @@
 import React from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { arrayOf, string } from 'prop-types';
-import { usePoiList } from './usePoiList';
+import { getPoiList } from '../../../../util/amporto/api';
 import Section from '../section';
 
-const PoisSection = ({ selectedCategories }) =>
-  selectedCategories && (
+const PoisSection = ({ categories }) =>
+  categories && (
     <Section
-      selectedCategories={selectedCategories}
-      useDataList={usePoiList}
+      categories={categories}
+      getData={getPoiList}
       title="place-to-visit"
       cardType="small"
       bottomButtonText="find-all-interest"
@@ -19,7 +19,7 @@ const PoisSection = ({ selectedCategories }) =>
   );
 
 PoisSection.propTypes = {
-  selectedCategories: arrayOf(string)
+  categories: arrayOf(string)
 };
 
 export default connectToStores(
@@ -34,8 +34,7 @@ export default connectToStores(
       .map(([category]) => category);
 
     return {
-      selectedCategories:
-        selectedCategories.length > 0 ? selectedCategories : null
+      categories: selectedCategories.length > 0 ? selectedCategories : null
     };
   }
 );

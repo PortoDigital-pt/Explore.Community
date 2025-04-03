@@ -73,7 +73,10 @@ const customFetch = async url => {
   return { data, ...preparedResponse };
 };
 
-const getPoiDetail = async ({ params: { id } }, response) => {
+const getPoiDetail = async (
+  { params: { id }, query: { language } },
+  response
+) => {
   const { data, status, text } = await customFetch(
     `${process.env.NGSI_URL}/${id}`
   );
@@ -82,12 +85,12 @@ const getPoiDetail = async ({ params: { id } }, response) => {
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(poiToDto(data));
+  return response.status(status).json(poiToDto(data, language));
 };
 
 const getPoiList = async (
   {
-    query,
+    query: { language, ...queryRest },
     config: {
       filters,
       ngsi: { dataProvider },
@@ -102,7 +105,7 @@ const getPoiList = async (
       dataProvider,
       coords: `${lat},${lon}`,
       ...defaultPoiQueryParams,
-      ...query
+      ...queryRest
     })}`
   );
 
@@ -110,10 +113,13 @@ const getPoiList = async (
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(data.map(poiToDto));
+  return response.status(status).json(data.map(poi => poiToDto(poi, language)));
 };
 
-const getEventDetail = async ({ params: { id } }, response) => {
+const getEventDetail = async (
+  { params: { id }, query: { language } },
+  response
+) => {
   const { data, status, text } = await customFetch(
     `${process.env.NGSI_URL}/${id}`
   );
@@ -122,12 +128,12 @@ const getEventDetail = async ({ params: { id } }, response) => {
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(eventToDto(data));
+  return response.status(status).json(eventToDto(data, language));
 };
 
 const getEventList = async (
   {
-    query,
+    query: { language, ...queryRest },
     config: {
       filters,
       ngsi: { dataProvider },
@@ -142,7 +148,7 @@ const getEventList = async (
       dataProvider,
       coords: `${lat},${lon}`,
       ...defaultEventQueryParams,
-      ...query
+      ...queryRest
     })}`
   );
 
@@ -150,7 +156,9 @@ const getEventList = async (
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(data.map(eventToDto));
+  return response
+    .status(status)
+    .json(data.map(event => eventToDto(event, language)));
 };
 
 const setupCache = (request, response, next) => {
@@ -177,7 +185,11 @@ export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
       route,
       setupCache,
       (request, response, next) =>
-        decorateRequest(request, response, next, { filters, ngsi, defaultEndpoint }),
+        decorateRequest(request, response, next, {
+          filters,
+          ngsi,
+          defaultEndpoint
+        }),
       handler
     )
   );

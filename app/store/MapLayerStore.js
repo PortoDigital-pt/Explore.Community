@@ -123,7 +123,11 @@ class MapLayerStore extends Store {
 
   getFilterLayers = ({ only } = {}) => {
     const layers = {
-      stop: { ...this.mapLayers.stop, citybike: this.mapLayers.citybike, subway: this.mapLayers.terminal.subway },
+      stop: {
+        ...this.mapLayers.stop,
+        citybike: this.mapLayers.citybike,
+        subway: this.mapLayers.terminal.subway
+      },
       pois: this.mapLayers.pois,
       events: this.mapLayers.events
     };

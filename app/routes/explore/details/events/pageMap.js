@@ -1,9 +1,7 @@
 import React from 'react';
-import { useSelectedEvent } from './useSelectedEvent';
+import { getEventById } from '../../../../util/amporto/api';
 import DetailsMap from '../detailsMap';
 
-const EventDetailsPageMap = () => (
-  <DetailsMap useSelectedData={useSelectedEvent} dataType="events" />
-);
+const EventDetailsPageMap = () => <DetailsMap getDataById={getEventById} />;
 
 export default EventDetailsPageMap;

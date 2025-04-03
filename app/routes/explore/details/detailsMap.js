@@ -6,14 +6,13 @@ import { mapLayerShape } from '../../../store/MapLayerStore';
 import MapWithTracking from '../../../component/map/MapWithTracking';
 import Loading from '../../../component/Loading';
 import MapRoutingButton from '../../../component/MapRoutingButton';
+import { useSelectedData } from '../common/hooks';
 
-const DetailsPageMap = (
-  { language, mapLayers, useSelectedData, dataType },
-  { match }
-) => {
+const DetailsPageMap = ({ language, mapLayers, getDataById }, { match }) => {
   const { selectedData, error } = useSelectedData({
     id: match.params.id,
-    language
+    language,
+    getDataById
   });
 
   if (error) {
@@ -31,9 +30,7 @@ const DetailsPageMap = (
       lat={selectedData.lat}
       lon={selectedData.lon}
       mapLayers={mapLayers}
-      topButtons={
-        <MapRoutingButton stop={{ type: dataType, ...selectedData }} />
-      }
+      topButtons={<MapRoutingButton stop={selectedData} />}
       showExplore
     />
   );
@@ -44,10 +41,9 @@ DetailsPageMap.contextTypes = {
 };
 
 DetailsPageMap.propTypes = {
+  getDataById: func.isRequired,
   language: string.isRequired,
-  mapLayers: mapLayerShape.isRequired,
-  useSelectedData: func.isRequired,
-  dataType: string.isRequired
+  mapLayers: mapLayerShape.isRequired
 };
 
 export default connectToStores(

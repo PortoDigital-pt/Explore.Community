@@ -13,13 +13,14 @@ import ScrollableWrapper from '../../../component/ScrollableWrapper';
 import BackButton from '../../../component/BackButton';
 import FavouriteExplore from '../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../component/amporto/share-button';
+import { useSelectedData } from '../common/hooks';
 
 const DetailsPage = (
   {
     language,
     breakpoint,
     location,
-    useSelectedData,
+    getDataById,
     onErrorPath,
     PageContent,
     MobileContent
@@ -29,14 +30,15 @@ const DetailsPage = (
   const { isOpen, open, close } = useModal();
   const { selectedData, error } = useSelectedData({
     id: match.params.id,
-    language
+    language,
+    getDataById
   });
   const distanceToDataPoint = useDistanceToTarget({
     executeAction,
     location,
     targetPoint: selectedData
   });
- 
+
   useEffect(() => {
     if (error) {
       router.push(onErrorPath);
@@ -99,7 +101,7 @@ DetailsPage.propTypes = {
   language: string.isRequired,
   breakpoint: string.isRequired,
   location: locationShape.isRequired,
-  useSelectedData: func.isRequired,
+  getDataById: func.isRequired,
   onErrorPath: string.isRequired,
   PageContent: func.isRequired,
   MobileContent: func.isRequired
