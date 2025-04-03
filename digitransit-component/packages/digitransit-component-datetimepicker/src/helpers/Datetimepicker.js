@@ -340,7 +340,11 @@ function Datetimepicker({
           <div
             className={
               isOpen
-                ? `${styles['picker-container']}`
+                ? `${styles['picker-container']} ${
+                    departureOrArrival
+                      ? ''
+                      : styles['hide-departure-and-arrival-container']
+                  }`
                 : `${styles.hidden} datetimepicker-top-row`
             }
           >
