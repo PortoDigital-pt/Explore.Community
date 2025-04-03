@@ -320,16 +320,18 @@
 
 .departure-list-header {
   color: $gray;
-  background-color: $white;
+  background-color: $background-default;
 
   @include font-narrow-book;
 
   font-size: $font-size-xxsmall;
-  white-space: nowrap;
   padding-left: 0.5em;
   line-height: $line-height-normal;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2px;
 
   & > span {
     display: inline-block;
@@ -338,27 +340,34 @@
 
   .route-number-header {
     width: 4em;
+    display: flex;
+    position: relative; 
   }
 
   .route-destination-header {
-    flex: 1 0 176px;
+    display: flex;
+    position: relative;
+    flex-grow: 4;
   }
 
   .time-header {
+    display: flex;
+    position: relative;
     font-weight: inherit;
     text-align: right;
-    width: 3.5em;
-    margin-right: 2em;
+    flex-grow: 1;
+  }
+
+  .track-header {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
   }
 }
 
 .desktop .departure-list-header {
   .route-number-header {
-    width: 45px;
-  }
-
-  .time-header {
-    width: 50px;
+    width: 35px;
   }
 }
 
@@ -738,6 +747,12 @@ hr.action-bar {
       width: 1.6em;
       height: 1.2em;
       margin-top: 4px;
+
+      &.subway {
+        width: 24px;
+        height: 24px;
+        margin-top: 0;
+      }
     }
   }
 
@@ -930,7 +945,7 @@ hr.action-bar {
   }
 
   .route-number-header {
-    width: 3.5em;
+    width: 2.5em;
   }
 
   .time-cell {
