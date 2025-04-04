@@ -74,7 +74,11 @@ function renderPatternSelectSuggestion(item, currentPattern) {
         {patternTextWithIcon(item)}
         {item.code === currentPattern.code && (
           <>
-            <Icon className="check" img="icon-icon_check" />
+            <Icon
+              img="icon-icon_check_new"
+              className="schedule-dropdown-check-icon"
+              viewBox="0 0 15 11"
+            />
             <span className="sr-only">
               <FormattedMessage id="route-page.pattern-chosen" />
             </span>

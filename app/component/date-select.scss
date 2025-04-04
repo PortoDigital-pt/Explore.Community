@@ -3,8 +3,8 @@
     display: none;
   }
 
-  background-color: #fff;
-  border: solid #888 1px;
+  background-color: $background-default;
+  border: 1px solid $grey-medium;
   display: flex;
   align-items: center;
   border-radius: 5px;
@@ -49,14 +49,18 @@
     border-right: 1px solid $gray;
 
     .combobox-selected-value {
-      color: $black;
-      font-size: $font-size-small;
+      color: $primary-dark;
+      font-size: 0.87rem;
       font-weight: $font-weight-medium;
       text-align: left;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       background-color: none;
+
+      @media screen and (min-width: 550px) and (max-width: 900px) {
+        font-size: 0.8rem;
+      }
 
       & span {
         transition: all 0.2s ease-out;
@@ -111,8 +115,8 @@
   }
 
   margin-right: 1em;
-  background-color: #fff;
-  border: solid #888 1px;
+  background-color: $background-default;
+  border: 1px solid $grey-medium;
   display: flex;
   align-items: center;
   border-radius: 5px;
@@ -143,7 +147,7 @@
         padding: 0 3px 0 0;
 
         .left-column {
-          color: #333;
+          color: $primary-dark;
           font-size: 0.92rem;
           font-weight: 500;
           text-align: left;
@@ -164,11 +168,25 @@
             color: #666;
             letter-spacing: -0.48px;
             font-weight: $font-weight-book;
+
+            @media screen and (min-width: 600px) and (max-width: 800px) {
+              font-size: 0.75rem;
+            }
+
+            @media screen and (min-width: 800px) and (max-width: 900px) {
+              font-size: 0.72rem;
+            }
           }
 
           .selected-value {
             line-height: normal;
             letter-spacing: normal;
+            font-size: 0.87rem;
+            font-weight: $font-weight-medium;
+
+            @media screen and (min-width: 550px) and (max-width: 900px) {
+              font-size: 0.8rem;
+            }
           }
 
           & select {
@@ -239,6 +257,18 @@
   white-space: nowrap;
   color: #666;
   letter-spacing: -0.48px;
+
+  @media screen and (min-width: 600px) and (max-width: 800px) {
+    font-size: 0.75rem;
+  }
+
+  @media screen and (min-width: 800px) and (max-width: 900px) {
+    font-size: 0.72rem;
+  }
+}
+
+.combobox-selected-value {
+  font-size: 0.8rem;
 }
 
 .mobile {
