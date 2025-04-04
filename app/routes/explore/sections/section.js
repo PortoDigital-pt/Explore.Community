@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { useRouter } from 'found';
 import { arrayOf, string, oneOf, func } from 'prop-types';
@@ -9,6 +9,9 @@ import Skeleton from '../../../component/amporto/skeleton';
 import Card from '../../../component/amporto/card';
 import Icon from '../../../component/Icon';
 import useListData from '../../../hooks/useListData';
+import useModal from '../../../hooks/useModal';
+import { PAGE_CONTENT_TYPE_MAP } from '../details/page-content';
+import { DetailsContentModal } from '../common';
 
 const Section = (
   {
@@ -24,7 +27,7 @@ const Section = (
     emptyMessage,
     Intro
   },
-  { intl, config: { coordinatesBounds } }
+  { intl, config: { coordinatesBounds, culturalAgendaLink } }
 ) => {
   const { data, error } = useListData({
     language,
@@ -33,11 +36,13 @@ const Section = (
     getData,
     args: { categories }
   });
+  const { isOpen, open, close } = useModal();
+  const [selected, setSelected] = useState(null);
   const { router } = useRouter();
 
   const navigate = useCallback(
-    (id, type) => router.push(`/explore/${type}/${id}`),
-    [router.push]
+    id => router.push(`/explore/${type}/${id}`),
+    [router.push, type]
   );
 
   const onShowAll = useCallback(
@@ -68,7 +73,10 @@ const Section = (
             <Card
               key={item.id}
               className={`${cardType}-card`}
-              onClick={() => navigate(item.id, item.type)}
+              onClick={() => {
+                setSelected(item);
+                open();
+              }}
               data={item}
             />
           ))
@@ -83,6 +91,24 @@ const Section = (
         >
           {intl.messages[bottomButtonText]}
         </button>
+      )}
+
+      {isOpen && selected !== null && (
+        <DetailsContentModal
+          isOpen={isOpen}
+          data={selected}
+          onBackBtnClick={() => {
+            setSelected(null);
+            close();
+          }}
+          onSeeOnMap={() => {
+            close();
+            navigate(selected.id);
+          }}
+          link={culturalAgendaLink}
+          modal
+          PageContent={PAGE_CONTENT_TYPE_MAP[type]}
+        />
       )}
     </section>
   );

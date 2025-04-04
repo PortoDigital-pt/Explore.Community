@@ -1,0 +1,21 @@
+.see-on-map {
+    display: flex;
+    position: relative;
+    padding: 0;
+    justify-content: center;
+    cursor: pointer;
+  
+    .icon {
+        display: flex;
+        position: relative;
+        color: $background-default;
+        width: 30px;
+        height: 30px;
+  
+        @media screen and (min-width: 900px) {
+            width: 35px;
+            height: 35px;
+        }
+    }
+}
+  
