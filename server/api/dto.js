@@ -11,7 +11,7 @@ const getLanguageValuesAndDecode = values =>
         {}
       );
 
-export const poiToDto = poi => {
+export const poiToDto = (poi, language) => {
   const {
     id,
     address,
@@ -23,18 +23,23 @@ export const poiToDto = poi => {
   } = poi;
 
   return {
+    type: 'pois',
     id,
     address: decodeURIComponent(address.value.streetAddress),
-    category: getLanguageValuesAndDecode(category_lang.value),
+    category: decodeURIComponent(
+      category_lang.value[language] || category_lang.value.pt
+    ),
     contacts: getLanguageValuesAndDecode(contactPoint.value),
-    description: getLanguageValuesAndDecode(description_lang.value),
+    description: decodeURIComponent(
+      description_lang.value[language] || description_lang.value.pt
+    ),
     lon: location.value.coordinates[0],
     lat: location.value.coordinates[1],
-    name: getLanguageValuesAndDecode(name_lang.value)
+    name: decodeURIComponent(name_lang.value[language] || name_lang.value.pt)
   };
 };
 
-export const eventToDto = event => {
+export const eventToDto = (event, language) => {
   const {
     id,
     address,
@@ -51,6 +56,7 @@ export const eventToDto = event => {
   } = event;
 
   return {
+    type: 'events',
     id,
     address: decodeURIComponent(address.value),
     category: decodeURIComponent(category?.value),

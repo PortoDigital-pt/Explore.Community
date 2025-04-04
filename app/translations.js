@@ -822,6 +822,13 @@ const translations = {
   },
 
   en: {
+    'pois-fetch-error':
+      'An error occurred while searching for points of interest. Please try again later.',
+    'events-fetch-error':
+      'An error occurred while searching for events. Please try again later.',
+    'pois-empty':
+      'There are no points of interest for the selected categories.',
+    'events-empty': 'There are no events for the selected categories.',
     'weather-uv': 'UV Radiation',
     'weather-popup-title': 'Weather in the area',
     'poi-share-aria-label': 'Share',
@@ -834,7 +841,9 @@ const translations = {
     'filters-title': 'Filters',
     'all-filters': 'All filters',
     'place-to-visit': 'Places to visit',
+    'happening-this-week': 'Happening in the next 7 days',
     'find-all-interest': 'Find all points of interest',
+    'find-all-events': 'Find all events',
     'at-distance': 'at',
     details: 'Check details',
     'know-more': 'Know more',
@@ -5220,6 +5229,13 @@ const translations = {
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
 
+    'pois-fetch-error':
+      'Ocorreu um erro na pesquisa de pontos de interesse. Por favor tente mais tarde.',
+    'events-fetch-error':
+      'Ocorreu um erro na pesquisa de eventos. Por favor tente mais tarde.',
+    'pois-empty':
+      'Não existem pontos de interesse para as categorias selecionadas.',
+    'events-empty': 'Não existem eventos para as categorias selecionadas.',
     'all-selected': 'Todos',
     'filter-pois-title': 'Pontos de interesse',
     'filter-events-title': 'Eventos',
@@ -5227,7 +5243,9 @@ const translations = {
     'filters-title': 'Filtros',
     'all-filters': 'Todos os filtros',
     'place-to-visit': 'Lugares a visitar',
+    'happening-this-week': 'A acontecer nos próximos 7 dias',
     'find-all-interest': 'Descubra todos os pontos de interesse',
+    'find-all-events': 'Descubra todos os eventos',
     'at-distance': 'a',
     details: 'Ver detalhes',
     'know-more': 'Saber mais',

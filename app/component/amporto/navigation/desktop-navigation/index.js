@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import useRouter from 'found/useRouter';
 import { intlShape } from 'react-intl';
 import SidebarMenu from '../sidebar';
-import useSmartNavigation from '../useSmartNavigation';
-import { COMMON_NAVIGATION_ITEMS } from '../common';
-
-const NAVIGATION_ITEMS = {
-  ...COMMON_NAVIGATION_ITEMS,
-  FAVOURITES: 'favourites'
-};
+import {
+  COMMON_NAVIGATION_ITEMS,
+  COMMON_NAVIGATION_ITEMS_PATH_MAP
+} from '../common';
 
 const getCurrentRoute = pathname => {
-  const path = pathname.split('/')[1];
-  return NAVIGATION_ITEMS[path?.toUpperCase()] ?? NAVIGATION_ITEMS.BROWSE;
+  // eslint-disable-next-line no-unused-vars
+  const [_, first, second] = pathname.split('/');
+  return (
+    COMMON_NAVIGATION_ITEMS[second?.toUpperCase()] ??
+    COMMON_NAVIGATION_ITEMS[first?.toUpperCase()] ??
+    COMMON_NAVIGATION_ITEMS.BROWSE
+  );
 };
 
 const DesktopNavigation = (_, { intl }) => {
   const { match } = useRouter();
-  const canShow = useSmartNavigation();
+
+  // only show at exact path
+  const canShow = useMemo(
+    () =>
+      !!Object.values(COMMON_NAVIGATION_ITEMS_PATH_MAP).find(
+        path => path === match.location.pathname
+      ),
+    [match.location.pathname]
+  );
 
   return (
     canShow && (

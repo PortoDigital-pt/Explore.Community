@@ -21,8 +21,9 @@ import {
   checkPositioningPermission,
   startLocationWatch
 } from '../../action/PositionActions';
-import FilterContainer from '../../component/amporto/filter';
-import PlacesSection from './page-sections/places';
+import Filters from '../../component/amporto/filter';
+import PoisSection from './sections/pois';
+import EventsSection from './sections/events';
 
 const modules = {
   OverlayWithSpinner: () =>
@@ -65,23 +66,17 @@ class ExplorePage extends React.Component {
   }
 
   componentDidMount() {
-    const { from } = this.context.match.params;
-    /* initialize stores from URL params */
-    const origin = parseLocation(from);
-
     this.context.executeAction(storeOrigin, {});
     this.context.executeAction(storeDestination, {});
 
-    if (this.context.config.startSearchFromUserLocation && !origin.lat) {
-      checkPositioningPermission().then(permission => {
-        if (
-          permission.state === 'granted' &&
-          this.props.locationState.status === 'no-location'
-        ) {
-          this.context.executeAction(startLocationWatch);
-        }
-      });
-    }
+    checkPositioningPermission().then(permission => {
+      if (
+        permission.state === 'granted' &&
+        this.props.locationState.status === 'no-location'
+      ) {
+        this.context.executeAction(startLocationWatch);
+      }
+    });
     scrollTop();
   }
 
@@ -153,8 +148,9 @@ class ExplorePage extends React.Component {
   render() {
     return (
       <div className="explore">
-        <FilterContainer />
-        <PlacesSection />
+        <Filters />
+        <PoisSection />
+        <EventsSection />
       </div>
     );
   }

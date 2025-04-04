@@ -7,7 +7,12 @@ export const isExploreEnabled = mapLayers => {
   if (!mapLayers) {
     return false;
   }
-  return mapLayers.showExplore;
+  return (
+    mapLayers.showExplore ??
+    mapLayers.pois ??
+    mapLayers.events ??
+    mapLayers.accesspoints
+  );
 };
 
 /**
@@ -37,6 +42,7 @@ export const isCategoryEnabled = (featureName, mapLayers, category) => {
   if (!featureName || !mapLayers) {
     return false;
   }
+
   return mapLayers[featureName][category] ?? false;
 };
 
@@ -80,9 +86,15 @@ export const isFeatureLayerEnabled = (
   if (!feature || !layerName || !mapLayers) {
     return false;
   }
+
+  if (layerName === 'explore') {
+    return mapLayers.showExplore;
+  }
+
   if (!Object.keys(mapLayers).includes(layerName)) {
     return false;
   }
+
   const featureType = (feature.properties.type || '').toLocaleLowerCase();
   if (isHybridStation) {
     const featureTypes = feature.properties.type.split(',');
@@ -94,8 +106,10 @@ export const isFeatureLayerEnabled = (
     if (layerName === 'stop' && feature.properties.stops) {
       return isFeatureLayerEnabled(feature, 'terminal', mapLayers);
     }
+
     return Boolean(mapLayers[layerName][featureType]);
   }
+
   return isLayerEnabled(layerName, mapLayers);
 };
 

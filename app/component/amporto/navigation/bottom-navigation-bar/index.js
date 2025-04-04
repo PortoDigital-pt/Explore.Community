@@ -21,18 +21,25 @@ const NAVIGATION_ITEMS = {
 
 const NAVIGATION_ITEMS_PATH_MAP = {
   ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
-  [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
+  [NAVIGATION_ITEMS.FAVOURITES]: `/profile/${NAVIGATION_ITEMS.FAVOURITES}`
 };
 
-const notBrowseExpression = new RegExp(
-  // eslint-disable-next-line no-useless-escape
-  `^\/(?!(${NAVIGATION_ITEMS.EXPLORE}|${NAVIGATION_ITEMS.ROUTES}|${NAVIGATION_ITEMS.BLOCKS}|${NAVIGATION_ITEMS.FAVOURITES}))(\w*)`,
-  'i'
-);
+const ITEM_EXPRESSION_MAP = {
+  [NAVIGATION_ITEMS.BROWSE]: new RegExp(/^\/(?!(explore|profile))(\w*)/, 'i'),
+  [NAVIGATION_ITEMS.BLOCKS]: new RegExp(/^\/explore\/blocks(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.ROUTES]: new RegExp(/^\/explore\/routes(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.EXPLORE]: new RegExp(
+    /^\/explore(\/(?!blocks|routes)([^/]+\/?)*)?$/,
+    'i'
+  ),
+  [NAVIGATION_ITEMS.FAVOURITES]: new RegExp(
+    /^\/profile\/favourites(\/.+)?$/,
+    'i'
+  )
+};
+
 const isActive = ({ pathname, item }) =>
-  item === NAVIGATION_ITEMS.BROWSE
-    ? notBrowseExpression.test(pathname)
-    : pathname.startsWith(`/${item}`);
+  ITEM_EXPRESSION_MAP[item].test(pathname);
 
 const BottomNavigationBar = (
   { breakpoint },
@@ -41,7 +48,6 @@ const BottomNavigationBar = (
   const [client, setClient] = useState(false);
   const { match, router } = useRouter();
   const canShow = useSmartNavigation();
-
   const navigationItems = useMemo(
     () =>
       generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),

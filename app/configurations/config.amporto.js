@@ -53,6 +53,7 @@ const {
   PRIVACY_POLICY,
   COOKIES_POLICY,
   EXPLORE_TILES_URL,
+  CULTURAL_AGENDA,
   WEATHER_API,
   WEATHER_CITY_CODE
 } = process.env;
@@ -253,11 +254,20 @@ export default {
     lat: 41.1533658,
     lon: -8.6046909
   },
+  defaultMapZoom: 15,
 
   useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
 
   privacyPolicyLink: PRIVACY_POLICY,
   cookiesPolicyLink: COOKIES_POLICY,
+  culturalAgendaLink: CULTURAL_AGENDA,
+
+  cards: {
+    events: {
+      pt: 'Desde exposições de arte emocionantes até concertos ao ar livre, mergulhe na vida cultural vibrante enquanto explora cada canto da cidade. Para ver mais eventos visite a página da *link*Agenda Cultural do Porto*link*.',
+      en: 'From exciting art exhibitions to open-air concerts, immerse yourself in the vibrant cultural life as you explore every corner of the city. For more events, visit the *link*Porto Cultural Agenda*link* page.'
+    }
+  },
 
   cookiesDescription: {
     pt: 'A Explore.Porto recolhe e armazena informações através de cookies para melhorar a sua experiência. Ao clicar em aceitar, concorda com o uso de cookies. Saiba mais na nossa *link*Política de Privacidade*link*.',
@@ -371,56 +381,57 @@ export default {
     },
     pois: {
       fadoHouse: {
-        pt: 'Casas de Fado',
+        pt: 'Casas%20de%20Fado',
         en: 'Fado Houses'
       },
-      wineCellarsAndQuintas: {
-        pt: 'Caves de Vinhos e Quintas',
+      wineCellarsAndFarms: {
+        pt: 'Caves%20de%20Vinhos%20e%20Quintas',
         en: 'Wine Cellars and Farms'
       },
       exhibitionCentersAndArtGalleries: {
-        pt: 'Centros de exposições & Galerias de arte',
+        pt: 'Centros%20de%20exposições%20%26%20Galerias%20de%20arte',
         en: 'Exhibition Centers and Art Galleries'
       },
       statuesSculpturesAndFountains: {
-        pt: 'Estátuas, Esculturas e Fontes',
+        pt: 'Estátuas,%20Esculturas%20e%20Fontes',
         en: 'Statues, Sculptures and Fountains'
       },
       marinasAndPorts: {
-        pt: 'Marinas e Portos',
+        pt: 'Marinas%20e%20Portos',
         en: 'Marinas and Ports'
       },
       viewpoints: { pt: 'Miradouros', en: 'Viewpoints' },
       monuments: { pt: 'Monumentos', en: 'Monuments' },
       museumsAndThematicCenters: {
-        pt: 'Museus e Centros Temáticos',
+        pt: 'Museus%20e%20Centros%20Temáticos',
         en: 'Museums and Thematic Centers'
       },
       parksAndGardens: {
-        pt: 'Parques e Jardins',
+        pt: 'Parques%20e%20Jardins',
         en: 'Parks and Gardens'
       },
       bridges: { pt: 'Pontes', en: 'Bridges' },
       tourismOffices: {
-        pt: 'Postos de Turismo',
+        pt: 'Postos%20de%20Turismo',
         en: 'Tourism Offices'
       },
       streetsAndSquares: {
-        pt: 'Ruas e Praças',
+        pt: 'Ruas%20e%20Praças',
         en: 'Streets and Squares'
       },
       concertHalls: {
-        pt: 'Salas de Concerto',
+        pt: 'Salas%20de%20Concerto',
         en: 'Concert Halls'
       },
       theaters: { pt: 'Teatros', en: 'Theaters' },
       religiousTemples: {
-        pt: 'Templos Religiosos',
+        pt: 'Templos%20Religiosos',
         en: 'Religious Temples'
       }
     },
     events: {
-      outdoor: { pt: 'Ar livre', en: 'Outdoor' },
+      cultural: { pt: 'Cultural', en: 'Cultural' }, // TODO: temporary, will be removed
+      outdoor: { pt: 'Ar%20livre', en: 'Outdoor' },
       class: { pt: 'Aula', en: 'Class' },
       song: { pt: 'Canção', en: 'Song' },
       cinema: { pt: 'Cinema', en: 'Cinema' },
@@ -445,6 +456,15 @@ export default {
       theater: { pt: 'Teatro', en: 'Theater' },
       visit: { pt: 'Visita', en: 'Visit' }
     }
+  },
+  ngsi: {
+    dataProvider: '.*api.ropi.porto.digital.*'
+  },
+  coordinatesBounds: {
+    minLat,
+    maxLat,
+    minLon,
+    maxLon
   },
   weatherApi: WEATHER_API,
   weatherCityCode: WEATHER_CITY_CODE,

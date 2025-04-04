@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 import pick from 'lodash/pick';
@@ -15,7 +16,7 @@ const mapCategoryDescriptionToId = (
   let value = category;
 
   if (category_lang) {
-    value = decodeURIComponent(JSON.parse(category_lang).pt);
+    value = JSON.parse(category_lang).pt;
   }
 
   const [categoryKey] = Object.entries(filters[type]).find(

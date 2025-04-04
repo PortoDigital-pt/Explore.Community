@@ -2,32 +2,8 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import { func, string } from 'prop-types';
 import { configShape } from '../../../util/shapes';
+import { parseConfigDescriptionTextWithLink } from '../../../util/amporto/text';
 import Icon from '../../../component/Icon';
-
-const parsePolicyLinkText = (text, privacyPolicyLink) => {
-  if (!privacyPolicyLink || !/(\*link\*.*?\*link\*)/.test(text)) {
-    return text;
-  }
-
-  const parts = text.split(/(\*link\*.*?\*link\*)/);
-
-  return parts.map(part => {
-    const isLink = part.match(/\*link\*(.*?)\*link\*/);
-
-    return isLink ? (
-      <a
-        href={privacyPolicyLink}
-        target="_blank"
-        key={isLink[1]}
-        rel="noreferrer"
-      >
-        {isLink[1]}
-      </a>
-    ) : (
-      part
-    );
-  });
-};
 
 const Content = (
   { language, onClose, onAcceptCookies, onRejectCookies },
@@ -52,7 +28,10 @@ const Content = (
     </div>
 
     <p>
-      {parsePolicyLinkText(cookiesDescription[language], privacyPolicyLink)}
+      {parseConfigDescriptionTextWithLink(
+        cookiesDescription[language],
+        privacyPolicyLink
+      )}
     </p>
 
     <div className="action">

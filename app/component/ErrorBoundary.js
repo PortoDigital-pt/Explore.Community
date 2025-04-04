@@ -27,6 +27,7 @@ export default class ErrorBoundary extends React.Component {
       if (isRelayNetworkError(this.state.error)) {
         return <NetworkError retry={this.resetState} />;
       }
+
       return (
         <div className="page-not-found">
           <Icon img="icon-icon_error_page_not_found" />

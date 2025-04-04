@@ -222,6 +222,7 @@ class MapWithTrackingStateHandler extends React.Component {
         ? this.props.mapLayers.vehicles
         : false
     };
+
     if (isEmpty(forcedLayers.stop)) {
       return merged;
     }

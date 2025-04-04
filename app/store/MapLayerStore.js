@@ -121,11 +121,23 @@ class MapLayerStore extends Store {
     return layers;
   };
 
-  getFilterLayers = () => ({
-    stop: { ...this.mapLayers.stop, citybike: this.mapLayers.citybike },
-    pois: this.mapLayers.pois,
-    events: this.mapLayers.events
-  });
+  getFilterLayers = ({ only } = {}) => {
+    const layers = {
+      stop: {
+        ...this.mapLayers.stop,
+        citybike: this.mapLayers.citybike,
+        subway: this.mapLayers.terminal.subway
+      },
+      pois: this.mapLayers.pois,
+      events: this.mapLayers.events
+    };
+
+    if (!only) {
+      return layers;
+    }
+
+    return { [only]: layers[only] };
+  };
 
   updateMapLayersCustom = mapLayers => {
     this.mapLayers = {
@@ -147,6 +159,7 @@ class MapLayerStore extends Store {
 
     if (mapLayers.stop) {
       this.mapLayers.citybike = mapLayers.stop.citybike;
+      this.mapLayers.terminal.subway = mapLayers.stop.subway;
     }
 
     setMapLayerSettings({ ...this.mapLayers });
@@ -186,12 +199,12 @@ export const mapLayerShape = PropTypes.shape({
     subway: PropTypes.bool,
     tram: PropTypes.bool,
     funicular: PropTypes.bool
-  }).isRequired,
+  }),
   terminal: PropTypes.shape({
     bus: PropTypes.bool,
     rail: PropTypes.bool,
     subway: PropTypes.bool
-  }).isRequired,
+  }),
   vehicles: PropTypes.bool,
   // eslint-disable-next-line
   geoJson: PropTypes.object,

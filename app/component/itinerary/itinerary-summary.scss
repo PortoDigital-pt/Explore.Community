@@ -382,7 +382,7 @@
             min-width: 1px;
           }
 
-          display: block;
+          display: flex;
           align-items: center;
           line-height: 1;
           overflow: hidden;
@@ -396,7 +396,6 @@
           .vehicle-number-container-v {
             float: left;
             display: flex;
-            height: 100%;
             margin-left: 4px;
 
             .vehicle-number {
@@ -619,7 +618,7 @@
       width: 100%;
       background-color: currentcolor;
       height: 1.5rem;
-      border-radius: $border-radius;
+      border-radius: 4px;
 
       &.call {
         border-color: #aaa;
