@@ -1,5 +1,5 @@
-import React, { useEffect, Suspense, useMemo } from 'react';
-import { string, func, shape, bool } from 'prop-types';
+import React, { useEffect } from 'react';
+import { string, func } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
@@ -8,12 +8,8 @@ import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
 import useModal from '../../../hooks/useModal';
 import useDistanceToTarget from '../../../hooks/useDistanceToTarget';
-import Modal from '../../../component/amporto/modal';
-import ScrollableWrapper from '../../../component/ScrollableWrapper';
-import BackButton from '../../../component/BackButton';
-import FavouriteExplore from '../../../component/FavouriteExploreContainer';
-import ShareButton from '../../../component/amporto/share-button';
 import useSelectedData from '../../../hooks/useSelectedData';
+import { DetailsContent, DetailsContentModal } from '../common';
 
 const DetailsPage = (
   {
@@ -52,10 +48,10 @@ const DetailsPage = (
   return (
     <section className="details-page">
       {breakpoint === 'large' ? (
-        <Content
+        <DetailsContent
           PageContent={PageContent}
-          selectedData={selectedData}
-          intl={intl}
+          data={selectedData}
+          showShare
         />
       ) : (
         <MobileContent
@@ -66,24 +62,15 @@ const DetailsPage = (
         />
       )}
       {isOpen && (
-        <Suspense fallback="">
-          <Modal
-            isOpen={isOpen}
-            className="details-page modal"
-            overlayClassName="overlay"
-            shouldFocusAfterRender
-            shouldCloseOnEsc
-          >
-            <Content
-              selectedData={selectedData}
-              intl={intl}
-              onBackBtnClick={close}
-              link={config.culturalAgendaLink}
-              modal
-              PageContent={PageContent}
-            />
-          </Modal>
-        </Suspense>
+        <DetailsContentModal
+          isOpen={isOpen}
+          data={selectedData}
+          onBackBtnClick={close}
+          link={config.culturalAgendaLink}
+          modal
+          showShare
+          PageContent={PageContent}
+        />
       )}
     </section>
   );
@@ -115,50 +102,3 @@ export default connectToStores(
     location: getStore('PositionStore').getLocationState()
   })
 );
-
-const Content = ({
-  selectedData,
-  intl,
-  onBackBtnClick,
-  modal = false,
-  link,
-  PageContent
-}) => {
-  const Component = useMemo(() => {
-    if (modal) {
-      return () => (
-        <ScrollableWrapper scrollable className="page">
-          <PageContent selectedData={selectedData} intl={intl} link={link} />
-        </ScrollableWrapper>
-      );
-    }
-
-    return () => (
-      <PageContent selectedData={selectedData} intl={intl} link={link} />
-    );
-  }, [modal, selectedData, intl, link]);
-
-  return (
-    <>
-      <BackButton
-        key={selectedData.id}
-        title={selectedData.name}
-        subtitle={selectedData.category}
-        onBackBtnClick={onBackBtnClick}
-      >
-        <ShareButton />
-        <FavouriteExplore data={selectedData} white />
-      </BackButton>
-      <Component />
-    </>
-  );
-};
-
-Content.propTypes = {
-  selectedData: shape().isRequired,
-  intl: intlShape.isRequired,
-  onBackBtnClick: func,
-  modal: bool,
-  PageContent: func.isRequired,
-  link: string
-};

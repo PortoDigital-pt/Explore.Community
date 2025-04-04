@@ -1,0 +1,44 @@
+.see-on-map-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    row-gap: 2px;
+    justify-content: center;
+    align-items: center;
+
+    .see-on-map {
+        display: flex;
+        position: relative;
+        padding: 0;
+        justify-content: center;
+        cursor: pointer;
+      
+        .icon {
+            display: flex;
+            position: relative;
+            color: $background-default;
+            width: 30px;
+            height: 30px;
+      
+            @media (min-width: 900px) {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    }
+
+    .description {
+        margin: 0;
+        display: flex;
+        position: relative;
+        color: $background-default;
+        font-weight: $font-weight-regular;
+        font-size: $font-size-label;
+
+        @media (min-width: 900px) {
+            font-size: $font-size-s;
+        }
+    }
+}
+
+  

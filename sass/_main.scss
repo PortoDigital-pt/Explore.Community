@@ -78,10 +78,10 @@ $body-font-weight: $font-weight-medium;
 @import '../app/routes/onboarding/onboarding';
 @import '../app/routes/onboarding/cookies/cookies';
 @import '../app/routes/explore/explore';
-@import '../app/routes/explore/details/details';
 @import '../app/component/back-button';
 @import '../app/component/amporto/filter/filter';
 @import '../app/component/amporto/share-button/share-button';
+@import '../app/component/amporto/see-on-map-button/see-on-map-button';
 @import '../app/component/amporto/weather/weather';
 @import '../app/component/amporto/map-tool-bar/map-tool-bar';
 

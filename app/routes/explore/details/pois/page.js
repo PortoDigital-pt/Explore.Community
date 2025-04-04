@@ -66,7 +66,7 @@ MobileContent.propTypes = {
   distance: number
 };
 
-const PageContent = ({ selectedData, intl }) => (
+export const PageContent = ({ selectedData, intl }) => (
   <>
     <div className="image" />
     <div className="details">

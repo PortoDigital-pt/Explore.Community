@@ -1,3 +1,4 @@
 import React from 'react';
+import List from '../list';
 
-export default () => <div>routes list</div>;
+export default () => <List />;
