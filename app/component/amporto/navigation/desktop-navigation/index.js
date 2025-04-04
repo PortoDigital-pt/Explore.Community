@@ -8,8 +8,13 @@ import {
 } from '../common';
 
 const getCurrentRoute = pathname => {
+  // eslint-disable-next-line no-unused-vars
   const [_, first, second] = pathname.split('/');
-  return COMMON_NAVIGATION_ITEMS[second?.toUpperCase()] ?? COMMON_NAVIGATION_ITEMS[first?.toUpperCase()] ?? COMMON_NAVIGATION_ITEMS.BROWSE;
+  return (
+    COMMON_NAVIGATION_ITEMS[second?.toUpperCase()] ??
+    COMMON_NAVIGATION_ITEMS[first?.toUpperCase()] ??
+    COMMON_NAVIGATION_ITEMS.BROWSE
+  );
 };
 
 const DesktopNavigation = (_, { intl }) => {
@@ -23,7 +28,7 @@ const DesktopNavigation = (_, { intl }) => {
       ),
     [match.location.pathname]
   );
-  
+
   return (
     canShow && (
       <div className="desktop-navigation-content">

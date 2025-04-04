@@ -26,16 +26,20 @@ const NAVIGATION_ITEMS_PATH_MAP = {
 
 const ITEM_EXPRESSION_MAP = {
   [NAVIGATION_ITEMS.BROWSE]: new RegExp(/^\/(?!(explore|profile))(\w*)/, 'i'),
-  [NAVIGATION_ITEMS.BLOCKS]: new RegExp(/^\/explore\/blocks$/, 'i'),
-  [NAVIGATION_ITEMS.ROUTES]: new RegExp(/^\/explore\/routes$/, 'i')
-}
-// TODO: fix
-const isActive = ({ pathname, item }) => {
-  console.log('ITEM: ', item);
-  console.log('PATHNAME: ', pathname);
-  return ITEM_EXPRESSION_MAP[item]?.test(pathname) ?? pathname.startsWith(NAVIGATION_ITEMS_PATH_MAP[item]) 
-} 
-  //ITEM_EXPRESSION_MAP[item]?.test(pathname) ?? pathname.startsWith(NAVIGATION_ITEMS_PATH_MAP[item])
+  [NAVIGATION_ITEMS.BLOCKS]: new RegExp(/^\/explore\/blocks(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.ROUTES]: new RegExp(/^\/explore\/routes(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.EXPLORE]: new RegExp(
+    /^\/explore(\/(?!blocks|routes)([^/]+\/?)*)?$/,
+    'i'
+  ),
+  [NAVIGATION_ITEMS.FAVOURITES]: new RegExp(
+    /^\/profile\/favourites(\/.+)?$/,
+    'i'
+  )
+};
+
+const isActive = ({ pathname, item }) =>
+  ITEM_EXPRESSION_MAP[item].test(pathname);
 
 const BottomNavigationBar = (
   { breakpoint },
