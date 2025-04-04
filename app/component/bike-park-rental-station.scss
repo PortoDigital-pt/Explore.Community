@@ -161,11 +161,11 @@
               flex-grow: 1;
               color: $primary-color;
               font-family: $font-family;
-              font-size: 20px;
+              font-size: 18px;
               font-weight: $font-weight-bold;
     
               @media (min-width: 900px) {
-                font-size: $font-size-heading-s;
+                font-size: 20px;
               }
             }
 

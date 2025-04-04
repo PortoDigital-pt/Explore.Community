@@ -46,7 +46,7 @@ const Section = (
   );
 
   return (
-    <div className="section">
+    <section className="section">
       <h3 className="title">{intl.messages[title]}</h3>
       {Intro && <Intro />}
       <div className="list">
@@ -84,7 +84,7 @@ const Section = (
           {intl.messages[bottomButtonText]}
         </button>
       )}
-    </div>
+    </section>
   );
 };
 

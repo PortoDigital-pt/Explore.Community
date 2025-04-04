@@ -1,6 +1,6 @@
 import React from 'react';
-import ListPage from '../list';
+import List from '../list';
 
-const EventListPage = () => <ListPage />;
+const EventListPage = () => <List />;
 
 export default EventListPage;
