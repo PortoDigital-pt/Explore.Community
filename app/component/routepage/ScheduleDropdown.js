@@ -6,6 +6,7 @@ import Icon from '@digitransit-component/digitransit-component-icon';
 import { intlShape } from 'react-intl';
 import isEmpty from 'lodash/isEmpty';
 import { configShape } from '../../util/shapes';
+import AppIcon from '../Icon';
 
 export default function ScheduleDropdown(props, context) {
   const { alignRight, id, labelId, list, onSelectChange, title } = props;
@@ -46,7 +47,11 @@ export default function ScheduleDropdown(props, context) {
             <>
               <span>{option.label}</span>
               {option.label === title && (
-                <Icon img="check" height={1.1525} width={0.904375} />
+                <AppIcon
+                  img="icon-icon_check_new"
+                  className="schedule-dropdown-check-icon"
+                  viewBox="0 0 15 11"
+                />
               )}
             </>
           ),
