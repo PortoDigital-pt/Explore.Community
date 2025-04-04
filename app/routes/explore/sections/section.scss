@@ -50,6 +50,8 @@
           flex-wrap: nowrap;
           overflow-x: auto;
           flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
           scroll-snap-type: x mandatory;
           column-gap: 10px;
           padding: 0 18px 0 18px;

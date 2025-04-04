@@ -13,7 +13,7 @@ import ScrollableWrapper from '../../../component/ScrollableWrapper';
 import BackButton from '../../../component/BackButton';
 import FavouriteExplore from '../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../component/amporto/share-button';
-import { useSelectedData } from '../common/hooks';
+import useSelectedData from '../../../hooks/useSelectedData';
 
 const DetailsPage = (
   {

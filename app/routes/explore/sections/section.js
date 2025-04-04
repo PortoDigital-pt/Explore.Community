@@ -8,7 +8,7 @@ import { locationShape, configShape } from '../../../util/shapes';
 import Skeleton from '../../../component/amporto/skeleton';
 import Card from '../../../component/amporto/card';
 import Icon from '../../../component/Icon';
-import { useListData } from '../common/hooks';
+import useListData from '../../../hooks/useListData';
 
 const Section = (
   {

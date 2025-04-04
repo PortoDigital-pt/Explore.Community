@@ -7,19 +7,9 @@ import {
   COMMON_NAVIGATION_ITEMS_PATH_MAP
 } from '../common';
 
-const NAVIGATION_ITEMS = {
-  ...COMMON_NAVIGATION_ITEMS,
-  FAVOURITES: 'favourites'
-};
-
-const NAVIGATION_ITEMS_PATH_MAP = {
-  ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
-  [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
-};
-
 const getCurrentRoute = pathname => {
-  const path = pathname.split('/')[1];
-  return NAVIGATION_ITEMS[path?.toUpperCase()] ?? NAVIGATION_ITEMS.BROWSE;
+  const [_, first, second] = pathname.split('/');
+  return COMMON_NAVIGATION_ITEMS[second?.toUpperCase()] ?? COMMON_NAVIGATION_ITEMS[first?.toUpperCase()] ?? COMMON_NAVIGATION_ITEMS.BROWSE;
 };
 
 const DesktopNavigation = (_, { intl }) => {
@@ -28,12 +18,12 @@ const DesktopNavigation = (_, { intl }) => {
   // only show at exact path
   const canShow = useMemo(
     () =>
-      !!Object.values(NAVIGATION_ITEMS_PATH_MAP).find(
+      !!Object.values(COMMON_NAVIGATION_ITEMS_PATH_MAP).find(
         path => path === match.location.pathname
       ),
     [match.location.pathname]
   );
-
+  
   return (
     canShow && (
       <div className="desktop-navigation-content">

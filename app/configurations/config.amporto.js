@@ -254,6 +254,7 @@ export default {
     lat: 41.1533658,
     lon: -8.6046909
   },
+  defaultMapZoom: 15,
 
   useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
 

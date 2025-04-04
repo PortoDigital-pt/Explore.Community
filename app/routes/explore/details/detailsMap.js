@@ -6,7 +6,7 @@ import { mapLayerShape } from '../../../store/MapLayerStore';
 import MapWithTracking from '../../../component/map/MapWithTracking';
 import Loading from '../../../component/Loading';
 import MapRoutingButton from '../../../component/MapRoutingButton';
-import { useSelectedData } from '../common/hooks';
+import useSelectedData from '../../../hooks/useSelectedData';
 
 const DetailsPageMap = ({ language, mapLayers, getDataById }, { match }) => {
   const { selectedData, error } = useSelectedData({

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { isValidLocation } from '../../../util/amporto/geo';
+import { isValidLocation } from '../util/amporto/geo';
 
-export const useListData = ({
+const useListData = ({
   language,
   location,
   coordinatesBounds,
@@ -32,15 +32,4 @@ export const useListData = ({
   return { data, error };
 };
 
-export const useSelectedData = ({ id, language, getDataById }) => {
-  const [selectedData, setSelectedData] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    getDataById({ id, query: { language } })
-      .then(setSelectedData)
-      .catch(setError);
-  }, [id, language]);
-
-  return { selectedData, error };
-};
+export default useListData;

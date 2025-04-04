@@ -21,18 +21,21 @@ const NAVIGATION_ITEMS = {
 
 const NAVIGATION_ITEMS_PATH_MAP = {
   ...COMMON_NAVIGATION_ITEMS_PATH_MAP,
-  [NAVIGATION_ITEMS.FAVOURITES]: `/${NAVIGATION_ITEMS.FAVOURITES}`
+  [NAVIGATION_ITEMS.FAVOURITES]: `/profile/${NAVIGATION_ITEMS.FAVOURITES}`
 };
 
-const notBrowseExpression = new RegExp(
-  // eslint-disable-next-line no-useless-escape
-  `^\/(?!(${NAVIGATION_ITEMS.EXPLORE}|${NAVIGATION_ITEMS.ROUTES}|${NAVIGATION_ITEMS.BLOCKS}|${NAVIGATION_ITEMS.FAVOURITES}))(\w*)`,
-  'i'
-);
-const isActive = ({ pathname, item }) =>
-  item === NAVIGATION_ITEMS.BROWSE
-    ? notBrowseExpression.test(pathname)
-    : pathname.startsWith(`/${item}`);
+const ITEM_EXPRESSION_MAP = {
+  [NAVIGATION_ITEMS.BROWSE]: new RegExp(/^\/(?!(explore|profile))(\w*)/, 'i'),
+  [NAVIGATION_ITEMS.BLOCKS]: new RegExp(/^\/explore\/blocks$/, 'i'),
+  [NAVIGATION_ITEMS.ROUTES]: new RegExp(/^\/explore\/routes$/, 'i')
+}
+// TODO: fix
+const isActive = ({ pathname, item }) => {
+  console.log('ITEM: ', item);
+  console.log('PATHNAME: ', pathname);
+  return ITEM_EXPRESSION_MAP[item]?.test(pathname) ?? pathname.startsWith(NAVIGATION_ITEMS_PATH_MAP[item]) 
+} 
+  //ITEM_EXPRESSION_MAP[item]?.test(pathname) ?? pathname.startsWith(NAVIGATION_ITEMS_PATH_MAP[item])
 
 const BottomNavigationBar = (
   { breakpoint },
