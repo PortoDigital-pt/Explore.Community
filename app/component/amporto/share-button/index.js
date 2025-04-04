@@ -25,7 +25,7 @@ const ShareButton = ({ withBackground }, { intl }) => {
     isShareAvailable && (
       <div className="share-button-container">
         <button
-          className="btn-share"
+          className="share"
           aria-label={intl.messages['poi-share-aria-label']}
           allow="web-share"
           type="button"
@@ -40,6 +40,9 @@ const ShareButton = ({ withBackground }, { intl }) => {
             viewBox={withBackground ? '0 0 36 36' : ''}
           />
         </button>
+        {!withBackground && (
+          <p className="description">{intl.messages['share-button-label']}</p>
+        )}
       </div>
     )
   );

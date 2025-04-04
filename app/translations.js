@@ -822,6 +822,9 @@ const translations = {
   },
 
   en: {
+    'share-button-label': 'Share',
+    'favourite-button-label': 'Favourite',
+    'see-map-button-label': 'See map',
     'pois-fetch-error':
       'An error occurred while searching for points of interest. Please try again later.',
     'events-fetch-error':
@@ -5120,7 +5123,6 @@ const translations = {
 
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
-
     'weather-popup-title': 'Meteorologia na área',
     'no-favourite-pois': 'Nenhum ponto de interesse favorito',
     'no-favourite-stops': 'Sem paragens favoritas',
@@ -5228,7 +5230,9 @@ const translations = {
     'add-location-to-favourites': 'Adicione uma localização aos seus Favoritos',
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
-
+    'share-button-label': 'Partilhar',
+    'favourite-button-label': 'Favorito',
+    'see-map-button-label': 'Ver mapa',
     'pois-fetch-error':
       'Ocorreu um erro na pesquisa de pontos de interesse. Por favor tente mais tarde.',
     'events-fetch-error':

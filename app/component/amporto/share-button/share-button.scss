@@ -1,33 +1,57 @@
 .share-button-container {
+  padding: 0;
   display: flex;
   position: relative;
+  flex-direction: column;
+  row-gap: 2px;
+  justify-content: space-between;
+  align-items: center;
 
-  .icon-container {
-    svg {
+  .share {
       display: flex;
       position: relative;
-
-      &.share-with-background {
-        color: $primary-dark;
-        width: 30px;
-        height: 30px;
-
-        @media screen and (min-width: 899px) {
-          width: 40px;
-          height: 40px;
-        }
-      }
-
-      &.share {
-        color: $background-default;
-        width: 24px;
-        height: 24px;
-
-        @media screen and (min-width: 899px) {
+      padding: 0;
+      justify-content: center;
+      cursor: pointer;
+    
+      .icon {
+          display: flex;
+          position: relative;
           width: 30px;
           height: 30px;
-        }
+    
+          @media (min-width: 900px) {
+              width: 35px;
+              height: 35px;
+          }
+
+          &.share {
+            color: $background-default;
+            width: 27px;
+            height: 27px;
+
+            @media (min-width: 900px) {
+              width: 30px;
+              height: 30px;
+          }
+          }
+
+          &.share-with-background {
+            color: $primary-color;
+          }
       }
+  }
+
+  .description {
+    margin: 0;
+    display: flex;
+    position: relative;
+    color: $background-default;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-label;
+
+    @media (min-width: 900px) {
+        font-size: $font-size-s;
     }
   }
 }

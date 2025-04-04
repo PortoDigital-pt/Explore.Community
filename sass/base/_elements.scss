@@ -144,6 +144,22 @@ $border-radius-rounded: 30px;
   display: flex;
   position: relative;
   justify-content: center;
+  flex-direction: column;
+  row-gap: 2px;
+  align-items: center;
+
+  .description {
+    margin: 0;
+    display: flex;
+    position: relative;
+    color: $background-default;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-label;
+
+    @media (min-width: 900px) {
+        font-size: $font-size-s;
+    }
+  }
 
   .icon {
       display: flex;

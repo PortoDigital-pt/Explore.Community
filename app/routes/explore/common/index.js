@@ -43,7 +43,7 @@ const Content = (
       >
         {showShare && <ShareButton />}
         {onSeeOnMap && <SeeOnMapButton onClick={onSeeOnMap} />}
-        <FavouriteExplore data={data} white />
+        <FavouriteExplore data={data} white showLabel />
       </BackButton>
       <Component />
     </>

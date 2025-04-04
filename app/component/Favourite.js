@@ -18,7 +18,8 @@ export default function Favourite(
     requireLoggedIn,
     isLoggedIn,
     language,
-    white
+    white = false,
+    showLabel = false
   },
   context
 ) {
@@ -105,36 +106,43 @@ export default function Favourite(
   };
 
   return (
-    <button
-      type="button"
-      className={cx('cursor-pointer favourite-icon', className)}
-      onClick={onClick}
-      aria-label={
-        favourite && (!requireLoggedIn || isLoggedIn)
-          ? context.intl.formatMessage({
-              id: 'remove-favourite',
-              defautlMessage: 'Remove favourite selection'
-            })
-          : context.intl.formatMessage({
-              id: 'add-to-favourites',
-              defautlMessage: 'Set favourite'
-            })
-      }
-    >
-      <Icon
-        className={cx('favourite', {
-          white,
-          selected: favourite && (!requireLoggedIn || isLoggedIn)
-        })}
-        viewBox="0 0 40 40"
-        img={
+    <div className="favourite-icon">
+      <button
+        type="button"
+        className={cx('cursor-pointer', className)}
+        onClick={onClick}
+        aria-label={
           favourite && (!requireLoggedIn || isLoggedIn)
-            ? `icon-favorite-on${white ? '' : '_with_background'}`
-            : `icon-favorite-off${white ? '' : '_with_background'}`
+            ? context.intl.formatMessage({
+                id: 'remove-favourite',
+                defautlMessage: 'Remove favourite selection'
+              })
+            : context.intl.formatMessage({
+                id: 'add-to-favourites',
+                defautlMessage: 'Set favourite'
+              })
         }
-      />
-      {renderLoginModal()}
-    </button>
+      >
+        <Icon
+          className={cx('favourite', {
+            white,
+            selected: favourite && (!requireLoggedIn || isLoggedIn)
+          })}
+          viewBox="0 0 40 40"
+          img={
+            favourite && (!requireLoggedIn || isLoggedIn)
+              ? `icon-favorite-on${white ? '' : '_with_background'}`
+              : `icon-favorite-off${white ? '' : '_with_background'}`
+          }
+        />
+        {renderLoginModal()}
+      </button>
+      {showLabel && (
+        <p className="description">
+          {context.intl.messages['favourite-button-label']}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -152,7 +160,8 @@ Favourite.propTypes = {
   requireLoggedIn: PropTypes.bool.isRequired,
   isLoggedIn: PropTypes.bool,
   language: PropTypes.string,
-  white: PropTypes.bool
+  white: PropTypes.bool,
+  showLabel: PropTypes.bool
 };
 
 Favourite.defaultProps = {
