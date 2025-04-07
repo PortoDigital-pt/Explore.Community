@@ -231,16 +231,25 @@
                 padding: 0;
 
                 .contacts {
-                    .category {
+                    .categories {
                         width: fit-content;
                         display: flex;
                         position: relative;
-                        padding: 4px 8px;
-                        border-radius: 4px;
-                        background-color: #E6E6E6;
-                        color: $primary-main;
-                        font-weight: $font-weight-bold;
-                        font-size: $font-size-label;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        gap: 5px;
+
+                        .category {
+                            width: fit-content;
+                            display: flex;
+                            position: relative;
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            background-color: #E6E6E6;
+                            color: $primary-main;
+                            font-weight: $font-weight-bold;
+                            font-size: $font-size-label;
+                        }
                     }
                 }
             }

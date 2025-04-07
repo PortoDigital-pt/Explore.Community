@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, shape, number } from 'prop-types';
+import { string, func, shape, number, oneOfType, arrayOf } from 'prop-types';
 import { intlShape } from 'react-intl';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
@@ -7,6 +7,28 @@ import { getPoiById } from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
+
+const poiShape = shape({
+  type: string.isRequired,
+  id: string.isRequired,
+  address: shape({
+    streetAddress: string.isRequired,
+    streetNumber: string
+  }).isRequired,
+  category: oneOfType([string, arrayOf(string)]).isRequired,
+  contacts: shape({
+    telephone: string,
+    url: string
+  }),
+  description: string.isRequired,
+  lon: number.isRequired,
+  lat: number.isRequired,
+  name: string.isRequired,
+  priceRange: string,
+  calendar: shape(),
+  districts: arrayOf(string),
+  images: arrayOf(string)
+});
 
 const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
   <div className="mobile-view">
@@ -31,19 +53,37 @@ const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
       <div className="image" />
       <div className="details">
         <div className="contacts">
-          <div className="category">{selectedData.category}</div>
-          <div>
-            <Icon img="icon-time" viewBox="0 0 16 16" />
-            <p>No info</p>
+          <div className="categories">
+            {Array.isArray(selectedData.category) ? (
+              selectedData.category.map(category => (
+                <div key={category} className="category">
+                  {category}
+                </div>
+              ))
+            ) : (
+              <div className="category">{selectedData.category}</div>
+            )}
           </div>
+          {selectedData.calendar && (
+            <div>
+              <Icon img="icon-time" viewBox="0 0 16 16" />
+              <p>No info</p>
+            </div>
+          )}
           <div>
             <Icon img="icon-location" viewBox="0 0 16 16" />
-            <p>{selectedData.address}</p>
+            <p>{`${selectedData.address.streetAddress}${
+              selectedData.address.streetNumber
+                ? `, ${selectedData.address.streetNumber}`
+                : ''
+            }`}</p>
           </div>
-          <div>
-            <Icon img="icon-cost" viewBox="0 0 16 16" />
-            <p>No info</p>
-          </div>
+          {selectedData.priceRange && (
+            <div>
+              <Icon img="icon-cost" viewBox="0 0 16 16" />
+              <p>No info</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -61,13 +101,13 @@ const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
 
 MobileContent.propTypes = {
   onDetails: func.isRequired,
-  selectedData: shape().isRequired,
+  selectedData: poiShape.isRequired,
   distance: number
 };
 
 MobileContent.contextTypes = {
   intl: intlShape.isRequired
-}
+};
 
 export const PageContent = ({ selectedData }, { intl }) => (
   <>
@@ -77,41 +117,49 @@ export const PageContent = ({ selectedData }, { intl }) => (
         <h3>{intl.messages.about}</h3>
         <p>{selectedData.description}</p>
       </div>
-      <div className="description">
-        <h3>{intl.messages['opening-hours']}</h3>
-        <p>No information at all</p>
-      </div>
+      {selectedData.calendar && (
+        <div className="description">
+          <h3>{intl.messages['opening-hours']}</h3>
+          <p>No information at all</p>
+        </div>
+      )}
       <div className="contacts">
-        <div>
-          <Icon img="icon-cost" viewBox="0 0 16 16" />
-          <p>{`${intl.messages['poi-tickets']}: No information at all`}</p>
-        </div>
-        <div>
-          <Icon img="icon-website" viewBox="0 0 16 16" />
-          <a
-            href={selectedData.contacts?.website}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Website
-          </a>
-        </div>
-        <div>
-          <Icon img="icon-phone" viewBox="0 0 16 16" />
-          <p>{selectedData.contacts?.telephone ?? 'No information at all'}</p>
-        </div>
+        {selectedData.priceRange && (
+          <div>
+            <Icon img="icon-cost" viewBox="0 0 16 16" />
+            <p>{`${intl.messages['poi-tickets']}: No information at all`}</p>
+          </div>
+        )}
+        {selectedData.contacts?.url && (
+          <div>
+            <Icon img="icon-website" viewBox="0 0 16 16" />
+            <a
+              href={selectedData.contacts.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Website
+            </a>
+          </div>
+        )}
+        {selectedData.contacts?.telephone && (
+          <div>
+            <Icon img="icon-phone" viewBox="0 0 16 16" />
+            <p>{selectedData.contacts.telephone ?? 'No information at all'}</p>
+          </div>
+        )}
       </div>
     </div>
   </>
 );
 
 PageContent.propTypes = {
-  selectedData: shape().isRequired
+  selectedData: poiShape.isRequired
 };
 
 PageContent.contextTypes = {
   intl: intlShape.isRequired
-}
+};
 
 const PoiDetailsPage = () => (
   <Details

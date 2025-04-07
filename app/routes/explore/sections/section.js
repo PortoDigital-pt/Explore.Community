@@ -105,7 +105,6 @@ const Section = (
             close();
             navigate(selected.id);
           }}
-          modal
           PageContent={PAGE_CONTENT_TYPE_MAP[type]}
         />
       )}

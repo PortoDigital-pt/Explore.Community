@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo } from 'react';
-import { func, shape, bool } from 'prop-types';
+import { string, func, shape, bool, oneOfType, arrayOf } from 'prop-types';
 import Modal from '../../../component/amporto/modal';
 import ScrollableWrapper from '../../../component/ScrollableWrapper';
 import BackButton from '../../../component/BackButton';
@@ -7,16 +7,14 @@ import FavouriteExplore from '../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../component/amporto/share-button';
 import SeeOnMapButton from '../../../component/amporto/see-on-map-button';
 
-export const DetailsContent = (
-  {
-    data,
-    onBackBtnClick,
-    onSeeOnMap,
-    modal = false,
-    showShare = false,
-    PageContent
-  }
-) => {
+export const DetailsContent = ({
+  data,
+  onBackBtnClick,
+  onSeeOnMap,
+  modal = false,
+  showShare = false,
+  PageContent
+}) => {
   const Component = useMemo(() => {
     if (modal) {
       return () => (
@@ -34,7 +32,11 @@ export const DetailsContent = (
       <BackButton
         key={data.id}
         title={data.name}
-        subtitle={data.category}
+        subtitle={
+          Array.isArray(data.category)
+            ? data.category.join(', ')
+            : data.category
+        }
         onBackBtnClick={onBackBtnClick}
       >
         <>
@@ -49,7 +51,11 @@ export const DetailsContent = (
 };
 
 DetailsContent.propTypes = {
-  data: shape().isRequired,
+  data: shape({
+    id: string.isRequired,
+    name: string.isRequired,
+    category: oneOfType([string, arrayOf(string)]).isRequired
+  }).isRequired,
   onBackBtnClick: func,
   onSeeOnMap: func,
   modal: bool,
@@ -57,9 +63,14 @@ DetailsContent.propTypes = {
   PageContent: func.isRequired
 };
 
-export const DetailsContentModal = (
-  { isOpen, data, onBackBtnClick, PageContent, showShare, onSeeOnMap }
-) => (
+export const DetailsContentModal = ({
+  isOpen,
+  data,
+  onBackBtnClick,
+  PageContent,
+  showShare,
+  onSeeOnMap
+}) => (
   <Suspense fallback="">
     <Modal
       isOpen={isOpen}
@@ -82,7 +93,11 @@ export const DetailsContentModal = (
 
 DetailsContentModal.propTypes = {
   isOpen: bool.isRequired,
-  data: shape().isRequired,
+  data: shape({
+    id: string.isRequired,
+    name: string.isRequired,
+    category: oneOfType([string, arrayOf(string)]).isRequired
+  }).isRequired,
   onBackBtnClick: func,
   onSeeOnMap: func,
   showShare: bool,

@@ -93,7 +93,17 @@ const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
       <div className="image" />
       <div className="details">
         <div className="contacts">
-          <div className="category">{selectedData.category}</div>
+          <div className="categories">
+            {Array.isArray(selectedData.category) ? (
+              selectedData.category.map(category => (
+                <div key={category} className="category">
+                  {category}
+                </div>
+              ))
+            ) : (
+              <div className="category">{selectedData.category}</div>
+            )}
+          </div>
           <div className="dates">
             <DateSection
               startDate={selectedData.startDate}
@@ -133,9 +143,12 @@ MobileContent.propTypes = {
 
 MobileContent.contextTypes = {
   intl: intlShape.isRequired
-}
+};
 
-export const PageContent = ({ selectedData }, { intl, config: { culturalAgendaLink } }) => (
+export const PageContent = (
+  { selectedData },
+  { intl, config: { culturalAgendaLink } }
+) => (
   <>
     <div className="image" />
     <div className="details">
@@ -174,8 +187,8 @@ PageContent.propTypes = {
 
 PageContent.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
-}
+  config: configShape.isRequired
+};
 
 const EventDetailsPage = () => (
   <Details

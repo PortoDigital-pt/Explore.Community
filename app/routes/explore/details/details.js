@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { string, func } from 'prop-types';
-import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
-import { locationShape, configShape } from '../../../util/shapes';
+import { locationShape } from '../../../util/shapes';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
 import useModal from '../../../hooks/useModal';
@@ -21,7 +20,7 @@ const DetailsPage = (
     PageContent,
     MobileContent
   },
-  { config, match, router, intl, executeAction }
+  { match, router, executeAction }
 ) => {
   const { isOpen, open, close } = useModal();
   const { selectedData, error } = useSelectedData({
@@ -57,7 +56,6 @@ const DetailsPage = (
         <MobileContent
           onDetails={open}
           selectedData={selectedData}
-          intl={intl}
           distance={distanceToDataPoint}
         />
       )}
@@ -66,8 +64,6 @@ const DetailsPage = (
           isOpen={isOpen}
           data={selectedData}
           onBackBtnClick={close}
-          link={config.culturalAgendaLink}
-          modal
           showShare
           PageContent={PageContent}
         />
@@ -79,8 +75,6 @@ const DetailsPage = (
 DetailsPage.contextTypes = {
   match: matchShape.isRequired,
   router: routerShape.isRequired,
-  config: configShape.isRequired,
-  intl: intlShape.isRequired,
   executeAction: func.isRequired
 };
 
