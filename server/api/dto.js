@@ -11,7 +11,8 @@ const extractValuesAndDecode = values => {
   }
 
   if (Array.isArray(values)) {
-    return values.map(item => decode(item));
+    const result = values.filter(item => !!item).map(decode);
+    return result.length > 0 ? result : null;
   }
 
   return Object.entries(values).reduce((acc, [key, value]) => {
@@ -25,7 +26,7 @@ const extractValuesAndDecode = values => {
     if (Array.isArray(value)) {
       return {
         ...acc,
-        [key]: value.map(item => decode(item))
+        [key]: value.map(decode)
       };
     }
 
@@ -44,14 +45,14 @@ export const poiToDto = (poi, language) => {
     contactPoint,
     description_lang,
     location,
-    name_lang
-    // priceRange,
-    // calendar,
-    // districtGroups,
-    // image
-    // extraImages
+    name_lang,
+    priceRange,
+    calendar,
+    districtGroups,
+    image,
+    extraImages
   } = poi;
-
+  
   return {
     type: 'pois',
     id,
@@ -68,10 +69,10 @@ export const poiToDto = (poi, language) => {
     name: extractValuesAndDecode(
       name_lang.value[language] || name_lang.value.pt
     ),
-    priceRange: null, // priceRange.value
-    calendar: null, // calendar.value
-    districts: null, // districtGroups.value
-    images: null // [image.value, ...extraImages.value] TODO: set to null if resulting is empty
+    priceRange: extractValuesAndDecode(priceRange.value),
+    calendar: extractValuesAndDecode(calendar.value),
+    districts: extractValuesAndDecode(districtGroups.value),
+    images: extractValuesAndDecode([image.value, ...extraImages.value])
   };
 };
 

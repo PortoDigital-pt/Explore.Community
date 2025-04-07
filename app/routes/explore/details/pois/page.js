@@ -8,6 +8,9 @@ import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 
+// TODO: calendar logic
+// TODO: images
+
 const poiShape = shape({
   type: string.isRequired,
   id: string.isRequired,
@@ -81,7 +84,7 @@ const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
           {selectedData.priceRange && (
             <div>
               <Icon img="icon-cost" viewBox="0 0 16 16" />
-              <p>No info</p>
+              <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
             </div>
           )}
         </div>
@@ -127,7 +130,7 @@ export const PageContent = ({ selectedData }, { intl }) => (
         {selectedData.priceRange && (
           <div>
             <Icon img="icon-cost" viewBox="0 0 16 16" />
-            <p>{`${intl.messages['poi-tickets']}: No information at all`}</p>
+            <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
           </div>
         )}
         {selectedData.contacts?.url && (
