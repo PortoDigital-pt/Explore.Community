@@ -381,51 +381,63 @@ export default {
     },
     pois: {
       fadoHouse: {
-        pt: 'Casas%20de%20Fado',
+        pt: 'Casas de Fado',
         en: 'Fado Houses'
       },
       wineCellarsAndFarms: {
-        pt: 'Caves%20de%20Vinhos%20e%20Quintas',
+        pt: 'Caves de Vinhos e Quintas',
         en: 'Wine Cellars and Farms'
       },
       exhibitionCentersAndArtGalleries: {
-        pt: 'Centros%20de%20exposições%20%26%20Galerias%20de%20arte',
-        en: 'Exhibition Centers and Art Galleries'
+        pt: 'Centros de exposições & Galerias de arte',
+        en: 'Exhibition Centers & Art Galleries'
       },
       statuesSculpturesAndFountains: {
-        pt: 'Estátuas,%20Esculturas%20e%20Fontes',
+        pt: 'Estátuas, Esculturas e Fontes',
         en: 'Statues, Sculptures and Fountains'
       },
       marinasAndPorts: {
-        pt: 'Marinas%20e%20Portos',
+        pt: 'Marinas e Portos',
         en: 'Marinas and Ports'
       },
-      viewpoints: { pt: 'Miradouros', en: 'Viewpoints' },
-      monuments: { pt: 'Monumentos', en: 'Monuments' },
+      viewpoints: {
+        pt: 'Miradouros',
+        en: 'Viewpoints'
+      },
+      monuments: {
+        pt: 'Monumentos',
+        en: 'Monuments'
+      },
       museumsAndThematicCenters: {
-        pt: 'Museus%20e%20Centros%20Temáticos',
+        pt: 'Museus e Centros Temáticos',
         en: 'Museums and Thematic Centers'
       },
       parksAndGardens: {
-        pt: 'Parques%20e%20Jardins',
+        pt: 'Parques e Jardins',
         en: 'Parks and Gardens'
       },
-      bridges: { pt: 'Pontes', en: 'Bridges' },
+      bridges: {
+        pt: 'Pontes',
+        en: 'Bridges'
+      },
       tourismOffices: {
-        pt: 'Postos%20de%20Turismo',
+        pt: 'Postos de Turismo',
         en: 'Tourism Offices'
       },
       streetsAndSquares: {
-        pt: 'Ruas%20e%20Praças',
+        pt: 'Ruas e Praças',
         en: 'Streets and Squares'
       },
       concertHalls: {
-        pt: 'Salas%20de%20Concerto',
+        pt: 'Salas de Concerto',
         en: 'Concert Halls'
       },
-      theaters: { pt: 'Teatros', en: 'Theaters' },
+      theaters: {
+        pt: 'Teatros',
+        en: 'Theaters'
+      },
       religiousTemples: {
-        pt: 'Templos%20Religiosos',
+        pt: 'Templos Religiosos',
         en: 'Religious Temples'
       }
     },

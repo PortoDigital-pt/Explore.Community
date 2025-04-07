@@ -49,7 +49,8 @@ export const poiToDto = (poi, language) => {
     // priceRange,
     // calendar,
     // districtGroups,
-    // images
+    // image
+    // extraImages
   } = poi;
 
   return {
@@ -71,7 +72,7 @@ export const poiToDto = (poi, language) => {
     priceRange: null, // priceRange.value
     calendar: null, // calendar.value
     districts: null, // districtGroups.value
-    images: null // images.value
+    images: null // [image.value, ...extraImages.value] TODO: set to null if resulting is empty
   };
 };
 
