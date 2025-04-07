@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, func, oneOfType, object, node } from 'prop-types';
 import { routerShape, matchShape } from 'found';
 import { intlShape } from 'react-intl';
 import { configShape } from '../util/shapes';
@@ -14,13 +14,13 @@ export default class BackButton extends React.Component {
   };
 
   static propTypes = {
-    icon: PropTypes.string,
-    color: PropTypes.string,
-    title: PropTypes.string,
-    onBackBtnClick: PropTypes.func,
-    fallback: PropTypes.string,
-    subtitle: PropTypes.string,
-    children: PropTypes.func
+    icon: string,
+    color: string,
+    title: string,
+    onBackBtnClick: func,
+    fallback: string,
+    subtitle: string,
+    children: oneOfType([node, func, object])
   };
 
   static defaultProps = {

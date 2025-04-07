@@ -8,7 +8,7 @@ import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 
-const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
+const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
   <div className="mobile-view">
     <div className="header">
       <div className="top">
@@ -61,12 +61,15 @@ const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
 
 MobileContent.propTypes = {
   onDetails: func.isRequired,
-  intl: intlShape.isRequired,
   selectedData: shape().isRequired,
   distance: number
 };
 
-export const PageContent = ({ selectedData, intl }) => (
+MobileContent.contextTypes = {
+  intl: intlShape.isRequired
+}
+
+export const PageContent = ({ selectedData }, { intl }) => (
   <>
     <div className="image" />
     <div className="details">
@@ -103,9 +106,12 @@ export const PageContent = ({ selectedData, intl }) => (
 );
 
 PageContent.propTypes = {
-  selectedData: shape().isRequired,
-  intl: intlShape.isRequired
+  selectedData: shape().isRequired
 };
+
+PageContent.contextTypes = {
+  intl: intlShape.isRequired
+}
 
 const PoiDetailsPage = () => (
   <Details

@@ -27,7 +27,7 @@ const Section = (
     emptyMessage,
     Intro
   },
-  { intl, config: { coordinatesBounds, culturalAgendaLink } }
+  { intl, config: { coordinatesBounds } }
 ) => {
   const { data, error } = useListData({
     language,
@@ -105,7 +105,6 @@ const Section = (
             close();
             navigate(selected.id);
           }}
-          link={culturalAgendaLink}
           modal
           PageContent={PAGE_CONTENT_TYPE_MAP[type]}
         />
