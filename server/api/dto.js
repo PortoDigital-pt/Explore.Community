@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-
 const decode = value => decodeURIComponent(decodeURIComponent(value));
 
 const extractValuesAndDecode = values => {

@@ -470,7 +470,10 @@ export default {
     }
   },
   ngsi: {
-    dataProvider: '.*api.ropi.porto.digital.*'
+    dataProvider: {
+      pois: 'http:%2F%2Fcitysdk.url.pt%2Fpois%2F,https:%2F%2Fcity-api.wearebitmaker.com%2FCitySDK%2Fpois',
+      events: ''
+    }
   },
   coordinatesBounds: {
     minLat,
