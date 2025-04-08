@@ -8,8 +8,6 @@ import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 
-// TODO: images
-
 const poiShape = shape({
   type: string.isRequired,
   id: string.isRequired,
@@ -52,7 +50,11 @@ const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
       </div>
     </div>
     <div className="content">
-      <div className="image" />
+      <div className="image">
+        {selectedData.images && (
+          <img src={selectedData.images[0]} alt={selectedData.name} />
+        )}
+      </div>
       <div className="details">
         <div className="contacts">
           <div className="categories">
@@ -117,7 +119,13 @@ MobileContent.contextTypes = {
 
 export const PageContent = ({ selectedData }, { intl }) => (
   <>
-    <div className="image" />
+    <div className="image">
+      {
+        selectedData.images && (
+          <img src={selectedData.images[0]} alt={selectedData.name} />
+        ) /* TODO: change to slider */
+      }
+    </div>
     <div className="details">
       <div className="description">
         <h3>{intl.messages.about}</h3>

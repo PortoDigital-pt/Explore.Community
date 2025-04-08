@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { string, shape, number, func } from 'prop-types';
+import { string, shape, number, func, arrayOf, oneOfType } from 'prop-types';
 import FavouriteExplore from '../../FavouriteExploreContainer';
 
 const Card = ({ className, data, onClick }) => (
@@ -19,12 +19,24 @@ const Card = ({ className, data, onClick }) => (
     <div className="favourite-top">
       <FavouriteExplore data={data} white />
     </div>
-    <div className="image-cover" />
+    <div className="image-cover">
+      {data.images && <img src={data.images[0]} alt={data.name} />}
+    </div>
     <div className="content">
-      <h3>{data.name}</h3>
+      <div className="card-title">
+        <h3>{data.name}</h3>
+      </div>
+      {/* <div className="details">details</div> */}
       <div className="categories">
-        {data.type === 'events' && <div className="details">event details</div>}
-        <div className="category">{data.category}</div>
+        {Array.isArray(data.category) ? (
+          data.category.map(category => (
+            <div key={category} className="category">
+              {category}
+            </div>
+          ))
+        ) : (
+          <div className="category">{data.category}</div>
+        )}
       </div>
     </div>
   </div>
@@ -37,7 +49,8 @@ Card.propTypes = {
     type: string.isRequired,
     name: string.isRequired,
     id: string.isRequired,
-    category: string.isRequired,
+    images: arrayOf(string).isRequired,
+    category: oneOfType([string, arrayOf(string)]).isRequired,
     lat: number.isRequired,
     lon: number.isRequired
   }).isRequired

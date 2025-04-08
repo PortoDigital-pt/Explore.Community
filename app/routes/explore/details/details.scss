@@ -58,11 +58,17 @@
         display: flex;
         position: relative;
         width: 100%;
-        min-height: 175px; // will be auto once image exists
+        height: 175px; // will be auto once image exists
         background: black;
 
         @media (min-width: 900px) {
-            min-height: 270px;
+            height: 270px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 
