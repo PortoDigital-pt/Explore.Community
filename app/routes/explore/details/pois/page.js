@@ -8,7 +8,6 @@ import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 
-// TODO: calendar logic
 // TODO: images
 
 const poiShape = shape({
@@ -28,7 +27,7 @@ const poiShape = shape({
   lat: number.isRequired,
   name: string.isRequired,
   priceRange: string,
-  calendar: shape(),
+  calendar: arrayOf(string),
   districts: arrayOf(string),
   images: arrayOf(string)
 });
@@ -70,7 +69,11 @@ const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
           {selectedData.calendar && (
             <div>
               <Icon img="icon-time" viewBox="0 0 16 16" />
-              <p>No info</p>
+              <div className="schedule">
+                {selectedData.calendar.map(schedule => (
+                  <p key={schedule}>{schedule}</p>
+                ))}
+              </div>
             </div>
           )}
           <div>
@@ -123,7 +126,9 @@ export const PageContent = ({ selectedData }, { intl }) => (
       {selectedData.calendar && (
         <div className="description">
           <h3>{intl.messages['opening-hours']}</h3>
-          <p>No information at all</p>
+          {selectedData.calendar.map(schedule => (
+            <p key={schedule}>{schedule}</p>
+          ))}
         </div>
       )}
       <div className="contacts">

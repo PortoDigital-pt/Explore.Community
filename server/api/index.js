@@ -38,7 +38,7 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
               ].pt
             }'`
         );
-     
+
       const categoriesQueryValue =
         data.type === 'PointOfInterest'
           ? `category_lang.pt==${mappedCategories.join(',')}${
@@ -53,7 +53,7 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
 
     query.set(key, value.toString());
   });
-  
+
   return query.toString();
 };
 

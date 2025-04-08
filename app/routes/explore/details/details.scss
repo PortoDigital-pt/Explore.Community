@@ -145,7 +145,6 @@
                 flex-direction: row;
                 column-gap: 8px;
                 justify-content: flex-start;
-                align-items: center;
 
                 .icon {
                     display: flex;
@@ -250,6 +249,14 @@
                             font-weight: $font-weight-bold;
                             font-size: $font-size-label;
                         }
+                    }
+
+                    .schedule {
+                        display: flex;
+                        position: relative;
+                        flex-direction: column;
+                        gap: 5px;
+                        align-items: flex-start;
                     }
                 }
             }

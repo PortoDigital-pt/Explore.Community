@@ -18,12 +18,12 @@ const mapCategoryDescriptionToId = (
   if (category_lang) {
     value = JSON.parse(category_lang).pt;
   }
-  
+
   const [categoryKey] = Object.entries(filters[type]).find(
     // eslint-disable-next-line no-unused-vars
-    ([_, { pt }]) => Array.isArray(value) ? value.includes(pt) : pt === value
+    ([_, { pt }]) => (Array.isArray(value) ? value.includes(pt) : pt === value)
   ) ?? [null];
-  
+
   return categoryKey;
 };
 

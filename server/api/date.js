@@ -22,3 +22,63 @@ export const getDateInFutureDays = days =>
         days * HOURS_PER_DAY * MINUTES_PER_HOUR * MILLISECONDS_PER_MINUTE
     ).toISOString()
   );
+
+const DAYS_LANG_MAP = {
+  monday: { pt: 'Segunda', en: 'Monday' },
+  tuesday: { pt: 'Terça', en: 'Tuesday' },
+  wednesday: { pt: 'Quarta', en: 'Wednesday' },
+  thursday: { pt: 'Quinta', en: 'Thursday' },
+  friday: { pt: 'Sexta', en: 'Friday' },
+  saturday: { pt: 'Sábado', en: 'Saturday' },
+  sunday: { pt: 'Domingo', en: 'Sunday' }
+};
+
+const formatCalendarHours = hours => `${hours.slice(0, 2)}:${hours.slice(2)}`;
+
+const areDaysSequential = (days, language) => {
+  const dayOrder = Object.values(DAYS_LANG_MAP).map(day => day[language]);
+  const indexes = days.map(day => dayOrder.indexOf(day));
+
+  for (let i = 1; i < indexes.length; i++) {
+    if (indexes[i] !== indexes[i - 1] + 1) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+export const formatCalendar = (calendar, language) => {
+  const group = Object.entries(DAYS_LANG_MAP).reduce((acc, [day, label]) => {
+    if (calendar[day].length === 0) {
+      return acc;
+    }
+
+    const openingHours = calendar[day]
+      .map(
+        schedule =>
+          `${formatCalendarHours(schedule.start)}–${formatCalendarHours(
+            schedule.finish
+          )}`
+      )
+      .join(', ');
+    return {
+      ...acc,
+      [openingHours]: [...(acc[openingHours] ?? []), label[language]]
+    };
+  }, {});
+
+  const parsed = Object.entries(group).map(([openingHours, labels]) => {
+    if (labels.length === 1) {
+      return `${labels[0]} ${openingHours}`;
+    }
+
+    if (areDaysSequential(labels, language)) {
+      return `${labels[0]} - ${labels[labels.length - 1]} ${openingHours}`;
+    }
+
+    return `${labels.join(', ')} ${openingHours}`;
+  });
+
+  return parsed.length > 0 ? parsed : null;
+};

@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+import { formatCalendar } from './date';
+
 const decode = value => decodeURIComponent(decodeURIComponent(value));
 
 const extractValuesAndDecode = values => {
@@ -52,7 +54,7 @@ export const poiToDto = (poi, language) => {
     image,
     extraImages
   } = poi;
-  
+
   return {
     type: 'pois',
     id,
@@ -70,7 +72,7 @@ export const poiToDto = (poi, language) => {
       name_lang.value[language] || name_lang.value.pt
     ),
     priceRange: extractValuesAndDecode(priceRange.value),
-    calendar: extractValuesAndDecode(calendar.value),
+    calendar: formatCalendar(calendar.value, language),
     districts: extractValuesAndDecode(districtGroups.value),
     images: extractValuesAndDecode([image.value, ...extraImages.value])
   };
