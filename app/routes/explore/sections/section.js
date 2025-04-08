@@ -78,6 +78,7 @@ const Section = (
                 open();
               }}
               data={item}
+              type={type}
             />
           ))
         )}
