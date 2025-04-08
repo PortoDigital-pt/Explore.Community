@@ -145,6 +145,33 @@ MobileContent.contextTypes = {
   intl: intlShape.isRequired
 };
 
+export const EventContactDetails = ({ selectedData }, { intl }) => (
+  <div className="contacts">
+    <div className="dates">
+      <DateSection
+        startDate={selectedData.startDate}
+        endDate={selectedData.endDate}
+      />
+    </div>
+    <div>
+      <Icon img="icon-location" viewBox="0 0 16 16" />
+      <p>{selectedData.address}</p>
+    </div>
+    <div>
+      <Icon img="icon-cost" viewBox="0 0 16 16" />
+      <p>{`${getPrice(selectedData) ?? intl.messages['free-of-charge']}`}</p>
+    </div>
+  </div>
+);
+
+EventContactDetails.propTypes = {
+  selectedData: shape().isRequired
+};
+
+EventContactDetails.contextTypes = {
+  intl: intlShape.isRequired
+};
+
 export const PageContent = (
   { selectedData },
   { intl, config: { culturalAgendaLink } }
@@ -152,24 +179,7 @@ export const PageContent = (
   <>
     <div className="image" />
     <div className="details">
-      <div className="contacts">
-        <div className="dates">
-          <DateSection
-            startDate={selectedData.startDate}
-            endDate={selectedData.endDate}
-          />
-        </div>
-        <div>
-          <Icon img="icon-location" viewBox="0 0 16 16" />
-          <p>{selectedData.address}</p>
-        </div>
-        <div>
-          <Icon img="icon-cost" viewBox="0 0 16 16" />
-          <p>{`${
-            getPrice(selectedData) ?? intl.messages['free-of-charge']
-          }`}</p>
-        </div>
-      </div>
+      <EventContactDetails selectedData={selectedData} />
       <div className="description">
         <h3>{intl.messages.about}</h3>
         <p>{selectedData.description ?? 'No information at all'}</p>
