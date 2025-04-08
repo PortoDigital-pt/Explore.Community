@@ -57,22 +57,33 @@
         justify-content: space-between;
         padding: 12px;
 
-        h3 {
-            display: flex;
+        .card-title {
             position: relative;
-            margin: 0;
-            font-size: $font-size-base;
-            line-height: 18px;
-            font-weight: $font-weight-bold;
-            color: $primary-color;
-            text-align: left;
+            display: flex;
+            overflow: hidden;
+           
+            h3 {
+                margin: 0;
+                font-size: $font-size-base;
+                line-height: 18px;
+                font-weight: $font-weight-bold;
+                color: $primary-color;
+                text-align: left;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
-    
+        
         .categories {
+            width: fit-content;
             display: flex;
             position: relative;
-            flex-direction: column;
-            row-gap: 4px;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 5px;
 
             .category {
                 width: fit-content;

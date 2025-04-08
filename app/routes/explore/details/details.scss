@@ -58,11 +58,17 @@
         display: flex;
         position: relative;
         width: 100%;
-        min-height: 175px; // will be auto once image exists
+        height: 175px; // will be auto once image exists
         background: black;
 
         @media (min-width: 900px) {
-            min-height: 270px;
+            height: 270px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 
@@ -145,7 +151,6 @@
                 flex-direction: row;
                 column-gap: 8px;
                 justify-content: flex-start;
-                align-items: center;
 
                 .icon {
                     display: flex;
@@ -231,16 +236,33 @@
                 padding: 0;
 
                 .contacts {
-                    .category {
+                    .categories {
                         width: fit-content;
                         display: flex;
                         position: relative;
-                        padding: 4px 8px;
-                        border-radius: 4px;
-                        background-color: #E6E6E6;
-                        color: $primary-main;
-                        font-weight: $font-weight-bold;
-                        font-size: $font-size-label;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        gap: 5px;
+
+                        .category {
+                            width: fit-content;
+                            display: flex;
+                            position: relative;
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            background-color: #E6E6E6;
+                            color: $primary-main;
+                            font-weight: $font-weight-bold;
+                            font-size: $font-size-label;
+                        }
+                    }
+
+                    .schedule {
+                        display: flex;
+                        position: relative;
+                        flex-direction: column;
+                        gap: 5px;
+                        align-items: flex-start;
                     }
                 }
             }

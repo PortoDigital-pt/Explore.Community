@@ -3,6 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import { string, func, shape, number } from 'prop-types';
 import { intlShape } from 'react-intl';
+import { configShape } from '../../../../util/shapes';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
 import { getEventById } from '../../../../util/amporto/api';
@@ -69,7 +70,7 @@ DateSection.propTypes = {
   endDate: string
 };
 
-const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
+const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
   <div className="mobile-view">
     <div className="header">
       <div className="top">
@@ -92,7 +93,17 @@ const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
       <div className="image" />
       <div className="details">
         <div className="contacts">
-          <div className="category">{selectedData.category}</div>
+          <div className="categories">
+            {Array.isArray(selectedData.category) ? (
+              selectedData.category.map(category => (
+                <div key={category} className="category">
+                  {category}
+                </div>
+              ))
+            ) : (
+              <div className="category">{selectedData.category}</div>
+            )}
+          </div>
           <div className="dates">
             <DateSection
               startDate={selectedData.startDate}
@@ -126,12 +137,18 @@ const MobileContent = ({ onDetails, intl, selectedData, distance }) => (
 
 MobileContent.propTypes = {
   onDetails: func.isRequired,
-  intl: intlShape.isRequired,
   selectedData: shape().isRequired,
   distance: number
 };
 
-export const PageContent = ({ selectedData, intl, link }) => (
+MobileContent.contextTypes = {
+  intl: intlShape.isRequired
+};
+
+export const PageContent = (
+  { selectedData },
+  { intl, config: { culturalAgendaLink } }
+) => (
   <>
     <div className="image" />
     <div className="details">
@@ -156,7 +173,7 @@ export const PageContent = ({ selectedData, intl, link }) => (
       <div className="description">
         <h3>{intl.messages.about}</h3>
         <p>{selectedData.description ?? 'No information at all'}</p>
-        <a href={link} target="_blank" rel="noopener noreferrer">
+        <a href={culturalAgendaLink} target="_blank" rel="noopener noreferrer">
           {intl.messages['know-more']}
         </a>
       </div>
@@ -165,9 +182,12 @@ export const PageContent = ({ selectedData, intl, link }) => (
 );
 
 PageContent.propTypes = {
-  selectedData: shape().isRequired,
+  selectedData: shape().isRequired
+};
+
+PageContent.contextTypes = {
   intl: intlShape.isRequired,
-  link: string.isRequired
+  config: configShape.isRequired
 };
 
 const EventDetailsPage = () => (

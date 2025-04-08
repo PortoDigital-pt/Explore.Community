@@ -21,7 +21,7 @@ const mapCategoryDescriptionToId = (
 
   const [categoryKey] = Object.entries(filters[type]).find(
     // eslint-disable-next-line no-unused-vars
-    ([_, { pt }]) => pt === value
+    ([_, { pt }]) => (Array.isArray(value) ? value.includes(pt) : pt === value)
   ) ?? [null];
 
   return categoryKey;

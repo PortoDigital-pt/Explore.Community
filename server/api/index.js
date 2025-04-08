@@ -41,8 +41,8 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
 
       const categoriesQueryValue =
         data.type === 'PointOfInterest'
-          ? `category_lang.pt==${mappedCategories}${
-              dataProvider ? `;dataProvider~=${dataProvider}` : ''
+          ? `category_lang.pt==${mappedCategories.join(',')}${
+              dataProvider ? `;dataProvider==${dataProvider.pois}` : ''
             }`
           : `category==${mappedCategories};endDate>='${getDate()}';startDate<='${getDateInFutureDays(
               7
