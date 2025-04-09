@@ -5,15 +5,13 @@ import { matchShape } from 'found';
 import { intlShape } from 'react-intl';
 import MapWithTracking from './MapWithTracking';
 import { sameLocations } from '../../util/path';
-import OriginStore from '../../store/OriginStore';
-import DestinationStore from '../../store/DestinationStore';
 import LazilyLoad, { importLazy } from '../LazilyLoad';
 import { configShape, locationShape } from '../../util/shapes';
 import storeOrigin from '../../action/originActions';
 import storeDestination from '../../action/destinationActions';
 // eslint-disable-next-line import/no-named-as-default
 import { mapLayerShape } from '../../store/MapLayerStore';
-import CookieSettingsButton from '../CookieSettingsButton';
+import { isValidLocation } from '../../util/amporto/geo';
 
 const locationMarkerModules = {
   LocationMarker: () =>
@@ -24,7 +22,7 @@ let focus = {};
 const mwtProps = {};
 
 function IndexPageMap(
-  { match, origin, destination, mapLayers },
+  { location, match, origin, destination, mapLayers },
   { config, executeAction }
 ) {
   let newFocus = {};
@@ -36,7 +34,8 @@ function IndexPageMap(
     newFocus = destination;
   } else if (!match.params.from && !match.params.to) {
     // use default location only if url does not include location
-    newFocus = config.defaultEndpoint;
+    const isValid = isValidLocation(location, config.coordinatesBounds)
+    newFocus = isValid ? location : config.defaultEndpoint;
     zoom = config.defaultMapZoom;
   }
 
@@ -86,8 +85,6 @@ function IndexPageMap(
   };
 
   return (
-    <>
-      {config.useCookiesPrompt && <CookieSettingsButton />}
       <MapWithTracking
         {...mwtProps}
         mapLayers={mapLayers}
@@ -96,11 +93,11 @@ function IndexPageMap(
         onSelectLocation={selectLocation}
         vehicles
       />
-    </>
   );
 }
 
 IndexPageMap.propTypes = {
+  location: locationShape.isRequired,
   match: matchShape.isRequired,
   lang: PropTypes.string.isRequired,
   origin: locationShape,
@@ -121,19 +118,14 @@ IndexPageMap.contextTypes = {
 
 const IndexPageMapWithStores = connectToStores(
   IndexPageMap,
-  [OriginStore, DestinationStore, 'PreferencesStore', 'MapLayerStore'],
-  ({ getStore }) => {
-    const origin = getStore(OriginStore).getOrigin();
-    const destination = getStore(DestinationStore).getDestination();
-    const lang = getStore('PreferencesStore').getLanguage();
-
-    return {
-      origin,
-      destination,
-      lang,
+  ['PositionStore', 'OriginStore', 'DestinationStore', 'PreferencesStore', 'MapLayerStore'],
+  ({ getStore }) => ({
+      location: getStore('PositionStore').getLocationState(),
+      origin:  getStore('OriginStore').getOrigin(),
+      destination: getStore('DestinationStore').getDestination(),
+      lang: getStore('PreferencesStore').getLanguage(),
       mapLayers: getStore('MapLayerStore').getMapLayers()
-    };
-  }
+    })
 );
 
 export { IndexPageMapWithStores as default, IndexPageMap as Component };

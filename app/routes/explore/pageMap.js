@@ -10,6 +10,7 @@ import { configShape, locationShape } from '../../util/shapes';
 import storeOrigin from '../../action/originActions';
 import storeDestination from '../../action/destinationActions';
 import { mapLayerShape } from '../../store/MapLayerStore';
+import { isValidLocation } from '../../util/amporto/geo';
 
 const locationMarkerModules = {
   LocationMarker: () =>
@@ -22,7 +23,7 @@ let focus = {};
 const mwtProps = {};
 
 const PageMap = (
-  { match, origin, destination, mapLayers },
+  { location, match, origin, destination, mapLayers },
   { config, executeAction }
 ) => {
   let newFocus = {};
@@ -33,8 +34,8 @@ const PageMap = (
   } else if (destination.lat) {
     newFocus = destination;
   } else if (!match.params.from && !match.params.to) {
-    // use default location only if url does not include location
-    newFocus = config.defaultEndpoint;
+    const isValid = isValidLocation(location, config.coordinatesBounds)
+    newFocus = isValid ? location : config.defaultEndpoint;
     zoom = config.defaultMapZoom;
   }
 
@@ -96,6 +97,7 @@ const PageMap = (
 };
 
 PageMap.propTypes = {
+  location: locationShape.isRequired,
   match: matchShape.isRequired,
   origin: locationShape,
   destination: locationShape,
@@ -115,8 +117,9 @@ PageMap.contextTypes = {
 
 export default connectToStores(
   PageMap,
-  ['OriginStore', 'DestinationStore', 'MapLayerStore'],
+  ['PositionStore', 'OriginStore', 'DestinationStore', 'MapLayerStore'],
   ({ getStore }) => ({
+    location: getStore('PositionStore').getLocationState(),
     origin: getStore('OriginStore').getOrigin(),
     destination: getStore('DestinationStore').getDestination(),
     mapLayers: getStore('MapLayerStore').getMapLayers()
