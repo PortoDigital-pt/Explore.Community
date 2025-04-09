@@ -46,6 +46,11 @@ const BottomNavigationBar = (
 ) => {
   const [client, setClient] = useState(false);
   const { match, router } = useRouter();
+
+  const canShow = useMemo(
+    () => !match.location.pathname.startsWith('/profile'),
+    [match.location.pathname]
+  );
   const navigationItems = useMemo(
     () =>
       generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),
@@ -70,7 +75,7 @@ const BottomNavigationBar = (
   return (
     <nav
       className={classnames('navbar', {
-        hide: breakpoint === 'large' 
+        hide: breakpoint === 'large' || !canShow
       })}
     >
       {Object.values(navigationItems).map(item => (
