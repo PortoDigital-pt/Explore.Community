@@ -5,43 +5,33 @@ import {
   getComponentOrLoadingRenderer
 } from '../../util/routerUtils';
 
-const explorePageComponents = {
-  content: (
-    <Route
-      getComponent={() =>
-        import(/* webpackChunkName: "explore" */ './page').then(getDefault)
-      }
-    />
-  ),
-  map: (
-    <Route
-      disableMapOnMobile={false}
-      getComponent={() =>
-        import(/* webpackChunkName: "explore-map" */ './pageMap').then(
-          getDefault
-        )
-      }
-    />
-  )
-};
-
 export default config => {
   const { routes, blocks } = config.optionalNavigationItems;
 
   return (
     <Route path="/explore">
-      <Route path="/">{explorePageComponents}</Route>
-      <Route
-        path={`${
-          config.indexPath === '' ? '' : `/${config.indexPath}`
-        }/:from/-`}
-      >
-        {explorePageComponents}
-      </Route>
-      <Route
-        path={`${config.indexPath === '' ? '' : `/${config.indexPath}`}/-/:to`}
-      >
-        {explorePageComponents}
+      <Route path="/">
+        {{
+          content: (
+            <Route
+              getComponent={() =>
+                import(/* webpackChunkName: "explore" */ './page').then(
+                  getDefault
+                )
+              }
+            />
+          ),
+          map: (
+            <Route
+              disableMapOnMobile={false}
+              getComponent={() =>
+                import(/* webpackChunkName: "explore-map" */ './pageMap').then(
+                  getDefault
+                )
+              }
+            />
+          )
+        }}
       </Route>
       <Route path="pois">
         <Route path="/">

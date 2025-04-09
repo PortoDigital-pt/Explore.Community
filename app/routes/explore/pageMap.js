@@ -5,26 +5,16 @@ import { matchShape } from 'found';
 import { intlShape } from 'react-intl';
 import MapWithTracking from '../../component/map/MapWithTracking';
 import { sameLocations } from '../../util/path';
-import LazilyLoad, { importLazy } from '../../component/LazilyLoad';
 import { configShape, locationShape } from '../../util/shapes';
-import storeOrigin from '../../action/originActions';
-import storeDestination from '../../action/destinationActions';
 import { mapLayerShape } from '../../store/MapLayerStore';
 import { isValidLocation } from '../../util/amporto/geo';
-
-const locationMarkerModules = {
-  LocationMarker: () =>
-    importLazy(
-      import(/* webpackChunkName: "map" */ '../../component/map/LocationMarker')
-    )
-};
 
 let focus = {};
 const mwtProps = {};
 
 const PageMap = (
   { location, match, origin, destination, mapLayers },
-  { config, executeAction }
+  { config }
 ) => {
   let newFocus = {};
   let zoom = 16;
@@ -34,8 +24,9 @@ const PageMap = (
   } else if (destination.lat) {
     newFocus = destination;
   } else if (!match.params.from && !match.params.to) {
-    const isValid = isValidLocation(location, config.coordinatesBounds)
-    newFocus = isValid ? location : config.defaultEndpoint;
+    newFocus = isValidLocation(location, config.coordinatesBounds)
+      ? location
+      : config.defaultEndpoint;
     zoom = config.defaultMapZoom;
   }
 
@@ -54,46 +45,7 @@ const PageMap = (
     delete mwtProps.mapTracking;
   }
 
-  const leafletObjs = [];
-
-  if (origin.lat) {
-    leafletObjs.push(
-      <LazilyLoad modules={locationMarkerModules} key="from">
-        {({ LocationMarker }) => (
-          <LocationMarker position={origin} type="from" />
-        )}
-      </LazilyLoad>
-    );
-  }
-
-  if (destination.lat) {
-    leafletObjs.push(
-      <LazilyLoad modules={locationMarkerModules} key="to">
-        {({ LocationMarker }) => (
-          <LocationMarker position={destination} type="to" />
-        )}
-      </LazilyLoad>
-    );
-  }
-
-  const selectLocation = (item, id) => {
-    if (id === 'origin') {
-      executeAction(storeOrigin, item);
-    } else {
-      executeAction(storeDestination, item);
-    }
-  };
-
-  return (
-    <MapWithTracking
-      {...mwtProps}
-      mapLayers={mapLayers}
-      leafletObjs={leafletObjs}
-      locationPopup="origindestination"
-      onSelectLocation={selectLocation}
-      showExplore
-    />
-  );
+  return <MapWithTracking {...mwtProps} mapLayers={mapLayers} showExplore />;
 };
 
 PageMap.propTypes = {

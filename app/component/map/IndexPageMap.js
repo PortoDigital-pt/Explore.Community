@@ -34,8 +34,9 @@ function IndexPageMap(
     newFocus = destination;
   } else if (!match.params.from && !match.params.to) {
     // use default location only if url does not include location
-    const isValid = isValidLocation(location, config.coordinatesBounds)
-    newFocus = isValid ? location : config.defaultEndpoint;
+    newFocus = isValidLocation(location, config.coordinatesBounds)
+      ? location
+      : config.defaultEndpoint;
     zoom = config.defaultMapZoom;
   }
 
@@ -85,21 +86,20 @@ function IndexPageMap(
   };
 
   return (
-      <MapWithTracking
-        {...mwtProps}
-        mapLayers={mapLayers}
-        leafletObjs={leafletObjs}
-        locationPopup="origindestination"
-        onSelectLocation={selectLocation}
-        vehicles
-      />
+    <MapWithTracking
+      {...mwtProps}
+      mapLayers={mapLayers}
+      leafletObjs={leafletObjs}
+      locationPopup="origindestination"
+      onSelectLocation={selectLocation}
+      vehicles
+    />
   );
 }
 
 IndexPageMap.propTypes = {
   location: locationShape.isRequired,
   match: matchShape.isRequired,
-  lang: PropTypes.string.isRequired,
   origin: locationShape,
   destination: locationShape,
   mapLayers: mapLayerShape.isRequired
@@ -116,16 +116,13 @@ IndexPageMap.contextTypes = {
   intl: intlShape.isRequired
 };
 
-const IndexPageMapWithStores = connectToStores(
+export default connectToStores(
   IndexPageMap,
-  ['PositionStore', 'OriginStore', 'DestinationStore', 'PreferencesStore', 'MapLayerStore'],
+  ['PositionStore', 'OriginStore', 'DestinationStore', 'MapLayerStore'],
   ({ getStore }) => ({
-      location: getStore('PositionStore').getLocationState(),
-      origin:  getStore('OriginStore').getOrigin(),
-      destination: getStore('DestinationStore').getDestination(),
-      lang: getStore('PreferencesStore').getLanguage(),
-      mapLayers: getStore('MapLayerStore').getMapLayers()
-    })
+    location: getStore('PositionStore').getLocationState(),
+    origin: getStore('OriginStore').getOrigin(),
+    destination: getStore('DestinationStore').getDestination(),
+    mapLayers: getStore('MapLayerStore').getMapLayers()
+  })
 );
-
-export { IndexPageMapWithStores as default, IndexPageMap as Component };
