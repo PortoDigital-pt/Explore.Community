@@ -90,6 +90,8 @@ div.map {
 
       .content-container {
         position: relative;
+        // 64px -> $mobile-navigation-bar-height cannot be used as scss variable here
+        padding-bottom: 64px;
         top: -15px;
         box-shadow: 0 -10px 10px -10px rgba(0, 0, 0, 0.3);
         border-radius: 15px 15px 0 0;

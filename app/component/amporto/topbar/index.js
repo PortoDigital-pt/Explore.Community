@@ -3,23 +3,18 @@ import classnames from 'classnames';
 import { string } from 'prop-types';
 import SidebarMenu from '../navigation/sidebar';
 import withBreakpoint from '../../../util/withBreakpoint';
-import useSmartNavigation from '../navigation/useSmartNavigation';
 import Weather from '../weather';
 
-const Topbar = ({ breakpoint }) => {
-  const canShow = useSmartNavigation();
-
-  return (
+const Topbar = ({ breakpoint }) => (
     <div
       className={classnames('transparent-topbar', {
-        hide: breakpoint === 'large' || !canShow
+        hide: breakpoint === 'large' 
       })}
     >
       <Weather />
       <SidebarMenu shadow />
     </div>
-  );
-};
+);
 
 Topbar.propTypes = {
   breakpoint: string.isRequired

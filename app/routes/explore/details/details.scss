@@ -6,8 +6,7 @@
     flex-grow: 1;
     flex-direction: column;
     justify-content: flex-start;
-    row-gap: 24px;
-    padding-bottom: $mobile-navigation-bar-height;
+    row-gap: 24px;  
 
     &.modal {
         padding: 0;
@@ -52,6 +51,7 @@
 
     @media (min-width: 900px) {
         margin-top: 96px;
+        padding-bottom: 20px;
     }
 
     .image {

@@ -12,7 +12,6 @@ import {
   COMMON_NAVIGATION_ITEMS_PATH_MAP,
   generateNavigationItemsConfig
 } from '../common';
-import useSmartNavigation from '../useSmartNavigation';
 
 const NAVIGATION_ITEMS = {
   ...COMMON_NAVIGATION_ITEMS,
@@ -47,7 +46,6 @@ const BottomNavigationBar = (
 ) => {
   const [client, setClient] = useState(false);
   const { match, router } = useRouter();
-  const canShow = useSmartNavigation();
   const navigationItems = useMemo(
     () =>
       generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),
@@ -72,7 +70,7 @@ const BottomNavigationBar = (
   return (
     <nav
       className={classnames('navbar', {
-        hide: breakpoint === 'large' || !canShow
+        hide: breakpoint === 'large' 
       })}
     >
       {Object.values(navigationItems).map(item => (
