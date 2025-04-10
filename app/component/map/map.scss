@@ -90,6 +90,7 @@ div.map {
 
       .content-container {
         position: relative;
+        padding-bottom: $mobile-navigation-bar-height;
         top: -15px;
         box-shadow: 0 -10px 10px -10px rgba(0, 0, 0, 0.3);
         border-radius: 15px 15px 0 0;

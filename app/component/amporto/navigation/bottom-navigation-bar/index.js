@@ -12,7 +12,6 @@ import {
   COMMON_NAVIGATION_ITEMS_PATH_MAP,
   generateNavigationItemsConfig
 } from '../common';
-import useSmartNavigation from '../useSmartNavigation';
 
 const NAVIGATION_ITEMS = {
   ...COMMON_NAVIGATION_ITEMS,
@@ -47,7 +46,11 @@ const BottomNavigationBar = (
 ) => {
   const [client, setClient] = useState(false);
   const { match, router } = useRouter();
-  const canShow = useSmartNavigation();
+
+  const canShow = useMemo(
+    () => !match.location.pathname.startsWith('/profile'),
+    [match.location.pathname]
+  );
   const navigationItems = useMemo(
     () =>
       generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),

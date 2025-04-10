@@ -18,7 +18,6 @@ import SelectedStopPopup from './popups/SelectedStopPopup';
 import SelectedStopPopupContent from '../SelectedStopPopupContent';
 import withBreakpoint from '../../util/withBreakpoint';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
-import BackButton from '../BackButton';
 import ItineraryLine from './ItineraryLine';
 import Loading from '../Loading';
 import { getMapLayerOptions } from '../../util/mapLayerUtils';
@@ -133,8 +132,6 @@ function StopPageMap(
     if (config.useCookiesPrompt) {
       children.push(<CookieSettingsButton key="cookiesettings" />);
     }
-  } else {
-    children.push(<BackButton key="stop-page-back-button" />);
   }
 
   if (walk) {

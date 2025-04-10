@@ -1,3 +1,6 @@
+export const isOver50Meters = distanceInMeters =>
+  Math.round((distanceInMeters + Number.EPSILON) * 100) / 100 > 50;
+
 export const showDistance = distanceInMeters => {
   const distance = Math.round((distanceInMeters + Number.EPSILON) * 100) / 100;
 
@@ -19,7 +22,7 @@ const isBetween = (value, min, max) => {
  * @param {object} coordinatesBounds coordinates bounds configuration definition
  */
 export const isValidLocation = (location, coordinatesBounds) => {
-  if (!location.hasLocation) {
+  if (!location?.hasLocation) {
     return false;
   }
 

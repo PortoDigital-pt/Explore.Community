@@ -20,8 +20,6 @@ import PreferencesStore from '../../store/PreferencesStore';
 import MapLayersDialogContent from '../MapLayersDialogContent';
 import MenuDrawer from '../MenuDrawer';
 import withBreakpoint from '../../util/withBreakpoint';
-import Weather from '../amporto/weather';
-import MapToolBar from '../amporto/map-tool-bar';
 
 const onlyUpdateCoordChanges = onlyUpdateForKeys([
   'lat',
@@ -380,12 +378,6 @@ class MapWithTrackingStateHandler extends React.Component {
         >
           {children}
         </MapCont>
-
-        {this.props.breakpoint === 'large' && (
-          <MapToolBar>
-            <Weather />
-          </MapToolBar>
-        )}
 
         {config.map.showLayerSelector && (
           <MenuDrawer

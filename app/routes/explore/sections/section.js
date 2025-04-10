@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { useRouter } from 'found';
 import { arrayOf, string, oneOf, func } from 'prop-types';
@@ -29,12 +29,12 @@ const Section = (
   },
   { intl, config: { coordinatesBounds } }
 ) => {
+  const args = useMemo(() => ({ language, categories }), [language, ...categories]);
   const { data, error } = useListData({
-    language,
     location,
     coordinatesBounds,
     getData,
-    args: { categories }
+    args
   });
   const { isOpen, open, close } = useModal();
   const [selected, setSelected] = useState(null);
