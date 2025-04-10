@@ -22,7 +22,7 @@ const isBetween = (value, min, max) => {
  * @param {object} coordinatesBounds coordinates bounds configuration definition
  */
 export const isValidLocation = (location, coordinatesBounds) => {
-  if (!location.hasLocation) {
+  if (!location || !location.hasLocation) {
     return false;
   }
 

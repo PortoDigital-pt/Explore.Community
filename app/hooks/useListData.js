@@ -11,16 +11,21 @@ const useListData = ({
 }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [targetPoint, setTargetPoint] = useState(location);
-
+  const [targetPoint, setTargetPoint] = useState(null);
+ 
   useEffect(() => {
+    if (!targetPoint) {
+      setTargetPoint(location);
+      return;
+    }
+  
     if (!isOver50Meters(distance(targetPoint, location))) {
       return;
     }
 
     setTargetPoint(location);
   }, [targetPoint, location]);
-
+  
   useEffect(() => {
     getData({
       language,
