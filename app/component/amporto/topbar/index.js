@@ -16,19 +16,20 @@ const Topbar = ({ breakpoint }) => {
     () => !match.location.pathname.startsWith('/profile'),
     [match.location.pathname]
   );
-  
+
   return (
     <div
       className={classnames('transparent-topbar', {
         hide: !canShow
       })}
     >
-      <div className='content'>
+      <div className="content">
         {breakpoint !== 'large' && !isFirstLevelRoute && <BackButton small />}
       </div>
-      <div className='content'>
+      <div className="content">
         <Weather />
-        {(breakpoint === 'large' && !isFirstLevelRoute || breakpoint !== 'large') && <SidebarMenu shadow /> }  
+        {((breakpoint === 'large' && !isFirstLevelRoute) ||
+          breakpoint !== 'large') && <SidebarMenu shadow />}
       </div>
     </div>
   );

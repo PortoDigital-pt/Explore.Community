@@ -4,10 +4,8 @@ import ErrorBoundary from './ErrorBoundary';
 import BackButton from './BackButton';
 import ScrollableWrapper from './ScrollableWrapper';
 import DesktopNavigation from './amporto/navigation/desktop-navigation';
-import ShareButton from './amporto/share-button';
 
 export default function DesktopView({
-  title,
   header,
   map,
   content,
@@ -20,9 +18,7 @@ export default function DesktopView({
     <div className="desktop">
       <div className="main-content" role="main">
         <DesktopNavigation />
-        {bckBtnVisible && (
-          <BackButton fallback={bckBtnFallback} />
-        )}
+        {bckBtnVisible && <BackButton fallback={bckBtnFallback} />}
         {header}
         <ScrollableWrapper scrollable={scrollable}>
           <ErrorBoundary>{content}</ErrorBoundary>
@@ -37,7 +33,6 @@ export default function DesktopView({
 }
 
 DesktopView.propTypes = {
-  title: PropTypes.node,
   header: PropTypes.node,
   map: PropTypes.node,
   content: PropTypes.node,
@@ -48,7 +43,6 @@ DesktopView.propTypes = {
 };
 
 DesktopView.defaultProps = {
-  title: undefined,
   header: undefined,
   map: undefined,
   content: undefined,

@@ -15,13 +15,11 @@ import RouteLine from './route/RouteLine';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
 import { getStartTime } from '../../util/timeUtils';
 import withBreakpoint from '../../util/withBreakpoint';
-import BackButton from '../BackButton';
 import { isActiveDate } from '../../util/patternUtils';
 import { mapLayerShape } from '../../store/MapLayerStore';
 import { boundWithMinimumArea } from '../../util/geo-utils';
 import { getMapLayerOptions } from '../../util/mapLayerUtils';
 import CookieSettingsButton from '../CookieSettingsButton';
-import ShareButton from '../amporto/share-button';
 
 class RoutePageMap extends React.Component {
   constructor(props) {
@@ -90,7 +88,7 @@ class RoutePageMap extends React.Component {
   }
 
   render() {
-    const { pattern, lat, lon, match, breakpoint, mapLayers, mapLayerOptions } =
+    const { pattern, lat, lon, match, mapLayers, mapLayerOptions } =
       this.props;
     if (!pattern) {
       return false;

@@ -1,3 +1,6 @@
+export const isOver50Meters = distanceInMeters =>
+  Math.round((distanceInMeters + Number.EPSILON) * 100) / 100 > 50;
+
 export const showDistance = distanceInMeters => {
   const distance = Math.round((distanceInMeters + Number.EPSILON) * 100) / 100;
 
