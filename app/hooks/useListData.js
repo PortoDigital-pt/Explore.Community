@@ -36,7 +36,7 @@ const useListData = ({
     })
       .then(setData)
       .catch(setError);
-  }, [language, targetPoint, ...Object.values(args)]);
+  }, [language, targetPoint, args]);
 
   return { data, error };
 };
