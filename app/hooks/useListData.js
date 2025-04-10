@@ -3,7 +3,6 @@ import distance from '@digitransit-search-util/digitransit-search-util-distance'
 import { isValidLocation, isOver50Meters } from '../util/amporto/geo';
 
 const useListData = ({
-  language,
   location,
   coordinatesBounds,
   getData,
@@ -28,7 +27,6 @@ const useListData = ({
   
   useEffect(() => {
     getData({
-      language,
       coords: isValidLocation(targetPoint, coordinatesBounds)
         ? `${targetPoint.lat},${targetPoint.lon}`
         : null,
@@ -36,7 +34,7 @@ const useListData = ({
     })
       .then(setData)
       .catch(setError);
-  }, [language, targetPoint, args]);
+  }, [targetPoint, args]);
 
   return { data, error };
 };

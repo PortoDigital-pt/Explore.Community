@@ -29,9 +29,8 @@ const Section = (
   },
   { intl, config: { coordinatesBounds } }
 ) => {
-  const args = useMemo(() => ({ categories }), [...categories]);
+  const args = useMemo(() => ({ language, categories }), [language, ...categories]);
   const { data, error } = useListData({
-    language,
     location,
     coordinatesBounds,
     getData,
