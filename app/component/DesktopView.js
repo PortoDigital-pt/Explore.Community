@@ -21,9 +21,7 @@ export default function DesktopView({
       <div className="main-content" role="main">
         <DesktopNavigation />
         {bckBtnVisible && (
-          <BackButton title={title} fallback={bckBtnFallback}>
-            <ShareButton />
-          </BackButton>
+          <BackButton fallback={bckBtnFallback} />
         )}
         {header}
         <ScrollableWrapper scrollable={scrollable}>

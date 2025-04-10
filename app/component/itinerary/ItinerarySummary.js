@@ -54,6 +54,7 @@ function ItinerarySummary(props) {
           mode="car"
         />
       )}
+    
       {!hideBottomDivider && <div className={cx('divider-bottom')} />}
     </div>
   );

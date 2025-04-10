@@ -107,9 +107,7 @@ class RoutePage extends React.Component {
           aria-live="polite"
         >
           {breakpoint === 'large' && (
-            <BackButton>
-              <ShareButton />
-            </BackButton>
+            <BackButton />
           )}
 
           <div className="route-page-header-section-container">
@@ -145,8 +143,8 @@ class RoutePage extends React.Component {
                 )}
               </div>
 
-              {!tripId && (
-                <>
+             
+                
                   <ShareButton withBackground />
                   <LazilyLoad modules={modules}>
                     {({ FavouriteRouteContainer }) => (
@@ -156,8 +154,7 @@ class RoutePage extends React.Component {
                       />
                     )}
                   </LazilyLoad>
-                </>
-              )}
+                
             </div>
             {tripId && hasMeaningfulData(filteredAlerts) && (
               <div className="trip-page-alert-container">

@@ -133,9 +133,7 @@ function StopPageMap(
     if (config.useCookiesPrompt) {
       children.push(<CookieSettingsButton key="cookiesettings" />);
     }
-  } else {
-    children.push(<BackButton key="stop-page-back-button" />);
-  }
+  } 
 
   if (walk) {
     leafletObjs.push(

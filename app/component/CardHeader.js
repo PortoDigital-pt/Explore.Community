@@ -72,7 +72,7 @@ export default function CardHeader(
                 )}
             </div>
           </div>
-          {icons && icons.length ? <SplitBars>{icons}</SplitBars> : null}
+          {icons?.length ? <SplitBars>{icons}</SplitBars> : null}
           <ShareButton withBackground />
           {favouriteContainer}
         </div>

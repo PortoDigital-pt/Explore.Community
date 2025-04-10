@@ -122,12 +122,6 @@ function ItineraryPageMap(
       zoom={POINT_FOCUS_ZOOM}
       {...rest}
     >
-      {showBackButton && breakpoint !== 'large' && (
-        <BackButton fallback="pop">
-          <ShareButton />
-        </BackButton>
-      )}
-
       {breakpoint === 'large' && config.useCookiesPrompt && (
         <CookieSettingsButton />
       )}
