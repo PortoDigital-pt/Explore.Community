@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
-import { string, arrayOf } from 'prop-types';
+import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { parseConfigDescriptionTextWithLink } from '../../../../util/amporto/text';
 import { getEventList } from '../../../../util/amporto/api';
 import Section from '../section';
 import { configShape } from '../../../../util/shapes';
 
-const EventsSection = ({ categories, language }, { config }) => {
+const EventsSection = ({ language }, { config }) => {
   const Intro = useMemo(
     () => () => (
       <p>
@@ -20,24 +20,20 @@ const EventsSection = ({ categories, language }, { config }) => {
   );
 
   return (
-    categories && (
-      <Section
-        categories={categories}
-        getData={getEventList}
-        title="happening-this-week"
-        cardType="large"
-        bottomButtonText="find-all-events"
-        errorMessage="events-fetch-error"
-        emptyMessage="events-empty"
-        Intro={Intro}
-        type="events"
-      />
-    )
+    <Section
+      getData={getEventList}
+      title="happening-this-week"
+      cardType="large"
+      bottomButtonText="find-all-events"
+      errorMessage="events-fetch-error"
+      emptyMessage="events-empty"
+      Intro={Intro}
+      type="events"
+    />
   );
 };
 
 EventsSection.propTypes = {
-  categories: arrayOf(string),
   language: string.isRequired
 };
 
@@ -47,18 +43,8 @@ EventsSection.contextTypes = {
 
 export default connectToStores(
   EventsSection,
-  ['MapLayerStore', 'PreferencesStore'],
-  ({ getStore }) => {
-    const { events } = getStore('MapLayerStore').getFilterLayers();
-    const { showAll, ...categories } = events;
-    const selectedCategories = Object.entries(categories)
-      // eslint-disable-next-line no-unused-vars
-      .filter(([_, selected]) => selected)
-      .map(([category]) => category);
-
-    return {
-      language: getStore('PreferencesStore').getLanguage(),
-      categories: selectedCategories.length > 0 ? selectedCategories : null
-    };
-  }
+  ['PreferencesStore'],
+  ({ getStore }) => ({
+    language: getStore('PreferencesStore').getLanguage()
+  })
 );

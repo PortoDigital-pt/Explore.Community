@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-function ToggleMapTracking({
-  handleClick,
-  ariaLabel,
-  img,
-  className
-}) {
+function ToggleMapTracking({ handleClick, ariaLabel, img, className }) {
   return (
     <div
       className="toggle-positioning-container"

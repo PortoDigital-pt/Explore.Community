@@ -3,6 +3,7 @@ import distance from '@digitransit-search-util/digitransit-search-util-distance'
 import { isValidLocation, isOver50Meters } from '../util/amporto/geo';
 
 const useListData = ({
+  enabled = true,
   location,
   coordinatesBounds,
   getData,
@@ -11,30 +12,42 @@ const useListData = ({
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [targetPoint, setTargetPoint] = useState(null);
- 
+
   useEffect(() => {
     if (!targetPoint) {
       setTargetPoint(location);
       return;
     }
-  
+
     if (!isOver50Meters(distance(targetPoint, location))) {
       return;
     }
 
     setTargetPoint(location);
   }, [targetPoint, location]);
-  
+
   useEffect(() => {
-    getData({
-      coords: isValidLocation(targetPoint, coordinatesBounds)
-        ? `${targetPoint.lat},${targetPoint.lon}`
-        : null,
-      ...args
-    })
+    if (!enabled) {
+      return;
+    }
+
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    getData(
+      {
+        coords: isValidLocation(targetPoint, coordinatesBounds)
+          ? `${targetPoint.lat},${targetPoint.lon}`
+          : null,
+        ...args
+      },
+      { signal }
+    )
       .then(setData)
-      .catch(setError);
-  }, [targetPoint, args]);
+      .catch(error => !signal.aborted && setError(error));
+
+    return () => controller.abort();
+  }, [enabled, targetPoint, args]);
 
   return { data, error };
 };

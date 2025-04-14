@@ -29,8 +29,12 @@ const Section = (
   },
   { intl, config: { coordinatesBounds } }
 ) => {
-  const args = useMemo(() => ({ language, categories }), [language, ...categories]);
+  const args = useMemo(
+    () => ({ language, categories }),
+    [language, categories]
+  );
   const { data, error } = useListData({
+    enabled: categories !== null,
     location,
     coordinatesBounds,
     getData,
@@ -49,6 +53,10 @@ const Section = (
     () => router.push(`/explore/${type}`),
     [router.push, type]
   );
+
+  if (categories === null) {
+    return null;
+  }
 
   return (
     <section className="section">
@@ -129,14 +137,31 @@ Section.propTypes = {
   getData: func.isRequired,
   language: string.isRequired,
   location: locationShape.isRequired,
-  categories: arrayOf(string).isRequired
+  categories: arrayOf(string)
 };
 
 export default connectToStores(
   Section,
-  ['PositionStore', 'PreferencesStore'],
-  ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage(),
-    location: getStore('PositionStore').getLocationState()
-  })
+  ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
+  ({ getStore }, { type }) => {
+    let categories = null;
+
+    if (type) {
+      const { showAll, ...typeCategories } = getStore(
+        'MapLayerStore'
+      ).getFilterLayers({ only: type })[type];
+      const selectedCategories = Object.entries(typeCategories)
+        // eslint-disable-next-line no-unused-vars
+        .filter(([_, selected]) => selected)
+        .map(([category]) => category);
+
+      categories = selectedCategories.length > 0 ? selectedCategories : null;
+    }
+
+    return {
+      categories,
+      language: getStore('PreferencesStore').getLanguage(),
+      location: getStore('PositionStore').getLocationState()
+    };
+  }
 );
