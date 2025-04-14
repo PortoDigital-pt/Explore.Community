@@ -30,7 +30,10 @@ const poiShape = shape({
   images: arrayOf(string)
 });
 
-const MobileContent = ({ onDetails, selectedData, distance }, { intl }) => (
+export const MobileContent = (
+  { onDetails, selectedData, distance },
+  { intl }
+) => (
   <div className="mobile-view">
     <div className="header">
       <div className="top">
