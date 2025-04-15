@@ -4,8 +4,10 @@ import { string, func, arrayOf } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
+import withBreakpoint from '../../../util/withBreakpoint';
 import useListData from '../../../hooks/useListData';
 import useModal from '../../../hooks/useModal';
+import useScrollYPosition from '../../../hooks/useScrollYPosition';
 import Icon from '../../../component/Icon';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
@@ -14,7 +16,7 @@ import {
 import { DetailsContentModal } from '../common';
 
 const ListPage = (
-  { type, location, getData, language, categories, emptyMessage, errorMessage },
+  { breakpoint, type, location, getData, language, categories, emptyMessage, errorMessage },
   { intl, config: { coordinatesBounds } }
 ) => {
   const args = useMemo(
@@ -32,11 +34,15 @@ const ListPage = (
   const { isOpen, open, close } = useModal();
   const [selected, setSelected] = useState(null);
   const { router } = useRouter();
-
+ 
   const navigate = useCallback(
     id => router.push(`/explore/${type}/${id}`),
     [router.push, type]
   );
+
+  // TODO: review placement
+  const scrollElement = useMemo(() => breakpoint === 'large' ? 'scroll-target' : 'drawer-container', [breakpoint]);
+  const scrollTop = useScrollYPosition(scrollElement);
 
   const ListItemComponent = useMemo(
     () => MOBILE_PAGE_CONTENT_TYPE_MAP[type],
@@ -125,6 +131,7 @@ ListPage.contextTypes = {
 };
 
 ListPage.propTypes = {
+  breakpoint: string.isRequired,
   type: string.isRequired,
   getData: func.isRequired,
   language: string.isRequired,
@@ -135,7 +142,7 @@ ListPage.propTypes = {
 };
 
 export default connectToStores(
-  ListPage,
+  withBreakpoint(ListPage),
   ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
   ({ getStore }, { type }) => {
     let categories = null;
