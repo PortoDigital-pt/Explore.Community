@@ -10,6 +10,7 @@ const useListData = ({
   args
 }) => {
   const [data, setData] = useState(null);
+  const [count, setCount] = useState(null);
   const [error, setError] = useState(null);
   const [targetPoint, setTargetPoint] = useState(null);
 
@@ -43,13 +44,16 @@ const useListData = ({
       },
       { signal }
     )
-      .then(setData)
+      .then(({ data, count }) => {
+        setData(data);
+        setCount(count);
+      })
       .catch(error => !signal.aborted && setError(error));
 
     return () => controller.abort();
   }, [enabled, targetPoint, args]);
 
-  return { data, error };
+  return { data, count, error };
 };
 
 export default useListData;

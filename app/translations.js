@@ -822,6 +822,7 @@ const translations = {
   },
 
   en: {
+    'search-results': 'results',
     'share-button-label': 'Share',
     'favourite-button-label': 'Favourite',
     'see-map-button-label': 'See map',
@@ -5231,6 +5232,7 @@ const translations = {
     'add-location-to-favourites': 'Adicione uma localização aos seus Favoritos',
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
+    'search-results': 'resultados',
     'share-button-label': 'Partilhar',
     'favourite-button-label': 'Favorito',
     'see-map-button-label': 'Ver mapa',

@@ -22,7 +22,7 @@ const ListPage = (
     [language, ...(categories || [])]
   );
   /* TODO: pagination - infinite scrolling */
-  const { data, error } = useListData({
+  const { data, count, error } = useListData({
     enabled: categories !== null,
     location,
     coordinatesBounds,
@@ -44,28 +44,45 @@ const ListPage = (
   );
 
   const List = useMemo(
-    () => () =>
-      data?.map(item => (
-        <Fragment key={item.id}>
-          <ListItemComponent
-            onDetails={() => {
-              setSelected(item);
-              open();
-            }}
-            selectedData={item}
-          />
-          <hr />
-        </Fragment>
-      )),
+    () => () => (
+      <div className="list">
+        {data?.map((item, index) =>
+          data?.length === index + 1 ? (
+            <ListItemComponent
+              key={item.id}
+              onDetails={() => {
+                setSelected(item);
+                open();
+              }}
+              selectedData={item}
+            />
+          ) : (
+            <Fragment key={item.id}>
+              <ListItemComponent
+                onDetails={() => {
+                  setSelected(item);
+                  open();
+                }}
+                selectedData={item}
+              />
+              <hr />
+            </Fragment>
+          )
+        )}
+      </div>
+    ),
     [data, ListItemComponent, setSelected, open]
   );
 
   const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
   /* TODO: add message on categories null, so user knows it needs to have some category selected */
-  /* TODO: display total count on top */
   /* TODO: Filters on top */
+
   return (
     <div className="list-page">
+      <h3 className="count">
+        {count && `${count} ${intl.messages['search-results']}`}
+      </h3>
       {error ? (
         <div className="error">
           <p>{intl.messages[errorMessage]}</p>

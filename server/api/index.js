@@ -2,9 +2,9 @@ import { poiToDto, eventToDto } from './dto';
 import { getDate, getDateInFutureDays } from './date';
 
 const defaultQueryParams = {
-  options: 'count',
   georel: 'near;maxDistance:25000',
   geometry: 'point',
+  options: 'count',
   orderBy: 'geo:distance',
   limit: '10',
   offset: '0',
@@ -57,7 +57,9 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
   return query.toString();
 };
 
-const customFetch = async url => {
+const getCount = headers => headers.get('fiware-total-count');
+
+const customFetch = async (url, addCount = false) => {
   const response = await fetch(url);
   const preparedResponse = {
     status: response.status,
@@ -69,6 +71,10 @@ const customFetch = async url => {
   }
 
   const data = await response.json();
+
+  if (addCount) {
+    return { data, count: getCount(response.headers), ...preparedResponse };
+  }
 
   return { data, ...preparedResponse };
 };
@@ -99,21 +105,25 @@ const getPoiList = async (
   },
   response
 ) => {
-  const { data, status, text } = await customFetch(
+  const addCount = defaultPoiQueryParams.options === 'count';
+  const { data, count, status, text } = await customFetch(
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
       dataProvider,
       coords: `${lat},${lon}`,
       ...defaultPoiQueryParams,
       ...queryRest
-    })}`
+    })}`,
+    addCount
   );
 
   if (!data) {
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(data.map(poi => poiToDto(poi, language)));
+  return response
+    .status(status)
+    .json({ data: data.map(poi => poiToDto(poi, language)), count });
 };
 
 const getEventDetail = async (
@@ -142,14 +152,16 @@ const getEventList = async (
   },
   response
 ) => {
-  const { data, status, text } = await customFetch(
+  const addCount = defaultEventQueryParams.options === 'count';
+  const { data, count, status, text } = await customFetch(
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
       dataProvider,
       coords: `${lat},${lon}`,
       ...defaultEventQueryParams,
       ...queryRest
-    })}`
+    })}`,
+    addCount
   );
 
   if (!data) {
@@ -158,7 +170,7 @@ const getEventList = async (
 
   return response
     .status(status)
-    .json(data.map(event => eventToDto(event, language)));
+    .json({ data: data.map(event => eventToDto(event, language)), count });
 };
 
 const setupCache = (request, response, next) => {
