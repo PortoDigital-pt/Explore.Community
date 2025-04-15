@@ -1,5 +1,13 @@
 import React from 'react';
-import { string, func, shape, number, oneOfType, arrayOf } from 'prop-types';
+import {
+  string,
+  func,
+  shape,
+  number,
+  oneOfType,
+  arrayOf,
+  bool
+} from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
 import { locationShape } from '../../../../util/shapes';
@@ -34,7 +42,7 @@ const poiShape = shape({
 });
 
 const Mobile = (
-  { location, onDetails, selectedData },
+  { location, onDetails, selectedData, showShare = false },
   { intl, executeAction }
 ) => {
   const distanceToPoi = useDistanceToTarget({
@@ -54,7 +62,7 @@ const Mobile = (
             />
             <h3>{selectedData.name}</h3>
           </div>
-          <ShareButton withBackground />
+          {showShare && <ShareButton withBackground />}
           <FavouriteExplore data={selectedData} />
         </div>
         <div className="distance">
@@ -128,7 +136,8 @@ const Mobile = (
 Mobile.propTypes = {
   onDetails: func.isRequired,
   selectedData: poiShape.isRequired,
-  location: locationShape.isRequired
+  location: locationShape.isRequired,
+  showShare: bool
 };
 
 Mobile.contextTypes = {

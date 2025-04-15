@@ -6,7 +6,7 @@ const defaultQueryParams = {
   georel: 'near;maxDistance:25000',
   geometry: 'point',
   orderBy: 'geo:distance',
-  limit: '20',
+  limit: '10',
   offset: '0',
   attrs: 'dateCreated,dateModified,*'
 };

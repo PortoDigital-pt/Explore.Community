@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import moment from 'moment';
-import { string, func, shape } from 'prop-types';
+import { string, func, shape, bool } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
 import { configShape, locationShape } from '../../../../util/shapes';
@@ -73,7 +73,7 @@ DateSection.propTypes = {
 };
 
 const Mobile = (
-  { location, onDetails, selectedData },
+  { location, onDetails, selectedData, showShare = false },
   { intl, executeAction }
 ) => {
   const distanceToEvent = useDistanceToTarget({
@@ -93,7 +93,7 @@ const Mobile = (
             />
             <h3>{selectedData.name}</h3>
           </div>
-          <ShareButton withBackground />
+          {showShare && <ShareButton withBackground />}
           <FavouriteExplore data={selectedData} />
         </div>
         <div className="distance">
@@ -151,7 +151,8 @@ const Mobile = (
 Mobile.propTypes = {
   onDetails: func.isRequired,
   selectedData: shape().isRequired,
-  location: locationShape.isRequired
+  location: locationShape.isRequired,
+  showShare: bool
 };
 
 Mobile.contextTypes = {

@@ -1,29 +1,25 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useCallback, Fragment } from 'react';
+import { useRouter } from 'found';
 import { string, func, arrayOf } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
-import withBreakpoint from '../../../util/withBreakpoint';
 import useListData from '../../../hooks/useListData';
+import useModal from '../../../hooks/useModal';
 import Icon from '../../../component/Icon';
-import { MOBILE_PAGE_CONTENT_TYPE_MAP } from '../details/page-content';
+import {
+  MOBILE_PAGE_CONTENT_TYPE_MAP,
+  PAGE_CONTENT_TYPE_MAP
+} from '../details/page-content';
+import { DetailsContentModal } from '../common';
 
 const ListPage = (
-  {
-    breakpoint,
-    type,
-    location,
-    getData,
-    language,
-    categories,
-    emptyMessage,
-    errorMessage
-  },
+  { type, location, getData, language, categories, emptyMessage, errorMessage },
   { intl, config: { coordinatesBounds } }
 ) => {
   const args = useMemo(
-    () => ({ language, categories, limit: 1000 }),
-    [language, categories]
+    () => ({ language, categories, limit: 10 }),
+    [language, ...(categories || [])]
   );
   /* TODO: pagination - infinite scrolling */
   const { data, error } = useListData({
@@ -33,12 +29,41 @@ const ListPage = (
     getData,
     args
   });
+  const { isOpen, open, close } = useModal();
+  const [selected, setSelected] = useState(null);
+  const { router } = useRouter();
+
+  const navigate = useCallback(
+    id => router.push(`/explore/${type}/${id}`),
+    [router.push, type]
+  );
 
   const ListItemComponent = useMemo(
     () => MOBILE_PAGE_CONTENT_TYPE_MAP[type],
     [type]
   );
+
+  const List = useMemo(
+    () => () =>
+      data?.map(item => (
+        <Fragment key={item.id}>
+          <ListItemComponent
+            onDetails={() => {
+              setSelected(item);
+              open();
+            }}
+            selectedData={item}
+          />
+          <hr />
+        </Fragment>
+      )),
+    [data, ListItemComponent, setSelected, open]
+  );
+
+  const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
+  /* TODO: add message on categories null, so user knows it needs to have some category selected */
   /* TODO: display total count on top */
+  /* TODO: Filters on top */
   return (
     <div className="list-page">
       {error ? (
@@ -55,18 +80,23 @@ const ListPage = (
           <p>{intl.messages[emptyMessage]}</p>
         </div>
       ) : (
-        data.map(item => (
-          <>
-            <ListItemComponent
-              key={item.id}
-              onDetails={
-                () => {} /* TODO: select and open modal with details */
-              }
-              selectedData={item}
-            />
-            <hr />
-          </>
-        ))
+        <List />
+      )}
+
+      {isOpen && selected !== null && (
+        <DetailsContentModal
+          isOpen={isOpen}
+          data={selected}
+          onBackBtnClick={() => {
+            setSelected(null);
+            close();
+          }}
+          onSeeOnMap={() => {
+            close();
+            navigate(selected.id);
+          }}
+          PageContent={ModalPageContent}
+        />
       )}
     </div>
   );
@@ -79,7 +109,6 @@ ListPage.contextTypes = {
 
 ListPage.propTypes = {
   type: string.isRequired,
-  breakpoint: string.isRequired,
   getData: func.isRequired,
   language: string.isRequired,
   location: locationShape.isRequired,
@@ -89,7 +118,7 @@ ListPage.propTypes = {
 };
 
 export default connectToStores(
-  withBreakpoint(ListPage),
+  ListPage,
   ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
   ({ getStore }, { type }) => {
     let categories = null;

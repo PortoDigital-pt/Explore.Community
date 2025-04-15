@@ -31,7 +31,7 @@ const Section = (
 ) => {
   const args = useMemo(
     () => ({ language, categories }),
-    [language, categories]
+    [language, ...(categories || [])]
   );
   const { data, error } = useListData({
     enabled: categories !== null,
