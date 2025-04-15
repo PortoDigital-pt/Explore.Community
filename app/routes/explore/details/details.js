@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { string, func } from 'prop-types';
 import { matchShape, routerShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
-import { locationShape } from '../../../util/shapes';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Loading from '../../../component/Loading';
 import useModal from '../../../hooks/useModal';
-import useDistanceToTarget from '../../../hooks/useDistanceToTarget';
 import useSelectedData from '../../../hooks/useSelectedData';
 import { DetailsContent, DetailsContentModal } from '../common';
 
@@ -14,24 +12,18 @@ const DetailsPage = (
   {
     language,
     breakpoint,
-    location,
     getDataById,
     onErrorPath,
     PageContent,
     MobileContent
   },
-  { match, router, executeAction }
+  { match, router }
 ) => {
   const { isOpen, open, close } = useModal();
   const { selectedData, error } = useSelectedData({
     id: match.params.id,
     language,
     getDataById
-  });
-  const distanceToDataPoint = useDistanceToTarget({
-    executeAction,
-    location,
-    targetPoint: selectedData
   });
 
   useEffect(() => {
@@ -53,11 +45,7 @@ const DetailsPage = (
           showShare
         />
       ) : (
-        <MobileContent
-          onDetails={open}
-          selectedData={selectedData}
-          distance={distanceToDataPoint}
-        />
+        <MobileContent onDetails={open} selectedData={selectedData} />
       )}
       {isOpen && (
         <DetailsContentModal
@@ -74,14 +62,12 @@ const DetailsPage = (
 
 DetailsPage.contextTypes = {
   match: matchShape.isRequired,
-  router: routerShape.isRequired,
-  executeAction: func.isRequired
+  router: routerShape.isRequired
 };
 
 DetailsPage.propTypes = {
   language: string.isRequired,
   breakpoint: string.isRequired,
-  location: locationShape.isRequired,
   getDataById: func.isRequired,
   onErrorPath: string.isRequired,
   PageContent: func.isRequired,

@@ -25,6 +25,7 @@ const ListPage = (
     () => ({ language, categories, limit: 1000 }),
     [language, categories]
   );
+  /* TODO: pagination - infinite scrolling */
   const { data, error } = useListData({
     enabled: categories !== null,
     location,
@@ -37,7 +38,7 @@ const ListPage = (
     () => MOBILE_PAGE_CONTENT_TYPE_MAP[type],
     [type]
   );
-
+  /* TODO: display total count on top */
   return (
     <div className="list-page">
       {error ? (
@@ -46,7 +47,9 @@ const ListPage = (
           <Icon img="icon-icon_error_page_not_found" />
         </div>
       ) : data === null ? (
-        <div>Loading...</div>
+        <div>
+          {'Loading...' /* TODO: decide how to do it. spinner vs skeleton */}
+        </div>
       ) : data.length === 0 ? (
         <div className="error">
           <p>{intl.messages[emptyMessage]}</p>
@@ -56,7 +59,9 @@ const ListPage = (
           <>
             <ListItemComponent
               key={item.id}
-              onDetails={() => {}}
+              onDetails={
+                () => {} /* TODO: select and open modal with details */
+              }
               selectedData={item}
             />
             <hr />

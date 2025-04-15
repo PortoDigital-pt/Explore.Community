@@ -1,12 +1,15 @@
 import React from 'react';
 import { string, func, shape, number, oneOfType, arrayOf } from 'prop-types';
+import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
+import { locationShape } from '../../../../util/shapes';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
 import { getPoiById } from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
+import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 
 const poiShape = shape({
   type: string.isRequired,
@@ -30,102 +33,127 @@ const poiShape = shape({
   images: arrayOf(string)
 });
 
-export const MobileContent = (
-  { onDetails, selectedData, distance },
-  { intl }
-) => (
-  <div className="mobile-view">
-    <div className="header">
-      <div className="top">
-        <div className="title">
-          <Icon
-            img="icon-explore-icon_pois_with_background"
-            viewBox="0 0 44 44"
-          />
-          <h3>{selectedData.name}</h3>
+const Mobile = (
+  { location, onDetails, selectedData },
+  { intl, executeAction }
+) => {
+  const distanceToPoi = useDistanceToTarget({
+    executeAction,
+    location,
+    targetPoint: selectedData
+  });
+
+  return (
+    <div className="mobile-view">
+      <div className="header">
+        <div className="top">
+          <div className="title">
+            <Icon
+              img="icon-explore-icon_pois_with_background"
+              viewBox="0 0 44 44"
+            />
+            <h3>{selectedData.name}</h3>
+          </div>
+          <ShareButton withBackground />
+          <FavouriteExplore data={selectedData} />
         </div>
-        <ShareButton withBackground />
-        <FavouriteExplore data={selectedData} />
+        <div className="distance">
+          {!!distanceToPoi &&
+            `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+        </div>
       </div>
-      <div className="distance">
-        {distance &&
-          `${intl.messages['at-distance']} ${showDistance(distance)}`}
-      </div>
-    </div>
-    <div className="content">
-      <div className="image">
-        {selectedData.images && (
-          <img src={selectedData.images[0]} alt={selectedData.name} />
-        )}
-      </div>
-      <div className="details">
-        <div className="contacts">
-          <div className="categories">
-            {Array.isArray(selectedData.category) ? (
-              selectedData.category.map(category => (
-                <div key={category} className="category">
-                  {category}
+      <div className="content">
+        <div className="image">
+          {selectedData.images && (
+            <img
+              src={selectedData.images[0]}
+              alt={selectedData.name}
+              loading="lazy"
+            />
+          )}
+        </div>
+        <div className="details">
+          <div className="contacts">
+            <div className="categories">
+              {Array.isArray(selectedData.category) ? (
+                selectedData.category.map(category => (
+                  <div key={category} className="category">
+                    {category}
+                  </div>
+                ))
+              ) : (
+                <div className="category">{selectedData.category}</div>
+              )}
+            </div>
+            {selectedData.calendar && (
+              <div>
+                <Icon img="icon-time" viewBox="0 0 16 16" />
+                <div className="schedule">
+                  {selectedData.calendar.map(schedule => (
+                    <p key={schedule}>{schedule}</p>
+                  ))}
                 </div>
-              ))
-            ) : (
-              <div className="category">{selectedData.category}</div>
+              </div>
+            )}
+            <div>
+              <Icon img="icon-location" viewBox="0 0 16 16" />
+              <p>{`${selectedData.address.streetAddress}${
+                selectedData.address.streetNumber
+                  ? `, ${selectedData.address.streetNumber}`
+                  : ''
+              }`}</p>
+            </div>
+            {selectedData.priceRange && (
+              <div>
+                <Icon img="icon-cost" viewBox="0 0 16 16" />
+                <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
+              </div>
             )}
           </div>
-          {selectedData.calendar && (
-            <div>
-              <Icon img="icon-time" viewBox="0 0 16 16" />
-              <div className="schedule">
-                {selectedData.calendar.map(schedule => (
-                  <p key={schedule}>{schedule}</p>
-                ))}
-              </div>
-            </div>
-          )}
-          <div>
-            <Icon img="icon-location" viewBox="0 0 16 16" />
-            <p>{`${selectedData.address.streetAddress}${
-              selectedData.address.streetNumber
-                ? `, ${selectedData.address.streetNumber}`
-                : ''
-            }`}</p>
-          </div>
-          {selectedData.priceRange && (
-            <div>
-              <Icon img="icon-cost" viewBox="0 0 16 16" />
-              <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
-            </div>
-          )}
         </div>
       </div>
+      <div className="bottom">
+        <button
+          type="button"
+          onClick={onDetails}
+          aria-label={intl.messages.details}
+        >
+          {intl.messages.details}
+        </button>
+      </div>
     </div>
-    <div className="bottom">
-      <button
-        type="button"
-        onClick={onDetails}
-        aria-label={intl.messages.details}
-      >
-        {intl.messages.details}
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
-MobileContent.propTypes = {
+Mobile.propTypes = {
   onDetails: func.isRequired,
   selectedData: poiShape.isRequired,
-  distance: number
+  location: locationShape.isRequired
 };
 
-MobileContent.contextTypes = {
-  intl: intlShape.isRequired
+Mobile.contextTypes = {
+  intl: intlShape.isRequired,
+  executeAction: func.isRequired
 };
+
+export const MobileContent = connectToStores(
+  Mobile,
+  ['PositionStore'],
+  ({ getStore }) => ({
+    location: getStore('PositionStore').getLocationState()
+  })
+);
 
 export const PageContent = ({ selectedData }, { intl }) => (
   <>
     <div className="image">
       {
         selectedData.images && (
-          <img src={selectedData.images[0]} alt={selectedData.name} />
+          <img
+            src={selectedData.images[0]}
+            alt={selectedData.name}
+            loading="lazy"
+          />
         ) /* TODO: change to slider */
       }
     </div>
