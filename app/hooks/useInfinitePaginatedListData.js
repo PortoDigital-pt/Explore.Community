@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { isValidLocation } from '../util/amporto/geo';
 import useTargetPoint from './useTargetPoint';
 
-// TODO: if args change, reset? since categories/language might change, and the first page needs to be fetched
+// TODO: when reseting show loading state?
 
 const useInfinitePaginatedListData = ({
   enabled = true,
@@ -13,6 +13,7 @@ const useInfinitePaginatedListData = ({
 }) => {
   const targetPoint = useTargetPoint({ location, coordinatesBounds });
   const targetPointRef = useRef(targetPoint);
+  const argsRef = useRef(args);
   const [data, setData] = useState(null);
   const [pagination, setPagination] = useState(null);
   const [error, setError] = useState(null);
@@ -21,6 +22,10 @@ const useInfinitePaginatedListData = ({
   const targetPointHasChanged = useMemo(
     () => targetPoint !== targetPointRef.current,
     [targetPoint, targetPointRef.current]
+  );
+  const argsHaveChanged = useMemo(
+    () => args !== argsRef.current,
+    [args, argsRef.current]
   );
 
   const reset = useCallback(() => setPage(1), [setPage]);
@@ -32,12 +37,12 @@ const useInfinitePaginatedListData = ({
 
   const onSuccess = useCallback(
     ({ data, pagination }) => {
-      targetPointHasChanged
+      page === 1
         ? setData(data)
         : setData(previous => [...(previous || []), ...data]);
       setPagination(pagination);
     },
-    [targetPointHasChanged, setData, setPagination]
+    [page, setData, setPagination]
   );
 
   useEffect(() => {
@@ -48,13 +53,20 @@ const useInfinitePaginatedListData = ({
   }, [targetPointHasChanged, targetPoint, targetPointRef.current, reset]);
 
   useEffect(() => {
-    if (targetPointHasChanged || !enabled) {
+    if (argsHaveChanged) {
+      argsRef.current = args;
+      reset();
+    }
+  }, [argsHaveChanged, args, argsRef.current, reset]);
+
+  useEffect(() => {
+    if (argsHaveChanged || targetPointHasChanged || !enabled) {
       return;
     }
 
     const controller = new AbortController();
     const { signal } = controller;
-
+    console.log('Fetch');
     getData(
       {
         coords: isValidLocation(targetPoint, coordinatesBounds)
@@ -69,7 +81,15 @@ const useInfinitePaginatedListData = ({
       .catch(error => !signal.aborted && setError(error));
 
     return () => controller.abort();
-  }, [enabled, targetPoint, args, page, targetPointHasChanged, onSuccess]);
+  }, [
+    enabled,
+    targetPoint,
+    args,
+    page,
+    targetPointHasChanged,
+    argsHaveChanged,
+    onSuccess
+  ]);
 
   return { data, total: pagination?.total ?? null, error, onNextPage };
 };

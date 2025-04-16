@@ -61,7 +61,7 @@ const FilterBar = ({ filters, openModal, onClick }, { intl }) => {
       >
         <span className="content-title">{intl.messages['all-filters']}</span>
       </button>
-      <ButtonFilters />
+      {filters.length > 1 && <ButtonFilters />}
     </div>
   );
 };

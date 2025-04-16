@@ -9,6 +9,7 @@ import useInfinitePaginatedListData from '../../../hooks/useInfinitePaginatedLis
 import useModal from '../../../hooks/useModal';
 import useOnScreen from '../../../hooks/useOnScreen';
 import Icon from '../../../component/Icon';
+import Filters from '../../../component/amporto/filter';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
   PAGE_CONTENT_TYPE_MAP
@@ -30,7 +31,7 @@ const ListPage = (
 ) => {
   const args = useMemo(
     () => ({ language, categories }),
-    [language, ...(categories || [])]
+    [language, (categories || []).join(',')]
   );
   const { data, total, error, onNextPage } = useInfinitePaginatedListData({
     enabled: categories !== null,
@@ -87,31 +88,37 @@ const ListPage = (
   );
 
   const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
-  /* TODO: add message on categories null, so user knows it needs to have some category selected */
-  /* TODO: Filters on top */
+  /* TODO: select category message */
 
   return (
     <div className="list-page">
-      <h3 className="count">
-        {total && `${total} ${intl.messages['search-results']}`}
-      </h3>
-      {error ? (
-        <div className="error">
-          <p>{intl.messages[errorMessage]}</p>
-          <Icon img="icon-icon_error_page_not_found" />
-        </div>
-      ) : data === null ? (
-        <div>
-          {
-            'Initial Loading...' /* TODO: decide how to do it. spinner vs skeleton */
-          }
-        </div>
-      ) : data.length === 0 ? (
-        <div className="error">
-          <p>{intl.messages[emptyMessage]}</p>
-        </div>
+      <Filters type={type} />
+      {categories === null ? (
+        <div className="error">Please select some category</div>
       ) : (
-        <List />
+        <>
+          <h3 className="count">
+            {total && `${total} ${intl.messages['search-results']}`}
+          </h3>
+          {error ? (
+            <div className="error">
+              <p>{intl.messages[errorMessage]}</p>
+              <Icon img="icon-icon_error_page_not_found" />
+            </div>
+          ) : data === null ? (
+            <div>
+              {
+                'Initial Loading...' /* TODO: decide how to do it. spinner vs skeleton */
+              }
+            </div>
+          ) : data.length === 0 ? (
+            <div className="error">
+              <p>{intl.messages[emptyMessage]}</p>
+            </div>
+          ) : (
+            <List />
+          )}
+        </>
       )}
 
       {isOpen && selected !== null && (

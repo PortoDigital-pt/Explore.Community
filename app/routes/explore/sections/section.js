@@ -30,7 +30,7 @@ const Section = (
 ) => {
   const args = useMemo(
     () => ({ language, categories }),
-    [language, ...(categories || [])]
+    [language, (categories || []).join(',')]
   );
   const { data, error } = useListData({
     enabled: categories !== null,

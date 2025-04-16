@@ -7,15 +7,20 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 0; 
+    padding: 0;
+    row-gap: 10px;
 
     @media (min-width: 900px) {
         padding: 20px 0 20px 0;
         margin-top: 0;
     }
 
+    .filter-container {
+        padding: 0 12px 0 12px;
+    }
+
     .error {
-        padding: 10px;
+        padding: 12px;
         display: flex;
         position: relative;
         flex-direction: column;
