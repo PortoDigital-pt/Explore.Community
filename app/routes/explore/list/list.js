@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo, useState, useCallback, Fragment } from 'react';
 import { useRouter } from 'found';
 import { string, func, arrayOf } from 'prop-types';
@@ -6,9 +7,9 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
 import withBreakpoint from '../../../util/withBreakpoint';
-import usePaginatedListData from '../../../hooks/usePaginatedListData';
+import useInfinitePaginatedListData from '../../../hooks/useInfinitePaginatedListData';
 import useModal from '../../../hooks/useModal';
-import useScrollYPosition from '../../../hooks/useScrollYPosition';
+import useOnScreen from '../../../hooks/useOnScreen';
 import Icon from '../../../component/Icon';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
@@ -33,26 +34,22 @@ const ListPage = (
     () => ({ language, categories }),
     [language, ...(categories || [])]
   );
-
-  /* TODO: pagination - infinite scrolling */
-  const { data, pagination, error, onNextPage } = usePaginatedListData({
+  const { data, total, error, onNextPage } = useInfinitePaginatedListData({
     enabled: categories !== null,
     location,
     coordinatesBounds,
     getData,
     args
   });
+  const ref = useOnScreen({ onScreen: onNextPage });
   const { isOpen, open, close } = useModal();
-  const [selected, setSelected] = useState(null);
   const { router } = useRouter();
+  const [selected, setSelected] = useState(null);
 
   const navigate = useCallback(
     id => router.push(`/explore/${type}/${id}`),
     [router.push, type]
   );
-
-  // TODO: review
-  const scrollTop = useScrollYPosition(breakpoint);
 
   const ListItemComponent = useMemo(
     () => MOBILE_PAGE_CONTENT_TYPE_MAP[type],
@@ -66,6 +63,7 @@ const ListPage = (
           data?.length === index + 1 ? (
             <ListItemComponent
               key={item.id}
+              innerRef={ref}
               onDetails={() => {
                 setSelected(item);
                 open();
@@ -97,8 +95,7 @@ const ListPage = (
   return (
     <div className="list-page">
       <h3 className="count">
-        {pagination?.total &&
-          `${pagination.total} ${intl.messages['search-results']}`}
+        {total && `${total} ${intl.messages['search-results']}`}
       </h3>
       {error ? (
         <div className="error">

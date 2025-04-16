@@ -73,7 +73,7 @@ DateSection.propTypes = {
 };
 
 const Mobile = (
-  { location, onDetails, selectedData, showShare = false },
+  { location, onDetails, selectedData, showShare = false, innerRef },
   { intl, executeAction }
 ) => {
   const distanceToEvent = useDistanceToTarget({
@@ -83,7 +83,7 @@ const Mobile = (
   });
 
   return (
-    <div className="mobile-view">
+    <div className="mobile-view" ref={innerRef}>
       <div className="header">
         <div className="top">
           <div className="title">
@@ -149,6 +149,7 @@ const Mobile = (
 };
 
 Mobile.propTypes = {
+  innerRef: shape(),
   onDetails: func.isRequired,
   selectedData: shape().isRequired,
   location: locationShape.isRequired,

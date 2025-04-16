@@ -2,7 +2,9 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { isValidLocation } from '../util/amporto/geo';
 import useTargetPoint from './useTargetPoint';
 
-const usePaginatedListData = ({
+// TODO: if args change, reset? since categories/language might change, and the first page needs to be fetched
+
+const useInfinitePaginatedListData = ({
   enabled = true,
   location,
   coordinatesBounds,
@@ -69,7 +71,7 @@ const usePaginatedListData = ({
     return () => controller.abort();
   }, [enabled, targetPoint, args, page, targetPointHasChanged, onSuccess]);
 
-  return { data, pagination, error, onNextPage };
+  return { data, total: pagination?.total ?? null, error, onNextPage };
 };
 
-export default usePaginatedListData;
+export default useInfinitePaginatedListData;
