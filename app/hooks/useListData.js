@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import distance from '@digitransit-search-util/digitransit-search-util-distance';
-import { isValidLocation, isOver50Meters } from '../util/amporto/geo';
+import { isValidLocation } from '../util/amporto/geo';
+import useTargetPoint from './useTargetPoint';
 
 const useListData = ({
   enabled = true,
@@ -9,23 +9,9 @@ const useListData = ({
   getData,
   args
 }) => {
+  const targetPoint = useTargetPoint({ location, coordinatesBounds });
   const [data, setData] = useState(null);
-  const [count, setCount] = useState(null);
   const [error, setError] = useState(null);
-  const [targetPoint, setTargetPoint] = useState(null);
-
-  useEffect(() => {
-    if (!targetPoint) {
-      setTargetPoint(location);
-      return;
-    }
-
-    if (!isOver50Meters(distance(targetPoint, location))) {
-      return;
-    }
-
-    setTargetPoint(location);
-  }, [targetPoint, location]);
 
   useEffect(() => {
     if (!enabled) {
@@ -44,16 +30,13 @@ const useListData = ({
       },
       { signal }
     )
-      .then(({ data, count }) => {
-        setData(data);
-        setCount(count);
-      })
+      .then(({ data }) => setData(data))
       .catch(error => !signal.aborted && setError(error));
 
     return () => controller.abort();
   }, [enabled, targetPoint, args]);
 
-  return { data, count, error };
+  return { data, error };
 };
 
 export default useListData;

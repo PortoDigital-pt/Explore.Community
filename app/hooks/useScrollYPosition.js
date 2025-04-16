@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import debounce from 'lodash/debounce';
 
-const useScrollYPosition = elementClassname => {
+const useScrollYPosition = breakpoint => {
   const [scrollY, setScrollY] = useState(0);
- 
+
+  const elementClassname = useMemo(
+    () => (breakpoint === 'large' ? 'scroll-target' : 'drawer-container'),
+    [breakpoint]
+  );
+
   useEffect(() => {
-    const handleScroll = debounce((event) => {
+    const handleScroll = debounce(event => {
       setScrollY(event?.target?.scrollTop ?? 0);
     }, 200);
     const element = document.getElementsByClassName(elementClassname)[0];
@@ -19,6 +24,6 @@ const useScrollYPosition = elementClassname => {
   }, [elementClassname]);
 
   return scrollY;
-}
+};
 
 export default useScrollYPosition;

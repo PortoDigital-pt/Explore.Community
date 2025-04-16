@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useMemo, useState, useCallback, Fragment } from 'react';
 import { useRouter } from 'found';
 import { string, func, arrayOf } from 'prop-types';
@@ -5,7 +6,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
 import withBreakpoint from '../../../util/withBreakpoint';
-import useListData from '../../../hooks/useListData';
+import usePaginatedListData from '../../../hooks/usePaginatedListData';
 import useModal from '../../../hooks/useModal';
 import useScrollYPosition from '../../../hooks/useScrollYPosition';
 import Icon from '../../../component/Icon';
@@ -16,15 +17,25 @@ import {
 import { DetailsContentModal } from '../common';
 
 const ListPage = (
-  { breakpoint, type, location, getData, language, categories, emptyMessage, errorMessage },
+  {
+    breakpoint,
+    type,
+    location,
+    getData,
+    language,
+    categories,
+    emptyMessage,
+    errorMessage
+  },
   { intl, config: { coordinatesBounds } }
 ) => {
   const args = useMemo(
-    () => ({ language, categories, limit: 10 }),
+    () => ({ language, categories }),
     [language, ...(categories || [])]
   );
+
   /* TODO: pagination - infinite scrolling */
-  const { data, count, error } = useListData({
+  const { data, pagination, error, onNextPage } = usePaginatedListData({
     enabled: categories !== null,
     location,
     coordinatesBounds,
@@ -34,15 +45,14 @@ const ListPage = (
   const { isOpen, open, close } = useModal();
   const [selected, setSelected] = useState(null);
   const { router } = useRouter();
- 
+
   const navigate = useCallback(
     id => router.push(`/explore/${type}/${id}`),
     [router.push, type]
   );
 
-  // TODO: review placement
-  const scrollElement = useMemo(() => breakpoint === 'large' ? 'scroll-target' : 'drawer-container', [breakpoint]);
-  const scrollTop = useScrollYPosition(scrollElement);
+  // TODO: review
+  const scrollTop = useScrollYPosition(breakpoint);
 
   const ListItemComponent = useMemo(
     () => MOBILE_PAGE_CONTENT_TYPE_MAP[type],
@@ -87,7 +97,8 @@ const ListPage = (
   return (
     <div className="list-page">
       <h3 className="count">
-        {count && `${count} ${intl.messages['search-results']}`}
+        {pagination?.total &&
+          `${pagination.total} ${intl.messages['search-results']}`}
       </h3>
       {error ? (
         <div className="error">
@@ -96,7 +107,9 @@ const ListPage = (
         </div>
       ) : data === null ? (
         <div>
-          {'Loading...' /* TODO: decide how to do it. spinner vs skeleton */}
+          {
+            'Initial Loading...' /* TODO: decide how to do it. spinner vs skeleton */
+          }
         </div>
       ) : data.length === 0 ? (
         <div className="error">

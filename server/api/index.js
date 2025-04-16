@@ -1,5 +1,6 @@
 import { poiToDto, eventToDto } from './dto';
 import { getDate, getDateInFutureDays } from './date';
+import { getOffset, getInfinitePagination } from './pagination';
 
 const defaultQueryParams = {
   georel: 'near;maxDistance:25000',
@@ -57,9 +58,14 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
   return query.toString();
 };
 
-const getCount = headers => headers.get('fiware-total-count');
+/**
+ * Get the total count from response headers
+ *
+ * @param {Headers} headers the response headers
+ */
+const getTotal = headers => headers.get('fiware-total-count');
 
-const customFetch = async (url, addCount = false) => {
+const customFetch = async (url, paginated = false) => {
   const response = await fetch(url);
   const preparedResponse = {
     status: response.status,
@@ -72,14 +78,15 @@ const customFetch = async (url, addCount = false) => {
 
   const data = await response.json();
 
-  if (addCount) {
-    return { data, count: getCount(response.headers), ...preparedResponse };
+  if (paginated) {
+    return { data, total: getTotal(response.headers), ...preparedResponse };
   }
 
   return { data, ...preparedResponse };
 };
 
-const getPoiDetail = async (
+const getDetail = async (
+  toDto,
   { params: { id }, query: { language } },
   response
 ) => {
@@ -91,12 +98,14 @@ const getPoiDetail = async (
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(poiToDto(data, language));
+  return response.status(status).json(toDto(data, language));
 };
 
-const getPoiList = async (
+const getList = async (
+  toDto,
+  defaultQueryParams,
   {
-    query: { language, ...queryRest },
+    query: { language, page, ...queryRest },
     config: {
       filters,
       ngsi: { dataProvider },
@@ -105,73 +114,59 @@ const getPoiList = async (
   },
   response
 ) => {
-  const addCount = defaultPoiQueryParams.options === 'count';
-  const { data, count, status, text } = await customFetch(
+  const paginated = page !== undefined;
+
+  if (paginated) {
+    // eslint-disable-next-line no-param-reassign
+    defaultQueryParams.offset = getOffset({
+      limit: defaultQueryParams.limit,
+      page
+    });
+  }
+
+  const { data, total, status, text } = await customFetch(
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
       dataProvider,
       coords: `${lat},${lon}`,
-      ...defaultPoiQueryParams,
+      ...defaultQueryParams,
       ...queryRest
     })}`,
-    addCount
+    paginated
   );
 
   if (!data) {
     return response.status(status).send(text);
+  }
+
+  if (paginated) {
+    const pagination = getInfinitePagination({
+      total,
+      page,
+      limit: defaultQueryParams.limit
+    });
+
+    return response
+      .status(status)
+      .json({ data: data.map(item => toDto(item, language)), pagination });
   }
 
   return response
     .status(status)
-    .json({ data: data.map(poi => poiToDto(poi, language)), count });
+    .json({ data: data.map(item => toDto(item, language)), pagination: null });
 };
 
-const getEventDetail = async (
-  { params: { id }, query: { language } },
-  response
-) => {
-  const { data, status, text } = await customFetch(
-    `${process.env.NGSI_URL}/${id}`
-  );
+const getPoiDetail = (request, response) =>
+  getDetail(poiToDto, request, response);
 
-  if (!data) {
-    return response.status(status).send(text);
-  }
+const getEventDetail = (request, response) =>
+  getDetail(eventToDto, request, response);
 
-  return response.status(status).json(eventToDto(data, language));
-};
+const getPoiList = (request, response) =>
+  getList(poiToDto, defaultPoiQueryParams, request, response);
 
-const getEventList = async (
-  {
-    query: { language, ...queryRest },
-    config: {
-      filters,
-      ngsi: { dataProvider },
-      defaultEndpoint: { lat, lon }
-    }
-  },
-  response
-) => {
-  const addCount = defaultEventQueryParams.options === 'count';
-  const { data, count, status, text } = await customFetch(
-    `${process.env.NGSI_URL}?${buildNGSIQueryString({
-      filters,
-      dataProvider,
-      coords: `${lat},${lon}`,
-      ...defaultEventQueryParams,
-      ...queryRest
-    })}`,
-    addCount
-  );
-
-  if (!data) {
-    return response.status(status).send(text);
-  }
-
-  return response
-    .status(status)
-    .json({ data: data.map(event => eventToDto(event, language)), count });
-};
+const getEventList = (request, response) =>
+  getList(eventToDto, defaultEventQueryParams, request, response);
 
 const setupCache = (request, response, next) => {
   // setting cache to 1 hour
@@ -190,6 +185,8 @@ const routes = {
   '/api/events/:id': getEventDetail,
   '/api/events': getEventList
 };
+
+// TODO: param validation middleware
 
 export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
   Object.entries(routes).forEach(([route, handler]) =>
