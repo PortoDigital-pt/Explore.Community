@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo } from 'react';
 import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';

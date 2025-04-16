@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import moment from 'moment';
 import { string, func, shape, bool } from 'prop-types';

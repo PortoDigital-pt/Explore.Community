@@ -10,10 +10,14 @@ module.exports = {
     curly: ['error', 'all'],
     'lines-between-class-members': 'warn',
     'no-shadow': 'off',
+    'prefer-regex-literals': 'off',
+    'no-unused-expressions': 'off',
     'no-else-return': 'warn',
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-console': 'error',
+    'consistent-return': 'off',
     'no-restricted-exports': 'off',
+    'no-nested-ternary': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/no-named-default': 'off',
     'import/extensions': 'off',
@@ -31,6 +35,7 @@ module.exports = {
     'react/state-in-constructor': 'off',
     'react/static-property-placement': 'off',
     'react/function-component-definition': 'off',
+    'react/no-unstable-nested-components': 'off',
 
     // jsx-a11y
     'jsx-a11y/anchor-is-valid': [

@@ -1,5 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo, useState, useCallback, Fragment } from 'react';
 import { useRouter } from 'found';
 import { string, func, arrayOf } from 'prop-types';
