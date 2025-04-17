@@ -17,6 +17,7 @@ import { getPoiById } from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
+import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 
 const poiShape = shape({
@@ -157,15 +158,9 @@ export const MobileContent = connectToStores(
 export const PageContent = ({ selectedData }, { intl }) => (
   <>
     <div className="image">
-      {
-        selectedData.images && (
-          <img
-            src={selectedData.images[0]}
-            alt={selectedData.name}
-            loading="lazy"
-          />
-        ) /* TODO: change to slider */
-      }
+      {selectedData.images && (
+        <ImageSlider images={selectedData.images} name={selectedData.name} />
+      )}
     </div>
     <div className="details">
       <div className="description">
