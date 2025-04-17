@@ -4,7 +4,6 @@ import { string, func, arrayOf } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
-import withBreakpoint from '../../../util/withBreakpoint';
 import useInfinitePaginatedListData from '../../../hooks/useInfinitePaginatedListData';
 import useModal from '../../../hooks/useModal';
 import useOnScreen from '../../../hooks/useOnScreen';
@@ -17,18 +16,13 @@ import {
 import { DetailsContentModal } from '../common';
 
 const ListPage = (
-  {
-    breakpoint,
-    type,
-    location,
-    getData,
-    language,
-    categories,
-    emptyMessage,
-    errorMessage
-  },
+  { type, location, getData, language, categories, emptyMessage, errorMessage },
   { intl, config: { coordinatesBounds } }
 ) => {
+  const { isOpen, open, close } = useModal();
+  const { router } = useRouter();
+  const [selected, setSelected] = useState(null);
+
   const args = useMemo(
     () => ({ language, categories }),
     [language, (categories || []).join(',')]
@@ -41,9 +35,6 @@ const ListPage = (
     args
   });
   const ref = useOnScreen({ onScreen: onNextPage });
-  const { isOpen, open, close } = useModal();
-  const { router } = useRouter();
-  const [selected, setSelected] = useState(null);
 
   const navigate = useCallback(
     id => router.push(`/explore/${type}/${id}`),
@@ -146,7 +137,6 @@ ListPage.contextTypes = {
 };
 
 ListPage.propTypes = {
-  breakpoint: string.isRequired,
   type: string.isRequired,
   getData: func.isRequired,
   language: string.isRequired,
@@ -157,7 +147,7 @@ ListPage.propTypes = {
 };
 
 export default connectToStores(
-  withBreakpoint(ListPage),
+  ListPage,
   ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
   ({ getStore }, { type }) => {
     let categories = null;

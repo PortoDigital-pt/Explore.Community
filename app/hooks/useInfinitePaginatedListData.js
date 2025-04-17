@@ -1,8 +1,13 @@
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useRef,
+  useMemo
+} from 'react';
 import { isValidLocation } from '../util/amporto/geo';
 import useTargetPoint from './useTargetPoint';
-
-// TODO: when reseting show loading state?
 
 const useInfinitePaginatedListData = ({
   enabled = true,
@@ -28,7 +33,12 @@ const useInfinitePaginatedListData = ({
     [args, argsRef.current]
   );
 
-  const reset = useCallback(() => setPage(1), [setPage]);
+  const reset = useCallback(() => {
+    setData(null);
+    setPagination(null);
+    setError(null);
+    setPage(1);
+  }, []);
 
   const onNextPage = useCallback(
     () => pagination?.hasNext && setPage(pagination.nextPage),
@@ -37,22 +47,20 @@ const useInfinitePaginatedListData = ({
 
   const onSuccess = useCallback(
     ({ data, pagination }) => {
-      page === 1
-        ? setData(data)
-        : setData(previous => [...(previous || []), ...data]);
+      setData(previous => (page === 1 ? data : [...(previous || []), ...data]));
       setPagination(pagination);
     },
     [page, setData, setPagination]
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (targetPointHasChanged) {
       targetPointRef.current = targetPoint;
       reset();
     }
   }, [targetPointHasChanged, targetPoint, targetPointRef.current, reset]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (argsHaveChanged) {
       argsRef.current = args;
       reset();
@@ -66,7 +74,7 @@ const useInfinitePaginatedListData = ({
 
     const controller = new AbortController();
     const { signal } = controller;
-    console.log('Fetch');
+
     getData(
       {
         coords: isValidLocation(targetPoint, coordinatesBounds)
