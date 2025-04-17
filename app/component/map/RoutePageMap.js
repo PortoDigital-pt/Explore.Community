@@ -88,8 +88,7 @@ class RoutePageMap extends React.Component {
   }
 
   render() {
-    const { pattern, lat, lon, match, mapLayers, mapLayerOptions } =
-      this.props;
+    const { pattern, lat, lon, match, mapLayers, mapLayerOptions } = this.props;
     if (!pattern) {
       return false;
     }

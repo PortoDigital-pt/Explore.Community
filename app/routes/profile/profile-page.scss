@@ -1,0 +1,172 @@
+.profile-page {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: start;
+  align-items: normal;
+  height: 100%;
+  margin: 24px;
+  background-color: $background-default;
+
+  .profile-page-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    .avatar-section {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      color: #212121;
+      font-family: $font-family;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      gap: 8px;
+      margin-bottom: 24px;
+
+      .icon-container {
+        display: flex;
+        position: relative;
+
+        .avatar {
+          display: flex;
+          position: relative;
+          width: 64px;
+          height: 64px;
+          color: $primary-dark;
+        }
+      }
+    }
+
+    .cards {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      gap: 12px;
+
+      .card-item {
+        display: flex;
+        position: relative;
+        padding: 16px 12px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 8px;
+        align-self: stretch;
+        border-radius: 4px;
+        background: $background-default;
+        box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.16);
+        height: 84px;
+
+        .icon-container {
+          display: flex;
+          position: relative;
+
+          .left-icon,
+          .right-icon {
+            display: flex;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            color: $primary-dark;
+          }
+        }
+
+        .icon-container:has(> svg.right-icon) {
+          align-self: center;
+        }
+
+        .text-container {
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 4px;
+          flex: 1 0 0;
+          color: #212121;
+          font-family: $font-family;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0.15px;
+
+          .title {
+            display: flex;
+            position: relative;
+            color: $primary-dark;
+            font-family: $font-family;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: $font-weight-bold;
+            line-height: 24px;
+          }
+
+          .subtitle {
+            display: flex;
+            position: relative;
+            text-align: left;
+            color: #212121;
+            font-family: $font-family;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 16px;
+          }
+        }
+      }
+    }
+
+    .logout-button {
+      display: flex;
+      position: relative;
+      padding: 8px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+      border-radius: 8px;
+      background: $primary-contrastText;
+      color: $primary-color;
+      cursor: pointer;
+      border: 2px solid $primary-dark;
+      margin-top: 48px;
+    }
+  }
+}
+
+
+@media screen and (min-width: 899px) {
+  .profile-page {
+    margin: 32px 24px;
+
+    .profile-page-container {
+      padding: 32px 106px;
+
+      .cards {
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        .card-item {
+          width: 48%;
+        }
+      }
+
+      .logout-button {
+        align-self: center;
+        width: 50%;
+      }
+    }
+  }
+}
