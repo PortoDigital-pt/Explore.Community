@@ -1,0 +1,50 @@
+.horizontal-favorites-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  overflow-x: auto;
+  gap: 8px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0 18px 0 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .item {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 8px;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px solid $primary-main;
+    background: $background-default;
+    color: $grey-dark-down;
+    font-family: $font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+
+    .icon-container {
+      display: flex;
+      position: relative;
+
+      svg {
+        color: $primary-main;
+        width: 16px;
+        height: 16px;
+      }
+    }    
+  }
+
+  @media (min-width: 900px) {
+    padding: 0 24px 0 0;
+  }
+}

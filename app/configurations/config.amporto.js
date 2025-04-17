@@ -55,7 +55,8 @@ const {
   EXPLORE_TILES_URL,
   CULTURAL_AGENDA,
   WEATHER_API,
-  WEATHER_CITY_CODE
+  WEATHER_CITY_CODE,
+  SHOW_PROFILE_NOTIFICATION
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -504,5 +505,9 @@ export default {
       W: { pt: 'Oeste', en: 'West' },
       NW: { pt: 'Noroeste', en: 'Northwest' }
     }
+  },
+  profile: {
+    showNotification: SHOW_PROFILE_NOTIFICATION === 'true',
+    showAuthenticationInfo: ALLOW_LOGIN === 'true'
   }
 };

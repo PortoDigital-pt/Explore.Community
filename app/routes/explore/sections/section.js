@@ -53,6 +53,8 @@ const Section = (
     [router.push, type]
   );
 
+  const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
+
   if (categories === null) {
     return null;
   }
@@ -113,7 +115,7 @@ const Section = (
             close();
             navigate(selected.id);
           }}
-          PageContent={PAGE_CONTENT_TYPE_MAP[type]}
+          PageContent={ModalPageContent}
         />
       )}
     </section>

@@ -229,7 +229,7 @@ const stopLayers = ['stop', 'station'];
  * Executes the search
  *
  */
-export function getSearchResults(
+export async function getSearchResults(
   targets,
   sources,
   transportMode,
@@ -267,6 +267,7 @@ export function getSearchResults(
     getFutureRoutes,
     cityBikeNetworks
   } = searchContext;
+
   // if no targets are provided, search them all.
   const allTargets = !targets || targets.length === 0;
   // if no sources are provided, use them all.
@@ -388,19 +389,12 @@ export function getSearchResults(
 
   if (allTargets || useExplore) {
     if (sources.includes('Favourite')) {
-      const favouriteExplore = getFavouriteExplore(context);
-      const poisAndEvents = Promise.resolve(
-        favouriteExplore.map(({ type, id, name, lon, lat }) => ({
-          type: `Favourite${type}`,
-          properties: {
-            id,
-            address: name,
-            layer: `favourite${type}`
-          },
-          geometry: { type: 'Point', coordinates: [lon, lat] }
-        }))
+      const favouriteExplore = await filterFavouriteLocations(
+        getFavouriteExplore(context),
+        input
       );
-      searchComponents.push(poisAndEvents);
+
+      searchComponents.push(favouriteExplore);
     }
     if (allSources || sources.includes('History')) {
       // TODO
