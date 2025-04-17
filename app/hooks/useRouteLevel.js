@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { useRouter } from 'found';
-import { PATH_PREFIXES } from '../../../util/path';
+import { PATH_PREFIXES } from '../util/path';
 import {
   COMMON_NAVIGATION_ITEMS,
   COMMON_NAVIGATION_ITEMS_PATH_MAP
-} from './common';
+} from '../component/amporto/navigation/common';
 
 const getCurrentRoute = pathname => {
   // eslint-disable-next-line no-unused-vars

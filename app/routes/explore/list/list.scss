@@ -10,8 +10,15 @@
     padding: 0;
     row-gap: 10px;
 
+    .back-button {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 520px;
+    }
+
     @media (min-width: 900px) {
-        padding: 20px 0 20px 0;
+        padding: 120px 0 20px 0;
         margin-top: 0;
     }
 

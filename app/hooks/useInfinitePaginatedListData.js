@@ -1,11 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useCallback,
-  useRef,
-  useMemo
-} from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { isValidLocation } from '../util/amporto/geo';
 import useTargetPoint from './useTargetPoint';
 
@@ -18,20 +11,14 @@ const useInfinitePaginatedListData = ({
 }) => {
   const targetPoint = useTargetPoint({ location, coordinatesBounds });
   const targetPointRef = useRef(targetPoint);
-  const argsRef = useRef(args);
+
+  const argsString = JSON.stringify(args);
+  const prevArgsStringRef = useRef(argsString);
+
   const [data, setData] = useState(null);
   const [pagination, setPagination] = useState(null);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-
-  const targetPointHasChanged = useMemo(
-    () => targetPoint !== targetPointRef.current,
-    [targetPoint, targetPointRef.current]
-  );
-  const argsHaveChanged = useMemo(
-    () => args !== argsRef.current,
-    [args, argsRef.current]
-  );
 
   const reset = useCallback(() => {
     setData(null);
@@ -40,35 +27,37 @@ const useInfinitePaginatedListData = ({
     setPage(1);
   }, []);
 
-  const onNextPage = useCallback(
-    () => pagination?.hasNext && setPage(pagination.nextPage),
-    [pagination, setPage]
-  );
+  useEffect(() => {
+    if (prevArgsStringRef.current !== argsString) {
+      prevArgsStringRef.current = argsString;
+      reset();
+    }
+  }, [argsString, reset]);
 
-  const onSuccess = useCallback(
-    ({ data, pagination }) => {
-      setData(previous => (page === 1 ? data : [...(previous || []), ...data]));
-      setPagination(pagination);
-    },
-    [page, setData, setPagination]
-  );
-
-  useLayoutEffect(() => {
-    if (targetPointHasChanged) {
+  useEffect(() => {
+    if (targetPointRef.current !== targetPoint) {
       targetPointRef.current = targetPoint;
       reset();
     }
-  }, [targetPointHasChanged, targetPoint, targetPointRef.current, reset]);
+  }, [targetPoint, reset]);
 
-  useLayoutEffect(() => {
-    if (argsHaveChanged) {
-      argsRef.current = args;
-      reset();
-    }
-  }, [argsHaveChanged, args, argsRef.current, reset]);
+  const onNextPage = useCallback(
+    () => pagination?.hasNext && setPage(pagination.nextPage),
+    [pagination]
+  );
+
+  const onSuccess = useCallback(
+    ({ data, pagination: newPagination }) => {
+      setData(previousData =>
+        page === 1 ? data : [...(previousData || []), ...data]
+      );
+      setPagination(newPagination);
+    },
+    [page]
+  );
 
   useEffect(() => {
-    if (argsHaveChanged || targetPointHasChanged || !enabled) {
+    if (!enabled) {
       return;
     }
 
@@ -86,20 +75,17 @@ const useInfinitePaginatedListData = ({
       { signal }
     )
       .then(onSuccess)
-      .catch(error => !signal.aborted && setError(error));
+      .catch(err => !signal.aborted && setError(err));
 
     return () => controller.abort();
-  }, [
-    enabled,
-    targetPoint,
-    args,
-    page,
-    targetPointHasChanged,
-    argsHaveChanged,
-    onSuccess
-  ]);
+  }, [enabled, targetPoint, argsString, page, onSuccess]);
 
-  return { data, total: pagination?.total ?? null, error, onNextPage };
+  return {
+    data,
+    total: pagination?.total ?? null,
+    error,
+    onNextPage
+  };
 };
 
 export default useInfinitePaginatedListData;

@@ -5,7 +5,7 @@ import { string } from 'prop-types';
 import SidebarMenu from '../navigation/sidebar';
 import withBreakpoint from '../../../util/withBreakpoint';
 import Weather from '../weather';
-import useRouteLevel from '../navigation/useRouteLevel';
+import useRouteLevel from '../../../hooks/useRouteLevel';
 import BackButton from '../../BackButton';
 
 const Topbar = ({ breakpoint }) => {

@@ -4,10 +4,13 @@ import { string, func, arrayOf } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
+import withBreakpoint from '../../../util/withBreakpoint';
 import useInfinitePaginatedListData from '../../../hooks/useInfinitePaginatedListData';
 import useModal from '../../../hooks/useModal';
 import useOnScreen from '../../../hooks/useOnScreen';
+import useRouteLevel from '../../../hooks/useRouteLevel';
 import Icon from '../../../component/Icon';
+import BackButton from '../../../component/BackButton';
 import Filters from '../../../component/amporto/filter';
 import Skeleton from '../../../component/amporto/skeleton';
 import {
@@ -17,10 +20,20 @@ import {
 import { DetailsContentModal } from '../common';
 
 const ListPage = (
-  { type, location, getData, language, categories, emptyMessage, errorMessage },
+  {
+    breakpoint,
+    type,
+    location,
+    getData,
+    language,
+    categories,
+    emptyMessage,
+    errorMessage
+  },
   { intl, config: { coordinatesBounds } }
 ) => {
   const { isOpen, open, close } = useModal();
+  const { isFirstLevelRoute } = useRouteLevel();
   const { router } = useRouter();
   const [selected, setSelected] = useState(null);
 
@@ -54,10 +67,10 @@ const ListPage = (
           i === 9 ? (
             <Skeleton key={`${i}-item`} />
           ) : (
-            <>
-              <Skeleton key={`${i}-item`} />
+            <Fragment key={`${i}-item`}>
+              <Skeleton />
               <hr />
-            </>
+            </Fragment>
           )
         )}
       </>
@@ -105,6 +118,9 @@ const ListPage = (
 
   return (
     <div className="list-page">
+      {breakpoint === 'large' && !isFirstLevelRoute && (
+        <BackButton title={intl.messages[type]} />
+      )}
       <Filters type={type} />
       {categories === null ? (
         <div className="error">
@@ -155,6 +171,7 @@ ListPage.contextTypes = {
 };
 
 ListPage.propTypes = {
+  breakpoint: string.isRequired,
   type: string.isRequired,
   getData: func.isRequired,
   language: string.isRequired,
@@ -165,7 +182,7 @@ ListPage.propTypes = {
 };
 
 export default connectToStores(
-  ListPage,
+  withBreakpoint(ListPage),
   ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
   ({ getStore }, { type }) => {
     let categories = null;
