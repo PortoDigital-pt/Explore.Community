@@ -9,6 +9,7 @@ import useModal from '../../../hooks/useModal';
 import useOnScreen from '../../../hooks/useOnScreen';
 import Icon from '../../../component/Icon';
 import Filters from '../../../component/amporto/filter';
+import Skeleton from '../../../component/amporto/skeleton';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
   PAGE_CONTENT_TYPE_MAP
@@ -46,46 +47,69 @@ const ListPage = (
     [type]
   );
 
+  const Loading = useMemo(
+    () => () => (
+      <>
+        {Array.from({ length: 10 }, (_, i) =>
+          i === 9 ? (
+            <Skeleton key={`${i}-item`} />
+          ) : (
+            <>
+              <Skeleton key={`${i}-item`} />
+              <hr />
+            </>
+          )
+        )}
+      </>
+    ),
+    []
+  );
+
   const List = useMemo(
     () => () => (
       <div className="list">
-        {data?.map((item, index) =>
-          data?.length === index + 1 ? (
-            <ListItemComponent
-              key={item.id}
-              innerRef={ref}
-              onDetails={() => {
-                setSelected(item);
-                open();
-              }}
-              selectedData={item}
-            />
-          ) : (
-            <Fragment key={item.id}>
+        {data === null ? (
+          <Loading />
+        ) : (
+          data.map((item, index) =>
+            data.length === index + 1 ? (
               <ListItemComponent
+                key={item.id}
+                innerRef={ref}
                 onDetails={() => {
                   setSelected(item);
                   open();
                 }}
                 selectedData={item}
               />
-              <hr />
-            </Fragment>
+            ) : (
+              <Fragment key={item.id}>
+                <ListItemComponent
+                  onDetails={() => {
+                    setSelected(item);
+                    open();
+                  }}
+                  selectedData={item}
+                />
+                <hr />
+              </Fragment>
+            )
           )
         )}
       </div>
     ),
-    [data, ListItemComponent, setSelected, open]
+    [data, ListItemComponent, Loading, setSelected, open]
   );
 
   const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
-  /* TODO: select category message */
 
   return (
     <div className="list-page">
       <Filters type={type} />
       {categories === null ? (
-        <div className="error">Please select some category</div>
+        <div className="error">
+          {intl.messages['select-at-least-one-category']}
+        </div>
       ) : (
         <>
           <h3 className="count">
@@ -96,13 +120,7 @@ const ListPage = (
               <p>{intl.messages[errorMessage]}</p>
               <Icon img="icon-icon_error_page_not_found" />
             </div>
-          ) : data === null ? (
-            <div>
-              {
-                'Initial Loading...' /* TODO: decide how to do it. spinner vs skeleton */
-              }
-            </div>
-          ) : data.length === 0 ? (
+          ) : data?.length === 0 ? (
             <div className="error">
               <p>{intl.messages[emptyMessage]}</p>
             </div>

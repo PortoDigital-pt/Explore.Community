@@ -62,6 +62,23 @@
         align-items: center;
         width: 100%;
 
+        .skeleton {
+            margin: 16px 12px;
+            width: 366px;
+            min-width: 366px;
+            height: 251.500px;
+            min-height: 251.500px;
+            border-radius: 4px;
+            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+
+            @media (min-width: 900px) {
+                width: 496px;
+                min-width: 496px;
+                height: 303.500px;
+                min-height: 303.500px;
+            }
+        }
+
         hr {
             display: flex;
             position: relative;

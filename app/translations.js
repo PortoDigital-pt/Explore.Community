@@ -822,6 +822,7 @@ const translations = {
   },
 
   en: {
+    'select-at-least-one-category': 'Select at least one category',
     'search-results': 'results',
     'share-button-label': 'Share',
     'favourite-button-label': 'Favourite',
@@ -5232,6 +5233,7 @@ const translations = {
     'add-location-to-favourites': 'Adicione uma localização aos seus Favoritos',
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
+    'select-at-least-one-category': 'Selecione pelo menos uma categoria',
     'search-results': 'resultados',
     'share-button-label': 'Partilhar',
     'favourite-button-label': 'Favorito',
