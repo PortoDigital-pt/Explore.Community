@@ -10,7 +10,6 @@ import storeOrigin from '../../action/originActions';
 import storeDestination from '../../action/destinationActions';
 import {
   getPathWithEndpointObjects,
-  parseLocation,
   definesItinerarySearch,
   PREFIX_ITINERARY_SUMMARY
 } from '../../util/path';

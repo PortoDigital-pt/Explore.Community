@@ -18,6 +18,7 @@ export default function ScrollableWrapper({
     if (!e.target.className.includes('scroll-target')) {
       return;
     }
+
     const isScrolled = e.target.scrollTop !== 0;
     changeScroll(isScrolled);
   }

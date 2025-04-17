@@ -34,6 +34,11 @@ ListMap.propTypes = {
   mapLayers: mapLayerShape.isRequired
 };
 
-export default connectToStores(ListMap, ['PositionStore'], ({ getStore }) => ({
-  location: getStore('PositionStore').getLocationState()
-}));
+export default connectToStores(
+  ListMap,
+  ['MapLayerStore', 'PositionStore'],
+  ({ getStore }, { type }) => ({
+    location: getStore('PositionStore').getLocationState(),
+    mapLayers: getStore('MapLayerStore').getFilterLayers({ only: type })
+  })
+);

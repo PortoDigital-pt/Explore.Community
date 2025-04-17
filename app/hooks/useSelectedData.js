@@ -5,9 +5,14 @@ const useSelectedData = ({ id, language, getDataById }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getDataById({ id, query: { language } })
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    getDataById({ id, query: { language } }, { signal })
       .then(setSelectedData)
-      .catch(setError);
+      .catch(error => !signal.aborted && setError(error));
+
+    return () => controller.abort();
   }, [id, language]);
 
   return { selectedData, error };

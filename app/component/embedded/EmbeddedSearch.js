@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect, useRef } from 'react';
 import { matchShape } from 'found';

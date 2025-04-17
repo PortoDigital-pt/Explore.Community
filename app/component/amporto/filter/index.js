@@ -98,6 +98,10 @@ Filters.contextTypes = {
   executeAction: func.isRequired
 };
 
-export default connectToStores(Filters, ['MapLayerStore'], context => ({
-  mapLayers: context.getStore('MapLayerStore').getFilterLayers()
-}));
+export default connectToStores(
+  Filters,
+  ['MapLayerStore'],
+  ({ getStore }, { type }) => ({
+    mapLayers: getStore('MapLayerStore').getFilterLayers({ only: type })
+  })
+);

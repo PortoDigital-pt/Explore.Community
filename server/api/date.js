@@ -33,8 +33,22 @@ const DAYS_LANG_MAP = {
   sunday: { pt: 'Domingo', en: 'Sunday' }
 };
 
+/**
+ * Format the hours from '1500' to '15:00'
+ *
+ * @param {string} hours hours
+ */
 const formatCalendarHours = hours => `${hours.slice(0, 2)}:${hours.slice(2)}`;
 
+/**
+ * Whether a group of days are in sequence.
+ * e.g.
+ * ['Monday', 'Tuesday'] -> true
+ * ['Monday', 'Tuesday', 'Friday'] -> false
+ *
+ * @param {string[]} days the group of days
+ * @param {string} language the selected language
+ */
 const areDaysSequential = (days, language) => {
   const dayOrder = Object.values(DAYS_LANG_MAP).map(day => day[language]);
   const indexes = days.map(day => dayOrder.indexOf(day));
@@ -48,6 +62,12 @@ const areDaysSequential = (days, language) => {
   return true;
 };
 
+/**
+ * Format an object calendar into a group of schedule strings
+ *
+ * @param {object} calendar the calendar
+ * @param {string} language the selected language
+ */
 export const formatCalendar = (calendar, language) => {
   const group = Object.entries(DAYS_LANG_MAP).reduce((acc, [day, label]) => {
     if (calendar[day].length === 0) {

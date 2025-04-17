@@ -1,7 +1,7 @@
 import React from 'react';
 import { intlShape } from 'react-intl';
 import SidebarMenu from '../sidebar';
-import useRouteLevel from '../useRouteLevel';
+import useRouteLevel from '../../../../hooks/useRouteLevel';
 
 const DesktopNavigation = (_, { intl }) => {
   const { isFirstLevelRoute, route } = useRouteLevel();

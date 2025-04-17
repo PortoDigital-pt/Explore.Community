@@ -1,35 +1,40 @@
 import { useState, useEffect } from 'react';
-import distance from '@digitransit-search-util/digitransit-search-util-distance';
-import { isValidLocation, isOver50Meters } from '../util/amporto/geo';
+import { isValidLocation } from '../util/amporto/geo';
+import useTargetPoint from './useTargetPoint';
 
-const useListData = ({ location, coordinatesBounds, getData, args }) => {
+const useListData = ({
+  enabled = true,
+  location,
+  coordinatesBounds,
+  getData,
+  args
+}) => {
+  const targetPoint = useTargetPoint({ location, coordinatesBounds });
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [targetPoint, setTargetPoint] = useState(null);
 
   useEffect(() => {
-    if (!targetPoint) {
-      setTargetPoint(location);
+    if (!enabled) {
       return;
     }
 
-    if (!isOver50Meters(distance(targetPoint, location))) {
-      return;
-    }
+    const controller = new AbortController();
+    const { signal } = controller;
 
-    setTargetPoint(location);
-  }, [targetPoint, location]);
+    getData(
+      {
+        coords: isValidLocation(targetPoint, coordinatesBounds)
+          ? `${targetPoint.lat},${targetPoint.lon}`
+          : null,
+        ...args
+      },
+      { signal }
+    )
+      .then(({ data }) => setData(data))
+      .catch(error => !signal.aborted && setError(error));
 
-  useEffect(() => {
-    getData({
-      coords: isValidLocation(targetPoint, coordinatesBounds)
-        ? `${targetPoint.lat},${targetPoint.lon}`
-        : null,
-      ...args
-    })
-      .then(setData)
-      .catch(setError);
-  }, [targetPoint, args]);
+    return () => controller.abort();
+  }, [enabled, targetPoint, args]);
 
   return { data, error };
 };

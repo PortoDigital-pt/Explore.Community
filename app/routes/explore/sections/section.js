@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useCallback, useState, useMemo } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { useRouter } from 'found';
@@ -31,9 +30,10 @@ const Section = (
 ) => {
   const args = useMemo(
     () => ({ language, categories }),
-    [language, ...categories]
+    [language, (categories || []).join(',')]
   );
   const { data, error } = useListData({
+    enabled: categories !== null,
     location,
     coordinatesBounds,
     getData,
@@ -52,6 +52,12 @@ const Section = (
     () => router.push(`/explore/${type}`),
     [router.push, type]
   );
+
+  const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
+
+  if (categories === null) {
+    return null;
+  }
 
   return (
     <section className="section">
@@ -109,7 +115,7 @@ const Section = (
             close();
             navigate(selected.id);
           }}
-          PageContent={PAGE_CONTENT_TYPE_MAP[type]}
+          PageContent={ModalPageContent}
         />
       )}
     </section>
@@ -132,14 +138,31 @@ Section.propTypes = {
   getData: func.isRequired,
   language: string.isRequired,
   location: locationShape.isRequired,
-  categories: arrayOf(string).isRequired
+  categories: arrayOf(string)
 };
 
 export default connectToStores(
   Section,
-  ['PositionStore', 'PreferencesStore'],
-  ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage(),
-    location: getStore('PositionStore').getLocationState()
-  })
+  ['PositionStore', 'PreferencesStore', 'MapLayerStore'],
+  ({ getStore }, { type }) => {
+    let categories = null;
+
+    if (type) {
+      const { showAll, ...typeCategories } = getStore(
+        'MapLayerStore'
+      ).getFilterLayers({ only: type })[type];
+      const selectedCategories = Object.entries(typeCategories)
+        // eslint-disable-next-line no-unused-vars
+        .filter(([_, selected]) => selected)
+        .map(([category]) => category);
+
+      categories = selectedCategories.length > 0 ? selectedCategories : null;
+    }
+
+    return {
+      categories,
+      language: getStore('PreferencesStore').getLanguage(),
+      location: getStore('PositionStore').getLocationState()
+    };
+  }
 );

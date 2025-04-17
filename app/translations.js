@@ -822,6 +822,10 @@ const translations = {
   },
 
   en: {
+    pois: 'Points of interest',
+    events: 'Events',
+    'select-at-least-one-category': 'Select at least one category',
+    'search-results': 'results',
     'profile-page-back-button-title': 'Profile',
     'profile-page-profile-card-title': 'Your profile',
     'profile-page-profile-card-subtitle': 'Update account info.',
@@ -5179,7 +5183,8 @@ const translations = {
     schedule: 'Horário',
     'poi-contact': 'Contactos',
     'poi-warning': 'Aviso',
-    'points-of-interest': 'Pontos de Interesse',
+    pois: 'Pontos de Interesse',
+    events: 'Eventos',
     'public-transport': 'Transportes Públicos',
     'add-via-duration-button-label':
       'Defina a duração da paragem no ponto de pasagem {index}',
@@ -5279,6 +5284,8 @@ const translations = {
     'add-location-to-favourites': 'Adicione uma localização aos seus Favoritos',
 
     // ---------- NEW TRANSLATIONS ABOVE ------------
+    'select-at-least-one-category': 'Selecione pelo menos uma categoria',
+    'search-results': 'resultados',
     'share-button-label': 'Partilhar',
     'favourite-button-label': 'Favorito',
     'see-map-button-label': 'Ver mapa',
