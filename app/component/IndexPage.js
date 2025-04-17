@@ -58,6 +58,8 @@ const modules = {
     ),
   OverlayWithSpinner: () => importLazy(import('./visual/OverlayWithSpinner')),
   FavouritesContainer: () => importLazy(import('./FavouritesContainer')),
+  HorizontalFavorites: () =>
+    importLazy(import('./amporto/horizontal-favorites')),
   DatetimepickerContainer: () => importLazy(import('./DatetimepickerContainer'))
 };
 
@@ -377,8 +379,8 @@ class IndexPage extends React.Component {
           CtrlPanel,
           TrafficNowLink,
           OverlayWithSpinner,
-          FavouritesContainer,
-          DatetimepickerContainer
+          DatetimepickerContainer,
+          HorizontalFavorites
         }) =>
           breakpoint === 'large' ? (
             <div
@@ -415,10 +417,9 @@ class IndexPage extends React.Component {
                   </div>
                   {config.optionalNavigationItems.favourites && (
                     <>
-                      <FavouritesContainer
-                        favouriteModalAction={this.props.favouriteModalAction}
-                        onClickFavourite={this.clickFavourite}
-                        lang={lang}
+                      <HorizontalFavorites
+                        onClick={this.clickFavourite}
+                        intl={this.context.intl}
                       />
                       <CtrlPanel.SeparatorLine usePaddingBottom20 />
                     </>
@@ -466,11 +467,11 @@ class IndexPage extends React.Component {
                   <div className="datetimepicker-container">
                     <DatetimepickerContainer realtime color={color} />
                   </div>
+
                   {config.optionalNavigationItems.favourites && (
-                    <FavouritesContainer
-                      onClickFavourite={this.clickFavourite}
-                      lang={lang}
-                      isMobile
+                    <HorizontalFavorites
+                      onClick={this.clickFavourite}
+                      intl={this.context.intl}
                     />
                   )}
                   <CtrlPanel.SeparatorLine />
