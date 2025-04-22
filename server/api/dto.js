@@ -74,7 +74,9 @@ export const poiToDto = (poi, language) => {
     priceRange: extractValuesAndDecode(priceRange.value),
     calendar: formatCalendar(calendar.value, language),
     districts: extractValuesAndDecode(districtGroups.value),
-    images: extractValuesAndDecode([image.value, ...extraImages.value])
+    images: extractValuesAndDecode(
+      extraImages.value?.length === 0 ? [image.value] : extraImages.value
+    )
   };
 };
 
