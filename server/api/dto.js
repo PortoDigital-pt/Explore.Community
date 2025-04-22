@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { formatCalendar } from './date';
+import { getPrice } from './price';
 
 const decode = value => decodeURIComponent(decodeURIComponent(value));
 
@@ -80,40 +81,48 @@ export const poiToDto = (poi, language) => {
   };
 };
 
-export const eventToDto = (event, language) => {
+// due to data inconsistency
+const getTranslatedSection = (tags, value, language) =>
+  Object.values(tags).find(({ pt }) => pt === value)[language];
+
+export const eventToDto = (event, language, { events }) => {
   const {
     id,
     address,
-    category,
-    contentUrl,
-    description,
+    section,
+    contentURL,
+    description_lang,
     startDate,
     endDate,
     eventPriceFrom,
     eventPriceTo,
     location,
-    name,
-    webSite
+    name_lang,
+    source
   } = event;
 
   return {
     type: 'events',
     id,
-    address: decodeURIComponent(address.value),
-    category: decodeURIComponent(category?.value),
-    contacts: {
-      image: contentUrl?.value ? decodeURIComponent(contentUrl.value) : null,
-      website: webSite?.value ? decodeURIComponent(webSite.value) : null
-    },
-    description: description?.value
-      ? decodeURIComponent(description.value)
-      : null,
+    address: extractValuesAndDecode(address.value),
+    category: extractValuesAndDecode(
+      getTranslatedSection(events, section.value, language)
+    ),
+    website: extractValuesAndDecode(source.value),
+    description: extractValuesAndDecode(
+      description_lang.value[language] || description_lang.value.pt
+    ),
     startDate: startDate?.value ?? null,
     endDate: endDate?.value ?? null,
-    priceFrom: eventPriceFrom?.value ?? null,
-    priceTo: eventPriceTo?.value ?? null,
+    price: getPrice({
+      eventPriceFrom: eventPriceFrom.value,
+      eventPriceTo: eventPriceTo.value
+    }),
     lon: location.value.coordinates[0],
     lat: location.value.coordinates[1],
-    name: decodeURIComponent(name?.value)
+    name: extractValuesAndDecode(
+      name_lang.value[language] || name_lang.value.pt
+    ),
+    images: extractValuesAndDecode([contentURL.value])
   };
 };

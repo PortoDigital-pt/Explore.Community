@@ -1,24 +1,18 @@
 import React from 'react';
 import moment from 'moment';
+import classname from 'classnames';
 import { string, func, shape, bool } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
-import { configShape, locationShape } from '../../../../util/shapes';
+import { locationShape } from '../../../../util/shapes';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
 import { getEventById } from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
+import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
-
-const getPrice = ({ priceFrom, priceTo }) => {
-  if (priceFrom && priceTo) {
-    return `${priceFrom} - ${priceTo} €`;
-  }
-
-  return priceFrom || priceTo ? `${priceFrom ?? priceTo} €` : null;
-};
 
 const DateSection = ({ startDate, endDate }) => {
   const start = moment(startDate);
@@ -101,7 +95,15 @@ const Mobile = (
         </div>
       </div>
       <div className="content">
-        <div className="image" />
+        {selectedData.images && (
+          <div className="image">
+            <img
+              src={selectedData.images[0]}
+              alt={selectedData.name}
+              loading="lazy"
+            />
+          </div>
+        )}
         <div className="details">
           <div className="contacts">
             <div className="categories">
@@ -123,13 +125,23 @@ const Mobile = (
             </div>
             <div>
               <Icon img="icon-location" viewBox="0 0 16 16" />
-              <p>{selectedData.address}</p>
+              <p>{`${selectedData.address.streetAddress}${
+                selectedData.address.streetNumber
+                  ? `, ${selectedData.address.streetNumber}`
+                  : ''
+              }`}</p>
             </div>
             <div>
-              <Icon img="icon-cost" viewBox="0 0 16 16" />
-              <p>{`${
-                getPrice(selectedData) ?? intl.messages['free-of-charge']
-              }`}</p>
+              {selectedData.price && (
+                <>
+                  <Icon img="icon-cost" viewBox="0 0 16 16" />
+                  <p>{`${
+                    selectedData.price === '0'
+                      ? intl.messages['free-of-charge']
+                      : selectedData.price
+                  }`}</p>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -178,11 +190,23 @@ export const EventContactDetails = ({ selectedData }, { intl }) => (
     </div>
     <div>
       <Icon img="icon-location" viewBox="0 0 16 16" />
-      <p>{selectedData.address}</p>
+      <p>{`${selectedData.address.streetAddress}${
+        selectedData.address.streetNumber
+          ? `, ${selectedData.address.streetNumber}`
+          : ''
+      }`}</p>
     </div>
     <div>
-      <Icon img="icon-cost" viewBox="0 0 16 16" />
-      <p>{`${getPrice(selectedData) ?? intl.messages['free-of-charge']}`}</p>
+      {selectedData.price && (
+        <>
+          <Icon img="icon-cost" viewBox="0 0 16 16" />
+          <p>{`${
+            selectedData.price === '0'
+              ? intl.messages['free-of-charge']
+              : selectedData.price
+          }`}</p>
+        </>
+      )}
     </div>
   </div>
 );
@@ -195,18 +219,25 @@ EventContactDetails.contextTypes = {
   intl: intlShape.isRequired
 };
 
-export const PageContent = (
-  { selectedData },
-  { intl, config: { culturalAgendaLink } }
-) => (
+export const PageContent = ({ selectedData }, { intl }) => (
   <>
-    <div className="image" />
-    <div className="details">
+    {selectedData.images && (
+      <div className="image">
+        <ImageSlider images={selectedData.images} name={selectedData.name} />
+      </div>
+    )}
+    <div
+      className={classname('details', { lower: selectedData.images === null })}
+    >
       <EventContactDetails selectedData={selectedData} />
       <div className="description">
         <h3>{intl.messages.about}</h3>
-        <p>{selectedData.description ?? 'No information at all'}</p>
-        <a href={culturalAgendaLink} target="_blank" rel="noopener noreferrer">
+        {selectedData.description && <p>{selectedData.description}</p>}
+        <a
+          href={selectedData.website}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {intl.messages['know-more']}
         </a>
       </div>
@@ -219,8 +250,7 @@ PageContent.propTypes = {
 };
 
 PageContent.contextTypes = {
-  intl: intlShape.isRequired,
-  config: configShape.isRequired
+  intl: intlShape.isRequired
 };
 
 const EventDetailsPage = () => (

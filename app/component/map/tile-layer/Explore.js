@@ -8,16 +8,9 @@ import {
 } from '../../../util/mapLayerUtils';
 import { drawExploreIcon } from '../../../util/mapIconUtils';
 
-const mapCategoryDescriptionToId = (
-  filters,
-  type,
-  { properties: { category_lang, category } }
-) => {
-  let value = category;
-
-  if (category_lang) {
-    value = JSON.parse(category_lang).pt;
-  }
+const mapCategoryDescriptionToId = (filters, type, { properties }) => {
+  const { category_lang, section } = properties;
+  const value = type === 'pois' ? JSON.parse(category_lang).pt : section;
 
   const [categoryKey] = Object.entries(filters[type]).find(
     // eslint-disable-next-line no-unused-vars

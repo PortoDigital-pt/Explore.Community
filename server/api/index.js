@@ -43,11 +43,13 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
       const categoriesQueryValue =
         data.type === 'PointOfInterest'
           ? `category_lang.pt==${mappedCategories.join(',')}${
-              dataProvider ? `;dataProvider==${dataProvider.pois}` : ''
+              dataProvider?.pois ? `;dataProvider==${dataProvider.pois}` : ''
             }`
-          : `category==${mappedCategories};endDate>='${getDate()}';startDate<='${getDateInFutureDays(
-              7
-            )}'`;
+          : `section==${mappedCategories.join(',')}${
+              dataProvider?.events
+                ? `;dataProvider==${dataProvider.events}`
+                : ''
+            };endDate>='${getDate()}';startDate<='${getDateInFutureDays(7)}'`;
       query.set('q', categoriesQueryValue);
       return;
     }
@@ -87,7 +89,7 @@ const customFetch = async (url, paginated = false) => {
 
 const getDetail = async (
   toDto,
-  { params: { id }, query: { language } },
+  { params: { id }, query: { language }, config: { filters } },
   response
 ) => {
   const { data, status, text } = await customFetch(
@@ -98,7 +100,7 @@ const getDetail = async (
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(toDto(data, language));
+  return response.status(status).json(toDto(data, language, filters));
 };
 
 const getList = async (
@@ -146,14 +148,16 @@ const getList = async (
       limit: defaultQueryParams.limit
     });
 
-    return response
-      .status(status)
-      .json({ data: data.map(item => toDto(item, language)), pagination });
+    return response.status(status).json({
+      data: data.map(item => toDto(item, language, filters)),
+      pagination
+    });
   }
 
-  return response
-    .status(status)
-    .json({ data: data.map(item => toDto(item, language)), pagination: null });
+  return response.status(status).json({
+    data: data.map(item => toDto(item, language, filters)),
+    pagination: null
+  });
 };
 
 const getPoiDetail = (request, response) =>

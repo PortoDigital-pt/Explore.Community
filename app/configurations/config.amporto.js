@@ -252,8 +252,8 @@ export default {
 
   defaultEndpoint: {
     address: 'Porto - Portugal',
-    lat: 41.1533658,
-    lon: -8.6046909
+    lat: 41.14858,
+    lon: -8.610945
   },
   defaultMapZoom: 16,
 
@@ -443,37 +443,26 @@ export default {
       }
     },
     events: {
-      cultural: { pt: 'Cultural', en: 'Cultural' }, // TODO: temporary, will be removed
-      outdoor: { pt: 'Ar%20livre', en: 'Outdoor' },
-      class: { pt: 'Aula', en: 'Class' },
-      song: { pt: 'Canção', en: 'Song' },
-      cinema: { pt: 'Cinema', en: 'Cinema' },
-      circus: { pt: 'Circo', en: 'Circus' },
-      comedy: { pt: 'Comédia', en: 'Comedy' },
-      concert: { pt: 'Concerto', en: 'Concert' },
-      conversation: { pt: 'Conversa', en: 'Conversation' },
-      dance: { pt: 'Dança', en: 'Dance' },
-      listening: { pt: 'Escuta', en: 'Listening' },
-      show: { pt: 'Espetáculo', en: 'Show' },
-      exhibition: { pt: 'Exposição', en: 'Exhibition' },
-      fair: { pt: 'Feira', en: 'Fair' },
-      party: { pt: 'Festa', en: 'Party' },
-      film: { pt: 'Filme', en: 'Film' },
-      installation: { pt: 'Instalação', en: 'Installation' },
-      reading: { pt: 'Leitura', en: 'Reading' },
-      workshop: { pt: 'Oficina', en: 'Workshop' },
-      opera: { pt: 'Ópera', en: 'Opera' },
-      lecture: { pt: 'Palestra', en: 'Lecture' },
-      performance: { pt: 'Performance', en: 'Performance' },
-      tests: { pt: 'Provas', en: 'Tests' },
-      theater: { pt: 'Teatro', en: 'Theater' },
-      visit: { pt: 'Visita', en: 'Visit' }
+      outdoor: { pt: 'Ao%20Fresco', en: 'Out and about' },
+      artAndExhibition: {
+        pt: 'Arte%20e%20exposições',
+        en: 'Art and exhibitions'
+      },
+      cinema: { pt: 'Cinema', en: 'Film' },
+      talks: { pt: 'Conversas', en: 'Talks' },
+      sports: { pt: 'Desporto%20e%20movimento', en: 'Sports and motion' },
+      families: { pt: 'Famílias', en: 'Families' },
+      musicAndClubbing: {
+        pt: 'Música%20e%20clubbing',
+        en: 'Music and clubbing'
+      },
+      stages: { pt: 'Palcos', en: 'Stage' }
     }
   },
   ngsi: {
     dataProvider: {
       pois: 'http:%2F%2Fcitysdk.url.pt%2Fpois%2F,https:%2F%2Fcity-api.wearebitmaker.com%2FCitySDK%2Fpois',
-      events: ''
+      events: 'Agenda%20Porto'
     }
   },
   coordinatesBounds: {
