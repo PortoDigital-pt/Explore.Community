@@ -81,11 +81,7 @@ export const poiToDto = (poi, language) => {
   };
 };
 
-// due to data inconsistency
-const getTranslatedSection = (tags, value, language) =>
-  Object.values(tags).find(({ pt }) => pt === value)[language];
-
-export const eventToDto = (event, language, { events }) => {
+export const eventToDto = (event, language) => {
   const {
     id,
     address,
@@ -106,7 +102,7 @@ export const eventToDto = (event, language, { events }) => {
     id,
     address: extractValuesAndDecode(address.value),
     category: extractValuesAndDecode(
-      getTranslatedSection(events, section.value, language)
+      section.value[language] || section.value.pt
     ),
     website: extractValuesAndDecode(source.value),
     description: extractValuesAndDecode(

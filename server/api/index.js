@@ -45,7 +45,7 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
           ? `category_lang.pt==${mappedCategories.join(',')}${
               dataProvider?.pois ? `;dataProvider==${dataProvider.pois}` : ''
             }`
-          : `section==${mappedCategories.join(',')}${
+          : `section.pt==${mappedCategories.join(',')}${
               dataProvider?.events
                 ? `;dataProvider==${dataProvider.events}`
                 : ''
@@ -89,7 +89,7 @@ const customFetch = async (url, paginated = false) => {
 
 const getDetail = async (
   toDto,
-  { params: { id }, query: { language }, config: { filters } },
+  { params: { id }, query: { language } },
   response
 ) => {
   const { data, status, text } = await customFetch(
@@ -100,7 +100,7 @@ const getDetail = async (
     return response.status(status).send(text);
   }
 
-  return response.status(status).json(toDto(data, language, filters));
+  return response.status(status).json(toDto(data, language));
 };
 
 const getList = async (
@@ -149,13 +149,13 @@ const getList = async (
     });
 
     return response.status(status).json({
-      data: data.map(item => toDto(item, language, filters)),
+      data: data.map(item => toDto(item, language)),
       pagination
     });
   }
 
   return response.status(status).json({
-    data: data.map(item => toDto(item, language, filters)),
+    data: data.map(item => toDto(item, language)),
     pagination: null
   });
 };
