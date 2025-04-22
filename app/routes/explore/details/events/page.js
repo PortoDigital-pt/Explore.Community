@@ -17,16 +17,16 @@ import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 const DateSection = ({ startDate, endDate }) => {
   const start = moment(startDate);
   const end = moment(endDate);
-
+ 
   const startDay = start.format('D MMM');
   const endDay = end.format('D MMM');
   const startTime =
     start.isValid() && start.format('HH:mm') !== '00:00'
-      ? start.format('HH[h]')
+      ? start.format('HH[h]mm')
       : null;
   const endTime =
     end.isValid() && end.format('HH:mm') !== '00:00'
-      ? end.format('HH[h]')
+      ? end.format('HH[h]mm')
       : null;
 
   const date =
