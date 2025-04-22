@@ -28,7 +28,7 @@ const IconWithIcon = (
         badgeTextFill={badgeTextFill}
         color={color}
         img={img}
-        viewBox={mode === 'call' ? '0 0 60 60' : undefined}
+        viewBox={mode === 'call' ? '0 0 60 60' : null}
       />
     </span>
     {subIcon && (

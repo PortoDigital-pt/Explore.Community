@@ -8,6 +8,7 @@ import {
   arrayOf,
   bool
 } from 'prop-types';
+import classname from 'classnames';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
 import { locationShape } from '../../../../util/shapes';
@@ -17,6 +18,7 @@ import { getPoiById } from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
+import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 
 const poiShape = shape({
@@ -71,15 +73,15 @@ const Mobile = (
         </div>
       </div>
       <div className="content">
-        <div className="image">
-          {selectedData.images && (
+        {selectedData.images && (
+          <div className="image">
             <img
               src={selectedData.images[0]}
               alt={selectedData.name}
               loading="lazy"
             />
-          )}
-        </div>
+          </div>
+        )}
         <div className="details">
           <div className="contacts">
             <div className="categories">
@@ -156,18 +158,14 @@ export const MobileContent = connectToStores(
 
 export const PageContent = ({ selectedData }, { intl }) => (
   <>
-    <div className="image">
-      {
-        selectedData.images && (
-          <img
-            src={selectedData.images[0]}
-            alt={selectedData.name}
-            loading="lazy"
-          />
-        ) /* TODO: change to slider */
-      }
-    </div>
-    <div className="details">
+    {selectedData.images && (
+      <div className="image">
+        <ImageSlider images={selectedData.images} name={selectedData.name} />
+      </div>
+    )}
+    <div
+      className={classname('details', { lower: selectedData.images === null })}
+    >
       <div className="description">
         <h3>{intl.messages.about}</h3>
         <p>{selectedData.description}</p>

@@ -37,7 +37,7 @@ const ShareButton = ({ withBackground }, { intl }) => {
           <Icon
             className={`share${withBackground ? '-with-background' : ''}`}
             img={`icon-share${withBackground ? '-with-background' : ''}`}
-            viewBox={withBackground ? '0 0 36 36' : ''}
+            viewBox={withBackground ? '0 0 36 36' : null}
           />
         </button>
         {!withBackground && (

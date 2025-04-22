@@ -1,0 +1,77 @@
+.slider {
+    display: flex;
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+
+    .swipe-scroll-wrapper {
+      min-height: 100%;
+      max-width: 100%;
+      background-color: transparent !important;
+
+      .scrollable-content-wrapper {
+        display: flex !important;
+
+        .swipe-scroll-container {
+          .react-swipe-container {
+            height: 100%;
+
+            div {
+              height: 100%;
+
+              img {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
+
+      .swipe-header-container {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+
+        .desktop-view-divider {
+          display: none;
+        }
+
+        .swipe-header {
+          .swipe-button-container {
+            .icon {
+              fill: $primary-contrastText;
+              width: 16px;
+              height: 16px;
+
+              &.disabled {
+                fill: $neutral;
+              }
+            }
+          }
+
+          .swipe-tab-indicator {
+            .swipe-tab-ball {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              border: solid 2px $primary-contrastText;
+              background-color: transparent;
+              transition: 0.5s;
+              margin-right: 5px;
+              margin-left: 5px;
+              cursor: pointer;
+
+              &.selected {
+                background-color: $primary-contrastText;
+              }
+            }
+          }
+        }
+      }
+    }
+  }

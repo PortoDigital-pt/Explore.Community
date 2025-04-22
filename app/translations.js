@@ -1759,6 +1759,7 @@ const translations = {
     'swipe-summary-page': 'Itinerary swipe result tabs',
     'swipe-summary-page-header': 'Itinerary swipe result tabs.',
     'swipe-onboarding': 'Swipe through the onboarding',
+    'swipe-pictures': 'Swipe through the pictures',
     'terminal-page.description': 'Terminal {name}',
     'terminal-page.title': 'Terminal {name}',
     'terminal-page.title-short': 'Terminal',
@@ -6305,6 +6306,7 @@ const translations = {
     'swipe-summary-page-header':
       'Guias de resultados de deslizamento de itinerário.',
     'swipe-onboarding': 'Percorrer o onboarding',
+    'swipe-pictures': 'Percorrer as imagens',
     'to-bicycle': 'bicicleta',
     'to-bus': 'ônibus',
     'to-e-scooter': 'scooter',
