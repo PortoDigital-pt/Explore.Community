@@ -85,7 +85,7 @@ export const eventToDto = (event, language) => {
   const {
     id,
     address,
-    section,
+    section_lang,
     contentURL,
     description_lang,
     startDate,
@@ -102,7 +102,7 @@ export const eventToDto = (event, language) => {
     id,
     address: extractValuesAndDecode(address.value),
     category: extractValuesAndDecode(
-      section.value[language] || section.value.pt
+      section_lang.value[language] || section_lang.value.pt
     ),
     website: extractValuesAndDecode(source.value),
     description: extractValuesAndDecode(

@@ -45,7 +45,7 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
           ? `category_lang.pt==${mappedCategories.join(',')}${
               dataProvider?.pois ? `;dataProvider==${dataProvider.pois}` : ''
             }`
-          : `section.pt==${mappedCategories.join(',')}${
+          : `section_lang.pt==${mappedCategories.join(',')}${
               dataProvider?.events
                 ? `;dataProvider==${dataProvider.events}`
                 : ''

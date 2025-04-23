@@ -8,9 +8,15 @@ import {
 } from '../../../util/mapLayerUtils';
 import { drawExploreIcon } from '../../../util/mapIconUtils';
 
+const isValidDataProvider = (providersString, currentProvider) =>
+  providersString.split(',').includes(currentProvider);
+
 const mapCategoryDescriptionToId = (filters, type, { properties }) => {
-  const { category_lang, section } = properties;
-  const value = type === 'pois' ? JSON.parse(category_lang).pt : section;
+  const { category_lang = '{}', section_lang = '{}' } = properties;
+  const value =
+    type === 'pois'
+      ? JSON.parse(category_lang).pt
+      : JSON.parse(section_lang).pt;
 
   const [categoryKey] = Object.entries(filters[type]).find(
     // eslint-disable-next-line no-unused-vars
@@ -65,10 +71,12 @@ class Explore {
                 continue;
               }
 
-              //  due to data inconsistency
               if (
-                feature.properties.data_provider ===
-                'http:%2F%2Fwww.portoenorte.pt%2Fapi%2Fv1'
+                type !== 'accesspoints' &&
+                !isValidDataProvider(
+                  this.config.ngsi.dataProvider[type],
+                  feature.properties.data_provider
+                )
               ) {
                 // eslint-disable-next-line no-continue
                 continue;
