@@ -7,7 +7,7 @@ import { saveFavourite, deleteFavourite } from '../action/FavouriteActions';
 const FavouriteExplore = connectToStores(
   Favourite,
   ['FavouriteStore', 'UserStore', 'PreferencesStore'],
-  (context, { data, white }) => ({
+  (context, { data, white, blue }) => ({
     favourite: context
       .getStore('FavouriteStore')
       .isFavourite(data.id, data.type),
@@ -29,7 +29,8 @@ const FavouriteExplore = connectToStores(
       context.config.allowLogin &&
       context.getStore('UserStore').getUser().sub !== undefined,
     language: context.getStore('PreferencesStore').getLanguage(),
-    white
+    white,
+    blue
   })
 );
 

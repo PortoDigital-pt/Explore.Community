@@ -1,7 +1,7 @@
 import React, { Suspense, useCallback, useMemo, useState } from 'react';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
-import { func } from 'prop-types';
+import { func, string, arrayOf, shape } from 'prop-types';
 import { configShape } from '../../../util/shapes';
 import BackButton from '../../../component/BackButton';
 import Icon from '../../../component/Icon';
@@ -225,11 +225,16 @@ Favourites.contextTypes = {
   executeAction: func.isRequired
 };
 
+Favourites.propTypes = {
+  lang: string.isRequired,
+  favourites: arrayOf(shape())
+};
+
 export default connectToStores(
   Favourites,
   ['PreferencesStore', 'FavouriteStore'],
   context => ({
     lang: context.getStore('PreferencesStore').getLanguage(),
-    favourites: context.getStore('FavouriteStore')?.getFavourites()
+    favourites: context.getStore('FavouriteStore').getFavourites()
   })
 );
