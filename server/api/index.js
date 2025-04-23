@@ -43,11 +43,13 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
       const categoriesQueryValue =
         data.type === 'PointOfInterest'
           ? `category_lang.pt==${mappedCategories.join(',')}${
-              dataProvider ? `;dataProvider==${dataProvider.pois}` : ''
+              dataProvider?.pois ? `;dataProvider==${dataProvider.pois}` : ''
             }`
-          : `category==${mappedCategories};endDate>='${getDate()}';startDate<='${getDateInFutureDays(
-              7
-            )}'`;
+          : `section_lang.pt==${mappedCategories.join(',')}${
+              dataProvider?.events
+                ? `;dataProvider==${dataProvider.events}`
+                : ''
+            };endDate>='${getDate()}';startDate<='${getDateInFutureDays(7)}'`;
       query.set('q', categoriesQueryValue);
       return;
     }
@@ -146,14 +148,16 @@ const getList = async (
       limit: defaultQueryParams.limit
     });
 
-    return response
-      .status(status)
-      .json({ data: data.map(item => toDto(item, language)), pagination });
+    return response.status(status).json({
+      data: data.map(item => toDto(item, language)),
+      pagination
+    });
   }
 
-  return response
-    .status(status)
-    .json({ data: data.map(item => toDto(item, language)), pagination: null });
+  return response.status(status).json({
+    data: data.map(item => toDto(item, language)),
+    pagination: null
+  });
 };
 
 const getPoiDetail = (request, response) =>

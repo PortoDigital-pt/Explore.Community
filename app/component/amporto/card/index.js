@@ -30,13 +30,19 @@ const Card = ({ type, className, data, onClick }) => {
       onClick={onClick}
     >
       <div className="favourite-top">
-        <FavouriteExplore data={data} white />
+        <FavouriteExplore
+          data={data}
+          white={!!data.images}
+          blue={!data.images}
+        />
       </div>
-      <div className="image-cover">
-        {data.images && <img src={data.images[0]} alt={data.name} />}
-      </div>
+      {data.images && (
+        <div className="image-cover">
+          <img src={data.images[0]} alt={data.name} />
+        </div>
+      )}
       <div className="content">
-        <div className="card-title">
+        <div className={classnames('card-title', { smaller: !data.images })}>
           <h3>{data.name}</h3>
         </div>
         {Details && (
@@ -68,7 +74,7 @@ Card.propTypes = {
     type: string.isRequired,
     name: string.isRequired,
     id: string.isRequired,
-    images: arrayOf(string).isRequired,
+    images: arrayOf(string),
     category: oneOfType([string, arrayOf(string)]).isRequired,
     lat: number.isRequired,
     lon: number.isRequired

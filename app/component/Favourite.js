@@ -19,6 +19,7 @@ export default function Favourite(
     isLoggedIn,
     language,
     white = false,
+    blue = false,
     showLabel = false
   },
   context
@@ -126,13 +127,14 @@ export default function Favourite(
         <Icon
           className={cx('favourite', {
             white,
+            blue,
             selected: favourite && (!requireLoggedIn || isLoggedIn)
           })}
           viewBox="0 0 40 40"
           img={
             favourite && (!requireLoggedIn || isLoggedIn)
-              ? `icon-favorite-on${white ? '' : '_with_background'}`
-              : `icon-favorite-off${white ? '' : '_with_background'}`
+              ? `icon-favorite-on${white || blue ? '' : '_with_background'}`
+              : `icon-favorite-off${white || blue ? '' : '_with_background'}`
           }
         />
         {renderLoginModal()}
@@ -161,6 +163,7 @@ Favourite.propTypes = {
   isLoggedIn: PropTypes.bool,
   language: PropTypes.string,
   white: PropTypes.bool,
+  blue: PropTypes.bool,
   showLabel: PropTypes.bool
 };
 

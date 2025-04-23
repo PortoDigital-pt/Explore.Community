@@ -5,8 +5,8 @@ import Icon from '../../Icon';
 import { configShape } from '../../../util/shapes';
 
 const getName = (language, properties) => {
-  const names = properties.name ?? JSON.parse(properties.name_lang);
-  const name = typeof names === 'object' ? names[language] || names.pt : names;
+  const names = JSON.parse(properties.name_lang);
+  const name = names[language] || names.pt;
   return decodeURIComponent(name);
 };
 
