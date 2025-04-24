@@ -443,17 +443,17 @@ export default {
       }
     },
     events: {
-      outdoor: { pt: 'Ao%20Fresco', en: 'Out and about' },
+      outdoor: { pt: 'Ao Fresco', en: 'Out and about' },
       artAndExhibition: {
-        pt: 'Arte%20e%20exposições',
+        pt: 'Arte e exposições',
         en: 'Art and exhibitions'
       },
       cinema: { pt: 'Cinema', en: 'Film' },
       talks: { pt: 'Conversas', en: 'Talks' },
-      sports: { pt: 'Desporto%20e%20movimento', en: 'Sports and motion' },
+      sports: { pt: 'Desporto e movimento', en: 'Sports and motion' },
       families: { pt: 'Famílias', en: 'Families' },
       musicAndClubbing: {
-        pt: 'Música%20e%20clubbing',
+        pt: 'Música e clubbing',
         en: 'Music and clubbing'
       },
       stages: { pt: 'Palcos', en: 'Stage' }
