@@ -1,6 +1,8 @@
+import { validationResult } from 'express-validator';
 import { poiToDto, eventToDto } from './dto';
 import { getDate, getDateInFutureDays } from './date';
 import { getOffset, getInfinitePagination } from './pagination';
+import { poiListSchema, eventListSchema, detailSchema } from './validation';
 
 const defaultQueryParams = {
   georel: 'near;maxDistance:25000',
@@ -29,16 +31,14 @@ const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
     }
 
     if (key === 'categories') {
-      const mappedCategories = value
-        .split(',')
-        .map(
-          categoryKey =>
-            `'${
-              filters[data.type === 'PointOfInterest' ? 'pois' : 'events'][
-                categoryKey
-              ].pt
-            }'`
-        );
+      const mappedCategories = value.map(
+        categoryKey =>
+          `'${
+            filters[data.type === 'PointOfInterest' ? 'pois' : 'events'][
+              categoryKey
+            ].pt
+          }'`
+      );
 
       const categoriesQueryValue =
         data.type === 'PointOfInterest'
@@ -87,11 +87,20 @@ const customFetch = async (url, paginated = false) => {
   return { data, ...preparedResponse };
 };
 
-const getDetail = async (
-  toDto,
-  { params: { id }, query: { language } },
-  response
-) => {
+const getDetail = async (toDto, request, response) => {
+  const validation = validationResult(request);
+
+  if (!validation.isEmpty()) {
+    const [{ msg }] = validation.array();
+
+    return response.status(400).send(msg);
+  }
+
+  const {
+    params: { id },
+    query: { language }
+  } = request;
+
   const { data, status, text } = await customFetch(
     `${process.env.NGSI_URL}/${id}`
   );
@@ -103,19 +112,24 @@ const getDetail = async (
   return response.status(status).json(toDto(data, language));
 };
 
-const getList = async (
-  toDto,
-  defaultQueryParams,
-  {
+const getList = async (toDto, defaultQueryParams, request, response) => {
+  const validation = validationResult(request);
+
+  if (!validation.isEmpty()) {
+    const [{ msg }] = validation.array();
+
+    return response.status(400).send(msg);
+  }
+
+  const {
     query: { language, page, ...queryRest },
     config: {
       filters,
       ngsi: { dataProvider },
       defaultEndpoint: { lat, lon }
     }
-  },
-  response
-) => {
+  } = request;
+
   const paginated = page !== undefined;
 
   if (paginated) {
@@ -141,22 +155,19 @@ const getList = async (
     return response.status(status).send(text);
   }
 
+  let pagination = null;
+
   if (paginated) {
-    const pagination = getInfinitePagination({
+    pagination = getInfinitePagination({
       total,
       page,
       limit: defaultQueryParams.limit
-    });
-
-    return response.status(status).json({
-      data: data.map(item => toDto(item, language)),
-      pagination
     });
   }
 
   return response.status(status).json({
     data: data.map(item => toDto(item, language)),
-    pagination: null
+    pagination
   });
 };
 
@@ -184,16 +195,14 @@ const decorateRequest = (request, response, next, config) => {
 };
 
 const routes = {
-  '/api/pois/:id': getPoiDetail,
-  '/api/pois': getPoiList,
-  '/api/events/:id': getEventDetail,
-  '/api/events': getEventList
+  '/api/pois/:id': { handler: getPoiDetail, schema: detailSchema },
+  '/api/pois': { handler: getPoiList, schema: poiListSchema },
+  '/api/events/:id': { handler: getEventDetail, schema: detailSchema },
+  '/api/events': { handler: getEventList, schema: eventListSchema }
 };
 
-// TODO: param validation middleware
-
 export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
-  Object.entries(routes).forEach(([route, handler]) =>
+  Object.entries(routes).forEach(([route, { handler, schema }]) =>
     app.get(
       route,
       setupCache,
@@ -203,6 +212,7 @@ export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
           ngsi,
           defaultEndpoint
         }),
+      schema,
       handler
     )
   );
