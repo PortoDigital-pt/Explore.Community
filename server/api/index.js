@@ -1,6 +1,7 @@
 import { poiToDto, eventToDto } from './dto';
 import { getDate, getDateInFutureDays } from './date';
 import { getOffset, getInfinitePagination } from './pagination';
+import { checkSchema, validationResult } from 'express-validator';
 
 const defaultQueryParams = {
   georel: 'near;maxDistance:25000',
@@ -106,17 +107,21 @@ const getDetail = async (
 const getList = async (
   toDto,
   defaultQueryParams,
-  {
+  request,
+  response
+) => {
+  console.log('VALIDATION has errors: ', !validationResult(request).isEmpty());
+  const {
     query: { language, page, ...queryRest },
     config: {
       filters,
       ngsi: { dataProvider },
       defaultEndpoint: { lat, lon }
     }
-  },
-  response
-) => {
+  } = request;
+
   const paginated = page !== undefined;
+  console.log('REST: ', queryRest);
 
   if (paginated) {
     // eslint-disable-next-line no-param-reassign

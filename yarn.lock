@@ -11234,6 +11234,7 @@ __metadata:
     express-http-proxy: 1.6.2
     express-session: 1.18.0
     express-static-gzip: 2.0.8
+    express-validator: ^7.2.1
     farce: 0.4.5
     fast-xml-parser: 4.3.4
     favicons-webpack-plugin: 4.2.0
@@ -12856,6 +12857,16 @@ __metadata:
   dependencies:
     serve-static: ^1.14.1
   checksum: 41f098b8615d0e9ddedc9f016a06a5c266f8f7ba6e596ba80023be03845f39281a38268308ec8336c077968d323c5700db7d7f2ee5da3309bec3233fa86a5312
+  languageName: node
+  linkType: hard
+
+"express-validator@npm:^7.2.1":
+  version: 7.2.1
+  resolution: "express-validator@npm:7.2.1"
+  dependencies:
+    lodash: ^4.17.21
+    validator: ~13.12.0
+  checksum: 4d0a55d3cd8c8f5d6bd2245afa137d826a732f77a769eaffa9ec2f84e5508fbdbae0af6c6d1767b0538e6fd9a5ee0dfe76550b4b9ae1918b37eb3c84e867bb2d
   languageName: node
   linkType: hard
 
@@ -28437,6 +28448,13 @@ __metadata:
   dependencies:
     builtins: ^1.0.3
   checksum: ce4c68207abfb22c05eedb09ff97adbcedc80304a235a0844f5344f1fd5086aa80e4dbec5684d6094e26e35065277b765c1caef68bcea66b9056761eddb22967
+  languageName: node
+  linkType: hard
+
+"validator@npm:~13.12.0":
+  version: 13.12.0
+  resolution: "validator@npm:13.12.0"
+  checksum: fb8f070724770b1449ea1a968605823fdb112dbd10507b2802f8841cda3e7b5c376c40f18c84e6a7b59de320a06177e471554101a85f1fa8a70bac1a84e48adf
   languageName: node
   linkType: hard
 
