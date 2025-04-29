@@ -46,7 +46,7 @@ const Weather = ({ lang, floating }, { config, intl }) => {
           onClick={open}
         >
           <Icon
-            img={`icon-weather-${getWeatherIconId(weatherInfo.idWeatherType)}`}
+            img={getWeatherIconId(weatherInfo.idWeatherType)}
             viewBox="0 0 24 24"
           />
           <span className="max-temperature">{weatherInfo.tMax}°</span>
@@ -68,9 +68,7 @@ const Weather = ({ lang, floating }, { config, intl }) => {
 
                 <div className="temperature-container">
                   <Icon
-                    img={`icon-weather-${getWeatherIconId(
-                      weatherInfo.idWeatherType
-                    )}`}
+                    img={getWeatherIconId(weatherInfo.idWeatherType)}
                     viewBox="0 0 24 24"
                   />
 
