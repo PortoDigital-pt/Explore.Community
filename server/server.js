@@ -27,17 +27,19 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 /* ********* Server ********* */
-
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const { CosmosClient } = require('@azure/cosmos');
+const { mongo } = require('./mongoose-favorite/libs/mongo');
 const { getJson } = require('../app/util/xhrPromise');
 const { retryFetch } = require('../app/util/fetchUtils');
 const configTools = require('../app/config');
 const { setupApiRoutes } = require('./api');
+
+const { Favorite } = require('./mongoose-favorite/models/favorite.model');
 
 const config = configTools.getConfiguration();
 
@@ -450,6 +452,10 @@ function fetchCitybikeConfigurations() {
 
 // console.log('\n =======================[conf]======================= \n', config);
 // console.log('\n ====================================================');
+
+(async () => {
+  await mongo.connect();
+})();
 
 if (process.env.OIDC_CLIENT_ID) {
   setUpOpenId();

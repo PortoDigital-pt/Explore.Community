@@ -40,7 +40,7 @@ import {
   handleUserAnalytics
 } from './util/analyticsUtils';
 import { configureCountry } from './util/configureCountry';
-import { getUser } from './util/apiUtils';
+import { fakeGetUser, getUser } from './util/apiUtils';
 import setUser from './action/userActions';
 import {
   fetchFavourites,
@@ -217,18 +217,26 @@ async function init() {
 
   // fetch Userdata and favourites
   if (config.allowLogin) {
-    getUser()
-      .then(user => {
-        context.executeAction(setUser, {
-          ...user
+    if (config.fakeUser) {
+      context.executeAction(
+        setUser,
+        fakeGetUser('2a22179b-8da8-46fa-8e6c-ab9224fd565f')
+      );
+      context.executeAction(fetchFavourites);
+    } else {
+      getUser()
+        .then(user => {
+          context.executeAction(setUser, {
+            ...user
+          });
+          handleUserAnalytics(user, config);
+          context.executeAction(fetchFavourites);
+        })
+        .catch(() => {
+          context.executeAction(setUser, { notLogged: true });
+          context.executeAction(fetchFavouritesComplete);
         });
-        handleUserAnalytics(user, config);
-        context.executeAction(fetchFavourites);
-      })
-      .catch(() => {
-        context.executeAction(setUser, { notLogged: true });
-        context.executeAction(fetchFavouritesComplete);
-      });
+    }
   }
 
   const ContextProvider = provideContext(StoreListeningIntlProvider, {

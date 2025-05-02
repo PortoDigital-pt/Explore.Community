@@ -56,7 +56,8 @@ const {
   CULTURAL_AGENDA,
   WEATHER_API,
   WEATHER_CITY_CODE,
-  SHOW_PROFILE_NOTIFICATION
+  SHOW_PROFILE_NOTIFICATION,
+  FAKE_USER
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -247,6 +248,8 @@ export default {
   },
 
   allowLogin: ALLOW_LOGIN === 'true',
+  fakeUser: FAKE_USER,
+
   /* depends on https://github.com/HSLdevcom/fav-service */
   hostnames: HOST_NAMES?.split(','),
 

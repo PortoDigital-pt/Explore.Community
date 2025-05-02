@@ -6,6 +6,7 @@ const axios = require('axios');
 const moment = require('moment');
 const RedisStore = require('connect-redis')(session);
 const LoginStrategy = require('./Strategy').Strategy;
+const favoriteRoutes = require('../mongoose-favorite/favorites.route');
 
 const clearAllUserSessions = false; // set true if logout should erase all user's sessions
 
@@ -255,6 +256,8 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
   };
 
   const userAuthenticated = function (req, res, next) {
+    console.log('================userAuthenticated=======================');
+    next();
     res.set('Cache-Control', 'no-store');
     // eslint-disable-next-line no-unused-expressions
     req.isAuthenticated() ? next() : res.sendStatus(401);
@@ -272,24 +275,25 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       });
   });
 
-  app.use('/api/user/favourites', userAuthenticated, function (req, res) {
-    axios({
-      headers: { Authorization: `Bearer ${req.user.token.access_token}` },
-      method: req.method,
-      url: `${FavouriteHost}/${req.user.data.sub}`,
-      data: JSON.stringify(req.body)
-    })
-      .then(function (response) {
-        if (response && response.status && response.data) {
-          res.status(response.status).send(response.data);
-        } else {
-          errorHandler(res);
-        }
-      })
-      .catch(function (err) {
-        errorHandler(res, err);
-      });
-  });
+  app.use(favoriteRoutes);
+  // app.use('/api/user/favourites', async function (req, res) {
+  //   // axios({
+  //   //   headers: { Authorization: `Bearer ${req.user.token.access_token}` },
+  //   //   method: req.method,
+  //   //   url: `${FavouriteHost}/${req.user.data.sub}`,
+  //   //   data: JSON.stringify(req.body)
+  //   // })
+  //   //   .then(function (response) {
+  //   //     if (response && response.status && response.data) {
+  //   //       res.status(response.status).send(response.data);
+  //   //     } else {
+  //   //       errorHandler(res);
+  //   //     }
+  //   //   })
+  //   //   .catch(function (err) {
+  //   //     errorHandler(res, err);
+  //   //   });
+  // });
 
   app.use('/api/user/notifications', userAuthenticated, function (req, res) {
     const params = Object.keys(req.query)

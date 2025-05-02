@@ -181,6 +181,7 @@ export default class FavouriteStore extends Store {
    */
   mergeWithLocalstorage(arrayOfFavourites) {
     const storage = getFavouriteStorage();
+
     if (isEmpty(storage)) {
       this.set(arrayOfFavourites);
       return;
