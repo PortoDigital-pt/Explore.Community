@@ -6,5 +6,6 @@ const PATH = '/api/user/favourites';
 
 router.put(PATH, [], controller.save);
 router.get(PATH, [], controller.findAll);
+router.delete(PATH, [], controller.remove);
 
 module.exports = router;

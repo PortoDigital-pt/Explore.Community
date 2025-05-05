@@ -14,13 +14,35 @@ const save = async favoritesToUpdate => {
   }
 };
 
-const findAll = async (userId = '') => {
+const findAll = async userId => {
   const query = Favorite.find();
-  query.where({}); // todo - { userId: userId };
+  query.where({ userId });
   query.sort({});
   const ret = await query.exec();
   logger.log('findAll => ', ret);
   return ret;
 };
 
-export { save, findAll };
+const remove = async favouriteId => {
+  const ret = await Favorite.deleteOne({ favouriteId });
+  logger.log('service.remove::ret => ', ret);
+
+  if (!ret?.deletedCount) {
+    throw new Error('Favorite not found');
+  }
+
+  return ret;
+};
+
+const isOwner = async (userId, favouriteId) => {
+  try {
+    const doc = await Favorite.findOne({ favouriteId });
+    logger.log('isOwner => ', doc);
+    return doc?.userId === userId;
+  } catch (error) {
+    logger.error(error);
+    return false;
+  }
+};
+
+export { save, findAll, remove, isOwner };

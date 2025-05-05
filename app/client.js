@@ -218,10 +218,7 @@ async function init() {
   // fetch Userdata and favourites
   if (config.allowLogin) {
     if (config.fakeUser) {
-      context.executeAction(
-        setUser,
-        fakeGetUser('2a22179b-8da8-46fa-8e6c-ab9224fd565f')
-      );
+      context.executeAction(setUser, fakeGetUser(config.fakeUser));
       context.executeAction(fetchFavourites);
     } else {
       getUser()
