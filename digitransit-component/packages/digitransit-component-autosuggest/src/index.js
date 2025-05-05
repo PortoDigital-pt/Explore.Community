@@ -318,7 +318,9 @@ class DTAutosuggest extends React.Component {
     modeSet: PropTypes.string,
     showScroll: PropTypes.bool,
     isEmbedded: PropTypes.bool,
-    mobileSearchPrefixIconId: PropTypes.string
+    mobileSearchPrefixIconId: PropTypes.string,
+    buttonMode: PropTypes.bool,
+    eventSource: PropTypes.string
   };
 
   static defaultProps = {
@@ -367,7 +369,9 @@ class DTAutosuggest extends React.Component {
     modeSet: undefined,
     showScroll: false,
     refPoint: {},
-    mobileSearchPrefixIconId: undefined
+    mobileSearchPrefixIconId: undefined,
+    buttonMode: false,
+    eventSource: undefined
   };
 
   constructor(props) {
@@ -716,7 +720,8 @@ class DTAutosuggest extends React.Component {
             }
           },
           this.props.pathOpts,
-          this.props.refPoint
+          this.props.refPoint,
+          this.props.eventSource
         );
       }
     );
@@ -1106,7 +1111,27 @@ class DTAutosuggest extends React.Component {
               theme={styles}
               renderInputComponent={p => (
                 <>
-                  <label className={styles['sr-only']} htmlFor={this.props.id}>
+                  {this.props.buttonMode && (
+                    <button
+                      type="button"
+                      className="search-button"
+                      onClick={() => {
+                        this.input.focus();
+                        this.input.click();
+                      }}
+                      aria-label={i18next.t('search')}
+                    >
+                      &nbsp;
+                    </button>
+                  )}
+
+                  <label
+                    style={{
+                      display: this.props.buttonMode ? 'none' : 'block'
+                    }}
+                    className={styles['sr-only']}
+                    htmlFor={this.props.id}
+                  >
                     {ariaCurrentSuggestion()
                       .concat(' ')
                       .concat(ariaRequiredText)
@@ -1116,6 +1141,9 @@ class DTAutosuggest extends React.Component {
                       .concat(ariaLabelText)}
                   </label>
                   <input
+                    style={{
+                      display: this.props.buttonMode ? 'none' : 'block'
+                    }}
                     aria-label={ariaCurrentSuggestion()
                       .concat(' ')
                       .concat(ariaRequiredText)

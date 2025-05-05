@@ -7,6 +7,7 @@ import withBreakpoint from '../../../util/withBreakpoint';
 import Weather from '../weather';
 import useRouteLevel from '../../../hooks/useRouteLevel';
 import BackButton from '../../BackButton';
+import SearchButton from '../search-button';
 
 const Topbar = ({ breakpoint }) => {
   const { match } = useRouter();
@@ -24,6 +25,8 @@ const Topbar = ({ breakpoint }) => {
       })}
     >
       <div className="content">
+        {isFirstLevelRoute && <SearchButton />}
+
         {breakpoint !== 'large' && !isFirstLevelRoute && <BackButton small />}
       </div>
       <div className="content">

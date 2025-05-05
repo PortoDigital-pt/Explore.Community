@@ -82,6 +82,7 @@ import SearchTramStopDigitransit from './assets/search-tram-stop-digitransit.svg
 import Funicular from './assets/funicular.svg';
 import ClearLocation from './assets/amporto/clear-location.svg';
 import Poi from './assets/amporto/poi.svg';
+import Event from './assets/amporto/event.svg';
 
 const IconMap = style => {
   return {
@@ -133,7 +134,7 @@ const IconMap = style => {
     'mode-subway': <Subway style={style} />,
     'mode-ferry': <ModeFerry style={style} />,
     'mode-citybike': <ModeBikeRentalStation style={style} />,
-    'mode-digitransit-bus': <SearchBusStationDigitransit style={style} />,
+    'mode-digitransit-bus': <SearchBusStopDigitransit style={style} />,
     'mode-digitransit-rail': <SearchRailStationDigitransit style={style} />,
     'mode-digitransit-ferry': <SearchFerryDigitransit style={style} />,
     'mode-digitransit-tram': <ModeDigiTram style={style} />,
@@ -192,7 +193,8 @@ const IconMap = style => {
     funicular: <Funicular style={style} />,
     mapPin: <MapPin style={style} />,
     clearLocation: <ClearLocation style={style} />,
-    poi: <Poi style={style} />
+    poi: <Poi style={style} />,
+    event: <Event style={style} />
   };
 };
 
