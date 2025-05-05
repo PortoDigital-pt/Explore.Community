@@ -151,13 +151,14 @@ export const getStopRoutePath = searchObj => {
   if (searchObj.properties && searchObj.properties.link) {
     return searchObj.properties.link;
   }
-  let id = searchObj.properties.id
-    ? searchObj.properties.id
-    : searchObj.properties.gtfsId;
+  let id = searchObj.properties?.id
+    ? searchObj.properties?.id
+    : searchObj.properties?.gtfsId;
   let path;
   const network =
     searchObj.properties.source &&
     searchObj.properties.source.split('citybikes')[1];
+
   switch (searchObj.properties.layer) {
     case 'station':
     case 'favouriteStation':
@@ -180,6 +181,18 @@ export const getStopRoutePath = searchObj => {
       path = `/${PREFIX_BIKEPARK}/`;
       id = searchObj.properties.id;
       break;
+    case 'pois':
+    case 'events': {
+      // todo - add events when it is available.
+      const prefixId =
+        searchObj.properties.layer === 'pois'
+          ? 'urn:ngsi-ld:PointOfInterest'
+          : 'urn:ngsi-ld:Event';
+
+      path = `/explore/${searchObj.properties.layer}/`;
+      id = `${prefixId}:${searchObj.properties.id}`;
+      break;
+    }
     default:
       path = `/${PREFIX_STOPS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');

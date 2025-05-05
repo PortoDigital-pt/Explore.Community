@@ -56,7 +56,8 @@ const {
   CULTURAL_AGENDA,
   WEATHER_API,
   WEATHER_CITY_CODE,
-  SHOW_PROFILE_NOTIFICATION
+  SHOW_PROFILE_NOTIFICATION,
+  EVENT_SOURCE
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -498,5 +499,6 @@ export default {
   profile: {
     showNotification: SHOW_PROFILE_NOTIFICATION === 'true',
     showAuthenticationInfo: ALLOW_LOGIN === 'true'
-  }
+  },
+  eventSource: EVENT_SOURCE || 'agenda_porto'
 };

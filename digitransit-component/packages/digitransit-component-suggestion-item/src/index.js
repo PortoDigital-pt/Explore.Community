@@ -85,6 +85,9 @@ function getIconProperties(
     }
     if (item.properties.label?.split(',').length === 1 && !isFavourite(item)) {
       iconId = 'localadmin'; // plain city name
+    }
+    if (item.properties.layer === 'events') {
+      iconId = 'events';
     } else {
       iconId = item.properties.selectedIconId || item.properties.layer;
     }
@@ -97,6 +100,7 @@ function getIconProperties(
   }
   const layerIcon = new Map([
     ['pois', 'poi'],
+    ['events', 'event'],
     ['bikestation', 'citybike'],
     ['currentPosition', 'locate'],
     ['favouritePlace', 'star'],

@@ -226,11 +226,22 @@ li:last-child > div.suggestion-item-container.mobile {
     }
   }
 
-  .search-bus-stop-digitransit {
+  .search-bus-stop-digitransit,
+  .mode-digitransit-bus {
     svg {
       width: 24px;
       height: 24px;
       padding: 0;
+      margin-right: 2px;
+    }
+  }
+
+  .event {
+    svg {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      color: $primary-dark;
     }
   }
 

@@ -152,7 +152,10 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
     onSuggestionSelected = (item, id) => {
       if (item.type === 'SelectFromMap') {
         this.setState({ fromMap: id });
-      } else if (id !== 'stop-route-station' && item.type !== 'FutureRoute') {
+      } else if (
+        !['stop-route-station', 'searchButtonComponent'].includes(id) &&
+        item.type !== 'FutureRoute'
+      ) {
         let location;
         if (item.type === 'CurrentLocation') {
           if (embeddedSearch) {

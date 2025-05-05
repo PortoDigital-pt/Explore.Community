@@ -340,7 +340,8 @@ class IndexPage extends React.Component {
       fromMap: this.props.fromMap,
       fontWeights,
       modeIconColors: colors.iconColors,
-      modeSet: config.iconModeSet
+      modeSet: config.iconModeSet,
+      mobileSearchPrefixIconId: 'search'
     };
 
     const stopRouteSearchProps = {
