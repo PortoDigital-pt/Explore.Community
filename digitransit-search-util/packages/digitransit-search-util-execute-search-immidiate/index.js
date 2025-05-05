@@ -239,7 +239,8 @@ export async function getSearchResults(
   { input },
   callback,
   pathOpts,
-  refPoint
+  refPoint,
+  eventSource
 ) {
   const {
     getPositions,
@@ -267,7 +268,6 @@ export async function getSearchResults(
     getFutureRoutes,
     cityBikeNetworks
   } = searchContext;
-
   // if no targets are provided, search them all.
   const allTargets = !targets || targets.length === 0;
   // if no sources are provided, use them all.
@@ -319,17 +319,24 @@ export async function getSearchResults(
     }
 
     if (allSources || sources.includes('Datasource')) {
-      const geocodingLayers = ['venue', 'address', 'street'];
+      const geocodingLayers = targets.includes('Pois')
+        ? ['venue', 'address', 'street']
+        : ['address', 'street'];
       if (targets.includes('Stations')) {
         geocodingLayers.push('station'); // search stations from OSM
       }
+
+      const geoSources = targets.includes('Pois')
+        ? geocodingSources
+        : geocodingSources.filter(source => source !== 'custom');
+
       searchComponents.push(
         getGeocodingResults(
           input,
           searchParams,
           language,
           focusPoint,
-          geocodingSources.join(','),
+          geoSources?.join(','),
           URL_PELIAS,
           minimalRegexp,
           geocodingLayers
@@ -388,6 +395,10 @@ export async function getSearchResults(
   const useExplore = targets.includes('Pois') || targets.includes('Events');
 
   if (allTargets || useExplore) {
+    const searchParams = geocodingSearchParams;
+    const exploreSources = [];
+    const exploreLayers = [];
+
     if (sources.includes('Favourite')) {
       const favouriteExplore = await filterFavouriteLocations(
         getFavouriteExplore(context),
@@ -399,6 +410,29 @@ export async function getSearchResults(
     if (allSources || sources.includes('History')) {
       // TODO
     }
+
+    if (targets.includes('Events')) {
+      exploreSources.push(eventSource);
+      exploreLayers.push('events');
+    }
+
+    if (targets.includes('Pois')) {
+      exploreSources.push('custom');
+      exploreLayers.push('venue');
+    }
+
+    searchComponents.push(
+      getGeocodingResults(
+        input,
+        searchParams,
+        language,
+        focusPoint,
+        exploreSources.join(','),
+        URL_PELIAS,
+        minimalRegexp,
+        exploreLayers
+      )
+    );
   }
 
   if (allTargets || useStops || useStations) {
@@ -607,7 +641,8 @@ export const executeSearch = (
   data,
   callback,
   pathOpts,
-  refPoint
+  refPoint,
+  eventSource
 ) => {
   callback(null); // This means 'we are searching'
   debouncedSearch(
@@ -620,6 +655,7 @@ export const executeSearch = (
     data,
     callback,
     pathOpts,
-    refPoint
+    refPoint,
+    eventSource
   );
 };

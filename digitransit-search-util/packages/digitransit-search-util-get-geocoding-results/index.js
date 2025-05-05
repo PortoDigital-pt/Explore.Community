@@ -17,6 +17,14 @@ const DEFAULT_PELIAS_URL = 'https://api.digitransit.fi/geocoding/v1/search';
  * digitransit-search-util.getGeocodingResults("result");
  * //= e.g. {text:"result"}
  */
+
+const isEventActive = strEndDate => {
+  const now = new Date().getTime();
+  const endDate = new Date(strEndDate).getTime();
+
+  return !Number.isNaN(endDate) && endDate > now;
+};
+
 export default async function getGeocodingResults(
   searchString,
   searchParams,
@@ -45,19 +53,29 @@ export default async function getGeocodingResults(
     const layers = geocodingLayers.toString();
     opts = { ...opts, layers };
   }
-  return getJson(PELIAS_URL, opts).then(res => {
-    return res.features.map(feature => {
-      if (
-        feature.properties.layer === 'venue' &&
-        feature.properties.source === 'custom'
-      ) {
-        return {
-          ...feature,
-          properties: { ...feature.properties, layer: 'pois' }
-        };
-      }
 
-      return feature;
-    });
+  return getJson(PELIAS_URL, opts).then(res => {
+    return res.features
+      .filter(
+        feature =>
+          feature.properties.layer !== 'events' ||
+          isEventActive(
+            feature.properties.addendum && feature.properties.addendum.dates
+              ? feature.properties.addendum.dates.endDate
+              : null
+          )
+      )
+      .map(feature => {
+        if (
+          feature.properties.layer === 'venue' &&
+          feature.properties.source === 'custom'
+        ) {
+          return {
+            ...feature,
+            properties: { ...feature.properties, layer: 'pois' }
+          };
+        }
+        return feature;
+      });
   });
 }

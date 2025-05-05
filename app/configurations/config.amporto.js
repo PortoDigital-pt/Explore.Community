@@ -57,6 +57,7 @@ const {
   WEATHER_API,
   WEATHER_CITY_CODE,
   SHOW_PROFILE_NOTIFICATION,
+  EVENT_SOURCE,
   FAKE_USER
 } = process.env;
 
@@ -249,7 +250,6 @@ export default {
 
   allowLogin: ALLOW_LOGIN === 'true',
   fakeUser: FAKE_USER,
-
   /* depends on https://github.com/HSLdevcom/fav-service */
   hostnames: HOST_NAMES?.split(','),
 
@@ -501,5 +501,6 @@ export default {
   profile: {
     showNotification: SHOW_PROFILE_NOTIFICATION === 'true',
     showAuthenticationInfo: ALLOW_LOGIN === 'true'
-  }
+  },
+  eventSource: EVENT_SOURCE || 'agenda_porto'
 };

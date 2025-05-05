@@ -261,7 +261,8 @@ class DTAutosuggestPanel extends React.Component {
     isEmbedded: PropTypes.bool,
     showSwapControl: PropTypes.bool,
     showViapointControl: PropTypes.bool,
-    showSlackControl: PropTypes.bool
+    showSlackControl: PropTypes.bool,
+    mobileSearchPrefixIconId: PropTypes.string
   };
 
   static defaultProps = {
@@ -297,7 +298,8 @@ class DTAutosuggestPanel extends React.Component {
     isEmbedded: false,
     showSwapControl: false,
     showViapointControl: false,
-    showSlackControl: false
+    showSlackControl: false,
+    mobileSearchPrefixIconId: undefined
   };
 
   constructor(props) {
@@ -493,6 +495,7 @@ class DTAutosuggestPanel extends React.Component {
             modeIconColors={this.props.modeIconColors}
             showScroll={this.props.showScroll}
             isEmbedded={this.props.isEmbedded}
+            mobileSearchPrefixIconId={this.props.mobileSearchPrefixIconId}
           />
           {(showSwapControl || showViapointControl) && (
             <ItinerarySearchControl
@@ -582,6 +585,9 @@ class DTAutosuggestPanel extends React.Component {
                       modeSet={this.props.modeSet}
                       modeIconColors={this.props.modeIconColors}
                       showScroll={this.props.showScroll}
+                      mobileSearchPrefixIconId={
+                        this.props.mobileSearchPrefixIconId
+                      }
                     />
                   </div>
                   {this.props.showSlackControl && (
@@ -688,6 +694,7 @@ class DTAutosuggestPanel extends React.Component {
             modeIconColors={this.props.modeIconColors}
             showScroll={this.props.showScroll}
             isEmbedded={this.props.isEmbedded}
+            mobileSearchPrefixIconId={this.props.mobileSearchPrefixIconId}
           />
           {(showSwapControl || showViapointControl) && (
             <ItinerarySearchControl

@@ -50,6 +50,7 @@ const MobileSearch = ({
 }) => {
   const styles = showScroll ? mobileStyles : mobileNoScrollStyles;
 
+  const comboboxContainerId = `mobileSearch-${id}-container`;
   const inputId = `${id}-input`;
   const labelId = `${id}-label`;
 
@@ -140,7 +141,14 @@ const MobileSearch = ({
 
   const renderContent = () => {
     return (
-      <div className={styles['combobox-container']} htmlFor={inputId}>
+      <div
+        id={comboboxContainerId}
+        className={cx(
+          styles['combobox-container'],
+          styles[comboboxContainerId]
+        )}
+        htmlFor={inputId}
+      >
         <button
           type="button"
           className={styles['combobox-icon']}

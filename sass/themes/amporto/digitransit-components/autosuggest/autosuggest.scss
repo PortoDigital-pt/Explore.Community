@@ -171,7 +171,15 @@ input[type='text'] {
     }
   }
 
-  &.stop-route-station,
+  &.stop-route-station, &.favourite {
+    margin-top: -5px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
   &.favourite {
     svg {
       fill: #888;
