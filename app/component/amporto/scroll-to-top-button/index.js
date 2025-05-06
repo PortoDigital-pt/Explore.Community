@@ -29,6 +29,6 @@ ScrollToTopButton.propTypes = {
 
 ScrollToTopButton.contextTypes = {
   intl: intlShape.isRequired
-};  
+};
 
 export default withBreakpoint(ScrollToTopButton);
