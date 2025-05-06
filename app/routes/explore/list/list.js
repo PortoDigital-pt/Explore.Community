@@ -119,7 +119,7 @@ const ListPage = (
 
   return (
     <div className="list-page">
-      <ScrollToTopButton />
+      <ScrollToTopButton targetClassname="list-page" />
       {breakpoint === 'large' && !isFirstLevelRoute && (
         <BackButton title={intl.messages[type]} />
       )}

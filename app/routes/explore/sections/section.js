@@ -65,33 +65,33 @@ const Section = (
       {Intro && <Intro />}
       <div className="list">
         <div className="list-scroll">
-        {error ? (
-          <div className="error">
-            <p>{intl.messages[errorMessage]}</p>
-            <Icon img="icon-icon_error_page_not_found" />
-          </div>
-        ) : data === null ? (
-          Array.from({ length: 10 }, (_, i) => (
-            <Skeleton key={`${i}-item`} className={`${cardType}-card`} />
-          ))
-        ) : data.length === 0 ? (
-          <div className="error">
-            <p>{intl.messages[emptyMessage]}</p>
-          </div>
-        ) : (
-          data.map(item => (
-            <Card
-              key={item.id}
-              className={`${cardType}-card`}
-              onClick={() => {
-                setSelected(item);
-                open();
-              }}
-              data={item}
-              type={type}
-            />
-          ))
-        )}
+          {error ? (
+            <div className="error">
+              <p>{intl.messages[errorMessage]}</p>
+              <Icon img="icon-icon_error_page_not_found" />
+            </div>
+          ) : data === null ? (
+            Array.from({ length: 10 }, (_, i) => (
+              <Skeleton key={`${i}-item`} className={`${cardType}-card`} />
+            ))
+          ) : data.length === 0 ? (
+            <div className="error">
+              <p>{intl.messages[emptyMessage]}</p>
+            </div>
+          ) : (
+            data.map(item => (
+              <Card
+                key={item.id}
+                className={`${cardType}-card`}
+                onClick={() => {
+                  setSelected(item);
+                  open();
+                }}
+                data={item}
+                type={type}
+              />
+            ))
+          )}
         </div>
       </div>
       {!error && (

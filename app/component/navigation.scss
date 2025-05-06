@@ -661,6 +661,7 @@ section.content {
         flex-direction: column;
         flex-grow: 1;
         flex-shrink: 0;
+        
 
         @media print {
           display: inline;

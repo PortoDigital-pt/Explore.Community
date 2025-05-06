@@ -69,18 +69,11 @@
               padding: 0 24px;
 
               &::-webkit-scrollbar {
-                display: initial;
-                height: 10px;
+                display: block;
               }
             
               &::-webkit-scrollbar-track {
-                background: transparent;
                 margin: 0 24px;
-              }
-            
-              &::-webkit-scrollbar-thumb {
-                background: $primary-color;
-                border-radius: 10px;
               }
             }
 

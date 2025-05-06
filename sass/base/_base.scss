@@ -18,6 +18,22 @@ html {
   font-size: 15px !important;
 }
 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 10px;
+}
+
+@media (min-width: 900px) {
+  ::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+}
+
 @media screen and (min-width: 320px) {
   html {
     font-size: calc(14px + 7 * (100vw - 320px) / 500) !important;

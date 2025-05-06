@@ -1,14 +1,17 @@
 import { useLayoutEffect, useState, useMemo, useCallback, useRef } from 'react';
 import debounce from 'lodash/debounce';
 
-const useScrollYPosition = breakpoint => {
+const useScrollYPosition = ({ breakpoint, targetClassname }) => {
   const [scrollY, setScrollY] = useState(0);
   const firstYPosition = useRef(scrollY);
   const elementRef = useRef(null);
 
   const elementClassname = useMemo(
-    () => (breakpoint === 'large' ? 'scroll-target' : 'drawer-container'),
-    [breakpoint]
+    () =>
+      breakpoint === 'large'
+        ? targetClassname ?? 'scroll-target'
+        : 'drawer-container',
+    [breakpoint, targetClassname]
   );
 
   const scrollToTop = useCallback(() => {
