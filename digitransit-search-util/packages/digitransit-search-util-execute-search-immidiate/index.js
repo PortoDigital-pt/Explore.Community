@@ -412,7 +412,9 @@ export async function getSearchResults(
     }
 
     if (targets.includes('Events')) {
-      exploreSources.push(eventSource);
+      if (eventSource) {
+        exploreSources.push(eventSource);
+      }
       exploreLayers.push('events');
     }
 

@@ -1,7 +1,15 @@
 import React from 'react';
 import moment from 'moment';
 import classname from 'classnames';
-import { string, func, shape, bool, oneOfType, arrayOf, number } from 'prop-types';
+import {
+  string,
+  func,
+  shape,
+  bool,
+  oneOfType,
+  arrayOf,
+  number
+} from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
 import { locationShape } from '../../../../util/shapes';
