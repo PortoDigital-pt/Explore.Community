@@ -309,9 +309,13 @@ export default class FavouriteStore extends Store {
       return favourite.favouriteId !== data.favouriteId;
     });
 
+    const favouriteWithId = this.favourites.find(
+      favourite => favourite.id === data.id
+    );
+
     if (this.config.allowLogin) {
       // Delete favourite from backend service
-      deleteFavourites([data.favouriteId])
+      deleteFavourites([favouriteWithId?.favouriteId || data.favouriteId])
         .then(res => {
           this.set(res);
         })
