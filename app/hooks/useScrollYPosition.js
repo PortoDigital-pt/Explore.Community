@@ -39,7 +39,7 @@ const useScrollYPosition = breakpoint => {
     element.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      element?.removeEventListener('scroll', handleScroll);
+      element.removeEventListener('scroll', handleScroll);
       handleScroll.cancel();
     };
   }, [elementClassname, handleScroll]);
