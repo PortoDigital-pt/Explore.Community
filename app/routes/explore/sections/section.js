@@ -64,6 +64,7 @@ const Section = (
       <h3 className="title">{intl.messages[title]}</h3>
       {Intro && <Intro />}
       <div className="list">
+        <div className="list-scroll">
         {error ? (
           <div className="error">
             <p>{intl.messages[errorMessage]}</p>
@@ -91,6 +92,7 @@ const Section = (
             />
           ))
         )}
+        </div>
       </div>
       {!error && (
         <button

@@ -47,71 +47,92 @@
         .list {
           display: flex;
           position: relative;
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: center;
-          scroll-snap-type: x mandatory;
-          column-gap: 10px;
-          padding: 0 18px 0 18px;
+          scrollbar-gutter: stable;
 
-          @media (min-width: 900px) {
-            padding: 0 24px 0 24px;
-          }
+          .list-scroll {
+            display: flex;
+            position: relative;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            scroll-snap-type: x mandatory;
+            column-gap: 10px;
+            padding: 0 18px;
+
+            &::-webkit-scrollbar {
+              display: none;
+            }
+         
+            @media (min-width: 900px) {
+              padding: 0 24px;
+
+              &::-webkit-scrollbar {
+                display: initial;
+                height: 10px;
+              }
             
-          &::-webkit-scrollbar {
-            display: none;
-          }
+              &::-webkit-scrollbar-track {
+                background: transparent;
+                margin: 0 24px;
+              }
+            
+              &::-webkit-scrollbar-thumb {
+                background: $primary-color;
+                border-radius: 10px;
+              }
+            }
 
-          .small-card {
-            display: flex;
-            position: relative;
-            scroll-snap-align: center;
-            min-width: 200px;
-            max-width: 200px;
-            max-height: 190px;
-            min-height: 190px;
-            border-radius: $border-radius;
-            overflow: hidden;
-            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
-          }
-
-          .large-card {
-            display: flex;
-            position: relative;
-            scroll-snap-align: center;
-            min-width: 312px;
-            max-width: 312px;
-            max-height: 296px;
-            min-height: 296px;
-            border-radius: $border-radius;
-            overflow: hidden;
-            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
-          }
-
-          .error {
-              padding: 10px;
+            .small-card {
               display: flex;
               position: relative;
-              flex-direction: column;
-              justify-content: flex-start;
-              align-items: center;
-              row-gap: 20px;
-            
-              p {
+              scroll-snap-align: center;
+              min-width: 200px;
+              max-width: 200px;
+              max-height: 190px;
+              min-height: 190px;
+              border-radius: $border-radius;
+              overflow: hidden;
+              box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+            }
+
+            .large-card {
+              display: flex;
+              position: relative;
+              scroll-snap-align: center;
+              min-width: 312px;
+              max-width: 312px;
+              max-height: 296px;
+              min-height: 296px;
+              border-radius: $border-radius;
+              overflow: hidden;
+              box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+            }
+
+            .error {
+                padding: 10px;
                 display: flex;
                 position: relative;
-                width: 100%;
-                font-weight: $font-weight-semibold;
-                font-size: $font-size-base;
-                color: $grey-dark-down; 
-              }
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                row-gap: 20px;
+              
+                p {
+                  display: flex;
+                  position: relative;
+                  width: 100%;
+                  font-weight: $font-weight-semibold;
+                  font-size: $font-size-base;
+                  color: $grey-dark-down; 
+                }
 
-              .icon {
-                width: 80px;
-                height: 80px;
-              }
+                .icon {
+                  width: 80px;
+                  height: 80px;
+                }
+            }
           }
         }
 
