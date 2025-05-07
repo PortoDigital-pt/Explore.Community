@@ -729,11 +729,11 @@ class DTAutosuggest extends React.Component {
 
   clearInput = () => {
     const newState = {
-      editing: true,
+      editing: false,
       value: '',
       sources: this.props.sources,
       ownPlaces: false,
-      renderMobileSearch: this.props.isMobile
+      renderMobileSearch: false 
     };
     // must update suggestions
     this.setState(newState, () =>
@@ -742,7 +742,7 @@ class DTAutosuggest extends React.Component {
     if (this.props.onClear) {
       this.props.onClear(this.props.id);
     }
-    this.input.focus();
+    this.props.onSelect(null, this.props.id);
   };
 
   inputClicked = inputValue => {

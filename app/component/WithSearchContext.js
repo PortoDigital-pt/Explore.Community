@@ -150,6 +150,10 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
     };
 
     onSuggestionSelected = (item, id) => {
+      if (item === null) {
+        return this.props.selectHandler(null, id); 
+      }
+     
       if (item.type === 'SelectFromMap') {
         this.setState({ fromMap: id });
       } else if (
@@ -206,6 +210,9 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
 
     // top level onSelect callback manages search history
     onSelect = (item, id) => {
+      if (item === null) {
+        return this.onSuggestionSelected(null, id);
+      }
       // type for storing old searches. 'endpoint' types are available in itinerary search
       let type = 'endpoint';
       switch (item.type) {
