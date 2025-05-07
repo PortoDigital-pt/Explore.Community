@@ -4,9 +4,8 @@
   align-items: center;
   overflow-x: auto;
   gap: 8px;
-  height: 42px;
-  min-height: 42px;
-  padding: 0 18px 0 0;
+  height: 52px;
+  min-height: 52px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -45,6 +44,8 @@
   }
 
   @media (min-width: 900px) {
-    padding: 0 24px 0 0;
+    &::-webkit-scrollbar {
+      display: block;
+    }
   }
 }

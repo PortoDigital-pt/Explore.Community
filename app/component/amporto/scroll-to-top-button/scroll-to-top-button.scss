@@ -1,0 +1,33 @@
+.toTop {
+    position: fixed;
+    bottom: 84px;
+    right: 20px;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: $background-default;
+    z-index: 10;
+    box-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
+
+    &.largeTop {
+        left: calc(520px - 40px - 20px);
+        bottom: 20px;
+    }
+    
+    &:hover {
+        background-color: $background-default; 
+    }
+    
+    .icon {
+      color: $primary-main;
+      display: flex;
+      position: relative;
+      width: 24px;
+      height: 24px;
+      transform: rotate(90deg);
+    }
+  }

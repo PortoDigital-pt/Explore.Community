@@ -25,7 +25,7 @@ const poiShape = shape({
   type: string.isRequired,
   id: string.isRequired,
   address: shape({
-    streetAddress: string.isRequired,
+    streetAddress: string,
     streetNumber: string
   }).isRequired,
   category: oneOfType([string, arrayOf(string)]).isRequired,
@@ -33,7 +33,7 @@ const poiShape = shape({
     telephone: string,
     url: string
   }),
-  description: string.isRequired,
+  description: string,
   lon: number.isRequired,
   lat: number.isRequired,
   name: string.isRequired,
@@ -105,14 +105,16 @@ const Mobile = (
                 </div>
               </div>
             )}
-            <div>
-              <Icon img="icon-location" viewBox="0 0 16 16" />
-              <p>{`${selectedData.address.streetAddress}${
-                selectedData.address.streetNumber
-                  ? `, ${selectedData.address.streetNumber}`
-                  : ''
-              }`}</p>
-            </div>
+            {selectedData.address.streetAddress && (
+              <div>
+                <Icon img="icon-location" viewBox="0 0 16 16" />
+                <p>{`${selectedData.address.streetAddress}${
+                  selectedData.address.streetNumber
+                    ? `, ${selectedData.address.streetNumber}`
+                    : ''
+                }`}</p>
+              </div>
+            )}
             {selectedData.priceRange && (
               <div>
                 <Icon img="icon-cost" viewBox="0 0 16 16" />
@@ -166,10 +168,12 @@ export const PageContent = ({ selectedData }, { intl }) => (
     <div
       className={classname('details', { lower: selectedData.images === null })}
     >
-      <div className="description">
-        <h3>{intl.messages.about}</h3>
-        <p>{selectedData.description}</p>
-      </div>
+      {selectedData.description && (
+        <div className="description">
+          <h3>{intl.messages.about}</h3>
+          <p>{selectedData.description}</p>
+        </div>
+      )}
       {selectedData.calendar && (
         <div className="description">
           <h3>{intl.messages['opening-hours']}</h3>

@@ -13,6 +13,7 @@ import Icon from '../../../component/Icon';
 import BackButton from '../../../component/BackButton';
 import Filters from '../../../component/amporto/filter';
 import Skeleton from '../../../component/amporto/skeleton';
+import ScrollToTopButton from '../../../component/amporto/scroll-to-top-button';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
   PAGE_CONTENT_TYPE_MAP
@@ -118,6 +119,7 @@ const ListPage = (
 
   return (
     <div className="list-page">
+      <ScrollToTopButton targetClassname="list-page" />
       {breakpoint === 'large' && !isFirstLevelRoute && (
         <BackButton title={intl.messages[type]} />
       )}

@@ -822,6 +822,7 @@ const translations = {
   },
 
   en: {
+    'scroll-to-top': 'Scroll back to the top of the page',
     pois: 'Points of interest',
     events: 'Events',
     'select-at-least-one-category': 'Select at least one category',
@@ -5184,6 +5185,7 @@ const translations = {
     schedule: 'Horário',
     'poi-contact': 'Contactos',
     'poi-warning': 'Aviso',
+    'scroll-to-top': 'Voltar ao topo da página',
     pois: 'Pontos de Interesse',
     events: 'Eventos',
     'public-transport': 'Transportes Públicos',

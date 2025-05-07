@@ -1,7 +1,15 @@
 import React from 'react';
 import moment from 'moment';
 import classname from 'classnames';
-import { string, func, shape, bool } from 'prop-types';
+import {
+  string,
+  func,
+  shape,
+  bool,
+  oneOfType,
+  arrayOf,
+  number
+} from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
 import { locationShape } from '../../../../util/shapes';
@@ -13,6 +21,25 @@ import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
+
+const eventShape = shape({
+  type: string.isRequired,
+  id: string.isRequired,
+  address: shape({
+    streetAddress: string,
+    streetNumber: string
+  }).isRequired,
+  category: oneOfType([string, arrayOf(string)]).isRequired,
+  website: string,
+  description: string,
+  startDate: string,
+  endDate: string,
+  price: string,
+  lon: number.isRequired,
+  lat: number.isRequired,
+  name: string.isRequired,
+  images: arrayOf(string)
+});
 
 const DateSection = ({ startDate, endDate }) => {
   const start = moment(startDate);
@@ -117,26 +144,26 @@ const Mobile = (
                 endDate={selectedData.endDate}
               />
             </div>
-            <div>
-              <Icon img="icon-location" viewBox="0 0 16 16" />
-              <p>{`${selectedData.address.streetAddress}${
-                selectedData.address.streetNumber
-                  ? `, ${selectedData.address.streetNumber}`
-                  : ''
-              }`}</p>
-            </div>
-            <div>
-              {selectedData.price && (
-                <>
-                  <Icon img="icon-cost" viewBox="0 0 16 16" />
-                  <p>{`${
-                    selectedData.price === '0'
-                      ? intl.messages['free-of-charge']
-                      : selectedData.price
-                  }`}</p>
-                </>
-              )}
-            </div>
+            {selectedData.address.streetAddress && (
+              <div>
+                <Icon img="icon-location" viewBox="0 0 16 16" />
+                <p>{`${selectedData.address.streetAddress}${
+                  selectedData.address.streetNumber
+                    ? `, ${selectedData.address.streetNumber}`
+                    : ''
+                }`}</p>
+              </div>
+            )}
+            {selectedData.price && (
+              <div>
+                <Icon img="icon-cost" viewBox="0 0 16 16" />
+                <p>{`${
+                  selectedData.price === '0'
+                    ? intl.messages['free-of-charge']
+                    : selectedData.price
+                }`}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -156,7 +183,7 @@ const Mobile = (
 Mobile.propTypes = {
   innerRef: shape(),
   onDetails: func.isRequired,
-  selectedData: shape().isRequired,
+  selectedData: eventShape.isRequired,
   location: locationShape.isRequired,
   showShare: bool
 };
@@ -182,31 +209,32 @@ export const EventContactDetails = ({ selectedData }, { intl }) => (
         endDate={selectedData.endDate}
       />
     </div>
-    <div>
-      <Icon img="icon-location" viewBox="0 0 16 16" />
-      <p>{`${selectedData.address.streetAddress}${
-        selectedData.address.streetNumber
-          ? `, ${selectedData.address.streetNumber}`
-          : ''
-      }`}</p>
-    </div>
-    <div>
-      {selectedData.price && (
-        <>
-          <Icon img="icon-cost" viewBox="0 0 16 16" />
-          <p>{`${
-            selectedData.price === '0'
-              ? intl.messages['free-of-charge']
-              : selectedData.price
-          }`}</p>
-        </>
-      )}
-    </div>
+    {selectedData.address.streetAddress && (
+      <div>
+        <Icon img="icon-location" viewBox="0 0 16 16" />
+        <p>{`${selectedData.address.streetAddress}${
+          selectedData.address.streetNumber
+            ? `, ${selectedData.address.streetNumber}`
+            : ''
+        }`}</p>
+      </div>
+    )}
+
+    {selectedData.price && (
+      <div>
+        <Icon img="icon-cost" viewBox="0 0 16 16" />
+        <p>{`${
+          selectedData.price === '0'
+            ? intl.messages['free-of-charge']
+            : selectedData.price
+        }`}</p>
+      </div>
+    )}
   </div>
 );
 
 EventContactDetails.propTypes = {
-  selectedData: shape().isRequired
+  selectedData: eventShape.isRequired
 };
 
 EventContactDetails.contextTypes = {
@@ -225,8 +253,13 @@ export const PageContent = ({ selectedData }, { intl }) => (
     >
       <EventContactDetails selectedData={selectedData} />
       <div className="description">
-        <h3>{intl.messages.about}</h3>
-        {selectedData.description && <p>{selectedData.description}</p>}
+        {selectedData.description && (
+          <>
+            <h3>{intl.messages.about}</h3>
+            {selectedData.description && <p>{selectedData.description}</p>}
+          </>
+        )}
+
         <a
           href={selectedData.website}
           target="_blank"
@@ -240,7 +273,7 @@ export const PageContent = ({ selectedData }, { intl }) => (
 );
 
 PageContent.propTypes = {
-  selectedData: shape().isRequired
+  selectedData: eventShape.isRequired
 };
 
 PageContent.contextTypes = {

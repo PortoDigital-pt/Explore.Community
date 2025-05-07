@@ -1,9 +1,5 @@
 @import './category/accordion';
 
-.filter-container::-webkit-scrollbar {
-  display: none;
-}
-
 .filter-container {
   display: flex;
   position: relative;
@@ -13,6 +9,10 @@
   height: 42px;
   min-height: 42px;
   padding: 0 18px 0 18px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (min-width: 900px) {
     padding: 0 24px 0 24px;

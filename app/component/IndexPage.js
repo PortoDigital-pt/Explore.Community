@@ -412,7 +412,10 @@ class IndexPage extends React.Component {
                       defaultMessage="The search is triggered automatically when origin and destination are set. Changing any search parameters triggers a new search"
                     />
                   </span>
-                  <LocationSearch {...locationSearchProps} />
+                  <LocationSearch
+                    {...locationSearchProps}
+                    eventSource={config.eventSource}
+                  />
                   <div className="datetimepicker-container">
                     <DatetimepickerContainer realtime color={color} />
                   </div>
@@ -464,6 +467,7 @@ class IndexPage extends React.Component {
                     disableAutoFocus
                     isMobile
                     {...locationSearchProps}
+                    eventSource={config.eventSource}
                   />
                   <div className="datetimepicker-container">
                     <DatetimepickerContainer realtime color={color} />

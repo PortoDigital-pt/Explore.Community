@@ -1,0 +1,306 @@
+@import '~@hsl-fi/sass/colors';
+@import '~@hsl-fi/sass/mixins/screen';
+@import '~@hsl-fi/sass/mixins/text';
+@import '../theme';
+
+.suggestion-item-container {
+  display: flex;
+  min-height: 25px;
+  width: 100%;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 20px;
+  flex-grow: 1;
+
+  &.futureroute {
+    min-height: 79px;
+  }
+}
+
+.mobile {
+  height: 59px;
+
+  &.CurrentLocation {
+    height: 50px;
+  }
+
+  &.SelectFromMap {
+    height: 50px;
+  }
+}
+
+li:not(:first-child) > div.suggestion-item-container {
+  border-top: 1px solid $grey-light-down;
+}
+
+li:last-child > div.suggestion-item-container.mobile {
+  border-top: none;
+}
+
+.search-result {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  column-gap: 10px;
+
+  @media (min-width: 900px) {
+    min-height: 49px;
+    column-gap: 0;
+  }
+
+  &.futureroute {
+    min-height: 79px;
+  }
+
+  .suggestion-result {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+   
+    .suggestion-name {
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 27px - 32px);
+      margin: 0;
+      font-weight: $font-weight-book;
+      color: $grey-dark-down;
+      font-size: 16px !important;
+      letter-spacing: -0.5px;
+      line-height: 1.5;
+
+      @include min-width(tablet) {
+        font-size: 13px !important;
+        letter-spacing: -0.43px;
+       
+      }
+
+      @media screen and (min-width: 767px) {
+        font-size: 15px !important;
+        letter-spacing: -0.43px;
+        font-weight: 600;
+      }
+
+      &.favouriteCustom {
+        color: #0074be;
+        font-size: 15px;
+      }
+
+      &.futureroute {
+        line-height: 1.33;
+        position: relative;
+        left: 2px;
+
+        &.normal {
+          font-weight: normal;
+          position: relative;
+          left: 0.5px;
+        }
+      }
+    }
+
+    .suggestion-label {
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 27px - 32px);
+      margin: 0;
+      color: $grey-dark-down;
+      font-size: 12px !important;
+      font-weight: $font-weight-book;
+      letter-spacing: -0.43px;
+      line-height: 1.38;
+      white-space: nowrap;
+      position: relative;
+      top: -1px;
+
+      @include min-width(tablet) {
+        font-size: 11px !important;
+        letter-spacing: -0.37px;
+        line-height: 1.64;
+      }
+
+      .stop-code {
+        border-radius: 3px;
+        font-size: 9px;
+        padding: 1px 2px 1px;
+        font-weight: var(--font-weight-medium);
+        border: 1px solid #ddd;
+        margin: 0 4px;
+      }
+
+      .platform {
+        display: inline-block;
+        background: #f4f4f5;
+        color: #333;
+        border-radius: 3px;
+        font-weight: 500;
+        text-align: center;
+        margin-left: 5px;
+        height: 16px;
+        width: 24px;
+        align-self: center;
+        font-family: $font-family;
+      }
+
+      &.futureroute {
+        height: 18px;
+        position: relative;
+        left: 2px;
+        top: 4px;
+      }
+    }
+  }
+
+  .arrow-icon {
+    display: flex;
+    width: 27px;
+    align-items: center;
+    position: absolute;
+    right: 0;
+
+    svg {
+      fill: var(--accessible-primary-color) !important;
+      width: 24px;
+      height: 24px;
+      transform: rotate(40deg);
+    }
+
+    &.mobile {
+      &.fill-input {
+        border-left: 1px solid #ddd;
+        width: 48px;
+        height: 40px;
+        padding-right: 10px;
+        padding-left: 20px;
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+.suggestion-icon {
+  width: 49px;
+  text-align: center;
+  padding-top: 6px;
+
+  @media screen and (max-width: 900px) {
+    padding: 6px 0 0 1px;
+    border-radius: 200px;
+    background: $grey-light-down;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    margin: 0;
+  }
+
+  // Default size
+  svg {
+    color: $primary-main;
+    width: 20px;
+    height: 20px;
+
+    @media (min-width: 900px) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .place,
+  .subway,
+  .busstop,
+  .select-from-map {
+    svg {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+    }
+  }
+
+  .search-bus-stop-digitransit,
+  .mode-digitransit-bus {
+    svg {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      margin-right: 2px;
+    }
+  }
+
+  .event {
+    svg {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      color: $primary-dark;
+    }
+  }
+
+  .locate {
+    svg {
+      width: 24px;
+      height: 24px;
+      margin: -1px 1px 0 1px;
+    }
+  }
+
+  .edit {
+    svg {
+      width: 22px;
+      height: 22px;
+      padding: 0;
+    }
+  }
+
+  .star,
+  .work {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .school,
+  .sport,
+  .shopping {
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .future-route {
+    svg {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      top: -11px;
+    }
+  }
+
+  .station {
+    svg {
+      width: 25px;
+      height: 24px;
+    }
+  }
+}
+
+.sr-only:not(:focus, :active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
