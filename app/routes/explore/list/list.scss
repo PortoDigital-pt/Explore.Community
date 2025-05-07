@@ -9,6 +9,7 @@
     align-items: flex-start;
     padding: 0;
     row-gap: 10px;
+    overflow-y: auto;
 
     .back-button {
         position: fixed;
@@ -18,8 +19,8 @@
     }
 
     @media (min-width: 900px) {
-        padding: 120px 0 20px 0;
-        margin-top: 0;
+        padding: 20px 0 20px 0;
+        margin-top: 100px;
     }
 
     .filter-container {

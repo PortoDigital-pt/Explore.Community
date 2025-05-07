@@ -46,10 +46,10 @@ $background-color-darker: #e0e5e8;
 $background-color-lighter: $background-light;
 $primary-color: $primary-dark;
 $primary-font-color: $primary-contrastText;
-$secondary-color: #008bde;
+$secondary-color:darken($primary-color, 20%);
 $favourite-color: $livi-gold;
-$hilight-color: $livi-blue;
-$action-color: $secondary-color;
+$hilight-color: $primary-color;
+$action-color: $primary-color;
 $cancelation-red: #dc0451;
 $cancelation-black: #666;
 $cancelation-background: #fbe0ea;
@@ -62,12 +62,21 @@ $desktop-title-arrow-icon-color: $secondary-color;
 $infobox-color-generic-blue: #e5f2fa;
 $info-icon-blue: #0074be;
 
+$bus-color: #A7D9FE;
+$metro-color: $primary-color;
+$tram-color: #A2874F;
+$pois-color: #99DCD5;
+$events-color: #FEC8A7;
+$citybike-color: #FFE99D;
+
+$top-nav-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
+
 /* Component palette */
 $title-color: $white;
-$standalone-btn-color: $action-color;
+$standalone-btn-color: $primary-color;
 $standalone-btn-hover-color: $gray-blue-light;
 $standalone-btn-active-color: $gray-blue-light;
-$viewpoint-marker-color: $livi-blue;
+$viewpoint-marker-color: $primary-color;
 $link-color: $primary-color;
 $from-color: #4ea700;
 $to-color: #ec5188;

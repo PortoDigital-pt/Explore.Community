@@ -6,8 +6,11 @@ import withBreakpoint from '../../../util/withBreakpoint';
 import useScrollYPosition from '../../../hooks/useScrollYPosition';
 import Icon from '../../Icon';
 
-const ScrollToTopButton = ({ breakpoint }, { intl }) => {
-  const { scrollY, scrollToTop } = useScrollYPosition(breakpoint);
+const ScrollToTopButton = ({ breakpoint, targetClassname }, { intl }) => {
+  const { scrollY, scrollToTop } = useScrollYPosition({
+    breakpoint,
+    targetClassname
+  });
 
   return (
     scrollY >= 1000 && (
@@ -24,7 +27,8 @@ const ScrollToTopButton = ({ breakpoint }, { intl }) => {
 };
 
 ScrollToTopButton.propTypes = {
-  breakpoint: string.isRequired
+  breakpoint: string.isRequired,
+  targetClassName: string
 };
 
 ScrollToTopButton.contextTypes = {

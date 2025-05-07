@@ -16,28 +16,3 @@ $font-family-narrow: $font-family;
 /* main theme colors */
 $primary-color: $primary-dark;
 $secondary-color: darken($primary-color, 20%);
-$hilight-color: $primary-color;
-$action-color: $primary-color;
-$bus-color: #A7D9FE;
-$metro-color: $primary-color;
-$tram-color: #A2874F;
-$pois-color: #99DCD5;
-$events-color: #FEC8A7;
-$citybike-color: #FFE99D;
-
-$viewpoint-marker-color: $primary-color;
-$current-location-color: $primary-color;
-$standalone-btn-color: $primary-color;
-$link-color: $primary-color;
-
-
-$rail-color: $livi-rail-purple;
-$ferry-color: $livi-ferry-blue;
-
-/* Component palette */
-$desktop-title-color: $primary-color;
-$desktop-title-arrow-icon-color: $secondary-color;
-$top-bar-color: $primary-color;
-
-// shadows
-$top-nav-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
