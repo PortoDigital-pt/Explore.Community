@@ -217,23 +217,21 @@ async function init() {
 
   // fetch Userdata and favourites
   if (config.allowLogin) {
-    if (config.fakeUser) {
-      context.executeAction(setUser, fakeGetUser(config.fakeUser));
-      context.executeAction(fetchFavourites);
-    } else {
-      getUser()
-        .then(user => {
-          context.executeAction(setUser, {
-            ...user
-          });
-          handleUserAnalytics(user, config);
-          context.executeAction(fetchFavourites);
-        })
-        .catch(() => {
-          context.executeAction(setUser, { notLogged: true });
-          context.executeAction(fetchFavouritesComplete);
+    getUser()
+      .then(user => {
+        context.executeAction(setUser, {
+          ...user
         });
-    }
+        handleUserAnalytics(user, config);
+      })
+      .catch(() => {
+        context.executeAction(setUser, fakeGetUser(config.fakeUser));
+        // context.executeAction(setUser, { notLogged: true });
+      })
+      .finally(() => {
+        context.executeAction(fetchFavourites);
+        context.executeAction(fetchFavouritesComplete);
+      });
   }
 
   const ContextProvider = provideContext(StoreListeningIntlProvider, {
