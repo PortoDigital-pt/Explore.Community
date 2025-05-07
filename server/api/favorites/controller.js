@@ -23,7 +23,6 @@ const save = async (req, res) => {
       }
     });
 
-    logger.log('service.save::favoritesToUpdate => ', favoritesToUpdate);
     await service.save(favoritesToUpdate);
     res.sendStatus(200);
   } catch (err) {
