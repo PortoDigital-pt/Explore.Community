@@ -86,24 +86,29 @@ export const updateItinerarySearch = (
   location,
   executeAction
 ) => {
-  executeAction(saveFutureRoute, {
-    origin,
-    destination,
-    query: location.query
-  });
-
+  if (origin !== null && destination !== null) {
+    executeAction(saveFutureRoute, {
+      origin,
+      destination,
+      query: location.query
+    });
+  }
+ 
+  const pathname = getPathWithEndpointObjects(
+    origin ?? {},
+    destination ?? {},
+    PREFIX_ITINERARY_SUMMARY
+  );
   const newLocation = {
     ...location,
     state: {
       ...location.state,
       summaryPageSelected: 0
     },
-    pathname: getPathWithEndpointObjects(
-      origin,
-      destination,
-      PREFIX_ITINERARY_SUMMARY
-    )
+    pathname,
+    query: pathname === '/' ? {} : location.query
   };
+  
   router.replace(newLocation);
 };
 
