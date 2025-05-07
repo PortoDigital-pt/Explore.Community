@@ -2,7 +2,7 @@
 import { formatCalendar } from './date';
 import { getPrice } from './price';
 
-const decode = value => decodeURIComponent(decodeURIComponent(value));
+const decode = value => decodeURIComponent(value);
 
 const extractValuesAndDecode = values => {
   if (!values) {
