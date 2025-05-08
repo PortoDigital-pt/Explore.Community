@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+/* eslint-disable no-console */
+import mongoose from 'mongoose';
 
-const logger = console;
 class MongoDataBase {
   constructor() {
     this.mongoConnection = null;
@@ -20,17 +20,17 @@ class MongoDataBase {
 
   async connect() {
     let status = true;
-    logger.info(` ==Mongoose - Connecting - [${process.env.MONGO_URI}]`);
+    console.info(` ==Mongoose - Connecting - [${process.env.MONGO_URI}]`);
     try {
       const url = process.env.MONGO_URI;
 
       this.mongoConnection = await mongoose.connect(
         url,
-        this.CONNECTION_OPTIONS
+        this.CONNECTION_OPTIONS,
       );
     } catch (error) {
       status = false;
-      logger.error('==Mongoose Exception ', error.message);
+      console.error('==Mongoose Exception ', error.message);
     }
     return status;
   }
@@ -38,35 +38,31 @@ class MongoDataBase {
   async close() {
     try {
       await this.mongoConnection.disconnect();
-      logger.info(' ==Mongoose successfully disconnected.');
+      console.info(' ==Mongoose successfully disconnected.');
       return true;
     } catch (error) {
-      logger.error(error);
+      console.error(error);
       return false;
     }
   }
 
   getConnection() {
-    logger.log('getConnection ');
+    console.log('getConnection ');
     return this.mongoConnection;
   }
 }
 
 mongoose.connection.on('connected', () => {
-  logger.info(' \n==Mongoose - connection stablished. \n');
+  console.info(' \n==Mongoose - connection stablished. \n');
 });
 
 mongoose.connection.on('error', err => {
-  logger.info(err);
+  console.info(err);
   mongoose.disconnect();
 });
 
 mongoose.connection.on('disconnected', () => {
-  logger.info(' \n ==MONGOOSE - connection disconnected.\n');
+  console.info(' \n ==MONGOOSE - connection disconnected.\n');
 });
 
-const mongo = new MongoDataBase();
-
-module.exports = {
-  mongo
-};
+export const mongo = new MongoDataBase();

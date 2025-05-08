@@ -1,12 +1,18 @@
-const express = require('express');
-const controller = require('./controller');
-const { userAuthenticated } = require('../../passport-openid-connect/utils');
+import express from 'express';
+import { checkSchema } from 'express-validator';
+import { userAuthenticated } from '../../passport-openid-connect/utils';
+import * as controller from './controller';
+import { deleteSchema } from './schema';
 
 const router = express.Router();
 const PATH = '/api/user/favourites';
 
 router.put(PATH, [userAuthenticated], controller.save);
 router.get(PATH, [userAuthenticated], controller.findAll);
-router.delete(PATH, [userAuthenticated], controller.remove);
+router.delete(
+  PATH,
+  [userAuthenticated, checkSchema(deleteSchema, ['body'])],
+  controller.remove
+);
 
-module.exports = router;
+export default router;

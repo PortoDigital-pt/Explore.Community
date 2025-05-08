@@ -8,7 +8,7 @@ export function getUser() {
   };
   return retryFetch('/api/user', 2, 200, options).then(res => res.json());
 }
-
+// TODO: remove after login
 export const fakeGetUser = userId => ({
   sub: userId,
   email_verified: false,

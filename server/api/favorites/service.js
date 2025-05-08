@@ -1,23 +1,18 @@
+/* eslint-disable no-console */
 import { Favorite } from './model';
 
-const logger = console;
-
-const save = async favoritesToUpdate => {
+export const save = async favoritesToUpdate => {
   const resultBulk = await Favorite.bulkWrite(favoritesToUpdate);
   return resultBulk;
 };
 
-const findAll = async userId => {
-  const query = Favorite.find();
-  query.where({ userId });
-  query.sort({});
-  const ret = await query.exec();
+export const findAll = async userId => {
+  const ret = await Favorite.find().where({ userId }).exec();
   return ret;
 };
 
-const remove = async favouriteId => {
+export const remove = async favouriteId => {
   const ret = await Favorite.deleteOne({ favouriteId });
-  logger.log('service.remove::ret => ', ret);
 
   if (!ret?.deletedCount) {
     throw new Error('Favorite not found');
@@ -26,14 +21,13 @@ const remove = async favouriteId => {
   return ret;
 };
 
-const isOwner = async (userId, favouriteId) => {
+export const isOwner = async (userId, favouriteId) => {
   try {
     const doc = await Favorite.findOne({ favouriteId });
-    return doc?.userId === userId;
+
+    return doc.userId === userId;
   } catch (error) {
-    logger.error(error);
+    console.error(error);
     return false;
   }
 };
-
-export { save, findAll, remove, isOwner };

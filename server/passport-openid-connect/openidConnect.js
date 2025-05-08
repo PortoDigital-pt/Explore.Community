@@ -1,5 +1,5 @@
 import { errorHandler, userAuthenticated } from './utils';
-
+import favoriteRoutes from '../api/favorites/route';
 /* eslint-disable func-names, no-console */
 const passport = require('passport');
 const session = require('express-session');
@@ -8,7 +8,6 @@ const axios = require('axios');
 const moment = require('moment');
 const RedisStore = require('connect-redis')(session);
 const LoginStrategy = require('./Strategy').Strategy;
-const favoriteRoutes = require('../api/favorites/route');
 
 const clearAllUserSessions = false; // set true if logout should erase all user's sessions
 

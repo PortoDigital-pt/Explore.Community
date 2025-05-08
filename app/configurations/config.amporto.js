@@ -58,7 +58,7 @@ const {
   WEATHER_CITY_CODE,
   SHOW_PROFILE_NOTIFICATION,
   EVENT_SOURCE,
-  FAKE_USER
+  FAKE_USER // TODO: remove after login
 } = process.env;
 
 const YEAR = 1900 + new Date().getYear();
@@ -249,7 +249,7 @@ export default {
   },
 
   allowLogin: ALLOW_LOGIN === 'true',
-  fakeUser: FAKE_USER,
+  fakeUser: FAKE_USER, // TODO: remove after login
   /* depends on https://github.com/HSLdevcom/fav-service */
   hostnames: HOST_NAMES?.split(','),
 

@@ -40,6 +40,7 @@ import {
   handleUserAnalytics
 } from './util/analyticsUtils';
 import { configureCountry } from './util/configureCountry';
+// TODO: remove after login
 import { fakeGetUser, getUser } from './util/apiUtils';
 import setUser from './action/userActions';
 import {
@@ -225,6 +226,7 @@ async function init() {
         handleUserAnalytics(user, config);
       })
       .catch(() => {
+        // TODO: remove after login
         context.executeAction(setUser, fakeGetUser(config.fakeUser));
         // context.executeAction(setUser, { notLogged: true });
       })
