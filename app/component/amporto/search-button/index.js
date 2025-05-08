@@ -15,7 +15,7 @@ const SearchButton = ({ lang }, { config, intl }) => {
 
   const handleClick = useCallback(
     selectedItem => {
-      router.push(getStopRoutePath(selectedItem));
+      selectedItem !== null && router.push(getStopRoutePath(selectedItem));
     },
     [router, getStopRoutePath]
   );

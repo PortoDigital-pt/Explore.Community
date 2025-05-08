@@ -160,7 +160,7 @@ function NearStopsAndRoutes({
           origin.lon
         }`;
       }
-
+     
       const modeButton = !modes ? (
         <>
           <span className={styles['sr-only']}>

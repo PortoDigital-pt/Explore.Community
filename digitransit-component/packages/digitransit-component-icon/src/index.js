@@ -38,17 +38,15 @@ import Calendar from './assets/amporto/calendar.svg';
 import SelectFromMap from './assets/amporto/select-from-map.svg';
 import CautionWhite from './assets/caution_white_exclamation.svg';
 import Trash from './assets/trash.svg';
-import ModeBus from './assets/mode_bus.svg';
+import ModeBus from './assets/amporto/bus.svg';
 import ModeBusExpress from './assets/bus-express.svg';
 import ModeSpeedTram from './assets/speedtram.svg';
 import ModeBusLocal from './assets/bus-local.svg';
 import ModeRail from './assets/mode_rail.svg';
-import ModeTram from './assets/mode_tram.svg';
+import ModeTram from './assets/amporto/tram.svg';
 import ModeFerry from './assets/mode_ferry.svg';
-import ModeBikeRentalStation from './assets/mode_citybike.svg';
 import ModeAirplane from './assets/mode_airplane.svg';
-import ModeDigiTram from './assets/mode_digi_tram.svg';
-import ModeDigiBikeRentalStation from './assets/mode_digi_citybike.svg';
+import ModeDigiBikeRentalStation from './assets/amporto/citybike.svg';
 import ModeDigiFunicular from './assets/mode_digi_funicular.svg';
 import FutureRoute from './assets/icon-route.svg';
 import Position from './assets/position.svg';
@@ -59,7 +57,6 @@ import BikeRentalStationWaltti from './assets/citybike-waltti.svg';
 import RailWaltti from './assets/rail-waltti.svg';
 import TramWaltti from './assets/tram-waltti.svg';
 import Check from './assets/check.svg';
-import SearchBusStopDefault from './assets/search-bus-stop-default.svg';
 import SearchBusStopExpressDefault from './assets/search-bus-stop-express-default.svg';
 import SearchSpeedTramStopDefault from './assets/search-speedtram-stop-default.svg';
 import SearchRailStopDefault from './assets/search-rail-stop-default.svg';
@@ -72,7 +69,6 @@ import CityBikeRentalStationDigitransit from './assets/citybike-stop-digitransit
 import CityBikeRentalStationDigitransitSecondary from './assets/citybike-stop-digitransit-secondary.svg';
 import SearchAirplaneDigitransit from './assets/search-airplane-digitransit.svg';
 import SearchBusStationDigitransit from './assets/search-bus-station-digitransit.svg';
-import SearchBusStopDigitransit from './assets/amporto/search-bus-stop-digitransit.svg';
 import SearchBusTramStopDigitransit from './assets/search-bustram-stop-digitransit.svg';
 import SearchFerryDigitransit from './assets/search-ferry-digitransit.svg';
 import SearchFerryStopDigitransit from './assets/search-ferry-stop-digitransit.svg';
@@ -133,11 +129,11 @@ const IconMap = style => {
     'mode-tram': <ModeTram style={style} />,
     'mode-subway': <Subway style={style} />,
     'mode-ferry': <ModeFerry style={style} />,
-    'mode-citybike': <ModeBikeRentalStation style={style} />,
-    'mode-digitransit-bus': <SearchBusStopDigitransit style={style} />,
+    'mode-citybike': <ModeDigiBikeRentalStation style={style} />,
+    'mode-digitransit-bus': <ModeBus style={style} />,
     'mode-digitransit-rail': <SearchRailStationDigitransit style={style} />,
     'mode-digitransit-ferry': <SearchFerryDigitransit style={style} />,
-    'mode-digitransit-tram': <ModeDigiTram style={style} />,
+    'mode-digitransit-tram': <ModeTram style={style} />,
     'mode-digitransit-citybike': <ModeDigiBikeRentalStation style={style} />,
     'mode-digitransit-airplane': <ModeAirplane style={style} />,
     'mode-digitransit-subway': <Subway style={style} />,
@@ -151,7 +147,7 @@ const IconMap = style => {
     position: <Position style={style} />,
     'search-street-name': <SearchStreetName style={style} />,
     check: <Check style={style} />,
-    'search-bus-stop-default': <SearchBusStopDefault style={style} />,
+    'search-bus-stop-default': <ModeBus style={style} />,
     'search-bus-stop-express-default': (
       <SearchBusStopExpressDefault style={style} />
     ),
@@ -176,7 +172,7 @@ const IconMap = style => {
     'search-bus-station-digitransit': (
       <SearchBusStationDigitransit style={style} />
     ),
-    'search-bus-stop-digitransit': <SearchBusStopDigitransit style={style} />,
+    'search-bus-stop-digitransit': <ModeBus style={style} />,
     'search-bustram-stop-digitransit': (
       <SearchBusTramStopDigitransit style={style} />
     ),
