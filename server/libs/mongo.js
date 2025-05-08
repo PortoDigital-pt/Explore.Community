@@ -26,7 +26,7 @@ class MongoDataBase {
 
       this.mongoConnection = await mongoose.connect(
         url,
-        this.CONNECTION_OPTIONS,
+        this.CONNECTION_OPTIONS
       );
     } catch (error) {
       status = false;

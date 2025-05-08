@@ -187,6 +187,7 @@ export default {
       events: '#FEC8A7',
       accesspoints: '#000F9F'
     },
+    itineraryDefault: '#000F9F',
     originDestination: {
       icon: {
         color: '#00095F',

@@ -99,6 +99,15 @@ class OriginDestinationBar extends React.Component {
   };
 
   onLocationSelect = (item, id) => {
+    if (item === null) {
+      return onLocationPopup(
+        null,
+        id,
+        this.context.router,
+        this.context.match,
+        this.context.executeAction
+      );
+    }
     let action;
     if (id === parseInt(id, 10)) {
       // id = via point index

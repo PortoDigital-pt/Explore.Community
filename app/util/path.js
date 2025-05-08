@@ -100,12 +100,17 @@ export const getNearYouPath = (place, mode) =>
     encodeURIComponent(decodeURIComponent(place))
   ].join('/');
 
-export const getItineraryPagePath = (origin, destination) =>
-  [
+export const getItineraryPagePath = (origin, destination) => {
+  if (isEmpty(origin) && isEmpty(destination)) {
+    return '/';
+  }
+
+  return [
     `/${PREFIX_ITINERARY_SUMMARY}`,
     encodeURIComponent(decodeURIComponent(origin)),
     encodeURIComponent(decodeURIComponent(destination))
   ].join('/');
+};
 
 export const isEmpty = s =>
   s === undefined || s === null || s.trim() === '' || s.trim() === '-';
@@ -140,6 +145,7 @@ export const getIndexPath = (origin, destination, indexPath, currentPath) => {
       encodeURIComponent(isEmpty(destination) ? '-' : destination)
     ].join('/');
   }
+
   return [
     indexPath,
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
