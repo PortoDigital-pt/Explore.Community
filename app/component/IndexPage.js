@@ -199,7 +199,7 @@ class IndexPage extends React.Component {
 
   onSelectLocation = (item, id) => {
     const { router, executeAction } = this.context;
-   
+
     if (item === null) {
       executeAction(id === 'origin' ? storeOrigin : storeDestination, {});
       return;

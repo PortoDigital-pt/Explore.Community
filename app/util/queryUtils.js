@@ -93,7 +93,7 @@ export const updateItinerarySearch = (
       query: location.query
     });
   }
- 
+
   const pathname = getPathWithEndpointObjects(
     origin ?? {},
     destination ?? {},
@@ -108,7 +108,7 @@ export const updateItinerarySearch = (
     pathname,
     query: pathname === '/' ? {} : location.query
   };
-  
+
   router.replace(newLocation);
 };
 

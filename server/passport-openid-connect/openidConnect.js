@@ -1,3 +1,5 @@
+import { errorHandler, userAuthenticated } from './utils';
+import favoriteRoutes from '../api/favorites/route';
 /* eslint-disable func-names, no-console */
 const passport = require('passport');
 const session = require('express-session');
@@ -19,8 +21,6 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
   const logoutCallbackPath = '/logout/callback';
   // Use Passport with OpenId Connect strategy to authenticate users
   const OIDCHost = process.env.OIDCHOST || 'https://hslid-dev.t5.fi';
-  const FavouriteHost =
-    process.env.FAVOURITE_HOST || 'https://dev-api.digitransit.fi/favourites';
 
   const NotificationHost =
     process.env.NOTIFICATION_HOST ||
@@ -242,24 +242,6 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     }
   });
 
-  const errorHandler = function (res, err) {
-    const status = err?.message && err.message.includes('timeout') ? 408 : 500;
-
-    if (err?.response) {
-      res
-        .status(err.response.status || status)
-        .send(err.response.data || err?.message || 'Unknown err');
-    } else {
-      res.status(status).send(err?.message || 'Unknown error');
-    }
-  };
-
-  const userAuthenticated = function (req, res, next) {
-    res.set('Cache-Control', 'no-store');
-    // eslint-disable-next-line no-unused-expressions
-    req.isAuthenticated() ? next() : res.sendStatus(401);
-  };
-
   /* GET the profile of the current authenticated user */
   app.get('/api/user', userAuthenticated, function (req, res) {
     oic.client
@@ -272,24 +254,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       });
   });
 
-  app.use('/api/user/favourites', userAuthenticated, function (req, res) {
-    axios({
-      headers: { Authorization: `Bearer ${req.user.token.access_token}` },
-      method: req.method,
-      url: `${FavouriteHost}/${req.user.data.sub}`,
-      data: JSON.stringify(req.body)
-    })
-      .then(function (response) {
-        if (response && response.status && response.data) {
-          res.status(response.status).send(response.data);
-        } else {
-          errorHandler(res);
-        }
-      })
-      .catch(function (err) {
-        errorHandler(res, err);
-      });
-  });
+  app.use(favoriteRoutes);
 
   app.use('/api/user/notifications', userAuthenticated, function (req, res) {
     const params = Object.keys(req.query)

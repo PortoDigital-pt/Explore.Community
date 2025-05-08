@@ -733,7 +733,7 @@ class DTAutosuggest extends React.Component {
       value: '',
       sources: this.props.sources,
       ownPlaces: false,
-      renderMobileSearch: false 
+      renderMobileSearch: false
     };
     // must update suggestions
     this.setState(newState, () =>

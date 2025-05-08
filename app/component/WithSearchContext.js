@@ -151,9 +151,9 @@ export function withSearchContext(WrappedComponent, embeddedSearch = false) {
 
     onSuggestionSelected = (item, id) => {
       if (item === null) {
-        return this.props.selectHandler(null, id); 
+        return this.props.selectHandler(null, id);
       }
-     
+
       if (item.type === 'SelectFromMap') {
         this.setState({ fromMap: id });
       } else if (

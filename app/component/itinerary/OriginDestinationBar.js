@@ -106,7 +106,7 @@ class OriginDestinationBar extends React.Component {
         this.context.router,
         this.context.match,
         this.context.executeAction
-      ); 
+      );
     }
     let action;
     if (id === parseInt(id, 10)) {

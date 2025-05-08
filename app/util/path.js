@@ -110,7 +110,7 @@ export const getItineraryPagePath = (origin, destination) => {
     encodeURIComponent(decodeURIComponent(origin)),
     encodeURIComponent(decodeURIComponent(destination))
   ].join('/');
-}
+};
 
 export const isEmpty = s =>
   s === undefined || s === null || s.trim() === '' || s.trim() === '-';
@@ -145,7 +145,7 @@ export const getIndexPath = (origin, destination, indexPath, currentPath) => {
       encodeURIComponent(isEmpty(destination) ? '-' : destination)
     ].join('/');
   }
-  
+
   return [
     indexPath,
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
