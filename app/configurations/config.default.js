@@ -378,7 +378,8 @@ export default {
       'mode-ferry': '#247C7B',
       'mode-citybike': '#f2b62d',
       'mode-scooter': '#C5CAD2'
-    }
+    },
+    itineraryDefault: '#000F9F'
   },
   iconModeSet: 'digitransit',
   fontWeights: {
