@@ -420,10 +420,7 @@ function NearYouMap(
     );
   }
   return (
-    <>
-      <BackButton color={context.config.colors.primary} fallback="back" />
       <MapWithTracking {...mapProps} />
-    </>
   );
 }
 

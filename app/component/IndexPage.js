@@ -190,11 +190,13 @@ class IndexPage extends React.Component {
   }
 
   onSelectStopRoute = item => {
-    addAnalyticsEvent({
-      event: 'route_search',
-      search_action: 'route_or_stop'
-    });
-    this.context.router.push(getStopRoutePath(item));
+    if (item) {
+      addAnalyticsEvent({
+        event: 'route_search',
+        search_action: 'route_or_stop'
+      });
+      this.context.router.push(getStopRoutePath(item));
+    }
   };
 
   onSelectLocation = (item, id) => {

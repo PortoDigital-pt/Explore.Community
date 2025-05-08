@@ -28,7 +28,7 @@ const ScrollToTopButton = ({ breakpoint, targetClassname }, { intl }) => {
 
 ScrollToTopButton.propTypes = {
   breakpoint: string.isRequired,
-  targetClassName: string
+  targetClassname: string
 };
 
 ScrollToTopButton.contextTypes = {

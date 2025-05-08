@@ -109,7 +109,7 @@ class FavouritesContainer extends React.Component {
   }
 
   setLocationProperties = item => {
-    this.setState(prevState => ({
+    item && this.setState(prevState => ({
       favourite: {
         ...item,
         name: (prevState.favourite && prevState.favourite.name) || '',

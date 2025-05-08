@@ -791,18 +791,20 @@ class NearYouPage extends React.Component {
   };
 
   selectHandler = item => {
-    const { mode } = this.props.match.params;
-    const path = `/${PREFIX_NEARYOU}/${mode}/${locationToUri(item)}`;
-    this.context.router.replace({
-      ...this.props.match.location,
-      pathname: path
-    });
-    this.centerOfMap = null;
-    this.setState({
-      phase: PH_USEDEFAULTPOS,
-      searchPosition: item,
-      centerOfMapChanged: false
-    });
+    if (item) {
+      const { mode } = this.props.match.params;
+      const path = `/${PREFIX_NEARYOU}/${mode}/${locationToUri(item)}`;
+      this.context.router.replace({
+        ...this.props.match.location,
+        pathname: path
+      });
+      this.centerOfMap = null;
+      this.setState({
+        phase: PH_USEDEFAULTPOS,
+        searchPosition: item,
+        centerOfMapChanged: false
+      });
+    }
   };
 
   renderSearchBox = () => {
@@ -935,7 +937,6 @@ class NearYouPage extends React.Component {
               scrollable={nearByStopModes.length === 1}
               map={
                 <>
-                  {this.renderSearchBox()}
                   {this.renderMap()}
                 </>
               }
@@ -945,8 +946,6 @@ class NearYouPage extends React.Component {
             <MobileView
               content={this.renderContent()}
               map={this.renderMap()}
-              searchBox={this.renderSearchBox()}
-              mapRef={this.MWTRef}
               match={this.props.match}
             />
           )}

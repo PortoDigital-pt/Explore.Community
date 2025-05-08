@@ -25,7 +25,7 @@ function StopsNearYouSearch(
         )
     : filterSearchResultsByMode;
   const selectHandler = item => {
-    router.push(getStopRoutePath(item));
+    item !== null && router.push(getStopRoutePath(item));
   };
   return (
     <div className="stops-near-you-search-container">
