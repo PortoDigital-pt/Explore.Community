@@ -32,7 +32,7 @@ export default function AirportCheckInLeg(props, { config }) {
               onClick={e => {
                 e.stopPropagation();
               }}
-              to={`/${PREFIX_STOPS}/${props.leg.from.stop.gtfsId}`}
+              to={`/browse/${PREFIX_STOPS}/${props.leg.from.stop.gtfsId}`}
             >
               {name}
               <Icon

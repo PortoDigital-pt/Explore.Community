@@ -131,13 +131,13 @@ export default function oldParamParser(query, config) {
       if (from && from.length > 1 && to && to.length > 1) {
         // can redirect to itinerary summary page
         if (time) {
-          return `/${PREFIX_ITINERARY_SUMMARY}/${encoded.from}/${encoded.to}/?${time}`;
+          return `/browse/${PREFIX_ITINERARY_SUMMARY}/${encoded.from}/${encoded.to}/?${time}`;
         }
-        return `/${PREFIX_ITINERARY_SUMMARY}/${encoded.from}/${encoded.to}/`;
+        return `/browse/${PREFIX_ITINERARY_SUMMARY}/${encoded.from}/${encoded.to}/`;
       }
-      return `${config.indexPath === '' ? '' : `/${config.indexPath}`}/${
+      return `${config.indexPath === '' ? '/browse' : `/${config.indexPath}`}/browse/${
         encoded.from
       }/${encoded.to}/`;
     })
-    .catch(() => (config.indexPath === '' ? '/' : `/${config.indexPath}/`));
+    .catch(() => (config.indexPath === '' ? '/browse' : `/${config.indexPath}/browse`));
 }

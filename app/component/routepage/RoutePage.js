@@ -76,9 +76,9 @@ class RoutePage extends React.Component {
        * There is no point continuing rendering as it can only
        * confuse user. Therefore redirect to Routes page */
       if (isBrowser) {
-        router.replace(`/${PREFIX_ROUTES}`);
+        router.replace(`/browse/${PREFIX_ROUTES}`);
       } else {
-        throw new RedirectException(`/${PREFIX_ROUTES}`);
+        throw new RedirectException(`/browse/${PREFIX_ROUTES}`);
       }
       return null;
     }
@@ -155,7 +155,7 @@ class RoutePage extends React.Component {
               <div className="trip-page-alert-container">
                 <AlertBanner
                   alerts={filteredAlerts}
-                  linkAddress={`/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_DISRUPTION}/${this.props.match.params.patternId}`}
+                  linkAddress={`/browse/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_DISRUPTION}/${this.props.match.params.patternId}`}
                 />
               </div>
             )}

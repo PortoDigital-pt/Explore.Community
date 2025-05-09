@@ -53,9 +53,9 @@ class TerminalPageContent extends React.Component {
        * There is no point continuing rendering as it can only
        * confuse user. Therefore redirect to Terminals page */
       if (isBrowser) {
-        this.props.router.replace(`/${PREFIX_TERMINALS}`);
+        this.props.router.replace(`/browse/${PREFIX_TERMINALS}`);
       } else {
-        throw new RedirectException(`/${PREFIX_TERMINALS}`);
+        throw new RedirectException(`/browse/${PREFIX_TERMINALS}`);
       }
       return null;
     }

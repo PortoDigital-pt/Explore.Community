@@ -35,7 +35,7 @@ class PatternStopsContainer extends React.PureComponent {
         if (this.props.route.gtfsId) {
           // Redirect back to routes default pattern
           this.props.router.replace(
-            `/${PREFIX_ROUTES}/${this.props.route.gtfsId}`
+            `/browse/${PREFIX_ROUTES}/${this.props.route.gtfsId}`
           );
         } else {
           return <Error404 />;

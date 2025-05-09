@@ -11,7 +11,7 @@ import PopupHeader from './PopupHeader';
 import { addAnalyticsEvent } from '../../../util/analyticsUtils';
 
 function TripMarkerPopup(props) {
-  let patternPath = `/${PREFIX_ROUTES}/${props.trip.route.gtfsId}/${PREFIX_STOPS}`;
+  let patternPath = `/browse/${PREFIX_ROUTES}/${props.trip.route.gtfsId}/${PREFIX_STOPS}`;
   let tripPath = patternPath;
 
   patternPath += `/${props.trip.pattern.code}`;

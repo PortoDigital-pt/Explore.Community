@@ -146,7 +146,7 @@ function WalkLeg(
                   onClick={e => {
                     e.stopPropagation();
                   }}
-                  to={`/${PREFIX_STOPS}/${leg[toOrFrom].stop.gtfsId}`}
+                  to={`/browse/${PREFIX_STOPS}/${leg[toOrFrom].stop.gtfsId}`}
                 >
                   {returnNotice || leg[toOrFrom].name}
                   {leg.isViaPoint && (

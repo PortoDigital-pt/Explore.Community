@@ -38,7 +38,7 @@ class ItineraryPageControls extends React.Component {
         this.context.match.location.state?.itinerarySettingsOpen &&
         !location.state?.itinerarySettingsOpen &&
         !this.transitionDone &&
-        location.pathname.startsWith(`/${PREFIX_ITINERARY_SUMMARY}/`)
+        location.pathname.startsWith(`/browse/${PREFIX_ITINERARY_SUMMARY}/`)
       ) {
         this.transitionDone = true;
         const newLocation = {

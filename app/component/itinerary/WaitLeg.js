@@ -44,7 +44,7 @@ function WaitLeg({ children, leg, start, waitTime, focusAction, index, icon }) {
               onClick={e => {
                 e.stopPropagation();
               }}
-              to={`/${PREFIX_STOPS}/${leg.to.stop.gtfsId}`}
+              to={`/browse/${PREFIX_STOPS}/${leg.to.stop.gtfsId}`}
             >
               {leg.to.name}
               {leg.isViaPoint && (

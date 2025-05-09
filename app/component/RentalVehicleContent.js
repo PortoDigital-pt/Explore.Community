@@ -35,9 +35,9 @@ const RentalVehicleContent = (
 
   if (!rentalVehicle && !error) {
     if (isBrowser) {
-      router.replace(`/${PREFIX_RENTALVEHICLES}`);
+      router.replace(`/browse/${PREFIX_RENTALVEHICLES}`);
     } else {
-      throw new RedirectException(`/${PREFIX_RENTALVEHICLES}`);
+      throw new RedirectException(`/browse/${PREFIX_RENTALVEHICLES}`);
     }
     return null;
   }

@@ -138,7 +138,7 @@ function IntermediateLeg(
           onClick={e => {
             e.stopPropagation();
           }}
-          to={`/${PREFIX_STOPS}/${gtfsId}`}
+          to={`/browse/${PREFIX_STOPS}/${gtfsId}`}
         >
           <div
             className="itinerary-leg-row-intermediate"

@@ -98,7 +98,7 @@ class Timetable extends React.Component {
   constructor(props) {
     super(props);
     if (!this.props.stop) {
-      const path = `/${PREFIX_STOPS}`;
+      const path = `/browse/${PREFIX_STOPS}`;
       if (isBrowser) {
         this.context.router.replace(path);
       } else {

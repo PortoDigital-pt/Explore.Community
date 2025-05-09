@@ -60,7 +60,7 @@ function TripLink({ vehicleState, vehicle, shortName, ...rest }) {
         const trip = props.trip.gtfsId;
         return (
           <Link
-            to={`/${PREFIX_ROUTES}/${route}/${PREFIX_STOPS}/${pattern}/${trip}`}
+            to={`/browse/${PREFIX_ROUTES}/${route}/${PREFIX_STOPS}/${pattern}/${trip}`}
             className="route-now-content"
             onClick={() => {
               addAnalyticsEvent({

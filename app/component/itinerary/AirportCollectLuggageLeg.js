@@ -32,7 +32,7 @@ function AirportCollectLuggageLeg(props, { config }) {
               onClick={e => {
                 e.stopPropagation();
               }}
-              to={`/${PREFIX_STOPS}/${props.leg.to.stop.gtfsId}`}
+              to={`/browse/${PREFIX_STOPS}/${props.leg.to.stop.gtfsId}`}
             >
               {name}
               <Icon

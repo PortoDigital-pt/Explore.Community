@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useRouter } from 'found';
+import { PATH_PREFIXES } from '../util/path';
 import {
   COMMON_NAVIGATION_ITEMS,
   COMMON_NAVIGATION_ITEMS_PATH_MAP
@@ -23,7 +24,15 @@ const useRouteLevel = () => {
   );
 
   const isFirstLevelRoute = useMemo(
-    () => !!Object.values(COMMON_NAVIGATION_ITEMS_PATH_MAP).find(path =>path === match.location.pathname),
+    () =>
+      !!Object.values(COMMON_NAVIGATION_ITEMS_PATH_MAP).find(path =>
+        route === COMMON_NAVIGATION_ITEMS.BROWSE
+          ? match.location.pathname.startsWith(path) &&
+            !Object.values(PATH_PREFIXES).find(prefix =>
+              match.location.pathname.includes(prefix)
+            )
+          : path === match.location.pathname
+      ),
     [match.location.pathname, route]
   );
  

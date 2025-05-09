@@ -44,7 +44,7 @@ const VehicleRentalStationNearYou = ({
                   e.stopPropagation();
                 }
               }}
-              to={`/${PREFIX_BIKESTATIONS}/${stop.stationId}`}
+              to={`/browse/${PREFIX_BIKESTATIONS}/${stop.stationId}`}
             >
               <h3 className="stop-near-you-name">{stop.name}</h3>
             </Link>

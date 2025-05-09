@@ -193,7 +193,7 @@ export const getStopRoutePath = searchObj => {
       path = `/browse/${PREFIX_STOPS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');
   }
-  
+
   return path.concat(id);
 };
 

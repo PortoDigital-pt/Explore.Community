@@ -38,8 +38,8 @@ const StopNearYou = (
   const { gtfsId } = stop;
   const urlEncodedGtfsId = gtfsId.replace('/', '%2F');
   const linkAddress = isStation
-    ? `/${PREFIX_TERMINALS}/${urlEncodedGtfsId}`
-    : `/${PREFIX_STOPS}/${urlEncodedGtfsId}`;
+    ? `/browse/${PREFIX_TERMINALS}/${urlEncodedGtfsId}`
+    : `/browse/${PREFIX_STOPS}/${urlEncodedGtfsId}`;
 
   const { constantOperationStops } = config;
   const { locale } = intl;

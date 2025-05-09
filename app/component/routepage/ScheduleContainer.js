@@ -443,7 +443,7 @@ class ScheduleContainer extends PureComponent {
     const trips = ScheduleContainer.sortTrips(currentPattern.trips);
 
     if (trips.length === 0 && newServiceDay) {
-      return `/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}/${currentPattern.code}${queryParams}`;
+      return `/browse/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}/${currentPattern.code}${queryParams}`;
     }
 
     if (trips !== null && !this.state.hasLoaded) {
@@ -746,11 +746,11 @@ class ScheduleContainer extends PureComponent {
           // Redirect back to routes default pattern
           // eslint-disable-next-line react/prop-types
           this.props.router.replace(
-            `/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`
+            `/browse/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`
           );
         } else {
           throw new RedirectException(
-            `/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`
+            `/browse/${PREFIX_ROUTES}/${this.props.match.params.routeId}/${PREFIX_TIMETABLE}`
           );
         }
       }

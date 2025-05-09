@@ -273,7 +273,7 @@ export default function BicycleLeg(
                     onClick={e => {
                       e.stopPropagation();
                     }}
-                    to={`/${PREFIX_STOPS}/${fromStop.gtfsId}`}
+                    to={`/browse/${PREFIX_STOPS}/${fromStop.gtfsId}`}
                   >
                     {origin}
                     {leg.isViaPoint && (
