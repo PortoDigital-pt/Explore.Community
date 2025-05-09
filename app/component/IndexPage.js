@@ -158,7 +158,7 @@ class IndexPage extends React.Component {
         this.context.executeAction(storeOrigin, currentLocation);
       }
     }
-
+  
     if (definesItinerarySearch(origin, destination)) {
       const newLocation = {
         ...location,
@@ -179,6 +179,7 @@ class IndexPage extends React.Component {
         destination,
         config.indexPath
       );
+    
       if (path !== location.pathname) {
         const newLocation = {
           ...location,

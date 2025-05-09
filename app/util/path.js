@@ -96,7 +96,7 @@ export const createReturnPath = (
 export const getNearYouPath = (place, mode) =>
   [
     '/browse',
-    `/${PREFIX_NEARYOU}`,
+    `${PREFIX_NEARYOU}`,
     encodeURIComponent(decodeURIComponent(mode)),
     encodeURIComponent(decodeURIComponent(place))
   ].join('/');
@@ -108,7 +108,7 @@ export const getItineraryPagePath = (origin, destination) => {
 
   return [
     '/browse',
-    `/${PREFIX_ITINERARY_SUMMARY}`,
+    `${PREFIX_ITINERARY_SUMMARY}`,
     encodeURIComponent(decodeURIComponent(origin)),
     encodeURIComponent(decodeURIComponent(destination))
   ].join('/');
@@ -130,26 +130,14 @@ export const sameLocations = (l1, l2) => {
   );
 };
 
-export const getIndexPath = (origin, destination, indexPath, currentPath) => {
+export const getIndexPath = (origin, destination, indexPath) => {
   if (isEmpty(origin) && isEmpty(destination)) {
-    if (currentPath) {
-      return indexPath === ''
-        ? `/${currentPath}`
-        : `/${indexPath}/${currentPath}`;
-    }
-    return indexPath === '' ? `/` : `/${indexPath}`;
+    return indexPath === '' ? `/browse` : `/${indexPath}/browse`;
   }
-  if (currentPath) {
-    return [
-      indexPath,
-      currentPath,
-      encodeURIComponent(isEmpty(origin) ? '-' : origin),
-      encodeURIComponent(isEmpty(destination) ? '-' : destination)
-    ].join('/');
-  }
-
+  
   return [
     indexPath,
+    'browse',
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
     encodeURIComponent(isEmpty(destination) ? '-' : destination)
   ].join('/');
@@ -205,8 +193,7 @@ export const getStopRoutePath = searchObj => {
       path = `/browse/${PREFIX_STOPS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');
   }
-  console.log('PATH: ', path);
-  console.log('ID: ', id);
+  
   return path.concat(id);
 };
 
@@ -220,8 +207,7 @@ export function definesItinerarySearch(origin, destination) {
 export function getPathWithEndpointObjects(
   origin,
   destination,
-  rootPath,
-  currentPath
+  rootPath
 ) {
   return rootPath === PREFIX_ITINERARY_SUMMARY ||
     definesItinerarySearch(origin, destination)
@@ -229,8 +215,7 @@ export function getPathWithEndpointObjects(
     : getIndexPath(
         locationToOTP(origin),
         locationToOTP(destination),
-        rootPath,
-        currentPath
+        rootPath
       );
 }
 
