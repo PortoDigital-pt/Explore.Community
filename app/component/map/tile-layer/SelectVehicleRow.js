@@ -11,7 +11,7 @@ function SelectVehicleRow(props) {
   const mode = getRouteMode(props.trip.route);
   const iconId = `icon-icon_${mode || 'bus'}`;
 
-  let patternPath = `/${PREFIX_ROUTES}/${props.trip.route.gtfsId}/${PREFIX_STOPS}`;
+  let patternPath = `/browse/${PREFIX_ROUTES}/${props.trip.route.gtfsId}/${PREFIX_STOPS}`;
 
   patternPath += `/${props.trip.pattern.code}/${props.trip.gtfsId}`;
 

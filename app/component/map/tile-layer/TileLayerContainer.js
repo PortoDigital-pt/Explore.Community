@@ -222,7 +222,7 @@ class TileLayerContainer extends GridLayer {
         selectableTargets[0].layer === 'citybike'
       ) {
         this.context.router.push(
-          `/${PREFIX_BIKESTATIONS}/${encodeURIComponent(
+          `/browse/${PREFIX_BIKESTATIONS}/${encodeURIComponent(
             selectableTargets[0].feature.properties.id
           )}`
         );
@@ -245,7 +245,7 @@ class TileLayerContainer extends GridLayer {
           : selectableTargets[0].feature.properties.id;
         // adding networks directs to scooter cluster view
         this.context.router.push(
-          `/${PREFIX_RENTALVEHICLES}/${encodeURIComponent(id)}/${[...networks]}`
+          `/browse/${PREFIX_RENTALVEHICLES}/${encodeURIComponent(id)}/${[...networks]}`
         );
         return;
       }
@@ -258,7 +258,7 @@ class TileLayerContainer extends GridLayer {
           ? PREFIX_TERMINALS
           : PREFIX_STOPS;
         this.context.router.push(
-          `/${prefix}/${encodeURIComponent(
+          `/browse/${prefix}/${encodeURIComponent(
             selectableTargets[0].feature.properties.gtfsId
           )}`
         );
@@ -289,7 +289,7 @@ class TileLayerContainer extends GridLayer {
         }
         if (parkingId) {
           this.context.router.push(
-            `/${
+            `/browse/${
               layer === 'parkAndRide' ? PREFIX_CARPARK : PREFIX_BIKEPARK
             }/${encodeURIComponent(parkingId)}`
           );

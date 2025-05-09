@@ -20,7 +20,7 @@ function SelectVehicleRentalRow(
     icon ||
     `${getRentalNetworkIcon(getRentalNetworkConfig(network, config))}_no_map`;
 
-  const linkAddress = `/${prefix}/${encodeURIComponent(id)}`;
+  const linkAddress = `/browse/${prefix}/${encodeURIComponent(id)}`;
 
   const address = desc || <FormattedMessage id="citybike-station-no-id" />;
   return (

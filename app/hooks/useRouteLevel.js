@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useRouter } from 'found';
-import { PATH_PREFIXES } from '../util/path';
 import {
   COMMON_NAVIGATION_ITEMS,
   COMMON_NAVIGATION_ITEMS_PATH_MAP

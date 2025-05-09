@@ -80,7 +80,7 @@ function VehicleRentalLeg(
   const vehicleCapacity = vehicleRentalStation
     ? getVehicleCapacity(config, vehicleRentalStation?.rentalNetwork.networkId)
     : null;
-  const rentalStationLink = `/${PREFIX_BIKESTATIONS}/${vehicleRentalStation?.stationId}`;
+  const rentalStationLink = `/browse/${PREFIX_BIKESTATIONS}/${vehicleRentalStation?.stationId}`;
   return (
     <>
       {(!isScooter || (nextLegMode !== 'WALK' && isScooter)) && (

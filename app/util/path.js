@@ -156,8 +156,8 @@ export const getIndexPath = (origin, destination, indexPath, currentPath) => {
 };
 
 export const getStopRoutePath = searchObj => {
-  if (searchObj.properties && searchObj.properties.link) {
-    return searchObj.properties.link;
+  if (searchObj.properties?.link) {
+    return `/browse${searchObj.properties.link}`;
   }
   let id = searchObj.properties?.id
     ? searchObj.properties?.id
@@ -166,27 +166,27 @@ export const getStopRoutePath = searchObj => {
   const network =
     searchObj.properties.source &&
     searchObj.properties.source.split('citybikes')[1];
-
+ 
   switch (searchObj.properties.layer) {
     case 'station':
     case 'favouriteStation':
-      path = `browse/${PREFIX_TERMINALS}/`;
+      path = `/browse/${PREFIX_TERMINALS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');
       break;
     case 'bikestation':
-      path = `browse/${PREFIX_BIKESTATIONS}/`;
+      path = `/browse/${PREFIX_BIKESTATIONS}/`;
       id = `${network}%3A${searchObj.properties.id}`;
       break;
     case 'favouriteVehicleRentalStation':
-      path = `browse/${PREFIX_BIKESTATIONS}/`;
+      path = `/browse/${PREFIX_BIKESTATIONS}/`;
       id = searchObj.properties.labelId;
       break;
     case 'carpark':
-      path = `browse/${PREFIX_CARPARK}/`;
+      path = `/browse/${PREFIX_CARPARK}/`;
       id = searchObj.properties.id;
       break;
     case 'bikepark':
-      path = `browse/${PREFIX_BIKEPARK}/`;
+      path = `/browse/${PREFIX_BIKEPARK}/`;
       id = searchObj.properties.id;
       break;
     case 'pois':
@@ -202,9 +202,11 @@ export const getStopRoutePath = searchObj => {
       break;
     }
     default:
-      path = `/${PREFIX_STOPS}/`;
+      path = `/browse/${PREFIX_STOPS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');
   }
+  console.log('PATH: ', path);
+  console.log('ID: ', id);
   return path.concat(id);
 };
 

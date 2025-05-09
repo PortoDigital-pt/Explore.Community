@@ -63,7 +63,7 @@ export default class VehicleMarker extends React.Component {
   };
 
   handleClick = (id, prefix) => {
-    this.context.router.push(`/${prefix}/${encodeURIComponent(id)}`);
+    this.context.router.push(`/browse/${prefix}/${encodeURIComponent(id)}`);
   };
 
   getIcon = zoom => {

@@ -43,9 +43,9 @@ const VehicleRentalStationContent = (
 
   if (!vehicleRentalStation && !error) {
     if (isBrowser) {
-      router.replace(`/${PREFIX_BIKESTATIONS}`);
+      router.replace(`/browse/${PREFIX_BIKESTATIONS}`);
     } else {
-      throw new RedirectException(`/${PREFIX_BIKESTATIONS}`);
+      throw new RedirectException(`/browse/${PREFIX_BIKESTATIONS}`);
     }
     return null;
   }

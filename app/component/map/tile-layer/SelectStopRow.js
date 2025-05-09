@@ -91,7 +91,7 @@ function SelectStopRow(
   return (
     <Link
       className="stop-popup-choose-row"
-      to={`/${prefix}/${encodeURIComponent(gtfsId)}`}
+      to={`/browse/${prefix}/${encodeURIComponent(gtfsId)}`}
     >
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon
