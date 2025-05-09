@@ -24,11 +24,11 @@ const NAVIGATION_ITEMS_PATH_MAP = {
 };
 
 const ITEM_EXPRESSION_MAP = {
-  [NAVIGATION_ITEMS.BROWSE]: new RegExp(/^\/(?!(explore|profile))(\w*)/, 'i'),
-  [NAVIGATION_ITEMS.BLOCKS]: new RegExp(/^\/explore\/blocks(\/.+)?$/, 'i'),
-  [NAVIGATION_ITEMS.ROUTES]: new RegExp(/^\/explore\/routes(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.BROWSE]: new RegExp(/^\/browse(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.BLOCKS]: new RegExp(/^\/blocks(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.ROUTES]: new RegExp(/^\/routes(\/.+)?$/, 'i'),
   [NAVIGATION_ITEMS.EXPLORE]: new RegExp(
-    /^\/explore(\/(?!blocks|routes)([^/]+\/?)*)?$/,
+    /^(\/(?!blocks|routes|browse|profile)([^/]+\/?)*)?$/,
     'i'
   ),
   [NAVIGATION_ITEMS.FAVOURITES]: new RegExp(

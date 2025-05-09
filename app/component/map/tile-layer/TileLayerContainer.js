@@ -211,7 +211,7 @@ class TileLayerContainer extends GridLayer {
         }
 
         this.context.router.push(
-          `/explore/${feature.type}/${feature.properties.id}`
+          `/${feature.type}/${feature.properties.id}`
         );
         return;
       }

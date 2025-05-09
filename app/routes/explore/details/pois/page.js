@@ -223,7 +223,7 @@ PageContent.contextTypes = {
 const PoiDetailsPage = () => (
   <Details
     getDataById={getPoiById}
-    onErrorPath="/explore/pois"
+    onErrorPath="/pois"
     PageContent={PageContent}
     MobileContent={MobileContent}
   />

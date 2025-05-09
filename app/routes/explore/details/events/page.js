@@ -283,7 +283,7 @@ PageContent.contextTypes = {
 const EventDetailsPage = () => (
   <Details
     getDataById={getEventById}
-    onErrorPath="/explore/events"
+    onErrorPath="/events"
     PageContent={PageContent}
     MobileContent={MobileContent}
   />

@@ -95,6 +95,7 @@ export const createReturnPath = (
 
 export const getNearYouPath = (place, mode) =>
   [
+    '/browse',
     `/${PREFIX_NEARYOU}`,
     encodeURIComponent(decodeURIComponent(mode)),
     encodeURIComponent(decodeURIComponent(place))
@@ -102,10 +103,11 @@ export const getNearYouPath = (place, mode) =>
 
 export const getItineraryPagePath = (origin, destination) => {
   if (isEmpty(origin) && isEmpty(destination)) {
-    return '/';
+    return '/browse';
   }
 
   return [
+    '/browse',
     `/${PREFIX_ITINERARY_SUMMARY}`,
     encodeURIComponent(decodeURIComponent(origin)),
     encodeURIComponent(decodeURIComponent(destination))
@@ -168,23 +170,23 @@ export const getStopRoutePath = searchObj => {
   switch (searchObj.properties.layer) {
     case 'station':
     case 'favouriteStation':
-      path = `/${PREFIX_TERMINALS}/`;
+      path = `browse/${PREFIX_TERMINALS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');
       break;
     case 'bikestation':
-      path = `/${PREFIX_BIKESTATIONS}/`;
+      path = `browse/${PREFIX_BIKESTATIONS}/`;
       id = `${network}%3A${searchObj.properties.id}`;
       break;
     case 'favouriteVehicleRentalStation':
-      path = `/${PREFIX_BIKESTATIONS}/`;
+      path = `browse/${PREFIX_BIKESTATIONS}/`;
       id = searchObj.properties.labelId;
       break;
     case 'carpark':
-      path = `/${PREFIX_CARPARK}/`;
+      path = `browse/${PREFIX_CARPARK}/`;
       id = searchObj.properties.id;
       break;
     case 'bikepark':
-      path = `/${PREFIX_BIKEPARK}/`;
+      path = `browse/${PREFIX_BIKEPARK}/`;
       id = searchObj.properties.id;
       break;
     case 'pois':
@@ -195,7 +197,7 @@ export const getStopRoutePath = searchObj => {
           ? 'urn:ngsi-ld:PointOfInterest'
           : 'urn:ngsi-ld:Event';
 
-      path = `/explore/${searchObj.properties.layer}/`;
+      path = `/${searchObj.properties.layer}/`;
       id = `${prefixId}:${searchObj.properties.id}`;
       break;
     }

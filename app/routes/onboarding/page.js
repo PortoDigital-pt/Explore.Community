@@ -30,7 +30,7 @@ const OnboardingPage = (
     setTimeout(() => {
       router.push(
         !firstAccess || firstAccess === location.pathname
-          ? '/explore'
+          ? '/'
           : firstAccess
       );
     }, 10);

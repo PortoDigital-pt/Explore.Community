@@ -5,7 +5,7 @@ import useRouteLevel from '../../../../hooks/useRouteLevel';
 
 const DesktopNavigation = (_, { intl }) => {
   const { isFirstLevelRoute, route } = useRouteLevel();
-
+  console.log('ROUTE: ', route);
   return (
     isFirstLevelRoute && (
       <div className="desktop-navigation-content">

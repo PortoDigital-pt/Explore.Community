@@ -24,8 +24,8 @@ export default config => (
         <Route path="/css/*" Component={Error404} />
         <Route path="/assets/*" Component={Error404} />
         {getProfileRoutes()}
-        {getExploreRoutes(config)}
         {getBrowseRoutes(config) /* Digitransit routes */}
+        {getExploreRoutes(config)}
         {/* For all the rest render 404 */}
         <Route path="*" Component={Error404} />
       </Route>
