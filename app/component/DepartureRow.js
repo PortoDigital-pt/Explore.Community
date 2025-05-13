@@ -102,7 +102,7 @@ export default function DepartureRow(
     return (
       <>
         <Link
-          to={`/${PREFIX_ROUTES}/${encodeURIComponent(
+          to={`/browse/${PREFIX_ROUTES}/${encodeURIComponent(
             departure.trip.pattern.route.gtfsId
           )}/${PREFIX_STOPS}/${encodeURIComponent(
             departure.trip.pattern.code

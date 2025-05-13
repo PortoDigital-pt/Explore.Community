@@ -52,7 +52,7 @@ const ListPage = (
   const ref = useOnScreen({ onScreen: onNextPage });
 
   const navigate = useCallback(
-    id => router.push(`/explore/${type}/${id}`),
+    id => router.push(`/${type}/${id}`),
     [router.push, type]
   );
 

@@ -127,7 +127,7 @@ export default function AlertRow(
               onClickLink?.();
             }}
             key={`${gtfsIdList[i]}-${index}`}
-            to={`/${PREFIX_ROUTES}/${gtfsIdList[i]}/${PREFIX_STOPS}`}
+            to={`/browse/${PREFIX_ROUTES}/${gtfsIdList[i]}/${PREFIX_STOPS}`}
             className={cx('alert-row-link', routeMode)}
             style={{ color: routeColor }}
             aria-label={`${intl.formatMessage({
@@ -148,7 +148,7 @@ export default function AlertRow(
               onClickLink?.();
             }}
             key={`${gtfsIdList[i]}-${index}`}
-            to={`/${PREFIX_STOPS}/${gtfsIdList[i]}`}
+            to={`/browse/${PREFIX_STOPS}/${gtfsIdList[i]}`}
             className={cx('alert-row-link', routeMode)}
             aria-label={`${intl.formatMessage({
               id: 'stop'

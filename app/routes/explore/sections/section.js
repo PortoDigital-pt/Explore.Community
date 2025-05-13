@@ -44,12 +44,12 @@ const Section = (
   const { router } = useRouter();
 
   const navigate = useCallback(
-    id => router.push(`/explore/${type}/${id}`),
+    id => router.push(`/${type}/${id}`),
     [router.push, type]
   );
 
   const onShowAll = useCallback(
-    () => router.push(`/explore/${type}`),
+    () => router.push(`/${type}`),
     [router.push, type]
   );
 

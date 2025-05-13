@@ -12,7 +12,7 @@ function SelectParkAndRideRow({ name, bikeParkId, carParkId }) {
   return (
     <Link
       className="stop-popup-choose-row"
-      to={`/${PREFIX}/${encodeURIComponent(id)}`}
+      to={`/browse/${PREFIX}/${encodeURIComponent(id)}`}
     >
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon img={img} />

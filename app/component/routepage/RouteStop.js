@@ -202,7 +202,7 @@ const RouteStop = (
         <Link
           as="button"
           type="button"
-          to={`/${PREFIX_STOPS}/${encodeURIComponent(stop.gtfsId)}`}
+          to={`/browse/${PREFIX_STOPS}/${encodeURIComponent(stop.gtfsId)}`}
           onClick={() => {
             addAnalyticsEvent({
               category: 'Routes',

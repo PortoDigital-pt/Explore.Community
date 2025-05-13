@@ -110,7 +110,7 @@ function FuzzyTripLink({ vehicle, stopName, nextStopName, ...rest }, context) {
 
         return (
           <Link
-            to={`/${PREFIX_ROUTES}/${route}/${PREFIX_STOPS}/${pattern}/${trip}`}
+            to={`/browse/${PREFIX_ROUTES}/${route}/${PREFIX_STOPS}/${pattern}/${trip}`}
             className="route-now-content"
             onClick={() => {
               addAnalyticsEvent({

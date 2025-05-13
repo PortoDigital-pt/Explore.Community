@@ -142,7 +142,7 @@ export default config => {
   };
 
   return (
-    <>
+    <Route path="/browse">
       {getStopRoutes()}
       {getStopRoutes(true) /* terminals */}
       {getRouteRoutes(config)}
@@ -522,6 +522,6 @@ export default config => {
       {config.indexPath !== '' && (
         <Redirect from="/" to={`/${config.indexPath}`} />
       )}
-    </>
+    </Route>
   );
 };

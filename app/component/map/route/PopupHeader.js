@@ -30,7 +30,7 @@ export default function PopupHeader({
   const routeLine =
     startTime && pattern ? (
       <Link
-        to={`/${PREFIX_ROUTES}/${route.gtfsId}/${PREFIX_STOPS}/${pattern.code}`}
+        to={`/browse/${PREFIX_ROUTES}/${route.gtfsId}/${PREFIX_STOPS}/${pattern.code}`}
       >
         {routeLineText}
       </Link>

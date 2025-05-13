@@ -88,7 +88,7 @@ function TripLinkWithScroll(
   }
   const icon = (
     <Link
-      to={`/${PREFIX_ROUTES}/${route}/${PREFIX_STOPS}/${pattern}/${tripId}`}
+      to={`/browse/${PREFIX_ROUTES}/${route}/${PREFIX_STOPS}/${pattern}/${tripId}`}
       className="route-now-content"
       aria-label={ariaMessage}
     >

@@ -68,7 +68,7 @@ function CarParkLeg(props, { config, intl }) {
               onClick={e => {
                 e.stopPropagation();
               }}
-              to={`/${PREFIX_CARPARK}/${props.carPark.vehicleParkingId}`}
+              to={`/browse/${PREFIX_CARPARK}/${props.carPark.vehicleParkingId}`}
             >
               <div className="address">
                 <FormattedMessage id="car_park" defaultMessage="Park & Ride" />

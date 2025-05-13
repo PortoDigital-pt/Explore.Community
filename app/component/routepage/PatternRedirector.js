@@ -11,6 +11,7 @@ import { getOldSearchItems } from '../../util/storeUtils';
 import { routeShape } from '../../util/shapes';
 
 const PatternRedirector = ({ router, match, route }, context) => {
+  console.log('ROUTE: ', route);
   if (!route) {
     const oldSearchItems = getOldSearchItems(context);
     const oldItem = oldSearchItems.filter(
@@ -55,7 +56,7 @@ const PatternRedirector = ({ router, match, route }, context) => {
         : undefined;
   }
 
-  const path = `/${PREFIX_ROUTES}/${match.params.routeId}/${
+  const path = `/browse/${PREFIX_ROUTES}/${match.params.routeId}/${
     match.params.type || PREFIX_STOPS
   }/${pattern ? pattern.code : `${match.params.routeId}:0:01`}`;
   if (isBrowser) {

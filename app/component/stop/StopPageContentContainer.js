@@ -64,9 +64,9 @@ class StopPageContent extends React.Component {
        * There is no point continuing rendering as it can only
        * confuse user. Therefore redirect to Stops page */
       if (isBrowser) {
-        this.props.router.replace(`/${PREFIX_STOPS}`);
+        this.props.router.replace(`/browse/${PREFIX_STOPS}`);
       } else {
-        throw new RedirectException(`/${PREFIX_STOPS}`);
+        throw new RedirectException(`/browse/${PREFIX_STOPS}`);
       }
       return null;
     }

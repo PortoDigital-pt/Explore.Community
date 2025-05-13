@@ -57,7 +57,7 @@ export default function LegInfo(
           e.stopPropagation();
         }}
         to={
-          `/${PREFIX_ROUTES}/${leg.route.gtfsId}/${PREFIX_STOPS}/${
+          `/browse/${PREFIX_ROUTES}/${leg.route.gtfsId}/${PREFIX_STOPS}/${
             leg.trip.pattern.code
           }${shouldLinkToTrip ? `/${leg.trip.gtfsId}` : ''}`
           // TODO: Create a helper function for generating links

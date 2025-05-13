@@ -95,18 +95,20 @@ export const createReturnPath = (
 
 export const getNearYouPath = (place, mode) =>
   [
-    `/${PREFIX_NEARYOU}`,
+    '/browse',
+    `${PREFIX_NEARYOU}`,
     encodeURIComponent(decodeURIComponent(mode)),
     encodeURIComponent(decodeURIComponent(place))
   ].join('/');
 
 export const getItineraryPagePath = (origin, destination) => {
   if (isEmpty(origin) && isEmpty(destination)) {
-    return '/';
+    return '/browse';
   }
 
   return [
-    `/${PREFIX_ITINERARY_SUMMARY}`,
+    '/browse',
+    `${PREFIX_ITINERARY_SUMMARY}`,
     encodeURIComponent(decodeURIComponent(origin)),
     encodeURIComponent(decodeURIComponent(destination))
   ].join('/');
@@ -128,34 +130,22 @@ export const sameLocations = (l1, l2) => {
   );
 };
 
-export const getIndexPath = (origin, destination, indexPath, currentPath) => {
+export const getIndexPath = (origin, destination, indexPath) => {
   if (isEmpty(origin) && isEmpty(destination)) {
-    if (currentPath) {
-      return indexPath === ''
-        ? `/${currentPath}`
-        : `/${indexPath}/${currentPath}`;
-    }
-    return indexPath === '' ? `/` : `/${indexPath}`;
+    return indexPath === '' ? `/browse` : `/${indexPath}/browse`;
   }
-  if (currentPath) {
-    return [
-      indexPath,
-      currentPath,
-      encodeURIComponent(isEmpty(origin) ? '-' : origin),
-      encodeURIComponent(isEmpty(destination) ? '-' : destination)
-    ].join('/');
-  }
-
+  
   return [
     indexPath,
+    'browse',
     encodeURIComponent(isEmpty(origin) ? '-' : origin),
     encodeURIComponent(isEmpty(destination) ? '-' : destination)
   ].join('/');
 };
 
 export const getStopRoutePath = searchObj => {
-  if (searchObj.properties && searchObj.properties.link) {
-    return searchObj.properties.link;
+  if (searchObj.properties?.link) {
+    return `/browse${searchObj.properties.link}`;
   }
   let id = searchObj.properties?.id
     ? searchObj.properties?.id
@@ -164,27 +154,27 @@ export const getStopRoutePath = searchObj => {
   const network =
     searchObj.properties.source &&
     searchObj.properties.source.split('citybikes')[1];
-
+ 
   switch (searchObj.properties.layer) {
     case 'station':
     case 'favouriteStation':
-      path = `/${PREFIX_TERMINALS}/`;
+      path = `/browse/${PREFIX_TERMINALS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');
       break;
     case 'bikestation':
-      path = `/${PREFIX_BIKESTATIONS}/`;
+      path = `/browse/${PREFIX_BIKESTATIONS}/`;
       id = `${network}%3A${searchObj.properties.id}`;
       break;
     case 'favouriteVehicleRentalStation':
-      path = `/${PREFIX_BIKESTATIONS}/`;
+      path = `/browse/${PREFIX_BIKESTATIONS}/`;
       id = searchObj.properties.labelId;
       break;
     case 'carpark':
-      path = `/${PREFIX_CARPARK}/`;
+      path = `/browse/${PREFIX_CARPARK}/`;
       id = searchObj.properties.id;
       break;
     case 'bikepark':
-      path = `/${PREFIX_BIKEPARK}/`;
+      path = `/browse/${PREFIX_BIKEPARK}/`;
       id = searchObj.properties.id;
       break;
     case 'pois':
@@ -195,14 +185,15 @@ export const getStopRoutePath = searchObj => {
           ? 'urn:ngsi-ld:PointOfInterest'
           : 'urn:ngsi-ld:Event';
 
-      path = `/explore/${searchObj.properties.layer}/`;
+      path = `/${searchObj.properties.layer}/`;
       id = `${prefixId}:${searchObj.properties.id}`;
       break;
     }
     default:
-      path = `/${PREFIX_STOPS}/`;
+      path = `/browse/${PREFIX_STOPS}/`;
       id = id.replace('GTFS:', '').replace(':', '%3A');
   }
+
   return path.concat(id);
 };
 
@@ -216,8 +207,7 @@ export function definesItinerarySearch(origin, destination) {
 export function getPathWithEndpointObjects(
   origin,
   destination,
-  rootPath,
-  currentPath
+  rootPath
 ) {
   return rootPath === PREFIX_ITINERARY_SUMMARY ||
     definesItinerarySearch(origin, destination)
@@ -225,8 +215,7 @@ export function getPathWithEndpointObjects(
     : getIndexPath(
         locationToOTP(origin),
         locationToOTP(destination),
-        rootPath,
-        currentPath
+        rootPath
       );
 }
 

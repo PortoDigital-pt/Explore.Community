@@ -8,11 +8,11 @@ import {
 
 const getCurrentRoute = pathname => {
   // eslint-disable-next-line no-unused-vars
-  const [_, first, second] = pathname.split('/');
+  const [_, path] = pathname.split('/');
+
   return (
-    COMMON_NAVIGATION_ITEMS[second?.toUpperCase()] ??
-    COMMON_NAVIGATION_ITEMS[first?.toUpperCase()] ??
-    COMMON_NAVIGATION_ITEMS.BROWSE
+    COMMON_NAVIGATION_ITEMS[path?.toUpperCase()] ??
+    COMMON_NAVIGATION_ITEMS.EXPLORE
   );
 };
 
@@ -35,7 +35,7 @@ const useRouteLevel = () => {
       ),
     [match.location.pathname, route]
   );
-
+ 
   return { isFirstLevelRoute, route };
 };
 

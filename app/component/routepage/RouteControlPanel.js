@@ -327,7 +327,7 @@ class RouteControlPanel extends React.Component {
   }
 
   changeTab = tab => {
-    const path = `/${PREFIX_ROUTES}/${this.props.route.gtfsId}/${tab}/${
+    const path = `/browse/${PREFIX_ROUTES}/${this.props.route.gtfsId}/${tab}/${
       this.props.match.params.patternId || ''
     }`;
     this.context.router.replace(path);

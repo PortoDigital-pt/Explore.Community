@@ -488,7 +488,7 @@ class TransitLeg extends React.Component {
                     name: mode
                   });
                 }}
-                to={`/${PREFIX_STOPS}/${leg.from.stop.gtfsId}`}
+                to={`/browse/${PREFIX_STOPS}/${leg.from.stop.gtfsId}`}
               >
                 {leg.from.name}
                 {leg.isViaPoint && (
@@ -574,9 +574,9 @@ class TransitLeg extends React.Component {
                 <Link
                   to={
                     (hasEntitiesOfType(alert, AlertEntityType.Route) &&
-                      `/${PREFIX_ROUTES}/${leg.route.gtfsId}/${PREFIX_DISRUPTION}/${leg.trip.pattern.code}`) ||
+                      `/browse/${PREFIX_ROUTES}/${leg.route.gtfsId}/${PREFIX_DISRUPTION}/${leg.trip.pattern.code}`) ||
                     (hasEntitiesOfType(alert, AlertEntityType.Stop) &&
-                      `/${PREFIX_STOPS}/${alert.entities[0].gtfsId}/${PREFIX_DISRUPTION}/`)
+                      `/browse/${PREFIX_STOPS}/${alert.entities[0].gtfsId}/${PREFIX_DISRUPTION}/`)
                   }
                   className="disruption-link"
                 >

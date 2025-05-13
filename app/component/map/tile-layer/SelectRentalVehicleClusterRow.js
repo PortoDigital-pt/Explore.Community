@@ -20,7 +20,7 @@ function SelectVehicleRentalClusterRow({
     ? 'icon-icon_scooter-lollipop'
     : 'icon-icon_citybike-stop-lollipop';
 
-  const linkAddress = `/${prefix}/${encodeURIComponent(id)}/${[
+  const linkAddress = `/browse/${prefix}/${encodeURIComponent(id)}/${[
     ...networksInCluster
   ]}`;
 

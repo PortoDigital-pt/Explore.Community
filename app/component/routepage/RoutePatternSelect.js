@@ -88,7 +88,7 @@ function renderPatternSelectSuggestion(item, currentPattern) {
     );
   }
   if (item.shortName && item.longName && item.mode) {
-    const routePath = `/${PREFIX_ROUTES}/${item.gtfsId}`;
+    const routePath = `/browse/${PREFIX_ROUTES}/${item.gtfsId}`;
     return (
       <Link
         to={routePath}
@@ -220,11 +220,11 @@ class RoutePatternSelect extends Component {
     if (options.every(o => o.code !== params.patternId)) {
       if (isBrowser) {
         router.replace(
-          `/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`
+          `/browse/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`
         );
       } else {
         throw new RedirectException(
-          `/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`
+          `/browse/${PREFIX_ROUTES}/${gtfsId}/${PREFIX_STOPS}/${options[0].code}`
         );
       }
     }
@@ -371,7 +371,7 @@ class RoutePatternSelect extends Component {
             onSuggestionSelected={(e, { suggestion, suggestionValue }) => {
               if (!suggestionValue && suggestion.gtfsId) {
                 // for similarRoute links to work when selected with keyboard
-                const routePath = `/${PREFIX_ROUTES}/${suggestion.gtfsId}`;
+                const routePath = `/browse/${PREFIX_ROUTES}/${suggestion.gtfsId}`;
                 this.context.router.push(routePath);
               }
             }}

@@ -3,19 +3,8 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import { matchShape, routerShape } from 'found';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import isEqual from 'lodash/isEqual';
-import inside from 'point-in-polygon';
 import { configShape, locationShape } from '../../util/shapes';
-import storeOrigin from '../../action/originActions';
-import storeDestination from '../../action/destinationActions';
-import {
-  getPathWithEndpointObjects,
-  definesItinerarySearch,
-  PREFIX_ITINERARY_SUMMARY
-} from '../../util/path';
 import Geomover from '../../component/Geomover';
-import scrollTop from '../../util/scroll';
-import { importLazy } from '../../component/LazilyLoad';
 import {
   checkPositioningPermission,
   startLocationWatch
@@ -23,15 +12,6 @@ import {
 import Filters from '../../component/amporto/filter';
 import PoisSection from './sections/pois';
 import EventsSection from './sections/events';
-
-const modules = {
-  OverlayWithSpinner: () =>
-    importLazy(import('../../component/visual/OverlayWithSpinner')),
-  FavouritesContainer: () =>
-    importLazy(import('../../component/FavouritesContainer')),
-  DatetimepickerContainer: () =>
-    importLazy(import('../../component/DatetimepickerContainer'))
-};
 
 class ExplorePage extends React.Component {
   static contextTypes = {
@@ -65,9 +45,6 @@ class ExplorePage extends React.Component {
   }
 
   componentDidMount() {
-    this.context.executeAction(storeOrigin, {});
-    this.context.executeAction(storeDestination, {});
-
     checkPositioningPermission().then(permission => {
       if (
         permission.state === 'granted' &&
@@ -76,72 +53,6 @@ class ExplorePage extends React.Component {
         this.context.executeAction(startLocationWatch);
       }
     });
-    scrollTop();
-  }
-
-  componentDidUpdate() {
-    const { origin, destination } = this.props;
-
-    if (this.pendingOrigin && isEqual(this.pendingOrigin, origin)) {
-      delete this.pendingOrigin;
-    }
-    if (
-      this.pendingDestination &&
-      isEqual(this.pendingDestination, destination)
-    ) {
-      delete this.pendingDestination;
-    }
-    if (this.pendingOrigin || this.pendingDestination) {
-      // not ready for navigation yet
-      return;
-    }
-
-    const { router, match, config } = this.context;
-    const { location } = match;
-
-    const currentLocation =
-      config.startSearchFromUserLocation &&
-      !this.props.origin.address &&
-      this.props.locationState?.hasLocation &&
-      this.props.locationState;
-    if (currentLocation && !currentLocation.isReverseGeocodingInProgress) {
-      const originPoint = [currentLocation.lon, currentLocation.lat];
-      if (inside(originPoint, config.areaPolygon)) {
-        this.context.executeAction(storeOrigin, currentLocation);
-      }
-    }
-
-    if (definesItinerarySearch(origin, destination)) {
-      const newLocation = {
-        ...location,
-        pathname: getPathWithEndpointObjects(
-          origin,
-          destination,
-          PREFIX_ITINERARY_SUMMARY
-        )
-      };
-      if (newLocation.query.time === undefined) {
-        newLocation.query.time = Math.floor(Date.now() / 1000).toString();
-      }
-      delete newLocation.query.setTime;
-
-      router.push(newLocation);
-    } else {
-      const path = getPathWithEndpointObjects(
-        origin,
-        destination,
-        config.indexPath,
-        'explore'
-      );
-      if (path !== location.pathname) {
-        const newLocation = {
-          ...location,
-          pathname: path
-        };
-
-        router.replace(newLocation);
-      }
-    }
   }
 
   render() {

@@ -129,7 +129,7 @@ class IndexPage extends React.Component {
 
   componentDidUpdate() {
     const { origin, destination } = this.props;
-
+  
     if (this.pendingOrigin && isEqual(this.pendingOrigin, origin)) {
       delete this.pendingOrigin;
     }
@@ -158,7 +158,7 @@ class IndexPage extends React.Component {
         this.context.executeAction(storeOrigin, currentLocation);
       }
     }
-
+  
     if (definesItinerarySearch(origin, destination)) {
       const newLocation = {
         ...location,
@@ -168,6 +168,7 @@ class IndexPage extends React.Component {
           PREFIX_ITINERARY_SUMMARY
         )
       };
+     
       if (newLocation.query.time === undefined) {
         newLocation.query.time = Math.floor(Date.now() / 1000).toString();
       }
@@ -179,6 +180,7 @@ class IndexPage extends React.Component {
         destination,
         config.indexPath
       );
+     
       if (path !== location.pathname) {
         const newLocation = {
           ...location,
@@ -203,6 +205,7 @@ class IndexPage extends React.Component {
     const { router, executeAction } = this.context;
 
     if (item === null) {
+      console.log('deleting ', id);
       executeAction(id === 'origin' ? storeOrigin : storeDestination, {});
       return;
     }
@@ -274,7 +277,7 @@ class IndexPage extends React.Component {
     return config.showNearYouButtons ? (
       <CtrlPanel.NearStopsAndRoutes
         modeArray={modes}
-        urlPrefix={`/${PREFIX_NEARYOU}`}
+        urlPrefix={`/browse/${PREFIX_NEARYOU}`}
         language={lang}
         showTitle
         alertsContext={alertsContext}

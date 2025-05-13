@@ -13,7 +13,7 @@ const RouteTitle = ({ route, breakpoint }) =>
   breakpoint === 'large' || !route || !route.mode ? (
     <FormattedMessage id="route-page.title-short" defaultMessage="Route" />
   ) : (
-    <Link to={`/${PREFIX_ROUTES}/${route.gtfsId}`}>
+    <Link to={`/browse/${PREFIX_ROUTES}/${route.gtfsId}`}>
       <RouteNumberContainer
         className="route-number-title"
         color={route.color}

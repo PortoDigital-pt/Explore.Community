@@ -9,30 +9,7 @@ export default config => {
   const { routes, blocks } = config.optionalNavigationItems;
 
   return (
-    <Route path="/explore">
-      <Route path="/">
-        {{
-          content: (
-            <Route
-              getComponent={() =>
-                import(/* webpackChunkName: "explore" */ './page').then(
-                  getDefault
-                )
-              }
-            />
-          ),
-          map: (
-            <Route
-              disableMapOnMobile={false}
-              getComponent={() =>
-                import(/* webpackChunkName: "explore-map" */ './pageMap').then(
-                  getDefault
-                )
-              }
-            />
-          )
-        }}
-      </Route>
+    <Route path="/">
       <Route path="pois">
         <Route path="/">
           {{
@@ -239,6 +216,29 @@ export default config => {
           </Route>
         </Route>
       )}
+      <Route path="/">
+        {{
+          content: (
+            <Route
+              getComponent={() =>
+                import(/* webpackChunkName: "explore" */ './page').then(
+                  getDefault
+                )
+              }
+            />
+          ),
+          map: (
+            <Route
+              disableMapOnMobile={false}
+              getComponent={() =>
+                import(/* webpackChunkName: "explore-map" */ './pageMap').then(
+                  getDefault
+                )
+              }
+            />
+          )
+        }}
+      </Route>
     </Route>
   );
 };

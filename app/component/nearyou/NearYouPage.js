@@ -295,13 +295,13 @@ class NearYouPage extends React.Component {
       if (centerOfMap.type === 'CurrentLocation') {
         phase = PH_USEGEOLOCATION;
         type = centerOfMap.type;
-        const path = `/${PREFIX_NEARYOU}/${mode}/POS`;
+        const path = `/browse/${PREFIX_NEARYOU}/${mode}/POS`;
         this.context.router.replace({
           ...this.props.match.location,
           pathname: path
         });
       } else {
-        const path = `/${PREFIX_NEARYOU}/${mode}/${locationToUri(centerOfMap)}`;
+        const path = `/browse/${PREFIX_NEARYOU}/${mode}/${locationToUri(centerOfMap)}`;
         this.context.router.replace({
           ...this.props.match.location,
           pathname: path
@@ -327,7 +327,7 @@ class NearYouPage extends React.Component {
     const newMode = this.modes[e];
     const paramArray = this.props.match.location.pathname.split(mode);
     const pathParams = paramArray.length > 1 ? paramArray[1] : '/POS';
-    const path = `/${PREFIX_NEARYOU}/${newMode}${pathParams}`;
+    const path = `/browse/${PREFIX_NEARYOU}/${newMode}${pathParams}`;
     this.context.router.replace({
       ...this.props.match.location,
       pathname: path
@@ -793,7 +793,7 @@ class NearYouPage extends React.Component {
   selectHandler = item => {
     if (item) {
       const { mode } = this.props.match.params;
-      const path = `/${PREFIX_NEARYOU}/${mode}/${locationToUri(item)}`;
+      const path = `/browse/${PREFIX_NEARYOU}/${mode}/${locationToUri(item)}`;
       this.context.router.replace({
         ...this.props.match.location,
         pathname: path
