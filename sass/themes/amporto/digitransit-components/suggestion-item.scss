@@ -65,7 +65,7 @@ li:last-child > div.suggestion-item-container.mobile {
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: calc(100% - 27px - 32px);
+      width: calc(100% - 27px - 40px);
       margin: 0;
       font-weight: $font-weight-book;
       color: $grey-dark-down;
@@ -107,7 +107,7 @@ li:last-child > div.suggestion-item-container.mobile {
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: calc(100% - 27px - 32px);
+      width: calc(100% - 27px - 40px);
       margin: 0;
       color: $grey-dark-down;
       font-size: 12px !important;
