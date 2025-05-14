@@ -158,7 +158,7 @@ export default connectToStores(
         .filter(([_, selected]) => selected)
         .map(([category]) => category);
 
-      categories = selectedCategories.length > 0 ? selectedCategories : null;
+      categories = selectedCategories?.length > 0 ? selectedCategories : null;
     }
 
     return {

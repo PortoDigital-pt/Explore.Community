@@ -10,12 +10,14 @@ import {
 
 export const MOBILE_PAGE_CONTENT_TYPE_MAP = {
   pois: PoiMobilePageContent,
-  events: EventMobilePageContent
+  events: EventMobilePageContent,
+  touristTrips: PoiMobilePageContent
 };
 
 export const PAGE_CONTENT_TYPE_MAP = {
   pois: PoiPageContent,
-  events: EventPageContent
+  events: EventPageContent,
+  touristTrips: PoiPageContent
 };
 
 export const PAGE_CONTENT_PIECES_TYPE_MAP = {

@@ -822,6 +822,7 @@ const translations = {
   },
 
   en: {
+    'touristic-itinerary-title': 'City tours',
     'scroll-to-top': 'Scroll back to the top of the page',
     pois: 'Points of interest',
     events: 'Events',
@@ -5153,6 +5154,7 @@ const translations = {
 
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
+    'touristic-itinerary-title': 'Roteiros pela cidade',
     'profile-page-back-button-title': 'Perfil',
     'profile-page-profile-card-title': 'O seu perfil',
     'profile-page-profile-card-subtitle':

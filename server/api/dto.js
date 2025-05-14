@@ -122,3 +122,34 @@ export const eventToDto = (event, language) => {
     images: extractValuesAndDecode([contentURL.value])
   };
 };
+
+export const touristTripToDto = (touristTrip, language) => {
+  const {
+    id,
+    category_lang,
+    description_lang,
+    location,
+    name_lang,
+    image,
+    extraImages
+  } = touristTrip;
+
+  return {
+    type: 'touristTrips',
+    id,
+    category: extractValuesAndDecode(
+      category_lang.value[language] || category_lang.value.pt
+    ),
+    description: extractValuesAndDecode(
+      description_lang.value[language] || description_lang.value.pt
+    ),
+    lon: location.value.coordinates[0],
+    lat: location.value.coordinates[1],
+    name: extractValuesAndDecode(
+      name_lang.value[language] || name_lang.value.pt
+    ),
+    images: extractValuesAndDecode(
+      extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
+    )
+  };
+};

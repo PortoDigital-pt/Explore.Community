@@ -12,6 +12,7 @@ import {
 import Filters from '../../component/amporto/filter';
 import PoisSection from './sections/pois';
 import EventsSection from './sections/events';
+import TouristTripSection from './sections/touristTrip';
 
 class ExplorePage extends React.Component {
   static contextTypes = {
@@ -60,6 +61,7 @@ class ExplorePage extends React.Component {
       <div className="explore">
         <Filters />
         <PoisSection />
+        <TouristTripSection />
         <EventsSection />
       </div>
     );

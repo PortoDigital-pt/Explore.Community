@@ -18,6 +18,7 @@ const useListData = ({
       return;
     }
 
+    console.log('log-args ', args);
     const controller = new AbortController();
     const { signal } = controller;
 
