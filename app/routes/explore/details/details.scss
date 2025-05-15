@@ -138,13 +138,13 @@
             row-gap: 5px;
         }
 
-        .contacts {
+        .contacts, .detail-info {
             display: flex;
             position: relative;
             flex-direction: column;
             row-gap: 8px;
 
-            .dates {
+            .dates, .pois-and-duration {
                 flex-direction: row;
                 flex-wrap: wrap;
                 row-gap: 8px;
@@ -240,7 +240,7 @@
             .details {
                 padding: 0;
 
-                .contacts {
+                .contacts, .detail-info {
                     .categories {
                         width: fit-content;
                         display: flex;

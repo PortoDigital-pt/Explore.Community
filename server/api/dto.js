@@ -22,20 +22,20 @@ const extractValuesAndDecode = values => {
     if (!value) {
       return {
         ...acc,
-        [key]: null
+        [key]: null,
       };
     }
 
     if (Array.isArray(value)) {
       return {
         ...acc,
-        [key]: value.map(decode)
+        [key]: value.map(decode),
       };
     }
 
     return {
       ...acc,
-      [key]: decode(value.value ?? value)
+      [key]: decode(value.value ?? value),
     };
   }, {});
 };
@@ -53,7 +53,7 @@ export const poiToDto = (poi, language) => {
     calendar,
     districtGroups,
     image,
-    extraImages
+    extraImages,
   } = poi;
 
   return {
@@ -61,23 +61,23 @@ export const poiToDto = (poi, language) => {
     id,
     address: extractValuesAndDecode(address.value),
     category: extractValuesAndDecode(
-      category_lang.value[language] || category_lang.value.pt
+      category_lang.value[language] || category_lang.value.pt,
     ),
     contacts: extractValuesAndDecode(contactPoint.value),
     description: extractValuesAndDecode(
-      description_lang.value[language] || description_lang.value.pt
+      description_lang.value[language] || description_lang.value.pt,
     ),
     lon: location.value.coordinates[0],
     lat: location.value.coordinates[1],
     name: extractValuesAndDecode(
-      name_lang.value[language] || name_lang.value.pt
+      name_lang.value[language] || name_lang.value.pt,
     ),
     priceRange: extractValuesAndDecode(priceRange.value),
     calendar: formatCalendar(calendar.value, language),
     districts: extractValuesAndDecode(districtGroups.value),
     images: extractValuesAndDecode(
-      extraImages.value?.length === 0 ? [image.value] : extraImages.value
-    )
+      extraImages.value?.length === 0 ? [image.value] : extraImages.value,
+    ),
   };
 };
 
@@ -131,7 +131,13 @@ export const touristTripToDto = (touristTrip, language) => {
     location,
     name_lang,
     image,
-    extraImages
+    extraImages,
+    itinerary: {
+      value: { itemListElement: pois }
+    },
+    difficulty: { value: difficulty },
+    distance: { value: distance },
+    duration: { value: duration }
   } = touristTrip;
 
   return {
@@ -150,6 +156,10 @@ export const touristTripToDto = (touristTrip, language) => {
     ),
     images: extractValuesAndDecode(
       extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
-    )
+    ),
+    pois,
+    difficulty,
+    distance,
+    duration: duration?.replace('PT', '')
   };
 };

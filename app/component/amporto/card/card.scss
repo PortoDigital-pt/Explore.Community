@@ -93,14 +93,14 @@
                 padding: 0;
             }
 
-            .contacts {
+            .contacts, .detail-info {
                 display: flex;
                 position: relative;
                 flex-direction: column;
                 row-gap: 6px;
                 justify-content: flex-start;
     
-                .dates {
+                .dates, .pois-and-duration {
                     flex-direction: row;
                     flex-wrap: wrap;
                     row-gap: 8px;
