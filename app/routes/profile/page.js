@@ -1,15 +1,43 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useRouter } from 'found';
 import { intlShape } from 'react-intl';
+import getContext from 'recompose/getContext';
+import connectToStores from 'fluxible-addons-react/connectToStores';
+import { shape } from 'prop-types';
 import Icon from '../../component/Icon';
 import BackButton from '../../component/BackButton';
-import { configShape } from '../../util/shapes';
+import { configShape, userShape } from '../../util/shapes';
+import LoadingPage from '../../component/LoadingPage';
 
-const ProfilePage = (props, { intl, config }) => {
+const Page = props => {
+  const { intl, config, user } = props;
   const { router } = useRouter();
-  const { profile: profileConfig } = config;
 
-  return (
+  const {
+    profile: profileConfig,
+    URL: { ROOTLINK: rootLink }
+  } = config;
+
+  const handleLogout = useCallback(
+    e => {
+      e.preventDefault();
+      window.location.href = `${rootLink}/logout`;
+    },
+    [rootLink]
+  );
+
+  useEffect(() => {
+    if (!user.name) {
+      const url = encodeURI(
+        `${window.location.origin || ''}${window.location?.pathname}`
+      );
+      const params = window.location?.search?.substring(1);
+      const loginUrl = `/login?url=${url}&${params}`;
+      window.location.href = loginUrl;
+    }
+  }, [user.name]);
+
+  return user.name ? (
     <>
       <BackButton title={intl.messages['profile-page-back-button-title']} />
       <div className="profile-page">
@@ -21,7 +49,7 @@ const ProfilePage = (props, { intl, config }) => {
                 className="avatar"
                 viewBox="0 0 64 64"
               />
-              <h3>Nome do usuário</h3>
+              <h3>{user?.name}</h3>
             </div>
           )}
 
@@ -122,7 +150,7 @@ const ProfilePage = (props, { intl, config }) => {
               type="button"
               className="logout-button"
               aria-label={intl.messages['profile-page-logout-button']}
-              onClick={() => null}
+              onClick={handleLogout}
             >
               {intl.messages['profile-page-logout-button']}
             </button>
@@ -130,12 +158,26 @@ const ProfilePage = (props, { intl, config }) => {
         </div>
       </div>
     </>
+  ) : (
+    <LoadingPage />
   );
 };
 
-ProfilePage.contextTypes = {
-  config: configShape.isRequired,
-  intl: intlShape.isRequired
+Page.propTypes = {
+  config: shape(configShape),
+  intl: shape(intlShape),
+  user: shape(userShape)
 };
+
+const ProfilePage = connectToStores(
+  getContext({
+    config: configShape.isRequired,
+    intl: intlShape.isRequired
+  })(Page),
+  ['UserStore'],
+  context => ({
+    user: context.getStore('UserStore').getUser()
+  })
+);
 
 export default ProfilePage;

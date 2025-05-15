@@ -5,16 +5,18 @@ import * as service from './service';
 
 export const save = async (req, res) => {
   try {
+    const loggedUserId = req.user?.data?.sub;
     const favoritesToUpdate = [];
+
     req.body?.forEach(favorite => {
-      if (!favorite.userId || favorite.userId === process.env.FAKE_USER) {
+      if (!favorite.userId || favorite.userId === loggedUserId) {
         favoritesToUpdate.push({
           updateOne: {
             filter: {
               favouriteId: favorite.favouriteId,
-              userId: process.env.FAKE_USER
+              userId: loggedUserId
             },
-            update: { ...favorite, userId: process.env.FAKE_USER },
+            update: { ...favorite, userId: loggedUserId },
             upsert: true
           }
         });
@@ -22,7 +24,8 @@ export const save = async (req, res) => {
     });
 
     await service.save(favoritesToUpdate);
-    res.sendStatus(200);
+    const favorites = await service.findAll(req.user?.data?.sub);
+    res.status(200).json(favorites);
   } catch (err) {
     console.error(err);
     errorHandler(res, err);
@@ -31,8 +34,7 @@ export const save = async (req, res) => {
 
 export const findAll = async (req, res) => {
   try {
-    // todo - remove FAKE_USER and get the info from header
-    const ret = await service.findAll(process.env.FAKE_USER);
+    const ret = await service.findAll(req.user?.data?.sub);
     res.status(200).json(ret);
   } catch (err) {
     console.error(err);
@@ -50,8 +52,7 @@ export const remove = async (req, res) => {
 
     const favouriteId = Array.isArray(req.body) ? req.body[0] : null;
 
-    // todo - remove FAKE_USER and get the info from header
-    const isOwner = await service.isOwner(process.env.FAKE_USER, favouriteId);
+    const isOwner = await service.isOwner(req.user?.data?.sub, favouriteId);
 
     if (!isOwner) {
       return res.sendStatus(403);

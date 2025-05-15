@@ -22,7 +22,7 @@ import {
 // internal data model for vehicle rental stations has changed
 // however, data is stored in old form for compatibility
 function mapFromStore(favourites) {
-  return favourites.map(favourite =>
+  return favourites?.map(favourite =>
     favourite.type === 'bikeStation'
       ? mapVehicleRentalFromStore(favourite)
       : favourite
@@ -30,7 +30,7 @@ function mapFromStore(favourites) {
 }
 
 function mapToStore(favourites) {
-  return favourites.map(favourite =>
+  return favourites?.map(favourite =>
     favourite.type === 'bikeStation'
       ? mapVehicleRentalToStore(favourite)
       : favourite
@@ -79,6 +79,12 @@ export default class FavouriteStore extends Store {
 
   set(favs) {
     this.favourites = mapFromStore(favs);
+    this.fetchComplete();
+  }
+
+  setFavoriteStoreAndLocalStore(favs) {
+    this.favourites = mapFromStore(favs);
+    setFavouriteStorage(this.favourites);
     this.fetchComplete();
   }
 
@@ -183,14 +189,14 @@ export default class FavouriteStore extends Store {
     const storage = getFavouriteStorage();
 
     if (isEmpty(storage)) {
-      this.set(arrayOfFavourites);
+      this.setFavoriteStoreAndLocalStore(arrayOfFavourites);
       return;
     }
 
     updateFavourites(storage)
       .then(res => {
-        this.set(res);
         clearFavouriteStorage();
+        this.setFavoriteStoreAndLocalStore(res);
       })
       .catch(() => {
         this.set(arrayOfFavourites);
@@ -235,7 +241,7 @@ export default class FavouriteStore extends Store {
       // Update favourites to backend service
       updateFavourites(newFavourites)
         .then(res => {
-          this.set(res);
+          this.setFavoriteStoreAndLocalStore(res);
         })
         .catch(() => {
           onFail();

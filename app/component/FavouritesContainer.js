@@ -109,13 +109,14 @@ class FavouritesContainer extends React.Component {
   }
 
   setLocationProperties = item => {
-    item && this.setState(prevState => ({
-      favourite: {
-        ...item,
-        name: (prevState.favourite && prevState.favourite.name) || '',
-        defaultName: item.name || item.address
-      }
-    }));
+    item &&
+      this.setState(prevState => ({
+        favourite: {
+          ...item,
+          name: (prevState.favourite && prevState.favourite.name) || '',
+          defaultName: item.name || item.address
+        }
+      }));
   };
 
   addHome = () => {

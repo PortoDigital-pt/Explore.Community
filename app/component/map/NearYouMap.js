@@ -419,9 +419,7 @@ function NearYouMap(
       </>
     );
   }
-  return (
-      <MapWithTracking {...mapProps} />
-  );
+  return <MapWithTracking {...mapProps} />;
 }
 
 NearYouMap.propTypes = {

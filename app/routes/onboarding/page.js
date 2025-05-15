@@ -29,9 +29,7 @@ const OnboardingPage = (
     // this ensures onboarded store state updates before the Main component reads it on the next page.
     setTimeout(() => {
       router.push(
-        !firstAccess || firstAccess === location.pathname
-          ? '/'
-          : firstAccess
+        !firstAccess || firstAccess === location.pathname ? '/' : firstAccess
       );
     }, 10);
   }, [executeAction, firstAccess, router.push, location.pathname]);

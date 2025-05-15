@@ -16,10 +16,7 @@ const SelectExploreRow = ({ language, type, properties }, { config }) => {
   }
 
   return (
-    <Link
-      className="stop-popup-choose-row"
-      to={`/${type}/${properties.id}`}
-    >
+    <Link className="stop-popup-choose-row" to={`/${type}/${properties.id}`}>
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon
           viewBox="0 0 44 44"

@@ -8,16 +8,6 @@ export function getUser() {
   };
   return retryFetch('/api/user', 2, 200, options).then(res => res.json());
 }
-// TODO: remove after login
-export const fakeGetUser = userId => ({
-  sub: userId,
-  email_verified: false,
-  name: 'John Doe',
-  preferred_username: 'john.doe@portodigital.pt',
-  given_name: 'John',
-  family_name: 'Doe',
-  email: 'john.doe@portodigital.pt'
-});
 
 export function getFavourites() {
   return retryFetch('/api/user/favourites', 2, 200).then(res => res.json());
@@ -31,6 +21,7 @@ export function updateFavourites(data) {
     },
     body: JSON.stringify(data)
   };
+
   return retryFetch('/api/user/favourites', 0, 0, options).then(res =>
     res.json()
   );

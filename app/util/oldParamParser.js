@@ -135,9 +135,11 @@ export default function oldParamParser(query, config) {
         }
         return `/browse/${PREFIX_ITINERARY_SUMMARY}/${encoded.from}/${encoded.to}/`;
       }
-      return `${config.indexPath === '' ? '/browse' : `/${config.indexPath}`}/browse/${
-        encoded.from
-      }/${encoded.to}/`;
+      return `${
+        config.indexPath === '' ? '/browse' : `/${config.indexPath}`
+      }/browse/${encoded.from}/${encoded.to}/`;
     })
-    .catch(() => (config.indexPath === '' ? '/browse' : `/${config.indexPath}/browse`));
+    .catch(() =>
+      config.indexPath === '' ? '/browse' : `/${config.indexPath}/browse`
+    );
 }

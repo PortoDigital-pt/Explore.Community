@@ -12,16 +12,11 @@ export const errorHandler = (res, err) => {
 };
 
 export const userAuthenticated = (req, res, next) => {
-  console.log('================userAuthenticated=======================');
-  console.log(
-    '================process.env.FAKE_USER=======================',
-    process.env.FAKE_USER
-  );
-  process.env.FAKE_USER ? next() : res.sendStatus(401);
+  if (process.env.DEBUGLOGGING) {
+    console.log('req.isAuthenticated() == ', req.isAuthenticated());
+  }
 
-  // next();
-  // todo - uncomment it after enabling login
-  // res.set('Cache-Control', 'no-store');
+  res.set('Cache-Control', 'no-store');
   // eslint-disable-next-line no-unused-expressions
-  // req.isAuthenticated() ? next() : res.sendStatus(401);
+  req.isAuthenticated() ? next() : res.sendStatus(401);
 };

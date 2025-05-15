@@ -182,7 +182,8 @@ $content-background-color: $background-color;
 
   .icon {
     font-size: 2em;
-    color: $top-navigation-icon-color;
+    // color: $top-navigation-icon-color;
+    color: $primary-main;
 
     &.caution-topbar {
       fill: $caution-icon-color;

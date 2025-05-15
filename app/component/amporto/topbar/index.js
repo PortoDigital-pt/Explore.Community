@@ -26,7 +26,6 @@ const Topbar = ({ breakpoint }) => {
     >
       <div className="content">
         {isFirstLevelRoute && <SearchButton />}
-
         {breakpoint !== 'large' && !isFirstLevelRoute && <BackButton small />}
       </div>
       <div className="content">
