@@ -14,7 +14,8 @@ const SearchButton = ({ lang }, { config, intl }) => {
   const { fontWeights } = config;
 
   const handleClick = useCallback(
-    selectedItem => selectedItem !== null && router.push(getStopRoutePath(selectedItem)),
+    selectedItem =>
+      selectedItem !== null && router.push(getStopRoutePath(selectedItem)),
     [router.push]
   );
 

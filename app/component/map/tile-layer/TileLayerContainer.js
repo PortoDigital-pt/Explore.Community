@@ -210,9 +210,7 @@ class TileLayerContainer extends GridLayer {
           return;
         }
 
-        this.context.router.push(
-          `/${feature.type}/${feature.properties.id}`
-        );
+        this.context.router.push(`/${feature.type}/${feature.properties.id}`);
         return;
       }
 
@@ -245,7 +243,9 @@ class TileLayerContainer extends GridLayer {
           : selectableTargets[0].feature.properties.id;
         // adding networks directs to scooter cluster view
         this.context.router.push(
-          `/browse/${PREFIX_RENTALVEHICLES}/${encodeURIComponent(id)}/${[...networks]}`
+          `/browse/${PREFIX_RENTALVEHICLES}/${encodeURIComponent(id)}/${[
+            ...networks
+          ]}`
         );
         return;
       }

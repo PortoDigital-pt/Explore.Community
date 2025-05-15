@@ -22,6 +22,9 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
   // Use Passport with OpenId Connect strategy to authenticate users
   const OIDCHost = process.env.OIDCHOST || 'https://hslid-dev.t5.fi';
 
+  const FRONT_SUCCESS_LOGIN_URL = '/profile/callbacks/login-success';
+  const FRONT_SUCCESS_LOGOUT_URL = '/profile/callbacks/logout-success';
+
   const NotificationHost =
     process.env.NOTIFICATION_HOST ||
     'https://test.hslfi.hsldev.com/user/api/v1/notifications';
@@ -134,9 +137,9 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       saveUninitialized: false,
       cookie: {
         secure: process.env.NODE_ENV === 'production',
-        httpOnly: process.env.NODE_ENV === 'production',
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 60,
-        sameSite: 'none'
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
       }
     })
   );
@@ -166,7 +169,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     }
     passport.authenticate('passport-openid-connect', {
       scope: 'profile',
-      successReturnToOrRedirect: '/'
+      successReturnToOrRedirect: FRONT_SUCCESS_LOGIN_URL
     })(req, res);
   });
 
@@ -175,7 +178,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
     callbackPath,
     passport.authenticate('passport-openid-connect', {
       callback: true,
-      successReturnToOrRedirect: `/${indexPath}`,
+      successReturnToOrRedirect: FRONT_SUCCESS_LOGIN_URL,
       failureRedirect: '/login'
     })
   );
@@ -188,15 +191,16 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
       : `http://${host}${logoutCallbackPath}`;
     const params = {
       post_logout_redirect_uri: postLogoutRedirectUri,
-      id_token_hint: req.user.token.id_token,
+      id_token_hint: req.user?.token?.id_token,
       ui_locales: cookieLang
     };
     const logoutUrl = oic.client.endSessionUrl(params);
 
-    req.session.userId = req.user.data.sub;
+    req.session.userId = req.user?.data?.sub;
     if (debugLogging) {
-      console.log(`logout for user ${req.user.data.name} to ${logoutUrl}`);
+      console.log(`logout for user ${req.user?.data?.name} to ${logoutUrl}`);
     }
+
     res.redirect(logoutUrl);
   });
 
@@ -216,7 +220,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
             RedisClient.del(...sessionIds);
             RedisClient.del(sessions);
           }
-          res.redirect(`/${indexPath}`);
+          res.redirect(FRONT_SUCCESS_LOGOUT_URL);
         });
       });
     });

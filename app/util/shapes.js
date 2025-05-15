@@ -378,6 +378,7 @@ export const settingsShape = PropTypes.shape({
 });
 
 export const userShape = PropTypes.shape({
+  name: PropTypes.string,
   given_name: PropTypes.string,
   family_name: PropTypes.string,
   sub: PropTypes.string,

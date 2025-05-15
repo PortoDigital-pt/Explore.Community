@@ -260,7 +260,9 @@ export default async function serve(req, res, next) {
     context
       .getComponentContext()
       .getStore('PreferencesStore')
-      .setOnboarded(req.cookies.onboarded === 'true');
+      .setOnboarded(
+        req.cookies.onboarded === 'true' || req.cookies['connect.sid']
+      );
 
     context
       .getComponentContext()

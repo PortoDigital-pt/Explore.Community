@@ -301,7 +301,9 @@ class NearYouPage extends React.Component {
           pathname: path
         });
       } else {
-        const path = `/browse/${PREFIX_NEARYOU}/${mode}/${locationToUri(centerOfMap)}`;
+        const path = `/browse/${PREFIX_NEARYOU}/${mode}/${locationToUri(
+          centerOfMap
+        )}`;
         this.context.router.replace({
           ...this.props.match.location,
           pathname: path
@@ -935,11 +937,7 @@ class NearYouPage extends React.Component {
               bckBtnFallback="back"
               content={this.renderContent()}
               scrollable={nearByStopModes.length === 1}
-              map={
-                <>
-                  {this.renderMap()}
-                </>
-              }
+              map={<>{this.renderMap()}</>}
             />
           )}
           mobile={() => (

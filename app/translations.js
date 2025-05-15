@@ -841,7 +841,8 @@ const translations = {
     'profile-page-logout-button': 'Logout',
     favourites: 'Favourites',
     'favourites-more-favourites': 'Manage favourites',
-    'favourites-search-input-placeholder': 'Stops, lines, stations, points of interest or events',
+    'favourites-search-input-placeholder':
+      'Stops, lines, stations, points of interest or events',
     'favourites-name-input-placeholder': 'Choose a custom name',
     'favourites-set-location': 'Set location',
     'favourites-add': 'Add',
@@ -5170,7 +5171,8 @@ const translations = {
     'profile-page-logout-button': 'Terminar sessão',
     favourites: 'Favoritos',
     'favourites-more-favourites': 'Gerenciar favoritos',
-    'favourites-search-input-placeholder': 'Paragens, linhas, estações, pontos de interesse ou eventos',
+    'favourites-search-input-placeholder':
+      'Paragens, linhas, estações, pontos de interesse ou eventos',
     'favourites-name-input-placeholder': 'Escolha um nome personalizado',
     'favourites-set-location': 'Definir localização',
     'favourites-add': 'Adicionar',
