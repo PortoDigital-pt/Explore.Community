@@ -50,9 +50,37 @@ const commonListSchema = type => ({
 });
 
 export const poiListSchema = checkSchema(commonListSchema('pois'), ['query']);
+
 export const eventListSchema = checkSchema(commonListSchema('events'), [
   'query'
 ]);
+
+export const touristTripsListSchema = checkSchema(
+  {
+    page: {
+      isInt: {
+        options: { gt: 0 },
+        errorMessage: 'page must be a positive integer'
+      },
+      toInt: true,
+      optional: true
+    },
+    coords: {
+      matches: {
+        options: coordinatesRegex,
+        errorMessage: 'invalid coordinates'
+      },
+      optional: true
+    },
+    language: {
+      matches: {
+        options: languageRegex,
+        errorMessage: 'invalid language'
+      }
+    }
+  },
+  ['query']
+);
 
 export const detailSchema = checkSchema({
   language: {

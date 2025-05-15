@@ -13,7 +13,6 @@ const FILTERS_ICON_MAP = {
 };
 
 const FilterBar = ({ filters, openModal, onClick }, { intl }) => {
-    console.log('log-FilterBar::filters ', filters);
   const ButtonFilters = useMemo(() => {
     const Component = Object.entries(filters).map(
       ([type, { showAll, ...values }]) => {

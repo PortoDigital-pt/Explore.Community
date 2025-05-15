@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { getTouristTripList } from '../../../../util/amporto/api';
@@ -20,17 +20,17 @@ const TouristTripSection = ({ language }, { config }) => {
 };
 
 TouristTripSection.propTypes = {
-  language: string.isRequired,
+  language: string.isRequired
 };
 
 TouristTripSection.contextTypes = {
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export default connectToStores(
   TouristTripSection,
   ['PreferencesStore'],
   ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage(),
-  }),
+    language: getStore('PreferencesStore').getLanguage()
+  })
 );
