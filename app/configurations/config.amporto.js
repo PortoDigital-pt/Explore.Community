@@ -459,6 +459,9 @@ export default {
         en: 'Music and clubbing'
       },
       stages: { pt: 'Palcos', en: 'Stage' }
+    },
+    touristTrips: {
+      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
     }
   },
   ngsi: {

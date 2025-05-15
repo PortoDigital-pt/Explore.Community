@@ -62,11 +62,9 @@ class MapLayerStore extends Store {
         {},
       ),
     };
-
-    // todo - add filters.touristTrips
     this.mapLayers.touristTrips = {
       showAll: true,
-      ...Object.keys(config.filters.pois).reduce(
+      ...Object.keys(config.filters.touristTrips).reduce(
         (acc, key) => ({ ...acc, [key]: true }),
         {},
       ),
@@ -137,11 +135,11 @@ class MapLayerStore extends Store {
       stop: {
         ...this.mapLayers.stop,
         citybike: this.mapLayers.citybike,
-        subway: this.mapLayers.terminal.subway
+        subway: this.mapLayers.terminal.subway,
       },
       pois: this.mapLayers.pois,
       events: this.mapLayers.events,
-      touristTrips: this.mapLayers.touristTrips
+      touristTrips: this.mapLayers.touristTrips,
     };
 
     if (!only) {
@@ -169,7 +167,7 @@ class MapLayerStore extends Store {
       },
       touristTrips: {
         ...this.mapLayers.touristTrips,
-        ...mapLayers.pois // todo - add touristTrips
+        ...mapLayers.touristTrips
       },
     };
 
@@ -198,11 +196,10 @@ class MapLayerStore extends Store {
         ...this.mapLayers.events,
         ...mapLayers.events,
       },
-      // todo - add touristTrips
       touristTrips: {
         ...this.mapLayers.touristTrips,
-        ...mapLayers.pois
-      }
+        ...mapLayers.touristTrips,
+      },
     };
     setMapLayerSettings({ ...this.mapLayers });
     this.emitChange();

@@ -10,6 +10,8 @@ import Icon from '../../Icon';
 import { updateMapLayersCustom } from '../../../action/MapLayerActions';
 
 const Filters = ({ mapLayers }, { executeAction, intl }) => {
+  console.log('log-Filters::mapLayers ', mapLayers);
+
   const { isOpen, open, close } = useModal();
 
   const toggleCheckAll = useCallback(

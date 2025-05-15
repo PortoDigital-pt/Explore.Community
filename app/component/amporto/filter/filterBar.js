@@ -8,10 +8,12 @@ import Icon from '../../Icon';
 const FILTERS_ICON_MAP = {
   stop: 'icon-icon_bus_no_map',
   pois: 'icon-camera',
-  events: 'icon-events'
+  events: 'icon-events',
+  touristTrips: 'icon-routes'
 };
 
 const FilterBar = ({ filters, openModal, onClick }, { intl }) => {
+    console.log('log-FilterBar::filters ', filters);
   const ButtonFilters = useMemo(() => {
     const Component = Object.entries(filters).map(
       ([type, { showAll, ...values }]) => {
