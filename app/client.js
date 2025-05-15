@@ -41,7 +41,7 @@ import {
 } from './util/analyticsUtils';
 import { configureCountry } from './util/configureCountry';
 // TODO: remove after login
-import { fakeGetUser, getUser } from './util/apiUtils';
+import { getUser } from './util/apiUtils';
 import setUser from './action/userActions';
 import {
   fetchFavourites,
@@ -221,14 +221,13 @@ async function init() {
     getUser()
       .then(user => {
         context.executeAction(setUser, {
-          ...user
+          ...user,
+          notLogged: false
         });
         handleUserAnalytics(user, config);
       })
       .catch(() => {
-        // TODO: remove after login
-        context.executeAction(setUser, fakeGetUser(config.fakeUser));
-        // context.executeAction(setUser, { notLogged: true });
+        context.executeAction(setUser, { notLogged: true });
       })
       .finally(() => {
         context.executeAction(fetchFavourites);

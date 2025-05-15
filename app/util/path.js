@@ -134,7 +134,7 @@ export const getIndexPath = (origin, destination, indexPath) => {
   if (isEmpty(origin) && isEmpty(destination)) {
     return indexPath === '' ? `/browse` : `/${indexPath}/browse`;
   }
-  
+
   return [
     indexPath,
     'browse',
@@ -154,7 +154,7 @@ export const getStopRoutePath = searchObj => {
   const network =
     searchObj.properties.source &&
     searchObj.properties.source.split('citybikes')[1];
- 
+
   switch (searchObj.properties.layer) {
     case 'station':
     case 'favouriteStation':
@@ -204,19 +204,11 @@ export function definesItinerarySearch(origin, destination) {
 /**
  * use objects instead of strings If both are set it's itinerary search...
  */
-export function getPathWithEndpointObjects(
-  origin,
-  destination,
-  rootPath
-) {
+export function getPathWithEndpointObjects(origin, destination, rootPath) {
   return rootPath === PREFIX_ITINERARY_SUMMARY ||
     definesItinerarySearch(origin, destination)
     ? getItineraryPagePath(locationToUri(origin), locationToUri(destination))
-    : getIndexPath(
-        locationToOTP(origin),
-        locationToOTP(destination),
-        rootPath
-      );
+    : getIndexPath(locationToOTP(origin), locationToOTP(destination), rootPath);
 }
 
 /**

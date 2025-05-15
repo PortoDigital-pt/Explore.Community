@@ -37,5 +37,35 @@ export default () => (
         }}
       </Route>
     </Route>
+    <Route path="callbacks">
+      <Route path="/login-success">
+        {{
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "profile" */ './auth/success-login'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          )
+        }}
+      </Route>
+      <Route path="/logout-success">
+        {{
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "profile" */ './auth/success-logout'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          )
+        }}
+      </Route>
+    </Route>
   </Route>
 );

@@ -35,7 +35,7 @@ const useRouteLevel = () => {
       ),
     [match.location.pathname, route]
   );
- 
+
   return { isFirstLevelRoute, route };
 };
 
