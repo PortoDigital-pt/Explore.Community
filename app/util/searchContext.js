@@ -43,6 +43,7 @@ const searchContext = {
       locationingFailed: false
     };
   },
+  getFavourites: () => [],
   getFavouriteLocations: () => [],
   getOldSearches: () => [],
   getFavouriteStops: () => [],

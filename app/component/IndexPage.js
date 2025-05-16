@@ -205,7 +205,6 @@ class IndexPage extends React.Component {
     const { router, executeAction } = this.context;
 
     if (item === null) {
-      console.log('deleting ', id);
       executeAction(id === 'origin' ? storeOrigin : storeDestination, {});
       return;
     }
@@ -426,6 +425,7 @@ class IndexPage extends React.Component {
                   <LocationSearch
                     {...locationSearchProps}
                     eventSource={config.eventSource}
+                    useAllFavourites
                   />
                   <div className="datetimepicker-container">
                     <DatetimepickerContainer realtime color={color} />
@@ -479,6 +479,7 @@ class IndexPage extends React.Component {
                     isMobile
                     {...locationSearchProps}
                     eventSource={config.eventSource}
+                    useAllFavourites
                   />
                   <div className="datetimepicker-container">
                     <DatetimepickerContainer realtime color={color} />
