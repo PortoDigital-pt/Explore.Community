@@ -9,6 +9,7 @@ import {
 import {
   hasFavourites,
   getPositions,
+  getFavourites,
   getFavouriteLocations,
   getFavouriteRoutes,
   getOldSearches,
@@ -53,6 +54,7 @@ export default function intializeSearchContext(context, searchContext) {
   searchContext.geocodingSources = config.searchSources;
   searchContext.geocodingSearchParams = config.searchParams;
   searchContext.getOldSearches = getOldSearches;
+  searchContext.getFavourites = getFavourites;
   searchContext.getFavouriteLocations = getFavouriteLocations;
   searchContext.getFavouriteStops = getFavouriteStops;
   searchContext.getFavouriteExplore = getFavouriteExplore;

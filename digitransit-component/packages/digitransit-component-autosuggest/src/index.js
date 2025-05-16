@@ -320,7 +320,8 @@ class DTAutosuggest extends React.Component {
     isEmbedded: PropTypes.bool,
     mobileSearchPrefixIconId: PropTypes.string,
     buttonMode: PropTypes.bool,
-    eventSource: PropTypes.string
+    eventSource: PropTypes.string,
+    useAllFavourites: PropTypes.bool
   };
 
   static defaultProps = {
@@ -371,7 +372,8 @@ class DTAutosuggest extends React.Component {
     refPoint: {},
     mobileSearchPrefixIconId: undefined,
     buttonMode: false,
-    eventSource: undefined
+    eventSource: undefined,
+    useAllFavourites: false
   };
 
   constructor(props) {
@@ -721,7 +723,8 @@ class DTAutosuggest extends React.Component {
           },
           this.props.pathOpts,
           this.props.refPoint,
-          this.props.eventSource
+          this.props.eventSource,
+          this.props.useAllFavourites
         );
       }
     );

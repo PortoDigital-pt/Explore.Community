@@ -240,10 +240,12 @@ export async function getSearchResults(
   callback,
   pathOpts,
   refPoint,
-  eventSource
+  eventSource,
+  useAllFavourites
 ) {
   const {
     getPositions,
+    getFavourites,
     getFavouriteLocations,
     getOldSearches,
     getFavouriteStops,
@@ -309,7 +311,10 @@ export async function getSearchResults(
     const searchParams = geocodingSearchParams;
 
     if (sources.includes('Favourite')) {
-      const favouriteLocations = getFavouriteLocations(context);
+      const favouriteLocations = useAllFavourites
+        ? getFavourites(context)
+        : getFavouriteLocations(context);
+
       searchComponents.push(
         filterFavouriteLocations(favouriteLocations, input)
       );
@@ -644,7 +649,8 @@ export const executeSearch = (
   callback,
   pathOpts,
   refPoint,
-  eventSource
+  eventSource,
+  useAllFavourites
 ) => {
   callback(null); // This means 'we are searching'
   debouncedSearch(
@@ -658,6 +664,7 @@ export const executeSearch = (
     callback,
     pathOpts,
     refPoint,
-    eventSource
+    eventSource,
+    useAllFavourites
   );
 };
