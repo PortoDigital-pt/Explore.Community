@@ -467,7 +467,8 @@ export default {
   ngsi: {
     dataProvider: {
       pois: 'http:%2F%2Fcitysdk.url.pt%2Fpois%2F,https:%2F%2Fcity-api.wearebitmaker.com%2FCitySDK%2Fpois',
-      events: 'Agenda%20Porto'
+      events: 'Agenda%20Porto',
+      touristTrips: 'ExplorePorto'
     }
   },
   coordinatesBounds: {

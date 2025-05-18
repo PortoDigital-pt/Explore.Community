@@ -822,6 +822,13 @@ const translations = {
   },
 
   en: {
+    'tourist-trip-start-trip': 'Start trip',
+    'tourist-trip-itinerary-label': 'Itinerary',
+    'tourist-trip-total-distance-label': 'Total distance',
+    'tourist-trip-warning-section':
+      'This itinerary is purely illustrative and has no specific order, so you can start from the point closest to you.',
+    'tourist-trip-itinerary-list-show-more': 'Show more points',
+    'tourist-trip-itinerary-list-show-less': 'Show less points',
     'tourist-trip-card-difficulty-label': 'Difficulty',
     'tourist-trip-card-difficulty-description-easy': 'Easy',
     'tourist-trip-card-difficulty-description-medium': 'Medium',
@@ -5160,6 +5167,13 @@ const translations = {
 
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
+    'tourist-trip-start-trip': 'Iniciar roteiro',
+    'tourist-trip-itinerary-label': 'Itinerário',
+    'tourist-trip-total-distance-label': 'Distância total',
+    'tourist-trip-warning-section':
+      'Este itinerário é meramente ilustrativo e não tem ordem específica, pelo que pode começar pelo ponto mais próximo de si.',
+    'tourist-trip-itinerary-list-show-more': 'Ver mais pontos',
+    'tourist-trip-itinerary-list-show-less': 'Ver menos pontos',
     'tourist-trip-card-difficulty-label': 'Dificuldade',
     'tourist-trip-card-difficulty-description-easy': 'Fácil',
     'tourist-trip-card-difficulty-description-medium': 'Médio',
