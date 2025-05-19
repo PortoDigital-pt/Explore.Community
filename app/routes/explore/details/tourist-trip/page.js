@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { intlShape } from 'react-intl';
 import { arrayOf, number, shape, string } from 'prop-types';
 import classname from 'classnames';
+import { useRouter } from 'found';
 import Icon from '../../../../component/Icon';
 import ImageSlider from '../../../../component/amporto/image-slider';
 
@@ -59,7 +60,12 @@ TouristTripContactDetails.contextTypes = {
 };
 
 export const PageContent = ({ selectedData }, { intl }) => {
+  const { router } = useRouter();
   const [showMore, setShowMore] = useState(false);
+
+  const lastIndex = useMemo(() => {
+    return selectedData.pois?.findLastIndex(lastIndex => lastIndex);
+  }, [selectedData.pois]);
 
   return (
     <>
@@ -110,7 +116,7 @@ export const PageContent = ({ selectedData }, { intl }) => {
                 <div className="row" key={poi.item}>
                   <div className="first-column">
                     <Icon img="icon-circle" text={poi.position} />
-                    <div className="vertical-line" />
+                    {lastIndex !== index && <div className="vertical-line" />}
                   </div>
 
                   <div className="second-column">
@@ -119,7 +125,7 @@ export const PageContent = ({ selectedData }, { intl }) => {
                       {decodeURIComponent(poi.description)}
                       <button
                         type="button"
-                        onClick={() => alert('WIP')}
+                        onClick={() => router.push(`/pois/${poi.item}`)}
                         className="know-more"
                       >
                         {intl.messages['know-more']}

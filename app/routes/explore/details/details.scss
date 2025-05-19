@@ -208,9 +208,9 @@
       justify-content: flex-start;
       margin-top: 10px;
 
-      color: #212121;
-      font-family: 'Open Sans';
-      font-size: 12px;
+      color: $grey-dark-down;
+      font-family: $font-family;
+      font-size: $font-size-base;
       font-style: normal;
       font-weight: 400;
     }
@@ -304,7 +304,7 @@
           .title {
             color: $primary-dark;
             font-family: $font-family;
-            font-size: 12px;
+            font-size: $font-size-base;
             font-style: normal;
             font-weight: 700;
             line-height: 16px; /* 133.333% */
@@ -312,8 +312,8 @@
 
           .description {
             margin: 15px 0;
-            color: #212121;
-            font-size: 12px;
+            color: $grey-dark-down;
+            font-size: $font-size-base;
             font-style: normal;
             font-weight: 400;
 
