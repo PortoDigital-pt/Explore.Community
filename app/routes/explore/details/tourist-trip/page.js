@@ -1,29 +1,17 @@
 import React, { useMemo, useState } from 'react';
 import { intlShape } from 'react-intl';
-import { arrayOf, number, shape, string } from 'prop-types';
 import classname from 'classnames';
 import { useRouter } from 'found';
 import Icon from '../../../../component/Icon';
 import ImageSlider from '../../../../component/amporto/image-slider';
-
-const touristTripShape = shape({
-  type: string.isRequired,
-  id: string.isRequired,
-  name: string.isRequired,
-  pois: arrayOf(
-    shape({
-      position: number.isRequired,
-      item: string.isRequired,
-      name: string.isRequired,
-      description: string.isRequired,
-      duration: string.isRequired,
-      difficulty: string.isRequired
-    })
-  )
-});
+import { touristTripShape } from './shape';
 
 export const TouristTripContactDetails = ({ selectedData }, { intl }) => (
   <div className="detail-info">
+    <div className="description">
+      <p>{selectedData.description}</p>
+    </div>
+
     <div className="pois-and-duration">
       <div>
         <Icon img="icon-camera" viewBox="0 0 16 16" />
@@ -52,12 +40,14 @@ export const TouristTripContactDetails = ({ selectedData }, { intl }) => (
 );
 
 TouristTripContactDetails.propTypes = {
-  selectedData: touristTripShape.isRequired
+  selectedData: touristTripShape.isRequired,
 };
 
 TouristTripContactDetails.contextTypes = {
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
+
+// --------------------------------------------------------------------------------------------------------
 
 export const PageContent = ({ selectedData }, { intl }) => {
   const { router } = useRouter();
@@ -76,7 +66,7 @@ export const PageContent = ({ selectedData }, { intl }) => {
       )}
       <div
         className={classname('details', {
-          lower: selectedData.images === null
+          lower: selectedData.images === null,
         })}
       >
         <TouristTripContactDetails selectedData={selectedData} />
@@ -169,9 +159,9 @@ export const PageContent = ({ selectedData }, { intl }) => {
 };
 
 PageContent.propTypes = {
-  selectedData: touristTripShape.isRequired
+  selectedData: touristTripShape.isRequired,
 };
 
 PageContent.contextTypes = {
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };

@@ -26,7 +26,7 @@ const Card = ({ type, className, data, onClick }) => {
           onClick();
         }
       }}
-      className={classnames('card', className)}
+      className={classnames('card', className, type)}
       onClick={onClick}
     >
       <div className="favourite-top">
@@ -36,12 +36,14 @@ const Card = ({ type, className, data, onClick }) => {
           blue={!data.images}
         />
       </div>
+
       {data.images && (
         <div className="image-cover">
           <img src={data.images[0]} alt={data.name} />
         </div>
       )}
-      <div className="content">
+
+      <div className={classnames('card-content', type)}>
         <div className={classnames('card-title', { smaller: !data.images })}>
           <h3>{data.name}</h3>
         </div>
@@ -77,8 +79,8 @@ Card.propTypes = {
     images: arrayOf(string),
     category: oneOfType([string, arrayOf(string)]).isRequired,
     lat: number.isRequired,
-    lon: number.isRequired
-  }).isRequired
+    lon: number.isRequired,
+  }).isRequired,
 };
 
 export default Card;
