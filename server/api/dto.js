@@ -141,7 +141,7 @@ export const touristTripToDto = (touristTrip, language) => {
   } = touristTrip;
 
   return {
-    type: 'touristTrips',
+    type: 'routes',
     id,
     category: extractValuesAndDecode(
       category_lang.value[language] || category_lang.value.pt

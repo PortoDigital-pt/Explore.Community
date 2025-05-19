@@ -5,7 +5,7 @@ import { getTouristTripList } from '../../../../util/amporto/api';
 import Section from '../section';
 import { configShape } from '../../../../util/shapes';
 
-const TouristTripSection = ({ language }, { config }) => {
+const RoutesSection = ({ language }, { config }) => {
   return (
     <Section
       getData={getTouristTripList}
@@ -14,21 +14,21 @@ const TouristTripSection = ({ language }, { config }) => {
       bottomButtonText="find-all-events"
       errorMessage="events-fetch-error"
       emptyMessage="events-empty"
-      type="touristTrips"
+      type="routes"
     />
   );
 };
 
-TouristTripSection.propTypes = {
+RoutesSection.propTypes = {
   language: string.isRequired
 };
 
-TouristTripSection.contextTypes = {
+RoutesSection.contextTypes = {
   config: configShape.isRequired
 };
 
 export default connectToStores(
-  TouristTripSection,
+  RoutesSection,
   ['PreferencesStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage()

@@ -1,4 +1,14 @@
 import React from 'react';
 import List from '../list';
+import { getTouristTripList } from '../../../../util/amporto/api';
 
-export default () => <List />;
+const RouteListPage = () => (
+  <List
+    type="routes"
+    getData={getTouristTripList}
+    errorMessage="pois-fetch-error"
+    emptyMessage="pois-empty"
+  />
+);
+
+export default RouteListPage;

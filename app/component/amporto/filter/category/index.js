@@ -10,7 +10,7 @@ const MAP_LAYERS_ICON = {
   stop: 'icon-icon_bus_with_background',
   pois: 'icon-explore-icon_pois_with_background',
   events: 'icon-explore-icon_events_with_background',
-  touristTrips: 'icon-routes_with_background'
+  routes: 'icon-routes_with_background'
 };
 
 const CategoryGroup = (

@@ -460,7 +460,7 @@ export default {
       },
       stages: { pt: 'Palcos', en: 'Stage' }
     },
-    touristTrips: {
+    routes: {
       itinerary: { pt: 'Roteiro', en: 'Itinerary' }
     }
   },
@@ -468,7 +468,7 @@ export default {
     dataProvider: {
       pois: 'http:%2F%2Fcitysdk.url.pt%2Fpois%2F,https:%2F%2Fcity-api.wearebitmaker.com%2FCitySDK%2Fpois',
       events: 'Agenda%20Porto',
-      touristTrips: 'ExplorePorto'
+      routes: 'ExplorePorto'
     }
   },
   coordinatesBounds: {
