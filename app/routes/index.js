@@ -17,7 +17,7 @@ export const render = createRender({});
 
 export default config => (
   <>
-    {getOnboarding()}
+    {config.onboarding !== null && getOnboarding()}
     <Route path="/" Component={Main}>
       <Route Component={TopLevel} allowAsIndex>
         <Route path="/js/*" Component={Error404} />

@@ -33,7 +33,7 @@ const commonListSchema = type => ({
   },
   categories: {
     customSanitizer: {
-      options: input => input.split(',')
+      options: input => input?.split(',')
     },
     custom: {
       options: (input, { req }) => {
@@ -45,7 +45,8 @@ const commonListSchema = type => ({
         return input.every(category => validCategories.includes(category));
       },
       errorMessage: 'invalid category'
-    }
+    },
+    optional: true
   }
 });
 

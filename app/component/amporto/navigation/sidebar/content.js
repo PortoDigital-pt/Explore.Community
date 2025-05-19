@@ -25,6 +25,7 @@ const Content = (
   {
     config: {
       title,
+      onboarding,
       optionalNavigationItems,
       privacyPolicyLink,
       cookiesPolicyLink
@@ -86,23 +87,30 @@ const Content = (
             <Icon img={`icon-${NAVIGATION_PROFILE}`} viewBox="0 0 24 24" />
             <span>{intl.messages[`nav-item-${NAVIGATION_PROFILE}`]}</span>
           </button>
-          <hr />
-          <button
-            onClick={() => navigate(NAVIGATION_ONBOARDING)}
-            type="button"
-            aria-label={intl.formatMessage(
-              { id: `nav-item-aria-${NAVIGATION_ONBOARDING}` },
-              { app: title }
-            )}
-          >
-            <Icon img={`icon-${NAVIGATION_ONBOARDING}`} viewBox="0 0 24 24" />
-            <span>
-              {intl.formatMessage(
-                { id: `nav-item-${NAVIGATION_ONBOARDING}` },
-                { app: title }
-              )}
-            </span>
-          </button>
+          {onboarding && (
+            <>
+              <hr />
+              <button
+                onClick={() => navigate(NAVIGATION_ONBOARDING)}
+                type="button"
+                aria-label={intl.formatMessage(
+                  { id: `nav-item-aria-${NAVIGATION_ONBOARDING}` },
+                  { app: title }
+                )}
+              >
+                <Icon
+                  img={`icon-${NAVIGATION_ONBOARDING}`}
+                  viewBox="0 0 24 24"
+                />
+                <span>
+                  {intl.formatMessage(
+                    { id: `nav-item-${NAVIGATION_ONBOARDING}` },
+                    { app: title }
+                  )}
+                </span>
+              </button>
+            </>
+          )}
         </nav>
       </>
       {(privacyPolicyLink || cookiesPolicyLink) && (

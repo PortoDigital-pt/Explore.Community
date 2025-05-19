@@ -8,14 +8,15 @@ import { configShape } from '../../../../util/shapes';
 
 const EventsSection = ({ language }, { config }) => {
   const Intro = useMemo(
-    () => () => (
-      <p>
-        {parseConfigDescriptionTextWithLink(
-          config.cards.events[language],
-          config.culturalAgendaLink
-        )}
-      </p>
-    ),
+    () => () =>
+      config.cards.events?.[language] && config.culturalAgendaLink ? (
+        <p>
+          {parseConfigDescriptionTextWithLink(
+            config.cards.events[language],
+            config.culturalAgendaLink
+          )}
+        </p>
+      ) : null,
     [language]
   );
 

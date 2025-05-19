@@ -1,176 +1,6 @@
-import { BIKEAVL_WITHMAX } from '../util/vehicleRentalUtils';
-
-require('dotenv')?.config();
-
-const {
-  CONFIG,
-  API_URL,
-  OTP_URL,
-  MAP_URL,
-  APP_TITLE,
-  APP_DESCRIPTION,
-  BOUNDING_BOX,
-  TIME_ZONE,
-  TIME_ZONE_DATA,
-  ROOTLINK,
-  INDEX_PATH,
-  TEXT_LOGO,
-  LOGO,
-  CONTACT_NAME,
-  USE_SEARCH_POLYGON,
-  FEED_IDS,
-  SEARCH_SOURCES,
-  PELIAS_LAYER,
-  MINIMAL_REGEXP,
-  AVAILABLE_LANGUAGES,
-  DEFAULT_LANGUAGE,
-  MAP_ATTRIBUTION,
-  APP_BAR_LINK_NAME,
-  APP_BAR_LINK_HREF,
-  MODES_FERRY_AVAILABLE_SELECTION,
-  MODES_FERRY_DEFAULT,
-  MODES_CITY_BYKE_AVAILABLE_SELECTION,
-  MODES_CITY_BYKE_DEFAULT,
-  HIDE_WEATHER_LABEL,
-  ALWAYS_SHOW_DISTANCE_IN_KM,
-  ALLOW_LOGIN,
-  HOST_NAMES,
-  USE_REALTIME_TRAVELLER_CAPACITIES,
-  VEHICLES,
-  SHOW_VEHICLES_ON_STOP_PAGE,
-  SHOW_VEHICLES_ON_SUMMARY_PAGE,
-  SHOW_WEATHER_INFORMATION,
-  INCLUDE_PUBLIC_WITH_BIKE_PLAN,
-  REDIRECT_REITTIOPAS_PARAMS,
-  SHOW_NEAR_YOU_BUTTONS,
-  NEAR_YOU_MODES,
-  NARROW_NEAR_YOU_BUTTONS,
-  MESSAGE_BAR_ALERTS,
-  SHOW_CO2_IN_ITINERARY_SUMMARY,
-  SHOW_ROUTES,
-  SHOW_BLOCKS,
-  SHOW_FAVOURITES,
-  PRIVACY_POLICY,
-  COOKIES_POLICY,
-  EXPLORE_TILES_URL,
-  CULTURAL_AGENDA,
-  WEATHER_API,
-  WEATHER_CITY_CODE,
-  SHOW_PROFILE_NOTIFICATION,
-  EVENT_SOURCE
-} = process.env;
-
-const YEAR = 1900 + new Date().getYear();
-
-const minLat = Number(BOUNDING_BOX.split(',')[1]);
-const maxLat = Number(BOUNDING_BOX.split(',')[3]);
-const minLon = Number(BOUNDING_BOX.split(',')[0]);
-const maxLon = Number(BOUNDING_BOX.split(',')[2]);
-
-const realtime = require('./realtimeUtils.amporto').default;
-
 export default {
-  CONFIG,
   URL: {
-    ROOTLINK,
-    API_URL,
-    MAP: {
-      default: MAP_URL,
-      en: MAP_URL
-    },
-    EXPLORE_TILES: {
-      default: EXPLORE_TILES_URL
-    },
-    STOP_MAP: {
-      default: `${OTP_URL}routers/default/vectorTiles/stops,stations/`
-    },
-    RENTAL_STATION_MAP: {
-      default: `${OTP_URL}routers/default/vectorTiles/rentalStations/`
-    },
-    REALTIME_RENTAL_STATION_MAP: {
-      default: `${OTP_URL}routers/default/vectorTiles/realtimeRentalStations/`
-    },
     FONT: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800'
-  },
-
-  exploreMinZoom: 13,
-
-  title: APP_TITLE,
-  indexPath: INDEX_PATH,
-  textLogo: TEXT_LOGO === 'true',
-  logo: LOGO,
-
-  // navbar items
-  optionalNavigationItems: {
-    routes: SHOW_ROUTES === 'true',
-    blocks: SHOW_BLOCKS === 'true',
-    favourites: SHOW_FAVOURITES === 'true'
-  },
-
-  contactName: {
-    default: CONTACT_NAME
-  },
-
-  useSearchPolygon: USE_SEARCH_POLYGON === 'true',
-  searchParams: {
-    'boundary.country': 'PRT',
-    'boundary.rect.min_lat': minLat,
-    'boundary.rect.max_lat': maxLat,
-    'boundary.rect.min_lon': minLon,
-    'boundary.rect.max_lon': maxLon
-  },
-  feedIds: FEED_IDS?.split(',') || ['1', '2'],
-
-  realTime: realtime,
-
-  searchSources: SEARCH_SOURCES?.split(',') || ['oa', 'osm', 'custom'],
-  search: {
-    peliasLayer: PELIAS_LAYER?.split(',') || ['address', 'stop', 'venue'],
-    minimalRegexp: new RegExp(MINIMAL_REGEXP)
-  },
-
-  availableLanguages: AVAILABLE_LANGUAGES?.split(',') || ['pt', 'en'],
-  defaultLanguage: DEFAULT_LANGUAGE || 'pt',
-
-  timezoneData: TIME_ZONE_DATA,
-  timeZone: TIME_ZONE,
-
-  map: {
-    showLayerSelector: false,
-    attribution: MAP_ATTRIBUTION,
-    areaBounds: {
-      corner1: [minLat, minLon],
-      corner2: [maxLat, maxLon]
-    }
-  },
-
-  vehicleRental: {
-    networks: {
-      smoove: {
-        enabled: true,
-        season: {
-          alwaysOn: true
-        },
-        capacity: BIKEAVL_WITHMAX,
-        icon: 'citybike',
-        name: {
-          fi: 'Helsinki ja Espoo',
-          sv: 'Helsingfors och Esbo',
-          en: 'Helsinki and Espoo'
-        },
-        type: 'citybike',
-        url: {
-          fi: 'https://www.hsl.fi/kaupunkipyorat/helsinki',
-          sv: 'https://www.hsl.fi/sv/stadscyklar/helsingfors',
-          en: 'https://www.hsl.fi/en/citybikes/helsinki'
-        }
-      }
-    }
-  },
-
-  appBarLink: {
-    name: APP_BAR_LINK_NAME,
-    href: APP_BAR_LINK_HREF
   },
 
   sprites: 'assets/svg-sprite.amporto.svg',
@@ -178,33 +8,17 @@ export default {
   colors: {
     primary: '#000F9F',
     iconColors: {
-      'mode-bus': '#A7D9FE',
-      'mode-tram': '#A2874F',
-      'mode-subway': '#00095F',
-      'mode-citybike': '#FFE99D',
-      pois: '#99DCD5',
-      events: '#FEC8A7',
       accesspoints: '#000F9F'
     },
     itineraryDefault: '#000F9F',
     originDestination: {
       icon: {
-        color: '#00095F',
-        inverseColor: '#FAFAFA'
+        color: '#00095F'
       }
     }
   },
 
-  socialMedia: {
-    title: APP_TITLE,
-    description: APP_DESCRIPTION
-  },
-
-  meta: {
-    description: APP_DESCRIPTION,
-    keywords: 'digitransit'
-  },
-
+  includePublicWithBikePlan: true,
   transportModes: {
     airplane: {
       availableForSelection: false,
@@ -215,55 +29,20 @@ export default {
       defaultValue: false
     },
     ferry: {
-      availableForSelection: MODES_FERRY_AVAILABLE_SELECTION === 'true',
-      defaultValue: MODES_FERRY_DEFAULT === 'true'
+      availableForSelection: false,
+      defaultValue: false
     },
     citybike: {
-      availableForSelection: MODES_CITY_BYKE_AVAILABLE_SELECTION === 'true',
-      defaultValue: MODES_CITY_BYKE_DEFAULT === 'true'
+      availableForSelection: true,
+      defaultValue: true
     }
   },
-  hideWeatherLabel: HIDE_WEATHER_LABEL === 'true',
-  alwaysShowDistanceInKm: ALWAYS_SHOW_DISTANCE_IN_KM === 'true',
-
-  areaPolygon: [
-    [minLon, minLat],
-    [minLon, maxLat],
-    [maxLon, maxLat],
-    [maxLon, minLat],
-    [minLon, minLat]
-  ],
-
-  menu: {
-    copyright: { label: `© APD ${YEAR}` },
-    content: [
-      {
-        name: 'about-this-service',
-        route: '/about'
-      },
-      {
-        name: 'accessibility-statement',
-        href: 'https://kauppa.waltti.fi/media/authority/154/files/Saavutettavuusseloste_Waltti-reittiopas_JyQfJhC.htm'
-      }
-    ]
-  },
-
-  allowLogin: ALLOW_LOGIN === 'true',
-  /* depends on https://github.com/HSLdevcom/fav-service */
-  hostnames: HOST_NAMES?.split(','),
 
   defaultEndpoint: {
     address: 'Porto - Portugal',
     lat: 41.14858,
     lon: -8.610945
   },
-  defaultMapZoom: 16,
-
-  useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
-
-  privacyPolicyLink: PRIVACY_POLICY,
-  cookiesPolicyLink: COOKIES_POLICY,
-  culturalAgendaLink: CULTURAL_AGENDA,
 
   cards: {
     events: {
@@ -276,55 +55,6 @@ export default {
     pt: 'A Explore.Porto recolhe e armazena informações através de cookies para melhorar a sua experiência. Ao clicar em aceitar, concorda com o uso de cookies. Saiba mais na nossa *link*Política de Privacidade*link*.',
     en: 'Explore.Porto collects and stores information through cookies to improve your experience. By clicking accept, you agree to the use of cookies. Find out more in our *link*Privacy Policy*link*.'
   },
-
-  themeMap: {
-    porto: 'porto',
-    amporto: 'amporto'
-  },
-
-  geoJson: {
-    layers: []
-  },
-
-  vehicles: VEHICLES === 'true',
-  showVehiclesOnStopPage: SHOW_VEHICLES_ON_STOP_PAGE === 'true',
-  showVehiclesOnSummaryPage: SHOW_VEHICLES_ON_SUMMARY_PAGE === 'true',
-
-  /* no WFS compatible data for Portugal, so hideWeatherLabel: true */
-  showWeatherInformation: SHOW_WEATHER_INFORMATION === 'true',
-
-  includePublicWithBikePlan: INCLUDE_PUBLIC_WITH_BIKE_PLAN === 'true',
-
-  redirectReittiopasParams: REDIRECT_REITTIOPAS_PARAMS === 'true',
-
-  showNearYouButtons: SHOW_NEAR_YOU_BUTTONS === 'true',
-  nearYouModes: NEAR_YOU_MODES?.split(',') || [],
-  narrowNearYouButtons: NARROW_NEAR_YOU_BUTTONS === 'true',
-
-  messageBarAlerts: MESSAGE_BAR_ALERTS === 'true',
-
-  stopCard: {
-    header: {
-      virtualMonitorBaseUrl:
-        'https://virtualmonitor.services.dev.portodigital.pt/'
-    }
-  },
-  mainMenu: {
-    stopMonitor: {
-      show: true,
-      url: 'https://virtualmonitor.services.dev.portodigital.pt/createview'
-    }
-  },
-
-  zones: {
-    stops: true,
-    itinerary: true
-  },
-
-  // Notice! Turning on this setting forces the search for car routes (for the CO2 comparison only).
-  showCO2InItinerarySummary: SHOW_CO2_IN_ITINERARY_SUMMARY === 'true',
-
-  availableTickets: null,
 
   onboarding: {
     page1: {
@@ -374,14 +104,8 @@ export default {
       }
     }
   },
+
   filters: {
-    stop: {
-      bus: { pt: 'Autocarro', en: 'Bus' },
-      tram: { pt: 'Elétrico', en: 'Tram' },
-      subway: { pt: 'Metro', en: 'Subway' },
-      rail: { pt: 'Comboio', en: 'Rail' },
-      citybike: { pt: 'Bicicletas', en: 'Citybikes' }
-    },
     pois: {
       fadoHouse: {
         pt: 'Casas de Fado',
@@ -461,45 +185,11 @@ export default {
       stages: { pt: 'Palcos', en: 'Stage' }
     }
   },
+
   ngsi: {
     dataProvider: {
       pois: 'http:%2F%2Fcitysdk.url.pt%2Fpois%2F,https:%2F%2Fcity-api.wearebitmaker.com%2FCitySDK%2Fpois',
       events: 'Agenda%20Porto'
     }
-  },
-  coordinatesBounds: {
-    minLat,
-    maxLat,
-    minLon,
-    maxLon
-  },
-  weatherApi: WEATHER_API,
-  weatherCityCode: WEATHER_CITY_CODE,
-  weather: {
-    cities: {
-      1131200: { pt: 'Porto', en: 'Porto' }
-    },
-    wind: {
-      0: { pt: 'Sem Informação', en: 'No Information' },
-      1: { pt: 'Fraco', en: 'Weak' },
-      2: { pt: 'Moderado', en: 'Moderate' },
-      3: { pt: 'Forte', en: 'Strong' },
-      4: { pt: 'Muito forte', en: 'Very Strong' }
-    },
-    windDirection: {
-      N: { pt: 'Norte', en: 'North' },
-      NE: { pt: 'Nordeste', en: 'Northeast' },
-      E: { pt: 'Leste', en: 'East' },
-      SE: { pt: 'Sudeste', en: 'Southeast' },
-      S: { pt: 'Sul', en: 'South' },
-      SW: { pt: 'Sudoeste', en: 'Southwest' },
-      W: { pt: 'Oeste', en: 'West' },
-      NW: { pt: 'Noroeste', en: 'Northwest' }
-    }
-  },
-  profile: {
-    showNotification: SHOW_PROFILE_NOTIFICATION === 'true',
-    showAuthenticationInfo: ALLOW_LOGIN === 'true'
-  },
-  eventSource: EVENT_SOURCE || 'agenda_porto'
+  }
 };

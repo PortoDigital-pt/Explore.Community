@@ -1,36 +1,69 @@
 /* eslint-disable prefer-template */
+import dotenv from 'dotenv';
 import safeJsonParse from '../util/safeJsonParser';
 import { BIKEAVL_WITHMAX } from '../util/vehicleRentalUtils';
+import realTime from './realtimeUtils';
 
-require('dotenv')?.config();
+dotenv.config();
 
-const CONFIG = process.env.CONFIG || 'default';
-const API_URL = process.env.API_URL || 'https://dev-api.digitransit.fi';
-const GEOCODING_BASE_URL =
-  process.env.GEOCODING_BASE_URL || `${API_URL}/geocoding/v1`;
-const MAP_URL = process.env.MAP_URL || 'https://dev-cdn.digitransit.fi';
-const MAP_VERSION = process.env.MAP_VERSION || 'v3';
-const POI_MAP_PREFIX = `${MAP_URL}/map/v3/finland`;
-const OTP_URL = process.env.OTP_URL || `${API_URL}/routing/v2/finland/`;
-const STOP_TIMETABLES_URL =
-  process.env.STOP_TIMETABLES_URL || 'https://dev.kartat.hsl.fi';
-const APP_PATH = process.env.APP_CONTEXT || '';
 const {
+  PORT = 8080,
+  ROOTLINK,
+  CONFIG,
   NODE_ENV,
+  API_URL,
+  ASSET_URL,
+  GEOCODING_BASE_URL,
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME,
   API_SUBSCRIPTION_HEADER_NAME,
   API_SUBSCRIPTION_TOKEN,
-  RUN_ENV
+  RUN_ENV,
+  MAP_URL,
+  EXPLORE_TILES_URL,
+  OTP_URL,
+  OTP_TIMEOUT = 12000,
+  APP_PATH = '',
+  APP_DESCRIPTION,
+  GTM_ID = null,
+  APP_TITLE,
+  INDEX_PATH = '',
+  SHOW_ROUTES,
+  SHOW_BLOCKS,
+  SHOW_FAVOURITES,
+  BOUNDING_BOX,
+  MAP_ATTRIBUTION,
+  FEED_IDS = '1,2',
+  SEARCH_SOURCES = 'oa,osm,custom',
+  PELIAS_LAYER = 'address,stop,venue',
+  MINIMAL_REGEXP = '.+',
+  AVAILABLE_LANGUAGES = 'pt,en',
+  DEFAULT_LANGUAGE = 'pt',
+  TIME_ZONE_DATA = 'Europe/Lisbon|LMT WET WEST WEMT CET CEST|A.J 0 -10 -20 -10 -20|012121212121212121212121212121212121212121212321232123212321212121212121212121212121212121212121214121212121212121212121212121212124545454212121212121212121212121212121212121212121212121212121212121212121212121212121212121|-2le00 aPX0 Sp0 LX0 1vc0 Tc0 1uM0 SM0 1vc0 Tc0 1vc0 SM0 1vc0 6600 1co0 3E00 17c0 1fA0 1a00 1io0 1a00 1io0 17c0 3I00 17c0 1cM0 1cM0 3Fc0 1cM0 1a00 1fA0 1io0 17c0 1cM0 1cM0 1a00 1fA0 1io0 1qM0 Dc0 1tA0 1cM0 1dc0 1400 gL0 IM0 s10 U00 dX0 Rc0 pd0 Rc0 gL0 Oo0 pd0 Rc0 gL0 Oo0 pd0 14o0 1cM0 1cP0 1cM0 1cM0 1cM0 1cM0 1cM0 3Co0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 pvy0 1cM0 1cM0 1fA0 1cM0 1cM0 1cN0 1cL0 1cN0 1cM0 1cM0 1cM0 1cM0 1cN0 1cL0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|27e5',
+  TIME_ZONE = 'Europe/Lisbon',
+  ALLOW_LOGIN,
+  ALLOW_FAVOURITES_FROM_LOCAL_STORAGE = 'true',
+  VIRTUAL_MONITOR_BASE_URL,
+  USE_REALTIME_TRAVELLER_CAPACITIES,
+  PRIVACY_POLICY,
+  COOKIES_POLICY,
+  CULTURAL_AGENDA,
+  SHOW_NEAR_YOU_BUTTONS,
+  NEAR_YOU_MODES = 'favorite,bus,tram,subway,citybike',
+  WEATHER_API = 'https://api.ipma.pt/open-data/forecast/meteorology',
+  WEATHER_CITY_CODE,
+  SHOW_PROFILE_NOTIFICATION,
+  EVENT_SOURCE,
+  REALTIME_PATCH
 } = process.env;
 const hasAPISubscriptionQueryParameter =
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME && API_SUBSCRIPTION_TOKEN;
-const PORT = process.env.PORT || 8080;
-const APP_DESCRIPTION = 'Digitransit journey planning UI';
-const OTP_TIMEOUT = process.env.OTP_TIMEOUT || 12000;
-const YEAR = 1900 + new Date().getYear();
-const realtime = require('./realtimeUtils').default;
 
-const REALTIME_PATCH = safeJsonParse(process.env.REALTIME_PATCH) || {};
+const realTimePatch = safeJsonParse(REALTIME_PATCH) || {};
+
+const minLat = Number(BOUNDING_BOX.split(',')[1]);
+const maxLat = Number(BOUNDING_BOX.split(',')[3]);
+const minLon = Number(BOUNDING_BOX.split(',')[0]);
+const maxLon = Number(BOUNDING_BOX.split(',')[2]);
 
 export default {
   PORT,
@@ -38,68 +71,44 @@ export default {
   NODE_ENV,
   OTPTimeout: OTP_TIMEOUT,
   URL: {
+    ROOTLINK,
     API_URL,
-    ASSET_URL: process.env.ASSET_URL,
+    ASSET_URL,
     MAP_URL,
     OTP: OTP_URL,
     MAP: {
-      default: `${MAP_URL}/map/${MAP_VERSION}/hsl-map/`,
-      sv: `${MAP_URL}/map/${MAP_VERSION}/hsl-map-sv/`,
-      en: `${MAP_URL}/map/${MAP_VERSION}/hsl-map-en/`
+      default: MAP_URL,
+      en: MAP_URL
+    },
+    EXPLORE_TILES: {
+      default: EXPLORE_TILES_URL
     },
     STOP_MAP: {
-      default: `${POI_MAP_PREFIX}/fi/stops,stations/`,
-      sv: `${POI_MAP_PREFIX}/sv/stops,stations/`
+      default: `${OTP_URL}routers/default/vectorTiles/stops,stations/`
     },
     RENTAL_STATION_MAP: {
-      default: `${POI_MAP_PREFIX}/fi/rentalStations/`
+      default: `${OTP_URL}routers/default/vectorTiles/rentalStations/`
     },
     REALTIME_RENTAL_STATION_MAP: {
-      default: `${POI_MAP_PREFIX}/fi/realtimeRentalStations/`
-    },
-    REALTIME_RENTAL_VEHICLE_MAP: {
-      default: `${POI_MAP_PREFIX}/fi/realtimeRentalVehicles/`
-    },
-    PARK_AND_RIDE_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParking/`,
-      sv: `${POI_MAP_PREFIX}/sv/vehicleParking/`,
-      fi: `${POI_MAP_PREFIX}/fi/vehicleParking/`
-    },
-    PARK_AND_RIDE_GROUP_MAP: {
-      default: `${POI_MAP_PREFIX}/en/vehicleParkingGroups/`,
-      sv: `${POI_MAP_PREFIX}/sv/vehicleParkingGroups/`,
-      fi: `${POI_MAP_PREFIX}/fi/vehicleParkingGroups/`
+      default: `${OTP_URL}routers/default/vectorTiles/realtimeRentalStations/`
     },
 
     FONT: 'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700',
-    PELIAS: `${process.env.GEOCODING_BASE_URL || GEOCODING_BASE_URL}/search${
+    PELIAS: `${GEOCODING_BASE_URL}/search${
       hasAPISubscriptionQueryParameter
         ? `?${API_SUBSCRIPTION_QUERY_PARAMETER_NAME}=${API_SUBSCRIPTION_TOKEN}`
         : ''
     }`,
-    PELIAS_REVERSE_GEOCODER: `${
-      process.env.GEOCODING_BASE_URL || GEOCODING_BASE_URL
-    }/reverse${
+    PELIAS_REVERSE_GEOCODER: `${GEOCODING_BASE_URL}/reverse${
       hasAPISubscriptionQueryParameter
         ? `?${API_SUBSCRIPTION_QUERY_PARAMETER_NAME}=${API_SUBSCRIPTION_TOKEN}`
         : ''
     }`,
-    PELIAS_PLACE: `${
-      process.env.GEOCODING_BASE_URL || GEOCODING_BASE_URL
-    }/place${
+    PELIAS_PLACE: `${GEOCODING_BASE_URL}/place${
       hasAPISubscriptionQueryParameter
         ? `?${API_SUBSCRIPTION_QUERY_PARAMETER_NAME}=${API_SUBSCRIPTION_TOKEN}`
         : ''
     }`,
-    ROUTE_TIMETABLES: {
-      HSL: `${API_URL}/timetables/v1/hsl/routes/`,
-      tampere: 'https://www.nysse.fi/aikataulut-ja-reitit/linjat/'
-    },
-    STOP_TIMETABLES: {
-      HSL: `${STOP_TIMETABLES_URL}/julkaisin-render/?component=Timetable`
-    },
-    WEATHER_DATA:
-      'https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::simple&timestep=5&parameters=temperature,WindSpeedMS,WeatherSymbol3',
     EMBEDDED_SEARCH_GENERATION: '/reittihakuelementti'
   },
 
@@ -113,22 +122,37 @@ export default {
   hasAPISubscriptionHeader:
     API_SUBSCRIPTION_HEADER_NAME && API_SUBSCRIPTION_TOKEN,
 
-  APP_PATH: `${APP_PATH}`,
-  indexPath: '',
-  title: 'Reittihaku',
+  APP_PATH,
+  title: APP_TITLE,
+  indexPath: INDEX_PATH,
 
-  textLogo: false,
-  // Navbar logo
-  logo: 'default/digitransit-logo.png',
+  minZoomToShowOnMap: 13,
 
-  searchParams: {},
-  feedIds: [],
+  privacyPolicyLink: PRIVACY_POLICY,
+  cookiesPolicyLink: COOKIES_POLICY,
+  culturalAgendaLink: CULTURAL_AGENDA,
 
-  realTime: realtime,
-  realTimePatch: REALTIME_PATCH,
+  // navbar items
+  optionalNavigationItems: {
+    routes: SHOW_ROUTES === 'true',
+    blocks: SHOW_BLOCKS === 'true',
+    favourites: SHOW_FAVOURITES === 'true'
+  },
+
+  searchParams: {
+    'boundary.country': 'PRT',
+    'boundary.rect.min_lat': minLat,
+    'boundary.rect.max_lat': maxLat,
+    'boundary.rect.min_lon': minLon,
+    'boundary.rect.max_lon': maxLon
+  },
+  feedIds: FEED_IDS.split(','),
+
+  realTime,
+  realTimePatch,
 
   // Google Tag Manager id
-  GTMid: process.env.GTM_ID || null,
+  GTMid: GTM_ID,
   /*
    * Define the icon and icon color used for each citybike station. Two icons are available,
    * 'citybike-stop-digitransit' and 'citybike-stop-digitransit-secondary'. For the first icon
@@ -144,7 +168,7 @@ export default {
    * by default search endpoints from all but gtfs sources, correct gtfs source
    * figured based on feedIds config variable
    */
-  searchSources: ['oa', 'osm', 'nlsfi'],
+  searchSources: SEARCH_SOURCES.split(','),
 
   search: {
     suggestions: {
@@ -153,9 +177,9 @@ export default {
     usePeliasStops: false,
     mapPeliasModality: false,
     peliasMapping: {},
-    peliasLayer: null,
+    peliasLayer: PELIAS_LAYER.split(','),
     peliasLocalization: null,
-    minimalRegexp: /.{2,}/
+    minimalRegexp: new RegExp(MINIMAL_REGEXP)
   },
 
   nearbyRoutes: {
@@ -216,25 +240,13 @@ export default {
   // if you enable car suggestions but the linear distance between all points is less than this, then a car route will
   // not be computed
   suggestCarMinDistance: 2000,
-  availableLanguages: [
-    'fi',
-    'sv',
-    'en',
-    'fr',
-    'nb',
-    'de',
-    'da',
-    'es',
-    'ro',
-    'pl'
-  ],
-  defaultLanguage: 'en',
-  // This timezone data will expire in 2037
-  timezoneData:
-    'Europe/Helsinki|EET EEST|-20 -30|0101010101010101010101010101010101010|22k10 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|12e5',
-  timeZone: 'Europe/Helsinki',
-  allowLogin: false,
-  allowFavouritesFromLocalstorage: true,
+  availableLanguages: AVAILABLE_LANGUAGES.split(','),
+  defaultLanguage: DEFAULT_LANGUAGE,
+  timezoneData: TIME_ZONE_DATA,
+  timeZone: TIME_ZONE,
+  allowLogin: ALLOW_LOGIN === 'true',
+  allowFavouritesFromLocalstorage:
+    ALLOW_FAVOURITES_FROM_LOCAL_STORAGE === 'true',
   useExtendedRouteTypes: false,
   mainMenu: {
     // Whether to show the left menu toggle button at all
@@ -298,18 +310,15 @@ export default {
     },
 
     showZoomControl: true,
-    showLayerSelector: true,
+    showLayerSelector: false,
     showStopMarkerPopupOnMobile: true,
     showScaleBar: true,
-    attribution:
-      '<a tabIndex="-1" href="http://osm.org/copyright" target="_blank">© OpenStreetMap</a>',
-
+    attribution: MAP_ATTRIBUTION,
     useModeIconsInNonTileLayer: false,
     // areBounds is for keeping map and user inside given area
-    // Finland + Stockholm
     areaBounds: {
-      corner1: [70.25, 32.25],
-      corner2: [58.99, 17.75]
+      corner1: [minLat, minLon],
+      corner2: [maxLat, maxLon]
     }
   },
 
@@ -317,7 +326,8 @@ export default {
     header: {
       showDescription: true,
       showStopCode: true,
-      showDistance: true
+      showDistance: true,
+      virtualMonitorBaseUrl: VIRTUAL_MONITOR_BASE_URL
     }
   },
 
@@ -334,7 +344,17 @@ export default {
     cityBikeSmallIconZoom: 14,
     // When should bikeshare availability be rendered in orange rather than green
     fewAvailableCount: 3,
-    networks: {},
+    networks: {
+      smoove: {
+        enabled: true,
+        season: {
+          alwaysOn: true
+        },
+        capacity: BIKEAVL_WITHMAX,
+        icon: 'citybike',
+        type: 'citybike'
+      }
+    },
     capacity: BIKEAVL_WITHMAX,
     buyInstructions: {
       fi: 'Osta käyttöoikeutta päiväksi, viikoksi tai koko kaudeksi',
@@ -366,20 +386,31 @@ export default {
 
   appBarStyle: 'default',
 
+  alwaysShowDistanceInKm: true,
+
   colors: {
-    primary: '#000F94',
+    primary: '#493e90',
     backgroundInfo: '#e5f2fa',
     iconColors: {
       'mode-airplane': '#0046ad',
-      'mode-bus': '#0088ce',
-      'mode-tram': '#6a8925',
+      'mode-bus': '#A7D9FE',
+      'mode-tram': '#A2874F',
       'mode-metro': '#ed8c00',
+      'mode-subway': '#00095F',
       'mode-rail': '#af8dbc',
       'mode-ferry': '#247C7B',
-      'mode-citybike': '#f2b62d',
-      'mode-scooter': '#C5CAD2'
+      'mode-citybike': '#FFE99D',
+      'mode-scooter': '#C5CAD2',
+      pois: '#99DCD5',
+      events: '#FEC8A7',
+      accesspoints: '#493e90'
     },
-    itineraryDefault: '#000F9F'
+    itineraryDefault: '#493e90',
+    originDestination: {
+      icon: {
+        color: '#0c534a'
+      }
+    }
   },
   iconModeSet: 'digitransit',
   fontWeights: {
@@ -397,9 +428,8 @@ export default {
   },
 
   socialMedia: {
-    title: 'Digitransit',
+    title: APP_TITLE,
     description: APP_DESCRIPTION,
-    locale: 'en_US',
 
     image: {
       url: '/img/default-social-share.png',
@@ -409,13 +439,13 @@ export default {
 
     twitter: {
       card: 'summary_large_image',
-      site: '@hsldevcom'
+      site: ROOTLINK
     }
   },
 
   meta: {
     description: APP_DESCRIPTION,
-    keywords: 'digitransit'
+    keywords: APP_TITLE
   },
 
   hideExternalOperator: () => false,
@@ -461,12 +491,12 @@ export default {
 
     citybike: {
       availableForSelection: false,
-      defaultValue: false // always false
+      defaultValue: false
     },
 
     scooter: {
       availableForSelection: false,
-      defaultValue: false // always false
+      defaultValue: false
     }
   },
 
@@ -480,52 +510,13 @@ export default {
     }
   },
 
+  useSearchPolygon: true,
   areaPolygon: [
-    [18.776, 60.3316],
-    [18.9625, 60.7385],
-    [19.8615, 60.8957],
-    [20.4145, 61.1942],
-    [20.4349, 61.9592],
-    [19.7853, 63.2157],
-    [20.4727, 63.6319],
-    [21.6353, 63.8559],
-    [23.4626, 64.7794],
-    [23.7244, 65.3008],
-    [23.6873, 65.8569],
-    [23.2069, 66.2701],
-    [23.4627, 66.8344],
-    [22.9291, 67.4662],
-    [23.0459, 67.9229],
-    [20.5459, 68.7605],
-    [20.0996, 69.14],
-    [21.426, 69.4835],
-    [21.9928, 69.4009],
-    [22.9226, 68.8678],
-    [23.8108, 69.0145],
-    [24.6903, 68.8614],
-    [25.2262, 69.0596],
-    [25.4029, 69.7235],
-    [26.066, 70.0559],
-    [28.2123, 70.2496],
-    [29.5813, 69.7854],
-    [29.8467, 69.49],
-    [28.9502, 68.515],
-    [30.4855, 67.6952],
-    [29.4962, 66.9232],
-    [30.5219, 65.8728],
-    [30.1543, 64.9646],
-    [30.9641, 64.1321],
-    [30.572, 63.7098],
-    [31.5491, 63.3309],
-    [31.9773, 62.9304],
-    [31.576, 62.426],
-    [27.739, 60.1117],
-    [26.0945, 59.8015],
-    [22.4235, 59.3342],
-    [20.2983, 59.2763],
-    [19.3719, 59.6858],
-    [18.7454, 60.1305],
-    [18.776, 60.3316]
+    [minLon, minLat],
+    [minLon, maxLat],
+    [maxLon, maxLat],
+    [maxLon, minLat],
+    [minLon, minLat]
   ],
 
   // Minimun distance between from and to locations in meters. User is noticed
@@ -537,28 +528,21 @@ export default {
   // This reduces complexity in finding routes for the query.
   modePolygons: {},
 
-  menu: {
-    copyright: { label: `© Digitransit ${YEAR}` },
-    content: [
-      {
-        name: 'menu-feedback',
-        href: 'https://github.com/HSLdevcom/digitransit-ui/issues'
-      },
-      {
-        name: 'about-this-service',
-        route: '/about'
-      }
-    ]
-  },
-
   // Default origin endpoint to use when user is outside of area
+  /* e.g. override in your own config!
+    defaultEndpoint: {
+      address: 'Porto - Portugal',
+      lat: 41.14858,
+      lon: -8.610945
+    }
+  */
   defaultEndpoint: {
-    address: 'Helsinki-Vantaan Lentoasema',
-    lat: 60.317429,
-    lon: 24.9690395
+    address: 'Porto - Portugal',
+    lat: 41.14858,
+    lon: -8.610945
   },
 
-  defaultMapZoom: 12,
+  defaultMapZoom: 16,
 
   availableRouteTimetables: {},
 
@@ -566,7 +550,7 @@ export default {
 
   showTenWeeksOnRouteSchedule: true,
 
-  useRealtimeTravellerCapacities: false,
+  useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
 
   aboutThisService: {
     fi: [
@@ -713,33 +697,6 @@ export default {
     }
   ],
 
-  /* Do not change order of theme map lines */
-  /* key: name of theme, value: regex matching part of host name */
-  themeMap: {
-    hsl: '(reittiopas|next-dev.digitransit)',
-    apphsl: '(test.digitransit)',
-    turku: '(turku|foli)',
-    lappeenranta: 'lappeenranta',
-    joensuu: 'joensuu',
-    oulu: '(oulu|osl)',
-    hameenlinna: 'hameenlinna',
-    matka: '(matka|^dev.digitransit)',
-    vaasa: 'vaasa',
-    walttiOpas: 'waltti',
-    rovaniemi: 'rovaniemi',
-    kouvola: 'kouvola',
-    tampere: 'tampere',
-    mikkeli: 'mikkeli',
-    kotka: 'kotka',
-    jyvaskyla: 'jyvaskyla',
-    lahti: 'lahti',
-    kuopio: 'kuopio',
-    varely: '(seutuplus|varely)',
-    kela: 'kelareitit',
-    pori: 'pori',
-    raasepori: '(raasepori|bosse)'
-  },
-
   minutesToDepartureLimit: 9,
 
   routeCancelationAlertValidity: {
@@ -750,36 +707,37 @@ export default {
   imperialEnabled: false,
   // this flag when true enables imperial measurements  'feet/miles system'
 
-  vehicles: false,
-  showVehiclesOnStopPage: false,
+  vehicles: true,
+  showVehiclesOnStopPage: true,
   trafficNowLink: '',
 
   timetables: {},
 
-  showVehiclesOnItineraryPage: false,
+  showVehiclesOnItineraryPage: true,
 
-  showWeatherInformation: true,
+  showWeatherInformation: false,
   showBikeAndParkItineraries: false,
 
+  includePublicWithBikePlan: false,
   includeBikeSuggestions: true,
   includeCarSuggestions: false,
   includeParkAndRideSuggestions: false,
   // Park and ride and car suggestions separated
   separatedParkAndRideSwitch: false,
 
-  showNearYouButtons: false,
-  nearYouModes: [],
-  narrowNearYouButtons: false,
+  showNearYouButtons: SHOW_NEAR_YOU_BUTTONS === 'true',
+  nearYouModes: NEAR_YOU_MODES.split(','),
+  narrowNearYouButtons: true,
 
   /* Option to disable the "next" column of the Route panel as it can be confusing sometimes: https://github.com/mfdz/digitransit-ui/issues/167 */
   displayNextDeparture: true,
 
   messageBarAlerts: false,
 
-  availableTickets: {},
+  availableTickets: null,
   zones: {
-    stops: false,
-    itinerary: false
+    stops: true,
+    itinerary: true
   },
 
   viaPointsEnabled: true,
@@ -809,8 +767,11 @@ export default {
 
   showAlternativeLegs: true,
   // Notice! Turning on this setting forces the search for car routes (for the CO2 comparison only).
-  showCO2InItinerarySummary: false,
+  showCO2InItinerarySummary: true,
   geoJsonSvgSize: 20,
+  geoJson: {
+    layers: []
+  },
   routeNotifications: [
     {
       showForBikeWithPublic: true,
@@ -855,5 +816,117 @@ export default {
   ],
   navigation: false,
   sendAnalyticsCustomEventGoals: false,
-  shortenLongTextThreshold: 10 // for route number in itinerary summary
+  shortenLongTextThreshold: 10, // for route number in itinerary summary
+
+  coordinatesBounds: {
+    minLat,
+    maxLat,
+    minLon,
+    maxLon
+  },
+
+  // description used in explore page, as event section description
+  /* e.g. override in your own config
+  cards: {
+    events: {
+      pt: 'Desde exposições de arte emocionantes até concertos ao ar livre, mergulhe na vida cultural vibrante enquanto explora cada canto da cidade. Para ver mais eventos visite a página da *link*Agenda Cultural do Porto*link*.',
+      en: 'From exciting art exhibitions to open-air concerts, immerse yourself in the vibrant cultural life as you explore every corner of the city. For more events, visit the *link*Porto Cultural Agenda*link* page.'
+    }
+  } 
+  */
+  cards: {},
+
+  // cookies notice used in onboarding page
+  /* e.g. override in your own config
+  cookiesDescription: {
+    pt: 'A Explore.Porto recolhe e armazena informações através de cookies para melhorar a sua experiência. Ao clicar em aceitar, concorda com o uso de cookies. Saiba mais na nossa *link*Política de Privacidade*link*.',
+    en: 'Explore.Porto collects and stores information through cookies to improve your experience. By clicking accept, you agree to the use of cookies. Find out more in our *link*Privacy Policy*link*.'
+  }
+  */
+  cookiesDescription: {},
+
+  // onboarding pages
+  /* e.g. override in your own config
+  onboarding: {
+    page1: {
+      heading: {
+        en: 'Explore the city of Porto at **your** **own** **pace**',
+        pt: 'Explore a cidade do Porto **ao** **seu** **ritmo**'
+      }
+    },
+    page2: {
+      heading: {
+        en: 'A new way to get **around** **the** **city** of Porto',
+        pt: 'Uma nova forma de se **deslocar** **na** **cidade** do Porto'
+      },
+      paragraph: {
+        en: 'All schedules and transport information available **at** **your** **fingertips**.',
+        pt: 'Todos os horários e informaçãos sobre transportes disponíveis **na** **palma** **da** **sua** **mão**.'
+      }
+    }
+  }
+  */
+  onboarding: null,
+
+  // keys and language translations for your filters
+  /* e.g. override in your own config!
+  filters: {
+    pois: {
+      fadoHouse: { pt: 'Casas de Fado', en: 'Fado Houses' }
+    },
+    events: {
+      outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
+    }
+  }
+  */
+  filters: {
+    stop: {
+      bus: { pt: 'Autocarro', en: 'Bus' },
+      tram: { pt: 'Elétrico', en: 'Tram' },
+      subway: { pt: 'Metro', en: 'Subway' },
+      rail: { pt: 'Comboio', en: 'Rail' },
+      citybike: { pt: 'Bicicletas', en: 'Citybikes' }
+    },
+    pois: {
+      fadoHouse: { pt: 'Casas de Fado', en: 'Fado Houses' }
+    },
+    events: {
+      outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
+    }
+  },
+
+  ngsi: {
+    dataProvider: {
+      pois: '',
+      events: ''
+    }
+  },
+
+  weatherApi: WEATHER_API,
+  // code from IPMA API for your city
+  weatherCityCode: WEATHER_CITY_CODE,
+  weather: {
+    wind: {
+      0: { pt: 'Sem Informação', en: 'No Information' },
+      1: { pt: 'Fraco', en: 'Weak' },
+      2: { pt: 'Moderado', en: 'Moderate' },
+      3: { pt: 'Forte', en: 'Strong' },
+      4: { pt: 'Muito forte', en: 'Very Strong' }
+    },
+    windDirection: {
+      N: { pt: 'Norte', en: 'North' },
+      NE: { pt: 'Nordeste', en: 'Northeast' },
+      E: { pt: 'Leste', en: 'East' },
+      SE: { pt: 'Sudeste', en: 'Southeast' },
+      S: { pt: 'Sul', en: 'South' },
+      SW: { pt: 'Sudoeste', en: 'Southwest' },
+      W: { pt: 'Oeste', en: 'West' },
+      NW: { pt: 'Noroeste', en: 'Northwest' }
+    }
+  },
+  profile: {
+    showNotification: SHOW_PROFILE_NOTIFICATION === 'true',
+    showAuthenticationInfo: ALLOW_LOGIN === 'true'
+  },
+  eventSource: EVENT_SOURCE
 };
