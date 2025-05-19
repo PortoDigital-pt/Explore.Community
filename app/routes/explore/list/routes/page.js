@@ -4,7 +4,7 @@ import { getTouristTripList } from '../../../../util/amporto/api';
 
 const RouteListPage = () => (
   <List
-    type="touristTrips"
+    type="routes"
     getData={getTouristTripList}
     errorMessage="pois-fetch-error"
     emptyMessage="pois-empty"

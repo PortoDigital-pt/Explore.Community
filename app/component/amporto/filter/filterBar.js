@@ -9,7 +9,7 @@ const FILTERS_ICON_MAP = {
   stop: 'icon-icon_bus_no_map',
   pois: 'icon-camera',
   events: 'icon-events',
-  touristTrips: 'icon-routes'
+  routes: 'icon-routes'
 };
 
 const FilterBar = ({ filters, openModal, onClick }, { intl }) => {

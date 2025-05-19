@@ -8,23 +8,21 @@ import { touristTripShape } from './shape';
 
 const Mobile = (
   { location, onDetails, selectedData, showShare = false, innerRef },
-  { intl, executeAction },
-) => {
-  return (
-    <div className="mobile-view" ref={innerRef}>
-      <div className="content">
-        <Card
-          key={selectedData.id}
-          className="large-card"
-          onClick={() => onDetails(selectedData)}
-          data={selectedData}
-          type="touristTrips"
-          showDescription
-        />
-      </div>
+  { intl, executeAction }
+) => (
+  <div className="mobile-view" ref={innerRef}>
+    <div className="content">
+      <Card
+        key={selectedData.id}
+        className="large-card"
+        onClick={() => onDetails(selectedData)}
+        data={selectedData}
+        type="routes"
+        showDescription
+      />
     </div>
-  );
-};
+  </div>
+);
 
 Mobile.propTypes = {
   innerRef: shape(),
@@ -36,13 +34,13 @@ Mobile.propTypes = {
 
 Mobile.contextTypes = {
   intl: intlShape.isRequired,
-  executeAction: func.isRequired,
+  executeAction: func.isRequired
 };
 
 export const MobileContent = connectToStores(
   Mobile,
   ['PositionStore'],
   ({ getStore }) => ({
-    location: getStore('PositionStore').getLocationState(),
-  }),
+    location: getStore('PositionStore').getLocationState()
+  })
 );
