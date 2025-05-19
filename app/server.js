@@ -241,28 +241,30 @@ export default async function serve(req, res, next) {
       config
     });
 
-    if (!req.cookies.onboarded && !req.cookies['first-access']) {
-      // We only need this for 1 day (ms)
-      res.cookie('first-access', req.url, { maxAge: 24 * 60 * 60 * 1000 });
+    if (config.onboarding !== null) {
+      if (!req.cookies.onboarded && !req.cookies['first-access']) {
+        // We only need this for 1 day (ms)
+        res.cookie('first-access', req.url, { maxAge: 24 * 60 * 60 * 1000 });
+        context
+          .getComponentContext()
+          .getStore('PreferencesStore')
+          .setFirstAccess(req.url);
+      }
+
+      if (req.cookies['first-access']) {
+        context
+          .getComponentContext()
+          .getStore('PreferencesStore')
+          .setFirstAccess(req.cookies['first-access']);
+      }
+
       context
         .getComponentContext()
         .getStore('PreferencesStore')
-        .setFirstAccess(req.url);
+        .setOnboarded(
+          req.cookies.onboarded === 'true' || !!req.cookies['connect.sid']
+        );
     }
-
-    if (req.cookies['first-access']) {
-      context
-        .getComponentContext()
-        .getStore('PreferencesStore')
-        .setFirstAccess(req.cookies['first-access']);
-    }
-
-    context
-      .getComponentContext()
-      .getStore('PreferencesStore')
-      .setOnboarded(
-        req.cookies.onboarded === 'true' || req.cookies['connect.sid']
-      );
 
     context
       .getComponentContext()

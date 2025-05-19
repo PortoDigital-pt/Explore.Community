@@ -809,14 +809,6 @@ class NearYouPage extends React.Component {
     }
   };
 
-  renderSearchBox = () => {
-    return (
-      <div className="stops-near-you-location-search">
-        {this.renderAutoSuggestField(true)}
-      </div>
-    );
-  };
-
   renderAutoSuggestField = onMap => {
     const isMobile = this.props.breakpoint !== 'large';
     const searchProps = {

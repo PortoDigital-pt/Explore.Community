@@ -61,6 +61,7 @@ class MapLayerStore extends Store {
         {}
       )
     };
+
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,
       config,
