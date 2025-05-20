@@ -19,7 +19,7 @@ const routes = {
   '/api/pois': { handler: getPoiList, schema: poiListSchema },
   '/api/events/:id': { handler: getEventDetail, schema: detailSchema },
   '/api/events': { handler: getEventList, schema: eventListSchema },
-  '/api/tourist-trips': {
+  '/api/routes': {
     handler: getTouristTripsList,
     schema: touristTripsListSchema
   }

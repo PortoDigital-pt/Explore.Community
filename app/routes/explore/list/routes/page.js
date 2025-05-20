@@ -1,11 +1,11 @@
 import React from 'react';
 import List from '../list';
-import { getTouristTripList } from '../../../../util/amporto/api';
+import { getRoutesList } from '../../../../util/amporto/api';
 
 const RouteListPage = () => (
   <List
     type="routes"
-    getData={getTouristTripList}
+    getData={getRoutesList}
     errorMessage="pois-fetch-error"
     emptyMessage="pois-empty"
   />

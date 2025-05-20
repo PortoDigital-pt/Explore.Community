@@ -25,11 +25,11 @@ export function getEventList(query, { signal }) {
   }).then(response => response.json());
 }
 
-export function getTouristTripList(query, { signal }) {
+export function getRoutesList(query, { signal }) {
   const auxQuery = { ...query };
   delete auxQuery.categories;
 
-  return retryFetch(`/api/tourist-trips${buildQueryString(auxQuery)}`, 2, 200, {
+  return retryFetch(`/api/routes${buildQueryString(auxQuery)}`, 2, 200, {
     signal
   }).then(response => response.json());
 }
