@@ -33,3 +33,9 @@ export function getRoutesList(query, { signal }) {
     signal
   }).then(response => response.json());
 }
+
+export function getRoutesById({ id, query }, { signal }) {
+  return retryFetch(`/api/routes/${id}${buildQueryString(query)}`, 2, 200, {
+    signal
+  }).then(response => response.json());
+}

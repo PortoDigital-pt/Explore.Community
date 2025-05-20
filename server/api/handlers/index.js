@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { validationResult } from 'express-validator';
 import { getOffset, getInfinitePagination } from '../pagination';
 import { buildNGSIQueryString, customFetch } from '../util';
@@ -74,6 +75,9 @@ export const getDetail = async (toDto, request, response) => {
     params: { id },
     query: { language }
   } = request;
+
+  const url = `${process.env.NGSI_URL}/${id}`;
+  console.log('\n getDetail::URL => ', url);
 
   const { data, status, text } = await customFetch(
     `${process.env.NGSI_URL}/${id}`

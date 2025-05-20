@@ -2,9 +2,9 @@ import {
   poiListSchema,
   eventListSchema,
   detailSchema,
-  touristTripsListSchema
+  routesListSchema,
 } from './validation';
-import { getTouristTripsList } from './handlers/tourist-trips';
+import { getRoutesDetail, getRoutesList } from './handlers/routes';
 import { getPoiDetail, getPoiList } from './handlers/pois';
 import { getEventDetail, getEventList } from './handlers/events';
 import { setupCache } from './util';
@@ -20,9 +20,10 @@ const routes = {
   '/api/events/:id': { handler: getEventDetail, schema: detailSchema },
   '/api/events': { handler: getEventList, schema: eventListSchema },
   '/api/routes': {
-    handler: getTouristTripsList,
-    schema: touristTripsListSchema
-  }
+    handler: getRoutesList,
+    schema: routesListSchema
+  },
+  '/api/routes/:id': { handler: getRoutesDetail, schema: detailSchema }
 };
 
 export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
@@ -34,7 +35,7 @@ export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
         decorateRequest(request, response, next, {
           filters,
           ngsi,
-          defaultEndpoint
+          defaultEndpoint,
         }),
       schema,
       handler

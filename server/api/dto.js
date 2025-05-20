@@ -132,7 +132,7 @@ export const eventToDto = (event, language) => {
   };
 };
 
-export const touristTripToDto = (touristTrip, language) => {
+export const routesToDto = (touristTrip, language) => {
   const {
     id,
     category_lang,

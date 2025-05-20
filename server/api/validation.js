@@ -55,7 +55,7 @@ export const eventListSchema = checkSchema(commonListSchema('events'), [
   'query'
 ]);
 
-export const touristTripsListSchema = checkSchema(
+export const routesListSchema = checkSchema(
   {
     page: {
       isInt: {
