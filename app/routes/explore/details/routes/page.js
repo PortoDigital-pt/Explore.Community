@@ -40,21 +40,19 @@ export const PageContent = ({ selectedData }, { intl }) => {
         <div className="itinerary-header">
           <div className="left">
             <Icon img="icon-icon_walk_no_map" viewBox="0 0 16 16" />
-            <p className="label">
-              {intl.messages['tourist-trip-itinerary-label']}
-            </p>
+            <p className="label">{intl.messages['routes-itinerary-label']}</p>
           </div>
 
           <div className="right">
             <p className="key">
-              {intl.messages['tourist-trip-total-distance-label']}
+              {intl.messages['routes-total-distance-label']}
             </p>
             <p className="value">{selectedData.distance}</p>
           </div>
         </div>
 
         <div className="itinerary-warning">
-          {intl.messages['tourist-trip-warning-section']}
+          {intl.messages['routes-warning-section']}
         </div>
 
         <div className="itinerary-list-container">
@@ -92,13 +90,11 @@ export const PageContent = ({ selectedData }, { intl }) => {
               type="button"
               className="show-more-button"
               onClick={() => setShowMore(!showMore)}
-              aria-label={
-                intl.messages['tourist-trip-itinerary-list-show-more']
-              }
+              aria-label={intl.messages['routes-itinerary-list-show-more']}
             >
               {showMore
-                ? intl.messages['tourist-trip-itinerary-list-show-less']
-                : intl.messages['tourist-trip-itinerary-list-show-more']}
+                ? intl.messages['routes-itinerary-list-show-less']
+                : intl.messages['routes-itinerary-list-show-more']}
             </button>
           )}
         </div>
@@ -107,9 +103,9 @@ export const PageContent = ({ selectedData }, { intl }) => {
           className="start-trip-button"
           type="button"
           onClick={() => alert('WIP')}
-          aria-label={intl.messages['tourist-trip-start-trip']}
+          aria-label={intl.messages['routes-start-trip']}
         >
-          {intl.messages['tourist-trip-start-trip']}
+          {intl.messages['routes-start-trip']}
         </button>
       </div>
     </>

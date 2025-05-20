@@ -820,20 +820,20 @@ const translations = {
     zone: 'Tarifzone',
     zones: 'Tarifzonen'
   },
-
   en: {
-    'tourist-trip-start-trip': 'Start trip',
-    'tourist-trip-itinerary-label': 'Itinerary',
-    'tourist-trip-total-distance-label': 'Total distance',
-    'tourist-trip-warning-section':
+    'find-all-routes': 'Find all routes',
+    'routes-start-trip': 'Start trip',
+    'routes-itinerary-label': 'Itinerary',
+    'routes-total-distance-label': 'Total distance',
+    'routes-warning-section':
       'This itinerary is purely illustrative and has no specific order, so you can start from the point closest to you.',
-    'tourist-trip-itinerary-list-show-more': 'Show more points',
-    'tourist-trip-itinerary-list-show-less': 'Show less points',
-    'tourist-trip-card-difficulty-label': 'Difficulty',
-    'tourist-trip-card-difficulty-description-easy': 'Easy',
-    'tourist-trip-card-difficulty-description-medium': 'Medium',
-    'tourist-trip-card-difficulty-description-hard': 'Hard',
-    'tourist-trip-title': 'City tours',
+    'routes-itinerary-list-show-more': 'Show more points',
+    'routes-itinerary-list-show-less': 'Show less points',
+    'routes-card-difficulty-label': 'Difficulty',
+    'routes-card-difficulty-description-easy': 'Easy',
+    'routes-card-difficulty-description-medium': 'Medium',
+    'routes-card-difficulty-description-hard': 'Hard',
+    'routes-title': 'City tours',
     'scroll-to-top': 'Scroll back to the top of the page',
     pois: 'Points of interest',
     events: 'Events',
@@ -5167,18 +5167,19 @@ const translations = {
 
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
-    'tourist-trip-start-trip': 'Iniciar roteiro',
-    'tourist-trip-itinerary-label': 'Itinerário',
-    'tourist-trip-total-distance-label': 'Distância total',
-    'tourist-trip-warning-section':
+    'find-all-routes': 'Descubra todos os roteiros',
+    'routes-start-trip': 'Iniciar roteiro',
+    'routes-itinerary-label': 'Itinerário',
+    'routes-total-distance-label': 'Distância total',
+    'routes-warning-section':
       'Este itinerário é meramente ilustrativo e não tem ordem específica, pelo que pode começar pelo ponto mais próximo de si.',
-    'tourist-trip-itinerary-list-show-more': 'Ver mais pontos',
-    'tourist-trip-itinerary-list-show-less': 'Ver menos pontos',
-    'tourist-trip-card-difficulty-label': 'Dificuldade',
-    'tourist-trip-card-difficulty-description-easy': 'Fácil',
-    'tourist-trip-card-difficulty-description-medium': 'Médio',
-    'tourist-trip-card-difficulty-description-hard': 'Dificil',
-    'tourist-trip-title': 'Roteiros pela cidade',
+    'routes-itinerary-list-show-more': 'Ver mais pontos',
+    'routes-itinerary-list-show-less': 'Ver menos pontos',
+    'routes-card-difficulty-label': 'Dificuldade',
+    'routes-card-difficulty-description-easy': 'Fácil',
+    'routes-card-difficulty-description-medium': 'Médio',
+    'routes-card-difficulty-description-hard': 'Dificil',
+    'routes-title': 'Roteiros pela cidade',
     'profile-page-back-button-title': 'Perfil',
     'profile-page-profile-card-title': 'O seu perfil',
     'profile-page-profile-card-subtitle':

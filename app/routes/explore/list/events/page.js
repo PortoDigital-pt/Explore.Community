@@ -8,6 +8,7 @@ const EventListPage = () => (
     getData={getEventList}
     errorMessage="events-fetch-error"
     emptyMessage="events-empty"
+    showDivider
   />
 );
 

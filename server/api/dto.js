@@ -40,6 +40,15 @@ const extractValuesAndDecode = values => {
   }, {});
 };
 
+const formattedPois = (pois, language) =>
+  pois.map(poi => {
+    const rawDescription =
+      poi.description ||
+      poi.description_lang?.value[language] ||
+      poi.description_lang?.value?.pt;
+    return { ...poi, description: extractValuesAndDecode(rawDescription) };
+  });
+
 export const poiToDto = (poi, language) => {
   const {
     id,
@@ -157,7 +166,7 @@ export const touristTripToDto = (touristTrip, language) => {
     images: extractValuesAndDecode(
       extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
     ),
-    pois,
+    pois: formattedPois(pois, language),
     difficulty,
     distance,
     duration: duration?.replace('PT', '')

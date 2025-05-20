@@ -9,9 +9,9 @@ const RoutesSection = ({ language }, { config }) => {
   return (
     <Section
       getData={getTouristTripList}
-      title="tourist-trip-title"
+      title="routes-title"
       cardType="large"
-      bottomButtonText="find-all-events"
+      bottomButtonText="find-all-routes"
       errorMessage="events-fetch-error"
       emptyMessage="events-empty"
       type="routes"

@@ -31,10 +31,10 @@ export const RoutesDetails = (
     <div>
       <Icon img="icon-difficulty" viewBox="0 0 16 16" />
       <p>
-        {intl.messages['tourist-trip-card-difficulty-label']}:{' '}
+        {intl.messages['routes-card-difficulty-label']}:{' '}
         {
           intl.messages[
-            `tourist-trip-card-difficulty-description-${selectedData.difficulty}`
+            `routes-card-difficulty-description-${selectedData.difficulty}`
           ]
         }
       </p>

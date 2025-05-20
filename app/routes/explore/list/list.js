@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback, Fragment } from 'react';
 import { useRouter } from 'found';
-import { string, func, arrayOf } from 'prop-types';
+import { string, func, arrayOf, bool } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
@@ -29,7 +29,8 @@ const ListPage = (
     language,
     categories,
     emptyMessage,
-    errorMessage
+    errorMessage,
+    showDivider
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -70,7 +71,7 @@ const ListPage = (
           ) : (
             <Fragment key={`${i}-item`}>
               <Skeleton />
-              <hr />
+              {showDivider && <hr />}
             </Fragment>
           )
         )}
@@ -105,7 +106,7 @@ const ListPage = (
                   }}
                   selectedData={item}
                 />
-                <hr />
+                {showDivider && <hr />}
               </Fragment>
             )
           )
@@ -180,7 +181,8 @@ ListPage.propTypes = {
   location: locationShape.isRequired,
   categories: arrayOf(string),
   emptyMessage: string.isRequired,
-  errorMessage: string.isRequired
+  errorMessage: string.isRequired,
+  showDivider: bool
 };
 
 export default connectToStores(
