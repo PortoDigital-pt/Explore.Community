@@ -12,6 +12,7 @@ export const PLACE_ICONS = {
   events: 'icon-explore-icon_events_with_background',
   bikeStation: 'icon-icon_citybike',
   pois: 'icon-explore-icon_pois_with_background',
+  routes: 'icon-routes_with_background',
   unknown: 'icon-pin-map-with-background'
 };
 
@@ -30,6 +31,7 @@ export const FAVOURITE_REGULAR_ICONS = {
   events: 'icon-explore-icon_events_no_map',
   bikeStation: 'icon-icon_scooter_no_map',
   pois: 'icon-explore-icon_pois_no_map',
+  routes: 'icon-routes',
   unknown: 'icon-pin-map-regular'
 };
 

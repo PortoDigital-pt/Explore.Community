@@ -30,17 +30,6 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
     });
   }
 
-  console.log(
-    '\n\n\n -----------------------------[URL]----------------------------------- \n\n\n',
-    `${process.env.NGSI_URL}?${buildNGSIQueryString({
-      filters,
-      dataProvider,
-      coords: `${lat},${lon}`,
-      ...defaultQueryParams,
-      ...queryRest
-    })}`
-  );
-
   const { data, total, status, text } = await customFetch(
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,

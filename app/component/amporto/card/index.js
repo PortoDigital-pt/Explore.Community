@@ -7,10 +7,10 @@ import {
   func,
   arrayOf,
   oneOfType,
-  bool
+  bool,
 } from 'prop-types';
 import FavouriteExplore from '../../FavouriteExploreContainer';
-import { PAGE_CONTENT_PIECES_TYPE_MAP } from '../../../routes/explore/details/page-content';
+import { PAGE_CONTENT_PIECES_TYPE_MAP } from '../../../routes/explore/details/page-content-resolver/pieces';
 
 const Card = ({ type, className, data, onClick, showDescription = false }) => {
   const Details = useMemo(() => {
@@ -88,9 +88,9 @@ Card.propTypes = {
     images: arrayOf(string),
     category: oneOfType([string, arrayOf(string)]).isRequired,
     lat: number.isRequired,
-    lon: number.isRequired
+    lon: number.isRequired,
   }).isRequired,
-  showDescription: bool
+  showDescription: bool,
 };
 
 export default Card;

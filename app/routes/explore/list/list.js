@@ -17,7 +17,7 @@ import ScrollToTopButton from '../../../component/amporto/scroll-to-top-button';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
   PAGE_CONTENT_TYPE_MAP
-} from '../details/page-content';
+} from '../details/page-content-resolver/page-content';
 import { DetailsContentModal } from '../common';
 
 const ListPage = (

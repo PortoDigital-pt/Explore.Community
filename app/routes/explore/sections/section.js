@@ -9,7 +9,7 @@ import Card from '../../../component/amporto/card';
 import Icon from '../../../component/Icon';
 import useListData from '../../../hooks/useListData';
 import useModal from '../../../hooks/useModal';
-import { PAGE_CONTENT_TYPE_MAP } from '../details/page-content';
+import { PAGE_CONTENT_TYPE_MAP } from '../details/page-content-resolver/page-content';
 import { DetailsContentModal } from '../common';
 
 const Section = (
