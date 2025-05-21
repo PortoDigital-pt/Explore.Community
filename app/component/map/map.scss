@@ -236,6 +236,24 @@ div.leaflet-marker-icon.via {
   color: $black;
 }
 
+div.leaflet-marker-icon.poi {
+  color: $primary-main;
+}
+
+div.leaflet-marker-icon.poi {
+  > span {
+    > svg.icon {
+      height: 20px;
+      width: 20px;
+
+      text {
+        fill: white;
+        font-size: 22px;
+      }
+    }
+  }
+}
+
 div.leaflet-marker-icon.vehicle-icon {
   > span > svg.icon {
     width: 1.5em;
@@ -408,7 +426,7 @@ div.leaflet-marker-icon.vehicle-icon {
       font-size: $font-size-l;
 
       &:hover {
-        background: $grey-light-up; 
+        background: $grey-light-up;
       }
     }
 

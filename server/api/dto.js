@@ -42,11 +42,24 @@ const extractValuesAndDecode = values => {
 
 const formattedPois = (pois, language) =>
   pois.map(poi => {
+    const auxPoi = { ...poi };
+
     const rawDescription =
-      poi.description ||
-      poi.description_lang?.value[language] ||
-      poi.description_lang?.value?.pt;
-    return { ...poi, description: extractValuesAndDecode(rawDescription) };
+      auxPoi.description ||
+      auxPoi.description_lang?.value[language] ||
+      auxPoi.description_lang?.value?.pt;
+
+    const lon = auxPoi.item_location?.value?.coordinates[0];
+    const lat = auxPoi.item_location?.value?.coordinates[1];
+
+    delete auxPoi.location;
+
+    return {
+      ...auxPoi,
+      description: extractValuesAndDecode(rawDescription),
+      lat,
+      lon
+    };
   });
 
 export const poiToDto = (poi, language) => {

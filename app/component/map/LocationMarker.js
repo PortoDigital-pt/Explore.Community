@@ -11,7 +11,8 @@ export default function LocationMarker({
   className,
   isLarge,
   type,
-  disabled
+  disabled,
+  iconText
 }) {
   const getValidType = markertype => {
     switch (markertype) {
@@ -19,9 +20,23 @@ export default function LocationMarker({
         return 'from';
       case 'to':
         return 'to';
+      case 'poi':
+        return 'poi';
       case 'via':
       default:
         return 'via';
+    }
+  };
+
+  const getIconName = markertype => {
+    switch (markertype) {
+      case 'poi':
+        return 'icon-circle';
+      case 'from':
+      case 'via':
+      case 'to':
+      default:
+        return `icon-icon_mapMarker-${markertype || 'via'}-map`;
     }
   };
   const validType = getValidType(type);
@@ -34,8 +49,9 @@ export default function LocationMarker({
         className: cx(validType, className),
         element: (
           <Icon
-            img={`icon-icon_mapMarker-${validType}-map`}
+            img={getIconName(validType)}
             color={disabled ? '#bbbbbb' : null}
+            text={iconText}
           />
         ),
         iconAnchor: [sideLength / 2, sideLength],
@@ -59,7 +75,8 @@ LocationMarker.propTypes = {
   className: PropTypes.string,
   isLarge: PropTypes.bool,
   type: PropTypes.oneOf(['from', 'via', 'to', 'favourite']),
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  iconText: PropTypes.string
 };
 
 LocationMarker.defaultProps = {
@@ -67,5 +84,6 @@ LocationMarker.defaultProps = {
   className: undefined,
   isLarge: false,
   type: 'via',
-  disabled: false
+  disabled: false,
+  iconText: undefined
 };

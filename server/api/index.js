@@ -2,7 +2,7 @@ import {
   poiListSchema,
   eventListSchema,
   detailSchema,
-  routesListSchema,
+  routesListSchema
 } from './validation';
 import { getRoutesDetail, getRoutesList } from './handlers/routes';
 import { getPoiDetail, getPoiList } from './handlers/pois';
@@ -35,7 +35,7 @@ export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
         decorateRequest(request, response, next, {
           filters,
           ngsi,
-          defaultEndpoint,
+          defaultEndpoint
         }),
       schema,
       handler
