@@ -6,7 +6,6 @@ import { fetchQuery, ReactRelayContext } from 'react-relay';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
 import MapWithTracking from '../../../../component/map/MapWithTracking';
 import Loading from '../../../../component/Loading';
-import MapRoutingButton from '../../../../component/MapRoutingButton';
 import useSelectedData from '../../../../hooks/useSelectedData';
 import ItineraryLine from '../../../../component/map/ItineraryLine';
 import planConnection from '../../../../component/itinerary/PlanConnection';
@@ -60,10 +59,10 @@ const DetailsRoutesPageMap = (
   const leafletObjs = [];
 
   if (legs) {
-    selectedData?.pois?.forEach((poi, i) => {
+    selectedData?.pois?.forEach(poi => {
       leafletObjs.push(
         <LocationMarker
-          key={`marker_${i}`}
+          key={`marker_${poi.item}`}
           position={{
             lat: poi.lat,
             lon: poi.lon
@@ -74,10 +73,10 @@ const DetailsRoutesPageMap = (
       );
     });
 
-    legs?.forEach((leg, i) => {
+    legs?.forEach(leg => {
       leafletObjs.push(
         <ItineraryLine
-          key={`line_${i}`}
+          key={`leg_${leg.to?.name}`}
           hash={0}
           streetMode={0}
           legs={[leg]}
@@ -97,7 +96,6 @@ const DetailsRoutesPageMap = (
       lat={selectedData?.lat}
       lon={selectedData?.lon}
       // mapLayers={mapLayers}
-      topButtons={<MapRoutingButton stop={selectedData} />}
       showExplore
     />
   );
