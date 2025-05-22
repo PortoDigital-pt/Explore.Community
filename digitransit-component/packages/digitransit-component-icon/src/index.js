@@ -185,7 +185,7 @@ const IconMap = style => {
     'search-rail-station-digitransit': (
       <SearchRailStationDigitransit style={style} />
     ),
-    'search-tram-stop-digitransit': <SearchTramStopDigitransit style={style} />,
+    'search-tram-stop-digitransit': <ModeTram style={style} />,
     funicular: <Funicular style={style} />,
     mapPin: <MapPin style={style} />,
     clearLocation: <ClearLocation style={style} />,

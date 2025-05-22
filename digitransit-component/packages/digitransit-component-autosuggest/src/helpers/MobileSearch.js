@@ -6,8 +6,8 @@ import cx from 'classnames';
 import Icon from '@digitransit-component/digitransit-component-icon';
 import DialogModal from '@digitransit-component/digitransit-component-dialog-modal';
 import Autosuggest from 'react-autosuggest';
-import mobileStyles from '../../../../../sass/themes/amporto/digitransit-components/autosuggest/MobileSearch.scss';
-import mobileNoScrollStyles from '../../../../../sass/themes/amporto/digitransit-components/autosuggest/MobileNoScroll.scss';
+import mobileStyles from '../../../../../sass/themes/default/digitransit-components/autosuggest/MobileSearch.scss';
+import mobileNoScrollStyles from '../../../../../sass/themes/default/digitransit-components/autosuggest/MobileNoScroll.scss';
 
 class AutosuggestPatch extends Autosuggest {
   constructor(props) {

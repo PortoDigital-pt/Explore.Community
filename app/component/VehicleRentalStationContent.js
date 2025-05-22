@@ -72,7 +72,7 @@ const VehicleRentalStationContent = (
     <div className="bike-station-page-container">
       <div className="rental-bike-header-container">
         <div className="row-bike">
-          <Icon img="icon-icon_citybike" viewBox="0 0 24 24" />
+          <Icon img="icon-icon_citybike" viewBox="0 0 50 50" />
 
           <ParkOrStationHeader parkOrStation={vehicleRentalStation} />
         </div>

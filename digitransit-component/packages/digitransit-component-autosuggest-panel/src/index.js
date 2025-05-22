@@ -10,7 +10,7 @@ import Icon from '@digitransit-component/digitransit-component-icon';
 import isEmpty from 'lodash/isEmpty';
 import Select from './helpers/Select';
 import translations from './helpers/translations';
-import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest-panel.scss';
+import styles from '../../../../sass/themes/default/digitransit-components/autosuggest-panel.scss';
 
 i18next.init({
   lng: 'fi',
@@ -574,14 +574,13 @@ class DTAutosuggestPanel extends React.Component {
                       searchContext={searchContext}
                       refPoint={this.props.refPoint}
                       value={(o && o.address) || ''}
-                      onSelect={this.props.onSelect}
                       onClear={this.props.onClear}
                       handleViaPoints={item =>
                         this.handleViaPointLocationSelected(item, i)
                       }
                       lang={this.props.lang}
                       sources={this.props.sources}
-                      targets={['Stops', 'Stations']}
+                      targets={this.props.targets}
                       filterResults={this.props.filterResults}
                       getAutoSuggestIcons={this.props.getAutoSuggestIcons}
                       isMobile={this.props.isMobile}

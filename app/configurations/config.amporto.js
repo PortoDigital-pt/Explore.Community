@@ -34,7 +34,7 @@ export default {
     },
     citybike: {
       availableForSelection: true,
-      defaultValue: true
+      defaultValue: false
     }
   },
 

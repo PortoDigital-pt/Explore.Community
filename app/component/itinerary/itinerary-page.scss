@@ -415,7 +415,7 @@
 
 .desktop {
   .settings-button-text span {
-    color: $background-default;
+    color: $background-default !important;
   }
 
   .summary-navigation-container {
@@ -429,7 +429,7 @@
 
       .datetimepicker-container {
         button {
-          color: $background-default;
+          color: $background-default !important;
         }
       }
     }
@@ -469,7 +469,7 @@
 .right-offcanvas-toggle {
   .icon-holder {
     svg {
-      color: $background-default;
+      color: $background-default !important;
     }
   }
 }
@@ -496,7 +496,7 @@
 
       .datetimepicker-container {
         button {
-          color: $background-default;
+          color: $background-default !important;
         }
       }
     }

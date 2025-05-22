@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 import pure from 'recompose/pure';
 import Icon from '@digitransit-component/digitransit-component-icon';
-import styles from '../../../../sass/themes/amporto/digitransit-components/suggestion-item.scss';
+import styles from '../../../../sass/themes/default/digitransit-components/suggestion-item.scss';
 
 const BUS_EXPRESS = 702;
 const BUS_LOCAL = 704;

@@ -21,7 +21,7 @@ import 'moment/locale/de';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import translations from './helpers/translations';
-import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest/autosuggest.scss';
+import styles from '../../../../sass/themes/default/digitransit-components/autosuggest/autosuggest.scss';
 import MobileSearch from './helpers/MobileSearch';
 import withScrollLock from './helpers/withScrollLock';
 
@@ -601,7 +601,7 @@ class DTAutosuggest extends React.Component {
   };
 
   clearButton = () => {
-    return (
+    return this.props.onSelect ? (
       <button
         type="button"
         className={styles['clear-input']}
@@ -610,7 +610,7 @@ class DTAutosuggest extends React.Component {
       >
         <Icon img="clearLocation" color={this.props.color} />
       </button>
-    );
+    ) : null;
   };
 
   fetchFunction = ({ value, cleanExecuted }) => {

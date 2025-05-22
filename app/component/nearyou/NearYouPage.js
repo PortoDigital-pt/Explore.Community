@@ -282,6 +282,7 @@ class NearYouPage extends React.Component {
   };
 
   // store ref to map
+  // eslint-disable-next-line react/no-unused-class-component-methods
   setMWTRef = ref => {
     this.MWTRef = ref;
   };

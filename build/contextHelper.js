@@ -72,7 +72,7 @@ function faviconPluginFromConfig(config) {
   if (!fs.existsSync(logo)) {
     logo = './app/configurations/images/default/default-favicon.png';
   }
- 
+
   return new FaviconsWebpackPlugin({
     // Your source logo
     logo,

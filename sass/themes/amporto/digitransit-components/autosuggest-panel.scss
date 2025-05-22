@@ -191,6 +191,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     svg {
       width: 19px;
       height: 17px;
+      fill: $background-default !important;
     }
   }
 
@@ -205,6 +206,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     svg {
       width: 20px;
       height: 22px;
+      fill: $background-default !important;
     }
   }
 
@@ -219,6 +221,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     svg {
       width: 18px;
       height: 19px;
+      fill: $background-default !important;
     }
   }
 
@@ -234,6 +237,7 @@ $zindex: base, map-container, map-gradient, map-fullscreen-toggle, map-buttons,
     svg {
       width: 14px;
       height: 14px;
+      fill: $background-default !important;
     }
   }
 }

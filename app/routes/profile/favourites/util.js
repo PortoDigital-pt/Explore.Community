@@ -6,8 +6,8 @@ export const MY_PLACES = {
 export const PLACE_ICONS = {
   [MY_PLACES.home]: 'icon-home-with-background',
   [MY_PLACES.work]: 'icon-work-with-background',
-  stop: 'icon-bus-with-background',
-  station: 'icon-subway-with-background',
+  stop: 'icon-icon_bus_with_background',
+  station: 'icon-icon_subway_with_background',
   place: 'icon-pin-map-with-background',
   events: 'icon-explore-icon_events_with_background',
   bikeStation: 'icon-icon_citybike',
