@@ -53,7 +53,8 @@ const {
   WEATHER_CITY_CODE,
   SHOW_PROFILE_NOTIFICATION,
   EVENT_SOURCE,
-  REALTIME_PATCH
+  REALTIME_PATCH,
+  SHOW_WIFI
 } = process.env;
 const hasAPISubscriptionQueryParameter =
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME && API_SUBSCRIPTION_TOKEN;
@@ -270,6 +271,7 @@ export default {
   },
 
   map: {
+    showWifi: SHOW_WIFI  === 'true',
     useRetinaTiles: true,
     tileSize: 512,
     zoomOffset: -1,

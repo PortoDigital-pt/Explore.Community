@@ -1507,9 +1507,9 @@
         <g transform="translate(-943.000000, -453.000000)" fill-rule="nonzero">
           <g transform="translate(520.000000, 70.000000)">
             <g transform="translate(423.000000, 383.305087)">
-              <circle fill-opacity="0.15" fill="#007AC9" cx="24" cy="24" r="24"></circle>
+              <circle fill-opacity="0.15" fill="#493E90" cx="24" cy="24" r="24"></circle>
               <g>
-                <circle stroke="#FFFFFF" stroke-width="3" stroke-linejoin="square" fill="#007AC9"
+                <circle stroke="#FFFFFF" stroke-width="3" stroke-linejoin="square" fill="#493E90"
                   fill-rule="evenodd" cx="24" cy="24" r="10.5"></circle>
                 <circle stroke-opacity="0.1" stroke="#000000" stroke-width="1" cx="24" cy="24"
                   r="12.5"></circle>

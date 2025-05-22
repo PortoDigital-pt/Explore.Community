@@ -27,7 +27,7 @@ export const isExploreFeatureEnabled = (featureName, mapLayers) => {
     return false;
   }
 
-  return mapLayers[featureName];
+  return Object.values(mapLayers[featureName] ?? {}).find(show => show);
 };
 
 /**
