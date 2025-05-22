@@ -52,6 +52,7 @@ const formattedPois = (pois, language) =>
     const lat = auxPoi.item_location?.value?.coordinates[1];
 
     delete auxPoi.location;
+    delete auxPoi.item_description;
 
     return {
       ...auxPoi,
