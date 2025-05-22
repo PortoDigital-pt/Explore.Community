@@ -39,10 +39,6 @@ function ItineraryPageMap(
   const { hash } = match.params;
   const leafletObjs = [];
 
-  console.log('log-itinerary.legs', itinerary);
-  console.log('log-active', active);
-    console.log('log-hash', hash);
-
   if (showVehicles) {
     leafletObjs.push(
       <VehicleMarkerContainer key="vehicles" useLargeIcon topics={topics} />
@@ -64,7 +60,6 @@ function ItineraryPageMap(
   } else {
     if (!showActiveOnly) {
       planEdges.forEach((edge, i) => {
-        console.log('log-edge.node.legs', edge.node.legs);
         if (i !== active) {
           leafletObjs.push(
             <ItineraryLine
@@ -78,7 +73,6 @@ function ItineraryPageMap(
       });
     }
     if (active < planEdges.length) {
-      console.log('log-planEdges', planEdges[active].node.legs);
       leafletObjs.push(
         <ItineraryLine
           key={`line_${active}`}

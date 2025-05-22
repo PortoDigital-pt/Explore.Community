@@ -44,9 +44,11 @@ const formattedPois = (pois, language) =>
   pois.map(poi => {
     const auxPoi = { ...poi };
 
-    const rawDescription =
-      auxPoi.item_description?.value[language] ||
-      auxPoi.item_description?.value?.pt;
+    const rawDescription = auxPoi.item_description
+      ? auxPoi.item_description?.value[language] ||
+        auxPoi.item_description?.value?.pt
+      : auxPoi.item_description_lang?.value[language] ||
+        auxPoi.item_description_lang?.value?.pt;
 
     const lon = auxPoi.item_location?.value?.coordinates[0];
     const lat = auxPoi.item_location?.value?.coordinates[1];
