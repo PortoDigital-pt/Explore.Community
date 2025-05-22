@@ -39,7 +39,7 @@ class MapLayerStore extends Store {
 
     pois: null,
     events: null,
-    accesspoints: { showAll: true }
+    accesspoints: null
   };
 
   constructor(dispatcher) {
@@ -61,6 +61,7 @@ class MapLayerStore extends Store {
         {}
       )
     };
+    this.mapLayers.accesspoints = { showAll: config.map.showWifi };
 
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,
