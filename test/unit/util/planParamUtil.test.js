@@ -142,7 +142,7 @@ describe('planParamUtil', () => {
       expect(defaultSettings).to.deep.equal(currentSettings);
     });
 
-    /*it('setting custom settings should make default settings differ from current settings', () => {
+    /* it('setting custom settings should make default settings differ from current settings', () => {
       setCustomizedSettings({
         modes: ['BUS', 'TRAM', 'FERRY', 'SUBWAY', 'RAIL', 'WALK']
       });
@@ -150,7 +150,7 @@ describe('planParamUtil', () => {
       const defaultSettings = utils.getDefaultSettings(defaultConfig);
       const currentSettings = utils.getSettings(defaultConfig);
       expect(defaultSettings).to.not.deep.equal(currentSettings);
-    });*/
+    }); */
 
     it('order of set custom settings should not affect default and current settings comparison', () => {
       const defaultSettings = utils.getDefaultSettings(defaultConfig);
