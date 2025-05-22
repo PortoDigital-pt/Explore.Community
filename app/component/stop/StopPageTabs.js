@@ -57,7 +57,7 @@ function StopPageTabs({ stop }, { match }) {
   const tabRefs = [rightNowTabRef, timetableTabRef, disruptionTabRef];
 
   const isTerminal = match.params.terminalId != null;
-  const urlBase = `/${
+  const urlBase = `/browse/${
     isTerminal ? PREFIX_TERMINALS : PREFIX_STOPS
   }/${encodeURIComponent(
     match.params.terminalId ? match.params.terminalId : match.params.stopId

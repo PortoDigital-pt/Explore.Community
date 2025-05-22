@@ -157,7 +157,7 @@ const Favourites = ({ lang, favourites }, { config, executeAction, intl }) => {
                     <Icon
                       img={getPlaceIcon(favourite.type)}
                       className="icon-my-locals-home"
-                      viewBox="0 0 34 34"
+                      viewBox="0 0 50 50"
                     />
                     <div className="my-locals-info">
                       <span className="title">

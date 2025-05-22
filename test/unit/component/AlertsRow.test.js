@@ -108,7 +108,7 @@ describe('<AlertRow />', () => {
       context: mockContext
     });
     expect(wrapper.find('.alert-row-link').get(0).props.to).to.equal(
-      `/${PREFIX_ROUTES}/HSL:2097N/${PREFIX_STOPS}`
+      `/browse/${PREFIX_ROUTES}/HSL:2097N/${PREFIX_STOPS}`
     );
   });
 

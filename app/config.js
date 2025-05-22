@@ -59,7 +59,10 @@ function addMetaData(config) {
   config.metaData = cloneDeep(metaDataTemplate);
   config.metaData.link.forEach(link => {
     // eslint-disable-next-line no-param-reassign
-    link.href = link.href.replace('<themehash>', manifestName ? `/${manifestName}/` : '/');
+    link.href = link.href.replace(
+      '<themehash>',
+      manifestName ? `/${manifestName}/` : '/'
+    );
   });
   config.metaData.meta.forEach(meta => {
     switch (meta.name) {

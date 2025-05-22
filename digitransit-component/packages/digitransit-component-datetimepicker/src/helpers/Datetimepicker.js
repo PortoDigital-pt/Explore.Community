@@ -10,7 +10,7 @@ import i18next from 'i18next';
 import Icon from '@digitransit-component/digitransit-component-icon';
 import DesktopDatetimepicker from './DesktopDatetimepicker';
 import translations from './translations';
-import styles from '../../../../../sass/themes/amporto/digitransit-components/datetime-picker.scss';
+import styles from '../../../../../sass/themes/default/digitransit-components/datetime-picker.scss';
 import { isMobile } from './mobileDetection';
 
 moment.locale('en');

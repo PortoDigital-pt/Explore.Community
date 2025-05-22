@@ -219,6 +219,7 @@ li:last-child > div.suggestion-item-container.mobile {
   .busstop,
   .select-from-map {
     svg {
+      fill: $primary-color !important;
       width: 20px;
       height: 20px;
       padding: 0;
@@ -232,9 +233,18 @@ li:last-child > div.suggestion-item-container.mobile {
     }
   }
 
-  .poi,
+  .poi {
+    svg {
+      width: 17px;
+      height: 17px;
+      padding: 0;
+    }
+  }
+
   .event {
     svg {
+      width: 20px;
+      height: 20px;
       padding: 0;
     }
   }

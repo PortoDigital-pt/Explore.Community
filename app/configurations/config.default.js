@@ -126,7 +126,7 @@ export default {
   title: APP_TITLE,
   indexPath: INDEX_PATH,
 
-  minZoomToShowOnMap: 13,
+  minZoomToShowOnMap: 14,
 
   privacyPolicyLink: PRIVACY_POLICY,
   cookiesPolicyLink: COOKIES_POLICY,
@@ -369,7 +369,7 @@ export default {
   },
 
   // Lowest level for stops and terminals are rendered
-  stopsMinZoom: 13,
+  stopsMinZoom: 14,
   // Highest level when stops and terminals are still rendered as small markers
   stopsSmallMaxZoom: 14,
   // Highest level when terminals are still rendered instead of individual stops
@@ -465,8 +465,8 @@ export default {
     },
 
     rail: {
-      availableForSelection: true,
-      defaultValue: true
+      availableForSelection: false,
+      defaultValue: false
     },
 
     subway: {
@@ -475,13 +475,13 @@ export default {
     },
 
     airplane: {
-      availableForSelection: true,
-      defaultValue: true
+      availableForSelection: false,
+      defaultValue: false
     },
 
     ferry: {
-      availableForSelection: true,
-      defaultValue: true
+      availableForSelection: false,
+      defaultValue: false
     },
 
     funicular: {
@@ -529,20 +529,16 @@ export default {
   modePolygons: {},
 
   // Default origin endpoint to use when user is outside of area
-  /* e.g. override in your own config!
+  /* e.g. override here or in your own config!
     defaultEndpoint: {
       address: 'Porto - Portugal',
       lat: 41.14858,
       lon: -8.610945
     }
   */
-  defaultEndpoint: {
-    address: 'Porto - Portugal',
-    lat: 41.14858,
-    lon: -8.610945
-  },
+  defaultEndpoint: {},
 
-  defaultMapZoom: 16,
+  defaultMapZoom: 17,
 
   availableRouteTimetables: {},
 
@@ -552,151 +548,6 @@ export default {
 
   useRealtimeTravellerCapacities: USE_REALTIME_TRAVELLER_CAPACITIES === 'true',
 
-  aboutThisService: {
-    fi: [
-      {
-        header: 'Tietoja palvelusta',
-        paragraphs: [
-          'Palvelu kattaa joukkoliikenteen, kävelyn, pyöräilyn ja yksityisautoilun rajatuilta osin. Palvelu perustuu Digitransit-palvelualustaan.'
-        ]
-      },
-      {
-        header: 'Digitransit-palvelualusta',
-        paragraphs: [
-          'Reittiopas perustuu Digitransit-palvelualustaan, joka on Liikenteenohjausyhtiö Fintraffic Oy:n, Helsingin seudun liikenteen (HSL) ja Waltti Solutions Oy:n tarjoama avoimen lähdekoodin reititysalusta. Reittiehdotukset perustuvat arvioituihin ajoaikoihin. Digitransit tai muut tiedon hyödyntäjät eivät takaa ehdotetun yhteyden toteutumista eivätkä korvaa kulkuyhteyden toteutumatta jäämisestä mahdollisesti aiheutuvia vahinkoja. Palvelun käyttäjien tietoja ei tallenneta palveluun.'
-        ]
-      },
-      {
-        header: 'Tietolähteet',
-        paragraphs: [
-          'Tiedot perustuvat joukkoliikenneviranomaisten, liikennöitsijöiden, VR:n ja Finavian toimittamiin tietoihin. Tietolähteinä hyödynnetään Fintrafficin liikkumisen tietopalveluita, erityisesti liikkumispalveluiden avointa yhteyspistettä <a href="https://www.finap.fi/#/" target="_blank">Finap-palvelua</a>. Kartat, tiedot kaduista, rakennuksista, pysäkkien sijainnista ynnä muusta tarjoaa © OpenStreetMap contributors. Osoitetiedot tuodaan Digi- ja väestötietoviraston rakennusten osoitetietokannasta.'
-        ]
-      }
-    ],
-
-    sv: [
-      {
-        header: 'Om tjänsten',
-        paragraphs: [
-          'Reseplaneraren täcker med vissa begränsningar kollektivtrafik, promenad, cykling samt privatbilism. Tjänsten baserar sig på Digitransit-plattformen.'
-        ]
-      },
-      {
-        header: 'Digitransit-plattformen',
-        paragraphs: [
-          'Reseplaneraren baseras på tjänsteplattformen Digitransit med öppen källkod, som är en tjänst som underhålls och utvecklas av Helsingforsregionens Trafik (HRT) Fintraffic Oy och Waltti Solutions Oy. Digitransit eller andra användare av informationen garanterar inte realiseringen av den föreslagna anslutningen och ersätter inte för eventuella skador som kan uppstå på grund av att transportförbindelsen inte fungerar. Tjänstanvändarnas information lagras inte i tjänsten.'
-        ]
-      },
-      {
-        header: 'Datakällor',
-        paragraphs: [
-          'Tjänsteinformationen baseras på information om kollektivtrafiken som tillhandahålls av kollektivtrafikmyndigheter, trafik operatörer, VR och Finavia. Fintraffics mobilitetsinformationstjänster används som datakällor, särskilt <a href="https://www.finap.fi/#/" target="_blank">National Access Point</a> för mobilitetstjänster FINAP Kartor, information om gator, byggnader, hållplatser och mer tillhandahålls av © OpenStreetMap-bidragsgivare. Adressuppgifter importeras från adressdatabasen till Myndigheten för Digitalisering och Befolkninsdata (DVV).'
-        ]
-      }
-    ],
-
-    en: [
-      {
-        header: 'About this service',
-        paragraphs: [
-          'The service covers public transport, walking, cycling, and some private car use. Service is built on Digitransit platform.'
-        ]
-      },
-      {
-        header: 'Digitransit platform',
-        paragraphs: [
-          "The route planner is based on the open source Digitransit service platform, which is an service maintained and developed by Helsinki Region Transport (HRT) Traffic Management Company Fintraffic Oy and Waltti Solutions Oy. Route suggestions are based on estimated times. Digitransit or other users of the information do not guarantee the realization of the proposed connection and do not compensate for any damages that may arise from the failure of the transport connection. The service users' information is not stored in the service."
-        ]
-      },
-      {
-        header: 'Data sources',
-        paragraphs: [
-          "The service information is based on public transport route information provided by public transport authorities, operators, VR and Finavia. Fintraffic's mobility information services are used as data sources, especially National Access Point for mobility services <a href='https://www.finap.fi/#/' target='_blank'>FINAP</a>. Maps, information about streets, buildings, bus stop locations and more is provided by © OpenStreetMap contributors. Address information is imported from the address database of the buildings of the Digital and Population Data Services Agency (DVV)."
-        ]
-      }
-    ],
-    nb: {},
-    fr: {},
-    de: {}
-  },
-
-  staticMessages: [],
-
-  staticIEMessage: [
-    {
-      id: '3',
-      priority: -1,
-      content: {
-        fi: [
-          {
-            type: 'text',
-            content:
-              'Palvelu ei tue käyttämääsi selainta. Päivitä selainohjelmasi tai lataa uusi selain oheisista linkeistä.\n'
-          },
-          {
-            type: 'a',
-            content: 'Google Chrome',
-            href: 'https://www.google.com/chrome/'
-          },
-          {
-            type: 'a',
-            content: 'Firefox',
-            href: 'https://www.mozilla.org/fi/firefox/new/'
-          },
-          {
-            type: 'a',
-            content: 'Microsoft Edge',
-            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge'
-          }
-        ],
-        en: [
-          {
-            type: 'text',
-            content:
-              'The service does not support the browser you are using. Update your browser or download a new browser using the links below.\n'
-          },
-          {
-            type: 'a',
-            content: 'Google Chrome',
-            href: 'https://www.google.com/chrome/'
-          },
-          {
-            type: 'a',
-            content: 'Firefox',
-            href: 'https://www.mozilla.org/fi/firefox/new/'
-          },
-          {
-            type: 'a',
-            content: 'Microsoft Edge',
-            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge'
-          }
-        ],
-        sv: [
-          {
-            type: 'text',
-            content:
-              'Tjänsten stöder inte den webbläsare som du har i bruk. Uppdatera din webbläsare eller ladda ner en ny webbläsare via nedanstående länk.\n'
-          },
-          {
-            type: 'a',
-            content: 'Google Chrome',
-            href: 'https://www.google.com/chrome/'
-          },
-          {
-            type: 'a',
-            content: 'Firefox',
-            href: 'https://www.mozilla.org/sv-SE/firefox/new/'
-          },
-          {
-            type: 'a',
-            content: 'Microsoft Edge',
-            href: 'https://www.microsoft.com/en-us/windows/microsoft-edge'
-          }
-        ]
-      }
-    }
-  ],
-
   minutesToDepartureLimit: 9,
 
   routeCancelationAlertValidity: {
@@ -704,9 +555,9 @@ export default {
     after: 900 // 15 minutes
   },
 
+   // this flag when true enables imperial measurements  'feet/miles system'
   imperialEnabled: false,
-  // this flag when true enables imperial measurements  'feet/miles system'
-
+ 
   vehicles: true,
   showVehiclesOnStopPage: true,
   trafficNowLink: '',
@@ -826,7 +677,7 @@ export default {
   },
 
   // description used in explore page, as event section description
-  /* e.g. override in your own config
+  /* e.g. override here or in your own config!
   cards: {
     events: {
       pt: 'Desde exposições de arte emocionantes até concertos ao ar livre, mergulhe na vida cultural vibrante enquanto explora cada canto da cidade. Para ver mais eventos visite a página da *link*Agenda Cultural do Porto*link*.',
@@ -837,7 +688,7 @@ export default {
   cards: {},
 
   // cookies notice used in onboarding page
-  /* e.g. override in your own config
+  /* e.g. override here or in your own config!
   cookiesDescription: {
     pt: 'A Explore.Porto recolhe e armazena informações através de cookies para melhorar a sua experiência. Ao clicar em aceitar, concorda com o uso de cookies. Saiba mais na nossa *link*Política de Privacidade*link*.',
     en: 'Explore.Porto collects and stores information through cookies to improve your experience. By clicking accept, you agree to the use of cookies. Find out more in our *link*Privacy Policy*link*.'
@@ -846,7 +697,7 @@ export default {
   cookiesDescription: {},
 
   // onboarding pages
-  /* e.g. override in your own config
+  /* e.g. override here or in your own config
   onboarding: {
     page1: {
       heading: {
@@ -869,7 +720,7 @@ export default {
   onboarding: null,
 
   // keys and language translations for your filters
-  /* e.g. override in your own config!
+  /* e.g. override here or in your own config!
   filters: {
     pois: {
       fadoHouse: { pt: 'Casas de Fado', en: 'Fado Houses' }
@@ -894,12 +745,17 @@ export default {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
     }
   },
-
-  ngsi: {
+ 
+  // data providers used in NGSI queries and in map Tiles filtering
+  // override here or in your own config!
+  /*ngsi: {
     dataProvider: {
       pois: '',
       events: ''
     }
+  },*/
+  ngsi: {
+    dataProvider: {}
   },
 
   weatherApi: WEATHER_API,

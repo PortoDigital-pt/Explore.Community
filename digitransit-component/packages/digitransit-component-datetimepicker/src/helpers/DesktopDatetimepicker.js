@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 import Select from 'react-select';
 import i18next from 'i18next';
 import cx from 'classnames';
-import styles from '../../../../../sass/themes/amporto/digitransit-components/datetime-picker.scss';
+import styles from '../../../../../sass/themes/default/digitransit-components/datetime-picker.scss';
 import { parseTypedTime, validateInput, getTs } from './utils';
 
 /**

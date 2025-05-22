@@ -4,12 +4,14 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
+  z-index: 9999;
 }
 
 .offcanvas-mobile {
   width: 100%;
   height: 100%;
   background: #f4f4f5;
+  z-index: 9999;
 
   .settings-option-container {
     padding: 8px 16px 0 16px;
@@ -222,7 +224,7 @@
 }
 
 .customize-search {
-  height: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background: $background-default;
