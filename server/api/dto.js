@@ -22,20 +22,20 @@ const extractValuesAndDecode = values => {
     if (!value) {
       return {
         ...acc,
-        [key]: null
+        [key]: null,
       };
     }
 
     if (Array.isArray(value)) {
       return {
         ...acc,
-        [key]: value.map(decode)
+        [key]: value.map(decode),
       };
     }
 
     return {
       ...acc,
-      [key]: decode(value.value ?? value)
+      [key]: decode(value.value ?? value),
     };
   }, {});
 };
@@ -45,9 +45,8 @@ const formattedPois = (pois, language) =>
     const auxPoi = { ...poi };
 
     const rawDescription =
-      auxPoi.description ||
-      auxPoi.description_lang?.value[language] ||
-      auxPoi.description_lang?.value?.pt;
+      auxPoi.item_description?.value[language] ||
+      auxPoi.item_description?.value?.pt;
 
     const lon = auxPoi.item_location?.value?.coordinates[0];
     const lat = auxPoi.item_location?.value?.coordinates[1];
@@ -58,7 +57,7 @@ const formattedPois = (pois, language) =>
       ...auxPoi,
       description: extractValuesAndDecode(rawDescription),
       lat,
-      lon
+      lon,
     };
   });
 
@@ -75,7 +74,7 @@ export const poiToDto = (poi, language) => {
     calendar,
     districtGroups,
     image,
-    extraImages
+    extraImages,
   } = poi;
 
   return {
@@ -83,23 +82,23 @@ export const poiToDto = (poi, language) => {
     id,
     address: extractValuesAndDecode(address.value),
     category: extractValuesAndDecode(
-      category_lang.value[language] || category_lang.value.pt
+      category_lang.value[language] || category_lang.value.pt,
     ),
     contacts: extractValuesAndDecode(contactPoint.value),
     description: extractValuesAndDecode(
-      description_lang.value[language] || description_lang.value.pt
+      description_lang.value[language] || description_lang.value.pt,
     ),
     lon: location.value.coordinates[0],
     lat: location.value.coordinates[1],
     name: extractValuesAndDecode(
-      name_lang.value[language] || name_lang.value.pt
+      name_lang.value[language] || name_lang.value.pt,
     ),
     priceRange: extractValuesAndDecode(priceRange.value),
     calendar: formatCalendar(calendar.value, language),
     districts: extractValuesAndDecode(districtGroups.value),
     images: extractValuesAndDecode(
-      extraImages.value?.length === 0 ? [image.value] : extraImages.value
-    )
+      extraImages.value?.length === 0 ? [image.value] : extraImages.value,
+    ),
   };
 };
 
@@ -116,7 +115,7 @@ export const eventToDto = (event, language) => {
     eventPriceTo,
     location,
     name_lang,
-    source
+    source,
   } = event;
 
   return {
@@ -124,24 +123,24 @@ export const eventToDto = (event, language) => {
     id,
     address: extractValuesAndDecode(address.value),
     category: extractValuesAndDecode(
-      section_lang.value[language] || section_lang.value.pt
+      section_lang.value[language] || section_lang.value.pt,
     ),
     website: extractValuesAndDecode(source.value),
     description: extractValuesAndDecode(
-      description_lang.value[language] || description_lang.value.pt
+      description_lang.value[language] || description_lang.value.pt,
     ),
     startDate: startDate?.value ?? null,
     endDate: endDate?.value ?? null,
     price: getPrice({
       eventPriceFrom: eventPriceFrom.value,
-      eventPriceTo: eventPriceTo.value
+      eventPriceTo: eventPriceTo.value,
     }),
     lon: location.value.coordinates[0],
     lat: location.value.coordinates[1],
     name: extractValuesAndDecode(
-      name_lang.value[language] || name_lang.value.pt
+      name_lang.value[language] || name_lang.value.pt,
     ),
-    images: extractValuesAndDecode([contentURL.value])
+    images: extractValuesAndDecode([contentURL.value]),
   };
 };
 
@@ -155,33 +154,33 @@ export const routesToDto = (touristTrip, language) => {
     image,
     extraImages,
     itinerary: {
-      value: { itemListElement: pois }
+      value: { itemListElement: pois },
     },
     difficulty: { value: difficulty },
     distance: { value: distance },
-    duration: { value: duration }
+    duration: { value: duration },
   } = touristTrip;
 
   return {
     type: 'routes',
     id,
     category: extractValuesAndDecode(
-      category_lang.value[language] || category_lang.value.pt
+      category_lang.value[language] || category_lang.value.pt,
     ),
     description: extractValuesAndDecode(
-      description_lang.value[language] || description_lang.value.pt
+      description_lang.value[language] || description_lang.value.pt,
     ),
     lon: location.value.coordinates[0],
     lat: location.value.coordinates[1],
     name: extractValuesAndDecode(
-      name_lang.value[language] || name_lang.value.pt
+      name_lang.value[language] || name_lang.value.pt,
     ),
     images: extractValuesAndDecode(
-      extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
+      extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value,
     ),
     pois: formattedPois(pois, language),
     difficulty,
     distance,
-    duration: duration?.replace('PT', '')
+    duration: duration?.replace('PT', ''),
   };
 };
