@@ -74,7 +74,6 @@ import SearchFerryDigitransit from './assets/search-ferry-digitransit.svg';
 import SearchFerryStopDigitransit from './assets/search-ferry-stop-digitransit.svg';
 import SearchRailStopDigitransit from './assets/search-rail-stop-digitransit.svg';
 import SearchRailStationDigitransit from './assets/search-rail-station-digitransit.svg';
-import SearchTramStopDigitransit from './assets/search-tram-stop-digitransit.svg';
 import Funicular from './assets/funicular.svg';
 import ClearLocation from './assets/amporto/clear-location.svg';
 import Poi from './assets/amporto/poi.svg';

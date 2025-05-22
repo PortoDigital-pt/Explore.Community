@@ -555,9 +555,9 @@ export default {
     after: 900 // 15 minutes
   },
 
-   // this flag when true enables imperial measurements  'feet/miles system'
+  // this flag when true enables imperial measurements  'feet/miles system'
   imperialEnabled: false,
- 
+
   vehicles: true,
   showVehiclesOnStopPage: true,
   trafficNowLink: '',
@@ -745,15 +745,15 @@ export default {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
     }
   },
- 
+
   // data providers used in NGSI queries and in map Tiles filtering
   // override here or in your own config!
-  /*ngsi: {
+  /* ngsi: {
     dataProvider: {
       pois: '',
       events: ''
     }
-  },*/
+  }, */
   ngsi: {
     dataProvider: {}
   },
