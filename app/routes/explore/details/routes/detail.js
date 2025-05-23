@@ -2,7 +2,7 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import { bool } from 'prop-types';
 import Icon from '../../../../component/Icon';
-import { touristTripShape } from './shape';
+import { routesShape } from './shape';
 
 export const RoutesDetails = (
   { selectedData, showDescription = false },
@@ -43,7 +43,7 @@ export const RoutesDetails = (
 );
 
 RoutesDetails.propTypes = {
-  selectedData: touristTripShape.isRequired,
+  selectedData: routesShape.isRequired,
   showDescription: bool
 };
 

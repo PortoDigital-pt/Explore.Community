@@ -4,7 +4,7 @@ import classname from 'classnames';
 import { useRouter } from 'found';
 import Icon from '../../../../component/Icon';
 import ImageSlider from '../../../../component/amporto/image-slider';
-import { touristTripShape } from './shape';
+import { routesShape } from './shape';
 import { RoutesDetails } from './detail';
 
 export const PageContent = ({ selectedData }, { intl }) => {
@@ -113,7 +113,7 @@ export const PageContent = ({ selectedData }, { intl }) => {
 };
 
 PageContent.propTypes = {
-  selectedData: touristTripShape.isRequired
+  selectedData: routesShape.isRequired
 };
 
 PageContent.contextTypes = {

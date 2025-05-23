@@ -13,7 +13,7 @@ import { buildPlanQuery } from './util';
 import LocationMarker from '../../../../component/map/LocationMarker';
 
 const DetailsRoutesPageMap = (
-  { language, mapLayers, getDataById },
+  { mapLayers, language, getDataById },
   { match }
 ) => {
   const [legs, setLegs] = useState([]);
@@ -33,8 +33,8 @@ const DetailsRoutesPageMap = (
     queries.forEach(query => {
       asyncOperations.push(
         fetchQuery(environment, planConnection, query, {
-          force: true
-        }).toPromise()
+          force: true,
+        }).toPromise(),
       );
     });
 
@@ -65,11 +65,11 @@ const DetailsRoutesPageMap = (
           key={`marker_${poi.item}`}
           position={{
             lat: poi.lat,
-            lon: poi.lon
+            lon: poi.lon,
           }}
           type="poi"
           iconText={poi.position}
-        />
+        />,
       );
     });
 
@@ -83,7 +83,7 @@ const DetailsRoutesPageMap = (
           showTransferLabels={false}
           showIntermediateStops
           showDurationBubble={false}
-        />
+        />,
       );
     });
   }
@@ -102,13 +102,13 @@ const DetailsRoutesPageMap = (
 };
 
 DetailsRoutesPageMap.contextTypes = {
-  match: matchShape.isRequired
+  match: matchShape.isRequired,
 };
 
 DetailsRoutesPageMap.propTypes = {
   getDataById: func.isRequired,
   language: string.isRequired,
-  mapLayers: mapLayerShape.isRequired
+  mapLayers: mapLayerShape.isRequired,
 };
 
 export default connectToStores(
@@ -116,6 +116,6 @@ export default connectToStores(
   ['PreferencesStore', 'MapLayerStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),
-    mapLayers: getStore('MapLayerStore').getMapLayers()
-  })
+    mapLayers: getStore('MapLayerStore').getMapLayers(),
+  }),
 );

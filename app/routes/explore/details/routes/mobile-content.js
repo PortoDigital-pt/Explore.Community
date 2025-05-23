@@ -3,7 +3,7 @@ import { intlShape } from 'react-intl';
 import { func, shape } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import Card from '../../../../component/amporto/card';
-import { touristTripShape } from './shape';
+import { routesShape } from './shape';
 
 const Mobile = ({ onDetails, selectedData, innerRef }) => (
   <div className="mobile-view" ref={innerRef}>
@@ -23,7 +23,7 @@ const Mobile = ({ onDetails, selectedData, innerRef }) => (
 Mobile.propTypes = {
   innerRef: shape(),
   onDetails: func.isRequired,
-  selectedData: touristTripShape.isRequired
+  selectedData: routesShape.isRequired
 };
 
 Mobile.contextTypes = {

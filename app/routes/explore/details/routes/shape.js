@@ -1,6 +1,6 @@
 import { arrayOf, number, shape, string } from 'prop-types';
 
-export const touristTripShape = shape({
+export const routesShape = shape({
   type: string.isRequired,
   id: string.isRequired,
   name: string.isRequired,

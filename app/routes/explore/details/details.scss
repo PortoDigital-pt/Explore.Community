@@ -404,6 +404,17 @@
           column-gap: 10px;
           flex-grow: 1;
 
+          .icon-container svg {
+            color: $primary-dark;
+            width: 24px;
+            height: 24px;
+
+            text {
+              fill: white;
+              font-size: 22px;
+            }
+          }
+
           .icon {
             display: flex;
             position: relative;
@@ -417,6 +428,11 @@
             color: $primary-color;
             font-size: $font-size-l;
             font-weight: $font-weight-bold;
+
+            &.routes-tab {
+              color: $grey-dark-down;
+              font-size: $font-size-base;
+            }
           }
         }
       }

@@ -77,7 +77,7 @@ export const poiToDto = (poi, language) => {
     calendar,
     districtGroups,
     image,
-    extraImages,
+    extraImages
   } = poi;
 
   return {
