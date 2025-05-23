@@ -250,6 +250,13 @@ div.leaflet-marker-icon.poi {
         fill: white;
         font-size: 22px;
       }
+
+      &.highlight {
+        height: 24px;
+        width: 24px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+      }
     }
   }
 }

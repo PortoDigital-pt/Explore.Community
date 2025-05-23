@@ -1,19 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { string, func } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import { matchShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import { fetchQuery, ReactRelayContext } from 'react-relay';
-import { mapLayerShape } from '../../../../store/MapLayerStore';
-import MapWithTracking from '../../../../component/map/MapWithTracking';
-import Loading from '../../../../component/Loading';
-import useSelectedData from '../../../../hooks/useSelectedData';
-import ItineraryLine from '../../../../component/map/ItineraryLine';
-import planConnection from '../../../../component/itinerary/PlanConnection';
-import { buildPlanQuery } from './util';
-import LocationMarker from '../../../../component/map/LocationMarker';
+import MapWithTracking from '../../../../../component/map/MapWithTracking';
+import Loading from '../../../../../component/Loading';
+import useSelectedData from '../../../../../hooks/useSelectedData';
+import ItineraryLine from '../../../../../component/map/ItineraryLine';
+import planConnection from '../../../../../component/itinerary/PlanConnection';
+import { buildPlanQuery } from '../util';
+import LocationMarker from '../../../../../component/map/LocationMarker';
 
 const DetailsRoutesPageMap = (
-  { mapLayers, language, getDataById },
+  { language, getDataById, selectedItem },
   { match }
 ) => {
   const [legs, setLegs] = useState([]);
@@ -33,8 +32,8 @@ const DetailsRoutesPageMap = (
     queries.forEach(query => {
       asyncOperations.push(
         fetchQuery(environment, planConnection, query, {
-          force: true,
-        }).toPromise(),
+          force: true
+        }).toPromise()
       );
     });
 
@@ -65,11 +64,12 @@ const DetailsRoutesPageMap = (
           key={`marker_${poi.item}`}
           position={{
             lat: poi.lat,
-            lon: poi.lon,
+            lon: poi.lon
           }}
           type="poi"
           iconText={poi.position}
-        />,
+          highlight={selectedItem + 1 === poi.position}
+        />
       );
     });
 
@@ -83,7 +83,7 @@ const DetailsRoutesPageMap = (
           showTransferLabels={false}
           showIntermediateStops
           showDurationBubble={false}
-        />,
+        />
       );
     });
   }
@@ -95,27 +95,27 @@ const DetailsRoutesPageMap = (
       zoom={14}
       lat={selectedData?.lat}
       lon={selectedData?.lon}
-      // mapLayers={mapLayers}
       showExplore
     />
   );
 };
 
 DetailsRoutesPageMap.contextTypes = {
-  match: matchShape.isRequired,
+  match: matchShape.isRequired
 };
 
 DetailsRoutesPageMap.propTypes = {
   getDataById: func.isRequired,
   language: string.isRequired,
-  mapLayers: mapLayerShape.isRequired,
+  selectedItem: bool.isRequired
 };
 
 export default connectToStores(
   DetailsRoutesPageMap,
-  ['PreferencesStore', 'MapLayerStore'],
+  ['PreferencesStore', 'MapLayerStore', 'RoutesStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),
     mapLayers: getStore('MapLayerStore').getMapLayers(),
-  }),
+    selectedItem: getStore('RoutesStore').getSelectedItem()
+  })
 );

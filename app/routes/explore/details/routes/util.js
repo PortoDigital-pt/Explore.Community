@@ -1,16 +1,4 @@
-export const POI_ONE = {
-  name: 'Poi ONE',
-  lon: -8.58273213,
-  lat: 41.16078345
-};
-
-export const POI_TWO = {
-  name: 'Poi TWO',
-  lon: -8.622465,
-  lat: 41.149367
-};
-
-export const MOCK_PARAMS = {
+const PARAMS = {
   accessibilityOption: 0,
   optimize: 'GREENWAYS',
   bikeSpeed: 5.55,
@@ -38,24 +26,6 @@ export const MOCK_PARAMS = {
   allowedBikeRentalNetworks: null,
   scooterNetworks: null,
   allowedRentalNetworks: null,
-  fromPlace: {
-    location: {
-      coordinate: {
-        latitude: POI_ONE.lat,
-        longitude: POI_ONE.lon
-      }
-    },
-    label: POI_ONE.name
-  },
-  toPlace: {
-    location: {
-      coordinate: {
-        latitude: POI_TWO.lat,
-        longitude: POI_TWO.lon
-      }
-    },
-    label: POI_ONE.name
-  },
   datetime: {
     earliestDeparture: '2025-05-21T13:44:07+01:00'
   },
@@ -67,35 +37,14 @@ export const MOCK_PARAMS = {
   via: []
 };
 
-export const LEGS = [
-  {
-    legId: null,
-    mode: 'subway',
-    legGeometry: {
-      points: 'ybczFrxps@yUX????aViI??'
-      // points: 'kaczFlaps@FBpAt@NHEHEL?@M^?XCl@J|C@THz@BRk@XC@GEYCc@AO@C@C@A@k@tDMZGX@?v@V??',
-    },
-    from: {
-      lat: 41.144766,
-      lon: -8.607251,
-      name: 'Crocodile Club-yyy'
-    },
-    to: {
-      lat: 41.14494,
-      lon: -8.610815
-    }
-  }
-];
-
 export const buildPlanQuery = pois => {
-  console.log('log-buildPlanQuery', pois);
   const queries = [];
 
   pois?.forEach((poi, index) => {
     const nextPoi = pois[index + 1];
 
     if (nextPoi) {
-      const queryParams = { ...MOCK_PARAMS };
+      const queryParams = { ...PARAMS };
 
       queryParams.fromPlace = {
         location: {
@@ -120,13 +69,6 @@ export const buildPlanQuery = pois => {
       queries.push(queryParams);
     }
   });
-
-  // const asyncOperations = [];
-
-  // queries.forEach((it: string) => {
-  //   asyncOperations.push(this.someUseCase.execute());
-  // });
-  // await Promise.all(asyncOperations);
 
   return queries;
 };

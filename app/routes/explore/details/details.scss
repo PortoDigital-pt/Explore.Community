@@ -458,6 +458,7 @@
 
       .image {
         height: 130px;
+        min-height: 130px;
       }
 
       .details {
@@ -523,6 +524,57 @@
         }
       }
     }
+
+    .buttons {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      column-gap: 8px;
+
+      button {
+        width: 100%;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid $primary-color;
+        font-size: $font-size-l;
+        font-weight: $font-weight-bold;
+        align-items: center;
+        background-color: $primary-color;
+        color: $primary-contrastText;
+
+        flex-grow: 1;
+
+        @media (min-width: 400px) {
+          width: 400px;
+        }
+      }
+
+      .button-light {
+        width: 100%;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid $primary-dark;
+        font-size: $font-size-l;
+        font-weight: $font-weight-bold;
+        align-items: center;
+        background-color: $primary-contrastText;
+        color: $primary-dark;
+        flex-grow: 1;
+
+        @media (min-width: 400px) {
+          width: 400px;
+        }
+      }
+    }
   }
 }
 
@@ -534,4 +586,67 @@
   left: 0;
   flex-grow: 1;
   z-index: 10002;
+}
+
+.routes-content-tabs {
+  .swipe-tab-ball.selected {
+    border: $primary-dark;
+    background-color: $primary-dark;
+  }
+
+  .routes-tab {
+    .mobile-view {
+      .header {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+
+        .title {
+          display: flex;
+          position: relative;
+          flex-grow: 1;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 5px;
+
+          .icon-container svg {
+            color: $primary-dark;
+            width: 24px;
+            height: 24px;
+
+            text {
+              fill: white;
+              font-size: 22px;
+            }
+          }
+
+          h3 {
+            display: flex;
+            position: relative;
+            color: $primary-color;
+            font-size: $font-size-l;
+            font-weight: $font-weight-bold;
+            justify-content: center;
+
+            &.routes-tab {
+              color: $grey-dark-down;
+              font-size: $font-size-base;
+            }
+          }
+        }
+
+        .distance {
+          display: flex;
+          position: relative;
+          flex-grow: 1;
+          justify-content: flex-end;
+          align-items: center;
+          font-size: $font-size-s;
+          color: $primary-dark;
+        }
+      }
+    }
+  }
 }

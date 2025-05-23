@@ -1,0 +1,68 @@
+import React from 'react';
+import { matchShape } from 'found';
+import { bool } from 'prop-types';
+import { connectToStores } from 'fluxible-addons-react';
+import { intlShape } from 'react-intl';
+import RoutesTabs from './routes-tabs';
+import Details from '../../details';
+import { getRoutesById } from '../../../../../util/amporto/api';
+import { routesShape } from '../shape';
+import useModal from '../../../../../hooks/useModal';
+import { DetailsContentModal } from '../../../common';
+
+const Page = ({ selectedData, selectedItem }, { intl }) => {
+  const { isOpen, open, close } = useModal();
+
+  return (
+    <div className="routes-content-tabs">
+      <RoutesTabs
+        pois={selectedData?.pois}
+        breakpoint="mobile"
+        selectedItem={selectedItem}
+        images={selectedData?.images}
+        intl={intl}
+        onDetails={open}
+      />
+
+      {isOpen && (
+        <DetailsContentModal
+          data={selectedData?.pois[selectedItem]}
+          isOpen={isOpen}
+          onBackBtnClick={close}
+          showShare
+          PageContent={() => <p>{selectedData?.pois[selectedItem]?.name}</p>}
+        />
+      )}
+    </div>
+  );
+};
+
+Page.contextTypes = {
+  intl: intlShape.isRequired,
+  match: matchShape.isRequired
+};
+
+Page.propTypes = {
+  selectedData: routesShape.isRequired,
+  selectedItem: bool.isRequired
+};
+
+export const MobileContent = connectToStores(
+  Page,
+  ['PositionStore', 'RoutesStore'],
+  ({ getStore }) => ({
+    location: getStore('PositionStore').getLocationState(),
+    selectedItem: getStore('RoutesStore').getSelectedItem()
+  })
+);
+
+const RoutesPoiDetailsPage = () => (
+  <Details
+    getDataById={getRoutesById}
+    onErrorPath="/routes"
+    PageContent={MobileContent}
+    MobileContent={MobileContent}
+  />
+);
+
+export default RoutesPoiDetailsPage;

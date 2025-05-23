@@ -12,7 +12,8 @@ export default function LocationMarker({
   isLarge,
   type,
   disabled,
-  iconText
+  iconText,
+  highlight
 }) {
   const getValidType = markertype => {
     switch (markertype) {
@@ -41,6 +42,7 @@ export default function LocationMarker({
   };
   const validType = getValidType(type);
   const sideLength = isLarge ? 30 : 24;
+
   return (
     <IconMarker
       position={position}
@@ -52,6 +54,9 @@ export default function LocationMarker({
             img={getIconName(validType)}
             color={disabled ? '#bbbbbb' : null}
             text={iconText}
+            className={cx({
+              highlight
+            })}
           />
         ),
         iconAnchor: [sideLength / 2, sideLength],
@@ -76,7 +81,8 @@ LocationMarker.propTypes = {
   isLarge: PropTypes.bool,
   type: PropTypes.oneOf(['from', 'via', 'to', 'favourite']),
   disabled: PropTypes.bool,
-  iconText: PropTypes.string
+  iconText: PropTypes.string,
+  highlight: PropTypes.bool
 };
 
 LocationMarker.defaultProps = {
@@ -85,5 +91,6 @@ LocationMarker.defaultProps = {
   isLarge: false,
   type: 'via',
   disabled: false,
-  iconText: undefined
+  iconText: undefined,
+  highlight: false
 };
