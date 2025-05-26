@@ -574,13 +574,14 @@ class DTAutosuggestPanel extends React.Component {
                       searchContext={searchContext}
                       refPoint={this.props.refPoint}
                       value={(o && o.address) || ''}
+                      onSelect={this.props.onSelect}
                       onClear={this.props.onClear}
                       handleViaPoints={item =>
                         this.handleViaPointLocationSelected(item, i)
                       }
                       lang={this.props.lang}
                       sources={this.props.sources}
-                      targets={this.props.targets}
+                      targets={['Stops', 'Stations']}
                       filterResults={this.props.filterResults}
                       getAutoSuggestIcons={this.props.getAutoSuggestIcons}
                       isMobile={this.props.isMobile}

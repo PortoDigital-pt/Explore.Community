@@ -6277,15 +6277,15 @@ const translations = {
     'stops-near-you.description': 'Pare horários e veículos perto do seu',
     'stops-near-you.title': 'Perto dos horários das paragens',
     'street-mode-bike-aria':
-      'Mostrar ciclovia. Duração {duration}, distância {comprimento}',
+      'Mostrar ciclovia. Duração {duration}, distância {length}',
     'street-mode-bikeandvehicle-aria':
-      'Mostre uma combinação de ciclismo e transporte público. Duração {duration}, distância {comprimento}',
+      'Mostre uma combinação de ciclismo e transporte público. Duração {duration}, distância {length}',
     'street-mode-car-aria':
-      'Mostrar rota de condução. Duração {duration}, distância {comprimento}',
+      'Mostrar rota de condução. Duração {duration}, distância {length}',
     'street-mode-parkandride-aria':
-      'Mostrar parque e rota de passeio. Duração {duration}, distância de condução {comprimento}',
+      'Mostrar parque e rota de passeio. Duração {duration}, distância de condução {length}',
     'street-mode-walk-aria':
-      'Mostrar percurso pedestre. Duração {duration}, distância {comprimento}',
+      'Mostrar percurso pedestre. Duração {duration}, distância {length}',
     surveillance_cameras: 'Vigilância por câmaras',
     swedish: 'Sueco',
     'swipe-disruption-info':
