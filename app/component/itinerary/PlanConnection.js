@@ -18,7 +18,7 @@ const planConnection = graphql`
     $first: Int
     $before: String
     $last: Int
-    $via: [PlanViaLocationInput!]
+    $via: [PlanViaLocationInput!] 
   ) {
     plan: planConnection(
       dateTime: $datetime
