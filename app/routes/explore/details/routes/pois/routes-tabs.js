@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'found';
 import { arrayOf, bool, func } from 'prop-types';
 import { intlShape } from 'react-intl';
 import SwipeableTabs from '../../../../../component/SwipeableTabs';
@@ -8,8 +9,9 @@ import { routesPoiShape } from '../shape';
 
 const RoutesTabs = (
   { pois, breakpoint, images, intl, selectedItem, onDetails },
-  { executeAction }
+  { executeAction },
 ) => {
+  const { router } = useRouter();
   const isMobile = breakpoint === 'mobile';
 
   const changeHash = index => {
@@ -67,7 +69,11 @@ const RoutesTabs = (
               </button>
               <button
                 type="button"
-                onClick={() => 'onDetails'}
+                onClick={() =>
+                  router.push(
+                    '/browse/itinerary/Trindade%2C%20Cedofeita%2C%20Ildefonso%2C%20Sé%2C%20Miragaia%2C%20Nicolau%2C%20Vitória**1%3AST-5726%3A%3A41.15228%2C-8.609299/Rua%20da%20Constituição%20677%2C%20Porto%2C%20Portugal%3A%3A41.161781%2C-8.606474?time=1748253676',
+                  )
+                }
                 aria-label={intl.messages['start-here']}
               >
                 {intl.messages['start-here']}
@@ -94,11 +100,11 @@ const RoutesTabs = (
 RoutesTabs.propTypes = {
   intl: intlShape.isRequired,
   selectedItem: bool.isRequired,
-  pois: arrayOf(routesPoiShape).isRequired
+  pois: arrayOf(routesPoiShape).isRequired,
 };
 
 RoutesTabs.contextTypes = {
-  executeAction: func.isRequired
+  executeAction: func.isRequired,
 };
 
 RoutesTabs.defaultProps = {};

@@ -2,10 +2,16 @@ import Store from 'fluxible/addons/BaseStore';
 
 class RoutesStore extends Store {
   static handlers = {
-    SetSelectedItem: 'setSelectedItem'
+    SetSelectedItem: 'setSelectedItem',
+    ClearSelectedItem: 'clearSelectedItem'
   };
 
-  selectedItem = 0;
+  selectedItem;
+
+  constructor(dispatcher) {
+    super(dispatcher);
+    this.selectedItem = 0;
+  }
 
   setSelectedItem = item => {
     this.selectedItem = item;
@@ -14,6 +20,11 @@ class RoutesStore extends Store {
 
   getSelectedItem() {
     return this.selectedItem;
+  }
+
+  clearSelectedItem() {
+    this.selectedItem = 0;
+    this.emitChange();
   }
 }
 
