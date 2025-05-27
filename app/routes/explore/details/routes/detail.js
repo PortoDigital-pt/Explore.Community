@@ -24,7 +24,7 @@ export const RoutesDetails = (
       </div>
       <div>
         <Icon img="icon-icon_clock" viewBox="0 0 16 16" />
-        <p>{selectedData.duration}</p>
+        <p>{selectedData.duration}h</p>
       </div>
     </div>
 

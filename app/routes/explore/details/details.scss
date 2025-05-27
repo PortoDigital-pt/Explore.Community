@@ -593,25 +593,92 @@
     height: 100%;
     padding-top: 5px;
 
-    button {
-      width: 100%;
+    .header {
       display: flex;
       position: relative;
+      flex-direction: row;
+      row-gap: 2px;
+      margin: 10px 0 5px 0;
+
+      .title {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 10px;
+        flex-grow: 1;
+
+        .icon-container svg {
+          color: $primary-dark;
+          width: 24px;
+          height: 24px;
+
+          text {
+            fill: white;
+            font-size: 22px;
+          }
+        }
+
+        .icon {
+          display: flex;
+          position: relative;
+          width: 30px;
+          height: 30px;
+        }
+
+        h3 {
+          display: flex;
+          position: relative;
+          color: $primary-color;
+          font-size: $font-size-l;
+          font-weight: $font-weight-bold;
+
+          &.routes-tab {
+            color: $grey-dark-down;
+            font-size: $font-size-base;
+          }
+        }
+      }
+
+      .distance {
+        display: flex;
+        position: relative;
+        color: $primary-color;
+        line-height: 16px;
+        font-size: $font-size-s;
+        font-weight: $font-weight-regular;
+        min-height: 16px;
+        align-items: center;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      position: relative;
+      flex-direction: row;
       justify-content: center;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid $primary-color;
-      font-size: $font-size-l;
-      font-weight: $font-weight-bold;
-      align-items: center;
-      background-color: $primary-color;
-      color: $primary-contrastText;
+      column-gap: 8px;
 
-      flex-grow: 1;
+      button {
+        width: 100%;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid $primary-color;
+        font-size: $font-size-l;
+        font-weight: $font-weight-bold;
+        align-items: center;
+        background-color: $primary-color;
+        color: $primary-contrastText;
 
-      @media (min-width: 400px) {
-        width: 400px;
+        flex-grow: 1;
+
+        @media (min-width: 400px) {
+          width: 400px;
+        }
       }
     }
   }

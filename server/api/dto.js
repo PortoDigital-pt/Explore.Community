@@ -182,6 +182,6 @@ export const routesToDto = (route, language) => {
     pois: formattedPois(pois, language),
     difficulty,
     distance,
-    duration: '500M' // duration?.replace('PT', '')
+    duration
   };
 };

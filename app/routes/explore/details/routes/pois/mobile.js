@@ -27,7 +27,6 @@ const Mobile = (
         </div>
 
         <div className="distance">
-          500M
           {!!distanceToPoi &&
             `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
         </div>
