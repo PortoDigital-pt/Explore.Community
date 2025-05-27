@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { string, func, bool } from 'prop-types';
+import { string, func, number } from 'prop-types';
 import { matchShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import { fetchQuery, ReactRelayContext } from 'react-relay';
@@ -92,7 +92,7 @@ const DetailsRoutesPageMap = (
     <MapWithTracking
       leafletObjs={leafletObjs}
       hilightedStops={[selectedData.id]}
-      zoom={14}
+      zoom={15}
       lat={selectedData?.lat}
       lon={selectedData?.lon}
       showExplore
@@ -107,7 +107,7 @@ DetailsRoutesPageMap.contextTypes = {
 DetailsRoutesPageMap.propTypes = {
   getDataById: func.isRequired,
   language: string.isRequired,
-  selectedItem: bool.isRequired
+  selectedItem: number.isRequired
 };
 
 export default connectToStores(

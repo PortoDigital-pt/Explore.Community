@@ -44,14 +44,12 @@ const formattedPois = (pois, language) =>
   pois.map(poi => {
     const auxPoi = { ...poi };
 
-    const rawDescription = auxPoi.item_description
-      ? auxPoi.item_description?.value[language] ||
-        auxPoi.item_description?.value?.pt
-      : auxPoi.item_description_lang?.value[language] ||
-        auxPoi.item_description_lang?.value?.pt;
+    const rawDescription =
+      auxPoi.description_lang?.value[language] ||
+      auxPoi.description_lang?.value?.pt;
 
-    const lon = auxPoi.item_location?.value?.coordinates[0];
-    const lat = auxPoi.item_location?.value?.coordinates[1];
+    const lon = auxPoi.location?.value?.coordinates[0];
+    const lat = auxPoi.location?.value?.coordinates[1];
 
     delete auxPoi.location;
     delete auxPoi.item_description;
@@ -184,6 +182,6 @@ export const routesToDto = (touristTrip, language) => {
     pois: formattedPois(pois, language),
     difficulty,
     distance,
-    duration: duration?.replace('PT', '')
+    duration: '500M' // duration?.replace('PT', '')
   };
 };

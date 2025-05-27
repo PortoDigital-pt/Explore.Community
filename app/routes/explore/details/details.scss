@@ -588,6 +588,35 @@
   z-index: 10002;
 }
 
+.desktop {
+  .routes-content-tabs {
+    height: 100%;
+    padding-top: 5px;
+
+    button {
+      width: 100%;
+      display: flex;
+      position: relative;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid $primary-color;
+      font-size: $font-size-l;
+      font-weight: $font-weight-bold;
+      align-items: center;
+      background-color: $primary-color;
+      color: $primary-contrastText;
+
+      flex-grow: 1;
+
+      @media (min-width: 400px) {
+        width: 400px;
+      }
+    }
+  }
+}
+
 .routes-content-tabs {
   .swipe-tab-ball.selected {
     border: $primary-dark;

@@ -21,7 +21,7 @@ import ShareButton from '../../../../component/amporto/share-button';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 
-const poiShape = shape({
+export const poiShape = shape({
   type: string.isRequired,
   id: string.isRequired,
   address: shape({

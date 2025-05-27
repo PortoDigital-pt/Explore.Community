@@ -43,9 +43,15 @@ const DetailsPage = (
           PageContent={PageContent}
           data={selectedData}
           showShare
+          breakpoint={breakpoint}
         />
       ) : (
-        <MobileContent onDetails={open} selectedData={selectedData} showShare />
+        <MobileContent
+          onDetails={open}
+          selectedData={selectedData}
+          breakpoint={breakpoint}
+          showShare
+        />
       )}
       {isOpen && (
         <DetailsContentModal

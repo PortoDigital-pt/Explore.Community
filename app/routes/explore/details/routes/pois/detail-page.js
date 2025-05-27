@@ -1,6 +1,6 @@
 import React from 'react';
 import { matchShape } from 'found';
-import { bool, func } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
 import RoutesTabs from './routes-tabs';
@@ -11,7 +11,10 @@ import useModal from '../../../../../hooks/useModal';
 import { DetailsContentModal } from '../../../common';
 import { clearSelectedItem } from '../../../../../action/RoutesActions';
 
-const Page = ({ selectedData, selectedItem }, { intl, executeAction }) => {
+const Page = (
+  { selectedData, selectedItem, breakpoint },
+  { intl, executeAction }
+) => {
   const { isOpen, open, close } = useModal();
 
   React.useEffect(() => {
@@ -24,7 +27,7 @@ const Page = ({ selectedData, selectedItem }, { intl, executeAction }) => {
     <div className="routes-content-tabs">
       <RoutesTabs
         pois={selectedData?.pois}
-        breakpoint="mobile"
+        breakpoint={breakpoint}
         selectedItem={selectedItem}
         images={selectedData?.images}
         intl={intl}
@@ -47,12 +50,13 @@ const Page = ({ selectedData, selectedItem }, { intl, executeAction }) => {
 Page.contextTypes = {
   intl: intlShape.isRequired,
   match: matchShape.isRequired,
-  executeAction: func.isRequired,
+  executeAction: func.isRequired
 };
 
 Page.propTypes = {
   selectedData: routesShape.isRequired,
   selectedItem: bool.isRequired,
+  breakpoint: string
 };
 
 export const MobileContent = connectToStores(
@@ -60,8 +64,8 @@ export const MobileContent = connectToStores(
   ['PositionStore', 'RoutesStore'],
   ({ getStore }) => ({
     location: getStore('PositionStore').getLocationState(),
-    selectedItem: getStore('RoutesStore').getSelectedItem(),
-  }),
+    selectedItem: getStore('RoutesStore').getSelectedItem()
+  })
 );
 
 const RoutesPoiDetailsPage = () => (
