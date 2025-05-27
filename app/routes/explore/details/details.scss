@@ -524,55 +524,55 @@
         }
       }
     }
+  }
 
-    .buttons {
+  .buttons {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 8px;
+
+    button {
+      width: 100%;
       display: flex;
       position: relative;
-      flex-direction: row;
       justify-content: center;
-      column-gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid $primary-color;
+      font-size: $font-size-l;
+      font-weight: $font-weight-bold;
+      align-items: center;
+      background-color: $primary-color;
+      color: $primary-contrastText;
 
-      button {
-        width: 100%;
-        display: flex;
-        position: relative;
-        justify-content: center;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        border: 2px solid $primary-color;
-        font-size: $font-size-l;
-        font-weight: $font-weight-bold;
-        align-items: center;
-        background-color: $primary-color;
-        color: $primary-contrastText;
+      flex-grow: 1;
 
-        flex-grow: 1;
-
-        @media (min-width: 400px) {
-          width: 400px;
-        }
+      @media (min-width: 400px) {
+        width: 400px;
       }
+    }
 
-      .button-light {
-        width: 100%;
-        display: flex;
-        position: relative;
-        justify-content: center;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        border: 2px solid $primary-dark;
-        font-size: $font-size-l;
-        font-weight: $font-weight-bold;
-        align-items: center;
-        background-color: $primary-contrastText;
-        color: $primary-dark;
-        flex-grow: 1;
+    .button-light {
+      width: 100%;
+      display: flex;
+      position: relative;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid $primary-dark;
+      font-size: $font-size-l;
+      font-weight: $font-weight-bold;
+      align-items: center;
+      background-color: $primary-contrastText;
+      color: $primary-dark;
+      flex-grow: 1;
 
-        @media (min-width: 400px) {
-          width: 400px;
-        }
+      @media (min-width: 400px) {
+        width: 400px;
       }
     }
   }
@@ -708,6 +708,7 @@
           gap: 5px;
 
           .icon-container svg {
+            display: flex;
             color: $primary-dark;
             width: 24px;
             height: 24px;

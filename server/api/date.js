@@ -69,6 +69,10 @@ const areDaysSequential = (days, language) => {
  * @param {string} language the selected language
  */
 export const formatCalendar = (calendar, language) => {
+  if (!calendar) {
+    return null;
+  }
+
   const group = Object.entries(DAYS_LANG_MAP).reduce((acc, [day, label]) => {
     if (calendar[day].length === 0) {
       return acc;

@@ -47,7 +47,7 @@ const Mobile = (
               <div>
                 <Icon img="icon-time" viewBox="0 0 16 16" />
                 <div className="schedule">
-                  {selectedData.calendar.map(schedule => (
+                  {selectedData.calendar?.map(schedule => (
                     <p key={schedule}>{schedule}</p>
                   ))}
                 </div>

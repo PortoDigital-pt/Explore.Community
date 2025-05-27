@@ -271,7 +271,7 @@ export default {
   },
 
   map: {
-    showWifi: SHOW_WIFI  === 'true',
+    showWifi: SHOW_WIFI === 'true',
     useRetinaTiles: true,
     tileSize: 512,
     zoomOffset: -1,

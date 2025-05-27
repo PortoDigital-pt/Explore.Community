@@ -40,28 +40,6 @@ const extractValuesAndDecode = values => {
   }, {});
 };
 
-const formattedPois = (pois, language) =>
-  pois.map(poi => {
-    const auxPoi = { ...poi };
-
-    const rawDescription =
-      auxPoi.description_lang?.value[language] ||
-      auxPoi.description_lang?.value?.pt;
-
-    const lon = auxPoi.location?.value?.coordinates[0];
-    const lat = auxPoi.location?.value?.coordinates[1];
-
-    delete auxPoi.location;
-    delete auxPoi.item_description;
-
-    return {
-      ...auxPoi,
-      description: extractValuesAndDecode(rawDescription),
-      lat,
-      lon
-    };
-  });
-
 export const poiToDto = (poi, language) => {
   const {
     id,
@@ -144,6 +122,39 @@ export const eventToDto = (event, language) => {
     images: extractValuesAndDecode([contentURL.value])
   };
 };
+
+const formattedPois = (pois, language) =>
+  pois.map(poi => {
+    const poiDto = poiToDto(poi, language);
+
+    return {
+      ...poiDto,
+      position: poi.position
+    };
+    // todo - uncomment it after the data is ok.
+    // const auxPoi = { ...poi };
+
+    // const rawDescription =
+    //   auxPoi.description_lang?.value[language] ||
+    //   auxPoi.description_lang?.value?.pt;
+
+    // const lon = auxPoi.location?.value?.coordinates[0];
+    // const lat = auxPoi.location?.value?.coordinates[1];
+
+    // const calendar = formatCalendar(auxPoi.calendar?.value, language);
+
+    // delete auxPoi.location;
+    // delete auxPoi.item_description;
+    // delete auxPoi.calendar;
+
+    // return {
+    //   ...auxPoi,
+    //   description: extractValuesAndDecode(rawDescription),
+    //   lat,
+    //   lon,
+    //   calendar
+    // };
+  });
 
 export const routesToDto = (route, language) => {
   const {

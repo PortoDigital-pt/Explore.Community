@@ -10,6 +10,7 @@ import { routesShape } from '../shape';
 import useModal from '../../../../../hooks/useModal';
 import { DetailsContentModal } from '../../../common';
 import { clearSelectedItem } from '../../../../../action/RoutesActions';
+import { DesktopContent } from './desktop';
 
 const Page = (
   { selectedData, selectedItem, breakpoint },
@@ -40,7 +41,12 @@ const Page = (
           isOpen={isOpen}
           onBackBtnClick={close}
           showShare
-          PageContent={() => <p>{selectedData?.pois[selectedItem]?.name}</p>}
+          PageContent={() => (
+            <DesktopContent
+              selectedData={selectedData?.pois[selectedItem]}
+              breakpoint={breakpoint}
+            />
+          )}
         />
       )}
     </div>

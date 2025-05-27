@@ -6,8 +6,8 @@ const RouteListPage = () => (
   <List
     type="routes"
     getData={getRoutesList}
-    errorMessage="pois-fetch-error"
-    emptyMessage="pois-empty"
+    errorMessage="routes-fetch-error"
+    emptyMessage="routes-empty"
   />
 );
 

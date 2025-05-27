@@ -1,7 +1,7 @@
 import React from 'react';
 import classname from 'classnames';
 import { intlShape } from 'react-intl';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import ImageSlider from '../../../../../component/amporto/image-slider';
 import Icon from '../../../../../component/Icon';
@@ -11,13 +11,15 @@ import { locationShape } from '../../../../../util/shapes';
 import { showDistance } from '../../../../../util/amporto/geo';
 
 const Content = (
-  { location, selectedData, onStartItinerary },
-  { intl, executeAction },
+  { location, selectedData, onStartItinerary, breakpoint },
+  { intl, executeAction }
 ) => {
+  const isMobile = breakpoint !== 'large';
+
   const distanceToPoi = useDistanceToTarget({
     executeAction,
     location,
-    targetPoint: selectedData,
+    targetPoint: selectedData
   });
 
   return (
@@ -30,20 +32,24 @@ const Content = (
 
       <div
         className={classname('details', {
-          lower: selectedData.images === null,
+          lower: selectedData.images === null
         })}
       >
-        <div className="header">
-          <div className="title">
-            <Icon img="icon-circle" text={selectedData.position} />
-            <h3 className="routes-tab">{selectedData.name}</h3>
-          </div>
+        {!isMobile && (
+          <div className="header">
+            <div className="title">
+              <Icon img="icon-circle" text={selectedData.position} />
+              <h3 className="routes-tab">{selectedData.name}</h3>
+            </div>
 
-          <div className="distance">
-            {!!distanceToPoi &&
-              `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+            <div className="distance">
+              {!!distanceToPoi &&
+                `${intl.messages['at-distance']} ${showDistance(
+                  distanceToPoi
+                )}`}
+            </div>
           </div>
-        </div>
+        )}
 
         {selectedData.description && (
           <div className="description">
@@ -106,17 +112,18 @@ Content.propTypes = {
   location: locationShape.isRequired,
   selectedData: poiShape.isRequired,
   onStartItinerary: func.isRequired,
+  breakpoint: string
 };
 
 Content.contextTypes = {
   intl: intlShape.isRequired,
-  executeAction: func.isRequired,
+  executeAction: func.isRequired
 };
 
 export const DesktopContent = connectToStores(
   Content,
   ['PositionStore'],
   ({ getStore }) => ({
-    location: getStore('PositionStore').getLocationState(),
-  }),
+    location: getStore('PositionStore').getLocationState()
+  })
 );

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { string, func, number } from 'prop-types';
 import { matchShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
@@ -10,6 +10,9 @@ import ItineraryLine from '../../../../../component/map/ItineraryLine';
 import planConnection from '../../../../../component/itinerary/PlanConnection';
 import { buildPlanQuery } from '../util';
 import LocationMarker from '../../../../../component/map/LocationMarker';
+import { boundWithMinimumArea } from '../../../../../util/geo-utils';
+
+const DEFAULT_ZOOM = 15;
 
 const DetailsRoutesPageMap = (
   { language, getDataById, selectedItem },
@@ -46,6 +49,16 @@ const DetailsRoutesPageMap = (
   useEffect(() => {
     getDataFromOTP(environment, selectedData?.pois);
   }, [environment, selectedData?.pois]);
+
+  const bounds = useMemo(() => {
+    const latLngList = [];
+    selectedData?.pois?.forEach(poi => {
+      latLngList.push([poi.lat, poi.lon]);
+    });
+
+    const bounds = boundWithMinimumArea(latLngList, DEFAULT_ZOOM);
+    return bounds;
+  }, [selectedData?.pois]);
 
   if (error) {
     return null;
@@ -92,9 +105,8 @@ const DetailsRoutesPageMap = (
     <MapWithTracking
       leafletObjs={leafletObjs}
       hilightedStops={[selectedData.id]}
-      zoom={15}
-      lat={selectedData?.lat}
-      lon={selectedData?.lon}
+      zoom={DEFAULT_ZOOM}
+      bounds={bounds}
       showExplore
     />
   );
