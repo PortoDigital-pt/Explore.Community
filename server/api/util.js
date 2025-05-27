@@ -20,7 +20,7 @@ export const defaultEventQueryParams = {
   type: 'Event'
 };
 
-export const defaultTouristTripsQueryParams = {
+export const defaultRoutesQueryParams = {
   ...defaultQueryParams,
   type: 'TouristTrip'
 };

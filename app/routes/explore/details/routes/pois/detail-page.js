@@ -59,7 +59,7 @@ Page.propTypes = {
   breakpoint: string
 };
 
-export const MobileContent = connectToStores(
+export const Content = connectToStores(
   Page,
   ['PositionStore', 'RoutesStore'],
   ({ getStore }) => ({
@@ -72,8 +72,8 @@ const RoutesPoiDetailsPage = () => (
   <Details
     getDataById={getRoutesById}
     onErrorPath="/routes"
-    PageContent={MobileContent}
-    MobileContent={MobileContent}
+    PageContent={Content}
+    MobileContent={Content}
   />
 );
 

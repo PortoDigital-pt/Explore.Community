@@ -145,7 +145,7 @@ export const eventToDto = (event, language) => {
   };
 };
 
-export const routesToDto = (touristTrip, language) => {
+export const routesToDto = (route, language) => {
   const {
     id,
     category_lang,
@@ -160,7 +160,7 @@ export const routesToDto = (touristTrip, language) => {
     difficulty: { value: difficulty },
     distance: { value: distance },
     duration: { value: duration }
-  } = touristTrip;
+  } = route;
 
   return {
     type: 'routes',
