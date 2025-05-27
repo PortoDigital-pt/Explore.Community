@@ -22,7 +22,7 @@ const Accordion = ({ title, iconId, ariaLabel, children }) => {
         onClick={toggleAccordion}
       >
         <div className="accordion-header">
-          <Icon img={iconId} viewBox="0 0 32 32" className="icon-prefix" />
+          <Icon img={iconId} viewBox="0 0 50 50" className="icon-prefix" />
           <span className="accordion__title">{title}</span>
           <Icon
             img={`icon-chevron-${active ? 'up' : 'down'}`}

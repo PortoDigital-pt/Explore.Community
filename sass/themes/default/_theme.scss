@@ -62,13 +62,6 @@ $desktop-title-arrow-icon-color: $secondary-color;
 $infobox-color-generic-blue: #e5f2fa;
 $info-icon-blue: #0074be;
 
-$bus-color: #A7D9FE;
-$metro-color: $primary-color;
-$tram-color: #A2874F;
-$pois-color: #99DCD5;
-$events-color: #FEC8A7;
-$citybike-color: #FFE99D;
-
 $top-nav-shadow: 0 4px 4px 0 rgba(33, 33, 33, 0.15);
 
 /* Component palette */
@@ -92,15 +85,20 @@ $disclaimer-background-color: rgba(254, 209, 0, 0.1);
 $disclaimer-border-color: #fed100;
 
 /* Vehicle palette */
+
+$bus-color: #A7D9FE;
+$metro-color: $primary-color;
+$tram-color: #A2874F;
+$pois-color: #99DCD5;
+$events-color: #FEC8A7;
+$citybike-color: #FFE99D;
+
 $airplane-color: $livi-airplane-blue;
-$bus-color: $livi-bus-blue;
 $bus-express-color: $livi-bus-blue;
 $speedtram-color: $livi-tram-green;
-$tram-color: $livi-tram-green;
 $rail-color: $livi-rail-purple;
 $ferry-color: $livi-ferry-blue;
 $funicular-color: $livi-funicular-pink;
-$citybike-color: #f2b62d;
 $citybike-off-color: #919191;
 $walk-color: #e6e6e6;
 $wait-color: #e6e6e6;

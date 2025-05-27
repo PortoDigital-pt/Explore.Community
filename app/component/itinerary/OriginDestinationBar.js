@@ -109,12 +109,11 @@ class OriginDestinationBar extends React.Component {
       );
     }
     let action;
-    if (id === parseInt(id, 10)) {
+    if (id === parseInt(id, 10) || id === 'via-point') {
       // id = via point index
       // item == { ...gtfsId: 'HSL:1000004' }
       action = 'EditJourneyViaPoint';
-      const points = [...this.props.viaPoints];
-      points[id] = { ...item };
+      const points = [{ ...item }];
       this.updateViaPoints(points);
     } else {
       action =

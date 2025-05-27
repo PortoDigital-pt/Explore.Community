@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment, useEffect, useState } from 'react';
 import i18next from 'i18next';
 import Icon from '@digitransit-component/digitransit-component-icon';
-import styles from '../../../../sass/themes/amporto/digitransit-components/control-panel.scss';
+import styles from '../../../../sass/themes/default/digitransit-components/control-panel.scss';
 import translations from './helpers/translations';
 
 i18next.init({

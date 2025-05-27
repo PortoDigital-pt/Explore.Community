@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-class-component-methods */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage, intlShape } from 'react-intl';
@@ -807,14 +808,6 @@ class NearYouPage extends React.Component {
         centerOfMapChanged: false
       });
     }
-  };
-
-  renderSearchBox = () => {
-    return (
-      <div className="stops-near-you-location-search">
-        {this.renderAutoSuggestField(true)}
-      </div>
-    );
   };
 
   renderAutoSuggestField = onMap => {

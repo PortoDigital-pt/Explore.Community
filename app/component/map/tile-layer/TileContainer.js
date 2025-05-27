@@ -75,7 +75,10 @@ class TileContainer {
         const layerName = Layer.getName();
 
         // pois, events and accesspoints are drawn on the same layer
-        if (layerName === 'explore' && this.coords.z >= config.exploreMinZoom) {
+        if (
+          layerName === 'explore' &&
+          this.coords.z >= config.minZoomToShowOnMap
+        ) {
           return isExploreEnabled(this.props.mapLayers);
         }
 

@@ -21,7 +21,7 @@ import 'moment/locale/de';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 import translations from './helpers/translations';
-import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest/autosuggest.scss';
+import styles from '../../../../sass/themes/default/digitransit-components/autosuggest/autosuggest.scss';
 import MobileSearch from './helpers/MobileSearch';
 import withScrollLock from './helpers/withScrollLock';
 
@@ -320,7 +320,8 @@ class DTAutosuggest extends React.Component {
     isEmbedded: PropTypes.bool,
     mobileSearchPrefixIconId: PropTypes.string,
     buttonMode: PropTypes.bool,
-    eventSource: PropTypes.string
+    eventSource: PropTypes.string,
+    useAllFavourites: PropTypes.bool
   };
 
   static defaultProps = {
@@ -371,7 +372,8 @@ class DTAutosuggest extends React.Component {
     refPoint: {},
     mobileSearchPrefixIconId: undefined,
     buttonMode: false,
-    eventSource: undefined
+    eventSource: undefined,
+    useAllFavourites: false
   };
 
   constructor(props) {
@@ -599,7 +601,7 @@ class DTAutosuggest extends React.Component {
   };
 
   clearButton = () => {
-    return (
+    return this.props.onSelect ? (
       <button
         type="button"
         className={styles['clear-input']}
@@ -608,7 +610,7 @@ class DTAutosuggest extends React.Component {
       >
         <Icon img="clearLocation" color={this.props.color} />
       </button>
-    );
+    ) : null;
   };
 
   fetchFunction = ({ value, cleanExecuted }) => {
@@ -721,7 +723,8 @@ class DTAutosuggest extends React.Component {
           },
           this.props.pathOpts,
           this.props.refPoint,
-          this.props.eventSource
+          this.props.eventSource,
+          this.props.useAllFavourites
         );
       }
     );

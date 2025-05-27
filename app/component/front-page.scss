@@ -33,7 +33,8 @@ $heading-color: #858585;
   }
 
   .time-icon {
-    color: $primary-main;
+    color: $primary-main !important;
+    fill: $primary-main !important;
     margin-top: -2px;
   }
 }

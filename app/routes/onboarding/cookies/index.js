@@ -14,7 +14,11 @@ const Cookies = ({ startOpen, ...props }) => {
   const { isOpen, close } = useModal({ startOpen });
 
   return (
-    <Modal isOpen={isOpen} className={classNames} overlayClassName="overlay">
+    <Modal
+      isOpen={isOpen}
+      className={classNames}
+      overlayClassName="overlay-onboarding"
+    >
       <Content onClose={close} {...props} />
     </Modal>
   );

@@ -14,15 +14,12 @@ import { getSettings } from '../../util/planParamUtil';
 import PositionStore from '../../store/PositionStore';
 import MapLayerStore, { mapLayerShape } from '../../store/MapLayerStore';
 import MapWithTracking from './MapWithTracking';
-import SelectedStopPopup from './popups/SelectedStopPopup';
-import SelectedStopPopupContent from '../SelectedStopPopupContent';
 import withBreakpoint from '../../util/withBreakpoint';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
 import ItineraryLine from './ItineraryLine';
 import Loading from '../Loading';
 import { getMapLayerOptions } from '../../util/mapLayerUtils';
 import MapRoutingButton from '../MapRoutingButton';
-import CookieSettingsButton from '../CookieSettingsButton';
 import { PREFIX_CARPARK, PREFIX_BIKEPARK } from '../../util/path';
 import { walkQuery } from './WalkQuery';
 
@@ -46,7 +43,7 @@ const getModeFromProps = props => {
 };
 
 function StopPageMap(
-  { stop, breakpoint, locationState, mapLayers, mapLayerOptions, stopName },
+  { stop, breakpoint, locationState, mapLayers, mapLayerOptions },
   { config, match }
 ) {
   if (!stop) {
@@ -121,17 +118,6 @@ function StopPageMap(
   const children = [];
   if (config.showVehiclesOnStopPage) {
     leafletObjs.push(<VehicleMarkerContainer key="vehicles" useLargeIcon />);
-  }
-
-  if (breakpoint === 'large') {
-    leafletObjs.push(
-      <SelectedStopPopup lat={stop.lat} lon={stop.lon} key="SelectedStopPopup">
-        <SelectedStopPopupContent stop={stop} name={stopName} />
-      </SelectedStopPopup>
-    );
-    if (config.useCookiesPrompt) {
-      children.push(<CookieSettingsButton key="cookiesettings" />);
-    }
   }
 
   if (walk) {

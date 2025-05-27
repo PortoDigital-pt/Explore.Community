@@ -38,7 +38,7 @@ const VehicleRentalStation = ({ vehicleRentalStation }, { config }) => {
   const vehicleIcon = getRentalNetworkIcon(networkConfig, disabled);
   return (
     <div className="citybike-content-container">
-      <Icon img={vehicleIcon} viewBox="0 0 24 24" />
+      <Icon img={vehicleIcon} viewBox="0 0 50 50" />
       <VehicleRentalAvailability
         disabled={disabled}
         vehiclesAvailable={vehicleRentalStation.availableVehicles.total}

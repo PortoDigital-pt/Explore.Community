@@ -27,7 +27,7 @@ const Page = props => {
   );
 
   useEffect(() => {
-    if (!user.name) {
+    if (config.allowLogin && !user.name) {
       const url = encodeURI(
         `${window.location.origin || ''}${window.location?.pathname}`
       );
@@ -37,7 +37,76 @@ const Page = props => {
     }
   }, [user.name]);
 
-  return user.name ? (
+  return !config.allowLogin ? (
+    <>
+      <BackButton title={intl.messages['profile-page-back-button-title']} />
+      <div className="profile-page">
+        <div className="profile-page-container">
+          <div className="cards">
+            <button
+              type="button"
+              className="card-item"
+              aria-label={intl.messages['profile-page-favorite-card-title']}
+              onClick={() => router.push('/profile/favourites')}
+            >
+              <Icon
+                img="icon-favourites"
+                className="left-icon"
+                viewBox="0 0 25 24"
+              />
+
+              <div className="text-container">
+                <span className="title">
+                  {intl.messages['profile-page-favorite-card-title']}
+                </span>
+                <span className="subtitle">
+                  {intl.messages['profile-page-favorite-card-subtitle']}
+                </span>
+              </div>
+
+              <Icon
+                img="icon-chevron-right"
+                className="right-icon"
+                viewBox="0 0 24 24"
+              />
+            </button>
+
+            {profileConfig.showNotification && (
+              <button
+                type="button"
+                className="card-item"
+                aria-label={
+                  intl.messages['profile-page-notifications-card-title']
+                }
+                onClick={() => null}
+              >
+                <Icon
+                  img="icon-bell"
+                  className="left-icon"
+                  viewBox="0 0 20 20"
+                />
+
+                <div className="text-container">
+                  <span className="title">
+                    {intl.messages['profile-page-notifications-card-title']}
+                  </span>
+                  <span className="subtitle">
+                    {intl.messages['profile-page-notifications-card-subtitle']}
+                  </span>
+                </div>
+
+                <Icon
+                  img="icon-chevron-right"
+                  className="right-icon"
+                  viewBox="0 0 24 24"
+                />
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  ) : user.name ? (
     <>
       <BackButton title={intl.messages['profile-page-back-button-title']} />
       <div className="profile-page">
@@ -52,7 +121,6 @@ const Page = props => {
               <h3>{user?.name}</h3>
             </div>
           )}
-
           <div className="cards">
             <button
               type="button"
@@ -65,7 +133,6 @@ const Page = props => {
                 className="left-icon"
                 viewBox="0 0 25 24"
               />
-
               <div className="text-container">
                 <span className="title">
                   {intl.messages['profile-page-favorite-card-title']}

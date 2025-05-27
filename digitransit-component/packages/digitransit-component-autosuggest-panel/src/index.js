@@ -10,7 +10,7 @@ import Icon from '@digitransit-component/digitransit-component-icon';
 import isEmpty from 'lodash/isEmpty';
 import Select from './helpers/Select';
 import translations from './helpers/translations';
-import styles from '../../../../sass/themes/amporto/digitransit-components/autosuggest-panel.scss';
+import styles from '../../../../sass/themes/default/digitransit-components/autosuggest-panel.scss';
 
 i18next.init({
   lng: 'fi',
@@ -263,7 +263,8 @@ class DTAutosuggestPanel extends React.Component {
     showViapointControl: PropTypes.bool,
     showSlackControl: PropTypes.bool,
     mobileSearchPrefixIconId: PropTypes.string,
-    eventSource: PropTypes.string
+    eventSource: PropTypes.string,
+    useAllFavourites: PropTypes.bool
   };
 
   static defaultProps = {
@@ -301,7 +302,8 @@ class DTAutosuggestPanel extends React.Component {
     showViapointControl: false,
     showSlackControl: false,
     mobileSearchPrefixIconId: undefined,
-    eventSource: undefined
+    eventSource: undefined,
+    useAllFavourites: false
   };
 
   constructor(props) {
@@ -499,6 +501,7 @@ class DTAutosuggestPanel extends React.Component {
             isEmbedded={this.props.isEmbedded}
             mobileSearchPrefixIconId={this.props.mobileSearchPrefixIconId}
             eventSource={this.props.eventSource}
+            useAllFavourites={this.props.useAllFavourites}
           />
           {(showSwapControl || showViapointControl) && (
             <ItinerarySearchControl
@@ -592,6 +595,7 @@ class DTAutosuggestPanel extends React.Component {
                         this.props.mobileSearchPrefixIconId
                       }
                       eventSource={this.props.eventSource}
+                      useAllFavourites={this.props.useAllFavourites}
                     />
                   </div>
                   {this.props.showSlackControl && (
@@ -700,6 +704,7 @@ class DTAutosuggestPanel extends React.Component {
             isEmbedded={this.props.isEmbedded}
             mobileSearchPrefixIconId={this.props.mobileSearchPrefixIconId}
             eventSource={this.props.eventSource}
+            useAllFavourites={this.props.useAllFavourites}
           />
           {(showSwapControl || showViapointControl) && (
             <ItinerarySearchControl

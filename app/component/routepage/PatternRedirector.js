@@ -11,7 +11,6 @@ import { getOldSearchItems } from '../../util/storeUtils';
 import { routeShape } from '../../util/shapes';
 
 const PatternRedirector = ({ router, match, route }, context) => {
-  console.log('ROUTE: ', route);
   if (!route) {
     const oldSearchItems = getOldSearchItems(context);
     const oldItem = oldSearchItems.filter(

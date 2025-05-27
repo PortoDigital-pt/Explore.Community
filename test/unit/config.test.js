@@ -57,9 +57,8 @@ describe('config', () => {
       };
       const config = getConfiguration(request);
       expect(config.realTimePatch).to.be.empty; // eslint-disable-line no-unused-expressions
-      expect(config.realTime.HSL.mqtt).to.equal(
-        defaultConfig.realTime.HSL.mqtt
-      ); // eslint-disable-line no-unused-expressions
+      expect(config.realTime[1].mqtt).to.equal(defaultConfig.realTime[1].mqtt); // eslint-disable-line no-unused-expressions
+      expect(config.realTime[2].mqtt).to.equal(defaultConfig.realTime[2].mqtt); // eslint-disable-line no-unused-expressions
     });
   });
 });

@@ -60,7 +60,7 @@ const Mobile = (
           <div className="title">
             <Icon
               img="icon-explore-icon_pois_with_background"
-              viewBox="0 0 44 44"
+              viewBox="0 0 50 50"
             />
             <h3>{selectedData.name}</h3>
           </div>

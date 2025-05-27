@@ -6,7 +6,7 @@ import {
 } from './otpStrings';
 import { getPathWithEndpointObjects, PREFIX_ITINERARY_SUMMARY } from './path';
 import { saveFutureRoute } from '../action/FutureRoutesActions';
-import { addViaPoint } from '../action/ViaPointActions';
+import { addViaPoint, clearViaPoints } from '../action/ViaPointActions';
 
 /**
  * Processes query so that empty arrays will be preserved in URL
@@ -55,6 +55,13 @@ export const replaceQueryParams = (router, match, newParams) => {
  */
 export const setIntermediatePlaces = (router, match, newIntermediatePlaces) => {
   const hasUndefined = string => string.includes('undefined');
+
+  if (newIntermediatePlaces === null) {
+    replaceQueryParams(router, match, {
+      intermediatePlaces: ''
+    });
+    return;
+  }
 
   if (
     isString(newIntermediatePlaces) ||
@@ -113,7 +120,13 @@ export const updateItinerarySearch = (
 };
 
 export const onLocationPopup = (item, id, router, match, executeAction) => {
-  if (id === 'via') {
+  if (id === 'via-point') {
+    if (item === null) {
+       executeAction(clearViaPoints);
+       setIntermediatePlaces(router, match, null);
+       return;
+    }
+   
     const viaPoints = getIntermediatePlaces(match.location.query)
       .concat([item])
       .map(locationToOTP);

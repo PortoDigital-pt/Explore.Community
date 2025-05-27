@@ -101,6 +101,9 @@ export const getNearYouPath = (place, mode) =>
     encodeURIComponent(decodeURIComponent(place))
   ].join('/');
 
+export const isEmpty = s =>
+  s === undefined || s === null || s.trim() === '' || s.trim() === '-';
+
 export const getItineraryPagePath = (origin, destination) => {
   if (isEmpty(origin) && isEmpty(destination)) {
     return '/browse';
@@ -113,9 +116,6 @@ export const getItineraryPagePath = (origin, destination) => {
     encodeURIComponent(decodeURIComponent(destination))
   ].join('/');
 };
-
-export const isEmpty = s =>
-  s === undefined || s === null || s.trim() === '' || s.trim() === '-';
 
 export const coordsDiff = (c1, c2) =>
   Number.isNaN(c1) !== Number.isNaN(c2) ||

@@ -10,7 +10,7 @@ import Shimmer from '@hsl-fi/shimmer';
 import SuggestionItem from '@digitransit-component/digitransit-component-suggestion-item';
 import Icon from '@digitransit-component/digitransit-component-icon';
 import { formatFavouritePlaceLabel } from '@digitransit-search-util/digitransit-search-util-uniq-by-label';
-import styles from '../../../../sass/themes/amporto/digitransit-components/favourite-bar.scss';
+import styles from '../../../../sass/themes/default/digitransit-components/favourite-bar.scss';
 import translations from './helpers/translations';
 
 i18next.init({

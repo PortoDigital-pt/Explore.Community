@@ -15,13 +15,19 @@ class ViaPointStore extends Store {
     this.emitChange();
   }
 
+  clearViaPoints(){
+    this.viaPoints = [];
+    this.emitChange(); 
+  }
+
   getViaPoints() {
     return this.viaPoints;
   }
 
   static handlers = {
     addViaPoint: 'addViaPoint',
-    setViaPoints: 'setViaPoints'
+    setViaPoints: 'setViaPoints',
+    clearViaPoints: 'clearViaPoints'
   };
 }
 

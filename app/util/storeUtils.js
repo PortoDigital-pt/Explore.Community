@@ -11,6 +11,10 @@ export const getPositions = context => {
   return context.getStore('PositionStore').getLocationState();
 };
 
+export const getFavourites = context => {
+  return context.getStore('FavouriteStore').getFavourites();
+};
+
 export const getFavouriteLocations = context => {
   return context.getStore('FavouriteStore').getLocations();
 };
