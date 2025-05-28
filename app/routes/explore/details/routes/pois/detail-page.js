@@ -1,5 +1,5 @@
 import React from 'react';
-import { matchShape } from 'found';
+import { matchShape, useRouter } from 'found';
 import { bool, func, string } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
@@ -11,12 +11,19 @@ import useModal from '../../../../../hooks/useModal';
 import { DetailsContentModal } from '../../../common';
 import { clearSelectedItem } from '../../../../../action/RoutesActions';
 import { DesktopContent } from './desktop';
+import { getItineraryPath } from '../util';
 
 const Page = (
   { selectedData, selectedItem, breakpoint },
   { intl, executeAction }
 ) => {
+  const { router } = useRouter();
   const { isOpen, open, close } = useModal();
+
+  const startItinerary = () => {
+    const startPoint = selectedData?.pois[selectedItem];
+    router.push(getItineraryPath(startPoint));
+  };
 
   React.useEffect(() => {
     return () => {
@@ -30,9 +37,9 @@ const Page = (
         pois={selectedData?.pois}
         breakpoint={breakpoint}
         selectedItem={selectedItem}
-        images={selectedData?.images}
         intl={intl}
         onDetails={open}
+        onStartItinerary={startItinerary}
       />
 
       {isOpen && (
@@ -45,6 +52,7 @@ const Page = (
             <DesktopContent
               selectedData={selectedData?.pois[selectedItem]}
               breakpoint={breakpoint}
+              onStartItinerary={startItinerary}
             />
           )}
         />
@@ -69,7 +77,6 @@ export const Content = connectToStores(
   Page,
   ['PositionStore', 'RoutesStore'],
   ({ getStore }) => ({
-    location: getStore('PositionStore').getLocationState(),
     selectedItem: getStore('RoutesStore').getSelectedItem()
   })
 );

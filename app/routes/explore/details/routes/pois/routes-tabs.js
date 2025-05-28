@@ -1,25 +1,17 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { useRouter } from 'found';
 import { arrayOf, bool, func, string } from 'prop-types';
 import SwipeableTabs from '../../../../../component/SwipeableTabs';
 import { setSelectedItem } from '../../../../../action/RoutesActions';
 import { routesPoiShape } from '../shape';
 import { MobileContent } from './mobile';
 import { DesktopContent } from './desktop';
-import { getItineraryPath } from '../util';
 
 const RoutesTabs = (
-  { pois, breakpoint, images, selectedItem, onDetails },
+  { pois, breakpoint, selectedItem, onDetails, onStartItinerary },
   { executeAction }
 ) => {
-  const { router } = useRouter();
   const isMobile = breakpoint !== 'large';
-
-  const startItinerary = () => {
-    const startPoint = pois[selectedItem];
-    router.push(getItineraryPath(startPoint));
-  };
 
   const changeHash = index => {
     executeAction(setSelectedItem, index);
@@ -31,17 +23,17 @@ const RoutesTabs = (
         <div className="routes-tab routes-details-page">
           {isMobile ? (
             <MobileContent
-              selectedData={{ ...poi, images }}
+              selectedData={{ ...poi }}
               key={`routes-tab-${poi.position}`}
               onDetails={onDetails}
-              onStartItinerary={startItinerary}
+              onStartItinerary={onStartItinerary}
             />
           ) : (
             <DesktopContent
               breakpoint={breakpoint}
-              selectedData={{ ...poi, images }}
+              selectedData={{ ...poi }}
               key={`routes-tab-${poi.position}`}
-              onStartItinerary={startItinerary}
+              onStartItinerary={onStartItinerary}
             />
           )}
         </div>
@@ -66,7 +58,7 @@ RoutesTabs.propTypes = {
   pois: arrayOf(routesPoiShape).isRequired,
   onDetails: func.isRequired,
   breakpoint: string,
-  images: arrayOf(string)
+  onStartItinerary: func.isRequired
 };
 
 RoutesTabs.contextTypes = {
