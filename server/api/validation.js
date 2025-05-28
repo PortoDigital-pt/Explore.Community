@@ -68,3 +68,10 @@ export const detailSchema = checkSchema({
     isString: true
   }
 });
+
+export const idSchema = checkSchema({
+  id: {
+    in: ['params'],
+    isString: true
+  }
+});

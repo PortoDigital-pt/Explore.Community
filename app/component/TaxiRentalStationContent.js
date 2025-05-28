@@ -93,7 +93,7 @@ const TaxiRentalStationContent = (
       <div className="rental-bike-content-container">
         <div className="row-bike">
           <div className="rental-bike-content-item label">
-            <FormattedMessage id="citybike-available-bikes" />
+            <FormattedMessage id="citybike-available-taxis" />
           </div>
           <div className="rental-bike-content-item value">
             <span className="value-container">

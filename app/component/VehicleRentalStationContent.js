@@ -16,6 +16,7 @@ import withBreakpoint from '../util/withBreakpoint';
 import { getRentalNetworkConfig } from '../util/vehicleRentalUtils';
 import { isBrowser } from '../util/browser';
 import { showDistance } from '../util/amporto/geo';
+import { getSmooveById } from '../util/amporto/api';
 import { PREFIX_BIKESTATIONS } from '../util/path';
 import { TransportMode } from '../constants';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';
@@ -25,6 +26,7 @@ const VehicleRentalStationContent = (
   { config, intl, executeAction }
 ) => {
   const [client, setClient] = useState(false);
+  const [smooveDetails, setSmooveDetails] = useState(null);
   const distanceToStop = useDistanceToTarget({
     executeAction,
     location,
@@ -35,6 +37,22 @@ const VehicleRentalStationContent = (
     // To prevent SSR from rendering something https://reactjs.org/docs/react-dom.html#hydrate
     setClient(true);
   });
+
+  useEffect(() => {
+    if (!vehicleRentalStation) {
+      return;
+    }
+
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    getSmooveById(vehicleRentalStation.stationId.split('smoove:')[1], {
+      signal
+    })
+      .then(setSmooveDetails);
+
+    return () => controller.abort();
+  }, [vehicleRentalStation]);
 
   // throw error in client side relay query fails
   if (client && error && !vehicleRentalStation) {
@@ -93,11 +111,21 @@ const VehicleRentalStationContent = (
       <div className="rental-bike-content-container">
         <div className="row-bike">
           <div className="rental-bike-content-item label">
-            <FormattedMessage id="citybike-available-bikes" />
+            <FormattedMessage id="citybike-available-bicycles" />
           </div>
           <div className="rental-bike-content-item value">
             <span className="value-container">
-              {vehicleRentalStation?.availableVehicles?.total || 0}
+              {smooveDetails?.bicycles ?? 0}
+            </span>
+          </div>
+        </div>
+        <div className="row-bike">
+          <div className="rental-bike-content-item label">
+            <FormattedMessage id="citybike-available-scooters" />
+          </div>
+          <div className="rental-bike-content-item value">
+            <span className="value-container">
+              {smooveDetails?.scooters ?? 0}
             </span>
           </div>
         </div>

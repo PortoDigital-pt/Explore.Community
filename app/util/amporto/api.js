@@ -24,3 +24,9 @@ export function getEventList(query, { signal }) {
     signal
   }).then(response => response.json());
 }
+
+export function getSmooveById(id, { signal }) {
+  return retryFetch(`/api/smoove/${id}`, 2, 200, {
+    signal
+  }).then(response => response.json());
+}
