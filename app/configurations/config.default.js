@@ -271,7 +271,7 @@ export default {
   },
 
   map: {
-    showWifi: SHOW_WIFI  === 'true',
+    showWifi: SHOW_WIFI === 'true',
     useRetinaTiles: true,
     tileSize: 512,
     zoomOffset: -1,
@@ -355,6 +355,15 @@ export default {
         capacity: BIKEAVL_WITHMAX,
         icon: 'citybike',
         type: 'citybike'
+      },
+      taxis: {
+        enabled: true,
+        season: {
+          alwaysOn: true
+        },
+        capacity: BIKEAVL_WITHMAX,
+        icon: 'taxis',
+        type: 'taxis'
       }
     },
     capacity: BIKEAVL_WITHMAX,
@@ -405,7 +414,8 @@ export default {
       'mode-scooter': '#C5CAD2',
       pois: '#99DCD5',
       events: '#FEC8A7',
-      accesspoints: '#493e90'
+      accesspoints: '#493e90',
+      taxis: '#212121'
     },
     itineraryDefault: '#493e90',
     originDestination: {
@@ -738,7 +748,8 @@ export default {
       tram: { pt: 'Elétrico', en: 'Tram' },
       subway: { pt: 'Metro', en: 'Subway' },
       rail: { pt: 'Comboio', en: 'Rail' },
-      citybike: { pt: 'Bicicletas', en: 'Citybikes' }
+      citybike: { pt: 'Bicicletas', en: 'Citybikes' },
+      taxis: { pt: 'Táxis', en: 'Taxis' }
     },
     pois: {
       fadoHouse: { pt: 'Casas de Fado', en: 'Fado Houses' }

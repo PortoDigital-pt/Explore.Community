@@ -10,6 +10,7 @@ import {
   PREFIX_ITINERARY_SUMMARY,
   PREFIX_NEARYOU,
   PREFIX_BIKESTATIONS,
+  PREFIX_TAXISTATIONS,
   PREFIX_BIKEPARK,
   PREFIX_CARPARK,
   PREFIX_RENTALVEHICLES,
@@ -146,6 +147,65 @@ export default config => {
       {getStopRoutes()}
       {getStopRoutes(true) /* terminals */}
       {getRouteRoutes(config)}
+      <Route path={`/${PREFIX_TAXISTATIONS}/:id`}>
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "itinerary" */ '../../component/TaxiRentalStationContent'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query browse_routes_TaxiRentalStation_Query($id: String!) {
+                  vehicleRentalStation(id: $id) {
+                    ...TaxiRentalStationContent_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          ),
+          map: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "itinerary" */ '../../component/TaxiRentalStationMapContainer'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query browse_routes_TaxiRentalStationMap_Query($id: String!) {
+                  vehicleRentalStation(id: $id) {
+                    ...TaxiRentalStationMapContainer_vehicleRentalStation
+                  }
+                }
+              `}
+              render={getComponentOrNullRenderer}
+            />
+          )
+        }}
+      </Route>
       <Route path={`/${PREFIX_BIKESTATIONS}/:id`}>
         {{
           header: (

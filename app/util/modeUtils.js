@@ -49,6 +49,16 @@ export function showCitybikeNetwork(networkConfig, config) {
   );
 }
 
+export function showTaxisNetwork(networkConfig, config) {
+  return (
+    networkConfig?.enabled &&
+    networkConfig.type === 'taxis' &&
+    (isCitybikeSeasonActive(networkConfig?.season) ||
+      isCitybikePreSeasonActive(networkConfig?.season) ||
+      isDevelopmentEnvironment(config))
+  );
+}
+
 export function networkIsActive(network) {
   return network?.enabled && isCitybikeSeasonActive(network?.season);
 }

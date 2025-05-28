@@ -3,6 +3,7 @@ import React from 'react';
 import { configShape } from '../../../util/shapes';
 import TileLayerContainer from './TileLayerContainer';
 import VehicleRentalStations from './VehicleRentalStations';
+import TaxiRentalStations from './TaxiRentalStations';
 import Stops from './Stops';
 import ParkAndRideForCars from './ParkAndRideForCars';
 import ParkAndRideForBikes from './ParkAndRideForBikes';
@@ -17,9 +18,14 @@ export default function VectorTileLayerContainer(props, { config }) {
     layers.push(Stops);
   }
 
+  if (props.mapLayers.taxis) {
+    layers.push(TaxiRentalStations);
+  }
+
   if (props.mapLayers.citybike) {
     layers.push(VehicleRentalStations);
   }
+
   if (props.mapLayers.parkAndRide) {
     layers.push(ParkAndRideForCars);
   }

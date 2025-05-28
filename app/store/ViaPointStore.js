@@ -15,9 +15,9 @@ class ViaPointStore extends Store {
     this.emitChange();
   }
 
-  clearViaPoints(){
+  clearViaPoints() {
     this.viaPoints = [];
-    this.emitChange(); 
+    this.emitChange();
   }
 
   getViaPoints() {

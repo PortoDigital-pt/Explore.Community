@@ -122,11 +122,11 @@ export const updateItinerarySearch = (
 export const onLocationPopup = (item, id, router, match, executeAction) => {
   if (id === 'via-point') {
     if (item === null) {
-       executeAction(clearViaPoints);
-       setIntermediatePlaces(router, match, null);
-       return;
+      executeAction(clearViaPoints);
+      setIntermediatePlaces(router, match, null);
+      return;
     }
-   
+
     const viaPoints = getIntermediatePlaces(match.location.query)
       .concat([item])
       .map(locationToOTP);

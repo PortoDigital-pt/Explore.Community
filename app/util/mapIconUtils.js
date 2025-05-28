@@ -656,7 +656,7 @@ export function drawCitybikeIcon(
   }
 
   if (style === 'large') {
-    const smallCircleRadius = (isHighlighted ? 30 : 17) * tile.scaleratio;
+    const smallCircleRadius = (isHighlighted ? 30 : zoom + 1) * tile.scaleratio;
     x = geom.x / tile.ratio - width + smallCircleRadius * 2;
     y = geom.y / tile.ratio - height;
     const showAvailabilityBadge =
