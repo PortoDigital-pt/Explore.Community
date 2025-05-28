@@ -11,12 +11,11 @@ import planConnection from '../../../../../component/itinerary/PlanConnection';
 import { buildPlanQuery } from '../util';
 import LocationMarker from '../../../../../component/map/LocationMarker';
 import { boundWithMinimumArea } from '../../../../../util/geo-utils';
-
-const DEFAULT_ZOOM = 15;
+import { configShape } from '../../../../../util/shapes';
 
 const DetailsRoutesPageMap = (
   { language, getDataById, selectedItem },
-  { match }
+  { match, config }
 ) => {
   const [legs, setLegs] = useState([]);
 
@@ -56,7 +55,7 @@ const DetailsRoutesPageMap = (
       latLngList.push([poi.lat, poi.lon]);
     });
 
-    const bounds = boundWithMinimumArea(latLngList, DEFAULT_ZOOM);
+    const bounds = boundWithMinimumArea(latLngList, config.defaultMapZoom);
     return bounds;
   }, [selectedData?.pois]);
 
@@ -105,7 +104,6 @@ const DetailsRoutesPageMap = (
     <MapWithTracking
       leafletObjs={leafletObjs}
       hilightedStops={[selectedData.id]}
-      zoom={DEFAULT_ZOOM}
       bounds={bounds}
       showExplore
     />
@@ -113,7 +111,8 @@ const DetailsRoutesPageMap = (
 };
 
 DetailsRoutesPageMap.contextTypes = {
-  match: matchShape.isRequired
+  match: matchShape.isRequired,
+  config: configShape.isRequired
 };
 
 DetailsRoutesPageMap.propTypes = {
