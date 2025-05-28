@@ -33,6 +33,7 @@ class MapLayerStore extends Store {
     },
     vehicles: false,
     citybike: true,
+    taxis: true,
     geoJson: {},
 
     showExplore: true,
@@ -135,6 +136,7 @@ class MapLayerStore extends Store {
       stop: {
         ...this.mapLayers.stop,
         citybike: this.mapLayers.citybike,
+        taxis: this.mapLayers.taxis,
         subway: this.mapLayers.terminal.subway
       },
       pois: this.mapLayers.pois,
@@ -173,6 +175,7 @@ class MapLayerStore extends Store {
 
     if (mapLayers.stop) {
       this.mapLayers.citybike = mapLayers.stop.citybike;
+      this.mapLayers.taxis = mapLayers.stop.taxis;
       this.mapLayers.terminal.subway = mapLayers.stop.subway;
     }
 

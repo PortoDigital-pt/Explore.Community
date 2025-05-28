@@ -22,6 +22,7 @@ import { addAnalyticsEvent } from '../../../util/analyticsUtils';
 import { getClientBreakpoint } from '../../../util/withBreakpoint';
 import {
   PREFIX_BIKESTATIONS,
+  PREFIX_TAXISTATIONS,
   PREFIX_STOPS,
   PREFIX_TERMINALS,
   PREFIX_CARPARK,
@@ -214,7 +215,17 @@ class TileLayerContainer extends GridLayer {
         return;
       }
 
-      // navigate to citybike stop page if single stop is clicked
+      if (
+        selectableTargets.length === 1 &&
+        selectableTargets[0].layer === 'taxis'
+      ) {
+        this.context.router.push(
+          `/browse/${PREFIX_TAXISTATIONS}/${encodeURIComponent(
+            selectableTargets[0].feature.properties.id
+          )}`
+        );
+        return;
+      }
       if (
         selectableTargets.length === 1 &&
         selectableTargets[0].layer === 'citybike'

@@ -8,7 +8,11 @@ import SelectParkAndRideRow from './SelectParkAndRideRow';
 import SelectVehicleContainer from './SelectVehicleContainer';
 import SelectExploreRow from './SelectExploreRow';
 import { popupColorShape } from '../../../util/shapes';
-import { PREFIX_BIKESTATIONS, PREFIX_RENTALVEHICLES } from '../../../util/path';
+import {
+  PREFIX_BIKESTATIONS,
+  PREFIX_RENTALVEHICLES,
+  PREFIX_TAXISTATIONS
+} from '../../../util/path';
 
 function MarkerSelectPopup(props, { intl }) {
   const hasStop = () =>
@@ -57,6 +61,15 @@ function MarkerSelectPopup(props, { intl }) {
           {...option.feature.properties}
           key={`citybike:${option.feature.properties.id}`}
           prefix={PREFIX_BIKESTATIONS}
+        />
+      );
+    }
+    if (option.layer === 'taxis') {
+      return (
+        <SelectVehicleRentalRow
+          {...option.feature.properties}
+          key={`taxis:${option.feature.properties.id}`}
+          prefix={PREFIX_TAXISTATIONS}
         />
       );
     }

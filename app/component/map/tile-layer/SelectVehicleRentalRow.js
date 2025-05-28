@@ -19,14 +19,21 @@ function SelectVehicleRentalRow(
   const img =
     icon ||
     `${getRentalNetworkIcon(getRentalNetworkConfig(network, config))}_no_map`;
-
   const linkAddress = `/browse/${prefix}/${encodeURIComponent(id)}`;
+  const address = desc || (
+    <FormattedMessage
+      id={network === 'taxis' ? 'taxis-station' : 'citybike-station-no-id'}
+    />
+  );
 
-  const address = desc || <FormattedMessage id="citybike-station-no-id" />;
   return (
     <Link className="stop-popup-choose-row" to={linkAddress}>
       <span className="choose-row-left-column" aria-hidden="true">
-        <Icon img={img} viewBox="0 0 44 44" className="citybike-stop" />
+        <Icon
+          img={img}
+          viewBox="0 0 44 44"
+          className={`${network === 'taxis' ? 'taxis' : 'citybike'}-stop`}
+        />
       </span>
       <span className="choose-row-center-column">
         <h5 className="choose-row-header">{name}</h5>

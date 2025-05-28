@@ -27,6 +27,10 @@ const getModeFromProps = props => {
   if (props.citybike) {
     return 'citybike';
   }
+  if (props.taxis) {
+    return 'taxis';
+  }
+
   if (props.parkType === PREFIX_BIKEPARK) {
     return 'parkAndRideForBikes';
   }
@@ -191,10 +195,13 @@ const StopPageMapWithStores = connectToStores(
   ({ config, getStore }, props) => {
     const locationState = getStore(PositionStore).getLocationState();
     const ml = config.showVehiclesOnStopPage ? { notThese: ['vehicles'] } : {};
+
     if (props.citybike) {
       ml.force = ['citybike']; // show always
     } else if (props.scooter) {
       ml.force = ['scooter']; // show always
+    } else if (props.taxis) {
+      ml.force = ['taxis']; // show always
     } else {
       ml.force = ['terminal'];
     }

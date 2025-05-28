@@ -20,6 +20,7 @@ export const stopUrl = id => id;
 export const LOCAL_STORAGE_EMITTER_PATH = '/local-storage-emitter';
 export const EMBEDDED_SEARCH_PATH = '/search';
 export const PREFIX_RENTALVEHICLES = 'scooters';
+export const PREFIX_TAXISTATIONS = 'taxistations';
 
 const PREFIX_PROFILE = 'profile';
 
@@ -27,6 +28,7 @@ export const PATH_PREFIXES = {
   PREFIX_NEARYOU,
   PREFIX_STOPS,
   PREFIX_BIKESTATIONS,
+  PREFIX_TAXISTATIONS,
   PREFIX_BIKEPARK,
   PREFIX_CARPARK,
   PREFIX_TERMINALS,
