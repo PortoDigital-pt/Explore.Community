@@ -8,6 +8,7 @@ import { setSelectedItem } from '../../../../../action/RoutesActions';
 import { routesPoiShape } from '../shape';
 import { MobileContent } from './mobile';
 import { DesktopContent } from './desktop';
+import { getItineraryPath } from '../util';
 
 const RoutesTabs = (
   { pois, breakpoint, images, intl, selectedItem, onDetails },
@@ -18,15 +19,7 @@ const RoutesTabs = (
 
   const startItinerary = () => {
     const startPoint = pois[selectedItem];
-    const endPoint = pois[selectedItem + 1];
-
-    const startStr = `${startPoint.name}::${startPoint.lat},${startPoint.lon}`;
-    const endStr = endPoint
-      ? `${endPoint.name}::${endPoint.lat},${endPoint.lon}`
-      : '-';
-    const url = `${startStr}/${endStr}`;
-
-    router.push(`/browse/itinerary/${url}`);
+    router.push(getItineraryPath(startPoint));
   };
 
   const changeHash = index => {

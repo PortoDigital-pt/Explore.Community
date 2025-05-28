@@ -1,17 +1,4 @@
 const PARAMS = {
-  accessibilityOption: 0,
-  optimize: 'GREENWAYS',
-  bikeSpeed: 5.55,
-  ticketTypes: 'none',
-  walkBoardCost: 120,
-  walkReluctance: 1.8,
-  walkSpeed: 1.2,
-  transferPenalty: 0,
-  minTransferTime: 'PT90S',
-  includeBikeSuggestions: false,
-  includeParkAndRideSuggestions: false,
-  includeCarSuggestions: false,
-  showBikeAndParkItineraries: false,
   modes: {
     directOnly: true,
     transitOnly: false,
@@ -23,11 +10,8 @@ const PARAMS = {
       transit: null
     }
   },
-  allowedBikeRentalNetworks: null,
-  scooterNetworks: null,
-  allowedRentalNetworks: null,
   datetime: {
-    earliestDeparture: '2025-05-21T13:44:07+01:00'
+    earliestDeparture: new Date()
   },
   first: 1,
   numItineraries: 1,
@@ -72,3 +56,6 @@ export const buildPlanQuery = pois => {
 
   return queries;
 };
+
+export const getItineraryPath = poi =>
+  `/browse/-/${poi.name}::${poi.lat},${poi.lon}`;

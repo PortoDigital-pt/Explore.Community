@@ -6,6 +6,7 @@ import Icon from '../../../../component/Icon';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import { routesShape } from './shape';
 import { RoutesDetails } from './detail';
+import { getItineraryPath } from './util';
 
 export const PageContent = ({ selectedData }, { intl }) => {
   const { router } = useRouter();
@@ -102,7 +103,7 @@ export const PageContent = ({ selectedData }, { intl }) => {
         <button
           className="start-trip-button"
           type="button"
-          onClick={() => alert('WIP')}
+          onClick={() => router.push(getItineraryPath(selectedData.pois[0]))}
           aria-label={intl.messages['routes-start-trip']}
         >
           {intl.messages['routes-start-trip']}
