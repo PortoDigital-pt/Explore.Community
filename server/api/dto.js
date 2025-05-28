@@ -48,6 +48,7 @@ export const poiToDto = (poi, language) => {
     category_lang,
     contactPoint,
     description_lang,
+    short_description_lang,
     location,
     name_lang,
     priceRange,
@@ -67,6 +68,10 @@ export const poiToDto = (poi, language) => {
     contacts: extractValuesAndDecode(contactPoint?.value),
     description: extractValuesAndDecode(
       description_lang?.value[language] || description_lang?.value?.pt
+    ),
+    shortDescription: extractValuesAndDecode(
+      short_description_lang?.value[language] ||
+        short_description_lang?.value?.pt
     ),
     lon: location?.value?.coordinates[0],
     lat: location?.value?.coordinates[1],

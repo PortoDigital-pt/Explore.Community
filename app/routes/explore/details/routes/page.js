@@ -68,7 +68,7 @@ export const PageContent = ({ selectedData }, { intl }) => {
                   <div className="second-column">
                     <div className="title">{poi.name}</div>
                     <div className="description">
-                      {decodeURIComponent(poi.description)}
+                      {decodeURIComponent(poi.shortDescription)}
                       <button
                         type="button"
                         onClick={() => router.push(`/pois/${poi.item}`)}
