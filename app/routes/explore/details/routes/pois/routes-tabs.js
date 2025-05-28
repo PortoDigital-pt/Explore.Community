@@ -2,7 +2,6 @@
 import React from 'react';
 import { useRouter } from 'found';
 import { arrayOf, bool, func, string } from 'prop-types';
-import { intlShape } from 'react-intl';
 import SwipeableTabs from '../../../../../component/SwipeableTabs';
 import { setSelectedItem } from '../../../../../action/RoutesActions';
 import { routesPoiShape } from '../shape';
@@ -11,7 +10,7 @@ import { DesktopContent } from './desktop';
 import { getItineraryPath } from '../util';
 
 const RoutesTabs = (
-  { pois, breakpoint, images, intl, selectedItem, onDetails },
+  { pois, breakpoint, images, selectedItem, onDetails },
   { executeAction }
 ) => {
   const { router } = useRouter();
@@ -39,6 +38,7 @@ const RoutesTabs = (
             />
           ) : (
             <DesktopContent
+              breakpoint={breakpoint}
               selectedData={{ ...poi, images }}
               key={`routes-tab-${poi.position}`}
               onStartItinerary={startItinerary}
@@ -62,7 +62,6 @@ const RoutesTabs = (
 };
 
 RoutesTabs.propTypes = {
-  intl: intlShape.isRequired,
   selectedItem: bool.isRequired,
   pois: arrayOf(routesPoiShape).isRequired,
   onDetails: func.isRequired,

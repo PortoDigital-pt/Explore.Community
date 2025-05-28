@@ -12,10 +12,11 @@ import { buildPlanQuery } from '../util';
 import LocationMarker from '../../../../../component/map/LocationMarker';
 import { boundWithMinimumArea } from '../../../../../util/geo-utils';
 import { configShape } from '../../../../../util/shapes';
+import { setSelectedItem } from '../../../../../action/RoutesActions';
 
 const DetailsRoutesPageMap = (
   { language, getDataById, selectedItem },
-  { match, config }
+  { match, config, executeAction }
 ) => {
   const [legs, setLegs] = useState([]);
 
@@ -81,6 +82,10 @@ const DetailsRoutesPageMap = (
           type="poi"
           iconText={poi.position}
           highlight={selectedItem + 1 === poi.position}
+          onClick={() => {
+            executeAction(setSelectedItem, poi.position - 1);
+          }}
+          isLarge
         />
       );
     });
@@ -112,7 +117,8 @@ const DetailsRoutesPageMap = (
 
 DetailsRoutesPageMap.contextTypes = {
   match: matchShape.isRequired,
-  config: configShape.isRequired
+  config: configShape.isRequired,
+  executeAction: func.isRequired
 };
 
 DetailsRoutesPageMap.propTypes = {

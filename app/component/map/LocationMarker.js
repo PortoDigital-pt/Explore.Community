@@ -13,7 +13,8 @@ export default function LocationMarker({
   type,
   disabled,
   iconText,
-  highlight
+  highlight,
+  onClick
 }) {
   const getValidType = markertype => {
     switch (markertype) {
@@ -63,6 +64,7 @@ export default function LocationMarker({
         iconSize: [sideLength, sideLength]
       }}
       zIndexOffset={12000}
+      onClick={() => (onClick ? onClick() : null)}
     >
       {validType === 'via' && (
         <ViaPointPopup
@@ -82,7 +84,8 @@ LocationMarker.propTypes = {
   type: PropTypes.oneOf(['from', 'via', 'to', 'favourite']),
   disabled: PropTypes.bool,
   iconText: PropTypes.string,
-  highlight: PropTypes.bool
+  highlight: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 LocationMarker.defaultProps = {
@@ -92,5 +95,6 @@ LocationMarker.defaultProps = {
   type: 'via',
   disabled: false,
   iconText: undefined,
-  highlight: false
+  highlight: false,
+  onClick: undefined
 };
