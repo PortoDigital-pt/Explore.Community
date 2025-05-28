@@ -59,24 +59,24 @@ export const poiToDto = (poi, language) => {
   return {
     type: 'pois',
     id,
-    address: extractValuesAndDecode(address.value),
+    address: extractValuesAndDecode(address?.value),
     category: extractValuesAndDecode(
-      category_lang.value[language] || category_lang.value.pt
+      category_lang?.value[language] || category_lang?.value?.pt
     ),
-    contacts: extractValuesAndDecode(contactPoint.value),
+    contacts: extractValuesAndDecode(contactPoint?.value),
     description: extractValuesAndDecode(
-      description_lang.value[language] || description_lang.value.pt
+      description_lang?.value[language] || description_lang?.value.pt
     ),
-    lon: location.value.coordinates[0],
-    lat: location.value.coordinates[1],
+    lon: location?.value?.coordinates[0],
+    lat: location?.value?.coordinates[1],
     name: extractValuesAndDecode(
-      name_lang.value[language] || name_lang.value.pt
+      name_lang?.value[language] || name_lang?.value?.pt
     ),
-    priceRange: extractValuesAndDecode(priceRange.value),
-    calendar: formatCalendar(calendar.value, language),
-    districts: extractValuesAndDecode(districtGroups.value),
+    priceRange: extractValuesAndDecode(priceRange?.value),
+    calendar: formatCalendar(calendar?.value, language),
+    districts: extractValuesAndDecode(districtGroups?.value),
     images: extractValuesAndDecode(
-      extraImages.value?.length === 0 ? [image.value] : extraImages.value
+      extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
     )
   };
 };
