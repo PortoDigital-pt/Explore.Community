@@ -11,6 +11,7 @@ export const PLACE_ICONS = {
   place: 'icon-pin-map-with-background',
   events: 'icon-explore-icon_events_with_background',
   bikeStation: 'icon-icon_citybike',
+  taxiStation: 'icon-icon_taxis',
   pois: 'icon-explore-icon_pois_with_background',
   unknown: 'icon-pin-map-with-background'
 };

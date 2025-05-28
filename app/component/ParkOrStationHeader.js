@@ -15,7 +15,10 @@ const modules = {
   FavouriteVehicleRentalStationContainer: () =>
     importLazy(import('./FavouriteVehicleRentalStationContainer'))
 };
-const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
+const ParkOrBikeStationHeader = (
+  { parkOrStation, parkType, taxis },
+  { config }
+) => {
   const [zoneId, setZoneId] = useState(undefined);
   useEffect(() => {
     const searchParams = {
@@ -51,7 +54,13 @@ const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
     <div className="rental-bike">
       <div className="rental-bike-header-item title">
         <FormattedMessage
-          id={isRentalStation ? 'citybike-station-no-id' : parkHeaderId}
+          id={
+            taxis
+              ? 'taxis-station'
+              : isRentalStation
+                ? 'citybike-station-no-id'
+                : parkHeaderId
+          }
         />
         {isRentalStation && hasVehicleRentalCode(stationId) && (
           <StopCode code={getIdWithoutFeed(stationId)} />
@@ -69,6 +78,7 @@ const ParkOrBikeStationHeader = ({ parkOrStation, parkType }, { config }) => {
             <LazilyLoad modules={modules}>
               {({ FavouriteVehicleRentalStationContainer }) => (
                 <FavouriteVehicleRentalStationContainer
+                  type={taxis ? 'taxiStation' : 'bikeStation'}
                   vehicleRentalStation={parkOrStation}
                 />
               )}
@@ -86,10 +96,11 @@ ParkOrBikeStationHeader.propTypes = {
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired
   }).isRequired,
-  parkType: PropTypes.string
+  parkType: PropTypes.string,
+  taxis: PropTypes.bool
 };
 
-ParkOrBikeStationHeader.defaultProps = { parkType: undefined };
+ParkOrBikeStationHeader.defaultProps = { parkType: undefined, taxis: false };
 
 ParkOrBikeStationHeader.contextTypes = {
   config: configShape.isRequired

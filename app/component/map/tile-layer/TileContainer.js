@@ -97,7 +97,9 @@ class TileContainer {
           return isEnabled;
         }
         if (
-          (layerName === 'citybike' || layerName === 'scooter') &&
+          (layerName === 'citybike' ||
+            layerName === 'scooter' ||
+            layerName === 'taxis') &&
           this.coords.z >=
             getVehicleMinZoomOnStopsNearYou(
               config,

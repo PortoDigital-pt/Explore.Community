@@ -8,10 +8,10 @@ import { addAnalyticsEvent } from '../util/analyticsUtils';
 const FavouriteVehicleRentalStationContainer = connectToStores(
   Favourite,
   ['FavouriteStore', 'UserStore', 'PreferencesStore'],
-  (context, { vehicleRentalStation }) => ({
+  (context, { vehicleRentalStation, type }) => ({
     favourite: context
       .getStore('FavouriteStore')
-      .isFavourite(vehicleRentalStation.stationId, 'bikeStation'),
+      .isFavourite(vehicleRentalStation.stationId, type),
     isFetching: context.getStore('FavouriteStore').getStatus() === 'fetching',
     addFavourite: () => {
       context.executeAction(saveFavourite, {
@@ -20,14 +20,14 @@ const FavouriteVehicleRentalStationContainer = connectToStores(
         network: vehicleRentalStation.rentalNetwork.networkId,
         name: vehicleRentalStation.name,
         stationId: vehicleRentalStation.stationId,
-        type: 'bikeStation'
+        type
       });
       addAnalyticsEvent({
         category: 'BikeRentalStation',
         action: 'MarkBikeRentalStationAsFavourite',
         name: !context
           .getStore('FavouriteStore')
-          .isFavourite(vehicleRentalStation.stationId, 'bikeStation')
+          .isFavourite(vehicleRentalStation.stationId, type)
       });
     },
     deleteFavourite: () => {
@@ -43,7 +43,7 @@ const FavouriteVehicleRentalStationContainer = connectToStores(
         action: 'MarkBikeRentalStationAsFavourite',
         name: !context
           .getStore('FavouriteStore')
-          .isFavourite(vehicleRentalStation.stationId, 'bikeStation')
+          .isFavourite(vehicleRentalStation.stationId, type)
       });
     },
     requireLoggedIn: !context.config.allowFavouritesFromLocalstorage,
