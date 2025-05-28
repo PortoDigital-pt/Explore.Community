@@ -40,6 +40,7 @@ const extractValuesAndDecode = values => {
   }, {});
 };
 
+// todo - remove ?s when the data is ok
 export const poiToDto = (poi, language) => {
   const {
     id,
@@ -65,7 +66,7 @@ export const poiToDto = (poi, language) => {
     ),
     contacts: extractValuesAndDecode(contactPoint?.value),
     description: extractValuesAndDecode(
-      description_lang?.value[language] || description_lang?.value.pt
+      description_lang?.value[language] || description_lang?.value?.pt
     ),
     lon: location?.value?.coordinates[0],
     lat: location?.value?.coordinates[1],
@@ -131,7 +132,7 @@ const formattedPois = (pois, language) =>
       ...poiDto,
       position: poi.position
     };
-    // todo - uncomment it after the data is ok.
+    // todo - uncomment it when the data is ok.
     // const auxPoi = { ...poi };
 
     // const rawDescription =
