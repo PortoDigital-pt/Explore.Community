@@ -11,6 +11,7 @@ export const isExploreEnabled = mapLayers => {
     mapLayers.showExplore ??
     mapLayers.pois ??
     mapLayers.events ??
+    mapLayers.routes ??
     mapLayers.accesspoints
   );
 };
