@@ -11,14 +11,9 @@ import MapBottomsheetContext from './map/MapBottomsheetContext';
 import MobileFooter from './MobileFooter';
 import { isBrowser } from '../util/browser';
 
-import {
-  PREFIX_ROUTES,
-  PREFIX_NEARYOU,
-  PREFIX_ITINERARY_SUMMARY
-} from '../util/path';
+import { PREFIX_NEARYOU, PREFIX_ITINERARY_SUMMARY } from '../util/path';
 
 const noBottomSheetResetAtContentChange = [
-  PREFIX_ROUTES,
   PREFIX_NEARYOU,
   PREFIX_ITINERARY_SUMMARY
 ];
