@@ -76,9 +76,6 @@ export const getDetail = async (toDto, request, response) => {
     query: { language }
   } = request;
 
-  const url = `${process.env.NGSI_URL}/${id}`;
-  console.log('\n getDetail::URL => ', url);
-
   const { data, status, text } = await customFetch(
     `${process.env.NGSI_URL}/${id}`
   );

@@ -13,7 +13,7 @@ export const PLACE_ICONS = {
   bikeStation: 'icon-icon_citybike',
   taxiStation: 'icon-icon_taxis',
   pois: 'icon-explore-icon_pois_with_background',
-  routes: 'icon-routes_with_background',
+  routes: 'icon-explore-icon_routes_with_background',
   unknown: 'icon-pin-map-with-background'
 };
 

@@ -90,7 +90,7 @@ export const PageContent = ({ selectedData }, { intl }) => {
             <button
               type="button"
               className="show-more-button"
-              onClick={() => setShowMore(!showMore)}
+              onClick={() => setShowMore(previous => !previous)}
               aria-label={intl.messages['routes-itinerary-list-show-more']}
             >
               {showMore

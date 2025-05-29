@@ -31,16 +31,13 @@ const DetailsRoutesPageMap = (
   const getDataFromOTP = async (environment, pois) => {
     const queries = buildPlanQuery(pois);
 
-    const asyncOperations = [];
-    queries.forEach(query => {
-      asyncOperations.push(
+    const results = await Promise.all(
+      queries.map(query =>
         fetchQuery(environment, planConnection, query, {
           force: true
         }).toPromise()
-      );
-    });
-
-    const results = await Promise.all(asyncOperations);
+      )
+    );
 
     const legList = results.map(result => result.plan?.edges[0]?.node?.legs[0]);
     setLegs(legList);
@@ -51,12 +48,10 @@ const DetailsRoutesPageMap = (
   }, [environment, selectedData?.pois]);
 
   const bounds = useMemo(() => {
-    const latLngList = [];
-    selectedData?.pois?.forEach(poi => {
-      latLngList.push([poi.lat, poi.lon]);
-    });
+    const latLngList = selectedData?.pois?.map(poi => [poi.lat, poi.lon]);
 
     const bounds = boundWithMinimumArea(latLngList, config.defaultMapZoom);
+
     return bounds;
   }, [selectedData?.pois]);
 
@@ -129,10 +124,9 @@ DetailsRoutesPageMap.propTypes = {
 
 export default connectToStores(
   DetailsRoutesPageMap,
-  ['PreferencesStore', 'MapLayerStore', 'RoutesStore'],
+  ['PreferencesStore', 'RoutesStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),
-    mapLayers: getStore('MapLayerStore').getMapLayers(),
     selectedItem: getStore('RoutesStore').getSelectedItem()
   })
 );

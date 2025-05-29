@@ -1,17 +1,17 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useMemo } from 'react';
 import { arrayOf, bool, func, string } from 'prop-types';
 import SwipeableTabs from '../../../../../component/SwipeableTabs';
 import { setSelectedItem } from '../../../../../action/RoutesActions';
 import { routesPoiShape } from '../shape';
-import { MobileContent } from './mobile';
 import { DesktopContent } from './desktop';
+import { MobileContent } from '../../pois/page';
 
 const RoutesTabs = (
   { pois, breakpoint, selectedItem, onDetails, onStartItinerary },
   { executeAction }
 ) => {
-  const isMobile = breakpoint !== 'large';
+  const isMobile = useMemo(() => breakpoint !== 'large', [breakpoint]);
 
   const changeHash = index => {
     executeAction(setSelectedItem, index);
@@ -27,6 +27,7 @@ const RoutesTabs = (
               key={`routes-tab-${poi.position}`}
               onDetails={onDetails}
               onStartItinerary={onStartItinerary}
+              fromRoutes
             />
           ) : (
             <DesktopContent

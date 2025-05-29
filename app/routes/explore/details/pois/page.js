@@ -44,7 +44,15 @@ export const poiShape = shape({
 });
 
 const Mobile = (
-  { location, onDetails, selectedData, showShare = false, innerRef },
+  {
+    location,
+    onDetails,
+    selectedData,
+    showShare = false,
+    innerRef,
+    fromRoutes = false,
+    onStartItinerary
+  },
   { intl, executeAction }
 ) => {
   const distanceToPoi = useDistanceToTarget({
@@ -55,23 +63,38 @@ const Mobile = (
 
   return (
     <div className="mobile-view" ref={innerRef}>
-      <div className="header">
-        <div className="top">
+      {fromRoutes ? (
+        <div className="header">
           <div className="title">
-            <Icon
-              img="icon-explore-icon_pois_with_background"
-              viewBox="0 0 50 50"
-            />
-            <h3>{selectedData.name}</h3>
+            <Icon img="icon-circle" text={selectedData.position} />
+            <h3 className="routes-tab">{selectedData.name}</h3>
           </div>
-          {showShare && <ShareButton withBackground />}
-          <FavouriteExplore data={selectedData} />
+
+          <div className="distance">
+            {!!distanceToPoi &&
+              `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+          </div>
         </div>
-        <div className="distance">
-          {!!distanceToPoi &&
-            `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+      ) : (
+        <div className="header">
+          <div className="top">
+            <div className="title">
+              <Icon
+                img="icon-explore-icon_pois_with_background"
+                viewBox="0 0 50 50"
+              />
+              <h3>{selectedData.name}</h3>
+            </div>
+            {showShare && <ShareButton withBackground />}
+            <FavouriteExplore data={selectedData} />
+          </div>
+          <div className="distance">
+            {!!distanceToPoi &&
+              `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+          </div>
         </div>
-      </div>
+      )}
+
       <div className="content">
         {selectedData.images && (
           <div className="image">
@@ -85,15 +108,16 @@ const Mobile = (
         <div className="details">
           <div className="contacts">
             <div className="categories">
-              {Array.isArray(selectedData.category) ? (
-                selectedData.category.map(category => (
-                  <div key={category} className="category">
-                    {category}
-                  </div>
-                ))
-              ) : (
-                <div className="category">{selectedData.category}</div>
-              )}
+              {!fromRoutes &&
+                (Array.isArray(selectedData.category) ? (
+                  selectedData.category.map(category => (
+                    <div key={category} className="category">
+                      {category}
+                    </div>
+                  ))
+                ) : (
+                  <div className="category">{selectedData.category}</div>
+                ))}
             </div>
             {selectedData.calendar && (
               <div>
@@ -124,15 +148,36 @@ const Mobile = (
           </div>
         </div>
       </div>
-      <div className="bottom">
-        <button
-          type="button"
-          onClick={onDetails}
-          aria-label={intl.messages.details}
-        >
-          {intl.messages.details}
-        </button>
-      </div>
+
+      {fromRoutes ? (
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.details}
+            onClick={onDetails}
+          >
+            {intl.messages.details}
+          </button>
+          <button
+            type="button"
+            onClick={onStartItinerary}
+            aria-label={intl.messages['start-here']}
+          >
+            {intl.messages['start-here']}
+          </button>
+        </div>
+      ) : (
+        <div className="bottom">
+          <button
+            type="button"
+            onClick={onDetails}
+            aria-label={intl.messages.details}
+          >
+            {intl.messages.details}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -142,7 +187,9 @@ Mobile.propTypes = {
   onDetails: func.isRequired,
   selectedData: poiShape.isRequired,
   location: locationShape.isRequired,
-  showShare: bool
+  showShare: bool,
+  fromRoutes: bool,
+  onStartItinerary: func
 };
 
 Mobile.contextTypes = {

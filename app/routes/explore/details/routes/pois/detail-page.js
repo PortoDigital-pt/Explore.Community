@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { matchShape, useRouter } from 'found';
 import { bool, func, string } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
@@ -20,10 +20,10 @@ const Page = (
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
 
-  const startItinerary = () => {
+  const startItinerary = useCallback(() => {
     const startPoint = selectedData?.pois[selectedItem];
     router.push(getItineraryPath(startPoint));
-  };
+  }, [selectedData?.pois, selectedItem]);
 
   React.useEffect(() => {
     return () => {

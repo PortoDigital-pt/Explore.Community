@@ -55,7 +55,8 @@ export const poiToDto = (poi, language) => {
     calendar,
     districtGroups,
     image,
-    extraImages
+    extraImages,
+    item
   } = poi;
 
   return {
@@ -83,7 +84,8 @@ export const poiToDto = (poi, language) => {
     districts: extractValuesAndDecode(districtGroups?.value),
     images: extractValuesAndDecode(
       extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
-    )
+    ),
+    item
   };
 };
 
