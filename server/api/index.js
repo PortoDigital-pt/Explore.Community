@@ -2,19 +2,21 @@ import {
   poiListSchema,
   eventListSchema,
   detailSchema,
-  routesListSchema
+  routesListSchema,
+  idSchema
 } from './validation';
 import { getRoutesDetail, getRoutesList } from './handlers/routes';
 import { getPoiDetail, getPoiList } from './handlers/pois';
 import { getEventDetail, getEventList } from './handlers/events';
 import { setupCache } from './util';
+import { getSmooveDetail } from './handlers/smoove';
 
 const decorateRequest = (request, response, next, config) => {
   request.config = config;
   next();
 };
 
-const routes = {
+const cachedRoutes = {
   '/api/pois/:id': { handler: getPoiDetail, schema: detailSchema },
   '/api/pois': { handler: getPoiList, schema: poiListSchema },
   '/api/events/:id': { handler: getEventDetail, schema: detailSchema },
@@ -26,8 +28,12 @@ const routes = {
   '/api/routes/:id': { handler: getRoutesDetail, schema: detailSchema }
 };
 
-export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
-  Object.entries(routes).forEach(([route, { handler, schema }]) =>
+const routes = {
+  '/api/smoove/:id': { handler: getSmooveDetail, schema: idSchema }
+};
+
+export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) => {
+  Object.entries(cachedRoutes).forEach(([route, { handler, schema }]) =>
     app.get(
       route,
       setupCache,
@@ -41,3 +47,8 @@ export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
       handler
     )
   );
+
+  Object.entries(routes).forEach(([route, { handler, schema }]) =>
+    app.get(route, schema, handler)
+  );
+};
