@@ -69,9 +69,9 @@ class StopMarker extends React.Component {
         context
       });
     }
-    const prefix = PREFIX_STOPS;
+
     this.context.router.push(
-      `/${prefix}/${encodeURIComponent(this.props.stop.gtfsId)}`
+      `/browse/${PREFIX_STOPS}/${encodeURIComponent(this.props.stop.gtfsId)}`
     );
   };
 
