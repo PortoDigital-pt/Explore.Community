@@ -2,7 +2,12 @@ import { validationResult } from 'express-validator';
 import { poiToDto, eventToDto } from './dto';
 import { getDate, getDateInFutureDays } from './date';
 import { getOffset, getInfinitePagination } from './pagination';
-import { poiListSchema, eventListSchema, detailSchema } from './validation';
+import {
+  poiListSchema,
+  eventListSchema,
+  detailSchema,
+  idSchema
+} from './validation';
 
 const defaultQueryParams = {
   georel: 'near;maxDistance:25000',
@@ -171,6 +176,40 @@ const getList = async (toDto, defaultQueryParams, request, response) => {
   });
 };
 
+const getSmooveDetail = async (request, response) => {
+  const validation = validationResult(request);
+
+  if (!validation.isEmpty()) {
+    const [{ msg }] = validation.array();
+
+    return response.status(400).send(msg);
+  }
+
+  const { data, status, text } = await customFetch(
+    `${process.env.SMOOVE_URL}${request.params.id}`
+  );
+
+  if (!data) {
+    return response.status(status).send(text);
+  }
+
+  const [
+    {
+      vehicle_ids: { value }
+    }
+  ] = data;
+
+  return response.status(status).json(
+    value.reduce(
+      (acc, current) => {
+        const type = current.includes('scooter') ? 'scooters' : 'bicycles';
+        return { ...acc, [type]: ++acc[type] };
+      },
+      { bicycles: 0, scooters: 0 }
+    )
+  );
+};
+
 const getPoiDetail = (request, response) =>
   getDetail(poiToDto, request, response);
 
@@ -194,15 +233,19 @@ const decorateRequest = (request, response, next, config) => {
   next();
 };
 
-const routes = {
+const cachedRoutes = {
   '/api/pois/:id': { handler: getPoiDetail, schema: detailSchema },
   '/api/pois': { handler: getPoiList, schema: poiListSchema },
   '/api/events/:id': { handler: getEventDetail, schema: detailSchema },
   '/api/events': { handler: getEventList, schema: eventListSchema }
 };
 
-export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
-  Object.entries(routes).forEach(([route, { handler, schema }]) =>
+const routes = {
+  '/api/smoove/:id': { handler: getSmooveDetail, schema: idSchema }
+};
+
+export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) => {
+  Object.entries(cachedRoutes).forEach(([route, { handler, schema }]) =>
     app.get(
       route,
       setupCache,
@@ -216,3 +259,8 @@ export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) =>
       handler
     )
   );
+
+  Object.entries(routes).forEach(([route, { handler, schema }]) =>
+    app.get(route, schema, handler)
+  );
+};

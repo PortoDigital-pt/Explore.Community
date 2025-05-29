@@ -13,7 +13,7 @@ module.exports = {
     'prefer-regex-literals': 'off',
     'no-unused-expressions': 'off',
     'no-else-return': 'warn',
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-plusplus': 'off',
     'no-console': 'error',
     'consistent-return': 'off',
     'no-restricted-exports': 'off',

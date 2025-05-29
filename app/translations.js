@@ -1042,7 +1042,9 @@ const translations = {
     'choose-stop-or-vehicle': 'Select vehicle or stop',
     'choose-vehicle': 'Select vehicle',
     citybike: 'City bike',
-    'citybike-available-bikes': 'Available vehicles',
+    'citybike-available-taxis': 'Available taxis',
+    'citybike-available-bicycles': 'Available bicycles',
+    'citybike-available-scooters': 'Available scooters',
     'citybike-distance-duration': 'Bike {duration} ({distance})',
     'citybike-duration-general-header':
       'Extra charge applies to several sections of route to be completed by a city bike.',
@@ -5380,7 +5382,9 @@ const translations = {
     'char-left': 'caracteres',
     'choose-stop': 'Selecionar',
     citybike: 'Bicicleta da cidade',
-    'citybike-available-bikes': 'Veículos disponíveis',
+    'citybike-available-taxis': 'Táxis disponíveis',
+    'citybike-available-bicycles': 'Bicicletas disponíveis',
+    'citybike-available-scooters': 'Trotinetas disponíveis',
     'citybike-distance-duration': 'Bicicleta {distance} ({duration})',
     'citybike-network-headers': 'Bicicletas',
     'citybike-off-season':
@@ -5606,7 +5610,7 @@ const translations = {
     'platform-num': 'Plataforma {platformCode}',
     'platform-short': 'Plat. {platformCode}',
     'popup-available':
-      'Disponíveis: Trotinetes {scooters} Bicicletas {bicycles}',
+      'Disponíveis: Trotinetas {scooters} Bicicletas {bicycles}',
     'prefer-walking': 'Preferir caminhar',
     preferred: 'Preferir rotas',
     previous: 'Anterior',
@@ -5677,7 +5681,7 @@ const translations = {
     'routes-tracks': 'Rotas, caminhos',
     run: 'Correr',
     save: 'Guardar',
-    'scooter-availability': 'Trotinetes disponíveis no ponto de partilha',
+    'scooter-availability': 'Trotinetas disponíveis no ponto de partilha',
     'scooter-availability-short': 'Kick scooters',
     'scooter-distance-duration':
       'Ride your kick scooter {distance} ({duration})',
