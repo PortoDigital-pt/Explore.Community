@@ -74,6 +74,11 @@ export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
       return;
     }
 
+    if (key === 'block') {
+      query.set('q', `districtGroups=='${value}'`);
+      return;
+    }
+
     query.set(key, value.toString());
   });
 

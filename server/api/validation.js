@@ -10,6 +10,18 @@ const coordinatesRegex =
 const languageRegex = /^(pt|en)$/;
 
 const commonListSchema = type => ({
+  block: {
+    isString: true,
+    optional: true
+  },
+  limit: {
+    isInt: {
+      options: { gt: 0 },
+      errorMessage: 'limit must be a positive integer'
+    },
+    toInt: true,
+    optional: true
+  },
   page: {
     isInt: {
       options: { gt: 0 },

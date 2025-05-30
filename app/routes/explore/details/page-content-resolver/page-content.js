@@ -7,7 +7,7 @@ import {
   MobileContent as EventMobilePageContent
 } from '../events/page';
 import { PageContent as RoutesPageContent } from '../routes/page';
-import { PageContent as BlocksPageContent } from '../blocks/page';
+import { default as BlocksPageContent } from '../blocks/page';
 import { MobileContent as RoutesMobilePageContent } from '../routes/mobile-content';
 
 export const MOBILE_PAGE_CONTENT_TYPE_MAP = {

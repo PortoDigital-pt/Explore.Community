@@ -375,6 +375,82 @@
     }
   }
 
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    scrollbar-gutter: stable;
+
+    h3 {
+      padding: 0 24px;
+      display: flex;
+      position: relative;
+      color: $primary-color;
+      font-size: 18px;
+      font-weight: $font-weight-bold;
+
+      @media (min-width: 900px) {
+        font-size: 20px;
+      }
+    }
+
+      .list-scroll {
+        display: flex;
+        position: relative;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        scroll-snap-type: x mandatory;
+        column-gap: 10px;
+        padding: 0 24px;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+         
+        @media (min-width: 900px) {
+          padding: 0 24px;
+
+          &::-webkit-scrollbar {
+            display: block;
+          }
+            
+          &::-webkit-scrollbar-track {
+            margin: 0 24px;
+          }
+        }
+
+        .small-card {
+          display: flex;
+          position: relative;
+          scroll-snap-align: center;
+          min-width: 200px;
+          max-width: 200px;
+          max-height: 190px;
+          min-height: 190px;
+          border-radius: $border-radius;
+          overflow: hidden;
+          box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+        }
+
+        .large-card {
+          display: flex;
+          position: relative;
+          scroll-snap-align: center;
+          min-width: 312px;
+          max-width: 312px;
+          max-height: 296px;
+          min-height: 296px;
+          border-radius: $border-radius;
+          overflow: hidden;
+          box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+        }
+      }
+  }
+
   .mobile-view {
     display: flex;
     position: relative;
