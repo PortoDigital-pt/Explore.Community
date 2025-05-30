@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { useRouter } from 'found';
-import { arrayOf, string, oneOf, func } from 'prop-types';
+import { arrayOf, string, oneOf, func, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
 import Skeleton from '../../../component/amporto/skeleton';
@@ -24,7 +24,8 @@ const Section = (
     bottomButtonText,
     errorMessage,
     emptyMessage,
-    Intro
+    Intro,
+    showDescription
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -58,7 +59,7 @@ const Section = (
   if (categories === null) {
     return null;
   }
-
+  
   return (
     <section className="section">
       <h3 className="title">{intl.messages[title]}</h3>
@@ -89,6 +90,7 @@ const Section = (
                 }}
                 data={item}
                 type={type}
+                showDescription={showDescription}
               />
             ))
           )}
@@ -140,7 +142,8 @@ Section.propTypes = {
   getData: func.isRequired,
   language: string.isRequired,
   location: locationShape.isRequired,
-  categories: arrayOf(string)
+  categories: arrayOf(string),
+  showDescription: bool
 };
 
 export default connectToStores(

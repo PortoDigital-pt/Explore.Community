@@ -48,6 +48,10 @@ export default {
     events: {
       pt: 'Desde exposições de arte emocionantes até concertos ao ar livre, mergulhe na vida cultural vibrante enquanto explora cada canto da cidade. Para ver mais eventos visite a página da *link*Agenda Cultural do Porto*link*.',
       en: 'From exciting art exhibitions to open-air concerts, immerse yourself in the vibrant cultural life as you explore every corner of the city. For more events, visit the *link*Porto Cultural Agenda*link* page.'
+    },
+    blocks: {
+      pt: 'Explore os quarteirões temáticos da cidade, de arte a gastronomia. Descubra cada esquina cheia de histórias e experiências únicas e cativantes.',
+      en: 'Explore the city’s themed blocks, from art to gastronomy. Discover every corner filled with unique and captivating stories and experiences.'
     }
   },
 
@@ -186,6 +190,9 @@ export default {
     },
     routes: {
       itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+    },
+    blocks: {
+      cultural: { pt: 'Cultural', en: 'Cultural' }
     }
   },
 
@@ -193,7 +200,8 @@ export default {
     dataProvider: {
       pois: 'http:%2F%2Fcitysdk.url.pt%2Fpois%2F,https:%2F%2Fcity-api.wearebitmaker.com%2FCitySDK%2Fpois',
       events: 'Agenda%20Porto',
-      routes: 'ExplorePorto'
+      routes: 'ExplorePorto',
+      blocks: 'VisitPorto'
     }
   }
 };

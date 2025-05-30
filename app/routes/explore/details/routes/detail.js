@@ -5,16 +5,10 @@ import Icon from '../../../../component/Icon';
 import { routesShape } from './shape';
 
 export const RoutesDetails = (
-  { selectedData, showDescription = false },
+  { selectedData },
   { intl }
 ) => (
   <div className="detail-info">
-    {showDescription && (
-      <div className="description">
-        <span>{selectedData.description}</span>
-      </div>
-    )}
-
     <div className="pois-and-duration">
       <div>
         <Icon img="icon-camera" viewBox="0 0 16 16" />

@@ -21,7 +21,7 @@ const Card = ({ type, className, data, onClick, showDescription = false }) => {
     }
 
     return () => (
-      <Component selectedData={data} showDescription={showDescription} />
+      <Component selectedData={data} />
     );
   }, [type, data]);
 
@@ -56,6 +56,11 @@ const Card = ({ type, className, data, onClick, showDescription = false }) => {
         <div className={classnames('card-title', { smaller: !data.images })}>
           <h3>{data.name}</h3>
         </div>
+        {showDescription && data.description && (
+          <div className="description">
+            <span>{data.description}</span>
+          </div>
+        )}
         {Details && (
           <div className="details">
             <Details />
@@ -88,7 +93,8 @@ Card.propTypes = {
     images: arrayOf(string),
     category: oneOfType([string, arrayOf(string)]).isRequired,
     lat: number.isRequired,
-    lon: number.isRequired
+    lon: number.isRequired,
+    description: string
   }).isRequired,
   showDescription: bool
 };

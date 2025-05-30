@@ -25,6 +25,11 @@ export const defaultRoutesQueryParams = {
   type: 'TouristTrip'
 };
 
+export const defaultBlocksQueryParams = {
+  ...defaultQueryParams,
+  type: 'PointOfInterestGroup'
+};
+
 export const setupCache = (request, response, next) => {
   // setting cache to 1 hour
   response.set('Cache-Control', 'max-age=0, public');
@@ -32,15 +37,14 @@ export const setupCache = (request, response, next) => {
   next();
 };
 
-const getMapLayerByType = type => {
-  switch (type) {
-    case 'TouristTrip':
-      return 'touristTrips';
-    case 'PointOfInterest':
-      return 'pois';
-    default:
-      return 'events';
-  }
+export const decorateRequest = (request, response, next, config) => {
+  request.config = config;
+  next();
+};
+
+const MAP_LAYER_TYPE = {
+  PointOfInterest: 'pois',
+  Event: 'events'
 };
 
 export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
@@ -51,10 +55,9 @@ export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
       return;
     }
 
-    if (key === 'categories' && data.type !== 'TouristTrip') {
+    if (key === 'categories' && !!MAP_LAYER_TYPE[data.type]) {
       const mappedCategories = value.map(
-        categoryKey =>
-          `'${filters[getMapLayerByType(data.type)][categoryKey].pt}'`
+        categoryKey => `'${filters[MAP_LAYER_TYPE[data.type]][categoryKey].pt}'`
       );
 
       const categoriesQueryValue =

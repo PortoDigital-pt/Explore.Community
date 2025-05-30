@@ -204,3 +204,37 @@ export const routesToDto = (route, language) => {
     duration
   };
 };
+
+export const blockToDto = (block, language) => {
+  const {
+    id,
+    category_lang,
+    description_lang,
+    location,
+    name_lang,
+    image,
+    pointOfInterestRefs,
+    eventRefs,
+    tripRefs
+  } = block;
+ 
+  return {
+    type: 'blocks',
+    id,
+    category: extractValuesAndDecode(
+      category_lang.value[language] || category_lang.value.pt
+    ),
+    description: extractValuesAndDecode(
+      description_lang.value[language] || description_lang.value.pt
+    ),
+    lon: location.value.coordinates[0],
+    lat: location.value.coordinates[1],
+    name: extractValuesAndDecode(
+      name_lang.value[language] || name_lang.value.pt
+    ),
+    images: extractValuesAndDecode([image?.value]),
+    pois: pointOfInterestRefs.value,
+    events: eventRefs.value,
+    routes: tripRefs.value
+  };
+};

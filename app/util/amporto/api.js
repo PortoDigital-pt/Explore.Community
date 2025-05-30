@@ -40,6 +40,21 @@ export function getRoutesById({ id, query }, { signal }) {
   }).then(response => response.json());
 }
 
+export function getBlockList(query, { signal }) {
+  const auxQuery = { ...query };
+  delete auxQuery.categories;
+
+  return retryFetch(`/api/blocks${buildQueryString(auxQuery)}`, 2, 200, {
+    signal
+  }).then(response => response.json());
+}
+
+export function getBlockById({ id, query }, { signal }) {
+  return retryFetch(`/api/blocks/${id}${buildQueryString(query)}`, 2, 200, {
+    signal
+  }).then(response => response.json());
+}
+
 export function getSmooveById(id, { signal }) {
   return retryFetch(`/api/smoove/${id}`, 2, 200, {
     signal

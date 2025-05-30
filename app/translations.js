@@ -821,6 +821,7 @@ const translations = {
     zones: 'Tarifzonen'
   },
   en: {
+    'find-all-blocks': 'Find all blocks',
     'find-all-routes': 'Find all routes',
     'routes-start-trip': 'Start trip',
     'routes-itinerary-label': 'Itinerary',
@@ -834,6 +835,7 @@ const translations = {
     'routes-card-difficulty-description-medium': 'Medium',
     'routes-card-difficulty-description-hard': 'Hard',
     'routes-title': 'City tours',
+    'blocks-title': "Discover the city's themed blocks",
     'scroll-to-top': 'Scroll back to the top of the page',
     pois: 'Points of interest',
     events: 'Events',
@@ -883,6 +885,7 @@ const translations = {
     'filter-events-title': 'Events',
     'filter-stop-title': 'Transports',
     'filter-routes-title': 'Trips',
+    'filter-blocks-title': 'Blocks',
     'filters-title': 'Filters',
     'all-filters': 'All filters',
     'place-to-visit': 'Places to visit',
@@ -5171,6 +5174,7 @@ const translations = {
 
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
+    'find-all-blocks': 'Descubra todos os quarteirões',
     'find-all-routes': 'Descubra todos os roteiros',
     'routes-start-trip': 'Iniciar roteiro',
     'routes-itinerary-label': 'Itinerário',
@@ -5184,6 +5188,7 @@ const translations = {
     'routes-card-difficulty-description-medium': 'Médio',
     'routes-card-difficulty-description-hard': 'Dificil',
     'routes-title': 'Roteiros pela cidade',
+    'blocks-title': 'Descubra os quarteirões temáticos da cidade',
     'profile-page-back-button-title': 'Perfil',
     'profile-page-profile-card-title': 'O seu perfil',
     'profile-page-profile-card-subtitle':
@@ -5336,6 +5341,7 @@ const translations = {
     'filter-events-title': 'Eventos',
     'filter-stop-title': 'Transportes',
     'filter-routes-title': 'Roteiros',
+    'filter-blocks-title': 'Quarteirões',
     'filters-title': 'Filtros',
     'all-filters': 'Todos os filtros',
     'place-to-visit': 'Lugares a visitar',
