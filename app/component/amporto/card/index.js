@@ -20,9 +20,7 @@ const Card = ({ type, className, data, onClick, showDescription = false }) => {
       return null;
     }
 
-    return () => (
-      <Component selectedData={data} />
-    );
+    return () => <Component selectedData={data} />;
   }, [type, data]);
 
   return (

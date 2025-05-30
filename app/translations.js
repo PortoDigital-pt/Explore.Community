@@ -838,6 +838,7 @@ const translations = {
     'blocks-title': "Discover the city's themed blocks",
     'scroll-to-top': 'Scroll back to the top of the page',
     pois: 'Points of interest',
+    'events-blocks': 'programmed events',
     events: 'Events',
     'select-at-least-one-category': 'Select at least one category',
     'search-results': 'results',
@@ -5224,6 +5225,7 @@ const translations = {
     'poi-warning': 'Aviso',
     'scroll-to-top': 'Voltar ao topo da página',
     pois: 'Pontos de Interesse',
+    'events-blocks': 'eventos programados',
     events: 'Eventos',
     'public-transport': 'Transportes Públicos',
     'add-via-duration-button-label':

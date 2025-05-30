@@ -1,13 +1,9 @@
 import React from 'react';
 import { intlShape } from 'react-intl';
-import { bool } from 'prop-types';
 import Icon from '../../../../component/Icon';
 import { routesShape } from './shape';
 
-export const RoutesDetails = (
-  { selectedData },
-  { intl }
-) => (
+export const RoutesDetails = ({ selectedData }, { intl }) => (
   <div className="detail-info">
     <div className="pois-and-duration">
       <div>
@@ -37,8 +33,7 @@ export const RoutesDetails = (
 );
 
 RoutesDetails.propTypes = {
-  selectedData: routesShape.isRequired,
-  showDescription: bool
+  selectedData: routesShape.isRequired
 };
 
 RoutesDetails.contextTypes = {

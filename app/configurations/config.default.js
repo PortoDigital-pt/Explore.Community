@@ -739,6 +739,12 @@ export default {
     },
     events: {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
+    },
+    routes: {
+      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+    },
+    blocks: {
+      cultural: { pt: 'Cultural', en: 'Cultural' }
     }
   }
   */
@@ -756,6 +762,12 @@ export default {
     },
     events: {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
+    },
+    routes: {
+      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+    },
+    blocks: {
+      cultural: { pt: 'Cultural', en: 'Cultural' }
     }
   },
 

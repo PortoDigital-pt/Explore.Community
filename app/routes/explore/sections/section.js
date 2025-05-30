@@ -25,7 +25,7 @@ const Section = (
     errorMessage,
     emptyMessage,
     Intro,
-    showDescription
+    showDescription = false
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -59,7 +59,7 @@ const Section = (
   if (categories === null) {
     return null;
   }
-  
+
   return (
     <section className="section">
       <h3 className="title">{intl.messages[title]}</h3>

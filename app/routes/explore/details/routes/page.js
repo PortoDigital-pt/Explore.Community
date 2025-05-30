@@ -29,14 +29,13 @@ export const PageContent = ({ selectedData }, { intl }) => {
         })}
       >
         <RoutesDetails selectedData={selectedData} />
-        <div className="description">
-          {selectedData.description && (
-            <>
-              <h3>{intl.messages.about}</h3>
-              {selectedData.description && <p>{selectedData.description}</p>}
-            </>
-          )}
-        </div>
+
+        {selectedData.description && (
+          <div className="description">
+            <h3>{intl.messages.about}</h3>
+            <p>{selectedData.description}</p>
+          </div>
+        )}
 
         <div className="itinerary-header">
           <div className="left">

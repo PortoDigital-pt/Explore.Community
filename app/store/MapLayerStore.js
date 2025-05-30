@@ -71,9 +71,9 @@ class MapLayerStore extends Store {
         {}
       )
     };
-     this.mapLayers.blocks = {
+    this.mapLayers.blocks = {
       showAll: true,
-      ...Object.keys(config.filters.routes).reduce(
+      ...Object.keys(config.filters.blocks).reduce(
         (acc, key) => ({ ...acc, [key]: true }),
         {}
       )
