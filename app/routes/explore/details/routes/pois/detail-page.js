@@ -17,7 +17,7 @@ import ShareButton from '../../../../../component/amporto/share-button';
 
 const Page = (
   { selectedData, selectedItem, breakpoint },
-  { intl, executeAction },
+  { intl, executeAction }
 ) => {
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
@@ -79,21 +79,21 @@ const Page = (
 Page.contextTypes = {
   intl: intlShape.isRequired,
   match: matchShape.isRequired,
-  executeAction: func.isRequired,
+  executeAction: func.isRequired
 };
 
 Page.propTypes = {
   selectedData: routesShape.isRequired,
   selectedItem: bool.isRequired,
-  breakpoint: string,
+  breakpoint: string
 };
 
 export const Content = connectToStores(
   Page,
   ['PositionStore', 'RoutesStore'],
   ({ getStore }) => ({
-    selectedItem: getStore('RoutesStore').getSelectedItem(),
-  }),
+    selectedItem: getStore('RoutesStore').getSelectedItem()
+  })
 );
 
 const RoutesPoiDetailsPage = () => (
