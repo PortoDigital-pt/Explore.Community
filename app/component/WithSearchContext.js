@@ -41,6 +41,7 @@ export function getLocationSearchTargets(config, isMobile) {
     locationSearchTargets.push('Events');
     locationSearchTargets.push('Stations');
     locationSearchTargets.push('Stops');
+    locationSearchTargets.push('Explore-routes');
     if (useCitybikes(config.vehicleRental?.networks, config)) {
       locationSearchTargets.push('VehicleRentalStations');
     }

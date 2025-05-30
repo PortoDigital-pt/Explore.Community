@@ -270,6 +270,7 @@ export async function getSearchResults(
     getFutureRoutes,
     cityBikeNetworks
   } = searchContext;
+
   // if no targets are provided, search them all.
   const allTargets = !targets || targets.length === 0;
   // if no sources are provided, use them all.
@@ -397,7 +398,10 @@ export async function getSearchResults(
 
   const useStops = targets.includes('Stops');
   const useStations = targets.includes('Stations');
-  const useExplore = targets.includes('Pois') || targets.includes('Events');
+
+  const useExplore = targets.some(target =>
+    ['Pois', 'Events', 'Explore-routes'].includes(target)
+  );
 
   if (allTargets || useExplore) {
     const searchParams = geocodingSearchParams;
@@ -426,6 +430,11 @@ export async function getSearchResults(
     if (targets.includes('Pois')) {
       exploreSources.push('custom');
       exploreLayers.push('venue');
+    }
+
+    if (targets.includes('Explore-routes')) {
+      exploreSources.push('explore_porto');
+      exploreLayers.push('tourist_trips');
     }
 
     searchComponents.push(

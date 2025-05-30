@@ -235,17 +235,26 @@ li:last-child > div.suggestion-item-container.mobile {
 
   .poi {
     svg {
-      width: 17px;
+      width: 53px;
       height: 17px;
+      padding: 0;
+    }
+  }
+
+  .routes {
+    svg {
+      width: 22px;
+      height: 22px;
       padding: 0;
     }
   }
 
   .event {
     svg {
-      width: 20px;
-      height: 20px;
+      width: 36px;
+      height: 36px;
       padding: 0;
+      color: purple;
     }
   }
 
