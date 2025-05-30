@@ -685,6 +685,41 @@
 }
 
 .routes-content-tabs {
+  .routes-pois-header {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 12px 0 12px;
+
+    .title {
+      display: flex;
+      position: relative;
+      flex-grow: 1;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5px;
+
+      h3 {
+        display: flex;
+        position: relative;
+        color: $primary-color;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+        justify-content: center;
+      }
+    }
+
+    .share-and-favourite {
+      display: flex;
+      position: relative;
+      flex-grow: 1;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
   .swipe-tab-ball.selected {
     border: $primary-dark;
     background-color: $primary-dark;

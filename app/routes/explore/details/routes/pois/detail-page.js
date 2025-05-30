@@ -12,10 +12,12 @@ import { DetailsContentModal } from '../../../common';
 import { clearSelectedItem } from '../../../../../action/RoutesActions';
 import { DesktopContent } from './desktop';
 import { getItineraryPath } from '../util';
+import FavouriteExplore from '../../../../../component/FavouriteExploreContainer';
+import ShareButton from '../../../../../component/amporto/share-button';
 
 const Page = (
   { selectedData, selectedItem, breakpoint },
-  { intl, executeAction }
+  { intl, executeAction },
 ) => {
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
@@ -33,6 +35,19 @@ const Page = (
 
   return (
     <div className="routes-content-tabs">
+      {breakpoint !== 'large' && (
+        <div className="routes-pois-header">
+          <div className="title">
+            <h3>{intl.messages['routes-details-title']}</h3>
+          </div>
+
+          <div className="share-and-favourite">
+            <ShareButton withBackground />
+            <FavouriteExplore data={selectedData} />
+          </div>
+        </div>
+      )}
+
       <RoutesTabs
         pois={selectedData?.pois}
         breakpoint={breakpoint}
@@ -64,21 +79,21 @@ const Page = (
 Page.contextTypes = {
   intl: intlShape.isRequired,
   match: matchShape.isRequired,
-  executeAction: func.isRequired
+  executeAction: func.isRequired,
 };
 
 Page.propTypes = {
   selectedData: routesShape.isRequired,
   selectedItem: bool.isRequired,
-  breakpoint: string
+  breakpoint: string,
 };
 
 export const Content = connectToStores(
   Page,
   ['PositionStore', 'RoutesStore'],
   ({ getStore }) => ({
-    selectedItem: getStore('RoutesStore').getSelectedItem()
-  })
+    selectedItem: getStore('RoutesStore').getSelectedItem(),
+  }),
 );
 
 const RoutesPoiDetailsPage = () => (
