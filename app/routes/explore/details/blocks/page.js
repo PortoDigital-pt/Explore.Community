@@ -10,7 +10,11 @@ import Skeleton from '../../../../component/amporto/skeleton';
 import { blockShape } from './shape';
 import useListData from '../../../../hooks/useListData';
 import useModal from '../../../../hooks/useModal';
-import { getPoiList, getRoutesList, getBlockById } from '../../../../util/amporto/api';
+import {
+  getPoiList,
+  getRoutesList,
+  getBlockById
+} from '../../../../util/amporto/api';
 import { DetailsContentModal } from '../../common';
 import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import Icon from '../../../../component/Icon';
@@ -79,8 +83,7 @@ const Content = ({ selectedData, language }, { intl }) => {
     id => router.push(`/${selected?.type}/${id}`),
     [router.push, selected?.type]
   );
-  console.log('POIS: ', selectedData.pois);
-  console.log('ROUTES: ', selectedData.routes);
+
   return (
     <>
       {selectedData.images && (
@@ -144,12 +147,12 @@ const Content = ({ selectedData, language }, { intl }) => {
       )}
 
       <button
-          className="start-trip-button padding"
-          type="button"
-          onClick={() => router.push(getItineraryPath(selectedData))}
-          aria-label={`${intl.messages['block-directions']} ${selectedData.name}`}
-        >
-          {`${intl.messages['block-directions']} ${selectedData.name}`}
+        className="start-trip-button padding"
+        type="button"
+        onClick={() => router.push(getItineraryPath(selectedData))}
+        aria-label={`${intl.messages['block-directions']} ${selectedData.name}`}
+      >
+        {`${intl.messages['block-directions']} ${selectedData.name}`}
       </button>
 
       {isOpen && selected !== null && (

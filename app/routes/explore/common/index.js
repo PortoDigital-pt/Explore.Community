@@ -14,8 +14,7 @@ export const DetailsContent = ({
   modal = false,
   showShare = false,
   PageContent,
-  breakpoint,
-  subtitle
+  breakpoint
 }) => {
   const Component = useMemo(() => {
     if (modal) {
@@ -35,7 +34,7 @@ export const DetailsContent = ({
         key={data.id}
         title={data.name}
         subtitle={
-          subtitle ?? Array.isArray(data.category)
+          Array.isArray(data.category)
             ? data.category.join(', ')
             : data.category
         }
@@ -63,8 +62,7 @@ DetailsContent.propTypes = {
   modal: bool,
   showShare: bool,
   PageContent: func.isRequired,
-  breakpoint: string,
-  subtitle: string
+  breakpoint: string
 };
 
 export const DetailsContentModal = ({

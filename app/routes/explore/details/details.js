@@ -7,7 +7,7 @@ import Loading from '../../../component/Loading';
 import useModal from '../../../hooks/useModal';
 import useSelectedData from '../../../hooks/useSelectedData';
 import { DetailsContent, DetailsContentModal } from '../common';
-// TODO: pass language down / subtitle
+
 const DetailsPage = (
   {
     language,
@@ -15,8 +15,7 @@ const DetailsPage = (
     getDataById,
     onErrorPath,
     PageContent,
-    MobileContent,
-    subtitle
+    MobileContent
   },
   { match, router }
 ) => {
@@ -78,8 +77,7 @@ DetailsPage.propTypes = {
   getDataById: func.isRequired,
   onErrorPath: string.isRequired,
   PageContent: func.isRequired,
-  MobileContent: func.isRequired,
-  subtitle: string
+  MobileContent: func.isRequired
 };
 
 export default connectToStores(

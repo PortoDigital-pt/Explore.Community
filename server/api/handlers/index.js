@@ -20,7 +20,7 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
       defaultEndpoint: { lat, lon }
     }
   } = request;
-  console.log('rest: ', queryRest);
+
   const paginated = page !== undefined;
 
   if (paginated) {
@@ -30,16 +30,7 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
       page
     });
   }
-  console.log(
-    'QUERY: ',
-    `${process.env.NGSI_URL}?${buildNGSIQueryString({
-      filters,
-      dataProvider,
-      coords: `${lat},${lon}`,
-      ...defaultQueryParams,
-      ...queryRest
-    })}`
-  );
+
   const { data, total, status, text } = await customFetch(
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
