@@ -10,10 +10,12 @@ import Skeleton from '../../../../component/amporto/skeleton';
 import { blockShape } from './shape';
 import useListData from '../../../../hooks/useListData';
 import useModal from '../../../../hooks/useModal';
-import { getPoiList, getEventList } from '../../../../util/amporto/api';
+import { getPoiList, getRoutesList, getBlockById } from '../../../../util/amporto/api';
 import { DetailsContentModal } from '../../common';
 import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import Icon from '../../../../component/Icon';
+import Details from '../details';
+import { getItineraryPath } from '../routes/util';
 
 const List = ({ type, data, cardType, setSelected, open }) => {
   return data === null
@@ -34,7 +36,7 @@ const List = ({ type, data, cardType, setSelected, open }) => {
       ));
 };
 
-const PageContent = ({ selectedData, language }, { intl }) => {
+const Content = ({ selectedData, language }, { intl }) => {
   const { isOpen, open, close } = useModal();
   const [selected, setSelected] = useState(null);
   const { router } = useRouter();
@@ -47,11 +49,11 @@ const PageContent = ({ selectedData, language }, { intl }) => {
     }),
     [language, selectedData]
   );
-  const eventArgs = useMemo(
+  const routeArgs = useMemo(
     () => ({
       language,
       block: selectedData.name,
-      limit: selectedData.events?.length
+      limit: selectedData.routes?.length
     }),
     [language, selectedData]
   );
@@ -67,17 +69,18 @@ const PageContent = ({ selectedData, language }, { intl }) => {
     args: poiArgs
   });
 
-  const { data: eventData } = useListData({
-    enabled: selectedData.events?.length > 0,
-    getData: getEventList,
-    args: eventArgs
+  const { data: routeData } = useListData({
+    enabled: selectedData.routes?.length > 0,
+    getData: getRoutesList,
+    args: routeArgs
   });
 
   const navigate = useCallback(
     id => router.push(`/${selected?.type}/${id}`),
     [router.push, selected?.type]
   );
-
+  console.log('POIS: ', selectedData.pois);
+  console.log('ROUTES: ', selectedData.routes);
   return (
     <>
       {selectedData.images && (
@@ -101,16 +104,6 @@ const PageContent = ({ selectedData, language }, { intl }) => {
               </div>
             )}
           </div>
-
-          {selectedData.events?.length > 0 && (
-            <div>
-              <Icon img="icon-events" viewBox="0 0 16 16" />
-              <p>
-                {selectedData.events.length}{' '}
-                {intl.messages['events-blocks'].toLowerCase()}
-              </p>
-            </div>
-          )}
         </div>
         {selectedData.description && (
           <div className="description">
@@ -120,9 +113,9 @@ const PageContent = ({ selectedData, language }, { intl }) => {
         )}
       </div>
 
-      {selectedData.pois?.length > 0 && (
+      {(poiData ?? selectedData.pois)?.length > 0 && (
         <div className="list">
-          <h3>O que visitar</h3>
+          <h3>{intl.messages['pois-block-title']}</h3>
           <div className="list-scroll">
             <List
               type="pois"
@@ -135,20 +128,29 @@ const PageContent = ({ selectedData, language }, { intl }) => {
         </div>
       )}
 
-      {selectedData.events?.length > 0 && (
+      {(routeData ?? selectedData.routes)?.length > 0 && (
         <div className="list">
-          <h3>{`A acontecer no ${selectedData.name}`}</h3>
+          <h3>{intl.messages['routes-block-title']}</h3>
           <div className="list-scroll">
             <List
-              type="events"
+              type="routes"
               cardType="large"
-              data={eventData}
+              data={routeData}
               open={open}
               setSelected={setSelected}
             />
           </div>
         </div>
       )}
+
+      <button
+          className="start-trip-button padding"
+          type="button"
+          onClick={() => router.push(getItineraryPath(selectedData))}
+          aria-label={`${intl.messages['block-directions']} ${selectedData.name}`}
+        >
+          {`${intl.messages['block-directions']} ${selectedData.name}`}
+      </button>
 
       {isOpen && selected !== null && (
         <DetailsContentModal
@@ -169,19 +171,30 @@ const PageContent = ({ selectedData, language }, { intl }) => {
   );
 };
 
-PageContent.propTypes = {
+Content.propTypes = {
   selectedData: blockShape.isRequired,
   language: string.isRequired
 };
 
-PageContent.contextTypes = {
+Content.contextTypes = {
   intl: intlShape.isRequired
 };
 
-export default connectToStores(
-  PageContent,
+export const PageContent = connectToStores(
+  Content,
   ['PreferencesStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage()
   })
 );
+
+const BlockDetailsPage = () => (
+  <Details
+    getDataById={getBlockById}
+    onErrorPath="/blocks"
+    PageContent={PageContent}
+    MobileContent={() => {}}
+  />
+);
+
+export default BlockDetailsPage;

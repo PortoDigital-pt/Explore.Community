@@ -6,6 +6,7 @@
   flex-grow: 1;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   row-gap: 24px;
 
   &.modal {
@@ -32,6 +33,7 @@
       flex-grow: 1;
       flex-direction: column;
       justify-content: flex-start;
+      align-items: center;
       row-gap: 24px;
       padding-bottom: 24px;
     }
@@ -357,8 +359,9 @@
         text-underline-position: from-font;
       }
     }
+  }
 
-    .start-trip-button {
+   .start-trip-button {
       width: 100%;
       display: flex;
       position: relative;
@@ -372,8 +375,11 @@
       align-items: center;
       background-color: $primary-color;
       color: $primary-contrastText;
+
+      &.padding {
+        width: calc(100% - 48px);
+      }
     }
-  }
 
   .list {
     display: flex;

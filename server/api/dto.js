@@ -217,7 +217,7 @@ export const blockToDto = (block, language) => {
     eventRefs,
     tripRefs
   } = block;
-
+ 
   return {
     type: 'blocks',
     id,
