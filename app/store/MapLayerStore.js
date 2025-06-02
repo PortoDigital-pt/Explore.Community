@@ -70,6 +70,7 @@ class MapLayerStore extends Store {
         {}
       )
     };
+
     this.mapLayers.accesspoints = { showAll: config.map.showWifi };
     this.mapLayers.citybike = showRentalVehiclesOfType(
       config.vehicleRental?.networks,

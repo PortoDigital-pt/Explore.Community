@@ -1,5 +1,5 @@
 import { retryFetch } from '../fetchUtils';
-import { buildQueryString } from './query';
+import { buildDataForRoutes, buildQueryString } from './query';
 
 export function getPoiById({ id, query }, { signal }) {
   return retryFetch(`/api/pois/${id}${buildQueryString(query)}`, 2, 200, {
@@ -26,10 +26,7 @@ export function getEventList(query, { signal }) {
 }
 
 export function getRoutesList(query, { signal }) {
-  const auxQuery = { ...query };
-  delete auxQuery.categories;
-
-  return retryFetch(`/api/routes${buildQueryString(auxQuery)}`, 2, 200, {
+  return retryFetch(`/api/routes${buildDataForRoutes(query)}`, 2, 200, {
     signal
   }).then(response => response.json());
 }

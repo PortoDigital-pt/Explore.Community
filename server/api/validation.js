@@ -33,7 +33,7 @@ const commonListSchema = type => ({
   },
   categories: {
     customSanitizer: {
-      options: input => input?.split(',')
+      options: input => (input ? input?.split(',') : undefined)
     },
     custom: {
       options: (input, { req }) => {
@@ -56,30 +56,51 @@ export const eventListSchema = checkSchema(commonListSchema('events'), [
   'query'
 ]);
 
-export const routesListSchema = checkSchema(
-  {
-    page: {
-      isInt: {
-        options: { gt: 0 },
-        errorMessage: 'page must be a positive integer'
-      },
-      toInt: true,
-      optional: true
+const exclusiveRoutesValidation = {
+  difficulties: {
+    customSanitizer: {
+      options: input => (input ? input?.split(',') : undefined)
     },
-    coords: {
-      matches: {
-        options: coordinatesRegex,
-        errorMessage: 'invalid coordinates'
+    custom: {
+      options: (input, { req }) => {
+        if (input.length === 0) {
+          return false;
+        }
+
+        const validData = Object.keys(req.config.filters.routes).filter(
+          difficulty => difficulty.startsWith('others-difficulty-')
+        );
+
+        return input.every(difficulty => validData.includes(difficulty));
       },
-      optional: true
+      errorMessage: 'invalid Difficulty'
     },
-    language: {
-      matches: {
-        options: languageRegex,
-        errorMessage: 'invalid language'
-      }
-    }
+    optional: true
   },
+  durationRanges: {
+    customSanitizer: {
+      options: input => (input ? input?.split(',') : undefined)
+    },
+    custom: {
+      options: (input, { req }) => {
+        if (input.length === 0) {
+          return false;
+        }
+
+        const validData = Object.keys(req.config.filters.routes).filter(
+          duration => duration.startsWith('others-durationRange-')
+        );
+
+        return input.every(duration => validData.includes(duration));
+      },
+      errorMessage: 'invalid durationRange'
+    },
+    optional: true
+  }
+};
+
+export const routesListSchema = checkSchema(
+  { ...commonListSchema('routes'), ...exclusiveRoutesValidation },
   ['query']
 );
 
