@@ -58,6 +58,7 @@
     justify-content: space-between;
     padding: 12px;
 
+    &.blocks,
     &.routes {
       gap: 20px;
     }
@@ -94,8 +95,8 @@
       font-style: normal;
       font-weight: $font-weight-regular;
       display: -webkit-box;
-      line-clamp: 5;
-      -webkit-line-clamp: 5;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;

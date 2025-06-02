@@ -1,17 +1,15 @@
 import React from 'react';
-import { intlShape } from 'react-intl';
 import { func, shape } from 'prop-types';
-import { connectToStores } from 'fluxible-addons-react';
 import Card from '../../../../component/amporto/card';
 import { routesShape } from './shape';
 
-const Mobile = ({ onDetails, selectedData, innerRef }) => (
+export const MobileContent = ({ onDetails, selectedData, innerRef }) => (
   <div className="mobile-view" ref={innerRef}>
     <div className="content">
       <Card
         key={selectedData.id}
         className="large-card"
-        onClick={() => onDetails(selectedData)}
+        onClick={onDetails}
         data={selectedData}
         type="routes"
         showDescription
@@ -20,21 +18,8 @@ const Mobile = ({ onDetails, selectedData, innerRef }) => (
   </div>
 );
 
-Mobile.propTypes = {
+MobileContent.propTypes = {
   innerRef: shape(),
   onDetails: func.isRequired,
   selectedData: routesShape.isRequired
 };
-
-Mobile.contextTypes = {
-  intl: intlShape.isRequired,
-  executeAction: func.isRequired
-};
-
-export const MobileContent = connectToStores(
-  Mobile,
-  ['PositionStore'],
-  ({ getStore }) => ({
-    location: getStore('PositionStore').getLocationState()
-  })
-);

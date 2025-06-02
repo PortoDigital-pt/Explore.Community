@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import { string } from 'prop-types';
+import { string, func, shape } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { useRouter } from 'found';
 import classname from 'classnames';
@@ -20,6 +20,27 @@ import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import Icon from '../../../../component/Icon';
 import Details from '../details';
 import { getItineraryPath } from '../routes/util';
+
+export const Mobile = ({ onDetails, selectedData, innerRef }) => (
+  <div className="mobile-view" ref={innerRef}>
+    <div className="content">
+      <Card
+        key={selectedData.id}
+        className="large-card"
+        onClick={onDetails}
+        data={selectedData}
+        type="blocks"
+        showDescription
+      />
+    </div>
+  </div>
+);
+
+Mobile.propTypes = {
+  innerRef: shape(),
+  onDetails: func.isRequired,
+  selectedData: shape().isRequired
+};
 
 const List = ({ type, data, cardType, setSelected, open }) => {
   return data === null

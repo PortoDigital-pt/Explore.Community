@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { getBlockList } from '../../../../util/amporto/api';
-import { parseConfigDescriptionTextWithLink } from '../../../../util/amporto/text';
 import Section from '../section';
 import { configShape } from '../../../../util/shapes';
 
@@ -10,9 +9,7 @@ const BlocksSection = ({ language }, { config }) => {
   const Intro = useMemo(
     () => () =>
       config.cards.blocks?.[language] ? (
-        <p>
-          {parseConfigDescriptionTextWithLink(config.cards.blocks[language])}
-        </p>
+        <p>{config.cards.blocks[language]}</p>
       ) : null,
     [language]
   );
