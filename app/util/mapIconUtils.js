@@ -918,3 +918,19 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
     tile.ctx.drawImage(image, x, y);
   });
 }
+
+export function drawRoutesIcon(tile, geom) {
+  const width = 50 * tile.scaleratio;
+  const height = 50 * tile.scaleratio;
+
+  const x = geom.x / tile.ratio - width / 2;
+  const y = geom.y / tile.ratio - height;
+
+  return getImageFromSpriteCache(
+    'icon-explore-icon_routes_map',
+    width,
+    height
+  ).then(image => {
+    tile.ctx.drawImage(image, x, y);
+  });
+}

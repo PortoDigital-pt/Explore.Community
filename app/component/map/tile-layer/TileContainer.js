@@ -82,6 +82,11 @@ class TileContainer {
           return isExploreEnabled(this.props.mapLayers);
         }
 
+        if (layerName === 'routes') {
+          // &&this.coords.z >= config.minZoomToShowOnMap
+          return isExploreEnabled(this.props.mapLayers);
+        }
+
         // stops and terminals are drawn on same layer
         const isEnabled =
           isLayerEnabled(layerName, this.props.mapLayers) ||

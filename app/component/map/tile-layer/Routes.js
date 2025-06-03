@@ -1,41 +1,45 @@
+/* eslint-disable no-continue */
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 import pick from 'lodash/pick';
-import {
-  isExploreFeatureEnabled,
-  isCategoryEnabled
-} from '../../../util/mapLayerUtils';
-import { drawExploreIcon } from '../../../util/mapIconUtils';
+import { isExploreFeatureEnabled } from '../../../util/mapLayerUtils';
+import { drawRoutesIcon } from '../../../util/mapIconUtils';
 
 const isValidDataProvider = (providersString, currentProvider) =>
   providersString.split(',').includes(currentProvider);
 
-const mapCategoryDescriptionToId = (filters, type, { properties }) => {
-  const { category_lang = '{}', section_lang = '{}' } = properties;
-  const value =
-    type === 'pois'
-      ? JSON.parse(category_lang).pt
-      : JSON.parse(section_lang).pt;
-
-  const [categoryKey] = Object.entries(filters[type]).find(
-    // eslint-disable-next-line no-unused-vars
-    ([_, { pt }]) => (Array.isArray(value) ? value.includes(pt) : pt === value)
-  ) ?? [null];
-
-  return categoryKey;
+const isDifficultyOn = (layer, { properties }) => {
+  return layer[`others-difficulty-${properties.difficulty}`] || false;
 };
 
-class Explore {
+const isDurationRangeOn = (configFilters, layer, { properties }) => {
+  const { durationrange } = properties;
+  const { routes } = configFilters;
+
+  const keyFromValue = Object.keys(routes).find(
+    key =>
+      routes[key]?.pt === durationrange || routes[key]?.en === durationrange
+  );
+
+  return layer[keyFromValue] || false;
+};
+
+const tileTypeToMapLayerName = type =>
+  type === 'tourist_trips' ? 'routes' : type;
+class Routes {
   constructor(tile, config, mapLayers) {
     this.tile = tile;
     this.config = config;
     this.mapLayers = mapLayers;
   }
 
-  static getName = () => 'explore';
+  static getName = () => 'routes';
 
   getPromise() {
+    console.log('log-RoutesLayer-getPromise');
+
     fetch(
       `${this.config.URL.EXPLORE_TILES.default}/${
         this.tile.coords.z + (this.tile.props.zoomOffset || 0)
@@ -51,7 +55,9 @@ class Explore {
           const vt = new VectorTile(new Protobuf(buf));
           this.features = [];
 
-          Object.entries(vt.layers).forEach(([type, layer]) => {
+          Object.entries(vt.layers).forEach(([tileType, layer]) => {
+            const type = tileTypeToMapLayerName(tileType);
+
             if (!isExploreFeatureEnabled(type, this.mapLayers)) {
               return;
             }
@@ -60,25 +66,22 @@ class Explore {
               const feature = layer.feature(i);
 
               if (
-                type !== 'accesspoints' &&
-                !isCategoryEnabled(
-                  type,
-                  this.mapLayers,
-                  mapCategoryDescriptionToId(this.config.filters, type, feature)
+                !isDifficultyOn(this.mapLayers.routes, feature) ||
+                !isDurationRangeOn(
+                  this.config.filters,
+                  this.mapLayers.routes,
+                  feature
                 )
               ) {
-                // eslint-disable-next-line no-continue
                 continue;
               }
 
               if (
-                type !== 'accesspoints' &&
                 !isValidDataProvider(
                   this.config.ngsi.dataProvider[type],
                   feature.properties.data_provider
                 )
               ) {
-                // eslint-disable-next-line no-continue
                 continue;
               }
 
@@ -89,7 +92,7 @@ class Explore {
                 feature.properties.id
               );
 
-              drawExploreIcon(
+              drawRoutesIcon(
                 this.tile,
                 feature.geom,
                 type,
@@ -99,10 +102,10 @@ class Explore {
             }
           });
         },
-        err => console.log(err) // eslint-disable-line no-console
+        err => console.log(err)
       );
     });
   }
 }
 
-export default Explore;
+export default Routes;

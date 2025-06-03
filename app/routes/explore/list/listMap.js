@@ -16,7 +16,7 @@ const ListMap = (
 
   return (
     <MapWithTracking
-      zoom={17}
+      zoom={15}
       lat={isValid ? location.lat : defaultEndpoint.lat}
       lon={isValid ? location.lon : defaultEndpoint.lon}
       mapLayers={mapLayers}
