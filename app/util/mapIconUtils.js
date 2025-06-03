@@ -925,7 +925,7 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
  */
 
 export function drawBlockIcon(tile, geom, type) {
-  const styles = { width: 50, height: 50 } ;
+  const styles = { width: 50, height: 50 };
   let { width, height } = styles;
 
   width *= tile.scaleratio;

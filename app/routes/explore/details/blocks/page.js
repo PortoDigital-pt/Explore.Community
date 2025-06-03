@@ -69,7 +69,7 @@ const Content = ({ selectedData, language }, { intl }) => {
   const poiArgs = useMemo(
     () => ({
       language,
-      block: selectedData.name,
+      block: selectedData.id,
       limit: selectedData.pois?.length
     }),
     [language, selectedData]
@@ -77,7 +77,7 @@ const Content = ({ selectedData, language }, { intl }) => {
   const routeArgs = useMemo(
     () => ({
       language,
-      block: selectedData.name,
+      block: selectedData.id,
       limit: selectedData.routes?.length
     }),
     [language, selectedData]
@@ -139,7 +139,7 @@ const Content = ({ selectedData, language }, { intl }) => {
 
       {(poiData ?? selectedData.pois)?.length > 0 && (
         <div className="list">
-          <h3>{intl.messages['pois-block-title']}</h3>
+          <h3 className='list-title'>{intl.messages['pois-blocks-title']}</h3>
           <div className="list-scroll">
             <List
               type="pois"
@@ -154,7 +154,7 @@ const Content = ({ selectedData, language }, { intl }) => {
 
       {(routeData ?? selectedData.routes)?.length > 0 && (
         <div className="list">
-          <h3>{intl.messages['routes-block-title']}</h3>
+          <h3 className='list-title'>{intl.messages['routes-blocks-title']}</h3>
           <div className="list-scroll">
             <List
               type="routes"

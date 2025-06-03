@@ -14,7 +14,7 @@ const DetailsPageMap = ({ language, mapLayers, getDataById }, { match }) => {
     language,
     getDataById
   });
-  
+
   if (error) {
     return null;
   }

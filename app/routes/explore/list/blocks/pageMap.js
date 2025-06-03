@@ -9,7 +9,8 @@ import { getBlockList } from '../../../../util/amporto/api';
 import { boundWithMinimumArea } from '../../../../util/geo-utils';
 import Loading from '../../../../component/Loading';
 
-const getBounds = data => boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
+const getBounds = data =>
+  boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
 
 const BlockListMap = ({ mapLayers, language }) => {
   const args = useMemo(() => ({ language }), [language]);
@@ -23,10 +24,10 @@ const BlockListMap = ({ mapLayers, language }) => {
     return null;
   }
 
-   if (!data) {
+  if (!data) {
     return <Loading />;
   }
-  
+
   return (
     <MapWithTracking
       bounds={getBounds(data)}

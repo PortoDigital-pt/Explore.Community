@@ -4,7 +4,11 @@ import L from 'leaflet';
 
 import { isEqual } from 'lodash';
 import { isBrowser } from '../../../util/browser';
-import { isLayerEnabled, isExploreEnabled, isBlocksEnabled } from '../../../util/mapLayerUtils';
+import {
+  isLayerEnabled,
+  isExploreEnabled,
+  isBlocksEnabled
+} from '../../../util/mapLayerUtils';
 import { getStopIconStyles } from '../../../util/mapIconUtils';
 
 import { getVehicleMinZoomOnStopsNearYou } from '../../../util/vehicleRentalUtils';
@@ -73,7 +77,7 @@ class TileContainer {
     this.layers = this.props.layers
       .filter(Layer => {
         const layerName = Layer.getName();
-        
+
         // pois, events and accesspoints are drawn on the same layer
         if (
           layerName === 'explore' &&
@@ -84,9 +88,12 @@ class TileContainer {
 
         if (layerName === 'blocks') {
           if (!this.props.ignoreMinZoom) {
-            return this.coords.z >= config.minZoomToShowOnMap && isBlocksEnabled(this.props.mapLayers)
+            return (
+              this.coords.z >= config.minZoomToShowOnMap &&
+              isBlocksEnabled(this.props.mapLayers)
+            );
           }
-    
+
           return isBlocksEnabled(this.props.mapLayers);
         }
 

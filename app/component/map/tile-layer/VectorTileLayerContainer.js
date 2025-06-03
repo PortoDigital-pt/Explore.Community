@@ -41,7 +41,7 @@ export default function VectorTileLayerContainer(props, { config }) {
     layers.push(Explore);
   }
 
-    if (props.showBlocks) {
+  if (props.showBlocks) {
     layers.push(Blocks);
   }
 

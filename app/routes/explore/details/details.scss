@@ -387,8 +387,9 @@
     gap: 16px;
     position: relative;
     scrollbar-gutter: stable;
+    width: 100%;
 
-    h3 {
+    .list-title {
       padding: 0 24px;
       display: flex;
       position: relative;

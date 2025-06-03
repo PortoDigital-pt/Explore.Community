@@ -8,7 +8,10 @@ import {
 } from '../events/page';
 import { PageContent as RoutesPageContent } from '../routes/page';
 import { MobileContent as RoutesMobilePageContent } from '../routes/mobile-content';
-import { PageContent as BlocksPageContent, Mobile as BlocksMobilePageContent } from '../blocks/page';
+import {
+  PageContent as BlocksPageContent,
+  Mobile as BlocksMobilePageContent
+} from '../blocks/page';
 
 export const MOBILE_PAGE_CONTENT_TYPE_MAP = {
   pois: PoiMobilePageContent,

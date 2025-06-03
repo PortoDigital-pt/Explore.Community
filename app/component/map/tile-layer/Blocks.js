@@ -27,16 +27,16 @@ class Blocks {
       if (res.status !== 200) {
         return undefined;
       }
-     
+
       return res.arrayBuffer().then(
         // eslint-disable-next-line consistent-return
         buf => {
           const vt = new VectorTile(new Protobuf(buf));
           this.features = [];
 
-          Object.entries(vt.layers).forEach(([_, layer]) => {
+          Object.values(vt.layers).forEach((layer) => {
             const type = 'blocks';
-            
+
             if (!isExploreFeatureEnabled(type, this.mapLayers)) {
               return;
             }
@@ -58,11 +58,7 @@ class Blocks {
               [[feature.geom]] = feature.loadGeometry();
               this.features.push(pick(feature, ['geom', 'properties', 'type']));
 
-              drawBlockIcon(
-                this.tile,
-                feature.geom,
-                type
-              );
+              drawBlockIcon(this.tile, feature.geom, type);
             }
           });
         },

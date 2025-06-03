@@ -50,7 +50,7 @@ const Filters = ({ mapLayers }, { executeAction, intl }) => {
     },
     [mapLayers]
   );
- 
+
   if (!hasCategories(mapLayers)) {
     return null;
   }

@@ -19,42 +19,44 @@ const CategoryGroup = (
   { config, intl }
 ) => (
   <div className="accordion-group-container">
-    {Object.entries(filters).map(([type, { showAll, ...categories }]) => (
-      Object.keys(categories).length === 0 ? null : <Accordion
-        key={type}
-        title={intl.messages[`filter-${type}-title`]}
-        iconId={MAP_LAYERS_ICON[type]}
-        ariaLabel={intl.messages['settings-dropdown-open-label']}
-      >
-        <div className="accordion-category-list">
-          <AccordionItem
-            type={type}
-            category={intl.messages['all-selected']}
-            onClick={() => onAllCategories(type)}
-            showIcon={showAll}
-            className="category"
-          />
+    {Object.entries(filters).map(([type, { showAll, ...categories }]) =>
+      Object.keys(categories).length === 0 ? null : (
+        <Accordion
+          key={type}
+          title={intl.messages[`filter-${type}-title`]}
+          iconId={MAP_LAYERS_ICON[type]}
+          ariaLabel={intl.messages['settings-dropdown-open-label']}
+        >
+          <div className="accordion-category-list">
+            <AccordionItem
+              type={type}
+              category={intl.messages['all-selected']}
+              onClick={() => onAllCategories(type)}
+              showIcon={showAll}
+              className="category"
+            />
 
-          {Object.entries(categories).map(([category, selected]) => {
-            if (!config.filters[type][category]) {
-              return null;
-            }
+            {Object.entries(categories).map(([category, selected]) => {
+              if (!config.filters[type][category]) {
+                return null;
+              }
 
-            return (
-              <AccordionItem
-                key={`${type}-${category}`}
-                category={decodeURIComponent(
-                  config.filters[type][category][language]
-                )}
-                onClick={() => onCategory(type, category)}
-                showIcon={selected}
-                className="sub-category"
-              />
-            );
-          })}
-        </div>
-      </Accordion>
-    ))}
+              return (
+                <AccordionItem
+                  key={`${type}-${category}`}
+                  category={decodeURIComponent(
+                    config.filters[type][category][language]
+                  )}
+                  onClick={() => onCategory(type, category)}
+                  showIcon={selected}
+                  className="sub-category"
+                />
+              );
+            })}
+          </div>
+        </Accordion>
+      )
+    )}
   </div>
 );
 

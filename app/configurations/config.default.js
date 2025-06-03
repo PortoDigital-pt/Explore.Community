@@ -416,7 +416,7 @@ export default {
       events: '#FEC8A7',
       accesspoints: '#493e90',
       taxis: '#212121',
-      blocks: '#493e90' 
+      blocks: '#493e90'
     },
     itineraryDefault: '#493e90',
     originDestination: {
@@ -767,7 +767,9 @@ export default {
     routes: {
       itinerary: { pt: 'Roteiro', en: 'Itinerary' }
     },
-    blocks: { /* blocks don't have categories */ }
+    blocks: {
+      /* blocks don't have categories */
+    }
   },
 
   // data providers used in NGSI queries and in map Tiles filtering
