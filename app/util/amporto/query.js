@@ -15,8 +15,6 @@ export const buildQueryString = data => {
 export const buildDataForRoutes = data => {
   const auxData = { ...data };
 
-  const categories = auxData.categories.filter(it => !it.startsWith('others-'));
-
   const difficulties = auxData.categories.filter(it =>
     it.startsWith('others-difficulty-')
   );
@@ -29,7 +27,6 @@ export const buildDataForRoutes = data => {
 
   return buildQueryString({
     ...auxData,
-    categories,
     difficulties,
     durationRanges
   });

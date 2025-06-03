@@ -56,51 +56,70 @@ export const eventListSchema = checkSchema(commonListSchema('events'), [
   'query'
 ]);
 
-const exclusiveRoutesValidation = {
-  difficulties: {
-    customSanitizer: {
-      options: input => (input ? input?.split(',') : undefined)
-    },
-    custom: {
-      options: (input, { req }) => {
-        if (input.length === 0) {
-          return false;
-        }
-
-        const validData = Object.keys(req.config.filters.routes).filter(
-          difficulty => difficulty.startsWith('others-difficulty-')
-        );
-
-        return input.every(difficulty => validData.includes(difficulty));
-      },
-      errorMessage: 'invalid Difficulty'
-    },
-    optional: true
-  },
-  durationRanges: {
-    customSanitizer: {
-      options: input => (input ? input?.split(',') : undefined)
-    },
-    custom: {
-      options: (input, { req }) => {
-        if (input.length === 0) {
-          return false;
-        }
-
-        const validData = Object.keys(req.config.filters.routes).filter(
-          duration => duration.startsWith('others-durationRange-')
-        );
-
-        return input.every(duration => validData.includes(duration));
-      },
-      errorMessage: 'invalid durationRange'
-    },
-    optional: true
-  }
-};
-
 export const routesListSchema = checkSchema(
-  { ...commonListSchema('routes'), ...exclusiveRoutesValidation },
+  {
+    page: {
+      isInt: {
+        options: { gt: 0 },
+        errorMessage: 'page must be a positive integer'
+      },
+      toInt: true,
+      optional: true
+    },
+    coords: {
+      matches: {
+        options: coordinatesRegex,
+        errorMessage: 'invalid coordinates'
+      },
+      optional: true
+    },
+    language: {
+      matches: {
+        options: languageRegex,
+        errorMessage: 'invalid language'
+      }
+    },
+    difficulties: {
+      customSanitizer: {
+        options: input => (input ? input?.split(',') : undefined)
+      },
+      custom: {
+        options: (input, { req }) => {
+          if (input.length === 0) {
+            return false;
+          }
+
+          const validData = Object.keys(req.config.filters.routes).filter(
+            difficulty => difficulty.startsWith('others-difficulty-')
+          );
+
+          return input.every(difficulty => validData.includes(difficulty));
+        },
+        errorMessage: 'invalid Difficulty'
+      },
+      optional: true
+    },
+    durationRanges: {
+      customSanitizer: {
+        options: input => (input ? input?.split(',') : undefined)
+      },
+      custom: {
+        options: (input, { req }) => {
+          if (input.length === 0) {
+            return false;
+          }
+
+          const validData = Object.keys(req.config.filters.routes).filter(
+            duration => duration.startsWith('others-durationRange-')
+          );
+
+          return input.every(duration => validData.includes(duration));
+        },
+        errorMessage: 'invalid durationRange'
+      },
+      optional: true
+    }
+  },
   ['query']
 );
 
