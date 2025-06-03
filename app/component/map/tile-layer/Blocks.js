@@ -4,7 +4,7 @@ import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 import pick from 'lodash/pick';
 import { isExploreFeatureEnabled } from '../../../util/mapLayerUtils';
-import { drawExploreIcon } from '../../../util/mapIconUtils';
+import { drawBlockIcon } from '../../../util/mapIconUtils';
 
 const isValidDataProvider = (providersString, currentProvider) =>
   providersString.split(',').includes(currentProvider);
@@ -36,6 +36,7 @@ class Blocks {
 
           Object.entries(vt.layers).forEach(([_, layer]) => {
             const type = 'blocks';
+            
             if (!isExploreFeatureEnabled(type, this.mapLayers)) {
               return;
             }
@@ -56,16 +57,11 @@ class Blocks {
               feature.type = type;
               [[feature.geom]] = feature.loadGeometry();
               this.features.push(pick(feature, ['geom', 'properties', 'type']));
-              const isHighlighted = this.tile.hilightedStops?.includes(
-                feature.properties.id
-              );
 
-              drawExploreIcon(
+              drawBlockIcon(
                 this.tile,
                 feature.geom,
-                type,
-                this.config.colors.iconColors,
-                isHighlighted
+                type
               );
             }
           });

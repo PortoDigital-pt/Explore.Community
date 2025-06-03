@@ -918,3 +918,27 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
     tile.ctx.drawImage(image, x, y);
   });
 }
+
+/**
+ * Draw block icon.
+ * Determine size from zoom level.
+ */
+
+export function drawBlockIcon(tile, geom, type) {
+  const styles = { width: 50, height: 50 } ;
+  let { width, height } = styles;
+
+  width *= tile.scaleratio;
+  height *= tile.scaleratio;
+
+  const x = geom.x / tile.ratio - width / 2;
+  const y = geom.y / tile.ratio - height;
+
+  return getImageFromSpriteCache(
+    `icon-explore-icon_${type.toLowerCase()}_map`,
+    width,
+    height
+  ).then(image => {
+    tile.ctx.drawImage(image, x, y);
+  });
+}

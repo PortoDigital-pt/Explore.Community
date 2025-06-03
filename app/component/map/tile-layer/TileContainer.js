@@ -73,7 +73,7 @@ class TileContainer {
     this.layers = this.props.layers
       .filter(Layer => {
         const layerName = Layer.getName();
-
+        
         // pois, events and accesspoints are drawn on the same layer
         if (
           layerName === 'explore' &&
@@ -82,11 +82,11 @@ class TileContainer {
           return isExploreEnabled(this.props.mapLayers);
         }
 
-          // pois, events and accesspoints are drawn on the same layer
-        if (
-          layerName === 'blocks' &&
-          this.coords.z >= config.minZoomToShowOnMap
-        ) {
+        if (layerName === 'blocks') {
+          if (!this.props.ignoreMinZoom) {
+            return this.coords.z >= config.minZoomToShowOnMap && isBlocksEnabled(this.props.mapLayers)
+          }
+    
           return isBlocksEnabled(this.props.mapLayers);
         }
 

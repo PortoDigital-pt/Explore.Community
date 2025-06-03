@@ -45,7 +45,7 @@ const PageMap = (
     delete mwtProps.mapTracking;
   }
 
-  return <MapWithTracking {...mwtProps} mapLayers={mapLayers} showExplore  showBlocks/>;
+  return <MapWithTracking {...mwtProps} mapLayers={mapLayers} showExplore />;
 };
 
 PageMap.propTypes = {

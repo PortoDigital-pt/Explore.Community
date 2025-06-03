@@ -254,7 +254,6 @@ class MapWithTrackingStateHandler extends React.Component {
       ...rest
     } = this.props;
     const { config } = this.context;
-
     let btnClassName = 'map-with-tracking-buttons';
     if (config.map.showZoomControl) {
       btnClassName = cx(btnClassName, 'roomForZoomControl');

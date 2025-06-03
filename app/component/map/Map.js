@@ -211,7 +211,6 @@ export default class Map extends React.Component {
       mapLayerRef
     } = this.props;
     const { config } = this.context;
-
     const naviProps = {}; // these define map center and zoom
     if (bottomPadding !== undefined && this.boundsOptions) {
       this.boundsOptions.paddingBottomRight = [
