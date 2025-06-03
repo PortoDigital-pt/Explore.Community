@@ -59,3 +59,22 @@ export const buildPlanQuery = pois => {
 
 export const getItineraryPath = poi =>
   `/browse/-/${poi.name}::${poi.lat},${poi.lon}`;
+
+export const formatDuration = duration => {
+  if (!duration) {
+    return '';
+  }
+
+  const hours = Math.floor(duration);
+  const minutes = Math.round((duration - hours) * 60);
+
+  if (hours > 0 && minutes > 0) {
+    return `${hours}h${minutes}m`;
+  }
+
+  if (hours > 0) {
+    return `${hours}h`;
+  }
+
+  return `${minutes}m`;
+};

@@ -3,6 +3,7 @@ import { intlShape } from 'react-intl';
 import { bool } from 'prop-types';
 import Icon from '../../../../component/Icon';
 import { routesShape } from './shape';
+import { formatDuration } from './util';
 
 export const RoutesDetails = (
   { selectedData, showDescription = false },
@@ -24,7 +25,7 @@ export const RoutesDetails = (
       </div>
       <div>
         <Icon img="icon-icon_clock" viewBox="0 0 16 16" />
-        <p>{selectedData.duration}h</p>
+        <p>{formatDuration(selectedData.duration)}</p>
       </div>
     </div>
 
