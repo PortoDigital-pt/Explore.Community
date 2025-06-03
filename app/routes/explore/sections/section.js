@@ -25,7 +25,8 @@ const Section = (
     errorMessage,
     emptyMessage,
     Intro,
-    showDescription = false
+    showDescription = false,
+    requireCategories = true
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -34,7 +35,7 @@ const Section = (
     [language, (categories || []).join(',')]
   );
   const { data, error } = useListData({
-    enabled: categories !== null,
+    enabled: requireCategories ? categories !== null : true,
     location,
     coordinatesBounds,
     getData,
@@ -56,7 +57,7 @@ const Section = (
 
   const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
 
-  if (categories === null) {
+  if (requireCategories && categories === null) {
     return null;
   }
 
@@ -143,7 +144,8 @@ Section.propTypes = {
   language: string.isRequired,
   location: locationShape.isRequired,
   categories: arrayOf(string),
-  showDescription: bool
+  showDescription: bool,
+  requireCategories: bool
 };
 
 export default connectToStores(

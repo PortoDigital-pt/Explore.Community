@@ -8,7 +8,8 @@ export default {
   colors: {
     primary: '#000F9F',
     iconColors: {
-      accesspoints: '#000F9F'
+      accesspoints: '#000F9F',
+      blocks: '#000F9F'
     },
     itineraryDefault: '#000F9F',
     originDestination: {
@@ -190,9 +191,6 @@ export default {
     },
     routes: {
       itinerary: { pt: 'Roteiro', en: 'Itinerary' }
-    },
-    blocks: {
-      cultural: { pt: 'Cultural', en: 'Cultural' }
     }
   },
 

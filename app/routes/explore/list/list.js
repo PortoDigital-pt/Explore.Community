@@ -30,7 +30,8 @@ const ListPage = (
     categories,
     emptyMessage,
     errorMessage,
-    showDivider
+    showDivider,
+    requireCategories = true
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -44,7 +45,7 @@ const ListPage = (
     [language, (categories || []).join(',')]
   );
   const { data, total, error, onNextPage } = useInfinitePaginatedListData({
-    enabled: categories !== null,
+    enabled: requireCategories ? categories !== null : true,
     location,
     coordinatesBounds,
     getData,
@@ -125,7 +126,7 @@ const ListPage = (
         <BackButton title={intl.messages[type]} />
       )}
       <Filters type={type} />
-      {categories === null ? (
+      {requireCategories && categories === null ? (
         <div className="error">
           {intl.messages['select-at-least-one-category']}
         </div>
@@ -182,7 +183,8 @@ ListPage.propTypes = {
   categories: arrayOf(string),
   emptyMessage: string.isRequired,
   errorMessage: string.isRequired,
-  showDivider: bool
+  showDivider: bool,
+  requireCategories: bool
 };
 
 export default connectToStores(

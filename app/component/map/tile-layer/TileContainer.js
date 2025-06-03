@@ -4,7 +4,7 @@ import L from 'leaflet';
 
 import { isEqual } from 'lodash';
 import { isBrowser } from '../../../util/browser';
-import { isLayerEnabled, isExploreEnabled } from '../../../util/mapLayerUtils';
+import { isLayerEnabled, isExploreEnabled, isBlocksEnabled } from '../../../util/mapLayerUtils';
 import { getStopIconStyles } from '../../../util/mapIconUtils';
 
 import { getVehicleMinZoomOnStopsNearYou } from '../../../util/vehicleRentalUtils';
@@ -80,6 +80,14 @@ class TileContainer {
           this.coords.z >= config.minZoomToShowOnMap
         ) {
           return isExploreEnabled(this.props.mapLayers);
+        }
+
+          // pois, events and accesspoints are drawn on the same layer
+        if (
+          layerName === 'blocks' &&
+          this.coords.z >= config.minZoomToShowOnMap
+        ) {
+          return isBlocksEnabled(this.props.mapLayers);
         }
 
         // stops and terminals are drawn on same layer

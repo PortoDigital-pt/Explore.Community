@@ -8,6 +8,7 @@ const BlockListPage = () => (
     getData={getBlockList}
     errorMessage="routes-fetch-error"
     emptyMessage="routes-empty"
+    requireCategories={false}
   />
 );
 

@@ -33,7 +33,7 @@ function MarkerSelectPopup(props, { intl }) {
     );
 
   const rows = props.options.map(option => {
-    if (option.layer === 'explore') {
+    if (option.layer === 'explore' || option.layer === 'blocks') {
       return (
         <SelectExploreRow
           key={option.feature.properties.id}

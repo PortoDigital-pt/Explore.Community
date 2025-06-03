@@ -25,6 +25,7 @@ const BlocksSection = ({ language }, { config }) => {
       Intro={Intro}
       type="blocks"
       showDescription
+      requireCategories={false}
     />
   );
 };

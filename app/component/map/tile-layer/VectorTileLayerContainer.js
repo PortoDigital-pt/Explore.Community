@@ -10,6 +10,7 @@ import ParkAndRideForBikes from './ParkAndRideForBikes';
 import { mapLayerShape } from '../../../store/MapLayerStore';
 import RentalVehicles from './RentalVehicles';
 import Explore from './Explore';
+import Blocks from './Blocks';
 
 export default function VectorTileLayerContainer(props, { config }) {
   const layers = [];
@@ -40,6 +41,10 @@ export default function VectorTileLayerContainer(props, { config }) {
     layers.push(Explore);
   }
 
+    if (props.showBlocks) {
+    layers.push(Blocks);
+  }
+
   return (
     <TileLayerContainer
       key="tileLayer"
@@ -66,7 +71,8 @@ VectorTileLayerContainer.propTypes = {
   mergeStops: PropTypes.bool,
   locationPopup: PropTypes.string,
   onSelectLocation: PropTypes.func,
-  showExplore: PropTypes.bool
+  showExplore: PropTypes.bool,
+  showBlocks: PropTypes.bool
 };
 
 VectorTileLayerContainer.defaultProps = {
@@ -76,7 +82,8 @@ VectorTileLayerContainer.defaultProps = {
   mergeStops: false,
   onSelectLocation: undefined,
   locationPopup: undefined,
-  showExplore: false
+  showExplore: false,
+  showBlocks: false
 };
 
 VectorTileLayerContainer.contextTypes = {

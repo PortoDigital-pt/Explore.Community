@@ -20,7 +20,7 @@ const CategoryGroup = (
 ) => (
   <div className="accordion-group-container">
     {Object.entries(filters).map(([type, { showAll, ...categories }]) => (
-      <Accordion
+      Object.keys(categories).length === 0 ? null : <Accordion
         key={type}
         title={intl.messages[`filter-${type}-title`]}
         iconId={MAP_LAYERS_ICON[type]}

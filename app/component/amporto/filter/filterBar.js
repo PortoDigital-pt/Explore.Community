@@ -17,6 +17,10 @@ const FilterBar = ({ filters, openModal, onClick }, { intl }) => {
   const ButtonFilters = useMemo(() => {
     const Component = Object.entries(filters).map(
       ([type, { showAll, ...values }]) => {
+        if (Object.keys(values).length === 0) {
+          return null;
+        }
+
         const someSelected = Object.values(values).find(element => element);
 
         const iconName =

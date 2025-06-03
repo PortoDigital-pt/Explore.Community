@@ -8,13 +8,19 @@ export const isExploreEnabled = mapLayers => {
     return false;
   }
   return (
-    mapLayers.showExplore ??
     mapLayers.pois ??
     mapLayers.events ??
     mapLayers.routes ??
     mapLayers.accesspoints
   );
 };
+
+/**
+ * Checks if blocks map layer is enabled.
+ *
+ * @param {object} mapLayers The map layer configuration.
+ */
+export const isBlocksEnabled = mapLayers => mapLayers?.blocks;
 
 /**
  * Checks if a specific explore layer feature is enabled.

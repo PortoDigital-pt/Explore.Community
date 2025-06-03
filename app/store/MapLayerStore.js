@@ -36,8 +36,6 @@ class MapLayerStore extends Store {
     taxis: true,
     geoJson: {},
 
-    showExplore: true,
-
     pois: null,
     events: null,
     routes: null,
