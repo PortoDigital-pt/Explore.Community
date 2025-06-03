@@ -1,3 +1,4 @@
+/* eslint-disable no-continue */
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
 import { VectorTile } from '@mapbox/vector-tile';
@@ -25,6 +26,22 @@ const mapCategoryDescriptionToId = (filters, type, { properties }) => {
   ) ?? [null];
 
   return categoryKey;
+};
+
+const isDifficultyOn = (layer, { properties }) => {
+  return layer[`others-difficulty-${properties.difficulty}`] || false;
+};
+
+const isDurationRangeOn = (configFilters, layer, { properties }) => {
+  const { durationrange } = properties;
+  const { routes } = configFilters;
+
+  const keyFromValue = Object.keys(routes).find(
+    key =>
+      routes[key]?.pt === durationrange || routes[key]?.en === durationrange
+  );
+
+  return layer[keyFromValue] || false;
 };
 
 const tileTypeToMapLayerName = type =>
@@ -65,14 +82,25 @@ class Explore {
               const feature = layer.feature(i);
 
               if (
-                type !== 'accesspoints' &&
+                type === 'routes' &&
+                (!isDifficultyOn(this.mapLayers.routes, feature) ||
+                  !isDurationRangeOn(
+                    this.config.filters,
+                    this.mapLayers.routes,
+                    feature
+                  ))
+              ) {
+                continue;
+              }
+
+              if (
+                !['accesspoints', 'routes'].includes(type) &&
                 !isCategoryEnabled(
                   type,
                   this.mapLayers,
                   mapCategoryDescriptionToId(this.config.filters, type, feature)
                 )
               ) {
-                // eslint-disable-next-line no-continue
                 continue;
               }
 
@@ -83,7 +111,6 @@ class Explore {
                   feature.properties.data_provider
                 )
               ) {
-                // eslint-disable-next-line no-continue
                 continue;
               }
 
