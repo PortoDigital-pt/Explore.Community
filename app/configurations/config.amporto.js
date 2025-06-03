@@ -185,7 +185,6 @@ export default {
       stages: { pt: 'Palcos', en: 'Stage' }
     },
     routes: {
-      itinerary: { pt: 'Roteiro', en: 'Itinerary' },
       'others-difficulty-easy': { pt: 'Facil', en: 'Easy' },
       'others-difficulty-medium': { pt: 'Medio', en: 'Medium' },
       'others-difficulty-hard': { pt: 'Dificil', en: 'Hard' },
