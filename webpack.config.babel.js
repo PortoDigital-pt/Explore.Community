@@ -138,17 +138,6 @@ const productionPlugins = [
     minRatio: 0.95,
     algorithm: 'brotliCompress'
   }),
-  new CopyWebpackPlugin({
-    patterns: [
-      {
-        from: path.join(__dirname, 'static/assets/geojson'),
-        transform: function minify(content) {
-          return JSON.stringify(JSON.parse(content.toString()));
-        },
-        to: path.join(__dirname, '_static/assets/geojson')
-      }
-    ]
-  }),
   new StatsPlugin('../stats.json', {
     // We use stats.json in app/server.js to know which assets to serve. We
     // only need `.entrypoints.main.assets` for that.

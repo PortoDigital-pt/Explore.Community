@@ -24,7 +24,7 @@ COPY digitransit-util ./digitransit-util
 COPY digitransit-search-util ./digitransit-search-util
 COPY digitransit-component ./digitransit-component
 COPY digitransit-store ./digitransit-store
-
+COPY sass ./sass
 RUN \
   # Tell Playwright not to download browser binaries, as it is only used for testing (not building).
   # https://github.com/microsoft/playwright/blob/v1.16.2/installation-tests/installation-tests.sh#L200-L216
