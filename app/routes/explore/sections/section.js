@@ -31,7 +31,7 @@ const Section = (
   { intl, config: { coordinatesBounds } }
 ) => {
   const args = useMemo(
-    () => ({ language, categories }),
+    () => ({ language, categories, limit: 10 }),
     [language, (categories || []).join(',')]
   );
   const { data, error } = useListData({

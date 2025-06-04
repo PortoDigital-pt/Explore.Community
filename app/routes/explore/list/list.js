@@ -41,7 +41,7 @@ const ListPage = (
   const [selected, setSelected] = useState(null);
 
   const args = useMemo(
-    () => ({ language, categories }),
+    () => ({ language, categories, limit: 10 }),
     [language, (categories || []).join(',')]
   );
   const { data, total, error, onNextPage } = useInfinitePaginatedListData({

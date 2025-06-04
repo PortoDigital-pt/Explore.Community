@@ -69,16 +69,14 @@ const Content = ({ selectedData, language }, { intl }) => {
   const poiArgs = useMemo(
     () => ({
       language,
-      block: selectedData.id,
-      limit: selectedData.pois?.length
+      block: selectedData.id
     }),
     [language, selectedData]
   );
   const routeArgs = useMemo(
     () => ({
       language,
-      block: selectedData.id,
-      limit: selectedData.routes?.length
+      block: selectedData.id
     }),
     [language, selectedData]
   );

@@ -23,14 +23,14 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
 
   const paginated = page !== undefined;
 
-  if (paginated) {
+  if (paginated && queryRest.limit) {
     // eslint-disable-next-line no-param-reassign
     defaultQueryParams.offset = getOffset({
-      limit: queryRest.limit ?? defaultQueryParams.limit,
+      limit: queryRest.limit,
       page
     });
   }
-
+  
   const { data, total, status, text } = await customFetch(
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
@@ -52,7 +52,7 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
     pagination = getInfinitePagination({
       total,
       page,
-      limit: defaultQueryParams.limit
+      limit: queryRest.limit
     });
   }
 

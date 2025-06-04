@@ -879,11 +879,11 @@ export function drawIcon(icon, tile, geom, imageSize) {
  * Determine size from zoom level.
  */
 
-export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
+export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted, customSize) {
   const color = iconColors[type];
   const zoom = tile.coords.z - 1;
 
-  const styles = getIconStyles(zoom, isHighlighted);
+  const styles = customSize ?? getIconStyles(zoom, isHighlighted);
   let { width, height } = styles;
 
   width *= tile.scaleratio;

@@ -5,7 +5,6 @@ export const defaultQueryParams = {
   geometry: 'point',
   options: 'count',
   orderBy: 'geo:distance',
-  limit: '10',
   offset: '0',
   attrs: 'dateCreated,dateModified,*'
 };
