@@ -38,8 +38,6 @@ class Routes {
   static getName = () => 'routes';
 
   getPromise() {
-    console.log('log-RoutesLayer-getPromise');
-
     fetch(
       `${this.config.URL.EXPLORE_TILES.default}/${
         this.tile.coords.z + (this.tile.props.zoomOffset || 0)
