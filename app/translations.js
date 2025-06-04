@@ -821,6 +821,7 @@ const translations = {
     zones: 'Tarifzonen'
   },
   en: {
+    'routes-list-title': 'City tour routes',
     'routes-details-title': 'City tour points',
     'find-all-routes': 'Find all routes',
     'routes-start-trip': 'Start trip',
@@ -5172,6 +5173,7 @@ const translations = {
 
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
+    'routes-list-title': 'Roteiros pela cidade',
     'routes-details-title': 'Pontos do roteiro',
     'find-all-routes': 'Descubra todos os roteiros',
     'routes-start-trip': 'Iniciar roteiro',

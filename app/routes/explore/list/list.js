@@ -16,7 +16,7 @@ import Skeleton from '../../../component/amporto/skeleton';
 import ScrollToTopButton from '../../../component/amporto/scroll-to-top-button';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
-  PAGE_CONTENT_TYPE_MAP
+  PAGE_CONTENT_TYPE_MAP,
 } from '../details/page-content-resolver/page-content';
 import { DetailsContentModal } from '../common';
 
@@ -30,9 +30,10 @@ const ListPage = (
     categories,
     emptyMessage,
     errorMessage,
-    showDivider
+    showDivider,
+    title,
   },
-  { intl, config: { coordinatesBounds } }
+  { intl, config: { coordinatesBounds } },
 ) => {
   const { isOpen, open, close } = useModal();
   const { isFirstLevelRoute } = useRouteLevel();
@@ -41,25 +42,25 @@ const ListPage = (
 
   const args = useMemo(
     () => ({ language, categories }),
-    [language, (categories || []).join(',')]
+    [language, (categories || []).join(',')],
   );
   const { data, total, error, onNextPage } = useInfinitePaginatedListData({
     enabled: categories !== null,
     location,
     coordinatesBounds,
     getData,
-    args
+    args,
   });
   const ref = useOnScreen({ onScreen: onNextPage });
 
   const navigate = useCallback(
     id => router.push(`/${type}/${id}`),
-    [router.push, type]
+    [router.push, type],
   );
 
   const ListItemComponent = useMemo(
     () => MOBILE_PAGE_CONTENT_TYPE_MAP[type],
-    [type]
+    [type],
   );
 
   const Loading = useMemo(
@@ -73,11 +74,11 @@ const ListPage = (
               <Skeleton />
               {showDivider && <hr />}
             </Fragment>
-          )
+          ),
         )}
       </>
     ),
-    []
+    [],
   );
 
   const List = useMemo(
@@ -108,12 +109,12 @@ const ListPage = (
                 />
                 {showDivider && <hr />}
               </Fragment>
-            )
+            ),
           )
         )}
       </div>
     ),
-    [data, ListItemComponent, Loading, setSelected, open]
+    [data, ListItemComponent, Loading, setSelected, open],
   );
 
   const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
@@ -132,7 +133,9 @@ const ListPage = (
       ) : (
         <>
           <h3 className="count">
-            {total && `${total} ${intl.messages['search-results']}`}
+            {title
+              ? intl.messages[title]
+              : total && `${total} ${intl.messages['search-results']}`}
           </h3>
           {error ? (
             <div className="error">
@@ -170,7 +173,7 @@ const ListPage = (
 
 ListPage.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired
+  config: configShape.isRequired,
 };
 
 ListPage.propTypes = {
@@ -182,7 +185,8 @@ ListPage.propTypes = {
   categories: arrayOf(string),
   emptyMessage: string.isRequired,
   errorMessage: string.isRequired,
-  showDivider: bool
+  showDivider: bool,
+  title: string,
 };
 
 export default connectToStores(
@@ -193,7 +197,7 @@ export default connectToStores(
 
     if (type) {
       const { showAll, ...typeCategories } = getStore(
-        'MapLayerStore'
+        'MapLayerStore',
       ).getFilterLayers({ only: type })[type];
       const selectedCategories = Object.entries(typeCategories)
         // eslint-disable-next-line no-unused-vars
@@ -206,7 +210,7 @@ export default connectToStores(
     return {
       categories,
       language: getStore('PreferencesStore').getLanguage(),
-      location: getStore('PositionStore').getLocationState()
+      location: getStore('PositionStore').getLocationState(),
     };
-  }
+  },
 );
