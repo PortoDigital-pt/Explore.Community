@@ -10,11 +10,33 @@ import { drawRoutesIcon } from '../../../util/mapIconUtils';
 const isValidDataProvider = (providersString, currentProvider) =>
   providersString.split(',').includes(currentProvider);
 
+// If all options are false, it will work as everything is checked.
+const isAllLayerUnchecked = (layer, prefix) => {
+  return (
+    Object.entries(layer)
+      .filter(([key]) => {
+        return key.startsWith(prefix);
+      })
+      // eslint-disable-next-line no-unused-vars
+      .every(([_, value]) => value === false)
+  );
+};
+
 const isDifficultyOn = (layer, { properties }) => {
-  return layer[`others-difficulty-${properties.difficulty}`] || false;
+  const allFalse = isAllLayerUnchecked(layer, 'others-difficulty-');
+
+  return (
+    allFalse || layer[`others-difficulty-${properties.difficulty}`] || false
+  );
 };
 
 const isDurationRangeOn = (configFilters, layer, { properties }) => {
+  const allFalse = isAllLayerUnchecked(layer, 'others-durationRange-');
+
+  if (allFalse) {
+    return true;
+  }
+
   const { durationrange } = properties;
   const { routes } = configFilters;
 
@@ -63,18 +85,16 @@ class Routes {
             for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
               const feature = layer.feature(i);
 
-              if (
-                !isDifficultyOn(this.mapLayers.routes, feature) ||
-                !isDurationRangeOn(
-                  this.config.filters,
-                  this.mapLayers.routes,
-                  feature
-                )
-              ) {
+              if (!isDifficultyOn(this.mapLayers.routes, feature)) {
                 continue;
               }
 
               if (
+                !isDurationRangeOn(
+                  this.config.filters,
+                  this.mapLayers.routes,
+                  feature
+                ) ||
                 !isValidDataProvider(
                   this.config.ngsi.dataProvider[type],
                   feature.properties.data_provider
