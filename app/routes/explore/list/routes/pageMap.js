@@ -32,16 +32,23 @@ const ListMap = ({ mapLayers, language }, { config }) => {
     getRoutes();
   }, []);
 
-  return <MapWithTracking bounds={bounds} mapLayers={mapLayers} showRoutes />;
+  return (
+    <MapWithTracking
+      bounds={bounds}
+      mapLayers={mapLayers}
+      showRoutes
+      ignoreMinZoom
+    />
+  );
 };
 
 ListMap.contextTypes = {
-  config: configShape.isRequired
+  config: configShape.isRequired,
 };
 
 ListMap.propTypes = {
   mapLayers: mapLayerShape.isRequired,
-  language: string.isRequired
+  language: string.isRequired,
 };
 
 export default connectToStores(
@@ -49,6 +56,6 @@ export default connectToStores(
   ['MapLayerStore', 'PreferencesStore'],
   ({ getStore }) => ({
     mapLayers: getStore('MapLayerStore').getFilterLayers({ only: 'routes' }),
-    language: getStore('PreferencesStore').getLanguage()
-  })
+    language: getStore('PreferencesStore').getLanguage(),
+  }),
 );

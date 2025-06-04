@@ -11,10 +11,16 @@ export const isExploreEnabled = mapLayers => {
     mapLayers.showExplore ??
     mapLayers.pois ??
     mapLayers.events ??
-    mapLayers.routes ??
     mapLayers.accesspoints
   );
 };
+
+/**
+ * Checks if routes map layer is enabled.
+ *
+ * @param {object} mapLayers The map layer configuration.
+ */
+export const isRoutesEnabled = mapLayers => mapLayers?.routes;
 
 /**
  * Checks if a specific explore layer feature is enabled.
