@@ -84,7 +84,7 @@ const ListPage = (
   const List = useMemo(
     () => () => (
       <div className="list">
-        {data === null ? (
+        {data === null || !ListItemComponent ? (
           <Loading />
         ) : (
           data.map((item, index) =>

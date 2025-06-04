@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import { string, func, shape } from 'prop-types';
+import { string, func, shape, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
+import { locationShape } from '../../../../util/shapes';
 import { useRouter } from 'found';
 import classname from 'classnames';
 import ImageSlider from '../../../../component/amporto/image-slider';
@@ -20,6 +21,9 @@ import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import Icon from '../../../../component/Icon';
 import Details from '../details';
 import { getItineraryPath } from '../routes/util';
+import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
+import ShareButton from '../../../../component/amporto/share-button';
+import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 
 export const Mobile = ({ onDetails, selectedData, innerRef }) => (
   <div className="mobile-view" ref={innerRef}>
@@ -210,12 +214,95 @@ export const PageContent = connectToStores(
   })
 );
 
+const MobileDetails = (
+  {
+    location,
+    onDetails,
+    selectedData,
+    showShare = false,
+  },
+  { intl, executeAction }
+) => {
+  const distanceToBlock = useDistanceToTarget({
+    executeAction,
+    location,
+    targetPoint: selectedData
+  });
+
+  return (
+    <div className="mobile-view">
+        <div className="header">
+          <div className="top">
+            <div className="title">
+              <Icon
+                img="icon-explore-icon_blocks_with_background"
+                viewBox="0 0 50 50"
+              />
+              <h3>{selectedData.name}</h3>
+            </div>
+            {showShare && <ShareButton withBackground />}
+            <FavouriteExplore data={selectedData} />
+          </div>
+          <div className="distance">
+            {!!distanceToBlock &&
+              `${intl.messages['at-distance']} ${showDistance(distanceToBlock)}`}
+          </div>
+        </div>
+
+      <div className="content">
+        {selectedData.images && (
+          <div className="image">
+            <img
+              src={selectedData.images[0]}
+              alt={selectedData.name}
+              loading="lazy"
+            />
+          </div>
+        )}
+        <div className="details">
+          <p>{selectedData.description}</p>
+        </div>
+      </div>
+
+      <div className="bottom">
+          <button
+            type="button"
+            onClick={onDetails}
+            aria-label={intl.messages.details}
+          >
+            {intl.messages.details}
+          </button>
+      </div>
+    </div>
+  );
+};
+
+MobileDetails.propTypes = {
+  onDetails: func.isRequired,
+  selectedData: blockShape.isRequired,
+  location: locationShape.isRequired,
+  showShare: bool
+};
+
+MobileDetails.contextTypes = {
+  intl: intlShape.isRequired,
+  executeAction: func.isRequired
+};
+
+const MobileDetailsContent = connectToStores(
+  MobileDetails,
+  ['PositionStore'],
+  ({ getStore }) => ({
+    location: getStore('PositionStore').getLocationState()
+  })
+);
+
 const BlockDetailsPage = () => (
   <Details
     getDataById={getBlockById}
     onErrorPath="/blocks"
     PageContent={PageContent}
-    MobileContent={() => {}}
+    MobileContent={MobileDetailsContent}
   />
 );
 
