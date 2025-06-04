@@ -58,10 +58,6 @@
     justify-content: space-between;
     padding: 12px;
 
-    &.routes {
-      gap: 20px;
-    }
-
     .card-title {
       position: relative;
       display: flex;
@@ -158,6 +154,16 @@
         color: $primary-main;
         font-weight: $font-weight-bold;
         font-size: $font-size-label;
+      }
+    }
+  }
+}
+
+.list-page {
+  .card {
+    .card-content {
+      &.routes {
+        gap: 20px;
       }
     }
   }

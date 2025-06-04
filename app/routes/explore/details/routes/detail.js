@@ -1,20 +1,14 @@
 import React from 'react';
 import { intlShape } from 'react-intl';
-import { bool } from 'prop-types';
 import Icon from '../../../../component/Icon';
 import { routesShape } from './shape';
 import { formatDuration } from './util';
 
-export const RoutesDetails = (
-  { selectedData, showDescription = false },
-  { intl }
-) => (
+export const RoutesDetails = ({ selectedData }, { intl }) => (
   <div className="detail-info">
-    {showDescription && (
-      <div className="description">
-        <span>{selectedData.description}</span>
-      </div>
-    )}
+    <div className="description">
+      <span>{selectedData.description}</span>
+    </div>
 
     <div className="pois-and-duration">
       <div>
@@ -44,8 +38,7 @@ export const RoutesDetails = (
 );
 
 RoutesDetails.propTypes = {
-  selectedData: routesShape.isRequired,
-  showDescription: bool
+  selectedData: routesShape.isRequired
 };
 
 RoutesDetails.contextTypes = {

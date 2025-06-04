@@ -14,7 +14,6 @@ const Mobile = ({ onDetails, selectedData, innerRef }) => (
         onClick={() => onDetails(selectedData)}
         data={selectedData}
         type="routes"
-        showDescription
       />
     </div>
   </div>
