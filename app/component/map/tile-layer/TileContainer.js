@@ -83,7 +83,13 @@ class TileContainer {
         }
 
         if (layerName === 'routes') {
-          // &&this.coords.z >= config.minZoomToShowOnMap
+          if (!this.props.ignoreMinZoom) {
+            return (
+              this.coords.z >= config.minZoomToShowOnMap &&
+              isExploreEnabled(this.props.mapLayers)
+            );
+          }
+
           return isExploreEnabled(this.props.mapLayers);
         }
 
