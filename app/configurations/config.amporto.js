@@ -9,7 +9,8 @@ export default {
     primary: '#000F9F',
     iconColors: {
       accesspoints: '#000F9F',
-      blocks: '#000F9F'
+      blocks: '#000F9F',
+      routes: '#000F9F'
     },
     itineraryDefault: '#000F9F',
     originDestination: {

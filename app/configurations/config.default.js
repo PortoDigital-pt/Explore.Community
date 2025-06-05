@@ -416,7 +416,8 @@ export default {
       events: '#FEC8A7',
       accesspoints: '#493e90',
       taxis: '#212121',
-      blocks: '#493e90'
+      blocks: '#493e90',
+      routes: '#493e90'
     },
     itineraryDefault: '#493e90',
     originDestination: {

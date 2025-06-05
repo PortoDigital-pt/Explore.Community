@@ -265,7 +265,7 @@ class TileContainer {
         ) {
           const zoom = this.coords.z;
           // hitbox is same for stop and citybike
-          const iconStyles = feature.layer === 'blocks' || feature.layer === 'routes' ? getFixedSizeIconStyle() : feature.layer === 'citybike' || feature.layer === 'taxis' ? getStopIconStyles('citybike', zoom) : getIconStyles(zoom);
+          const iconStyles = feature.layer === 'blocks' || (this.props.fixedSizeIcon && feature.layer === 'routes') ? getFixedSizeIconStyle() : feature.layer === 'citybike' || feature.layer === 'taxis' ? getStopIconStyles('citybike', zoom) : getIconStyles(zoom);
           if (iconStyles) {
             const { style } = iconStyles;
             let { height, width } = iconStyles;
@@ -310,7 +310,7 @@ class TileContainer {
           );
         }
      
-        return dist < (hitRadius || 22) * this.scaleratio;
+        return dist < hitRadius * this.scaleratio;
       });
 
       if (nearest.length === 0 && e.type === 'click') {

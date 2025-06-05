@@ -100,7 +100,15 @@ export const isFeatureLayerEnabled = (
   }
 
   if (layerName === 'explore') {
-    return mapLayers.showExplore;
+    return mapLayers.pois ?? mapLayers.events;
+  }
+
+  if (layerName === 'blocks') {
+    return mapLayers.blocks;
+  }
+
+  if (layerName === 'routes') {
+    return mapLayers.routes;
   }
 
   if (!Object.keys(mapLayers).includes(layerName)) {

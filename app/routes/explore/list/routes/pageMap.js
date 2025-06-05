@@ -38,6 +38,7 @@ const ListMap = ({ mapLayers, language }, { config }) => {
       mapLayers={{ fixedSizeIcon: true, ...mapLayers }}
       showRoutes
       ignoreMinZoom
+      fixedSizeIcon
     />
   );
 };
