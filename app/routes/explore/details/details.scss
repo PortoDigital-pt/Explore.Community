@@ -6,7 +6,6 @@
   flex-grow: 1;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
   row-gap: 24px;
 
   &.modal {
@@ -33,7 +32,6 @@
       flex-grow: 1;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
       row-gap: 24px;
       padding-bottom: 24px;
     }
