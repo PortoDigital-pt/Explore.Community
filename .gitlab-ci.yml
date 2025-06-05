@@ -61,7 +61,6 @@ build-master:
   script:
     - echo "$APP_Prod" > .env
     - echo "$REGISTRY_CREDENTIALS" > .npmrc
-    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   rules:
@@ -72,7 +71,6 @@ build-premaster:
   script:
     - echo "$APP_PreProd" > .env
     - echo "$REGISTRY_CREDENTIALS" > .npmrc
-    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   rules:
@@ -83,7 +81,6 @@ build-development:
   script:
     - echo "$APP_Dev" > .env
     - echo "$REGISTRY_CREDENTIALS" > .npmrc
-    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   only:
@@ -96,7 +93,6 @@ build-qa:
   script:
     - echo "$APP_QA" > .env
     - echo "$REGISTRY_CREDENTIALS" > .npmrc
-    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   rules:
