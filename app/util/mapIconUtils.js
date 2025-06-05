@@ -139,6 +139,10 @@ export function getStopIconStyles(type, zoom, isHighlighted) {
   return styles[type][zoom];
 }
 
+export function getBlockIconStyle() {
+ return { width: 50, height: 50, style: 'large' }; 
+}
+
 /**
  * Get width and height for icons
  *
@@ -925,8 +929,7 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted, cus
  */
 
 export function drawBlockIcon(tile, geom, type) {
-  const styles = { width: 50, height: 50 };
-  let { width, height } = styles;
+  let { width, height } = getBlockIconStyle();
 
   width *= tile.scaleratio;
   height *= tile.scaleratio;
