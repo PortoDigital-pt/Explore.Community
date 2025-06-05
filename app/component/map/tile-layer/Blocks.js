@@ -4,7 +4,7 @@ import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 import pick from 'lodash/pick';
 import { isExploreFeatureEnabled } from '../../../util/mapLayerUtils';
-import { drawBlockIcon } from '../../../util/mapIconUtils';
+import { drawFixedSizeIcon } from '../../../util/mapIconUtils';
 
 const isValidDataProvider = (providersString, currentProvider) =>
   providersString.split(',').includes(currentProvider);
@@ -58,7 +58,7 @@ class Blocks {
               [[feature.geom]] = feature.loadGeometry();
               this.features.push(pick(feature, ['geom', 'properties', 'type']));
 
-              drawBlockIcon(this.tile, feature.geom, type);
+              drawFixedSizeIcon(this.tile, feature.geom, type);
             }
           });
         },

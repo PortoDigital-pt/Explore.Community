@@ -7,10 +7,10 @@ import { isBrowser } from '../../../util/browser';
 import {
   isLayerEnabled,
   isExploreEnabled,
-  isBlocksEnabled
+  isBlocksEnabled,
+  isRoutesEnabled
 } from '../../../util/mapLayerUtils';
-import { getStopIconStyles, getIconStyles, getBlockIconStyle } from '../../../util/mapIconUtils';
-
+import { getStopIconStyles, getIconStyles, getFixedSizeIconStyle } from '../../../util/mapIconUtils';
 import { getVehicleMinZoomOnStopsNearYou } from '../../../util/vehicleRentalUtils';
 import events from '../../../util/events';
 
@@ -95,6 +95,17 @@ class TileContainer {
           }
 
           return isBlocksEnabled(this.props.mapLayers);
+        }
+
+        if (layerName === 'routes') {
+          if (!this.props.ignoreMinZoom) {
+            return (
+              this.coords.z >= config.minZoomToShowOnMap &&
+              isRoutesEnabled(this.props.mapLayers)
+            );
+          }
+
+          return isRoutesEnabled(this.props.mapLayers);
         }
 
         // stops and terminals are drawn on same layer
@@ -254,7 +265,7 @@ class TileContainer {
         ) {
           const zoom = this.coords.z;
           // hitbox is same for stop and citybike
-          const iconStyles = feature.layer === 'blocks' ? getBlockIconStyle() : feature.layer === 'citybike' || feature.layer === 'taxis' ? getStopIconStyles('citybike', zoom) : getIconStyles(zoom);
+          const iconStyles = feature.layer === 'blocks' || (this.props.fixedSizeIcon && feature.layer === 'routes') ? getFixedSizeIconStyle() : feature.layer === 'citybike' || feature.layer === 'taxis' ? getStopIconStyles('citybike', zoom) : getIconStyles(zoom);
           if (iconStyles) {
             const { style } = iconStyles;
             let { height, width } = iconStyles;
@@ -299,7 +310,7 @@ class TileContainer {
           );
         }
      
-        return dist < (hitRadius || 22) * this.scaleratio;
+        return dist < hitRadius * this.scaleratio;
       });
 
       if (nearest.length === 0 && e.type === 'click') {

@@ -41,45 +41,88 @@ export const decorateRequest = (request, response, next, config) => {
   next();
 };
 
-const MAP_LAYER_TYPE = {
-  PointOfInterest: 'pois',
-  Event: 'events'
+const getMapLayerByType = type => {
+  switch (type) {
+    case 'TouristTrip':
+      return 'routes';
+    case 'PointOfInterest':
+      return 'pois';
+    default:
+      return 'events';
+  }
 };
 
 export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
   const query = new URLSearchParams();
 
+  const arrQuery = [];
   Object.entries(data).forEach(([key, value]) => {
     if (value === undefined || value === null) {
       return;
     }
 
-    if (key === 'categories' && !!MAP_LAYER_TYPE[data.type]) {
-      const mappedCategories = value.map(
-        categoryKey => `'${filters[MAP_LAYER_TYPE[data.type]][categoryKey].pt}'`
+    if (key === 'categories') {
+      const mappedCategories = value?.map(
+        categoryKey =>
+          `'${filters[getMapLayerByType(data.type)][categoryKey].pt}'`
       );
 
-      const categoriesQueryValue =
-        data.type === 'PointOfInterest'
-          ? `category_lang.pt==${mappedCategories.join(',')}${
-              dataProvider?.pois ? `;dataProvider==${dataProvider.pois}` : ''
-            }`
-          : `section_lang.pt==${mappedCategories.join(',')}${
-              dataProvider?.events
-                ? `;dataProvider==${dataProvider.events}`
-                : ''
-            };endDate>='${getDate()}';startDate<='${getDateInFutureDays(7)}'`;
-      query.set('q', categoriesQueryValue);
+      if (data.type === 'Event') {
+        arrQuery.push(`section_lang.pt==${mappedCategories.join(',')}`);
+
+        if (dataProvider?.events) {
+          arrQuery.push(`dataProvider==${dataProvider.events}`);
+        }
+
+        arrQuery.push(`endDate>='${getDate()}'`);
+        arrQuery.push(`startDate<='${getDateInFutureDays(7)}'`);
+      } else {
+        arrQuery.push(`category_lang.pt==${mappedCategories.join(',')}`);
+
+        if (data.type === 'PointOfInterest' && dataProvider?.pois) {
+          arrQuery.push(`dataProvider==${dataProvider.pois}`);
+        }
+      }
+
+      return;
+    }
+
+    if (key === 'difficulties') {
+      if (value) {
+        const mappeddiculties = value.map(
+          dificultyKey =>
+            `'${filters[getMapLayerByType(data.type)][
+              dificultyKey
+            ].en.toLowerCase()}'`
+        );
+
+        arrQuery.push(`difficulty==${mappeddiculties.join(',')}`);
+      }
+      return;
+    }
+
+    if (key === 'durationRanges') {
+      if (value) {
+        const mappedDurationRanges = value.map(
+          durationRangeKey =>
+            `'${filters[getMapLayerByType(data.type)][durationRangeKey].pt}'`
+        );
+
+        arrQuery.push(`durationRange==${mappedDurationRanges.join(',')}`);
+      }
+
       return;
     }
 
     if (key === 'block') {
-      query.set('q', `districtGroups=='${value}'`);
+      arrQuery.push(`districtGroups=='${value}'`);
       return;
     }
 
     query.set(key, value.toString());
   });
+
+  arrQuery.length > 0 && query.set('q', arrQuery.join(';'));
 
   return query.toString();
 };
@@ -99,6 +142,7 @@ export const customFetch = async (url, paginated = false) => {
   };
 
   if (response.status !== 200) {
+    console.log('RESPONSE: ', response);
     return preparedResponse;
   }
 

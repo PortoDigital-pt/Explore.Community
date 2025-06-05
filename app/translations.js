@@ -822,6 +822,8 @@ const translations = {
   },
   en: {
     'find-all-blocks': 'Find all blocks',
+    'routes-list-title': 'City tour routes',
+    'routes-details-title': 'City tour points',
     'find-all-routes': 'Find all routes',
     'routes-start-trip': 'Start trip',
     'block-directions': 'Directions to',
@@ -5178,6 +5180,8 @@ const translations = {
   pt: {
     // ---------- NEW TRANSLATIONS BELOW ------------
     'find-all-blocks': 'Descubra todos os quarteirões',
+    'routes-list-title': 'Roteiros pela cidade',
+    'routes-details-title': 'Pontos do roteiro',
     'find-all-routes': 'Descubra todos os roteiros',
     'routes-start-trip': 'Iniciar roteiro',
     'block-directions': 'Direções para o',

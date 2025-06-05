@@ -101,6 +101,7 @@ function getIconProperties(
   const layerIcon = new Map([
     ['pois', 'poi'],
     ['events', 'event'],
+    ['tourist_trips', 'routes'],
     ['bikestation', 'citybike'],
     ['currentPosition', 'locate'],
     ['favouritePlace', 'star'],

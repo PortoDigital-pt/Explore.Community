@@ -376,6 +376,7 @@
 
       &.padding {
         width: calc(100% - 48px);
+        margin: 0 24px;
       }
     }
 
@@ -766,6 +767,49 @@
 }
 
 .routes-content-tabs {
+  .routes-pois-header {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 12px 0 12px;
+
+    .title {
+      display: flex;
+      position: relative;
+      flex-grow: 1;
+      justify-content: flex-start;
+      align-items: center;
+      row-gap: 5px;
+      column-gap: 10px;
+
+      h3 {
+        display: flex;
+        position: relative;
+        color: $primary-color;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+        justify-content: center;
+      }
+
+      .icon {
+        display: flex;
+        position: relative;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .share-and-favourite {
+      display: flex;
+      position: relative;
+      flex-grow: 1;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
   .swipe-tab-ball.selected {
     border: $primary-dark;
     background-color: $primary-dark;

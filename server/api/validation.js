@@ -45,7 +45,7 @@ const commonListSchema = type => ({
   },
   categories: {
     customSanitizer: {
-      options: input => input?.split(',')
+      options: input => (input ? input?.split(',') : undefined)
     },
     custom: {
       options: (input, { req }) => {
@@ -68,8 +68,53 @@ export const eventListSchema = checkSchema(commonListSchema('events'), [
   'query'
 ]);
 
-export const routesListSchema = checkSchema(commonListSchema(), ['query']);
 export const blocksListSchema = checkSchema(commonListSchema(), ['query']);
+export const routesListSchema = checkSchema(
+  {
+    ...commonListSchema(),
+    difficulties: {
+      customSanitizer: {
+        options: input => (input ? input?.split(',') : undefined)
+      },
+      custom: {
+        options: (input, { req }) => {
+          if (input.length === 0) {
+            return false;
+          }
+
+          const validData = Object.keys(req.config.filters.routes).filter(
+            difficulty => difficulty.startsWith('others-difficulty-')
+          );
+
+          return input.every(difficulty => validData.includes(difficulty));
+        },
+        errorMessage: 'invalid Difficulty'
+      },
+      optional: true
+    },
+    durationRanges: {
+      customSanitizer: {
+        options: input => (input ? input?.split(',') : undefined)
+      },
+      custom: {
+        options: (input, { req }) => {
+          if (input.length === 0) {
+            return false;
+          }
+
+          const validData = Object.keys(req.config.filters.routes).filter(
+            duration => duration.startsWith('others-durationRange-')
+          );
+
+          return input.every(duration => validData.includes(duration));
+        },
+        errorMessage: 'invalid durationRange'
+      },
+      optional: true
+    }
+  },
+  ['query']
+);
 
 export const detailSchema = checkSchema({
   language: {
