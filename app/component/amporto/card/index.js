@@ -1,10 +1,18 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
-import { string, shape, number, func, arrayOf, oneOfType } from 'prop-types';
+import {
+  string,
+  shape,
+  number,
+  func,
+  arrayOf,
+  oneOfType,
+  bool
+} from 'prop-types';
 import FavouriteExplore from '../../FavouriteExploreContainer';
 import { PAGE_CONTENT_PIECES_TYPE_MAP } from '../../../routes/explore/details/page-content-resolver/pieces';
 
-const Card = ({ type, className, data, onClick }) => {
+const Card = ({ type, className, data, onClick, showDescription = false }) => {
   const Details = useMemo(() => {
     const Component = PAGE_CONTENT_PIECES_TYPE_MAP[type]?.details;
 
@@ -12,7 +20,9 @@ const Card = ({ type, className, data, onClick }) => {
       return null;
     }
 
-    return () => <Component selectedData={data} />;
+    return () => (
+      <Component selectedData={data} showDescription={showDescription} />
+    );
   }, [type, data]);
 
   return (
@@ -79,7 +89,8 @@ Card.propTypes = {
     category: oneOfType([string, arrayOf(string)]).isRequired,
     lat: number.isRequired,
     lon: number.isRequired
-  }).isRequired
+  }).isRequired,
+  showDescription: bool
 };
 
 export default Card;
