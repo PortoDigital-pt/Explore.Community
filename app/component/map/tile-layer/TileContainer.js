@@ -9,7 +9,7 @@ import {
   isExploreEnabled,
   isBlocksEnabled
 } from '../../../util/mapLayerUtils';
-import { getStopIconStyles } from '../../../util/mapIconUtils';
+import { getStopIconStyles, getIconStyles } from '../../../util/mapIconUtils';
 
 import { getVehicleMinZoomOnStopsNearYou } from '../../../util/vehicleRentalUtils';
 import events from '../../../util/events';
@@ -241,19 +241,26 @@ class TileContainer {
 
         let isCombo = false;
         let secondY;
+        let hitRadius; 
+        console.log('FEATURE LAYER: ', feature.layer);
         if (
           (feature.layer === 'stop' && !feature.feature.properties.stops) ||
           feature.layer === 'citybike' ||
-          feature.layer === 'scooter'
+          feature.layer === 'scooter' || 
+          feature.layer === 'explore' ||
+          feature.layer === 'taxis' || 
+          feature.layer === 'blocks' ||
+          feature.layer === 'routes'
         ) {
           const zoom = this.coords.z;
           // hitbox is same for stop and citybike
-          const iconStyles = getStopIconStyles('stop', zoom);
+          const iconStyles = (feature.layer === 'citybike' || feature.layer === 'taxis') ? getStopIconStyles('citybike', zoom) : getIconStyles(zoom);
           if (iconStyles) {
             const { style } = iconStyles;
             let { height, width } = iconStyles;
             width *= this.scaleratio;
             height *= this.scaleratio;
+            hitRadius = Math.max(width, height) / 2;
             const circleRadius = width / 2;
             if (style === 'large' || feature.layer === 'realTimeVehicle') {
               featureY -= height - circleRadius;
@@ -291,10 +298,8 @@ class TileContainer {
             )
           );
         }
-        if (dist < 22 * this.scaleratio) {
-          return true;
-        }
-        return false;
+     
+        return dist < (hitRadius || 22) * this.scaleratio;
       });
 
       if (nearest.length === 0 && e.type === 'click') {
