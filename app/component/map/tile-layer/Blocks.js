@@ -34,7 +34,7 @@ class Blocks {
           const vt = new VectorTile(new Protobuf(buf));
           this.features = [];
 
-          Object.values(vt.layers).forEach((layer) => {
+          Object.values(vt.layers).forEach(layer => {
             const type = 'blocks';
 
             if (!isExploreFeatureEnabled(type, this.mapLayers)) {

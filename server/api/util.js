@@ -142,7 +142,6 @@ export const customFetch = async (url, paginated = false) => {
   };
 
   if (response.status !== 200) {
-    console.log('RESPONSE: ', response);
     return preparedResponse;
   }
 

@@ -23,7 +23,7 @@ const Page = (
 ) => {
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
-  
+
   const startItinerary = useCallback(() => {
     const point = selectedData?.pois[selectedItem];
     router.push(getItineraryPath(location, point));

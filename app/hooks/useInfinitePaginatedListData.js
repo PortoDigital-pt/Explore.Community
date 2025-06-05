@@ -26,7 +26,7 @@ const useInfinitePaginatedListData = ({
     setError(null);
     setPage(1);
   }, []);
-  
+
   useEffect(() => {
     if (prevArgsStringRef.current !== argsString) {
       prevArgsStringRef.current = argsString;

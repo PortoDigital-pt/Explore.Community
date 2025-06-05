@@ -400,7 +400,7 @@ export async function getSearchResults(
   const useStations = targets.includes('Stations');
 
   const useExplore = targets.some(target =>
-    ['Pois', 'Events', 'Explore-routes'].includes(target)
+    ['Pois', 'Events', 'Explore-routes', 'Explore-blocks'].includes(target)
   );
 
   if (allTargets || useExplore) {
@@ -435,6 +435,11 @@ export async function getSearchResults(
     if (targets.includes('Explore-routes')) {
       exploreSources.push('explore_porto');
       exploreLayers.push('tourist_trips');
+    }
+
+     if (targets.includes('Explore-blocks')) {
+      exploreSources.push('visit_porto');
+      exploreLayers.push('venue_groups');
     }
 
     searchComponents.push(

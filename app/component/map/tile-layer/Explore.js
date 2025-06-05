@@ -32,7 +32,7 @@ class Explore {
     this.config = config;
     this.mapLayers = mapLayers;
   }
-  
+
   static getName = () => 'explore';
 
   getPromise() {
@@ -58,10 +58,15 @@ class Explore {
 
             for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
               const feature = layer.feature(i);
-              const canBeDrawed = !this.mapLayers.filter || this.mapLayers.filter.includes(feature.properties.id);
-              const customSize = this.mapLayers.filter ? { width: 50, height: 50, style: 'large' } : null;
-              
+              const canBeDrawed =
+                !this.mapLayers.filter ||
+                this.mapLayers.filter.includes(feature.properties.id);
+              const customSize = this.mapLayers.filter
+                ? { width: 50, height: 50, style: 'large' }
+                : null;
+
               if (!canBeDrawed) {
+                // eslint-disable-next-line no-continue
                 continue;
               }
 

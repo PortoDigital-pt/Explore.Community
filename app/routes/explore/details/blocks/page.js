@@ -2,9 +2,9 @@ import React, { useState, useMemo, useCallback } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { string, func, shape, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
-import { locationShape } from '../../../../util/shapes';
 import { useRouter } from 'found';
 import classname from 'classnames';
+import { locationShape } from '../../../../util/shapes';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import Card from '../../../../component/amporto/card';
 import Skeleton from '../../../../component/amporto/skeleton';
@@ -142,7 +142,7 @@ const Content = ({ selectedData, language }, { intl }) => {
 
       {(poiData ?? selectedData.pois)?.length > 0 && (
         <div className="list">
-          <h3 className='list-title'>{intl.messages['pois-blocks-title']}</h3>
+          <h3 className="list-title">{intl.messages['pois-blocks-title']}</h3>
           <div className="list-scroll">
             <List
               type="pois"
@@ -157,7 +157,7 @@ const Content = ({ selectedData, language }, { intl }) => {
 
       {(routeData ?? selectedData.routes)?.length > 0 && (
         <div className="list">
-          <h3 className='list-title'>{intl.messages['routes-blocks-title']}</h3>
+          <h3 className="list-title">{intl.messages['routes-blocks-title']}</h3>
           <div className="list-scroll">
             <List
               type="routes"
@@ -216,12 +216,7 @@ export const PageContent = connectToStores(
 );
 
 const MobileDetails = (
-  {
-    location,
-    onDetails,
-    selectedData,
-    showShare = false,
-  },
+  { location, onDetails, selectedData, showShare = false },
   { intl, executeAction }
 ) => {
   const distanceToBlock = useDistanceToTarget({
@@ -232,23 +227,23 @@ const MobileDetails = (
 
   return (
     <div className="mobile-view">
-        <div className="header">
-          <div className="top">
-            <div className="title">
-              <Icon
-                img="icon-explore-icon_blocks_with_background"
-                viewBox="0 0 50 50"
-              />
-              <h3>{selectedData.name}</h3>
-            </div>
-            {showShare && <ShareButton withBackground />}
-            <FavouriteExplore data={selectedData} />
+      <div className="header">
+        <div className="top">
+          <div className="title">
+            <Icon
+              img="icon-explore-icon_blocks_with_background"
+              viewBox="0 0 50 50"
+            />
+            <h3>{selectedData.name}</h3>
           </div>
-          <div className="distance">
-            {!!distanceToBlock &&
-              `${intl.messages['at-distance']} ${showDistance(distanceToBlock)}`}
-          </div>
+          {showShare && <ShareButton withBackground />}
+          <FavouriteExplore data={selectedData} />
         </div>
+        <div className="distance">
+          {!!distanceToBlock &&
+            `${intl.messages['at-distance']} ${showDistance(distanceToBlock)}`}
+        </div>
+      </div>
 
       <div className="content">
         {selectedData.images && (
@@ -266,13 +261,13 @@ const MobileDetails = (
       </div>
 
       <div className="bottom">
-          <button
-            type="button"
-            onClick={onDetails}
-            aria-label={intl.messages.details}
-          >
-            {intl.messages.details}
-          </button>
+        <button
+          type="button"
+          onClick={onDetails}
+          aria-label={intl.messages.details}
+        >
+          {intl.messages.details}
+        </button>
       </div>
     </div>
   );

@@ -104,9 +104,16 @@ class Routes {
               feature.type = type;
               [[feature.geom]] = feature.loadGeometry();
               this.features.push(pick(feature, ['geom', 'properties', 'type']));
-             
-              const drawMethod = this.mapLayers.fixedSizeIcon ? drawFixedSizeIcon : drawExploreIcon;
-              drawMethod(this.tile, feature.geom, type, this.config.colors.iconColors);
+
+              const drawMethod = this.mapLayers.fixedSizeIcon
+                ? drawFixedSizeIcon
+                : drawExploreIcon;
+              drawMethod(
+                this.tile,
+                feature.geom,
+                type,
+                this.config.colors.iconColors
+              );
             }
           });
         },

@@ -201,7 +201,7 @@ class TileLayerContainer extends GridLayer {
       } = this.props;
       const { coords: prevCoords } = this.state;
       const popup = map._popup; // eslint-disable-line no-underscore-dangle
-     
+
       if (
         selectableTargets.length === 1 &&
         (selectableTargets[0].layer === 'explore' ||
@@ -386,7 +386,7 @@ class TileLayerContainer extends GridLayer {
       this.props.allowViaPoint || this.props.locationPopup !== 'all'
         ? this.props.locationPopup
         : 'origindestination';
-   
+
     if (typeof this.state.selectableTargets !== 'undefined') {
       if (this.state.selectableTargets.length === 1) {
         let id;
@@ -444,7 +444,7 @@ class TileLayerContainer extends GridLayer {
         ) {
           showPopup = false;
         }
-       
+
         popup = (
           <Popup
             key={this.state.coords.toString()}

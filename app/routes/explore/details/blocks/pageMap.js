@@ -13,7 +13,10 @@ const getBounds = data =>
   boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
 
 const BlockDetailsPageMap = ({ language, mapLayers }, { match }) => {
-  const args = useMemo(() => ({ language, block: match.params.id }), [language, match.params.id]);
+  const args = useMemo(
+    () => ({ language, block: match.params.id }),
+    [language, match.params.id]
+  );
 
   const { data, error } = useListData({
     getData: getPoiList,
@@ -27,7 +30,7 @@ const BlockDetailsPageMap = ({ language, mapLayers }, { match }) => {
   if (!data) {
     return <Loading />;
   }
-  
+
   return (
     <MapWithTracking
       bounds={getBounds(data)}

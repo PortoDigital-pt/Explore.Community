@@ -30,7 +30,7 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
       page
     });
   }
-  
+
   const { data, total, status, text } = await customFetch(
     `${process.env.NGSI_URL}?${buildNGSIQueryString({
       filters,
