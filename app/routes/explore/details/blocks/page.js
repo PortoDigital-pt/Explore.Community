@@ -24,6 +24,7 @@ import { getItineraryPath } from '../routes/util';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
+import { showDistance } from '../../../../util/amporto/geo';
 
 export const Mobile = ({ onDetails, selectedData, innerRef }) => (
   <div className="mobile-view" ref={innerRef}>
