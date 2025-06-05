@@ -57,8 +57,15 @@ export const buildPlanQuery = pois => {
   return queries;
 };
 
-export const getItineraryPath = poi =>
-  `/browse/-/${poi.name}::${poi.lat},${poi.lon}`;
+export const getItineraryPath = (location, poi) => {
+  if (location?.name && poi) {
+    const startStr = `${location.name}::${location.lat},${location.lon}`;
+    const endStr = `${poi.name}::${poi.lat},${poi.lon}`;
+    return `/browse/itinerary/${startStr}/${endStr}`;
+  }
+
+  return `/browse/-/${poi.name}::${poi.lat},${poi.lon}`;
+};
 
 export const formatDuration = duration => {
   if (!duration) {

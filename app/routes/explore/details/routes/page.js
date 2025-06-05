@@ -2,15 +2,17 @@ import React, { useMemo, useState } from 'react';
 import { intlShape } from 'react-intl';
 import classname from 'classnames';
 import { useRouter } from 'found';
+import { func } from 'prop-types';
 import Icon from '../../../../component/Icon';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import { routesShape } from './shape';
 import { RoutesDetails } from './detail';
 import { getItineraryPath } from './util';
 
-export const PageContent = ({ selectedData }, { intl }) => {
+export const PageContent = ({ selectedData }, { intl, getStore }) => {
   const { router } = useRouter();
   const [showMore, setShowMore] = useState(false);
+  const location = getStore('PositionStore').getLocationState();
 
   const lastIndex = useMemo(() => {
     return selectedData.pois?.findLastIndex(lastIndex => lastIndex);
@@ -103,7 +105,9 @@ export const PageContent = ({ selectedData }, { intl }) => {
         <button
           className="start-trip-button"
           type="button"
-          onClick={() => router.push(getItineraryPath(selectedData.pois[0]))}
+          onClick={() =>
+            router.push(getItineraryPath(location, selectedData.pois[0]))
+          }
           aria-label={intl.messages['routes-start-trip']}
         >
           {intl.messages['routes-start-trip']}
@@ -118,5 +122,6 @@ PageContent.propTypes = {
 };
 
 PageContent.contextTypes = {
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  getStore: func.isRequired
 };
