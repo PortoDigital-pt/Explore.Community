@@ -376,6 +376,7 @@
 
       &.padding {
         width: calc(100% - 48px);
+        margin: 0 24px;
       }
     }
 
@@ -779,7 +780,8 @@
       flex-grow: 1;
       justify-content: flex-start;
       align-items: center;
-      gap: 5px;
+      row-gap: 5px;
+      column-gap: 10px;
 
       h3 {
         display: flex;
@@ -788,6 +790,13 @@
         font-size: $font-size-base;
         font-weight: $font-weight-bold;
         justify-content: center;
+      }
+
+      .icon {
+        display: flex;
+        position: relative;
+        width: 30px;
+        height: 30px;
       }
     }
 

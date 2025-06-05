@@ -14,6 +14,7 @@ import { DesktopContent } from './desktop';
 import { getItineraryPath } from '../util';
 import FavouriteExplore from '../../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../../component/amporto/share-button';
+import Icon from '../../../../../component/Icon';
 
 const Page = (
   { selectedData, selectedItem, breakpoint },
@@ -21,7 +22,7 @@ const Page = (
 ) => {
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
-  console.log('SELECTED DATA: ', selectedData);
+  
   const startItinerary = useCallback(() => {
     const startPoint = selectedData?.pois[selectedItem];
     router.push(getItineraryPath(startPoint));
@@ -38,6 +39,10 @@ const Page = (
       {breakpoint !== 'large' && (
         <div className="routes-pois-header">
           <div className="title">
+            <Icon
+              img="icon-explore-icon_routes_with_background"
+              viewBox="0 0 50 50"
+            />
             <h3>{selectedData?.name}</h3>
           </div>
 
