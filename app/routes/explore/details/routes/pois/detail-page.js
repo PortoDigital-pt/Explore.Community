@@ -15,17 +15,18 @@ import { getItineraryPath } from '../util';
 import FavouriteExplore from '../../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../../component/amporto/share-button';
 import Icon from '../../../../../component/Icon';
+import { locationShape } from '../../../../../util/shapes';
 
 const Page = (
-  { selectedData, selectedItem, breakpoint },
+  { selectedData, selectedItem, breakpoint, location },
   { intl, executeAction }
 ) => {
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
   
   const startItinerary = useCallback(() => {
-    const startPoint = selectedData?.pois[selectedItem];
-    router.push(getItineraryPath(startPoint));
+    const point = selectedData?.pois[selectedItem];
+    router.push(getItineraryPath(location, point));
   }, [selectedData?.pois, selectedItem]);
 
   React.useEffect(() => {
@@ -90,13 +91,15 @@ Page.contextTypes = {
 Page.propTypes = {
   selectedData: routesShape.isRequired,
   selectedItem: bool.isRequired,
-  breakpoint: string
+  breakpoint: string,
+  location: locationShape.isRequired
 };
 
 export const Content = connectToStores(
   Page,
   ['PositionStore', 'RoutesStore'],
   ({ getStore }) => ({
+    location: getStore('PositionStore').getLocationState(),
     selectedItem: getStore('RoutesStore').getSelectedItem()
   })
 );
