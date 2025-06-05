@@ -38,7 +38,7 @@ const Page = (
       {breakpoint !== 'large' && (
         <div className="routes-pois-header">
           <div className="title">
-            <h3>{intl.messages['routes-details-title']}</h3>
+            <h3>{selectedData?.name}</h3>
           </div>
 
           <div className="share-and-favourite">
