@@ -177,3 +177,13 @@
     }
   }
 }
+
+.list-page {
+  .card {
+    .card-content {
+      &.routes {
+        gap: 20px;
+      }
+    }
+  }
+}

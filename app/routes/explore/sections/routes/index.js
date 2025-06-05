@@ -11,6 +11,7 @@ const RoutesSection = () => (
     errorMessage="events-fetch-error"
     emptyMessage="events-empty"
     type="routes"
+    showDescription
   />
 );
 

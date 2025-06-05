@@ -7,10 +7,10 @@ import { isBrowser } from '../../../util/browser';
 import {
   isLayerEnabled,
   isExploreEnabled,
-  isBlocksEnabled
+  isBlocksEnabled,
+  isRoutesEnabled
 } from '../../../util/mapLayerUtils';
 import { getStopIconStyles, getIconStyles, getBlockIconStyle } from '../../../util/mapIconUtils';
-
 import { getVehicleMinZoomOnStopsNearYou } from '../../../util/vehicleRentalUtils';
 import events from '../../../util/events';
 
@@ -95,6 +95,17 @@ class TileContainer {
           }
 
           return isBlocksEnabled(this.props.mapLayers);
+        }
+
+        if (layerName === 'routes') {
+          if (!this.props.ignoreMinZoom) {
+            return (
+              this.coords.z >= config.minZoomToShowOnMap &&
+              isRoutesEnabled(this.props.mapLayers)
+            );
+          }
+
+          return isRoutesEnabled(this.props.mapLayers);
         }
 
         // stops and terminals are drawn on same layer

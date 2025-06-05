@@ -31,7 +31,8 @@ const ListPage = (
     emptyMessage,
     errorMessage,
     showDivider,
-    requireCategories = true
+    requireCategories = true,
+    title
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -133,7 +134,9 @@ const ListPage = (
       ) : (
         <>
           <h3 className="count">
-            {total && `${total} ${intl.messages['search-results']}`}
+            {title
+              ? intl.messages[title]
+              : total && `${total} ${intl.messages['search-results']}`}
           </h3>
           {error ? (
             <div className="error">
@@ -184,7 +187,8 @@ ListPage.propTypes = {
   emptyMessage: string.isRequired,
   errorMessage: string.isRequired,
   showDivider: bool,
-  requireCategories: bool
+  requireCategories: bool,
+  title: string
 };
 
 export default connectToStores(

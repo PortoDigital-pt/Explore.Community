@@ -139,7 +139,7 @@ export function getStopIconStyles(type, zoom, isHighlighted) {
   return styles[type][zoom];
 }
 
-export function getBlockIconStyle() {
+export function getFixedSizeIconStyle() {
  return { width: 50, height: 50, style: 'large' }; 
 }
 
@@ -923,13 +923,8 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted, cus
   });
 }
 
-/**
- * Draw block icon.
- * Determine size from zoom level.
- */
-
-export function drawBlockIcon(tile, geom, type) {
-  let { width, height } = getBlockIconStyle();
+export function drawFixedSizeIcon(tile, geom, type) {
+  let { width, height } = getFixedSizeIconStyle();
 
   width *= tile.scaleratio;
   height *= tile.scaleratio;

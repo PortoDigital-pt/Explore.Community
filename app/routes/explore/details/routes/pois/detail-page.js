@@ -12,6 +12,8 @@ import { DetailsContentModal } from '../../../common';
 import { clearSelectedItem } from '../../../../../action/RoutesActions';
 import { DesktopContent } from './desktop';
 import { getItineraryPath } from '../util';
+import FavouriteExplore from '../../../../../component/FavouriteExploreContainer';
+import ShareButton from '../../../../../component/amporto/share-button';
 
 const Page = (
   { selectedData, selectedItem, breakpoint },
@@ -33,6 +35,19 @@ const Page = (
 
   return (
     <div className="routes-content-tabs">
+      {breakpoint !== 'large' && (
+        <div className="routes-pois-header">
+          <div className="title">
+            <h3>{selectedData?.name}</h3>
+          </div>
+
+          <div className="share-and-favourite">
+            <ShareButton withBackground />
+            <FavouriteExplore data={selectedData} />
+          </div>
+        </div>
+      )}
+
       <RoutesTabs
         pois={selectedData?.pois}
         breakpoint={breakpoint}

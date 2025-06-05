@@ -20,6 +20,7 @@ const SelectExploreRow = ({ language, type, properties }, { config }) => {
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon
           viewBox="0 0 44 44"
+          className={`map-popup-icon-${type}`}
           img={`icon-explore-icon_${type}_no_map`}
           color={config.colors.iconColors[type]}
         />

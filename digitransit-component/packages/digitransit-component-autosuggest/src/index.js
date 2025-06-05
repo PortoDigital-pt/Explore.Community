@@ -622,6 +622,7 @@ class DTAutosuggest extends React.Component {
           return;
         }
         const { targets } = this.props;
+
         const useAll = isEmpty(targets);
         const isLocationSearch =
           isEmpty(targets) || targets.includes('Locations');

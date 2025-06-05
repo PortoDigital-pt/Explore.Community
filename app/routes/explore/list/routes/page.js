@@ -8,6 +8,7 @@ const RouteListPage = () => (
     getData={getRoutesList}
     errorMessage="routes-fetch-error"
     emptyMessage="routes-empty"
+    title="routes-list-title"
   />
 );
 

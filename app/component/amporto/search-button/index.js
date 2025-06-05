@@ -24,7 +24,14 @@ const SearchButton = ({ lang }, { config, intl }) => {
       <AutoSuggestWithSearchContext
         appElement="#app"
         sources={['History', 'Datasource']}
-        targets={['Stations', 'Stops', 'Routes', 'Pois', 'Events']}
+        targets={[
+          'Stations',
+          'Stops',
+          'Routes',
+          'Pois',
+          'Events',
+          'Explore-routes'
+        ]}
         id="searchButtonComponent"
         icon="search"
         placeholder={intl.messages['favourites-search-input-placeholder']}

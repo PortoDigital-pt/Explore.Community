@@ -190,7 +190,19 @@ export default {
       stages: { pt: 'Palcos', en: 'Stage' }
     },
     routes: {
-      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+      'others-difficulty-easy': { pt: 'Facil', en: 'Easy' },
+      'others-difficulty-medium': { pt: 'Medio', en: 'Medium' },
+      'others-difficulty-hard': { pt: 'Dificil', en: 'Hard' },
+      'others-durationRange-1': { pt: 'Até 1 hora', en: 'Up to 1 hour' },
+      'others-durationRange-2': {
+        pt: 'Entre 1h e 2h',
+        en: 'Between 1h and 2h'
+      },
+      'others-durationRange-3': {
+        pt: 'Entre 2h e 3h',
+        en: 'Between 2h and 3h'
+      },
+      'others-durationRange-4': { pt: 'Mais de 3h', en: 'More than 3h' }
     }
   },
 

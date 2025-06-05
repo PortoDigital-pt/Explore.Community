@@ -139,29 +139,6 @@ const formattedPois = (pois, language) =>
       ...poiDto,
       position: poi.position
     };
-    // todo - uncomment it when the data is ok.
-    // const auxPoi = { ...poi };
-
-    // const rawDescription =
-    //   auxPoi.description_lang?.value[language] ||
-    //   auxPoi.description_lang?.value?.pt;
-
-    // const lon = auxPoi.location?.value?.coordinates[0];
-    // const lat = auxPoi.location?.value?.coordinates[1];
-
-    // const calendar = formatCalendar(auxPoi.calendar?.value, language);
-
-    // delete auxPoi.location;
-    // delete auxPoi.item_description;
-    // delete auxPoi.calendar;
-
-    // return {
-    //   ...auxPoi,
-    //   description: extractValuesAndDecode(rawDescription),
-    //   lat,
-    //   lon,
-    //   calendar
-    // };
   });
 
 export const routesToDto = (route, language) => {

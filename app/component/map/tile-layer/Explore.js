@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
@@ -14,10 +13,10 @@ const isValidDataProvider = (providersString, currentProvider) =>
 
 const mapCategoryDescriptionToId = (filters, type, { properties }) => {
   const { category_lang = '{}', section_lang = '{}' } = properties;
-
-  const value = ['pois', 'routes'].includes(type)
-    ? JSON.parse(category_lang).pt
-    : JSON.parse(section_lang).pt;
+  const value =
+    type === 'pois'
+      ? JSON.parse(category_lang).pt
+      : JSON.parse(section_lang).pt;
 
   const [categoryKey] = Object.entries(filters[type]).find(
     // eslint-disable-next-line no-unused-vars
@@ -27,8 +26,6 @@ const mapCategoryDescriptionToId = (filters, type, { properties }) => {
   return categoryKey;
 };
 
-const tileTypeToMapLayerName = type =>
-  type === 'tourist_trips' ? 'routes' : type;
 class Explore {
   constructor(tile, config, mapLayers) {
     this.tile = tile;
@@ -54,9 +51,7 @@ class Explore {
           const vt = new VectorTile(new Protobuf(buf));
           this.features = [];
 
-          Object.entries(vt.layers).forEach(([tileType, layer]) => {
-            const type = tileTypeToMapLayerName(tileType);
-
+          Object.entries(vt.layers).forEach(([type, layer]) => {
             if (!isExploreFeatureEnabled(type, this.mapLayers)) {
               return;
             }
@@ -111,7 +106,7 @@ class Explore {
             }
           });
         },
-        err => console.log(err)
+        err => console.log(err) // eslint-disable-line no-console
       );
     });
   }
