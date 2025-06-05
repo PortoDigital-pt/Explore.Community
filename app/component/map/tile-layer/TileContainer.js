@@ -10,7 +10,7 @@ import {
   isBlocksEnabled,
   isRoutesEnabled
 } from '../../../util/mapLayerUtils';
-import { getStopIconStyles, getIconStyles, getBlockIconStyle } from '../../../util/mapIconUtils';
+import { getStopIconStyles, getIconStyles, getFixedSizeIconStyle } from '../../../util/mapIconUtils';
 import { getVehicleMinZoomOnStopsNearYou } from '../../../util/vehicleRentalUtils';
 import events from '../../../util/events';
 
@@ -265,7 +265,7 @@ class TileContainer {
         ) {
           const zoom = this.coords.z;
           // hitbox is same for stop and citybike
-          const iconStyles = feature.layer === 'blocks' ? getBlockIconStyle() : feature.layer === 'citybike' || feature.layer === 'taxis' ? getStopIconStyles('citybike', zoom) : getIconStyles(zoom);
+          const iconStyles = feature.layer === 'blocks' ? getFixedSizeIconStyle() : feature.layer === 'citybike' || feature.layer === 'taxis' ? getStopIconStyles('citybike', zoom) : getIconStyles(zoom);
           if (iconStyles) {
             const { style } = iconStyles;
             let { height, width } = iconStyles;

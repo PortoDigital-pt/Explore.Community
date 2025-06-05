@@ -122,7 +122,7 @@ export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
     query.set(key, value.toString());
   });
 
-  query.set('q', arrQuery.join(';'));
+  arrQuery.length > 0 && query.set('q', arrQuery.join(';'));
 
   return query.toString();
 };
@@ -142,6 +142,7 @@ export const customFetch = async (url, paginated = false) => {
   };
 
   if (response.status !== 200) {
+    console.log('RESPONSE: ', response);
     return preparedResponse;
   }
 

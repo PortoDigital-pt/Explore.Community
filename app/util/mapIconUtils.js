@@ -910,7 +910,7 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted, cus
 
   x = geom.x / tile.ratio - width / 2;
   y = geom.y / tile.ratio - height;
-
+  
   return getImageFromSpriteCache(
     `icon-explore-icon_${type.toLowerCase()}_map${
       isHighlighted ? '_highlight' : ''

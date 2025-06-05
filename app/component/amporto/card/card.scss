@@ -58,11 +58,6 @@
     justify-content: space-between;
     padding: 12px;
 
-    &.blocks,
-    &.routes {
-      gap: 20px;
-    }
-
     .card-title {
       position: relative;
       display: flex;
@@ -181,6 +176,7 @@
 .list-page {
   .card {
     .card-content {
+      &.blocks,
       &.routes {
         gap: 20px;
       }

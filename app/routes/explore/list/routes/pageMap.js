@@ -35,7 +35,7 @@ const ListMap = ({ mapLayers, language }, { config }) => {
   return (
     <MapWithTracking
       bounds={bounds}
-      mapLayers={{ regularSizeIcon: true, ...mapLayers }}
+      mapLayers={{ fixedSizeIcon: true, ...mapLayers }}
       showRoutes
       ignoreMinZoom
     />
