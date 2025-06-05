@@ -1,17 +1,168 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/pipeline/#customization
-# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
-# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+default:
+  image: registry.portodigital.pt/infrastructure/dind:master
+  services:
+    - name: registry.portodigital.pt/infrastructure/dind-service:master
+      alias: docker
+
 stages:
-- test
-sast:
-  stage: test
-include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Jobs/Container-Scanning.gitlab-ci.yml
-- template: Security/Secret-Detection.gitlab-ci.yml
+  - analize
+  - build
+  - testimage
+  - release
+  - deploy
+
 variables:
-  SECURE_LOG_LEVEL: debug
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: '/certs'
+  PRODUCTION:
+    value: 'false' # Do not deploy to production by default
+    description: "Change the deployment target. Change this variable to 'true' to deploy to production. Do not change this variable to 'rollback' unless needed (disaster recovery). Note: When you change this variable, the variable BUILD is disabled (the pipeline wont do a build, even if variable BUILD is set to true)."
+  PREPRODUCTION:
+    value: 'false' # Do not deploy to production by default
+    description: "Change the deployment target. Change this variable to 'true' to deploy to pré-production. Do not change this variable to 'rollback' unless needed (disaster recovery). Note: When you change this variable, the variable BUILD is disabled (the pipeline wont do a build, even if variable BUILD is set to true)."
+  HOTFIX:
+    value: 'false' # Do not deploy to preqa by default
+    description: "This deployment environment serves the purpose of testing future prod deployments. Change this variable to 'true' to deploy a hotfix version, before deploying it to production"
+
+before_script:
+  - CONTAINER_TEST_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_SLUG" | tr '[:upper:]' '[:lower:]')
+  - CONTAINER_RELEASE_DEV_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:dev" | tr '[:upper:]' '[:lower:]')
+  - CONTAINER_RELEASE_QA_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:qa" | tr '[:upper:]' '[:lower:]')
+  #- CONTAINER_RELEASE_PREPROD_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:PreProd" | tr '[:upper:]' '[:lower:]')
+  #- CONTAINER_RELEASE_PROD_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:Prod" | tr '[:upper:]' '[:lower:]')
+  - ( echo "$NEXUS_SUDO_PASSWORD" | docker login -u "$NEXUS_SUDO_USER" --password-stdin $NEXUS_DOCKER_REGISTRY ) || echo "docker command ignored"
+  - ( echo "$DEVBOX01_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519 ) || echo "ssh key ignored"
+  - chmod 600 ~/.ssh/id_ed25519 || echo "chmod command ignored"
+
+sonarqube-check-without-coverage:
+  stage: analize
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: ['']
+  variables:
+    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
+    GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner -Dsonar.projectKey=$(echo "$CI_PROJECT_PATH" | rev | cut -d'/' -f -1 | rev | tr '[:upper:]' '[:lower:]') -Dsonar.qualitygate.wait=true -X # projectKey is unique for each project
+  allow_failure: true
+  only:
+    refs:
+      - main
+  except:
+    variables:
+      - $PRODUCTION == "true" || $PREPRODUCTION == "true"
+
+build-master:
+  stage: build
+  script:
+    - echo "$APP_Prod" > .env
+    - echo "$REGISTRY_CREDENTIALS" > .npmrc
+    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+  rules:
+    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH == 'main') && $PRODUCTION == "true"
+
+build-premaster:
+  stage: build
+  script:
+    - echo "$APP_PreProd" > .env
+    - echo "$REGISTRY_CREDENTIALS" > .npmrc
+    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+  rules:
+    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH == 'main') && $PREPRODUCTION == "true"
+
+build-development:
+  stage: build
+  script:
+    - echo "$APP_Dev" > .env
+    - echo "$REGISTRY_CREDENTIALS" > .npmrc
+    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+  only:
+    refs:
+      - development
+  #when: manual
+
+build-qa:
+  stage: build
+  script:
+    - echo "$APP_QA" > .env
+    - echo "$REGISTRY_CREDENTIALS" > .npmrc
+    - git clone --branch $CI_COMMIT_REF_NAME $REPO_URL
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+  rules:
+    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main' && ($PREPRODUCTION != "true" || $PRODUCTION != "true")
+
+trivy:
+  stage: testimage
+  allow_failure: true
+  script:
+    # Print report for all vulnerabilities
+    - trivy --cache-dir .trivycache/ image $CONTAINER_TEST_IMAGE
+  cache:
+    paths:
+      - .trivycache/
+  only:
+    refs:
+      - development
+
+release-image-dev:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_DEV_IMAGE
+    - docker push $CONTAINER_RELEASE_DEV_IMAGE
+  only:
+    refs:
+      - development
+  #when: manual
+
+release-image-qa:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_QA_IMAGE
+    - docker push $CONTAINER_RELEASE_QA_IMAGE
+  rules:
+    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main' && ($PREPRODUCTION != "true" || $PRODUCTION != "true")
+
+deploy-development:
+  stage: deploy
+  variables:
+    SERVERS: 'development'
+  script:
+    - mkdir TMPDIR
+    - cd TMPDIR
+    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/deploy_dev.yml/raw?ref=main" > deploy_dev.yml'
+    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/hosts/raw?ref=main" > hosts'
+    - cat ./deploy_dev.yml
+    - ansible-playbook ./deploy_dev.yml -i ./hosts -e group=$SERVERS -e NEXUS_USER=$NEXUS_USER -e NEXUS_PASSWORD=$NEXUS_PASSWORD -e PROJECT_IMAGE=$CONTAINER_RELEASE_DEV_IMAGE
+    - cd ..
+    - rm -rfv TMPDIR
+  only:
+    refs:
+      - development
+
+deploy-qa:
+  stage: deploy
+  variables:
+    SERVERS: 'staging'
+  script:
+    - mkdir TMPDIR
+    - cd TMPDIR
+    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/deploy-qa.yml/raw?ref=main" > deploy_qa.yml'
+    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/hosts/raw?ref=main" > hosts'
+    - ansible-playbook ./deploy_qa.yml -i ./hosts -e group=$SERVERS -e NEXUS_USER=$NEXUS_USER -e NEXUS_PASSWORD=$NEXUS_PASSWORD -e PROJECT_IMAGE=$CONTAINER_RELEASE_QA_IMAGE
+    - cd ..
+    - rm -rfv TMPDIR
+  rules:
+    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main' && ($PREPRODUCTION != "true" || $PRODUCTION != "true")
