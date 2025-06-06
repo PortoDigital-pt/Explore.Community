@@ -1,4 +1,15 @@
 import React from 'react';
 import List from '../list';
+import { getRoutesList } from '../../../../util/amporto/api';
 
-export default () => <List />;
+const RouteListPage = () => (
+  <List
+    type="routes"
+    getData={getRoutesList}
+    errorMessage="routes-fetch-error"
+    emptyMessage="routes-empty"
+    title="routes-list-title"
+  />
+);
+
+export default RouteListPage;

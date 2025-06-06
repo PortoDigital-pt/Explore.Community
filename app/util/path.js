@@ -179,9 +179,16 @@ export const getStopRoutePath = searchObj => {
       path = `/browse/${PREFIX_BIKEPARK}/`;
       id = searchObj.properties.id;
       break;
+    case 'tourist_trips':
+      path = '/routes/';
+      id = searchObj.properties.id;
+      break;
+    case 'venue_groups':
+      path = '/blocks/';
+      id = searchObj.properties.id;
+      break;
     case 'pois':
     case 'events': {
-      // todo - add events when it is available.
       const prefixId =
         searchObj.properties.layer === 'pois'
           ? 'urn:ngsi-ld:PointOfInterest'

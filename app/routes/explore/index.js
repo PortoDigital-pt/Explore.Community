@@ -145,7 +145,7 @@ export default config => {
                 <Route
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "routes" */ './details/routes/page'
+                      /* webpackChunkName: "routes" */ './details/routes/pois/detail-page'
                     ).then(getDefault)
                   }
                 />

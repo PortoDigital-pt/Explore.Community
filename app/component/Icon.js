@@ -72,7 +72,8 @@ function Icon({
   viewBox,
   width,
   dataURI,
-  ariaLabel
+  ariaLabel,
+  text
 }) {
   return (
     <span aria-hidden className="icon-container">
@@ -102,6 +103,20 @@ function Icon({
         {dataURI && (
           <image href={dataURI} x={0} y={0} width="100%" height="100%" />
         )}
+
+        {text && (
+          <text
+            id={`${id || img}-text`}
+            dy="0.35em"
+            x="20"
+            y="20"
+            fontWeight="bold"
+            fill="#fcb4a4"
+            textAnchor="middle"
+          >
+            {text}
+          </text>
+        )}
       </svg>
       <IconBadge
         badgeFill={badgeFill}
@@ -127,7 +142,8 @@ Icon.propTypes = {
   viewBox: PropTypes.string,
   width: PropTypes.number,
   dataURI: PropTypes.string,
-  ariaLabel: PropTypes.string
+  ariaLabel: PropTypes.string,
+  text: PropTypes.string
 };
 
 Icon.defaultProps = {
@@ -144,7 +160,8 @@ Icon.defaultProps = {
   viewBox: '0 0 40 40',
   width: undefined,
   ariaLabel: '',
-  dataURI: undefined
+  dataURI: undefined,
+  text: undefined
 };
 
 Icon.asString = ({

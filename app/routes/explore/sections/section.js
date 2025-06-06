@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { useRouter } from 'found';
-import { arrayOf, string, oneOf, func } from 'prop-types';
+import { arrayOf, string, oneOf, func, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
 import Skeleton from '../../../component/amporto/skeleton';
@@ -9,7 +9,7 @@ import Card from '../../../component/amporto/card';
 import Icon from '../../../component/Icon';
 import useListData from '../../../hooks/useListData';
 import useModal from '../../../hooks/useModal';
-import { PAGE_CONTENT_TYPE_MAP } from '../details/page-content';
+import { PAGE_CONTENT_TYPE_MAP } from '../details/page-content-resolver/page-content';
 import { DetailsContentModal } from '../common';
 
 const Section = (
@@ -24,16 +24,18 @@ const Section = (
     bottomButtonText,
     errorMessage,
     emptyMessage,
-    Intro
+    Intro,
+    showDescription = false,
+    requireCategories = true
   },
   { intl, config: { coordinatesBounds } }
 ) => {
   const args = useMemo(
-    () => ({ language, categories }),
+    () => ({ language, categories, limit: 10 }),
     [language, (categories || []).join(',')]
   );
   const { data, error } = useListData({
-    enabled: categories !== null,
+    enabled: requireCategories ? categories !== null : true,
     location,
     coordinatesBounds,
     getData,
@@ -55,7 +57,7 @@ const Section = (
 
   const ModalPageContent = useMemo(() => PAGE_CONTENT_TYPE_MAP[type], [type]);
 
-  if (categories === null) {
+  if (requireCategories && categories === null) {
     return null;
   }
 
@@ -89,6 +91,7 @@ const Section = (
                 }}
                 data={item}
                 type={type}
+                showDescription={showDescription}
               />
             ))
           )}
@@ -105,7 +108,7 @@ const Section = (
         </button>
       )}
 
-      {isOpen && selected !== null && (
+      {isOpen && selected !== null && ModalPageContent && (
         <DetailsContentModal
           isOpen={isOpen}
           data={selected}
@@ -140,7 +143,9 @@ Section.propTypes = {
   getData: func.isRequired,
   language: string.isRequired,
   location: locationShape.isRequired,
-  categories: arrayOf(string)
+  categories: arrayOf(string),
+  showDescription: bool,
+  requireCategories: bool
 };
 
 export default connectToStores(
@@ -158,7 +163,7 @@ export default connectToStores(
         .filter(([_, selected]) => selected)
         .map(([category]) => category);
 
-      categories = selectedCategories.length > 0 ? selectedCategories : null;
+      categories = selectedCategories?.length > 0 ? selectedCategories : null;
     }
 
     return {

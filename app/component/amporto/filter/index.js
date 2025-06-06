@@ -9,6 +9,11 @@ import CategoryGroup from './category';
 import Icon from '../../Icon';
 import { updateMapLayersCustom } from '../../../action/MapLayerActions';
 
+const hasCategories = mapLayers => {
+  const [categories] = Object.values(mapLayers);
+  return Object.keys(categories).length > 1;
+};
+
 const Filters = ({ mapLayers }, { executeAction, intl }) => {
   const { isOpen, open, close } = useModal();
 
@@ -45,6 +50,10 @@ const Filters = ({ mapLayers }, { executeAction, intl }) => {
     },
     [mapLayers]
   );
+
+  if (!hasCategories(mapLayers)) {
+    return null;
+  }
 
   return (
     <>

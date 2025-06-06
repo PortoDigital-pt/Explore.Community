@@ -1,3 +1,71 @@
-import React from 'react';
+import React, { useMemo, useEffect } from 'react';
+import { string, func } from 'prop-types';
+import { matchShape } from 'found';
+import { connectToStores } from 'fluxible-addons-react';
+import { mapLayerShape } from '../../../../store/MapLayerStore';
+import MapWithTracking from '../../../../component/map/MapWithTracking';
+import Loading from '../../../../component/Loading';
+import { getPoiList } from '../../../../util/amporto/api';
+import { boundWithMinimumArea } from '../../../../util/geo-utils';
+import useListData from '../../../../hooks/useListData';
+import { setupMapLayerStore } from '../../../../action/MapLayerActions';
 
-export default () => <div>block details map</div>;
+const getBounds = data =>
+  boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
+
+const BlockDetailsPageMap = (
+  { language, mapLayers },
+  { match, executeAction }
+) => {
+  useEffect(() => {
+    executeAction(setupMapLayerStore);
+  }, []);
+
+  const args = useMemo(
+    () => ({ language, block: match.params.id }),
+    [language, match.params.id]
+  );
+
+  const { data, error } = useListData({
+    getData: getPoiList,
+    args
+  });
+
+  if (error) {
+    return null;
+  }
+
+  if (!data) {
+    return <Loading />;
+  }
+
+  return (
+    <MapWithTracking
+      bounds={getBounds(data)}
+      mapLayers={{ filter: { pois: data.map(({ id }) => id) }, ...mapLayers }}
+      showExplore
+    />
+  );
+};
+
+BlockDetailsPageMap.contextTypes = {
+  match: matchShape.isRequired,
+  executeAction: func.isRequired
+};
+
+BlockDetailsPageMap.propTypes = {
+  language: string.isRequired,
+  mapLayers: mapLayerShape.isRequired
+};
+
+export default connectToStores(
+  BlockDetailsPageMap,
+  ['PreferencesStore', 'MapLayerStore'],
+  ({ getStore }) => ({
+    language: getStore('PreferencesStore').getLanguage(),
+    mapLayers: {
+      ...getStore('MapLayerStore').getFilterLayers({ only: 'pois' }),
+      ...getStore('MapLayerStore').getFilterLayers({ only: 'events' })
+    }
+  })
+);

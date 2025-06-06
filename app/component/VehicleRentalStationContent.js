@@ -48,8 +48,7 @@ const VehicleRentalStationContent = (
 
     getSmooveById(vehicleRentalStation.stationId.split('smoove:')[1], {
       signal
-    })
-      .then(setSmooveDetails);
+    }).then(setSmooveDetails);
 
     return () => controller.abort();
   }, [vehicleRentalStation]);

@@ -8,13 +8,19 @@ import Icon from '../../Icon';
 const FILTERS_ICON_MAP = {
   stop: 'icon-icon_bus_no_map',
   pois: 'icon-camera',
-  events: 'icon-events'
+  events: 'icon-events',
+  routes: 'icon-routes',
+  blocks: 'icon-blocks'
 };
 
 const FilterBar = ({ filters, openModal, onClick }, { intl }) => {
   const ButtonFilters = useMemo(() => {
     const Component = Object.entries(filters).map(
       ([type, { showAll, ...values }]) => {
+        if (Object.keys(values).length === 0) {
+          return null;
+        }
+
         const someSelected = Object.values(values).find(element => element);
 
         const iconName =

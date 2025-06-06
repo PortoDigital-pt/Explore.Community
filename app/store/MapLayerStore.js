@@ -6,6 +6,7 @@ import { TransportMode } from '../constants';
 
 class MapLayerStore extends Store {
   static handlers = {
+    SetupMapLayerStore: 'setupMapLayerStore',
     UpdateMapLayers: 'updateMapLayers',
     UpdateMapLayersCustom: 'updateMapLayersCustom'
   };
@@ -36,10 +37,10 @@ class MapLayerStore extends Store {
     taxis: true,
     geoJson: {},
 
-    showExplore: true,
-
     pois: null,
     events: null,
+    routes: null,
+    blocks: null,
     accesspoints: null
   };
 
@@ -47,43 +48,11 @@ class MapLayerStore extends Store {
     super(dispatcher);
 
     const { config } = dispatcher.getContext();
+    this.config = config;
+    this.setupMapLayerStore();
 
-    this.mapLayers.pois = {
-      showAll: true,
-      ...Object.keys(config.filters.pois).reduce(
-        (acc, key) => ({ ...acc, [key]: true }),
-        {}
-      )
-    };
-    this.mapLayers.events = {
-      showAll: true,
-      ...Object.keys(config.filters.events).reduce(
-        (acc, key) => ({ ...acc, [key]: true }),
-        {}
-      )
-    };
-    this.mapLayers.accesspoints = { showAll: config.map.showWifi };
-
-    this.mapLayers.citybike = showRentalVehiclesOfType(
-      config.vehicleRental?.networks,
-      config,
-      TransportMode.Citybike
-    );
-    this.mapLayers.scooter =
-      config.transportModes.scooter?.showIfSelectedForRouting &&
-      showRentalVehiclesOfType(
-        config.vehicleRental?.networks,
-        config,
-        TransportMode.Scooter
-      );
-    if (config.hideMapLayersByDefault) {
-      this.mapLayers.stop = Object.keys(this.mapLayers.stop).map(() => false);
-
-      this.mapLayers.citybike = false;
-      this.mapLayers.scooter = false;
-    }
     const storedMapLayers = getMapLayerSettings();
-    if (Object.keys(storedMapLayers).length > 0) {
+    if (Object.keys(storedMapLayers)?.length > 0) {
       this.mapLayers = {
         ...this.mapLayers,
         ...storedMapLayers,
@@ -91,6 +60,59 @@ class MapLayerStore extends Store {
       };
     }
   }
+
+  setupMapLayerStore = () => {
+    this.mapLayers.pois = {
+      showAll: true,
+      ...Object.keys(this.config.filters.pois).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
+    this.mapLayers.events = {
+      showAll: true,
+      ...Object.keys(this.config.filters.events).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
+    this.mapLayers.routes = {
+      showAll: true,
+      ...Object.keys(this.config.filters.routes).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
+    this.mapLayers.blocks = {
+      showAll: true,
+      ...Object.keys(this.config.filters.blocks).reduce(
+        (acc, key) => ({ ...acc, [key]: true }),
+        {}
+      )
+    };
+    this.mapLayers.accesspoints = { showAll: this.config.map.showWifi };
+    this.mapLayers.citybike = showRentalVehiclesOfType(
+      this.config.vehicleRental?.networks,
+      this.config,
+      TransportMode.Citybike
+    );
+    this.mapLayers.scooter =
+      this.config.transportModes.scooter?.showIfSelectedForRouting &&
+      showRentalVehiclesOfType(
+        this.config.vehicleRental?.networks,
+        this.config,
+        TransportMode.Scooter
+      );
+    if (this.config.hideMapLayersByDefault) {
+      this.mapLayers.stop = Object.keys(this.mapLayers.stop).map(() => false);
+
+      this.mapLayers.citybike = false;
+      this.mapLayers.scooter = false;
+    }
+
+    setMapLayerSettings({ ...this.mapLayers });
+    this.emitChange();
+  };
 
   getMapLayers = skip => {
     if (!skip?.notThese && !skip?.force) {
@@ -133,7 +155,9 @@ class MapLayerStore extends Store {
         subway: this.mapLayers.terminal.subway
       },
       pois: this.mapLayers.pois,
-      events: this.mapLayers.events
+      events: this.mapLayers.events,
+      routes: this.mapLayers.routes,
+      blocks: this.mapLayers.blocks
     };
 
     if (!only) {
@@ -158,6 +182,10 @@ class MapLayerStore extends Store {
       events: {
         ...this.mapLayers.events,
         ...mapLayers.events
+      },
+      routes: {
+        ...this.mapLayers.routes,
+        ...mapLayers.routes
       }
     };
 
@@ -186,6 +214,10 @@ class MapLayerStore extends Store {
       events: {
         ...this.mapLayers.events,
         ...mapLayers.events
+      },
+      routes: {
+        ...this.mapLayers.routes,
+        ...mapLayers.routes
       }
     };
     setMapLayerSettings({ ...this.mapLayers });

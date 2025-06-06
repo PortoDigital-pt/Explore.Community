@@ -21,6 +21,7 @@ import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
+import useExpandableDescription from '../../../../hooks/useExpandableDescription';
 
 const eventShape = shape({
   type: string.isRequired,
@@ -241,36 +242,45 @@ EventContactDetails.contextTypes = {
   intl: intlShape.isRequired
 };
 
-export const PageContent = ({ selectedData }, { intl }) => (
-  <>
-    {selectedData.images && (
-      <div className="image">
-        <ImageSlider images={selectedData.images} name={selectedData.name} />
-      </div>
-    )}
-    <div
-      className={classname('details', { lower: selectedData.images === null })}
-    >
-      <EventContactDetails selectedData={selectedData} />
-      <div className="description">
-        {selectedData.description && (
-          <>
-            <h3>{intl.messages.about}</h3>
-            {selectedData.description && <p>{selectedData.description}</p>}
-          </>
-        )}
+export const PageContent = ({ selectedData }, { intl }) => {
+  const ExpandableDescription = useExpandableDescription({
+    description: selectedData.description,
+    intl
+  });
 
-        <a
-          href={selectedData.website}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {intl.messages['know-more']}
-        </a>
+  return (
+    <>
+      {selectedData.images && (
+        <div className="image">
+          <ImageSlider images={selectedData.images} name={selectedData.name} />
+        </div>
+      )}
+      <div
+        className={classname('details', {
+          lower: selectedData.images === null
+        })}
+      >
+        <EventContactDetails selectedData={selectedData} />
+        <div className="description">
+          {selectedData.description && (
+            <>
+              <h3>{intl.messages.about}</h3>
+              <ExpandableDescription />
+            </>
+          )}
+
+          <a
+            href={selectedData.website}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {intl.messages['know-more']}
+          </a>
+        </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 PageContent.propTypes = {
   selectedData: eventShape.isRequired

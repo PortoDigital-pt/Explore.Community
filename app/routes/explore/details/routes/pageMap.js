@@ -1,3 +1,9 @@
 import React from 'react';
+import { getRoutesById } from '../../../../util/amporto/api';
+import DetailsRoutesPageMap from './pois/details-routes-page-map.js';
 
-export default () => <div>route details map</div>;
+const RoutesDetailsPageMap = () => (
+  <DetailsRoutesPageMap getDataById={getRoutesById} />
+);
+
+export default RoutesDetailsPageMap;

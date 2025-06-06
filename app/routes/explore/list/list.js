@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback, Fragment } from 'react';
 import { useRouter } from 'found';
-import { string, func, arrayOf } from 'prop-types';
+import { string, func, arrayOf, bool } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
@@ -17,7 +17,7 @@ import ScrollToTopButton from '../../../component/amporto/scroll-to-top-button';
 import {
   MOBILE_PAGE_CONTENT_TYPE_MAP,
   PAGE_CONTENT_TYPE_MAP
-} from '../details/page-content';
+} from '../details/page-content-resolver/page-content';
 import { DetailsContentModal } from '../common';
 
 const ListPage = (
@@ -29,7 +29,10 @@ const ListPage = (
     language,
     categories,
     emptyMessage,
-    errorMessage
+    errorMessage,
+    showDivider,
+    requireCategories = true,
+    title
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -39,11 +42,11 @@ const ListPage = (
   const [selected, setSelected] = useState(null);
 
   const args = useMemo(
-    () => ({ language, categories }),
+    () => ({ language, categories, limit: 10 }),
     [language, (categories || []).join(',')]
   );
   const { data, total, error, onNextPage } = useInfinitePaginatedListData({
-    enabled: categories !== null,
+    enabled: requireCategories ? categories !== null : true,
     location,
     coordinatesBounds,
     getData,
@@ -70,7 +73,7 @@ const ListPage = (
           ) : (
             <Fragment key={`${i}-item`}>
               <Skeleton />
-              <hr />
+              {showDivider && <hr />}
             </Fragment>
           )
         )}
@@ -82,7 +85,7 @@ const ListPage = (
   const List = useMemo(
     () => () => (
       <div className="list">
-        {data === null ? (
+        {data === null || !ListItemComponent ? (
           <Loading />
         ) : (
           data.map((item, index) =>
@@ -105,7 +108,7 @@ const ListPage = (
                   }}
                   selectedData={item}
                 />
-                <hr />
+                {showDivider && <hr />}
               </Fragment>
             )
           )
@@ -124,14 +127,16 @@ const ListPage = (
         <BackButton title={intl.messages[type]} />
       )}
       <Filters type={type} />
-      {categories === null ? (
+      {requireCategories && categories === null ? (
         <div className="error">
           {intl.messages['select-at-least-one-category']}
         </div>
       ) : (
         <>
           <h3 className="count">
-            {total && `${total} ${intl.messages['search-results']}`}
+            {title
+              ? intl.messages[title]
+              : total && `${total} ${intl.messages['search-results']}`}
           </h3>
           {error ? (
             <div className="error">
@@ -180,7 +185,10 @@ ListPage.propTypes = {
   location: locationShape.isRequired,
   categories: arrayOf(string),
   emptyMessage: string.isRequired,
-  errorMessage: string.isRequired
+  errorMessage: string.isRequired,
+  showDivider: bool,
+  requireCategories: bool,
+  title: string
 };
 
 export default connectToStores(

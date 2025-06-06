@@ -8,6 +8,7 @@ const PoiListPage = () => (
     getData={getPoiList}
     errorMessage="pois-fetch-error"
     emptyMessage="pois-empty"
+    showDivider
   />
 );
 

@@ -7,13 +7,21 @@ export const isExploreEnabled = mapLayers => {
   if (!mapLayers) {
     return false;
   }
-  return (
-    mapLayers.showExplore ??
-    mapLayers.pois ??
-    mapLayers.events ??
-    mapLayers.accesspoints
-  );
+  return mapLayers.pois ?? mapLayers.events ?? mapLayers.accesspoints;
 };
+
+/**
+ * Checks if blocks map layer is enabled.
+ *
+ * @param {object} mapLayers The map layer configuration.
+ */
+export const isBlocksEnabled = mapLayers => mapLayers?.blocks;
+/**
+ * Checks if routes map layer is enabled.
+ *
+ * @param {object} mapLayers The map layer configuration.
+ */
+export const isRoutesEnabled = mapLayers => mapLayers?.routes;
 
 /**
  * Checks if a specific explore layer feature is enabled.
@@ -88,7 +96,15 @@ export const isFeatureLayerEnabled = (
   }
 
   if (layerName === 'explore') {
-    return mapLayers.showExplore;
+    return mapLayers.pois ?? mapLayers.events;
+  }
+
+  if (layerName === 'blocks') {
+    return mapLayers.blocks;
+  }
+
+  if (layerName === 'routes') {
+    return mapLayers.routes;
   }
 
   if (!Object.keys(mapLayers).includes(layerName)) {

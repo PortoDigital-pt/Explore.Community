@@ -6,7 +6,10 @@ import {
   isExploreFeatureEnabled,
   isCategoryEnabled
 } from '../../../util/mapLayerUtils';
-import { drawExploreIcon } from '../../../util/mapIconUtils';
+import {
+  drawExploreIcon,
+  getFixedSizeIconStyle
+} from '../../../util/mapIconUtils';
 
 const isValidDataProvider = (providersString, currentProvider) =>
   providersString.split(',').includes(currentProvider);
@@ -58,6 +61,17 @@ class Explore {
 
             for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
               const feature = layer.feature(i);
+              const canBeDrawed =
+                !this.mapLayers.filter?.[type] ||
+                this.mapLayers.filter[type].includes(feature.properties.id);
+              const customSize = this.mapLayers.filter?.[type]
+                ? getFixedSizeIconStyle()
+                : null;
+
+              if (!canBeDrawed) {
+                // eslint-disable-next-line no-continue
+                continue;
+              }
 
               if (
                 type !== 'accesspoints' &&
@@ -94,7 +108,8 @@ class Explore {
                 feature.geom,
                 type,
                 this.config.colors.iconColors,
-                isHighlighted
+                isHighlighted,
+                customSize
               );
             }
           });

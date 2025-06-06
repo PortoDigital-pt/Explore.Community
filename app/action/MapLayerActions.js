@@ -6,4 +6,8 @@ export const updateMapLayersCustom = (actionContext, mapLayerSettings) => {
   actionContext.dispatch('UpdateMapLayersCustom', mapLayerSettings);
 };
 
+export const setupMapLayerStore = actionContext => {
+  actionContext.dispatch('SetupMapLayerStore');
+};
+
 export default updateMapLayers;

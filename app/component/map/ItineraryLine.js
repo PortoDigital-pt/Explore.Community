@@ -91,6 +91,7 @@ class ItineraryLine extends React.Component {
         ? 'call'
         : mode.toLowerCase() + (this.props.passive ? ' passive' : '');
       const geometry = polyUtil.decode(leg.legGeometry.points);
+
       let middle = getMiddleOf(geometry);
       let { to, end } = leg;
 

@@ -139,6 +139,10 @@ export function getStopIconStyles(type, zoom, isHighlighted) {
   return styles[type][zoom];
 }
 
+export function getFixedSizeIconStyle() {
+  return { width: 60, height: 60, style: 'large' };
+}
+
 /**
  * Get width and height for icons
  *
@@ -879,11 +883,18 @@ export function drawIcon(icon, tile, geom, imageSize) {
  * Determine size from zoom level.
  */
 
-export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
+export function drawExploreIcon(
+  tile,
+  geom,
+  type,
+  iconColors,
+  isHighlighted,
+  customSize
+) {
   const color = iconColors[type];
   const zoom = tile.coords.z - 1;
 
-  const styles = getIconStyles(zoom, isHighlighted);
+  const styles = customSize ?? getIconStyles(zoom, isHighlighted);
   let { width, height } = styles;
 
   width *= tile.scaleratio;
@@ -914,6 +925,24 @@ export function drawExploreIcon(tile, geom, type, iconColors, isHighlighted) {
     width,
     height,
     color
+  ).then(image => {
+    tile.ctx.drawImage(image, x, y);
+  });
+}
+
+export function drawFixedSizeIcon(tile, geom, type) {
+  let { width, height } = getFixedSizeIconStyle();
+
+  width *= tile.scaleratio;
+  height *= tile.scaleratio;
+
+  const x = geom.x / tile.ratio - width / 2;
+  const y = geom.y / tile.ratio - height;
+
+  return getImageFromSpriteCache(
+    `icon-explore-icon_${type.toLowerCase()}_map`,
+    width,
+    height
   ).then(image => {
     tile.ctx.drawImage(image, x, y);
   });

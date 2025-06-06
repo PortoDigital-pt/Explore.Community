@@ -20,8 +20,9 @@ import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
+import useExpandableDescription from '../../../../hooks/useExpandableDescription';
 
-const poiShape = shape({
+export const poiShape = shape({
   type: string.isRequired,
   id: string.isRequired,
   address: shape({
@@ -44,7 +45,15 @@ const poiShape = shape({
 });
 
 const Mobile = (
-  { location, onDetails, selectedData, showShare = false, innerRef },
+  {
+    location,
+    onDetails,
+    selectedData,
+    showShare = false,
+    innerRef,
+    fromRoutes = false,
+    onStartItinerary
+  },
   { intl, executeAction }
 ) => {
   const distanceToPoi = useDistanceToTarget({
@@ -55,23 +64,38 @@ const Mobile = (
 
   return (
     <div className="mobile-view" ref={innerRef}>
-      <div className="header">
-        <div className="top">
+      {fromRoutes ? (
+        <div className="header">
           <div className="title">
-            <Icon
-              img="icon-explore-icon_pois_with_background"
-              viewBox="0 0 50 50"
-            />
-            <h3>{selectedData.name}</h3>
+            <Icon img="icon-circle" text={selectedData.position} />
+            <h3 className="routes-tab">{selectedData.name}</h3>
           </div>
-          {showShare && <ShareButton withBackground />}
-          <FavouriteExplore data={selectedData} />
+
+          <div className="distance">
+            {!!distanceToPoi &&
+              `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+          </div>
         </div>
-        <div className="distance">
-          {!!distanceToPoi &&
-            `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+      ) : (
+        <div className="header">
+          <div className="top">
+            <div className="title">
+              <Icon
+                img="icon-explore-icon_pois_with_background"
+                viewBox="0 0 50 50"
+              />
+              <h3>{selectedData.name}</h3>
+            </div>
+            {showShare && <ShareButton withBackground />}
+            <FavouriteExplore data={selectedData} />
+          </div>
+          <div className="distance">
+            {!!distanceToPoi &&
+              `${intl.messages['at-distance']} ${showDistance(distanceToPoi)}`}
+          </div>
         </div>
-      </div>
+      )}
+
       <div className="content">
         {selectedData.images && (
           <div className="image">
@@ -85,15 +109,16 @@ const Mobile = (
         <div className="details">
           <div className="contacts">
             <div className="categories">
-              {Array.isArray(selectedData.category) ? (
-                selectedData.category.map(category => (
-                  <div key={category} className="category">
-                    {category}
-                  </div>
-                ))
-              ) : (
-                <div className="category">{selectedData.category}</div>
-              )}
+              {!fromRoutes &&
+                (Array.isArray(selectedData.category) ? (
+                  selectedData.category.map(category => (
+                    <div key={category} className="category">
+                      {category}
+                    </div>
+                  ))
+                ) : (
+                  <div className="category">{selectedData.category}</div>
+                ))}
             </div>
             {selectedData.calendar && (
               <div>
@@ -124,15 +149,36 @@ const Mobile = (
           </div>
         </div>
       </div>
-      <div className="bottom">
-        <button
-          type="button"
-          onClick={onDetails}
-          aria-label={intl.messages.details}
-        >
-          {intl.messages.details}
-        </button>
-      </div>
+
+      {fromRoutes ? (
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.details}
+            onClick={onDetails}
+          >
+            {intl.messages.details}
+          </button>
+          <button
+            type="button"
+            onClick={onStartItinerary}
+            aria-label={intl.messages['start-here']}
+          >
+            {intl.messages['start-here']}
+          </button>
+        </div>
+      ) : (
+        <div className="bottom">
+          <button
+            type="button"
+            onClick={onDetails}
+            aria-label={intl.messages.details}
+          >
+            {intl.messages.details}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -142,7 +188,9 @@ Mobile.propTypes = {
   onDetails: func.isRequired,
   selectedData: poiShape.isRequired,
   location: locationShape.isRequired,
-  showShare: bool
+  showShare: bool,
+  fromRoutes: bool,
+  onStartItinerary: func
 };
 
 Mobile.contextTypes = {
@@ -158,59 +206,70 @@ export const MobileContent = connectToStores(
   })
 );
 
-export const PageContent = ({ selectedData }, { intl }) => (
-  <>
-    {selectedData.images && (
-      <div className="image">
-        <ImageSlider images={selectedData.images} name={selectedData.name} />
-      </div>
-    )}
-    <div
-      className={classname('details', { lower: selectedData.images === null })}
-    >
-      {selectedData.description && (
-        <div className="description">
-          <h3>{intl.messages.about}</h3>
-          <p>{selectedData.description}</p>
+export const PageContent = ({ selectedData }, { intl }) => {
+  const ExpandableDescription = useExpandableDescription({
+    description: selectedData.description,
+    intl
+  });
+
+  return (
+    <>
+      {selectedData.images && (
+        <div className="image">
+          <ImageSlider images={selectedData.images} name={selectedData.name} />
         </div>
       )}
-      {selectedData.calendar && (
-        <div className="description">
-          <h3>{intl.messages['opening-hours']}</h3>
-          {selectedData.calendar.map(schedule => (
-            <p key={schedule}>{schedule}</p>
-          ))}
+      <div
+        className={classname('details', {
+          lower: selectedData.images === null
+        })}
+      >
+        {selectedData.description && (
+          <div className="description">
+            <h3>{intl.messages.about}</h3>
+            <ExpandableDescription />
+          </div>
+        )}
+        {selectedData.calendar && (
+          <div className="description">
+            <h3>{intl.messages['opening-hours']}</h3>
+            {selectedData.calendar.map(schedule => (
+              <p key={schedule}>{schedule}</p>
+            ))}
+          </div>
+        )}
+        <div className="contacts">
+          {selectedData.priceRange && (
+            <div>
+              <Icon img="icon-cost" viewBox="0 0 16 16" />
+              <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
+            </div>
+          )}
+          {selectedData.contacts?.url && (
+            <div>
+              <Icon img="icon-website" viewBox="0 0 16 16" />
+              <a
+                href={selectedData.contacts.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Website
+              </a>
+            </div>
+          )}
+          {selectedData.contacts?.telephone && (
+            <div>
+              <Icon img="icon-phone" viewBox="0 0 16 16" />
+              <p>
+                {selectedData.contacts.telephone ?? 'No information at all'}
+              </p>
+            </div>
+          )}
         </div>
-      )}
-      <div className="contacts">
-        {selectedData.priceRange && (
-          <div>
-            <Icon img="icon-cost" viewBox="0 0 16 16" />
-            <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
-          </div>
-        )}
-        {selectedData.contacts?.url && (
-          <div>
-            <Icon img="icon-website" viewBox="0 0 16 16" />
-            <a
-              href={selectedData.contacts.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Website
-            </a>
-          </div>
-        )}
-        {selectedData.contacts?.telephone && (
-          <div>
-            <Icon img="icon-phone" viewBox="0 0 16 16" />
-            <p>{selectedData.contacts.telephone ?? 'No information at all'}</p>
-          </div>
-        )}
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 PageContent.propTypes = {
   selectedData: poiShape.isRequired

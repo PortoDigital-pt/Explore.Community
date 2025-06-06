@@ -13,7 +13,8 @@ export const DetailsContent = ({
   onSeeOnMap,
   modal = false,
   showShare = false,
-  PageContent
+  PageContent,
+  breakpoint
 }) => {
   const Component = useMemo(() => {
     if (modal) {
@@ -24,7 +25,7 @@ export const DetailsContent = ({
       );
     }
 
-    return () => <PageContent selectedData={data} />;
+    return () => <PageContent selectedData={data} breakpoint={breakpoint} />;
   }, [modal, data]);
 
   return (
@@ -60,7 +61,8 @@ DetailsContent.propTypes = {
   onSeeOnMap: func,
   modal: bool,
   showShare: bool,
-  PageContent: func.isRequired
+  PageContent: func.isRequired,
+  breakpoint: string
 };
 
 export const DetailsContentModal = ({

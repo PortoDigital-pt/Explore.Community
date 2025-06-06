@@ -5,11 +5,29 @@ export const buildQueryString = data => {
     if (value === undefined || value === null) {
       return;
     }
-
     query.set(key, value.toString());
   });
 
   const value = query.toString();
-
   return value ? `?${value}` : '';
+};
+
+export const buildDataForRoutes = data => {
+  const auxData = { ...data };
+
+  const difficulties = auxData.categories?.filter(it =>
+    it.startsWith('others-difficulty-')
+  );
+
+  const durationRanges = auxData.categories?.filter(it =>
+    it.startsWith('others-durationRange-')
+  );
+
+  delete auxData.categories;
+
+  return buildQueryString({
+    ...auxData,
+    difficulties: difficulties ?? null,
+    durationRanges: durationRanges ?? null
+  });
 };

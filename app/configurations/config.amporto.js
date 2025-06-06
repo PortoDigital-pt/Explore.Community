@@ -8,7 +8,9 @@ export default {
   colors: {
     primary: '#000F9F',
     iconColors: {
-      accesspoints: '#000F9F'
+      accesspoints: '#000F9F',
+      blocks: '#000F9F',
+      routes: '#000F9F'
     },
     itineraryDefault: '#000F9F',
     originDestination: {
@@ -48,6 +50,10 @@ export default {
     events: {
       pt: 'Desde exposições de arte emocionantes até concertos ao ar livre, mergulhe na vida cultural vibrante enquanto explora cada canto da cidade. Para ver mais eventos visite a página da *link*Agenda Cultural do Porto*link*.',
       en: 'From exciting art exhibitions to open-air concerts, immerse yourself in the vibrant cultural life as you explore every corner of the city. For more events, visit the *link*Porto Cultural Agenda*link* page.'
+    },
+    blocks: {
+      pt: 'Explore os quarteirões temáticos da cidade, de arte a gastronomia. Descubra cada esquina cheia de histórias e experiências únicas e cativantes.',
+      en: 'Explore the city’s themed blocks, from art to gastronomy. Discover every corner filled with unique and captivating stories and experiences.'
     }
   },
 
@@ -183,13 +189,30 @@ export default {
         en: 'Music and clubbing'
       },
       stages: { pt: 'Palcos', en: 'Stage' }
+    },
+    routes: {
+      'others-difficulty-easy': { pt: 'Facil', en: 'Easy' },
+      'others-difficulty-medium': { pt: 'Medio', en: 'Medium' },
+      'others-difficulty-hard': { pt: 'Dificil', en: 'Hard' },
+      'others-durationRange-1': { pt: 'Até 1 hora', en: 'Up to 1 hour' },
+      'others-durationRange-2': {
+        pt: 'Entre 1h e 2h',
+        en: 'Between 1h and 2h'
+      },
+      'others-durationRange-3': {
+        pt: 'Entre 2h e 3h',
+        en: 'Between 2h and 3h'
+      },
+      'others-durationRange-4': { pt: 'Mais de 3h', en: 'More than 3h' }
     }
   },
 
   ngsi: {
     dataProvider: {
       pois: 'http:%2F%2Fcitysdk.url.pt%2Fpois%2F,https:%2F%2Fcity-api.wearebitmaker.com%2FCitySDK%2Fpois',
-      events: 'Agenda%20Porto'
+      events: 'Agenda%20Porto',
+      routes: 'ExplorePorto',
+      blocks: 'VisitPorto'
     }
   }
 };

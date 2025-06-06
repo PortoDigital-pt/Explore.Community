@@ -415,7 +415,9 @@ export default {
       pois: '#99DCD5',
       events: '#FEC8A7',
       accesspoints: '#493e90',
-      taxis: '#212121'
+      taxis: '#212121',
+      blocks: '#493e90',
+      routes: '#493e90'
     },
     itineraryDefault: '#493e90',
     originDestination: {
@@ -739,6 +741,12 @@ export default {
     },
     events: {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
+    },
+    routes: {
+      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+    },
+    blocks: {
+      cultural: { pt: 'Cultural', en: 'Cultural' }
     }
   }
   */
@@ -756,6 +764,12 @@ export default {
     },
     events: {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
+    },
+    routes: {
+      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+    },
+    blocks: {
+      /* blocks don't have categories */
     }
   },
 

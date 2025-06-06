@@ -1,11 +1,18 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
-import { string, shape, number, func, arrayOf, oneOfType } from 'prop-types';
+import {
+  string,
+  shape,
+  number,
+  func,
+  arrayOf,
+  oneOfType,
+  bool
+} from 'prop-types';
 import FavouriteExplore from '../../FavouriteExploreContainer';
+import { PAGE_CONTENT_PIECES_TYPE_MAP } from '../../../routes/explore/details/page-content-resolver/pieces';
 
-import { PAGE_CONTENT_PIECES_TYPE_MAP } from '../../../routes/explore/details/page-content';
-
-const Card = ({ type, className, data, onClick }) => {
+const Card = ({ type, className, data, onClick, showDescription = false }) => {
   const Details = useMemo(() => {
     const Component = PAGE_CONTENT_PIECES_TYPE_MAP[type]?.details;
 
@@ -26,7 +33,7 @@ const Card = ({ type, className, data, onClick }) => {
           onClick();
         }
       }}
-      className={classnames('card', className)}
+      className={classnames('card', className, type)}
       onClick={onClick}
     >
       <div className="favourite-top">
@@ -36,15 +43,22 @@ const Card = ({ type, className, data, onClick }) => {
           blue={!data.images}
         />
       </div>
+
       {data.images && (
         <div className="image-cover">
           <img src={data.images[0]} alt={data.name} />
         </div>
       )}
-      <div className="content">
+
+      <div className={classnames('card-content', type)}>
         <div className={classnames('card-title', { smaller: !data.images })}>
           <h3>{data.name}</h3>
         </div>
+        {showDescription && data.description && (
+          <div className="description">
+            <span>{data.description}</span>
+          </div>
+        )}
         {Details && (
           <div className="details">
             <Details />
@@ -77,8 +91,10 @@ Card.propTypes = {
     images: arrayOf(string),
     category: oneOfType([string, arrayOf(string)]).isRequired,
     lat: number.isRequired,
-    lon: number.isRequired
-  }).isRequired
+    lon: number.isRequired,
+    description: string
+  }).isRequired,
+  showDescription: bool
 };
 
 export default Card;

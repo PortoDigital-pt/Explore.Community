@@ -20,6 +20,7 @@ const SelectExploreRow = ({ language, type, properties }, { config }) => {
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon
           viewBox="0 0 44 44"
+          className={`map-popup-icon-${type}`}
           img={`icon-explore-icon_${type}_no_map`}
           color={config.colors.iconColors[type]}
         />
@@ -36,7 +37,7 @@ const SelectExploreRow = ({ language, type, properties }, { config }) => {
 
 SelectExploreRow.propTypes = {
   language: string.isRequired,
-  type: oneOf(['pois', 'events', 'accesspoints']).isRequired,
+  type: oneOf(['pois', 'events', 'accesspoints', 'blocks', 'routes']).isRequired,
   properties: shape().isRequired
 };
 

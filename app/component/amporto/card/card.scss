@@ -1,150 +1,185 @@
 .card {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  cursor: pointer;
+
+  &.large-card {
+    .image-cover {
+      height: 112px;
+      min-height: 112px;
+    }
+  }
+
+  .image-cover {
     display: flex;
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 80px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .favourite-top {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+
+    .favourite-icon {
+      .icon {
+        &.white {
+          color: $background-default;
+        }
+        &.blue {
+          color: $primary-color;
+        }
+
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .card-content {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
     flex-direction: column;
-    justify-content: flex-start;
-    cursor: pointer;
+    justify-content: space-between;
+    padding: 12px;
 
-    &.large-card {
-        .image-cover {
-            height: 112px;
-            min-height: 112px;
-        }
+    .card-title {
+      position: relative;
+      display: flex;
+      overflow: hidden;
+
+      &.smaller {
+        width: 85%;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: $font-size-base;
+        line-height: 18px;
+        font-weight: $font-weight-bold;
+        color: $primary-color;
+        text-align: left;
+        display: -webkit-box;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
-    .image-cover {
+    .description {
+      color: $grey-dark-down;
+      font-family: $font-family;
+      font-size: $font-size-base;
+      font-style: normal;
+      font-weight: $font-weight-regular;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .details {
+      display: flex;
+      position: relative;
+      padding: 0;
+      width: 100%;
+
+      p {
+        padding: 0;
+      }
+
+      .contacts,
+      .detail-info {
         display: flex;
         position: relative;
-        width: 100%;
-        height: 80px;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-
-    .favourite-top {
-        z-index: 1;
-        display: flex;
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 8px;
-
-        .favourite-icon {
-            .icon {
-              &.white {
-                color: $background-default;
-              }
-              &.blue {
-                color: $primary-color;
-              }
-
-              width: 24px;
-              height: 24px;
-            }
-        }
-    }
-
-    .content {
-        display: flex;
-        position: relative;
-        flex-grow: 1;
         flex-direction: column;
-        justify-content: space-between;
-        padding: 12px;
+        row-gap: 6px;
+        justify-content: flex-start;
 
-        .card-title {
-            position: relative;
-            display: flex;
-            overflow: hidden;
-
-            &.smaller {
-                width: 85%;
-            }
-           
-            h3 {
-                margin: 0;
-                font-size: $font-size-base;
-                line-height: 18px;
-                font-weight: $font-weight-bold;
-                color: $primary-color;
-                text-align: left;
-                display: -webkit-box;
-                line-clamp: 2;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
+        .description {
+          color: $grey-dark-down;
+          font-family: $font-family;
+          font-size: $font-size-base;
+          font-style: normal;
+          font-weight: 400;
+          margin-bottom: 20px;
         }
 
-        .details {
-            display: flex;
-            position: relative;
-            padding: 0;
-            width: 100%;
-
-            p {
-                padding: 0;
-            }
-
-            .contacts {
-                display: flex;
-                position: relative;
-                flex-direction: column;
-                row-gap: 6px;
-                justify-content: flex-start;
-    
-                .dates {
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    row-gap: 8px;
-                }
-    
-                div {
-                    display: flex;
-                    position: relative;
-                    flex-direction: row;
-                    column-gap: 8px;
-                    justify-content: flex-start;
-                    align-items: center;
-    
-                    .icon {
-                        display: flex;
-                        position: relative;
-                        width: 15px;
-                        height: 15px;
-                        color: $primary-main;
-                    }
-                }
-            }
-        }
-        
-        .categories {
-            width: fit-content;
-            display: flex;
-            position: relative;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 5px;
-
-            .category {
-                width: fit-content;
-                display: flex;
-                position: relative;
-                padding: 4px 8px;
-                border-radius: 4px;
-                background-color: #E6E6E6;
-                color: $primary-main;
-                font-weight: $font-weight-bold;
-                font-size: $font-size-label;
-            }
+        .dates,
+        .pois-and-duration {
+          flex-direction: row;
+          flex-wrap: wrap;
+          row-gap: 8px;
         }
 
+        div {
+          display: flex;
+          position: relative;
+          flex-direction: row;
+          column-gap: 8px;
+          justify-content: flex-start;
+          align-items: center;
+
+          .icon {
+            display: flex;
+            position: relative;
+            width: 15px;
+            height: 15px;
+            color: $primary-main;
+          }
+        }
+      }
     }
+
+    .categories {
+      width: fit-content;
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      .category {
+        width: fit-content;
+        display: flex;
+        position: relative;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background-color: #e6e6e6;
+        color: $primary-main;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-label;
+      }
+    }
+  }
+}
+
+.list-page {
+  .card {
+    .card-content {
+      &.blocks,
+      &.routes {
+        gap: 20px;
+      }
+    }
+  }
 }
