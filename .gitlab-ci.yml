@@ -60,6 +60,7 @@ sonarqube-check-without-coverage:
 build-development:
   stage: build
   script:
+    - echo "$APP_Dev" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   only:
@@ -70,6 +71,7 @@ build-development:
 build-qa:
   stage: build
   script:
+    - echo "$APP_QA" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   rules:
