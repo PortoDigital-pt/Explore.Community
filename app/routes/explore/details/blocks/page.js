@@ -4,7 +4,7 @@ import { string, func, shape, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { useRouter } from 'found';
 import classname from 'classnames';
-import { locationShape } from '../../../../util/shapes';
+import { locationShape, configShape } from '../../../../util/shapes';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import Card from '../../../../component/amporto/card';
 import Skeleton from '../../../../component/amporto/skeleton';
@@ -15,7 +15,8 @@ import useExpandableDescription from '../../../../hooks/useExpandableDescription
 import {
   getPoiList,
   getRoutesList,
-  getBlockById
+  getBlockById,
+  getEventList
 } from '../../../../util/amporto/api';
 import { DetailsContentModal } from '../../common';
 import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
@@ -67,7 +68,10 @@ const List = ({ type, data, cardType, setSelected, open }) => {
       ));
 };
 
-const Content = ({ selectedData, language }, { intl }) => {
+const Content = (
+  { selectedData, language },
+  { intl, config: { coordinatesBounds } }
+) => {
   const ExpandableDescription = useExpandableDescription({
     description: selectedData.description,
     intl
@@ -91,6 +95,14 @@ const Content = ({ selectedData, language }, { intl }) => {
     [language, selectedData]
   );
 
+  const eventArgs = useMemo(
+    () => ({
+      language,
+      limit: 10
+    }),
+    [language]
+  );
+
   const ModalPageContent = useMemo(
     () => PAGE_CONTENT_TYPE_MAP[selected?.type],
     [selected?.type]
@@ -106,6 +118,18 @@ const Content = ({ selectedData, language }, { intl }) => {
     enabled: selectedData.routes?.length > 0,
     getData: getRoutesList,
     args: routeArgs
+  });
+
+  const { data: eventData } = useListData({
+    enabled: !!selectedData,
+    coordinatesBounds,
+    location: {
+      lat: selectedData.lat,
+      lon: selectedData.lon,
+      hasLocation: true
+    },
+    getData: getEventList,
+    args: eventArgs
   });
 
   const navigate = useCallback(
@@ -175,6 +199,19 @@ const Content = ({ selectedData, language }, { intl }) => {
         </div>
       )}
 
+      <div className="list">
+        <h3 className="list-title">{`${intl.messages['events-blocks-title']} ${selectedData.name}`}</h3>
+        <div className="list-scroll">
+          <List
+            type="events"
+            cardType="large"
+            data={eventData}
+            open={open}
+            setSelected={setSelected}
+          />
+        </div>
+      </div>
+
       <button
         className="start-trip-button padding"
         type="button"
@@ -209,7 +246,8 @@ Content.propTypes = {
 };
 
 Content.contextTypes = {
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  config: configShape.isRequired
 };
 
 export const PageContent = connectToStores(

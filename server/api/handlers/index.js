@@ -8,7 +8,6 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
 
   if (!validation.isEmpty()) {
     const [{ msg }] = validation.array();
-    console.log('ERROR MSG: ', msg);
     return response.status(400).send(msg);
   }
 

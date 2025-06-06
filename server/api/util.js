@@ -61,6 +61,17 @@ export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
       return;
     }
 
+    if (data.type === 'Event' && !Object.keys(data).includes('categories')) {
+      if (arrQuery.length === 0) {
+        arrQuery.push(`endDate>='${getDate()}'`);
+        arrQuery.push(`startDate<='${getDateInFutureDays(7)}'`);
+
+        if (dataProvider?.events) {
+          arrQuery.push(`dataProvider==${dataProvider.events}`);
+        }
+      }
+    }
+
     if (key === 'categories') {
       const mappedCategories = value?.map(
         categoryKey =>

@@ -845,6 +845,7 @@ const translations = {
     pois: 'Points of interest',
     'pois-blocks-title': 'What to visit',
     'routes-blocks-title': 'Appears in Routes',
+    'events-blocks-title': 'Happening at',
     events: 'Events',
     'select-at-least-one-category': 'Select at least one category',
     'search-results': 'results',
@@ -5237,6 +5238,7 @@ const translations = {
     pois: 'Pontos de Interesse',
     'pois-blocks-title': 'O que visitar',
     'routes-blocks-title': 'Aparece nos Roteiros',
+    'events-blocks-title': 'A acontecer no',
     events: 'Eventos',
     'public-transport': 'Transportes Públicos',
     'add-via-duration-button-label':
