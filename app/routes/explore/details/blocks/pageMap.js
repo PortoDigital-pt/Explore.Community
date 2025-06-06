@@ -5,9 +5,10 @@ import { connectToStores } from 'fluxible-addons-react';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
 import MapWithTracking from '../../../../component/map/MapWithTracking';
 import Loading from '../../../../component/Loading';
-import { getPoiList } from '../../../../util/amporto/api';
+import { getPoiList, getBlockById } from '../../../../util/amporto/api';
 import { boundWithMinimumArea } from '../../../../util/geo-utils';
 import useListData from '../../../../hooks/useListData';
+import useSelectedData from '../../../../hooks/useSelectedData';
 import { setupMapLayerStore } from '../../../../action/MapLayerActions';
 
 const getBounds = data =>
@@ -26,6 +27,12 @@ const BlockDetailsPageMap = (
     [language, match.params.id]
   );
 
+  const { selectedData } = useSelectedData({
+    id: match.params.id,
+    language,
+    getDataById: getBlockById
+  });
+
   const { data, error } = useListData({
     getData: getPoiList,
     args
@@ -42,6 +49,9 @@ const BlockDetailsPageMap = (
   return (
     <MapWithTracking
       bounds={getBounds(data)}
+      lat={selectedData?.lat}
+      lon={selectedData?.lon}
+      zoom={14}
       mapLayers={{ filter: { pois: data.map(({ id }) => id) }, ...mapLayers }}
       showExplore
     />
