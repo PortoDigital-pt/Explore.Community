@@ -3,7 +3,7 @@ import { string, func } from 'prop-types';
 import { matchShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
-import MapWithTracking from '../../../../component/map/MapWithTracking';
+import Map from '../../../../component/map/MapContainer';
 import Loading from '../../../../component/Loading';
 import { getPoiList, getBlockById } from '../../../../util/amporto/api';
 import { boundWithMinimumArea } from '../../../../util/geo-utils';
@@ -47,7 +47,8 @@ const BlockDetailsPageMap = (
   }
 
   return (
-    <MapWithTracking
+    <Map
+      className="flex-grow"
       bounds={getBounds(data)}
       lat={selectedData?.lat}
       lon={selectedData?.lon}
