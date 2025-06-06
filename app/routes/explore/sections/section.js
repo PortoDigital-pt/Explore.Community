@@ -108,7 +108,7 @@ const Section = (
         </button>
       )}
 
-      {isOpen && selected !== null && (
+      {isOpen && selected !== null && ModalPageContent && (
         <DetailsContentModal
           isOpen={isOpen}
           data={selected}

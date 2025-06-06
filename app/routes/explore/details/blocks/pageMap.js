@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { string } from 'prop-types';
+import React, { useMemo, useEffect } from 'react';
+import { string, func } from 'prop-types';
 import { matchShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
@@ -8,20 +8,19 @@ import Loading from '../../../../component/Loading';
 import { getPoiList } from '../../../../util/amporto/api';
 import { boundWithMinimumArea } from '../../../../util/geo-utils';
 import useListData from '../../../../hooks/useListData';
+import { setupMapLayerStore } from '../../../../action/MapLayerActions';
 
 const getBounds = data =>
   boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
 
-const forceDisplayInMap = mapLayers =>
-  Object.entries(mapLayers).reduce((acc, [key, values]) => {
-    const forcedValues = Object.keys(values).reduce(
-      (innerAcc, innerKey) => ({ ...innerAcc, [innerKey]: true }),
-      {}
-    );
-    return { ...acc, [key]: forcedValues };
-  }, {});
+const BlockDetailsPageMap = (
+  { language, mapLayers },
+  { match, executeAction }
+) => {
+  useEffect(() => {
+    executeAction(setupMapLayerStore);
+  }, []);
 
-const BlockDetailsPageMap = ({ language, mapLayers }, { match }) => {
   const args = useMemo(
     () => ({ language, block: match.params.id }),
     [language, match.params.id]
@@ -43,17 +42,15 @@ const BlockDetailsPageMap = ({ language, mapLayers }, { match }) => {
   return (
     <MapWithTracking
       bounds={getBounds(data)}
-      mapLayers={{
-        filter: { pois: data.map(({ id }) => id) },
-        ...forceDisplayInMap(mapLayers)
-      }}
+      mapLayers={{ filter: { pois: data.map(({ id }) => id) }, ...mapLayers }}
       showExplore
     />
   );
 };
 
 BlockDetailsPageMap.contextTypes = {
-  match: matchShape.isRequired
+  match: matchShape.isRequired,
+  executeAction: func.isRequired
 };
 
 BlockDetailsPageMap.propTypes = {
