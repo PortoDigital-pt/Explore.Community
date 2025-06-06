@@ -12,7 +12,7 @@ export const RoutesDetails = (
   <div className="detail-info">
     {showDescription && (
       <div className="description">
-        <span>{selectedData.description}</span>
+        <span className="truncate-description">{selectedData.description}</span>
       </div>
     )}
 
