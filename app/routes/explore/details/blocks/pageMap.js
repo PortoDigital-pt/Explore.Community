@@ -12,6 +12,15 @@ import useListData from '../../../../hooks/useListData';
 const getBounds = data =>
   boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
 
+const forceDisplayInMap = mapLayers =>
+  Object.entries(mapLayers).reduce((acc, [key, values]) => {
+    const forcedValues = Object.keys(values).reduce(
+      (innerAcc, innerKey) => ({ ...innerAcc, [innerKey]: true }),
+      {}
+    );
+    return { ...acc, [key]: forcedValues };
+  }, {});
+
 const BlockDetailsPageMap = ({ language, mapLayers }, { match }) => {
   const args = useMemo(
     () => ({ language, block: match.params.id }),
@@ -34,7 +43,10 @@ const BlockDetailsPageMap = ({ language, mapLayers }, { match }) => {
   return (
     <MapWithTracking
       bounds={getBounds(data)}
-      mapLayers={{ filter: data.map(({ id }) => id), ...mapLayers }}
+      mapLayers={{
+        filter: { pois: data.map(({ id }) => id) },
+        ...forceDisplayInMap(mapLayers)
+      }}
       showExplore
     />
   );
@@ -54,6 +66,9 @@ export default connectToStores(
   ['PreferencesStore', 'MapLayerStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),
-    mapLayers: getStore('MapLayerStore').getFilterLayers({ only: 'pois' })
+    mapLayers: {
+      ...getStore('MapLayerStore').getFilterLayers({ only: 'pois' }),
+      ...getStore('MapLayerStore').getFilterLayers({ only: 'events' })
+    }
   })
 );

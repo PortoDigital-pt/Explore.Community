@@ -6,7 +6,10 @@ import {
   isExploreFeatureEnabled,
   isCategoryEnabled
 } from '../../../util/mapLayerUtils';
-import { drawExploreIcon } from '../../../util/mapIconUtils';
+import {
+  drawExploreIcon,
+  getFixedSizeIconStyle
+} from '../../../util/mapIconUtils';
 
 const isValidDataProvider = (providersString, currentProvider) =>
   providersString.split(',').includes(currentProvider);
@@ -59,10 +62,10 @@ class Explore {
             for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
               const feature = layer.feature(i);
               const canBeDrawed =
-                !this.mapLayers.filter ||
-                this.mapLayers.filter.includes(feature.properties.id);
-              const customSize = this.mapLayers.filter
-                ? { width: 50, height: 50, style: 'large' }
+                !this.mapLayers.filter?.[type] ||
+                this.mapLayers.filter[type].includes(feature.properties.id);
+              const customSize = this.mapLayers.filter?.[type]
+                ? getFixedSizeIconStyle()
                 : null;
 
               if (!canBeDrawed) {

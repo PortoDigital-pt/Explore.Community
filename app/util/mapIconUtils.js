@@ -140,7 +140,7 @@ export function getStopIconStyles(type, zoom, isHighlighted) {
 }
 
 export function getFixedSizeIconStyle() {
-  return { width: 50, height: 50, style: 'large' };
+  return { width: 60, height: 60, style: 'large' };
 }
 
 /**
