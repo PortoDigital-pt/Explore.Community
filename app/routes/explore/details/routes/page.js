@@ -8,8 +8,13 @@ import ImageSlider from '../../../../component/amporto/image-slider';
 import { routesShape } from './shape';
 import { RoutesDetails } from './detail';
 import { getItineraryPath } from './util';
+import useExpandableDescription from '../../../../hooks/useExpandableDescription';
 
 export const PageContent = ({ selectedData }, { intl, getStore }) => {
+  const ExpandableDescription = useExpandableDescription({
+    description: selectedData.description,
+    intl
+  });
   const { router } = useRouter();
   const [showMore, setShowMore] = useState(false);
   const location = getStore('PositionStore').getLocationState();
@@ -35,7 +40,7 @@ export const PageContent = ({ selectedData }, { intl, getStore }) => {
         {selectedData.description && (
           <div className="description">
             <h3>{intl.messages.about}</h3>
-            <p>{selectedData.description}</p>
+            <ExpandableDescription />
           </div>
         )}
 

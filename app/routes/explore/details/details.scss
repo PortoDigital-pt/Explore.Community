@@ -135,7 +135,18 @@
       position: relative;
       flex-direction: column;
       align-items: flex-start;
-      row-gap: 5px;
+      gap: 5px;
+
+      .read-more-button {
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: $primary-main;
+        text-decoration: underline;
+        font-weight: $font-weight-regular;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+      }
     }
 
     .itinerary-header {

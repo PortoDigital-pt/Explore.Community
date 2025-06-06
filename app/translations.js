@@ -821,6 +821,8 @@ const translations = {
     zones: 'Tarifzonen'
   },
   en: {
+    'read-more': 'Read more',
+    'read-less': 'Read less',
     'find-all-blocks': 'Find all blocks',
     'routes-list-title': 'City tour routes',
     'routes-details-title': 'City tour points',
@@ -1573,7 +1575,6 @@ const translations = {
     'public-transport': 'Public transport',
     rail: 'Commuter train',
     'rail-with-route-number': 'Train {routeNumber} {headSign}',
-    'read-more': 'Read more',
     realtime: 'Real-time',
     'realtime-matching': 'Real-time integration',
     releases: 'Releases',
@@ -5178,6 +5179,8 @@ const translations = {
   },
 
   pt: {
+    'read-more': 'Ler mais',
+    'read-less': 'Ler menos',
     // ---------- NEW TRANSLATIONS BELOW ------------
     'find-all-blocks': 'Descubra todos os quarteirões',
     'routes-list-title': 'Roteiros pela cidade',
@@ -6218,7 +6221,6 @@ const translations = {
     position: 'Posição',
     preview: 'Previsualizar',
     'privacy-statement': 'Declaração de privacidade',
-    'read-more': 'Ler mais',
     'remove-favourite': 'Remover dos favoritos',
     'rent-e-scooter-at':
       'Utilize uma aplicação para desbloquear a scooter elétrica',

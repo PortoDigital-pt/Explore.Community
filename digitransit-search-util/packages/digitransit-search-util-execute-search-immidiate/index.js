@@ -437,7 +437,7 @@ export async function getSearchResults(
       exploreLayers.push('tourist_trips');
     }
 
-     if (targets.includes('Explore-blocks')) {
+    if (targets.includes('Explore-blocks')) {
       exploreSources.push('visit_porto');
       exploreLayers.push('venue_groups');
     }

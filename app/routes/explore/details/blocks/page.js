@@ -11,6 +11,7 @@ import Skeleton from '../../../../component/amporto/skeleton';
 import { blockShape } from './shape';
 import useListData from '../../../../hooks/useListData';
 import useModal from '../../../../hooks/useModal';
+import useExpandableDescription from '../../../../hooks/useExpandableDescription';
 import {
   getPoiList,
   getRoutesList,
@@ -67,6 +68,10 @@ const List = ({ type, data, cardType, setSelected, open }) => {
 };
 
 const Content = ({ selectedData, language }, { intl }) => {
+  const ExpandableDescription = useExpandableDescription({
+    description: selectedData.description,
+    intl
+  });
   const { isOpen, open, close } = useModal();
   const [selected, setSelected] = useState(null);
   const { router } = useRouter();
@@ -135,7 +140,7 @@ const Content = ({ selectedData, language }, { intl }) => {
         {selectedData.description && (
           <div className="description">
             <h3>{intl.messages.about}</h3>
-            <p>{selectedData.description}</p>
+            <ExpandableDescription />
           </div>
         )}
       </div>
@@ -219,6 +224,10 @@ const MobileDetails = (
   { location, onDetails, selectedData, showShare = false },
   { intl, executeAction }
 ) => {
+  const ExpandableDescription = useExpandableDescription({
+    description: selectedData.description,
+    intl
+  });
   const distanceToBlock = useDistanceToTarget({
     executeAction,
     location,
@@ -256,7 +265,9 @@ const MobileDetails = (
           </div>
         )}
         <div className="details">
-          <p>{selectedData.description}</p>
+          <div className="description">
+            <ExpandableDescription />
+          </div>
         </div>
       </div>
 

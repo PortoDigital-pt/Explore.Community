@@ -20,6 +20,7 @@ import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
+import useExpandableDescription from '../../../../hooks/useExpandableDescription';
 
 export const poiShape = shape({
   type: string.isRequired,
@@ -205,59 +206,70 @@ export const MobileContent = connectToStores(
   })
 );
 
-export const PageContent = ({ selectedData }, { intl }) => (
-  <>
-    {selectedData.images && (
-      <div className="image">
-        <ImageSlider images={selectedData.images} name={selectedData.name} />
-      </div>
-    )}
-    <div
-      className={classname('details', { lower: selectedData.images === null })}
-    >
-      {selectedData.description && (
-        <div className="description">
-          <h3>{intl.messages.about}</h3>
-          <p>{selectedData.description}</p>
+export const PageContent = ({ selectedData }, { intl }) => {
+  const ExpandableDescription = useExpandableDescription({
+    description: selectedData.description,
+    intl
+  });
+
+  return (
+    <>
+      {selectedData.images && (
+        <div className="image">
+          <ImageSlider images={selectedData.images} name={selectedData.name} />
         </div>
       )}
-      {selectedData.calendar && (
-        <div className="description">
-          <h3>{intl.messages['opening-hours']}</h3>
-          {selectedData.calendar.map(schedule => (
-            <p key={schedule}>{schedule}</p>
-          ))}
+      <div
+        className={classname('details', {
+          lower: selectedData.images === null
+        })}
+      >
+        {selectedData.description && (
+          <div className="description">
+            <h3>{intl.messages.about}</h3>
+            <ExpandableDescription />
+          </div>
+        )}
+        {selectedData.calendar && (
+          <div className="description">
+            <h3>{intl.messages['opening-hours']}</h3>
+            {selectedData.calendar.map(schedule => (
+              <p key={schedule}>{schedule}</p>
+            ))}
+          </div>
+        )}
+        <div className="contacts">
+          {selectedData.priceRange && (
+            <div>
+              <Icon img="icon-cost" viewBox="0 0 16 16" />
+              <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
+            </div>
+          )}
+          {selectedData.contacts?.url && (
+            <div>
+              <Icon img="icon-website" viewBox="0 0 16 16" />
+              <a
+                href={selectedData.contacts.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Website
+              </a>
+            </div>
+          )}
+          {selectedData.contacts?.telephone && (
+            <div>
+              <Icon img="icon-phone" viewBox="0 0 16 16" />
+              <p>
+                {selectedData.contacts.telephone ?? 'No information at all'}
+              </p>
+            </div>
+          )}
         </div>
-      )}
-      <div className="contacts">
-        {selectedData.priceRange && (
-          <div>
-            <Icon img="icon-cost" viewBox="0 0 16 16" />
-            <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
-          </div>
-        )}
-        {selectedData.contacts?.url && (
-          <div>
-            <Icon img="icon-website" viewBox="0 0 16 16" />
-            <a
-              href={selectedData.contacts.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Website
-            </a>
-          </div>
-        )}
-        {selectedData.contacts?.telephone && (
-          <div>
-            <Icon img="icon-phone" viewBox="0 0 16 16" />
-            <p>{selectedData.contacts.telephone ?? 'No information at all'}</p>
-          </div>
-        )}
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 PageContent.propTypes = {
   selectedData: poiShape.isRequired
