@@ -37,7 +37,7 @@ const SelectExploreRow = ({ language, type, properties }, { config }) => {
 
 SelectExploreRow.propTypes = {
   language: string.isRequired,
-  type: oneOf(['pois', 'events', 'accesspoints']).isRequired,
+  type: oneOf(['pois', 'events', 'accesspoints', 'blocks', 'routes']).isRequired,
   properties: shape().isRequired
 };
 
