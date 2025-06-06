@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 import { connectToStores } from 'fluxible-addons-react';
 import { configShape } from '../../../../util/shapes';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
-import MapWithTracking from '../../../../component/map/MapWithTracking';
+import Map from '../../../../component/map/MapContainer';
 import useListData from '../../../../hooks/useListData';
 import { getBlockList } from '../../../../util/amporto/api';
 import { boundWithMinimumArea } from '../../../../util/geo-utils';
@@ -29,7 +29,8 @@ const BlockListMap = ({ mapLayers, language }) => {
   }
 
   return (
-    <MapWithTracking
+    <Map
+      className="flex-grow"
       bounds={getBounds(data)}
       mapLayers={mapLayers}
       showBlocks
