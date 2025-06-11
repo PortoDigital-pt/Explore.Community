@@ -60,9 +60,10 @@ sonarqube-check-without-coverage:
 build-development:
   stage: build
   script:
+    - apk add --no-cache bash
     - git clone $REPO_URL
     - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
-    - explore-porto-resources/scripts/amporto-apply-resources.sh
+    - ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_Dev" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
@@ -75,9 +76,10 @@ build-development:
 build-qa:
   stage: build
   script:
+    - apk add --no-cache bash
     - git clone $REPO_URL
     - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
-    - explore-porto-resources/scripts/amporto-apply-resources.sh
+    - ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_QA" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
