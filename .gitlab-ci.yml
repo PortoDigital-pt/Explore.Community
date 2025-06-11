@@ -61,10 +61,8 @@ build-development:
   stage: build
   script:
     - git clone $REPO_URL
-    - cd explore-porto-resources/scripts
-    - chmod +x amporto-apply-resources.sh
-    - ./amporto-apply-resources.sh
-    - cd ../..
+    - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
+    - sh ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_Dev" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
@@ -78,10 +76,8 @@ build-qa:
   stage: build
   script:
     - git clone $REPO_URL
-    - cd explore-porto-resources/scripts
-    - chmod +x amporto-apply-resources.sh
-    - ./amporto-apply-resources.sh
-    - cd ../..
+    - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
+    - sh ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_QA" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
