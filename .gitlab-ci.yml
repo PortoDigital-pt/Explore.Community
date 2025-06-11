@@ -60,7 +60,7 @@ sonarqube-check-without-coverage:
 build-development:
   stage: build
   script:
-    - git clone https://gitlab.portodigital.pt/digital-services/apd/explore.community/explore-porto-resources.git
+    - git clone $REPO_URL
     - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_Dev" > .env
@@ -75,7 +75,7 @@ build-development:
 build-qa:
   stage: build
   script:
-    - git clone https://gitlab.portodigital.pt/digital-services/apd/explore.community/explore-porto-resources.git
+    - git clone $REPO_URL
     - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_QA" > .env
