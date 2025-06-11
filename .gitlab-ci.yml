@@ -60,9 +60,13 @@ sonarqube-check-without-coverage:
 build-development:
   stage: build
   script:
+    - git clone https://gitlab.portodigital.pt/digital-services/apd/explore.community/explore-porto-resources.git
+    - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
+    - ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_Dev" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
+    - rm -rfv ./explore-porto-resources
   only:
     refs:
       - development
@@ -71,9 +75,13 @@ build-development:
 build-qa:
   stage: build
   script:
+    - git clone https://gitlab.portodigital.pt/digital-services/apd/explore.community/explore-porto-resources.git
+    - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
+    - ./explore-porto-resources/scripts/amporto-apply-resources.sh
     - echo "$APP_QA" > .env
     - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
+    - rm -rfv ./explore-porto-resources
   rules:
     - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main' && ($PREPRODUCTION != "true" || $PRODUCTION != "true")
 
