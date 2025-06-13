@@ -85,8 +85,7 @@ build-qa:
     - docker push $CONTAINER_TEST_IMAGE
     - rm -rfv ./explore-porto-resources
   rules:
-    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main' && ($PREPRODUCTION != "true" || $PRODUCTION != "true")
-
+    - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "qa" && $PREPRODUCTION == "false" && $PRODUCTION == "false")
 trivy:
   stage: testimage
   allow_failure: true
@@ -118,7 +117,7 @@ release-image-qa:
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_QA_IMAGE
     - docker push $CONTAINER_RELEASE_QA_IMAGE
   rules:
-    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'qa' && ($PREPRODUCTION != "true" || $PRODUCTION != "true")
+    - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "qa" && $PREPRODUCTION == "false" && $PRODUCTION == "false")
 
 deploy-development:
   stage: deploy
