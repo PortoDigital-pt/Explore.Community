@@ -86,6 +86,7 @@ build-qa:
     - rm -rfv ./explore-porto-resources
   rules:
     - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "qa" && $PREPRODUCTION == "false" && $PRODUCTION == "false")
+
 trivy:
   stage: testimage
   allow_failure: true
@@ -145,7 +146,7 @@ deploy-qa:
     - mkdir TMPDIR
     - cd TMPDIR
     - echo "$APP_QA" > .env
-    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/deploy-qa.yml/raw?ref=main" > deploy_qa.yml'
+    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/deploy_qa.yml/raw?ref=main" > deploy_qa.yml'
     - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/hosts/raw?ref=main" > hosts'
     - ansible-playbook ./deploy_qa.yml -i ./hosts -e group=$SERVERS -e NEXUS_USER=$NEXUS_USER -e NEXUS_PASSWORD=$NEXUS_PASSWORD -e PROJECT_IMAGE=$CONTAINER_RELEASE_QA_IMAGE
     - cd ..
