@@ -39,7 +39,7 @@ include:
     inputs:
       host-url: ${SONAR_HOST_URL}
       git-branch: 'pipeline/sonar'
-      scanner-image: sonarsource/sonar-scanner-cli:11.2
+      scanner-image: sonarsource/sonar-scanner-cli:11.1
 
 build-development:
   stage: build
