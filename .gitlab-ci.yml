@@ -35,11 +35,11 @@ before_script:
   - chmod 600 ~/.ssh/id_ed25519 || echo "chmod command ignored"
 
 include:
-  - component: $CI_SERVER_FQDN/digital-services/core/sonar-component/sonar-component@0.0.6
+  - component: $CI_SERVER_FQDN/digital-services/core/sonar-component/sonar-component@0.0.8
     inputs:
       host-url: ${SONAR_HOST_URL}
       git-branch: 'pipeline/sonar'
-      scanner-image: sonarsource/sonar-scanner-cli:latest
+      scanner-image: sonarsource/sonar-scanner-cli:11
 
 build-development:
   stage: build
