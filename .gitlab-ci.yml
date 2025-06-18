@@ -38,7 +38,7 @@ include:
   - component: $CI_SERVER_FQDN/digital-services/core/sonar-component/sonar-component@0.0.6
     inputs:
       host-url: ${SONAR_HOST_URL}
-      git-branch: 'pipeline/sonar'
+      git-branch: 'development'
       scanner-image: sonarsource/sonar-scanner-cli:11
 
 build-development:
