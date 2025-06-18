@@ -5,7 +5,7 @@ default:
       alias: docker
 
 stages:
-  - analize
+  - analysis
   - build
   - testimage
   - release
@@ -34,28 +34,12 @@ before_script:
   - ( echo "$DEVBOX01_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519 ) || echo "ssh key ignored"
   - chmod 600 ~/.ssh/id_ed25519 || echo "chmod command ignored"
 
-sonarqube-check-without-coverage:
-  stage: analize
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: ['']
-  variables:
-    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
-    GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
-  cache:
-    key: '${CI_JOB_NAME}'
-    paths:
-      - .sonar/cache
-  script:
-    - sonar-scanner -Dsonar.projectKey=$(echo "$CI_PROJECT_PATH" | rev | cut -d'/' -f -1 | rev | tr '[:upper:]' '[:lower:]') -Dsonar.qualitygate.wait=true -X # projectKey is unique for each project
-  allow_failure: true
-  only:
-    refs:
-      - main
-  except:
-    variables:
-      - $PRODUCTION == "true" || $PREPRODUCTION == "true"
-
+include:
+  - component: $CI_SERVER_FQDN/digital-services/core/sonar-component/sonar-component@0.0.6
+    inputs:
+      host-url: ${SONAR_HOST_URL}
+      git-branch: 'development'
+      scanner-image: sonarsource/sonar-scanner-cli:11
 
 build-development:
   stage: build
@@ -71,7 +55,6 @@ build-development:
   only:
     refs:
       - development
-
 
 build-qa:
   stage: build
