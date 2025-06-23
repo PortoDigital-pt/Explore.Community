@@ -46,7 +46,7 @@ $background-color-darker: #e0e5e8;
 $background-color-lighter: $background-light;
 $primary-color: $primary-dark;
 $primary-font-color: $primary-contrastText;
-$secondary-color:darken($primary-color, 20%);
+$secondary-color: darken($primary-color, 20%);
 $favourite-color: $livi-gold;
 $hilight-color: $primary-color;
 $action-color: $primary-color;
@@ -86,12 +86,12 @@ $disclaimer-border-color: #fed100;
 
 /* Vehicle palette */
 
-$bus-color: #A7D9FE;
+$bus-color: #a7d9fe;
 $metro-color: $primary-color;
-$tram-color: #A2874F;
-$pois-color: #99DCD5;
-$events-color: #FEC8A7;
-$citybike-color: #FFE99D;
+$tram-color: #a2874f;
+$pois-color: #99dcd5;
+$events-color: #fec8a7;
+$citybike-color: #ffe99d;
 $taxis-color: #212121;
 
 $airplane-color: $livi-airplane-blue;
