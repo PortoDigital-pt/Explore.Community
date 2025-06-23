@@ -186,7 +186,7 @@ const Page = props => {
                 type="button"
                 className="card-item"
                 aria-label={intl.messages['profile-page-settings-card-title']}
-                onClick={() => null}
+                onClick={() => router.push('/profile/settings')}
               >
                 <Icon
                   img="icon-gear"

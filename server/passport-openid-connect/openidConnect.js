@@ -1,5 +1,6 @@
 import { errorHandler, userAuthenticated } from './utils';
 import favoriteRoutes from '../api/favorites/route';
+import profileRoutes from '../api/profile/route';
 /* eslint-disable func-names, no-console */
 const passport = require('passport');
 const session = require('express-session');
@@ -259,6 +260,7 @@ export default function setUpOIDC(app, port, indexPath, hostnames) {
   });
 
   app.use(favoriteRoutes);
+  app.use(profileRoutes);
 
   app.use('/api/user/notifications', userAuthenticated, function (req, res) {
     const params = Object.keys(req.query)

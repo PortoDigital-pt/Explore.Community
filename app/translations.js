@@ -821,6 +821,16 @@ const translations = {
     zones: 'Tarifzonen'
   },
   en: {
+    'settings-page-title': 'Account settings',
+    'settings-page-item-remove-account-title': 'Remove account',
+    'settings-page-popup-title': 'Remove account?',
+    'settings-page-popup-header':
+      'Removing your account is permanent and irreversible',
+    'settings-page-popup-info':
+      'By deleting your account, you will lose access to all services and content. All your personal information, favorites, and any other data associated with your account will be deleted.',
+    'settings-page-popup-btn-cancel': 'Cancel',
+    'settings-page-popup-btn-remove': 'Remove',
+    'settings-page-popup-error': 'Error removing your account',
     'read-more': 'Read more',
     'read-less': 'Read less',
     'find-all-blocks': 'Find all blocks',
@@ -5180,6 +5190,16 @@ const translations = {
   },
 
   pt: {
+    'settings-page-title': 'Configurações de conta',
+    'settings-page-item-remove-account-title': 'Remover conta',
+    'settings-page-popup-title': 'Remover conta?',
+    'settings-page-popup-header':
+      'Remover a sua conta é permanente e irreversível',
+    'settings-page-popup-info':
+      'Ao remover a sua conta irá perder acesso a todos os serviços e conteúdos. Toda a sua informação pessoal, favoritos, e quaisquer outros dados associados á sua conta serão eliminados.',
+    'settings-page-popup-btn-cancel': 'Cancelar',
+    'settings-page-popup-btn-remove': 'Remover',
+    'settings-page-popup-error': 'Erro ao remover a sua conta',
     'read-more': 'Ler mais',
     'read-less': 'Ler menos',
     // ---------- NEW TRANSLATIONS BELOW ------------
