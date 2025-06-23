@@ -658,3 +658,72 @@
     }
   }
 }
+
+.itinerary-tabs-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  .ongoing-trip-title {
+    display: flex;
+    position: relative;
+    margin: 20px 0 10px 10px;
+    font-size: 20px;
+    color: $primary-dark;
+
+    span {
+      svg {
+        &.ongoing-trip-icon {
+          display: flex;
+          position: relative;
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+  }
+
+  .ongoing-trip-buttons {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 5px 10px;
+    gap: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .go-to-next-point {
+      @include contained-button;
+
+      button {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        gap: 5px;
+        align-items: center;
+
+        span {
+          svg {
+            &.next-point-icon {
+              display: flex;
+              position: relative;
+              width: 24px;
+              height: 24px;
+              color: whitesmoke;
+
+              text {
+                fill: $primary-main;
+                font-size: 22px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cancel-itinerary {
+      @include outlined-button;
+    }
+  }
+}

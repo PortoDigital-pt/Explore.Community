@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { intlShape } from 'react-intl';
 import classname from 'classnames';
 import { useRouter } from 'found';
@@ -9,6 +9,7 @@ import { routesShape } from './shape';
 import { RoutesDetails } from './detail';
 import { getItineraryPath } from './util';
 import useExpandableDescription from '../../../../hooks/useExpandableDescription';
+import { setOngoingTrip } from '../../../../store/sessionStorage';
 
 export const PageContent = ({ selectedData }, { intl, getStore }) => {
   const ExpandableDescription = useExpandableDescription({
@@ -22,6 +23,16 @@ export const PageContent = ({ selectedData }, { intl, getStore }) => {
   const lastIndex = useMemo(() => {
     return selectedData.pois?.findLastIndex(lastIndex => lastIndex);
   }, [selectedData.pois]);
+
+  const startItinerary = useCallback(() => {
+    setOngoingTrip({
+      route: selectedData,
+      selectedItem: 0
+    });
+
+    const point = selectedData?.pois[0];
+    router.push(getItineraryPath(location, point));
+  }, [selectedData?.pois, location]);
 
   return (
     <>
@@ -109,9 +120,7 @@ export const PageContent = ({ selectedData }, { intl, getStore }) => {
         <button
           className="start-trip-button"
           type="button"
-          onClick={() =>
-            router.push(getItineraryPath(location, selectedData.pois[0]))
-          }
+          onClick={startItinerary}
           aria-label={intl.messages['routes-start-trip']}
         >
           {intl.messages['routes-start-trip']}

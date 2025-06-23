@@ -16,6 +16,7 @@ import FavouriteExplore from '../../../../../component/FavouriteExploreContainer
 import ShareButton from '../../../../../component/amporto/share-button';
 import Icon from '../../../../../component/Icon';
 import { locationShape } from '../../../../../util/shapes';
+import { setOngoingTrip } from '../../../../../store/sessionStorage';
 
 const Page = (
   { selectedData, selectedItem, breakpoint, location },
@@ -25,9 +26,14 @@ const Page = (
   const { isOpen, open, close } = useModal();
 
   const startItinerary = useCallback(() => {
+    setOngoingTrip({
+      route: selectedData,
+      selectedItem
+    });
+
     const point = selectedData?.pois[selectedItem];
     router.push(getItineraryPath(location, point));
-  }, [selectedData?.pois, selectedItem]);
+  }, [selectedData?.pois, selectedItem, location]);
 
   React.useEffect(() => {
     return () => {

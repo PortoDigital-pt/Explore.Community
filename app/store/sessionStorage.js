@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 import { isBrowser } from '../util/browser';
 
 function handleSecurityError(error, logMessage) {
   if (error.name === 'SecurityError') {
     if (logMessage) {
-      console.log(logMessage); // eslint-disable-line no-console
+      console.log(logMessage);
     }
   } else {
     throw error;
@@ -77,4 +78,40 @@ export function setSessionMessageIds(data) {
 
 export function getSessionMessageIds() {
   return getItemAsJson('messages', '[]');
+}
+
+export function setOngoingTrip(value) {
+  setItem('ongoing-trip', value);
+}
+
+export function getOngoingTrip(destinationAddress) {
+  const item = getItem('ongoing-trip');
+
+  if (!item) {
+    return null;
+  }
+
+  if (destinationAddress) {
+    const trip = JSON.parse(item);
+    const destination = trip.route.pois.find(
+      poi => poi.name === destinationAddress
+    );
+
+    if (destination) {
+      trip.selectedItem = destination.position - 1;
+    }
+
+    setOngoingTrip(trip);
+    return trip;
+  }
+
+  return JSON.parse(item);
+}
+
+export function clearOngoingTrip() {
+  try {
+    sessionStorage.removeItem('ongoing-trip');
+  } catch (error) {
+    console.trace(error);
+  }
 }
