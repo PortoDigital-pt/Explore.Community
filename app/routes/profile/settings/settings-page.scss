@@ -1,0 +1,243 @@
+.settings-page {
+  display: flex;
+  position: relative;
+
+  .back-button {
+    position: fixed;
+  }
+
+  .settings-page-container {
+    margin: 24px 24px 0 24px;
+    width: 100%;
+
+    .cards {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      gap: 12px;
+
+      .card-item {
+        display: flex;
+        position: relative;
+        padding: 16px 12px;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        border-radius: 4px;
+        background: $background-default;
+        box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.16);
+        height: 64px;
+
+        .icon-container {
+          display: flex;
+          position: relative;
+
+          .left-icon,
+          .right-icon {
+            display: flex;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            color: $primary-dark;
+          }
+        }
+
+        .icon-container:has(> svg.right-icon) {
+          align-self: center;
+        }
+
+        .text-container {
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 4px;
+          flex: 1 0 0;
+          color: $grey-dark-down;
+          font-family: $font-family;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0.15px;
+
+          .title {
+            display: flex;
+            position: relative;
+            color: $primary-dark;
+            font-family: $font-family;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: $font-weight-bold;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 899px) {
+  .settings-page {
+    margin: 32px 24px;
+
+    .settings-page-container {
+      padding: 0 106px;
+
+      .cards {
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        .card-item {
+          width: 48%;
+        }
+      }
+    }
+  }
+}
+
+.settings-popup {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 auto;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  background-color: $background-default;
+
+  .content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 auto;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    background-color: $background-default;
+    padding: 22px;
+    gap: 10px;
+
+    .error {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 8px;
+      border: 1px solid #DE4C4C;
+      border-radius: 8px;
+      background: #fafafa;
+
+      h3 {
+        color: #DE4C4C;
+      }
+
+    }
+
+    .settings-label-search,
+    .settings-label-name {
+      color: $primary-dark;
+      font-family: $font-family;
+      font-size: $font-size-s;
+      font-style: normal;
+      font-weight: $font-weight-bold;
+    }
+
+    .settings-input-name {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 40px;
+      padding: 8px;
+      gap: 10px;
+      align-self: stretch;
+      border-radius: 8px;
+      border: 1px solid $grey-medium;
+      background: $background-default;
+    }
+
+    .save-button {
+      width: 100%;
+      display: flex;
+      position: relative;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid $primary-color;
+      font-size: $font-size-l;
+      font-weight: $font-weight-bold;
+      align-items: center;
+      background-color: $primary-color;
+      color: $primary-contrastText;
+    }
+
+    .buttons {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      column-gap: 8px;
+
+      button {
+        &.cancel {
+          @include outlined-button;
+        }
+
+        &.confirm {
+          @include contained-button;
+        }
+
+        flex-grow: 1;
+
+        @media (min-width: 400px) {
+          width: 400px;
+        }
+      }
+    }
+
+    @media screen and (min-width: 899px) {
+      top: unset;
+      width: 40%;
+      max-height: 315px;
+      justify-content: start;
+      margin-top: 24px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+
+      .settings-label-search,
+      .settings-label-name {
+        font-size: 16px;
+      }
+
+      .save-button {
+        margin-top: 25px;
+      }
+    }
+
+    .container-spinner-remove-account {
+      z-index: 99999;
+      background: rgba(0, 9, 95, 0.75) !important;
+    }
+  }
+}
+
+.settings-popup-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  flex-grow: 1;
+  z-index: 9999;
+  background: rgba(0, 9, 95, 0.75);
+}

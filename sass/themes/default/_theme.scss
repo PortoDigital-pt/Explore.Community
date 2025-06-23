@@ -187,3 +187,35 @@ $mobile-navigation-bar-height: 64px;
   font-weight: $font-weight-regular;
   line-height: 16px;
 }
+
+@mixin contained-button {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid $primary-color;
+  font-size: $font-size-l;
+  font-weight: $font-weight-bold;
+  align-items: center;
+  background-color: $primary-color;
+  color: $primary-contrastText;
+}
+
+@mixin outlined-button {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid $primary-dark;
+  font-size: $font-size-l;
+  font-weight: $font-weight-bold;
+  align-items: center;
+  background-color: $primary-contrastText;
+  color: $primary-dark;
+}

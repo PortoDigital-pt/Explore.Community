@@ -78,3 +78,18 @@ export function getRefPoint(origin, destination, location) {
   }
   return null;
 }
+
+export const deleteAccount = async () => {
+  try {
+    const res = await retryFetch('/api/user/profile', 0, 0, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    });
+
+    return res.status === 200;
+  } catch (err) {
+    return false;
+  }
+};
