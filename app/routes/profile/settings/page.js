@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
 import { func } from 'prop-types';
