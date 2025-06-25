@@ -244,7 +244,7 @@ class TileContainer {
       );
       features = projectedVehicles.concat(features);
 
-      nearest = features.filter((feature, index) => {
+      nearest = features.filter(feature => {
         if (!feature) {
           return false;
         }
@@ -254,12 +254,11 @@ class TileContainer {
         const featureX = g.x / this.ratio;
         let featureY = g.y / this.ratio;
 
-        let isCombo = false;
-        let secondY;
         let hitRadius;
+        let withinHit = false;
 
         if (
-          (feature.layer === 'stop' && !feature.feature.properties.stops) ||
+          feature.layer === 'stop' ||
           feature.layer === 'citybike' ||
           feature.layer === 'scooter' ||
           feature.layer === 'explore' ||
@@ -268,59 +267,42 @@ class TileContainer {
           feature.layer === 'routes'
         ) {
           const zoom = this.coords.z;
-          // hitbox is same for stop and citybike
           const iconStyles =
+            this.props.fixedSizeIcon ||
             feature.layer === 'blocks' ||
-            (this.props.fixedSizeIcon && feature.layer === 'routes')
+            feature.layer === 'routes'
               ? getFixedSizeIconStyle()
               : feature.layer === 'citybike' || feature.layer === 'taxis'
                 ? getStopIconStyles('citybike', zoom)
                 : getIconStyles(zoom);
+
           if (iconStyles) {
-            const { style } = iconStyles;
             let { height, width } = iconStyles;
             width *= this.scaleratio;
             height *= this.scaleratio;
-            hitRadius = Math.max(width, height) / 2;
-            const circleRadius = width / 2;
-            if (style === 'large' || feature.layer === 'realTimeVehicle') {
-              featureY -= height - circleRadius;
-            }
-            // combo stops have a larger hitbox that is not circular
-            // use two points for collision detection, lower and upper center of icon
-            // features array is sorted by y coord so combo stops should be next to each other
+            hitRadius = this.props.fixedSizeIcon
+              ? Math.max(width, height) * 0.6 + zoom * 2
+              : Math.max(width, height) / 2;
+
             if (
-              index > 0 &&
-              features[index - 1]?.feature.properties.code ===
-                feature.feature.properties.code
+              feature.layer === 'realTimeVehicle' ||
+              feature.layer === 'citybike' ||
+              feature.layer === 'taxis' ||
+              feature.layer === 'explore'
             ) {
-              isCombo = true;
+              featureY -= height / 2;
             }
-            if (
-              index < features.length - 1 &&
-              features[index + 1]?.feature.properties.code ===
-                feature.feature.properties.code
-            ) {
-              isCombo = true;
-            }
-            if (isCombo && style === 'large') {
-              secondY = featureY - width;
-            }
+
+            // Use circular hit radius
+            const dist = Math.sqrt(
+              (localPoint[0] - featureX) ** 2 + (localPoint[1] - featureY) ** 2
+            );
+
+            withinHit = dist < hitRadius;
           }
         }
-        let dist = Math.sqrt(
-          (localPoint[0] - featureX) ** 2 + (localPoint[1] - featureY) ** 2
-        );
-        if (isCombo) {
-          dist = Math.min(
-            dist,
-            Math.sqrt(
-              (localPoint[0] - featureX) ** 2 + (localPoint[1] - secondY) ** 2
-            )
-          );
-        }
 
-        return dist < hitRadius * this.scaleratio;
+        return withinHit;
       });
 
       if (nearest.length === 0 && e.type === 'click') {

@@ -54,6 +54,7 @@ const BlockDetailsPageMap = (
       lon={selectedData?.lon}
       zoom={14}
       mapLayers={{ filter: { pois: data.map(({ id }) => id) }, ...mapLayers }}
+      fixedSizeIcon
       showExplore
     />
   );

@@ -10,7 +10,6 @@ const mapModules = {
 };
 
 function MapContainer({ className, children, ...props }) {
-  console.log('PROPS: ', props);
   const contextPadding = useContext(MapBottomsheetContext);
   return (
     <div className={`map ${className}`}>
