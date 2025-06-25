@@ -69,7 +69,7 @@ const List = ({ type, data, cardType, setSelected, open }) => {
 };
 
 const Content = (
-  { selectedData, language },
+  { selectedData, language, location },
   { intl, config: { coordinatesBounds } }
 ) => {
   const ExpandableDescription = useExpandableDescription({
@@ -215,7 +215,7 @@ const Content = (
       <button
         className="start-trip-button padding"
         type="button"
-        onClick={() => router.push(getItineraryPath(selectedData))}
+        onClick={() => router.push(getItineraryPath(location, selectedData))}
         aria-label={`${intl.messages['block-directions']} ${selectedData.name}`}
       >
         {`${intl.messages['block-directions']} ${selectedData.name}`}
@@ -242,19 +242,21 @@ const Content = (
 
 Content.propTypes = {
   selectedData: blockShape.isRequired,
-  language: string.isRequired
+  language: string.isRequired,
+  location: locationShape.isRequired,
 };
 
 Content.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired
+  config: configShape.isRequired,
 };
 
 export const PageContent = connectToStores(
   Content,
-  ['PreferencesStore'],
+  ['PreferencesStore', 'PositionStore'],
   ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage()
+    language: getStore('PreferencesStore').getLanguage(),
+    location: getStore('PositionStore').getLocationState()
   })
 );
 
