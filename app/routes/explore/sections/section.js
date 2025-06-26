@@ -4,13 +4,13 @@ import { useRouter } from 'found';
 import { arrayOf, string, oneOf, func, bool } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
-import Skeleton from '../../../component/amporto/skeleton';
-import Card from '../../../component/amporto/card';
-import Icon from '../../../component/Icon';
 import useListData from '../../../hooks/useListData';
 import useModal from '../../../hooks/useModal';
 import { PAGE_CONTENT_TYPE_MAP } from '../details/page-content-resolver/page-content';
 import { DetailsContentModal } from '../common';
+import Skeleton from '../../../component/amporto/skeleton';
+import Card from '../../../component/amporto/card';
+import Icon from '../../../component/Icon';
 
 const Section = (
   {
@@ -63,7 +63,7 @@ const Section = (
 
   return (
     <section className="section">
-      <h3 className="title">{intl.messages[title]}</h3>
+      {data?.length > 0 && <h3 className="title">{intl.messages[title]}</h3>}
       {Intro && <Intro />}
       <div className="list">
         <div className="list-scroll">

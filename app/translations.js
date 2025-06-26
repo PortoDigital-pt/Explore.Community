@@ -821,6 +821,9 @@ const translations = {
     zones: 'Tarifzonen'
   },
   en: {
+    'it-is-in-the-routes': 'Appears in Routes',
+    'near-to-event-title': 'Others like this',
+    'near-here': 'Near here',
     'settings-page-title': 'Account settings',
     'settings-page-item-remove-account-title': 'Remove account',
     'settings-page-popup-title': 'Remove account?',
@@ -5190,6 +5193,9 @@ const translations = {
   },
 
   pt: {
+    'it-is-in-the-routes': 'Aparece nos Roteiros',
+    'near-to-event-title': 'Outros como este',
+    'near-here': 'Perto daqui',
     'settings-page-title': 'Configurações de conta',
     'settings-page-item-remove-account-title': 'Remover conta',
     'settings-page-popup-title': 'Remover conta?',

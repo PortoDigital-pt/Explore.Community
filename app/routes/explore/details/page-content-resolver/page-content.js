@@ -3,8 +3,8 @@ import {
   MobileContent as PoiMobilePageContent
 } from '../pois/page';
 import {
-  PageContent as EventPageContent,
-  MobileContent as EventMobilePageContent
+  MobileContent as EventMobilePageContent,
+  PageContent as EventsPageContent
 } from '../events/page';
 import { PageContent as RoutesPageContent } from '../routes/page';
 import { MobileContent as RoutesMobilePageContent } from '../routes/mobile-content';
@@ -22,7 +22,7 @@ export const MOBILE_PAGE_CONTENT_TYPE_MAP = {
 
 export const PAGE_CONTENT_TYPE_MAP = {
   pois: PoiPageContent,
-  events: EventPageContent,
+  events: EventsPageContent,
   routes: RoutesPageContent,
   blocks: BlocksPageContent
 };

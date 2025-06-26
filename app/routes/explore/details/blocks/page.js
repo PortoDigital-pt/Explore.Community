@@ -27,6 +27,7 @@ import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 import { showDistance } from '../../../../util/amporto/geo';
+import { NearByList } from '../nearbyList';
 
 export const Mobile = ({ onDetails, selectedData, innerRef }) => (
   <div className="mobile-view" ref={innerRef}>
@@ -47,25 +48,6 @@ Mobile.propTypes = {
   innerRef: shape(),
   onDetails: func.isRequired,
   selectedData: shape().isRequired
-};
-
-const List = ({ type, data, cardType, setSelected, open }) => {
-  return data === null
-    ? Array.from({ length: 10 }, (_, i) => (
-        <Skeleton key={`${i}-item`} className={`${cardType}-card`} />
-      ))
-    : data.map(item => (
-        <Card
-          key={item.id}
-          className={`${cardType}-card`}
-          onClick={() => {
-            setSelected(item);
-            open();
-          }}
-          data={item}
-          type={type}
-        />
-      ));
 };
 
 const Content = (
@@ -173,7 +155,7 @@ const Content = (
         <div className="list">
           <h3 className="list-title">{intl.messages['pois-blocks-title']}</h3>
           <div className="list-scroll">
-            <List
+            <NearByList
               type="pois"
               cardType="small"
               data={poiData}
@@ -188,7 +170,7 @@ const Content = (
         <div className="list">
           <h3 className="list-title">{intl.messages['routes-blocks-title']}</h3>
           <div className="list-scroll">
-            <List
+            <NearByList
               type="routes"
               cardType="large"
               data={routeData}
@@ -202,7 +184,7 @@ const Content = (
       <div className="list">
         <h3 className="list-title">{`${intl.messages['events-blocks-title']} ${selectedData.name}`}</h3>
         <div className="list-scroll">
-          <List
+          <NearByList
             type="events"
             cardType="large"
             data={eventData}
