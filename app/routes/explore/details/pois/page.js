@@ -256,7 +256,8 @@ const Content = ({ selectedData, language }, { intl, config }) => {
     args: poiArgs
   });
 
-  const filterPoiData = poiData?.filter(poi => poi.id !== selectedData.id);
+  const filterPoiData =
+    poiData?.filter(poi => poi.id !== selectedData.id) ?? null;
 
   const nearbyRoutesArgs = useMemo(
     () => ({
@@ -264,11 +265,11 @@ const Content = ({ selectedData, language }, { intl, config }) => {
       limit: 10,
       itineraryItem: selectedData.id
     }),
-    [language]
+    [language, selectedData.id]
   );
 
   const { data: nearbyRoutesData } = useListData({
-    enabled: selectedData,
+    enabled: !!selectedData,
     getData: getRoutesList,
     args: nearbyRoutesArgs
   });
@@ -329,22 +330,20 @@ const Content = ({ selectedData, language }, { intl, config }) => {
         </div>
       </div>
 
-      {(filterPoiData ?? selectedData.id)?.length > 0 && (
-        <div className="list">
-          <h3 className="list-title">{intl.messages['near-here']}</h3>
-          <div className="list-scroll">
-            <NearByList
-              type="pois"
-              cardType="small"
-              data={filterPoiData || []}
-              open={open}
-              setSelected={setSelected}
-            />
-          </div>
+      <div className="list">
+        <h3 className="list-title">{intl.messages['near-here']}</h3>
+        <div className="list-scroll">
+          <NearByList
+            type="pois"
+            cardType="small"
+            data={filterPoiData}
+            open={open}
+            setSelected={setSelected}
+          />
         </div>
-      )}
+      </div>
 
-      {(nearbyRoutesData ?? selectedData.id)?.length > 0 && (
+      {nearbyRoutesData?.length > 0 && (
         <div className="list">
           <h3 className="list-title">{intl.messages['it-is-in-the-routes']}</h3>
           <div className="list-scroll">
