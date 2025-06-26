@@ -1,15 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import moment from 'moment';
 import classname from 'classnames';
-import {
-  string,
-  func,
-  shape,
-  bool,
-  oneOfType,
-  arrayOf,
-  number
-} from 'prop-types';
+import { string, func, shape, bool } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
 import { useRouter } from 'found';
@@ -301,9 +293,8 @@ const Content = ({ selectedData, language }, { intl, config }) => {
     args: nearEventsArgs
   });
 
-  const filterEventsData = nearEventsData?.filter(
-    event => event.id !== selectedData.id
-  );
+  const filterEventsData =
+    nearEventsData?.filter(event => event.id !== selectedData.id) ?? null;
 
   return (
     <>
@@ -336,35 +327,31 @@ const Content = ({ selectedData, language }, { intl, config }) => {
         </div>
       </div>
 
-      {filterEventsData && (
-        <div className="list">
-          <h3 className="list-title">{intl.messages['near-to-event-title']}</h3>
-          <div className="list-scroll">
-            <NearByList
-              type="events"
-              cardType="large"
-              data={filterEventsData}
-              open={open}
-              setSelected={setSelected}
-            />
-          </div>
+      <div className="list">
+        <h3 className="list-title">{intl.messages['near-to-event-title']}</h3>
+        <div className="list-scroll">
+          <NearByList
+            type="events"
+            cardType="large"
+            data={filterEventsData}
+            open={open}
+            setSelected={setSelected}
+          />
         </div>
-      )}
+      </div>
 
-      {(poiData ?? selectedData.id)?.length > 0 && (
-        <div className="list">
-          <h3 className="list-title">{intl.messages['near-here']}</h3>
-          <div className="list-scroll">
-            <NearByList
-              type="pois"
-              cardType="small"
-              data={poiData}
-              open={open}
-              setSelected={setSelected}
-            />
-          </div>
+      <div className="list">
+        <h3 className="list-title">{intl.messages['near-here']}</h3>
+        <div className="list-scroll">
+          <NearByList
+            type="pois"
+            cardType="small"
+            data={poiData}
+            open={open}
+            setSelected={setSelected}
+          />
         </div>
-      )}
+      </div>
 
       {isOpen && selected !== null && ModalPageContent && (
         <DetailsContentModal

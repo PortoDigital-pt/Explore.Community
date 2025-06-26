@@ -7,7 +7,6 @@ import classname from 'classnames';
 import { locationShape, configShape } from '../../../../util/shapes';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import Card from '../../../../component/amporto/card';
-import Skeleton from '../../../../component/amporto/skeleton';
 import { blockShape } from './shape';
 import useListData from '../../../../hooks/useListData';
 import useModal from '../../../../hooks/useModal';
@@ -225,12 +224,12 @@ const Content = (
 Content.propTypes = {
   selectedData: blockShape.isRequired,
   language: string.isRequired,
-  location: locationShape.isRequired,
+  location: locationShape.isRequired
 };
 
 Content.contextTypes = {
   intl: intlShape.isRequired,
-  config: configShape.isRequired,
+  config: configShape.isRequired
 };
 
 export const PageContent = connectToStores(
