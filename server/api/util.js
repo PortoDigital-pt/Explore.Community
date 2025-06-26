@@ -61,6 +61,11 @@ export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
       return;
     }
 
+    if (data.type === 'TouristTrip' && key === 'itineraryItem') {
+      arrQuery.push(`itinerary.itemListElement.item==${value}`);
+      return;
+    }
+
     if (data.type === 'Event' && !Object.keys(data).includes('categories')) {
       if (arrQuery.length === 0) {
         arrQuery.push(`endDate>='${getDate()}'`);
