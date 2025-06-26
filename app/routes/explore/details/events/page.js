@@ -267,12 +267,10 @@ const Content = ({ selectedData, language }, { intl, config }) => {
   });
 
   const nearEventsArgs = useMemo(() => {
-    const mappedCategories = selectedData?.category?.map(
-      cat =>
-        Object.values(config.filters.events).find(
-          // eslint-disable-next-line no-unused-vars
-          value => value[language] === cat
-        )[0]
+    const mappedCategories = selectedData?.category?.map(cat =>
+      Object.keys(config.filters.events).find(
+        key => config.filters.events[key][language] === cat
+      )
     );
     return {
       language,
