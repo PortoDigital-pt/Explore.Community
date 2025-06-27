@@ -1,7 +1,6 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useMemo, useState } from 'react';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
-import { func } from 'prop-types';
 import { configShape, userShape } from '../../../util/shapes';
 import BackButton from '../../../component/BackButton';
 import Icon from '../../../component/Icon';
@@ -9,12 +8,17 @@ import useModal from '../../../hooks/useModal';
 import CustomModal from '../../../component/amporto/modal';
 import { deleteAccount } from '../../../util/apiUtils';
 import Loading from '../../../component/Loading';
+import ManageCookies from './manageCookies';
 
 const SettingsPage = ({ user }, { config, intl }) => {
   const { isOpen, open, close } = useModal();
+  const {
+    isOpen: isOpenCookie,
+    open: openCookie,
+    close: closeCookie
+  } = useModal();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-
   const removeAccount = async () => {
     if (!isLoading) {
       setIsLoading(true);
@@ -31,16 +35,7 @@ const SettingsPage = ({ user }, { config, intl }) => {
     }
   };
 
-  useEffect(() => {
-    if (config.allowLogin && !user.name) {
-      const url = encodeURI(
-        `${window.location.origin || ''}${window.location?.pathname}`
-      );
-      const params = window.location?.search?.substring(1);
-      const loginUrl = `/login?url=${url}&${params}`;
-      window.location.href = loginUrl;
-    }
-  }, [user.name]);
+  const isLoggedIn = useMemo(() => !!user.name, [user.name]);
 
   return (
     <>
@@ -52,20 +47,48 @@ const SettingsPage = ({ user }, { config, intl }) => {
       <div className="settings-page">
         <div className="settings-page-container">
           <div className="cards">
+            {isLoggedIn && (
+              <button
+                type="button"
+                className="card-item"
+                aria-label={intl.messages['settings-page-card-title']}
+                onClick={open}
+              >
+                <Icon
+                  img="icon-user-login"
+                  className="left-icon"
+                  viewBox="0 0 25 24"
+                />
+                <div className="text-container">
+                  <span className="title">
+                    {intl.messages['settings-page-item-remove-account-title']}
+                  </span>
+                </div>
+
+                <Icon
+                  img="icon-chevron-right"
+                  className="right-icon"
+                  viewBox="0 0 24 24"
+                />
+              </button>
+            )}
+
             <button
               type="button"
               className="card-item"
-              aria-label={intl.messages['settings-page-card-title']}
-              onClick={open}
+              aria-label={
+                intl.messages['settings-page-item-manage-cookies-title']
+              }
+              onClick={openCookie}
             >
               <Icon
-                img="icon-user-login"
+                img="icon-cookies"
                 className="left-icon"
                 viewBox="0 0 25 24"
               />
               <div className="text-container">
                 <span className="title">
-                  {intl.messages['settings-page-item-remove-account-title']}
+                  {intl.messages['settings-page-item-manage-cookies-title']}
                 </span>
               </div>
 
@@ -76,6 +99,12 @@ const SettingsPage = ({ user }, { config, intl }) => {
               />
             </button>
           </div>
+
+          <ManageCookies
+            isOpen={isOpenCookie}
+            close={closeCookie}
+            intl={intl}
+          />
 
           {isOpen && (
             <Suspense fallback="">
@@ -141,8 +170,7 @@ const SettingsPage = ({ user }, { config, intl }) => {
 
 SettingsPage.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired,
-  executeAction: func.isRequired
+  intl: intlShape.isRequired
 };
 
 SettingsPage.propTypes = {
