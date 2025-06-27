@@ -824,7 +824,14 @@ const translations = {
     'it-is-in-the-routes': 'Appears in Routes',
     'near-to-event-title': 'Others like this',
     'near-here': 'Near here',
-    'settings-page-title': 'Account settings',
+    'settings-cookies-popup-info':
+      'We value your privacy and want to provide you with the best possible experience on our platform.',
+    'settings-cookies-popup-info-2':
+      'This site uses cookies to personalize content, improve navigation on the site, analyze site usage, and assist our marketing efforts.',
+    'settings-cookies-popup-backbutton-title': 'Manage cookies',
+    'settings-cookies-popup-title': 'Use of cookies',
+    'settings-page-item-manage-cookies-title': 'Manage cookies',
+    'settings-page-title': 'Settings',
     'settings-page-item-remove-account-title': 'Remove account',
     'settings-page-popup-title': 'Remove account?',
     'settings-page-popup-header':
@@ -869,10 +876,11 @@ const translations = {
     'profile-page-favorite-card-subtitle': 'Manage your favourites',
     'profile-page-notifications-card-title': 'Notifications',
     'profile-page-notifications-card-subtitle': 'Manage your notifications.',
-    'profile-page-settings-card-title': 'Account settings',
+    'profile-page-settings-card-title': 'Settings',
     'profile-page-settings-card-subtitle':
       'Update your security and privacy settings.',
     'profile-page-logout-button': 'Logout',
+    'profile-page-login-button': 'Login',
     favourites: 'Favourites',
     'favourites-more-favourites': 'Manage favourites',
     'favourites-search-input-placeholder':
@@ -5196,7 +5204,14 @@ const translations = {
     'it-is-in-the-routes': 'Aparece nos Roteiros',
     'near-to-event-title': 'Outros como este',
     'near-here': 'Perto daqui',
-    'settings-page-title': 'Configurações de conta',
+    'settings-cookies-popup-info':
+      'Valorizamos a sua privacidade e queremos proporcionar-lhe a melhor experiência possível na nossa plataforma.',
+    'settings-cookies-popup-info-2':
+      'Este site usa cookies para personalizar conteúdo, melhorar a navegação no site, analisar o uso do site e auxiliar os nossos esforços de marketing.',
+    'settings-cookies-popup-backbutton-title': 'Gerir cookies',
+    'settings-cookies-popup-title': 'Uso de cookies',
+    'settings-page-item-manage-cookies-title': 'Gerir cookies',
+    'settings-page-title': 'Configurações',
     'settings-page-item-remove-account-title': 'Remover conta',
     'settings-page-popup-title': 'Remover conta?',
     'settings-page-popup-header':
@@ -5236,10 +5251,11 @@ const translations = {
     'profile-page-notifications-card-title': 'Notificações',
     'profile-page-notifications-card-subtitle':
       'Decida quais as notificações que quer receber.',
-    'profile-page-settings-card-title': 'Configurar conta',
+    'profile-page-settings-card-title': 'Configurações',
     'profile-page-settings-card-subtitle':
       'Altere as suas configurações de segurança e privacidade.',
     'profile-page-logout-button': 'Terminar sessão',
+    'profile-page-login-button': 'Iniciar sessão',
     favourites: 'Favoritos',
     'favourites-more-favourites': 'Gerenciar favoritos',
     'favourites-search-input-placeholder':
