@@ -161,6 +161,7 @@ class Stops {
               if (
                 isFeatureLayerEnabled(feature, 'stop', this.mapLayers) &&
                 feature.properties.type &&
+                feature.properties.type !== 'SUBWAY' &&
                 (isNull(feature.properties.parentStation) ||
                   drawPlatforms ||
                   (feature.properties.type === 'RAIL' && drawRailPlatforms))
