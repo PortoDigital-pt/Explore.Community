@@ -334,7 +334,7 @@ export default class Map extends React.Component {
             boundsOptions={this.boundsOptions}
             {...leafletEvents}
             onPopupopen={onPopupopen}
-            closePopupOnClick={false}
+            closePopupOnClick={true}
           >
             <TileLayer
               url={mapUrl}
