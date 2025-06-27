@@ -21,6 +21,11 @@ export const remove = async favouriteId => {
   return ret;
 };
 
+export const removeAllByUserId = async userId => {
+  const ret = await Favorite.deleteMany({ userId });
+  return ret;
+};
+
 export const isOwner = async (userId, favouriteId) => {
   try {
     const doc = await Favorite.findOne({ favouriteId });

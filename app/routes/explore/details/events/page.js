@@ -1,46 +1,30 @@
-import React from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import moment from 'moment';
 import classname from 'classnames';
-import {
-  string,
-  func,
-  shape,
-  bool,
-  oneOfType,
-  arrayOf,
-  number
-} from 'prop-types';
-import { connectToStores } from 'fluxible-addons-react';
+import { string, func, shape, bool } from 'prop-types';
+import connectToStores from 'fluxible-addons-react/connectToStores';
 import { intlShape } from 'react-intl';
-import { locationShape } from '../../../../util/shapes';
+import { useRouter } from 'found';
+import { configShape, locationShape } from '../../../../util/shapes';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
-import { getEventById } from '../../../../util/amporto/api';
+import {
+  getEventById,
+  getEventList,
+  getPoiList
+} from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 import useExpandableDescription from '../../../../hooks/useExpandableDescription';
-
-const eventShape = shape({
-  type: string.isRequired,
-  id: string.isRequired,
-  address: shape({
-    streetAddress: string,
-    streetNumber: string
-  }).isRequired,
-  category: oneOfType([string, arrayOf(string)]).isRequired,
-  website: string,
-  description: string,
-  startDate: string,
-  endDate: string,
-  price: string,
-  lon: number.isRequired,
-  lat: number.isRequired,
-  name: string.isRequired,
-  images: arrayOf(string)
-});
+import { NearByList } from '../nearbyList';
+import useListData from '../../../../hooks/useListData';
+import useModal from '../../../../hooks/useModal';
+import { DetailsContentModal } from '../../common';
+import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
+import { eventShape } from './shape';
 
 const DateSection = ({ startDate, endDate }) => {
   const start = moment(startDate);
@@ -242,11 +226,73 @@ EventContactDetails.contextTypes = {
   intl: intlShape.isRequired
 };
 
-export const PageContent = ({ selectedData }, { intl }) => {
+const Content = ({ selectedData, language }, { intl, config }) => {
+  const { router } = useRouter();
+  const { isOpen, open, close } = useModal();
+  const [selected, setSelected] = useState(null);
+
   const ExpandableDescription = useExpandableDescription({
     description: selectedData.description,
     intl
   });
+
+  const navigate = useCallback(
+    id => router.push(`/${selected?.type}/${id}`),
+    [router.push, selected?.type]
+  );
+
+  const ModalPageContent = useMemo(
+    () => PAGE_CONTENT_TYPE_MAP[selected?.type],
+    [selected?.type]
+  );
+
+  const poiArgs = useMemo(
+    () => ({
+      language,
+      limit: 11
+    }),
+    [language]
+  );
+
+  const { data: poiData } = useListData({
+    enabled: !!selectedData,
+    getData: getPoiList,
+    coordinatesBounds: config.coordinatesBounds,
+    location: {
+      lat: selectedData.lat,
+      lon: selectedData.lon,
+      hasLocation: selectedData.lat && selectedData.lon
+    },
+    args: poiArgs
+  });
+
+  const nearEventsArgs = useMemo(() => {
+    const mappedCategories = selectedData?.category?.map(cat =>
+      Object.keys(config.filters.events).find(
+        key => config.filters.events[key][language] === cat
+      )
+    );
+    return {
+      language,
+      limit: 11,
+      categories: mappedCategories
+    };
+  }, [language, selectedData?.category]);
+
+  const { data: nearEventsData } = useListData({
+    enabled: !!selectedData,
+    getData: getEventList,
+    coordinatesBounds: config.coordinatesBounds,
+    location: {
+      lat: selectedData.lat,
+      lon: selectedData.lon,
+      hasLocation: selectedData.lat && selectedData.lon
+    },
+    args: nearEventsArgs
+  });
+
+  const filterEventsData =
+    nearEventsData?.filter(event => event.id !== selectedData.id) ?? null;
 
   return (
     <>
@@ -278,17 +324,69 @@ export const PageContent = ({ selectedData }, { intl }) => {
           </a>
         </div>
       </div>
+
+      <div className="list">
+        <h3 className="list-title">{intl.messages['near-to-event-title']}</h3>
+        <div className="list-scroll">
+          <NearByList
+            type="events"
+            cardType="large"
+            data={filterEventsData}
+            open={open}
+            setSelected={setSelected}
+          />
+        </div>
+      </div>
+
+      <div className="list">
+        <h3 className="list-title">{intl.messages['near-here']}</h3>
+        <div className="list-scroll">
+          <NearByList
+            type="pois"
+            cardType="small"
+            data={poiData}
+            open={open}
+            setSelected={setSelected}
+          />
+        </div>
+      </div>
+
+      {isOpen && selected !== null && ModalPageContent && (
+        <DetailsContentModal
+          isOpen={isOpen}
+          data={selected}
+          onBackBtnClick={() => {
+            setSelected(null);
+            close();
+          }}
+          onSeeOnMap={() => {
+            close();
+            navigate(selected.id);
+          }}
+          PageContent={ModalPageContent}
+        />
+      )}
     </>
   );
 };
 
-PageContent.propTypes = {
-  selectedData: eventShape.isRequired
+Content.propTypes = {
+  selectedData: eventShape.isRequired,
+  language: string.isRequired
 };
 
-PageContent.contextTypes = {
-  intl: intlShape.isRequired
+Content.contextTypes = {
+  intl: intlShape.isRequired,
+  config: configShape.isRequired
 };
+
+export const PageContent = connectToStores(
+  Content,
+  ['PreferencesStore'],
+  ({ getStore }) => ({
+    language: getStore('PreferencesStore').getLanguage()
+  })
+);
 
 const EventDetailsPage = () => (
   <Details

@@ -37,6 +37,22 @@ export default () => (
         }}
       </Route>
     </Route>
+    <Route path="settings">
+      <Route path="/">
+        {{
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "favourites" */ './settings/page'
+                ).then(getDefault)
+              }
+              render={getComponentOrLoadingRenderer}
+            />
+          )
+        }}
+      </Route>
+    </Route>
     <Route path="callbacks">
       <Route path="/login-success">
         {{

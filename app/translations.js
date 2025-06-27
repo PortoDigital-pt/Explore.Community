@@ -821,6 +821,26 @@ const translations = {
     zones: 'Tarifzonen'
   },
   en: {
+    'it-is-in-the-routes': 'Appears in Routes',
+    'near-to-event-title': 'Others like this',
+    'near-here': 'Near here',
+    'settings-cookies-popup-info':
+      'We value your privacy and want to provide you with the best possible experience on our platform.',
+    'settings-cookies-popup-info-2':
+      'This site uses cookies to personalize content, improve navigation on the site, analyze site usage, and assist our marketing efforts.',
+    'settings-cookies-popup-backbutton-title': 'Manage cookies',
+    'settings-cookies-popup-title': 'Use of cookies',
+    'settings-page-item-manage-cookies-title': 'Manage cookies',
+    'settings-page-title': 'Settings',
+    'settings-page-item-remove-account-title': 'Remove account',
+    'settings-page-popup-title': 'Remove account?',
+    'settings-page-popup-header':
+      'Removing your account is permanent and irreversible',
+    'settings-page-popup-info':
+      'By deleting your account, you will lose access to all services and content. All your personal information, favorites, and any other data associated with your account will be deleted.',
+    'settings-page-popup-btn-cancel': 'Cancel',
+    'settings-page-popup-btn-remove': 'Remove',
+    'settings-page-popup-error': 'Error removing your account',
     'read-more': 'Read more',
     'read-less': 'Read less',
     'find-all-blocks': 'Find all blocks',
@@ -856,10 +876,11 @@ const translations = {
     'profile-page-favorite-card-subtitle': 'Manage your favourites',
     'profile-page-notifications-card-title': 'Notifications',
     'profile-page-notifications-card-subtitle': 'Manage your notifications.',
-    'profile-page-settings-card-title': 'Account settings',
+    'profile-page-settings-card-title': 'Settings',
     'profile-page-settings-card-subtitle':
       'Update your security and privacy settings.',
     'profile-page-logout-button': 'Logout',
+    'profile-page-login-button': 'Login',
     favourites: 'Favourites',
     'favourites-more-favourites': 'Manage favourites',
     'favourites-search-input-placeholder':
@@ -5180,6 +5201,26 @@ const translations = {
   },
 
   pt: {
+    'it-is-in-the-routes': 'Aparece nos Roteiros',
+    'near-to-event-title': 'Outros como este',
+    'near-here': 'Perto daqui',
+    'settings-cookies-popup-info':
+      'Valorizamos a sua privacidade e queremos proporcionar-lhe a melhor experiência possível na nossa plataforma.',
+    'settings-cookies-popup-info-2':
+      'Este site usa cookies para personalizar conteúdo, melhorar a navegação no site, analisar o uso do site e auxiliar os nossos esforços de marketing.',
+    'settings-cookies-popup-backbutton-title': 'Gerir cookies',
+    'settings-cookies-popup-title': 'Uso de cookies',
+    'settings-page-item-manage-cookies-title': 'Gerir cookies',
+    'settings-page-title': 'Configurações',
+    'settings-page-item-remove-account-title': 'Remover conta',
+    'settings-page-popup-title': 'Remover conta?',
+    'settings-page-popup-header':
+      'Remover a sua conta é permanente e irreversível',
+    'settings-page-popup-info':
+      'Ao remover a sua conta irá perder acesso a todos os serviços e conteúdos. Toda a sua informação pessoal, favoritos, e quaisquer outros dados associados á sua conta serão eliminados.',
+    'settings-page-popup-btn-cancel': 'Cancelar',
+    'settings-page-popup-btn-remove': 'Remover',
+    'settings-page-popup-error': 'Erro ao remover a sua conta',
     'read-more': 'Ler mais',
     'read-less': 'Ler menos',
     // ---------- NEW TRANSLATIONS BELOW ------------
@@ -5210,10 +5251,11 @@ const translations = {
     'profile-page-notifications-card-title': 'Notificações',
     'profile-page-notifications-card-subtitle':
       'Decida quais as notificações que quer receber.',
-    'profile-page-settings-card-title': 'Configurar conta',
+    'profile-page-settings-card-title': 'Configurações',
     'profile-page-settings-card-subtitle':
       'Altere as suas configurações de segurança e privacidade.',
     'profile-page-logout-button': 'Terminar sessão',
+    'profile-page-login-button': 'Iniciar sessão',
     favourites: 'Favoritos',
     'favourites-more-favourites': 'Gerenciar favoritos',
     'favourites-search-input-placeholder':

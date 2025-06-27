@@ -15,7 +15,17 @@
   }
 
   @media (min-width: 900px) {
-    padding: 0 24px 0 24px;
+    padding: 0 24px 5px 24px;
+    height: 48px;
+    min-height: 48px;
+
+    &::-webkit-scrollbar {
+      display: block;
+    }
+
+    &::-webkit-scrollbar-track {
+      margin: 0 24px;
+    }
   }
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo } from 'react';
 
 const useExpandableDescription = ({ description, intl }) => {
   const [expanded, setExpanded] = useState(false);
-  const firstSentence = useRef(`${description.split('.')[0].trim()}.`);
+  const firstSentence = useRef(`${description?.split('.')[0].trim()}.`);
 
   return useMemo(
     () => () => (

@@ -11,7 +11,7 @@ const defaultMessage = (
 
 export default function Loading(props) {
   return (
-    <ContainerSpinner visible>
+    <ContainerSpinner visible className={props.className}>
       {props?.children || defaultMessage}
     </ContainerSpinner>
   );
@@ -20,4 +20,6 @@ export default function Loading(props) {
 Loading.displayName = 'Loading';
 
 Loading.propTypes = { children: PropTypes.node };
-Loading.defaultProps = { children: undefined };
+Loading.propTypes = { className: PropTypes.string };
+
+Loading.defaultProps = { children: undefined, className: '' };

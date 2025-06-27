@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useRouter } from 'found';
 import { intlShape } from 'react-intl';
 import getContext from 'recompose/getContext';
@@ -7,7 +7,6 @@ import { shape } from 'prop-types';
 import Icon from '../../component/Icon';
 import BackButton from '../../component/BackButton';
 import { configShape, userShape } from '../../util/shapes';
-import LoadingPage from '../../component/LoadingPage';
 
 const Page = props => {
   const { intl, config, user } = props;
@@ -26,92 +25,27 @@ const Page = props => {
     [rootLink]
   );
 
-  useEffect(() => {
-    if (config.allowLogin && !user.name) {
+  const handleLogin = useCallback(
+    e => {
+      e.preventDefault();
       const url = encodeURI(
         `${window.location.origin || ''}${window.location?.pathname}`
       );
       const params = window.location?.search?.substring(1);
       const loginUrl = `/login?url=${url}&${params}`;
       window.location.href = loginUrl;
-    }
-  }, [user.name]);
+    },
+    [rootLink]
+  );
 
-  return !config.allowLogin ? (
+  const isLoggedIn = useMemo(() => !!user.name, [user.name]);
+
+  return (
     <>
       <BackButton title={intl.messages['profile-page-back-button-title']} />
       <div className="profile-page">
         <div className="profile-page-container">
-          <div className="cards">
-            <button
-              type="button"
-              className="card-item"
-              aria-label={intl.messages['profile-page-favorite-card-title']}
-              onClick={() => router.push('/profile/favourites')}
-            >
-              <Icon
-                img="icon-favourites"
-                className="left-icon"
-                viewBox="0 0 25 24"
-              />
-
-              <div className="text-container">
-                <span className="title">
-                  {intl.messages['profile-page-favorite-card-title']}
-                </span>
-                <span className="subtitle">
-                  {intl.messages['profile-page-favorite-card-subtitle']}
-                </span>
-              </div>
-
-              <Icon
-                img="icon-chevron-right"
-                className="right-icon"
-                viewBox="0 0 24 24"
-              />
-            </button>
-
-            {profileConfig.showNotification && (
-              <button
-                type="button"
-                className="card-item"
-                aria-label={
-                  intl.messages['profile-page-notifications-card-title']
-                }
-                onClick={() => null}
-              >
-                <Icon
-                  img="icon-bell"
-                  className="left-icon"
-                  viewBox="0 0 20 20"
-                />
-
-                <div className="text-container">
-                  <span className="title">
-                    {intl.messages['profile-page-notifications-card-title']}
-                  </span>
-                  <span className="subtitle">
-                    {intl.messages['profile-page-notifications-card-subtitle']}
-                  </span>
-                </div>
-
-                <Icon
-                  img="icon-chevron-right"
-                  className="right-icon"
-                  viewBox="0 0 24 24"
-                />
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    </>
-  ) : user.name ? (
-    <>
-      <BackButton title={intl.messages['profile-page-back-button-title']} />
-      <div className="profile-page">
-        <div className="profile-page-container">
-          {profileConfig.showAuthenticationInfo && (
+          {profileConfig.showAuthenticationInfo && isLoggedIn && (
             <div className="avatar-section">
               <Icon
                 img="icon-default-avatar"
@@ -181,38 +115,32 @@ const Page = props => {
               </button>
             )}
 
-            {profileConfig.showAuthenticationInfo && (
-              <button
-                type="button"
-                className="card-item"
-                aria-label={intl.messages['profile-page-settings-card-title']}
-                onClick={() => null}
-              >
-                <Icon
-                  img="icon-gear"
-                  className="left-icon"
-                  viewBox="0 0 20 20"
-                />
+            <button
+              type="button"
+              className="card-item"
+              aria-label={intl.messages['profile-page-settings-card-title']}
+              onClick={() => router.push('/profile/settings')}
+            >
+              <Icon img="icon-gear" className="left-icon" viewBox="0 0 20 20" />
 
-                <div className="text-container">
-                  <span className="title">
-                    {intl.messages['profile-page-settings-card-title']}
-                  </span>
-                  <span className="subtitle">
-                    {intl.messages['profile-page-settings-card-subtitle']}
-                  </span>
-                </div>
+              <div className="text-container">
+                <span className="title">
+                  {intl.messages['profile-page-settings-card-title']}
+                </span>
+                <span className="subtitle">
+                  {intl.messages['profile-page-settings-card-subtitle']}
+                </span>
+              </div>
 
-                <Icon
-                  img="icon-chevron-right"
-                  className="right-icon"
-                  viewBox="0 0 24 24"
-                />
-              </button>
-            )}
+              <Icon
+                img="icon-chevron-right"
+                className="right-icon"
+                viewBox="0 0 24 24"
+              />
+            </button>
           </div>
 
-          {profileConfig.showAuthenticationInfo && (
+          {profileConfig.showAuthenticationInfo && isLoggedIn && (
             <button
               type="button"
               className="logout-button"
@@ -222,11 +150,20 @@ const Page = props => {
               {intl.messages['profile-page-logout-button']}
             </button>
           )}
+
+          {profileConfig.showAuthenticationInfo && !isLoggedIn && (
+            <button
+              type="button"
+              className="logout-button"
+              aria-label={intl.messages['profile-page-login-button']}
+              onClick={handleLogin}
+            >
+              {intl.messages['profile-page-login-button']}
+            </button>
+          )}
         </div>
       </div>
     </>
-  ) : (
-    <LoadingPage />
   );
 };
 

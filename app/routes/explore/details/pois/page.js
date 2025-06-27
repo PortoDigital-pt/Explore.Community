@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   string,
   func,
@@ -11,16 +11,26 @@ import {
 import classname from 'classnames';
 import { connectToStores } from 'fluxible-addons-react';
 import { intlShape } from 'react-intl';
-import { locationShape } from '../../../../util/shapes';
+import { useRouter } from 'found';
+import { configShape, locationShape } from '../../../../util/shapes';
 import Icon from '../../../../component/Icon';
 import { showDistance } from '../../../../util/amporto/geo';
-import { getPoiById } from '../../../../util/amporto/api';
+import {
+  getPoiById,
+  getPoiList,
+  getRoutesList
+} from '../../../../util/amporto/api';
 import Details from '../details';
 import FavouriteExplore from '../../../../component/FavouriteExploreContainer';
 import ShareButton from '../../../../component/amporto/share-button';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 import useExpandableDescription from '../../../../hooks/useExpandableDescription';
+import useListData from '../../../../hooks/useListData';
+import useModal from '../../../../hooks/useModal';
+import { DetailsContentModal } from '../../common';
+import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
+import { NearByList } from '../nearbyList';
 
 export const poiShape = shape({
   type: string.isRequired,
@@ -206,10 +216,62 @@ export const MobileContent = connectToStores(
   })
 );
 
-export const PageContent = ({ selectedData }, { intl }) => {
+const Content = ({ selectedData, language }, { intl, config }) => {
+  const { router } = useRouter();
+  const { isOpen, open, close } = useModal();
+  const [selected, setSelected] = useState(null);
+
   const ExpandableDescription = useExpandableDescription({
     description: selectedData.description,
     intl
+  });
+
+  const navigate = useCallback(
+    id => router.push(`/${selected?.type}/${id}`),
+    [router.push, selected?.type]
+  );
+
+  const ModalPageContent = useMemo(
+    () => PAGE_CONTENT_TYPE_MAP[selected?.type],
+    [selected?.type]
+  );
+
+  const poiArgs = useMemo(
+    () => ({
+      language,
+      limit: 11
+    }),
+    [language]
+  );
+
+  const { data: poiData } = useListData({
+    enabled: !!selectedData,
+    getData: getPoiList,
+    coordinatesBounds: config.coordinatesBounds,
+    location: {
+      lat: selectedData.lat,
+      lon: selectedData.lon,
+      hasLocation: selectedData.lat && selectedData.lon
+    },
+    args: poiArgs
+  });
+
+  const filterPoiData =
+    poiData?.filter(poi => poi.id !== selectedData.id) ?? null;
+
+  const nearbyRoutesArgs = useMemo(
+    () => ({
+      language,
+      limit: 10,
+      itineraryItem: selectedData.id
+    }),
+    [language, selectedData.id]
+  );
+
+  const { data: nearbyRoutesData } = useListData({
+    enabled: !!selectedData,
+    getData: getRoutesList,
+    args: nearbyRoutesArgs
   });
 
   return (
@@ -267,17 +329,71 @@ export const PageContent = ({ selectedData }, { intl }) => {
           )}
         </div>
       </div>
+
+      <div className="list">
+        <h3 className="list-title">{intl.messages['near-here']}</h3>
+        <div className="list-scroll">
+          <NearByList
+            type="pois"
+            cardType="small"
+            data={filterPoiData}
+            open={open}
+            setSelected={setSelected}
+          />
+        </div>
+      </div>
+
+      {nearbyRoutesData?.length > 0 && (
+        <div className="list">
+          <h3 className="list-title">{intl.messages['it-is-in-the-routes']}</h3>
+          <div className="list-scroll">
+            <NearByList
+              type="routes"
+              cardType="large"
+              data={nearbyRoutesData}
+              open={open}
+              setSelected={setSelected}
+            />
+          </div>
+        </div>
+      )}
+
+      {isOpen && selected !== null && (
+        <DetailsContentModal
+          isOpen={isOpen}
+          data={selected}
+          onBackBtnClick={() => {
+            setSelected(null);
+            close();
+          }}
+          onSeeOnMap={() => {
+            close();
+            navigate(selected.id);
+          }}
+          PageContent={ModalPageContent}
+        />
+      )}
     </>
   );
 };
 
-PageContent.propTypes = {
-  selectedData: poiShape.isRequired
+Content.propTypes = {
+  selectedData: poiShape.isRequired,
+  language: string.isRequired
 };
 
-PageContent.contextTypes = {
-  intl: intlShape.isRequired
+Content.contextTypes = {
+  intl: intlShape.isRequired,
+  config: configShape.isRequired
 };
+
+export const PageContent = connectToStores(
+  Content,
+  ['PreferencesStore'],
+  ({ getStore }) => ({
+    language: getStore('PreferencesStore').getLanguage()
+  })
+);
 
 const PoiDetailsPage = () => (
   <Details

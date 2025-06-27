@@ -370,21 +370,9 @@
     }
   }
 
-   .start-trip-button {
-      width: 100%;
-      display: flex;
-      position: relative;
-      justify-content: center;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid $primary-color;
-      font-size: $font-size-l;
-      font-weight: $font-weight-bold;
-      align-items: center;
-      background-color: $primary-color;
-      color: $primary-contrastText;
-
+    .start-trip-button {
+      @include contained-button;
+      
       &.padding {
         width: calc(100% - 48px);
         margin: 0 24px;
@@ -627,19 +615,7 @@
     column-gap: 8px;
 
     button {
-      width: 100%;
-      display: flex;
-      position: relative;
-      justify-content: center;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid $primary-color;
-      font-size: $font-size-l;
-      font-weight: $font-weight-bold;
-      align-items: center;
-      background-color: $primary-color;
-      color: $primary-contrastText;
+      @include contained-button;
 
       flex-grow: 1;
 
@@ -649,19 +625,7 @@
     }
 
     .button-light {
-      width: 100%;
-      display: flex;
-      position: relative;
-      justify-content: center;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid $primary-dark;
-      font-size: $font-size-l;
-      font-weight: $font-weight-bold;
-      align-items: center;
-      background-color: $primary-contrastText;
-      color: $primary-dark;
+      @include outlined-button;
       flex-grow: 1;
 
       @media (min-width: 400px) {
