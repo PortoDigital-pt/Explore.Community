@@ -94,7 +94,8 @@ class TileLayerContainer extends GridLayer {
     className: 'popup',
     ref: 'popup',
     onClose: () => this.setState({ ...initialState }),
-    autoPan: false,
+    autoPan: true,
+    keepInView: false,
     onOpen: () => this.sendAnalytics(),
     relayEnvironment: relayShape.isRequired
   };
