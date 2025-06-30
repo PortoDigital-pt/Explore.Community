@@ -5,6 +5,8 @@
   position: relative;
   align-items: center;
   overflow-x: auto;
+  flex-direction: row;
+  justify-content: flex-start;
   gap: 8px;
   height: 42px;
   min-height: 42px;
@@ -15,17 +17,11 @@
   }
 
   @media (min-width: 900px) {
-    padding: 0 24px 5px 24px;
-    height: 48px;
-    min-height: 48px;
-
-    &::-webkit-scrollbar {
-      display: block;
-    }
-
-    &::-webkit-scrollbar-track {
-      margin: 0 24px;
-    }
+    padding: 0 24px 0 24px;
+    height: auto;
+    min-height: unset;
+    flex-wrap: wrap;
+    overflow-x: unset;
   }
 }
 

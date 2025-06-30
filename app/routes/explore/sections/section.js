@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { useRouter } from 'found';
-import { arrayOf, string, oneOf, func, bool } from 'prop-types';
+import { arrayOf, string, oneOf, func, bool, number } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
 import useListData from '../../../hooks/useListData';
@@ -26,13 +26,14 @@ const Section = (
     emptyMessage,
     Intro,
     showDescription = false,
-    requireCategories = true
+    requireCategories = true,
+    limit = 10
   },
   { intl, config: { coordinatesBounds } }
 ) => {
   const args = useMemo(
-    () => ({ language, categories, limit: 10 }),
-    [language, (categories || []).join(',')]
+    () => ({ language, categories, limit }),
+    [language, limit, (categories || []).join(',')]
   );
   const { data, error } = useListData({
     enabled: requireCategories ? categories !== null : true,
@@ -73,7 +74,7 @@ const Section = (
               <Icon img="icon-icon_error_page_not_found" />
             </div>
           ) : data === null ? (
-            Array.from({ length: 10 }, (_, i) => (
+            Array.from({ length: limit }, (_, i) => (
               <Skeleton key={`${i}-item`} className={`${cardType}-card`} />
             ))
           ) : data.length === 0 ? (
@@ -145,7 +146,8 @@ Section.propTypes = {
   location: locationShape.isRequired,
   categories: arrayOf(string),
   showDescription: bool,
-  requireCategories: bool
+  requireCategories: bool,
+  limit: number
 };
 
 export default connectToStores(

@@ -30,9 +30,9 @@
           padding: 0 18px 0 18px;
 
           @media (min-width: 900px) {
-              font-size: $font-size-base;
-              line-height: 18px;
-              padding: 0 24px 0 24px;
+            font-size: $font-size-base;
+            line-height: 18px;
+            padding: 0 24px 0 24px;
           }
 
           a {
@@ -67,14 +67,8 @@
          
             @media (min-width: 900px) {
               padding: 0 24px;
-
-              &::-webkit-scrollbar {
-                display: block;
-              }
-            
-              &::-webkit-scrollbar-track {
-                margin: 0 24px;
-              }
+              width: 100%;
+              min-width: 100%;
             }
 
             .small-card {
@@ -88,14 +82,19 @@
               border-radius: $border-radius;
               overflow: hidden;
               box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+
+              @media (min-width: 900px) {
+                width: calc(50% - 5px);
+                min-width:calc(50% - 5px);
+              }
             }
 
             .large-card {
               display: flex;
               position: relative;
               scroll-snap-align: center;
-              min-width: 312px;
-              max-width: 312px;
+              min-width: 100%;
+              max-width: 100%;
               max-height: 296px;
               min-height: 296px;
               border-radius: $border-radius;
