@@ -14,12 +14,12 @@ const RoutesSection = ({ breakpoint }) => (
     emptyMessage="events-empty"
     type="routes"
     showDescription
-    limit={breakpoint === 'large' ? 1 : null}
+    limit={breakpoint === 'large' ? 1 : 10}
   />
 );
 
 RoutesSection.propTypes = {
   breakpoint: string.isRequired
-}
+};
 
 export default withBreakpoint(RoutesSection);
