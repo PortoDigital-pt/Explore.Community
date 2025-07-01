@@ -239,7 +239,8 @@ const Content = ({ selectedData, language }, { intl, config }) => {
   const poiArgs = useMemo(
     () => ({
       language,
-      limit: 11
+      limit: 10,
+      categories: Object.keys(config.filters.pois)
     }),
     [language]
   );
