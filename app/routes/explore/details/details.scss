@@ -578,33 +578,6 @@
         }
       }
     }
-
-    .bottom {
-      display: flex;
-      position: relative;
-      width: 100%;
-      justify-content: center;
-
-      button {
-        width: 100%;
-        display: flex;
-        position: relative;
-        justify-content: center;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        border: 2px solid $primary-color;
-        font-size: $font-size-l;
-        font-weight: $font-weight-bold;
-        align-items: center;
-        background-color: $primary-color;
-        color: $primary-contrastText;
-
-        @media (min-width: 400px) {
-          width: 400px;
-        }
-      }
-    }
   }
 
   .buttons {
@@ -616,7 +589,6 @@
 
     button {
       @include contained-button;
-
       flex-grow: 1;
 
       @media (min-width: 400px) {
