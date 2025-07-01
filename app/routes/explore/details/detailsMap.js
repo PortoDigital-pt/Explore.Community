@@ -5,7 +5,6 @@ import { connectToStores } from 'fluxible-addons-react';
 import { mapLayerShape } from '../../../store/MapLayerStore';
 import MapWithTracking from '../../../component/map/MapWithTracking';
 import Loading from '../../../component/Loading';
-import MapRoutingButton from '../../../component/MapRoutingButton';
 import useSelectedData from '../../../hooks/useSelectedData';
 
 const DetailsPageMap = ({ language, mapLayers, getDataById }, { match }) => {
@@ -30,7 +29,6 @@ const DetailsPageMap = ({ language, mapLayers, getDataById }, { match }) => {
       lat={selectedData.lat}
       lon={selectedData.lon}
       mapLayers={mapLayers}
-      topButtons={<MapRoutingButton stop={selectedData} />}
       showExplore
     />
   );

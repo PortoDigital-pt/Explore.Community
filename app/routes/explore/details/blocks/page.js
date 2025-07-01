@@ -249,6 +249,7 @@ const MobileDetails = (
     description: selectedData.description,
     intl
   });
+  const { router } = useRouter();
   const distanceToBlock = useDistanceToTarget({
     executeAction,
     location,
@@ -292,7 +293,15 @@ const MobileDetails = (
         </div>
       </div>
 
-      <div className="bottom">
+      <div className="buttons">
+        <button
+          type="button"
+          className="button-light"
+          aria-label={intl.messages.directions}
+          onClick={() => router.push(getItineraryPath(location, selectedData))}
+        >
+          {intl.messages.directions}
+        </button>
         <button
           type="button"
           onClick={onDetails}
