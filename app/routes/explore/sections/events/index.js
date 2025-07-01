@@ -31,7 +31,7 @@ const EventsSection = ({ language, breakpoint }, { config }) => {
       emptyMessage="events-empty"
       Intro={Intro}
       type="events"
-      limit={breakpoint === 'large' ? 1 : null}
+      limit={breakpoint === 'large' ? 1 : 10}
     />
   );
 };

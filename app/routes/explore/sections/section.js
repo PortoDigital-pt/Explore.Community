@@ -27,7 +27,7 @@ const Section = (
     Intro,
     showDescription = false,
     requireCategories = true,
-    limit = 10
+    limit
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -147,7 +147,7 @@ Section.propTypes = {
   categories: arrayOf(string),
   showDescription: bool,
   requireCategories: bool,
-  limit: number
+  limit: number.isRequired
 };
 
 export default connectToStores(

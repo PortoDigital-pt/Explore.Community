@@ -27,7 +27,7 @@ const BlocksSection = ({ language, breakpoint }, { config }) => {
       type="blocks"
       showDescription
       requireCategories={false}
-      limit={breakpoint === 'large' ? 1 : null}
+      limit={breakpoint === 'large' ? 1 : 10}
     />
   );
 };

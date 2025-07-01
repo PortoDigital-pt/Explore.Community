@@ -13,12 +13,12 @@ const PoisSection = ({ breakpoint }) => (
     errorMessage="pois-fetch-error"
     emptyMessage="pois-empty"
     type="pois"
-    limit={breakpoint === 'large' ? 2 : null}
+    limit={breakpoint === 'large' ? 2 : 10}
   />
 );
 
 PoisSection.propTypes = {
   breakpoint: string.isRequired
-}
+};
 
 export default withBreakpoint(PoisSection);
