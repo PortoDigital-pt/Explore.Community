@@ -19,7 +19,6 @@ const parseBoldText = text => {
 export const Content = ({
   pages,
   currentLanguage,
-  hideArrows,
   onExplore,
   showOnExplore,
   onExploreDescription
@@ -44,7 +43,6 @@ export const Content = ({
         tabIndex={page}
         onSwipe={page => setPage(page)}
         classname="swipe-desktop-view"
-        hideArrows={hideArrows}
         navigationOnBottom
         ariaFrom="swipe-onboarding"
         ariaFromHeader="swipe-onboarding"
@@ -72,7 +70,6 @@ Content.propTypes = {
     })
   ).isRequired,
   currentLanguage: string.isRequired,
-  hideArrows: bool.isRequired,
   onExplore: func.isRequired,
   showOnExplore: bool.isRequired,
   onExploreDescription: string.isRequired
