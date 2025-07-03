@@ -2,10 +2,11 @@ import React, { useMemo } from 'react';
 import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { getBlockList } from '../../../../util/amporto/api';
+import withBreakpoint from '../../../../util/withBreakpoint';
 import Section from '../section';
 import { configShape } from '../../../../util/shapes';
 
-const BlocksSection = ({ language }, { config }) => {
+const BlocksSection = ({ language, breakpoint }, { config }) => {
   const Intro = useMemo(
     () => () =>
       config.cards.blocks?.[language] ? (
@@ -26,12 +27,14 @@ const BlocksSection = ({ language }, { config }) => {
       type="blocks"
       showDescription
       requireCategories={false}
+      limit={breakpoint === 'large' ? 1 : 10}
     />
   );
 };
 
 BlocksSection.propTypes = {
-  language: string.isRequired
+  language: string.isRequired,
+  breakpoint: string.isRequired
 };
 
 BlocksSection.contextTypes = {
@@ -39,7 +42,7 @@ BlocksSection.contextTypes = {
 };
 
 export default connectToStores(
-  BlocksSection,
+  withBreakpoint(BlocksSection),
   ['PreferencesStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage()

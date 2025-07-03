@@ -31,6 +31,7 @@ import useModal from '../../../../hooks/useModal';
 import { DetailsContentModal } from '../../common';
 import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import { NearByList } from '../nearbyList';
+import { getItineraryPath } from '../routes/util';
 
 export const poiShape = shape({
   type: string.isRequired,
@@ -66,6 +67,7 @@ const Mobile = (
   },
   { intl, executeAction }
 ) => {
+  const { router } = useRouter();
   const distanceToPoi = useDistanceToTarget({
     executeAction,
     location,
@@ -179,7 +181,17 @@ const Mobile = (
           </button>
         </div>
       ) : (
-        <div className="bottom">
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.directions}
+            onClick={() =>
+              router.push(getItineraryPath(location, selectedData))
+            }
+          >
+            {intl.messages.directions}
+          </button>
           <button
             type="button"
             onClick={onDetails}
@@ -216,7 +228,7 @@ export const MobileContent = connectToStores(
   })
 );
 
-const Content = ({ selectedData, language }, { intl, config }) => {
+const Content = ({ selectedData, language, location }, { intl, config }) => {
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
   const [selected, setSelected] = useState(null);
@@ -239,7 +251,8 @@ const Content = ({ selectedData, language }, { intl, config }) => {
   const poiArgs = useMemo(
     () => ({
       language,
-      limit: 11
+      limit: 10,
+      categories: Object.keys(config.filters.pois)
     }),
     [language]
   );
@@ -358,6 +371,15 @@ const Content = ({ selectedData, language }, { intl, config }) => {
         </div>
       )}
 
+      <button
+        className="start-trip-button padding"
+        type="button"
+        onClick={() => router.push(getItineraryPath(location, selectedData))}
+        aria-label={intl.messages.directions}
+      >
+        {intl.messages.directions}
+      </button>
+
       {isOpen && selected !== null && (
         <DetailsContentModal
           isOpen={isOpen}
@@ -379,7 +401,8 @@ const Content = ({ selectedData, language }, { intl, config }) => {
 
 Content.propTypes = {
   selectedData: poiShape.isRequired,
-  language: string.isRequired
+  language: string.isRequired,
+  location: locationShape.isRequired
 };
 
 Content.contextTypes = {
@@ -391,7 +414,8 @@ export const PageContent = connectToStores(
   Content,
   ['PreferencesStore'],
   ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage()
+    language: getStore('PreferencesStore').getLanguage(),
+    location: getStore('PositionStore').getLocationState()
   })
 );
 

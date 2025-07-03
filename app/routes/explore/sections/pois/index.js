@@ -1,8 +1,10 @@
 import React from 'react';
+import { string } from 'prop-types';
 import { getPoiList } from '../../../../util/amporto/api';
+import withBreakpoint from '../../../../util/withBreakpoint';
 import Section from '../section';
 
-const PoisSection = () => (
+const PoisSection = ({ breakpoint }) => (
   <Section
     getData={getPoiList}
     title="place-to-visit"
@@ -11,7 +13,12 @@ const PoisSection = () => (
     errorMessage="pois-fetch-error"
     emptyMessage="pois-empty"
     type="pois"
+    limit={breakpoint === 'large' ? 2 : 10}
   />
 );
 
-export default PoisSection;
+PoisSection.propTypes = {
+  breakpoint: string.isRequired
+};
+
+export default withBreakpoint(PoisSection);

@@ -25,6 +25,7 @@ import useModal from '../../../../hooks/useModal';
 import { DetailsContentModal } from '../../common';
 import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import { eventShape } from './shape';
+import { getItineraryPath } from '../routes/util';
 
 const DateSection = ({ startDate, endDate }) => {
   const start = moment(startDate);
@@ -75,6 +76,7 @@ const Mobile = (
   { location, onDetails, selectedData, showShare = false, innerRef },
   { intl, executeAction }
 ) => {
+  const { router } = useRouter();
   const distanceToEvent = useDistanceToTarget({
     executeAction,
     location,
@@ -152,7 +154,15 @@ const Mobile = (
           </div>
         </div>
       </div>
-      <div className="bottom">
+      <div className="buttons">
+        <button
+          type="button"
+          className="button-light"
+          aria-label={intl.messages.directions}
+          onClick={() => router.push(getItineraryPath(location, selectedData))}
+        >
+          {intl.messages.directions}
+        </button>
         <button
           type="button"
           onClick={onDetails}
@@ -226,7 +236,7 @@ EventContactDetails.contextTypes = {
   intl: intlShape.isRequired
 };
 
-const Content = ({ selectedData, language }, { intl, config }) => {
+const Content = ({ selectedData, language, location }, { intl, config }) => {
   const { router } = useRouter();
   const { isOpen, open, close } = useModal();
   const [selected, setSelected] = useState(null);
@@ -249,7 +259,8 @@ const Content = ({ selectedData, language }, { intl, config }) => {
   const poiArgs = useMemo(
     () => ({
       language,
-      limit: 11
+      limit: 10,
+      categories: Object.keys(config.filters.pois)
     }),
     [language]
   );
@@ -274,7 +285,7 @@ const Content = ({ selectedData, language }, { intl, config }) => {
     );
     return {
       language,
-      limit: 11,
+      limit: 10,
       categories: mappedCategories
     };
   }, [language, selectedData?.category]);
@@ -351,6 +362,15 @@ const Content = ({ selectedData, language }, { intl, config }) => {
         </div>
       </div>
 
+      <button
+        className="start-trip-button padding"
+        type="button"
+        onClick={() => router.push(getItineraryPath(location, selectedData))}
+        aria-label={intl.messages.directions}
+      >
+        {intl.messages.directions}
+      </button>
+
       {isOpen && selected !== null && ModalPageContent && (
         <DetailsContentModal
           isOpen={isOpen}
@@ -372,7 +392,8 @@ const Content = ({ selectedData, language }, { intl, config }) => {
 
 Content.propTypes = {
   selectedData: eventShape.isRequired,
-  language: string.isRequired
+  language: string.isRequired,
+  location: locationShape.isRequired
 };
 
 Content.contextTypes = {
@@ -384,7 +405,8 @@ export const PageContent = connectToStores(
   Content,
   ['PreferencesStore'],
   ({ getStore }) => ({
-    language: getStore('PreferencesStore').getLanguage()
+    language: getStore('PreferencesStore').getLanguage(),
+    location: getStore('PositionStore').getLocationState()
   })
 );
 

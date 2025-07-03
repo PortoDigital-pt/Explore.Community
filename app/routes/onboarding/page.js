@@ -56,7 +56,6 @@ const OnboardingPage = (
         <Content
           pages={onboarding}
           currentLanguage={currentLanguage}
-          hideArrows={breakpoint === 'small'}
           onExplore={onStartExploring}
           showOnExplore={!onboarded}
           onExploreDescription={intl.messages['onboarding-start-exploring']}

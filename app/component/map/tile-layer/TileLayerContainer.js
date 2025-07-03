@@ -94,9 +94,11 @@ class TileLayerContainer extends GridLayer {
     className: 'popup',
     ref: 'popup',
     onClose: () => this.setState({ ...initialState }),
-    autoPan: false,
+    autoPan: true,
+    keepInView: false,
     onOpen: () => this.sendAnalytics(),
-    relayEnvironment: relayShape.isRequired
+    relayEnvironment: relayShape.isRequired,
+    closeOnClick: true
   };
 
   merc = new SphericalMercator({
@@ -128,6 +130,7 @@ class TileLayerContainer extends GridLayer {
       this.leafletElement.redraw();
     }
     if (!isEqual(prevProps.hilightedStops, this.props.hilightedStops)) {
+      this.props.leaflet.map.closePopup();
       this.leafletElement.redraw();
     }
   }

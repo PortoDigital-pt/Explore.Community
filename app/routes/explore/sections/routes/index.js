@@ -1,8 +1,10 @@
 import React from 'react';
+import { string } from 'prop-types';
 import { getRoutesList } from '../../../../util/amporto/api';
+import withBreakpoint from '../../../../util/withBreakpoint';
 import Section from '../section';
 
-const RoutesSection = () => (
+const RoutesSection = ({ breakpoint }) => (
   <Section
     getData={getRoutesList}
     title="routes-title"
@@ -12,7 +14,12 @@ const RoutesSection = () => (
     emptyMessage="events-empty"
     type="routes"
     showDescription
+    limit={breakpoint === 'large' ? 1 : 10}
   />
 );
 
-export default RoutesSection;
+RoutesSection.propTypes = {
+  breakpoint: string.isRequired
+};
+
+export default withBreakpoint(RoutesSection);

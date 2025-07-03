@@ -3,10 +3,11 @@ import { string } from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { parseConfigDescriptionTextWithLink } from '../../../../util/amporto/text';
 import { getEventList } from '../../../../util/amporto/api';
+import withBreakpoint from '../../../../util/withBreakpoint';
 import Section from '../section';
 import { configShape } from '../../../../util/shapes';
 
-const EventsSection = ({ language }, { config }) => {
+const EventsSection = ({ language, breakpoint }, { config }) => {
   const Intro = useMemo(
     () => () =>
       config.cards.events?.[language] && config.culturalAgendaLink ? (
@@ -30,12 +31,14 @@ const EventsSection = ({ language }, { config }) => {
       emptyMessage="events-empty"
       Intro={Intro}
       type="events"
+      limit={breakpoint === 'large' ? 1 : 10}
     />
   );
 };
 
 EventsSection.propTypes = {
-  language: string.isRequired
+  language: string.isRequired,
+  breakpoint: string.isRequired
 };
 
 EventsSection.contextTypes = {
@@ -43,7 +46,7 @@ EventsSection.contextTypes = {
 };
 
 export default connectToStores(
-  EventsSection,
+  withBreakpoint(EventsSection),
   ['PreferencesStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage()
