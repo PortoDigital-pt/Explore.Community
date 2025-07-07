@@ -20,9 +20,18 @@ import { getSmooveById } from '../util/amporto/api';
 import { PREFIX_BIKESTATIONS } from '../util/path';
 import { TransportMode } from '../constants';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';
+import { getItineraryPath } from '../routes/explore/details/routes/util';
 
 const VehicleRentalStationContent = (
-  { vehicleRentalStation, breakpoint, language, router, error, location },
+  {
+    vehicleRentalStation,
+    breakpoint,
+    language,
+    router,
+    error,
+    location,
+    isExplore = false
+  },
   { config, intl, executeAction }
 ) => {
   const [client, setClient] = useState(false);
@@ -60,9 +69,11 @@ const VehicleRentalStationContent = (
 
   if (!vehicleRentalStation && !error) {
     if (isBrowser) {
-      router.replace(`/browse/${PREFIX_BIKESTATIONS}`);
+      router.replace(`${isExplore ? '/' : '/browse/'}${PREFIX_BIKESTATIONS}`);
     } else {
-      throw new RedirectException(`/browse/${PREFIX_BIKESTATIONS}`);
+      throw new RedirectException(
+        `${isExplore ? '/' : '/browse/'}${PREFIX_BIKESTATIONS}`
+      );
     }
     return null;
   }
@@ -129,6 +140,20 @@ const VehicleRentalStationContent = (
           </div>
         </div>
       </div>
+      {isExplore && (
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.directions}
+            onClick={() =>
+              router.push(getItineraryPath(location, vehicleRentalStation))
+            }
+          >
+            {intl.messages.directions}
+          </button>
+        </div>
+      )}
 
       <div className="rental-bike-button-container">
         <div className="rental-bike-btn-item" style={{ display: 'none' }}>
@@ -200,7 +225,8 @@ VehicleRentalStationContent.propTypes = {
   language: PropTypes.string.isRequired,
   router: routerShape.isRequired,
   error: errorShape,
-  location: locationShape.isRequired
+  location: locationShape.isRequired,
+  isExplore: PropTypes.bool
 };
 
 VehicleRentalStationContent.defaultProps = {

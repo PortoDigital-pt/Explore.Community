@@ -1,9 +1,11 @@
 import React from 'react';
 import Route from 'found/Route';
+import { graphql } from 'react-relay';
 import {
   getDefault,
   getComponentOrLoadingRenderer
 } from '../../util/routerUtils';
+import { PREFIX_BIKESTATIONS, PREFIX_TAXISTATIONS } from '../../util/path';
 
 export default config => {
   const { routes, blocks } = config.optionalNavigationItems;
@@ -111,6 +113,146 @@ export default config => {
             )
           }}
         </Route>
+      </Route>
+      <Route path={`${PREFIX_BIKESTATIONS}/:id`}>
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-bikes" */ '../../component/VehicleRentalStationContent'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_routes_VehicleRentalStation_Query($id: String!) {
+                  vehicleRentalStation(id: $id) {
+                    ...VehicleRentalStationContent_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} isExplore error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          ),
+          map: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-bikes" */ '../../component/VehicleRentalStationMapContainer'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_routes_VehicleRentalStationMap_Query(
+                  $id: String!
+                ) {
+                  vehicleRentalStation(id: $id) {
+                    ...VehicleRentalStationMapContainer_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} isExplore error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          )
+        }}
+      </Route>
+      <Route path={`${PREFIX_TAXISTATIONS}/:id`}>
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-taxis" */ '../../component/TaxiRentalStationContent'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_routes_TaxiRentalStation_Query($id: String!) {
+                  vehicleRentalStation(id: $id) {
+                    ...TaxiRentalStationContent_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} isExplore error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          ),
+          map: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-taxis" */ '../../component/TaxiRentalStationMapContainer'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_routes_TaxiRentalStationMap_Query($id: String!) {
+                  vehicleRentalStation(id: $id) {
+                    ...TaxiRentalStationMapContainer_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} isExplore error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          )
+        }}
       </Route>
       {routes && (
         <Route path="routes">
