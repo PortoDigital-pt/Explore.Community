@@ -191,9 +191,9 @@ export default {
       stages: { pt: 'Palcos', en: 'Stage' }
     },
     routes: {
-      'others-difficulty-easy': { pt: 'Facil', en: 'Easy' },
-      'others-difficulty-medium': { pt: 'Medio', en: 'Medium' },
-      'others-difficulty-hard': { pt: 'Dificil', en: 'Hard' },
+      'others-difficulty-easy': { pt: 'Fácil', en: 'Easy' },
+      'others-difficulty-medium': { pt: 'Médio', en: 'Medium' },
+      'others-difficulty-hard': { pt: 'Difícil', en: 'Hard' },
       'others-durationRange-1': { pt: 'Até 1 hora', en: 'Up to 1 hour' },
       'others-durationRange-2': {
         pt: 'Entre 1h e 2h',

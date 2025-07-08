@@ -735,20 +735,6 @@ export default {
 
   // keys and language translations for your filters
   /* e.g. override here or in your own config!
-  filters: {
-    pois: {
-      fadoHouse: { pt: 'Casas de Fado', en: 'Fado Houses' }
-    },
-    events: {
-      outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
-    },
-    routes: {
-      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
-    },
-    blocks: {
-      cultural: { pt: 'Cultural', en: 'Cultural' }
-    }
-  }
   */
   filters: {
     stop: {
@@ -766,10 +752,10 @@ export default {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
     },
     routes: {
-      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+      'others-difficulty-easy': { pt: 'Fácil', en: 'Easy' }
     },
     blocks: {
-      /* blocks don't have categories */
+      /* blocks don't have categories but are part of the layering system on which the filters have influence */
     }
   },
 
