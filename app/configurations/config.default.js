@@ -605,7 +605,7 @@ export default {
     itinerary: true
   },
 
-  viaPointsEnabled: true,
+  viaPointsEnabled: false,
 
   // Toggling this off shows the alert bodytext instead of the header
   showAlertHeader: true,
@@ -735,7 +735,7 @@ export default {
 
   // keys and language translations for your filters
   /* e.g. override here or in your own config!
-  */
+   */
   filters: {
     stop: {
       bus: { pt: 'Autocarro', en: 'Bus' },

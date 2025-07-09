@@ -118,6 +118,21 @@ const VehicleRentalStationContent = (
         </div>
       </div>
 
+      {isExplore && (
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.directions}
+            onClick={() =>
+              router.push(getItineraryPath(location, vehicleRentalStation))
+            }
+          >
+            {intl.messages.directions}
+          </button>
+        </div>
+      )}
+
       <div className="rental-bike-content-container">
         <div className="row-bike">
           <div className="rental-bike-content-item label">
@@ -140,20 +155,6 @@ const VehicleRentalStationContent = (
           </div>
         </div>
       </div>
-      {isExplore && (
-        <div className="buttons">
-          <button
-            type="button"
-            className="button-light"
-            aria-label={intl.messages.directions}
-            onClick={() =>
-              router.push(getItineraryPath(location, vehicleRentalStation))
-            }
-          >
-            {intl.messages.directions}
-          </button>
-        </div>
-      )}
 
       <div className="rental-bike-button-container">
         <div className="rental-bike-btn-item" style={{ display: 'none' }}>
