@@ -65,6 +65,7 @@ function MarkerSelectPopup(props, { intl }) {
           {...option.feature.properties}
           key={`citybike:${option.feature.properties.id}`}
           prefix={PREFIX_BIKESTATIONS}
+          isExplore={props.isExplore}
         />
       );
     }
@@ -74,6 +75,7 @@ function MarkerSelectPopup(props, { intl }) {
           {...option.feature.properties}
           key={`taxis:${option.feature.properties.id}`}
           prefix={PREFIX_TAXISTATIONS}
+          isExplore={props.isExplore}
         />
       );
     }
@@ -174,7 +176,8 @@ MarkerSelectPopup.propTypes = {
   selectRow: PropTypes.func.isRequired,
   colors: popupColorShape.isRequired,
   zoom: PropTypes.number,
-  lang: PropTypes.string
+  lang: PropTypes.string,
+  isExplore: PropTypes.bool
 };
 
 MarkerSelectPopup.defaultProps = {
