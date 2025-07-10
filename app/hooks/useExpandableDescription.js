@@ -9,7 +9,7 @@ const useExpandableDescription = ({ description, intl }) => {
       <>
         <p>{expanded ? description : firstSentence.current}</p>
         <button
-          type='button'
+          type="button"
           className="read-more-button"
           onClick={() => setExpanded(prev => !prev)}
         >

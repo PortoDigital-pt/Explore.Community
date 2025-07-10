@@ -280,7 +280,9 @@ class TileLayerContainer extends GridLayer {
           ? PREFIX_TERMINALS
           : PREFIX_STOPS;
         this.context.router.push(
-          `/browse/${prefix}/${encodeURIComponent(
+          `${
+            this.props.showExplore ? '/' : '/browse/'
+          }${prefix}/${encodeURIComponent(
             selectableTargets[0].feature.properties.gtfsId
           )}`
         );

@@ -56,6 +56,7 @@ function MarkerSelectPopup(props, { intl }) {
           colors={props.colors}
           routes={option.feature.properties.routes}
           platform={option.feature.properties.platform}
+          isExplore={props.isExplore}
         />
       );
     }
