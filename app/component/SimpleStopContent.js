@@ -18,15 +18,15 @@ const modules = {
   FavouriteStopContainer: () => importLazy(import('./FavouriteStopContainer'))
 };
 
-const SimpleStationContent = (
-  { station, language, breakpoint, router, error, location },
+const SimpleStopContent = (
+  { stop, language, breakpoint, router, error, location },
   { intl, executeAction }
 ) => {
   const [client, setClient] = useState(false);
   const distanceToStop = useDistanceToTarget({
     executeAction,
     location,
-    targetPoint: station
+    targetPoint: stop
   });
 
   useEffect(() => {
@@ -35,11 +35,11 @@ const SimpleStationContent = (
   });
 
   // throw error in client side relay query fails
-  if (client && error && !station) {
+  if (client && error && !stop) {
     throw error.message;
   }
 
-  if (!station && !error) {
+  if (!stop && !error) {
     if (isBrowser) {
       router.replace('/');
     } else {
@@ -52,26 +52,37 @@ const SimpleStationContent = (
     <div className="bike-station-page-container">
       <div className="rental-bike-header-container">
         <div className="row-bike">
-          <Icon img="icon-icon_subway_with_background" viewBox="0 0 50 50" />
+          <Icon
+            img={`icon-icon_${stop.vehicleMode.toLowerCase()}_with_background`}
+            viewBox="0 0 50 50"
+          />
 
           <div className="rental-bike">
             <div className="rental-bike-header-item title">
               {`${
                 language === 'pt'
-                  ? `${intl.messages.station} ${station.name}`
-                  : `${station.name} ${intl.messages.station}`
+                  ? `${intl.messages.stop} ${stop.name}`
+                  : `${stop.name} ${intl.messages.stop}`
               }`}
             </div>
             <div className="rental-bike-header-item share-and-favorite">
               <ShareButton withBackground />
               <LazilyLoad modules={modules}>
                 {({ FavouriteStopContainer }) => (
-                  <FavouriteStopContainer stop={station} isTerminal />
+                  <FavouriteStopContainer stop={stop} />
                 )}
               </LazilyLoad>
             </div>
           </div>
         </div>
+
+        {stop.code && (
+          <div className="row-bike">
+            <div className="rental-bike">
+              <span className="itinerary-stop-code">{stop.code}</span>
+            </div>
+          </div>
+        )}
 
         <div className="row-bike">
           <div className="rental-bike">
@@ -91,16 +102,14 @@ const SimpleStationContent = (
           type="button"
           className="button-light"
           aria-label={intl.messages.directions}
-          onClick={() => router.push(getItineraryPath(location, station))}
+          onClick={() => router.push(getItineraryPath(location, stop))}
         >
           {intl.messages.directions}
         </button>
         <button
           type="button"
           onClick={() =>
-            router.push(
-              `/browse/terminals/${encodeURIComponent(station.gtfsId)}`
-            )
+            router.push(`/browse/stops/${encodeURIComponent(stop.gtfsId)}`)
           }
           aria-label={intl.messages.details}
         >
@@ -111,8 +120,8 @@ const SimpleStationContent = (
   );
 };
 
-SimpleStationContent.propTypes = {
-  station: stopShape.isRequired,
+SimpleStopContent.propTypes = {
+  stop: stopShape.isRequired,
   language: PropTypes.string.isRequired,
   breakpoint: PropTypes.string.isRequired,
   router: routerShape.isRequired,
@@ -120,19 +129,19 @@ SimpleStationContent.propTypes = {
   location: locationShape.isRequired
 };
 
-SimpleStationContent.defaultProps = {
+SimpleStopContent.defaultProps = {
   error: undefined
 };
 
-SimpleStationContent.contextTypes = {
+SimpleStopContent.contextTypes = {
   intl: intlShape.isRequired,
   executeAction: PropTypes.func.isRequired
 };
 
-const SimpleStationContentWithBreakpoint = withBreakpoint(SimpleStationContent);
+const SimpleStopContentWithBreakpoint = withBreakpoint(SimpleStopContent);
 
 const connectedComponent = connectToStores(
-  SimpleStationContentWithBreakpoint,
+  SimpleStopContentWithBreakpoint,
   ['PreferencesStore', 'PositionStore'],
   context => ({
     language: context.getStore('PreferencesStore').getLanguage(),
@@ -141,8 +150,8 @@ const connectedComponent = connectToStores(
 );
 
 const containerComponent = createFragmentContainer(connectedComponent, {
-  station: graphql`
-    fragment SimpleStationContent_station on Stop {
+  stop: graphql`
+    fragment SimpleStopContent_stop on Stop {
       id
       gtfsId
       lat
@@ -159,5 +168,5 @@ const containerComponent = createFragmentContainer(connectedComponent, {
 
 export {
   containerComponent as default,
-  SimpleStationContentWithBreakpoint as Component
+  SimpleStopContentWithBreakpoint as Component
 };

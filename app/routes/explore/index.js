@@ -8,7 +8,8 @@ import {
 import {
   PREFIX_BIKESTATIONS,
   PREFIX_TAXISTATIONS,
-  PREFIX_TERMINALS
+  PREFIX_TERMINALS,
+  PREFIX_STOPS
 } from '../../util/path';
 
 export default config => {
@@ -309,6 +310,75 @@ export default config => {
                 query explore_TerminalPageMapContainer_Query($id: String!) {
                   station(id: $id) {
                     ...TerminalPageMapContainer_station
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} isExplore error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          )
+        }}
+      </Route>
+      <Route path={`${PREFIX_STOPS}/:id`}>
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-stops" */ '../../component/SimpleStopContent'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_SimpleStopContent_Query($id: String!) {
+                  stop(id: $id) {
+                    ...SimpleStopContent_stop
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          ),
+          map: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-stops" */ '../../component/stop/StopPageMapContainer'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_StopPageMapContainer_Query($id: String!) {
+                  stop(id: $id) {
+                    ...StopPageMapContainer_stop
                   }
                 }
               `}
