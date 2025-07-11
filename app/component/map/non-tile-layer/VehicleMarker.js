@@ -70,9 +70,9 @@ export default class VehicleMarker extends React.Component {
     const { showBikeAvailability, rental, transit } = this.props;
     const { config } = this.context;
     const vehicleCapacity = getVehicleCapacity(config, rental?.network);
-    const iconName = `${getRentalNetworkIcon(
+    const iconName = getRentalNetworkIcon(
       getRentalNetworkConfig(rental.network, config)
-    )}-lollipop`;
+    );
 
     return !transit && zoom <= config.stopsSmallMaxZoom
       ? L.divIcon({
@@ -84,6 +84,7 @@ export default class VehicleMarker extends React.Component {
           iconAnchor: [15, 40],
           html: showBikeAvailability
             ? Icon.asString({
+                viewBox: '0 0 50 50',
                 img: iconName,
                 className: 'city-bike-medium-size',
                 badgeFill: getVehicleAvailabilityIndicatorColor(
@@ -100,6 +101,7 @@ export default class VehicleMarker extends React.Component {
                     : null
               })
             : Icon.asString({
+                viewBox: '0 0 50 50',
                 img: iconName,
                 className: 'city-bike-medium-size'
               }),

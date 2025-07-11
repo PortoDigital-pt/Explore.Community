@@ -2,13 +2,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { configShape } from '../util/shapes';
-import StopCode from './StopCode';
 import LazilyLoad, { importLazy } from './LazilyLoad';
 import { getJson } from '../util/xhrPromise';
 import getZoneId from '../util/zoneIconUtils';
 import ZoneIcon from './ZoneIcon';
-import { hasVehicleRentalCode } from '../util/vehicleRentalUtils';
-import { getIdWithoutFeed } from '../util/feedScopedIdUtils';
 import ShareButton from './amporto/share-button';
 
 const modules = {
@@ -62,9 +59,6 @@ const ParkOrBikeStationHeader = (
                 : parkHeaderId
           }
         />
-        {isRentalStation && hasVehicleRentalCode(stationId) && (
-          <StopCode code={getIdWithoutFeed(stationId)} />
-        )}
         {zoneId && (
           <span className="bike-station-zone-icon">
             <ZoneIcon zoneId={zoneId.toUpperCase()} />

@@ -101,19 +101,6 @@ const TaxiRentalStationContent = (
         </div>
       </div>
 
-      <div className="rental-bike-content-container">
-        <div className="row-bike">
-          <div className="rental-bike-content-item label">
-            <FormattedMessage id="citybike-available-taxis" />
-          </div>
-          <div className="rental-bike-content-item value">
-            <span className="value-container">
-              {vehicleRentalStation?.availableVehicles?.total || 0}
-            </span>
-          </div>
-        </div>
-      </div>
-
       {isExplore && (
         <div className="buttons">
           <button
@@ -128,6 +115,19 @@ const TaxiRentalStationContent = (
           </button>
         </div>
       )}
+
+      <div className="rental-bike-content-container">
+        <div className="row-bike">
+          <div className="rental-bike-content-item label">
+            <FormattedMessage id="citybike-available-taxis" />
+          </div>
+          <div className="rental-bike-content-item value">
+            <span className="value-container">
+              {vehicleRentalStation?.availableVehicles?.total || 0}
+            </span>
+          </div>
+        </div>
+      </div>
 
       <div className="rental-bike-button-container">
         <div className="rental-bike-btn-item" style={{ display: 'none' }}>

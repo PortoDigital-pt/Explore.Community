@@ -276,23 +276,6 @@ const MobileDetails = (
         </div>
       </div>
 
-      <div className="content">
-        {selectedData.images && (
-          <div className="image">
-            <img
-              src={selectedData.images[0]}
-              alt={selectedData.name}
-              loading="lazy"
-            />
-          </div>
-        )}
-        <div className="details">
-          <div className="description">
-            <ExpandableDescription />
-          </div>
-        </div>
-      </div>
-
       <div className="buttons">
         <button
           type="button"
@@ -309,6 +292,23 @@ const MobileDetails = (
         >
           {intl.messages.details}
         </button>
+      </div>
+
+      <div className="content">
+        {selectedData.images && (
+          <div className="image">
+            <img
+              src={selectedData.images[0]}
+              alt={selectedData.name}
+              loading="lazy"
+            />
+          </div>
+        )}
+        <div className="details">
+          <div className="description">
+            <ExpandableDescription />
+          </div>
+        </div>
       </div>
     </div>
   );

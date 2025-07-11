@@ -12,7 +12,18 @@ function isNull(val) {
 }
 
 function SelectStopRow(
-  { code, type, desc, gtfsId, name, terminal, colors, routes, platform },
+  {
+    code,
+    type,
+    desc,
+    gtfsId,
+    name,
+    terminal,
+    colors,
+    routes,
+    platform,
+    isExplore = false
+  },
   { config }
 ) {
   let mode = type;
@@ -91,7 +102,9 @@ function SelectStopRow(
   return (
     <Link
       className="stop-popup-choose-row"
-      to={`/browse/${prefix}/${encodeURIComponent(gtfsId)}`}
+      to={`${isExplore ? '/' : '/browse/'}${prefix}/${encodeURIComponent(
+        gtfsId
+      )}`}
     >
       <span className="choose-row-left-column" aria-hidden="true">
         <Icon
@@ -142,7 +155,8 @@ SelectStopRow.propTypes = {
   desc: PropTypes.string,
   terminal: PropTypes.bool,
   colors: popupColorShape,
-  platform: PropTypes.string
+  platform: PropTypes.string,
+  isExplore: PropTypes.bool
 };
 
 SelectStopRow.defaultProps = {
