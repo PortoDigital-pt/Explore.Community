@@ -42,3 +42,5 @@ amporto.sh
 amporto-create-patch.sh
 hsl.sh
 .sonarlint
+static/assets/svg-sprite.amporto.svg
+app/configurations/config.amporto.js
