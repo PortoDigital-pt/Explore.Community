@@ -47,6 +47,23 @@ export function getAnalyticsInitCode(config, hostname) {
     );
   }
 
+  if (config.matomoAnalytics) {
+    eturn `
+      <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="${config.matomoAnalytics.url}";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '${config.matomoAnalytics.siteId}']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>`
+  }
+
   if (config.GTMid) {
     // Google Tag Manager script
     return `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

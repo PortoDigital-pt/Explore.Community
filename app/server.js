@@ -410,6 +410,8 @@ export default async function serve(req, res, next) {
         `<link rel="stylesheet" type="text/css" href="${config.URL.FONT}"/>\n`
       );
 
+      res.write(getAnalyticsInitCode(config, req.hostname)); 
+
       res.write(`<script>\n${polyfills}\n</script>\n`);
 
       const head = Helmet.rewind();
