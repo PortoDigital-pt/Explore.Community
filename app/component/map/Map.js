@@ -341,7 +341,12 @@ export default class Map extends React.Component {
               tileSize={config.map.tileSize || 256}
               zoomOffset={config.map.zoomOffset || 0}
               updateWhenIdle={false}
-              size={config.map.useRetinaTiles && L.Browser.retina ? '@2x' : ''}
+              size={
+                (config.map.useRetinaTiles && L.Browser.retina) ||
+                window.devicePixelRatio === 1
+                  ? '@2x'
+                  : ''
+              }
               minZoom={config.map.minZoom}
               maxZoom={config.map.maxZoom}
               attribution={attribution}
