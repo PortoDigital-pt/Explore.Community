@@ -54,7 +54,9 @@ const {
   SHOW_PROFILE_NOTIFICATION,
   EVENT_SOURCE,
   REALTIME_PATCH,
-  SHOW_WIFI
+  SHOW_WIFI,
+  MATOMO_URL,
+  MATOMO_SITE_ID
 } = process.env;
 const hasAPISubscriptionQueryParameter =
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME && API_SUBSCRIPTION_TOKEN;
@@ -151,6 +153,12 @@ export default {
 
   realTime,
   realTimePatch,
+
+  // Matomo analytics
+  matomoAnalytics:
+    MATOMO_URL && MATOMO_SITE_ID
+      ? { url: MATOMO_URL, siteId: MATOMO_SITE_ID }
+      : null,
 
   // Google Tag Manager id
   GTMid: GTM_ID,
