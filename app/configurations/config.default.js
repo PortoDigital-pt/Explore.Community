@@ -155,7 +155,10 @@ export default {
   realTimePatch,
 
   // Matomo analytics
-  matomoAnalytics: MATOMO_URL && MATOMO_SITE_ID ? { url: MATOMO_URL, siteId: MATOMO_SITE_ID } : null,
+  matomoAnalytics:
+    MATOMO_URL && MATOMO_SITE_ID
+      ? { url: MATOMO_URL, siteId: MATOMO_SITE_ID }
+      : null,
 
   // Google Tag Manager id
   GTMid: GTM_ID,
