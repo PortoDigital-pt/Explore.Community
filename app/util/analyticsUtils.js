@@ -57,6 +57,59 @@ export function getAnalyticsInitCode(config, hostname) {
   }
   return '';
 }
+
+export function initMatomoClientAnalytics({ url, siteId }) {
+  if (process.env.NODE_ENV === 'development') {
+    return;
+  }
+
+  const _paq = (window._paq = window._paq || []);
+
+  // Configure Matomo
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+
+  // Set up the tracking script
+  (function () {
+    _paq.push(['setTrackerUrl', `${url}matomo.php`]);
+    _paq.push(['setSiteId', siteId]); // Make sure this matches your site ID
+    const d = document;
+    const g = d.createElement('script');
+    const s = d.getElementsByTagName('script')[0];
+    g.async = true;
+    g.src = `${url}matomo.js`;
+    s.parentNode.insertBefore(g, s);
+  })();
+
+  // Track route changes
+  const originalHistoryPush = window.history.pushState;
+  const originalHistoryReplace = window.history.replaceState;
+
+  function trackPageView(url) {
+    if (window._paq) {
+      window._paq.push(['setCustomUrl', url]);
+      window._paq.push(['setDocumentTitle', document.title]);
+      window._paq.push(['trackPageView']);
+    }
+  }
+
+  // Override history methods to track route changes
+  window.history.pushState = function (state, title, url) {
+    originalHistoryPush.call(window.history, state, title, url);
+    trackPageView(url);
+  };
+
+  window.history.replaceState = function (state, title, url) {
+    originalHistoryReplace.call(window.history, state, title, url);
+    trackPageView(url);
+  };
+
+  // Listen for popstate events (back/forward buttons)
+  window.addEventListener('popstate', function () {
+    trackPageView(window.location.pathname + window.location.search);
+  });
+}
+
 const handleChange = () => {
   if (!window.CookieInformation) {
     return false;

@@ -102,6 +102,25 @@ const Mobile = (
             `${intl.messages['at-distance']} ${showDistance(distanceToEvent)}`}
         </div>
       </div>
+
+      <div className="buttons">
+        <button
+          type="button"
+          className="button-light"
+          aria-label={intl.messages.directions}
+          onClick={() => router.push(getItineraryPath(location, selectedData))}
+        >
+          {intl.messages.directions}
+        </button>
+        <button
+          type="button"
+          onClick={onDetails}
+          aria-label={intl.messages.details}
+        >
+          {intl.messages.details}
+        </button>
+      </div>
+
       <div className="content">
         {selectedData.images && (
           <div className="image">
@@ -153,23 +172,6 @@ const Mobile = (
             )}
           </div>
         </div>
-      </div>
-      <div className="buttons">
-        <button
-          type="button"
-          className="button-light"
-          aria-label={intl.messages.directions}
-          onClick={() => router.push(getItineraryPath(location, selectedData))}
-        >
-          {intl.messages.directions}
-        </button>
-        <button
-          type="button"
-          onClick={onDetails}
-          aria-label={intl.messages.details}
-        >
-          {intl.messages.details}
-        </button>
       </div>
     </div>
   );

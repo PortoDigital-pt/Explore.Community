@@ -54,7 +54,9 @@ const {
   SHOW_PROFILE_NOTIFICATION,
   EVENT_SOURCE,
   REALTIME_PATCH,
-  SHOW_WIFI
+  SHOW_WIFI,
+  MATOMO_URL,
+  MATOMO_SITE_ID
 } = process.env;
 const hasAPISubscriptionQueryParameter =
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME && API_SUBSCRIPTION_TOKEN;
@@ -151,6 +153,12 @@ export default {
 
   realTime,
   realTimePatch,
+
+  // Matomo analytics
+  matomoAnalytics:
+    MATOMO_URL && MATOMO_SITE_ID
+      ? { url: MATOMO_URL, siteId: MATOMO_SITE_ID }
+      : null,
 
   // Google Tag Manager id
   GTMid: GTM_ID,
@@ -605,7 +613,7 @@ export default {
     itinerary: true
   },
 
-  viaPointsEnabled: true,
+  viaPointsEnabled: false,
 
   // Toggling this off shows the alert bodytext instead of the header
   showAlertHeader: true,
@@ -735,21 +743,7 @@ export default {
 
   // keys and language translations for your filters
   /* e.g. override here or in your own config!
-  filters: {
-    pois: {
-      fadoHouse: { pt: 'Casas de Fado', en: 'Fado Houses' }
-    },
-    events: {
-      outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
-    },
-    routes: {
-      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
-    },
-    blocks: {
-      cultural: { pt: 'Cultural', en: 'Cultural' }
-    }
-  }
-  */
+   */
   filters: {
     stop: {
       bus: { pt: 'Autocarro', en: 'Bus' },
@@ -766,10 +760,10 @@ export default {
       outdoor: { pt: 'Ao Fresco', en: 'Out and about' }
     },
     routes: {
-      itinerary: { pt: 'Roteiro', en: 'Itinerary' }
+      'others-difficulty-easy': { pt: 'Fácil', en: 'Easy' }
     },
     blocks: {
-      /* blocks don't have categories */
+      /* blocks don't have categories but are part of the layering system on which the filters have influence */
     }
   },
 

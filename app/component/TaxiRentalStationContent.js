@@ -19,9 +19,18 @@ import { showDistance } from '../util/amporto/geo';
 import { PREFIX_TAXISTATIONS } from '../util/path';
 import { TransportMode } from '../constants';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';
+import { getItineraryPath } from '../routes/explore/details/routes/util';
 
 const TaxiRentalStationContent = (
-  { vehicleRentalStation, breakpoint, language, router, error, location },
+  {
+    vehicleRentalStation,
+    breakpoint,
+    language,
+    router,
+    error,
+    location,
+    isExplore = false
+  },
   { config, intl, executeAction }
 ) => {
   const [client, setClient] = useState(false);
@@ -43,9 +52,11 @@ const TaxiRentalStationContent = (
 
   if (!vehicleRentalStation && !error) {
     if (isBrowser) {
-      router.replace(`/browse/${PREFIX_TAXISTATIONS}`);
+      router.replace(`${isExplore ? '/' : '/browse/'}${PREFIX_TAXISTATIONS}`);
     } else {
-      throw new RedirectException(`/browse/${PREFIX_TAXISTATIONS}`);
+      throw new RedirectException(
+        `${isExplore ? '/' : '/browse/'}${PREFIX_TAXISTATIONS}`
+      );
     }
     return null;
   }
@@ -89,6 +100,21 @@ const TaxiRentalStationContent = (
           </div>
         </div>
       </div>
+
+      {isExplore && (
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.directions}
+            onClick={() =>
+              router.push(getItineraryPath(location, vehicleRentalStation))
+            }
+          >
+            {intl.messages.directions}
+          </button>
+        </div>
+      )}
 
       <div className="rental-bike-content-container">
         <div className="row-bike">
@@ -173,7 +199,8 @@ TaxiRentalStationContent.propTypes = {
   language: PropTypes.string.isRequired,
   router: routerShape.isRequired,
   error: errorShape,
-  location: locationShape.isRequired
+  location: locationShape.isRequired,
+  isExplore: PropTypes.bool
 };
 
 TaxiRentalStationContent.defaultProps = {

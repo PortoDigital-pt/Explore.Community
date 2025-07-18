@@ -4,11 +4,16 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import { configShape } from '../util/shapes';
 import StopPageMap from './map/StopPageMap';
 
-const TaxiRentalStationMapContainer = ({ vehicleRentalStation }) => {
+const TaxiRentalStationMapContainer = ({
+  vehicleRentalStation,
+  isExplore = false
+}) => {
   if (!vehicleRentalStation) {
     return false;
   }
-  return <StopPageMap stop={vehicleRentalStation} taxis />;
+  return (
+    <StopPageMap stop={vehicleRentalStation} taxis isExplore={isExplore} />
+  );
 };
 
 TaxiRentalStationMapContainer.contextTypes = {
@@ -16,6 +21,7 @@ TaxiRentalStationMapContainer.contextTypes = {
 };
 
 TaxiRentalStationMapContainer.propTypes = {
+  isExplore: PropTypes.bool,
   vehicleRentalStation: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,

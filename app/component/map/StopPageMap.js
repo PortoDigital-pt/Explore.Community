@@ -47,7 +47,7 @@ const getModeFromProps = props => {
 };
 
 function StopPageMap(
-  { stop, breakpoint, locationState, mapLayers, mapLayerOptions },
+  { stop, breakpoint, locationState, mapLayers, mapLayerOptions, isExplore },
   { config, match }
 ) {
   if (!stop) {
@@ -153,7 +153,8 @@ function StopPageMap(
       {...mwtProps}
       mapLayers={mapLayers}
       mapLayerOptions={mapLayerOptions}
-      topButtons={<MapRoutingButton stop={stop} />}
+      topButtons={isExplore ? null : <MapRoutingButton stop={stop} />}
+      showExplore={isExplore}
     >
       {children}
     </MapWithTracking>
@@ -168,6 +169,7 @@ StopPageMap.contextTypes = {
 };
 
 StopPageMap.propTypes = {
+  isExplore: PropTypes.bool.isRequired,
   stop: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,

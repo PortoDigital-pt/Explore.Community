@@ -256,6 +256,34 @@
       }
     }
   }
+  
+  .buttons {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 8px;
+    max-height: 41.50px;
+    width: 100%;
+
+    button {
+      @include contained-button;
+      flex-grow: 1;
+
+      @media (min-width: 400px) {
+        width: 400px;
+      }
+    }
+
+    .button-light {
+      @include outlined-button;
+      flex-grow: 1;
+
+      @media (min-width: 400px) {
+        width: 400px;
+      }
+    }
+  }
 
   .rental-bike-button-container {
     display: flex;
