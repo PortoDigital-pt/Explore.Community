@@ -680,12 +680,20 @@ export function drawCitybikeIcon(
     ).then(image => {
       tile.ctx.drawImage(image, x, y);
       x = x + width - smallCircleRadius;
-      y += smallCircleRadius + (isHighlighted ? 2.5 : -7);
+      y +=
+        smallCircleRadius +
+        (tile.scaleratio === 1
+          ? isHighlighted
+            ? 1
+            : -2
+          : isHighlighted
+            ? 2.5
+            : -7);
       if (showAvailabilityBadge) {
         /* eslint-disable no-param-reassign */
         tile.ctx.font = `${
           10.8 * tile.scaleratio
-        }px Gotham XNarrow SSm A, Gotham XNarrow SSm B, Gotham Rounded A, Gotham Rounded B, Arial, sans-serif`;
+        }px Open Sans, Gotham XNarrow SSm A, Gotham XNarrow SSm B, Gotham Rounded A, Gotham Rounded B, Arial, sans-serif`;
         tile.ctx.fillStyle = color === 'red' ? '#fff' : '#000';
         tile.ctx.textAlign = 'center';
         tile.ctx.textBaseline = 'middle';

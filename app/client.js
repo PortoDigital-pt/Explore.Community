@@ -37,7 +37,8 @@ import { isIOSApp } from './util/browser';
 import {
   initAnalyticsClientSide,
   addAnalyticsEvent,
-  handleUserAnalytics
+  handleUserAnalytics,
+  initMatomoClientAnalytics
 } from './util/analyticsUtils';
 import { configureCountry } from './util/configureCountry';
 // TODO: remove after login
@@ -188,6 +189,10 @@ async function init() {
     resolver,
     render
   });
+
+  if (config.matomoAnalytics) {
+    initMatomoClientAnalytics(config.matomoAnalytics);
+  }
 
   context
     .getComponentContext()

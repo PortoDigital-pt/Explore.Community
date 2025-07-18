@@ -108,6 +108,46 @@ const Mobile = (
         </div>
       )}
 
+      {fromRoutes ? (
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.details}
+            onClick={onDetails}
+          >
+            {intl.messages.details}
+          </button>
+          <button
+            type="button"
+            onClick={onStartItinerary}
+            aria-label={intl.messages['start-here']}
+          >
+            {intl.messages['start-here']}
+          </button>
+        </div>
+      ) : (
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.directions}
+            onClick={() =>
+              router.push(getItineraryPath(location, selectedData))
+            }
+          >
+            {intl.messages.directions}
+          </button>
+          <button
+            type="button"
+            onClick={onDetails}
+            aria-label={intl.messages.details}
+          >
+            {intl.messages.details}
+          </button>
+        </div>
+      )}
+
       <div className="content">
         {selectedData.images && (
           <div className="image">
@@ -161,46 +201,6 @@ const Mobile = (
           </div>
         </div>
       </div>
-
-      {fromRoutes ? (
-        <div className="buttons">
-          <button
-            type="button"
-            className="button-light"
-            aria-label={intl.messages.details}
-            onClick={onDetails}
-          >
-            {intl.messages.details}
-          </button>
-          <button
-            type="button"
-            onClick={onStartItinerary}
-            aria-label={intl.messages['start-here']}
-          >
-            {intl.messages['start-here']}
-          </button>
-        </div>
-      ) : (
-        <div className="buttons">
-          <button
-            type="button"
-            className="button-light"
-            aria-label={intl.messages.directions}
-            onClick={() =>
-              router.push(getItineraryPath(location, selectedData))
-            }
-          >
-            {intl.messages.directions}
-          </button>
-          <button
-            type="button"
-            onClick={onDetails}
-            aria-label={intl.messages.details}
-          >
-            {intl.messages.details}
-          </button>
-        </div>
-      )}
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { isValidLocation } from '../../../util/amporto/geo';
 
 const ListMap = (
   { location, mapLayers },
-  { config: { coordinatesBounds, defaultEndpoint } }
+  { config: { coordinatesBounds, defaultEndpoint, defaultMapZoom } }
 ) => {
   const isValid = useMemo(
     () => isValidLocation(location, coordinatesBounds),
@@ -16,7 +16,7 @@ const ListMap = (
 
   return (
     <MapWithTracking
-      zoom={15}
+      zoom={defaultMapZoom}
       lat={isValid ? location.lat : defaultEndpoint.lat}
       lon={isValid ? location.lon : defaultEndpoint.lon}
       mapLayers={mapLayers}

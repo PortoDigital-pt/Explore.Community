@@ -43,6 +43,7 @@ const initialState = {
 /** @extends React.Component */
 class TileLayerContainer extends GridLayer {
   static propTypes = {
+    showExplore: PropTypes.bool,
     tileSize: PropTypes.number.isRequired,
     zoomOffset: PropTypes.number.isRequired,
     locationPopup: PropTypes.string, // all, none, reversegeocoding, origindestination
@@ -193,6 +194,7 @@ class TileLayerContainer extends GridLayer {
       this.props.objectsToHide,
       this.props.lang
     );
+
     tile.onSelectableTargetClicked = (
       selectableTargets,
       coords,
@@ -225,7 +227,9 @@ class TileLayerContainer extends GridLayer {
         selectableTargets[0].layer === 'taxis'
       ) {
         this.context.router.push(
-          `/browse/${PREFIX_TAXISTATIONS}/${encodeURIComponent(
+          `${
+            this.props.showExplore ? '/' : '/browse/'
+          }${PREFIX_TAXISTATIONS}/${encodeURIComponent(
             selectableTargets[0].feature.properties.id
           )}`
         );
@@ -236,7 +240,9 @@ class TileLayerContainer extends GridLayer {
         selectableTargets[0].layer === 'citybike'
       ) {
         this.context.router.push(
-          `/browse/${PREFIX_BIKESTATIONS}/${encodeURIComponent(
+          `${
+            this.props.showExplore ? '/' : '/browse/'
+          }${PREFIX_BIKESTATIONS}/${encodeURIComponent(
             selectableTargets[0].feature.properties.id
           )}`
         );
@@ -274,7 +280,9 @@ class TileLayerContainer extends GridLayer {
           ? PREFIX_TERMINALS
           : PREFIX_STOPS;
         this.context.router.push(
-          `/browse/${prefix}/${encodeURIComponent(
+          `${
+            this.props.showExplore ? '/' : '/browse/'
+          }${prefix}/${encodeURIComponent(
             selectableTargets[0].feature.properties.gtfsId
           )}`
         );
@@ -409,6 +417,7 @@ class TileLayerContainer extends GridLayer {
               selectRow={this.selectRow}
               options={this.state.selectableTargets}
               colors={this.context.config.colors}
+              isExplore={this.props.showExplore}
             />
           );
         } else if (
@@ -462,6 +471,7 @@ class TileLayerContainer extends GridLayer {
               colors={this.context.config.colors}
               zoom={this.state.zoom}
               lang={this.props.lang}
+              isExplore={this.props.showExplore}
             />
           </Popup>
         );
