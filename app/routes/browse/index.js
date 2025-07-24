@@ -11,6 +11,7 @@ import {
   PREFIX_NEARYOU,
   PREFIX_BIKESTATIONS,
   PREFIX_TAXISTATIONS,
+  PREFIX_SCOOTERSTATIONS,
   PREFIX_BIKEPARK,
   PREFIX_CARPARK,
   PREFIX_RENTALVEHICLES,
@@ -198,6 +199,67 @@ export default config => {
                 query browse_routes_TaxiRentalStationMap_Query($id: String!) {
                   vehicleRentalStation(id: $id) {
                     ...TaxiRentalStationMapContainer_vehicleRentalStation
+                  }
+                }
+              `}
+              render={getComponentOrNullRenderer}
+            />
+          )
+        }}
+      </Route>
+      <Route path={`/${PREFIX_SCOOTERSTATIONS}/:id`}>
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "itinerary" */ '../../component/ScooterRentalStationContent'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query browse_routes_ScooterRentalStation_Query($id: String!) {
+                  vehicleRentalStation(id: $id) {
+                    ...ScooterRentalStationContent_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          ),
+          map: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "itinerary" */ '../../component/ScooterRentalStationMapContainer'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query browse_routes_ScooterRentalStationMap_Query(
+                  $id: String!
+                ) {
+                  vehicleRentalStation(id: $id) {
+                    ...ScooterRentalStationMapContainer_vehicleRentalStation
                   }
                 }
               `}

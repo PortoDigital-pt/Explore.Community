@@ -665,13 +665,7 @@ export function drawCitybikeIcon(
     y = geom.y / tile.ratio - height;
     const showAvailabilityBadge =
       showAvailability && (available || available === 0) && operative;
-    let icon =
-      iconName.indexOf('scooter') > -1
-        ? `${iconName}-lollipop`
-        : `${iconName}_station_${color}_large_map`;
-    if (!operative) {
-      icon = 'icon-icon_citybike_station_closed_large_map';
-    }
+    const icon = `${iconName}_station_${color}_large_map`;
 
     return getImageFromSpriteCache(
       `${icon}${isHighlighted ? '_highlight' : ''}`,
@@ -702,13 +696,7 @@ export function drawCitybikeIcon(
     });
   }
 
-  let icon =
-    iconName.indexOf('scooter') > -1
-      ? `${iconName}-lollipop`
-      : `${iconName}_station_${color}_small_map`;
-  if (!operative) {
-    icon = 'icon-icon_citybike_station_closed_small_map';
-  }
+  const icon = `${iconName}_station_${color}_small_map`;
 
   return getImageFromSpriteCache(icon, width, height).then(image => {
     tile.ctx.drawImage(

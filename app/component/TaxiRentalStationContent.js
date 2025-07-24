@@ -122,9 +122,7 @@ const TaxiRentalStationContent = (
             <FormattedMessage id="citybike-available-taxis" />
           </div>
           <div className="rental-bike-content-item value">
-            <span className="value-container">
-              {vehicleRentalStation?.availableVehicles?.total || 0}
-            </span>
+            <span className="value-container">{vehiclesAvailable || 0}</span>
           </div>
         </div>
       </div>

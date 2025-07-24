@@ -8,7 +8,7 @@ import Stops from './Stops';
 import ParkAndRideForCars from './ParkAndRideForCars';
 import ParkAndRideForBikes from './ParkAndRideForBikes';
 import { mapLayerShape } from '../../../store/MapLayerStore';
-import RentalVehicles from './RentalVehicles';
+import ScooterRentalStations from './ScooterRentalStations';
 import Explore from './Explore';
 import Blocks from './Blocks';
 import Routes from './Routes';
@@ -24,6 +24,10 @@ export default function VectorTileLayerContainer(props, { config }) {
     layers.push(TaxiRentalStations);
   }
 
+  if (props.mapLayers.scooters) {
+    layers.push(ScooterRentalStations);
+  }
+
   if (props.mapLayers.citybike) {
     layers.push(VehicleRentalStations);
   }
@@ -34,9 +38,7 @@ export default function VectorTileLayerContainer(props, { config }) {
   if (props.mapLayers.parkAndRideForBikes) {
     layers.push(ParkAndRideForBikes);
   }
-  if (props.mapLayers.scooter) {
-    layers.push(RentalVehicles);
-  }
+
   if (props.showExplore) {
     layers.push(Explore);
   }

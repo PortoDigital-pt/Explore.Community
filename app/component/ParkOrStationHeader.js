@@ -13,7 +13,7 @@ const modules = {
     importLazy(import('./FavouriteVehicleRentalStationContainer'))
 };
 const ParkOrBikeStationHeader = (
-  { parkOrStation, parkType, taxis },
+  { parkOrStation, parkType, taxis, scooters },
   { config }
 ) => {
   const [zoneId, setZoneId] = useState(undefined);
@@ -54,9 +54,11 @@ const ParkOrBikeStationHeader = (
           id={
             taxis
               ? 'taxis-station'
-              : isRentalStation
-                ? 'citybike-station-no-id'
-                : parkHeaderId
+              : scooters
+                ? 'scooters-station'
+                : isRentalStation
+                  ? 'citybike-station-no-id'
+                  : parkHeaderId
           }
         />
         {zoneId && (
@@ -72,7 +74,13 @@ const ParkOrBikeStationHeader = (
             <LazilyLoad modules={modules}>
               {({ FavouriteVehicleRentalStationContainer }) => (
                 <FavouriteVehicleRentalStationContainer
-                  type={taxis ? 'taxiStation' : 'bikeStation'}
+                  type={
+                    taxis
+                      ? 'taxiStation'
+                      : scooters
+                        ? 'scooterStation'
+                        : 'bikeStation'
+                  }
                   vehicleRentalStation={parkOrStation}
                 />
               )}
@@ -91,7 +99,8 @@ ParkOrBikeStationHeader.propTypes = {
     lon: PropTypes.number.isRequired
   }).isRequired,
   parkType: PropTypes.string,
-  taxis: PropTypes.bool
+  taxis: PropTypes.bool,
+  scooters: PropTypes.bool
 };
 
 ParkOrBikeStationHeader.defaultProps = { parkType: undefined, taxis: false };
