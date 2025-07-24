@@ -6285,7 +6285,7 @@ const translations = {
     'route-to-ferry': 'Percurso até ao cais',
     'route-to-park': 'Rota para o parque',
     'route-to-station': 'Percurso até à estação',
-    'route-to-stop': 'Percurso até à paragem',
+    'route-to-stop': 'Percurso até ao local',
     'route-to-pois': 'Percurso até ao ponto de interesse',
     'route-to-events': 'Percurso até ao evento',
     'router-change-departure-time': 'Alterar horário de partida ›',
