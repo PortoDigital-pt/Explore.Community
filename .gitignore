@@ -44,3 +44,4 @@ hsl.sh
 .sonarlint
 static/assets/svg-sprite.amporto.svg
 app/configurations/config.amporto.js
+sass/themes/amporto
