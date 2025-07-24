@@ -128,7 +128,7 @@ class TileContainer {
         }
         if (
           (layerName === 'citybike' ||
-            layerName === 'scooter' ||
+            layerName === 'scooters' ||
             layerName === 'taxis') &&
           this.coords.z >=
             getVehicleMinZoomOnStopsNearYou(
@@ -260,7 +260,7 @@ class TileContainer {
         if (
           feature.layer === 'stop' ||
           feature.layer === 'citybike' ||
-          feature.layer === 'scooter' ||
+          feature.layer === 'scooters' ||
           feature.layer === 'explore' ||
           feature.layer === 'taxis' ||
           feature.layer === 'blocks' ||
@@ -272,7 +272,9 @@ class TileContainer {
             feature.layer === 'blocks' ||
             feature.layer === 'routes'
               ? getFixedSizeIconStyle()
-              : feature.layer === 'citybike' || feature.layer === 'taxis'
+              : feature.layer === 'citybike' ||
+                  feature.layer === 'taxis' ||
+                  feature.layer === 'scooters'
                 ? getStopIconStyles('citybike', zoom)
                 : getIconStyles(zoom);
 
@@ -287,6 +289,7 @@ class TileContainer {
             if (
               feature.layer === 'realTimeVehicle' ||
               feature.layer === 'citybike' ||
+              feature.layer === 'scooters' ||
               feature.layer === 'taxis' ||
               feature.layer === 'explore'
             ) {

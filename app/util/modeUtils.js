@@ -49,6 +49,16 @@ export function showCitybikeNetwork(networkConfig, config) {
   );
 }
 
+export function showScooterNetwork(networkConfig, config) {
+  return (
+    networkConfig?.enabled &&
+    networkConfig.type === 'scooters' &&
+    (isCitybikeSeasonActive(networkConfig?.season) ||
+      isCitybikePreSeasonActive(networkConfig?.season) ||
+      isDevelopmentEnvironment(config))
+  );
+}
+
 export function showTaxisNetwork(networkConfig, config) {
   return (
     networkConfig?.enabled &&
@@ -92,7 +102,9 @@ export function showRentalVehiclesOfType(networks, config, type) {
     network =>
       network.type === type.toLowerCase() &&
       network.enabled &&
-      (network.showRentalVehicles || showCitybikeNetwork(network, config))
+      (network.showRentalVehicles ||
+        showCitybikeNetwork(network, config) ||
+        showScooterNetwork(network, config))
   );
 }
 

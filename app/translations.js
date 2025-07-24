@@ -1025,6 +1025,8 @@ const translations = {
     bicycle_frame_lock: 'Frame locking',
     bicycle_walk: 'Walking a bike',
     'bike-availability': 'Bikes available at the station right now',
+    'taxis-availability': 'Taxis available at the station right now', 
+    'scooters-availability': 'Scooters available at the station right now',
     'bike-not-allowed-bus': 'Bikes are not allowed on the bus',
     'bike-not-allowed-tram': 'Bikes are not allowed on the tram',
     'bike-only': 'Cycling only',
@@ -1112,6 +1114,7 @@ const translations = {
     'citybike-station': 'Bike station {stationId}',
     'citybike-station-no-id': 'Bike station',
     'taxis-station': 'Taxi station',
+    'scooters-station': 'Scooter station',
     'clear-button-label': 'Clear',
     close: 'Close',
     'close-favourite-module': 'Close the Favorites module',
@@ -1953,8 +1956,8 @@ const translations = {
     'onboarding-start-exploring': 'Start exploring',
     'cookies-title': 'We value your privacy',
     'cookies-accept': 'Accept cookies',
-    'cookies-reject': 'Reject',
-    'cookies-reject-aria': 'Reject cookies'
+    'cookies-reject': 'Only necessary',
+    'cookies-reject-aria': 'Only necessary'
   },
 
   es: {
@@ -5448,6 +5451,8 @@ const translations = {
     bicycle: 'bicicleta',
     'bicycle-distance-duration': 'Bicicleta {distance} ({duration})',
     'bike-availability': 'Bicicletas disponíveis na estação de momento',
+    'taxis-availability': 'Táxis disponíveis na estação de momento', 
+    'scooters-availability': 'Trotinetas disponíveis na estação de momento',
     'bike-availability-short': 'Bicicletas',
     'bike-not-allowed-bus': 'Bicicletas não são permitidas no autocarro',
     'bike-not-allowed-tram': 'Bicicletas não são permitidas no elétrico',
@@ -6015,6 +6020,7 @@ const translations = {
     'citybike-station': 'Estação de bicicletas {stationId}',
     'citybike-station-no-id': 'Estação de bicicletas',
     'taxis-station': 'Estação de táxis',
+    'scooters-station': 'Estação de trotinetas',
     'close-favourite-module': 'Feche o módulo Favoritos',
     'close-settings': 'Fechar janela e salvar configurações',
     'cookie-settings': 'Definições de cookies',
@@ -6497,8 +6503,8 @@ const translations = {
     'onboarding-start-exploring': 'Começar a explorar',
     'cookies-title': 'Valorizamos a sua privacidade',
     'cookies-accept': 'Aceitar cookies',
-    'cookies-reject': 'Rejeitar',
-    'cookies-reject-aria': 'Rejeitar cookies'
+    'cookies-reject': 'Apenas necessários',
+    'cookies-reject-aria': 'Apenas necessários'
   },
 
   sv: {

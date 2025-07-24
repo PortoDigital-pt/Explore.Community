@@ -33,8 +33,7 @@ const ScooterNetworkSelector = (
               <Icon
                 className={`${network.icon}-icon`}
                 img={`icon-icon_${network.icon}`}
-                height={1}
-                width={1}
+                viewBox="0 0 50 50"
               />
             </div>
             <span className="mode-name">

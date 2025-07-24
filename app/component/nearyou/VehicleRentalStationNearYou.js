@@ -5,11 +5,29 @@ import { Link } from 'found';
 import { graphql, createRefetchContainer } from 'react-relay';
 import VehicleRentalStation from '../VehicleRentalStation';
 import FavouriteVehicleRentalStationContainer from '../FavouriteVehicleRentalStationContainer';
-import { PREFIX_BIKESTATIONS } from '../../util/path';
+import { PREFIX_BIKESTATIONS, PREFIX_TAXISTATIONS, PREFIX_SCOOTERSTATIONS } from '../../util/path';
 import { isKeyboardSelectionEvent } from '../../util/browser';
 import { hasVehicleRentalCode } from '../../util/vehicleRentalUtils';
 import { getIdWithoutFeed } from '../../util/feedScopedIdUtils';
 import { relayShape } from '../../util/shapes';
+
+const networkPrefix = {
+  taxis: PREFIX_TAXISTATIONS,
+  smoove: PREFIX_BIKESTATIONS,
+  scooters: PREFIX_SCOOTERSTATIONS
+};
+
+const networkMessage = {
+  taxis: 'taxis-station',
+  smoove: 'citybike-station',
+  scooters: 'scooters-station'
+};
+
+const networkFavouriteType = {
+  taxis: 'taxiStation',
+  smoove: 'bikeStation',
+  scooters: 'scooterStation'
+}
 
 const VehicleRentalStationNearYou = ({
   stop,
@@ -30,6 +48,7 @@ const VehicleRentalStationNearYou = ({
       );
     }
   }, [currentTime]);
+ 
   return (
     <span role="listitem">
       <div className="stop-near-you-container">
@@ -44,13 +63,13 @@ const VehicleRentalStationNearYou = ({
                   e.stopPropagation();
                 }
               }}
-              to={`/browse/${PREFIX_BIKESTATIONS}/${stop.stationId}`}
+              to={`/browse/${networkPrefix[stop.rentalNetwork.networkId]}/${stop.stationId}`}
             >
               <h3 className="stop-near-you-name">{stop.name}</h3>
             </Link>
             <div className="bike-station-code">
               <FormattedMessage
-                id="citybike-station"
+                id={networkMessage[stop.rentalNetwork.networkId]}
                 values={{
                   stationId: hasVehicleRentalCode(stop.stationId)
                     ? getIdWithoutFeed(stop.stationId)
@@ -62,6 +81,7 @@ const VehicleRentalStationNearYou = ({
           <FavouriteVehicleRentalStationContainer
             vehicleRentalStation={stop}
             className="bike-rental-favourite-container"
+            type={networkFavouriteType[stop.rentalNetwork.networkId]}
           />
         </div>
         <VehicleRentalStation vehicleRentalStation={stop} />

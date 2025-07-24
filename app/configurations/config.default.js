@@ -372,6 +372,15 @@ export default {
         capacity: BIKEAVL_WITHMAX,
         icon: 'taxis',
         type: 'taxis'
+      },
+      scooters: {
+        enabled: true,
+        season: {
+          alwaysOn: true
+        },
+        capacity: BIKEAVL_WITHMAX,
+        icon: 'scooters',
+        type: 'scooters'
       }
     },
     capacity: BIKEAVL_WITHMAX,
@@ -751,6 +760,7 @@ export default {
       subway: { pt: 'Metro', en: 'Subway' },
       rail: { pt: 'Comboio', en: 'Rail' },
       citybike: { pt: 'Bicicletas', en: 'Citybikes' },
+      scooters: { pt: 'Trotinetas', en: 'Scooters' },
       taxis: { pt: 'Táxis', en: 'Taxis' }
     },
     pois: {
