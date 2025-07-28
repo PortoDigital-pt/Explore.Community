@@ -1,6 +1,6 @@
 import { shape, string, arrayOf, oneOfType, number } from 'prop-types';
 
-export const blockShape = shape({
+export const districtShape = shape({
   type: string.isRequired,
   id: string.isRequired,
   category: oneOfType([string, arrayOf(string)]).isRequired,

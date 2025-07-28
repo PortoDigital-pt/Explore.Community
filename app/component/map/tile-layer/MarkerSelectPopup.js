@@ -36,7 +36,7 @@ function MarkerSelectPopup(props, { intl }) {
   const rows = props.options.map(option => {
     if (
       option.layer === 'explore' ||
-      option.layer === 'blocks' ||
+      option.layer === 'districts' ||
       option.layer === 'routes'
     ) {
       return (

@@ -15,7 +15,7 @@ export const PLACE_ICONS = {
   scooterStation: 'icon-icon_scooters',
   pois: 'icon-explore-icon_pois_with_background',
   routes: 'icon-explore-icon_routes_with_background',
-  blocks: 'icon-explore-icon_blocks_with_background',
+  districts: 'icon-explore-icon_districts_with_background',
   unknown: 'icon-pin-map-with-background'
 };
 
@@ -37,7 +37,7 @@ export const FAVOURITE_REGULAR_ICONS = {
   scooterStation: 'icon-icon_scooters_no_map',
   pois: 'icon-explore-icon_pois_no_map',
   routes: 'icon-routes',
-  blocks: 'icon-blocks',
+  districts: 'icon-districts',
   unknown: 'icon-pin-map-regular'
 };
 

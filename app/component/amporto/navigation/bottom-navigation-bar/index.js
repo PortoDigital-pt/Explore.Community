@@ -25,10 +25,10 @@ const NAVIGATION_ITEMS_PATH_MAP = {
 
 const ITEM_EXPRESSION_MAP = {
   [NAVIGATION_ITEMS.BROWSE]: new RegExp(/^\/browse(\/.+)?$/, 'i'),
-  [NAVIGATION_ITEMS.BLOCKS]: new RegExp(/^\/blocks(\/.+)?$/, 'i'),
+  [NAVIGATION_ITEMS.DISTRICTS]: new RegExp(/^\/districts(\/.+)?$/, 'i'),
   [NAVIGATION_ITEMS.ROUTES]: new RegExp(/^\/routes(\/.+)?$/, 'i'),
   [NAVIGATION_ITEMS.EXPLORE]: new RegExp(
-    /^(\/(?!blocks|routes|browse|profile)([^/]+\/?)*)?$/,
+    /^(\/(?!districts|routes|browse|profile)([^/]+\/?)*)?$/,
     'i'
   ),
   [NAVIGATION_ITEMS.FAVOURITES]: new RegExp(

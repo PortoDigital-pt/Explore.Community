@@ -213,7 +213,7 @@ class TileLayerContainer extends GridLayer {
       if (
         selectableTargets.length === 1 &&
         (selectableTargets[0].layer === 'explore' ||
-          selectableTargets[0].layer === 'blocks' ||
+          selectableTargets[0].layer === 'districts' ||
           selectableTargets[0].layer === 'routes')
       ) {
         const [{ feature }] = selectableTargets;

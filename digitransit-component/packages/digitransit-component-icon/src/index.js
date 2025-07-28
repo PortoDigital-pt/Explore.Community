@@ -79,7 +79,7 @@ import ClearLocation from './assets/amporto/clear-location.svg';
 import Poi from './assets/amporto/poi.svg';
 import Event from './assets/amporto/event.svg';
 import Routes from './assets/amporto/routes.svg';
-import Blocks from './assets/amporto/blocks.svg';
+import Districts from './assets/amporto/districts.svg';
 
 const IconMap = style => {
   return {
@@ -193,7 +193,7 @@ const IconMap = style => {
     poi: <Poi style={style} />,
     event: <Event style={style} />,
     routes: <Routes style={style} />,
-    blocks: <Blocks style={style} />
+    districts: <Districts style={style} />
   };
 };
 

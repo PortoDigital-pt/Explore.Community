@@ -41,7 +41,7 @@ class MapLayerStore extends Store {
     pois: null,
     events: null,
     routes: null,
-    blocks: null,
+    districts: null,
     accesspoints: null
   };
 
@@ -84,9 +84,9 @@ class MapLayerStore extends Store {
         {}
       )
     };
-    this.mapLayers.blocks = {
+    this.mapLayers.districts = {
       showAll: true,
-      ...Object.keys(this.config.filters.blocks).reduce(
+      ...Object.keys(this.config.filters.districts).reduce(
         (acc, key) => ({ ...acc, [key]: true }),
         {}
       )
@@ -157,7 +157,7 @@ class MapLayerStore extends Store {
       pois: this.mapLayers.pois,
       events: this.mapLayers.events,
       routes: this.mapLayers.routes,
-      blocks: this.mapLayers.blocks
+      districts: this.mapLayers.districts
     };
 
     if (!only) {
