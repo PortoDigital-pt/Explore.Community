@@ -5,18 +5,18 @@ import { configShape } from '../../../../util/shapes';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
 import Map from '../../../../component/map/MapContainer';
 import useListData from '../../../../hooks/useListData';
-import { getBlockList } from '../../../../util/amporto/api';
+import { getDistrictList } from '../../../../util/amporto/api';
 import { boundWithMinimumArea } from '../../../../util/geo-utils';
 import Loading from '../../../../component/Loading';
 
 const getBounds = data =>
   boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
 
-const BlockListMap = ({ mapLayers, language }) => {
+const DistrictListMap = ({ mapLayers, language }) => {
   const args = useMemo(() => ({ language }), [language]);
 
   const { data, error } = useListData({
-    getData: getBlockList,
+    getData: getDistrictList,
     args
   });
 
@@ -33,26 +33,26 @@ const BlockListMap = ({ mapLayers, language }) => {
       className="flex-grow"
       bounds={getBounds(data)}
       mapLayers={mapLayers}
-      showBlocks
+      showDistricts
       ignoreMinZoom
     />
   );
 };
 
-BlockListMap.contextTypes = {
+DistrictListMap.contextTypes = {
   config: configShape.isRequired
 };
 
-BlockListMap.propTypes = {
+DistrictListMap.propTypes = {
   language: string,
   mapLayers: mapLayerShape.isRequired
 };
 
 export default connectToStores(
-  BlockListMap,
+  DistrictListMap,
   ['MapLayerStore', 'PreferencesStore'],
   ({ getStore }) => ({
-    mapLayers: getStore('MapLayerStore').getFilterLayers({ only: 'blocks' }),
+    mapLayers: getStore('MapLayerStore').getFilterLayers({ only: 'districts' }),
     language: getStore('PreferencesStore').getLanguage()
   })
 );

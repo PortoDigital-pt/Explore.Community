@@ -42,7 +42,7 @@ export function getLocationSearchTargets(config, isMobile) {
     locationSearchTargets.push('Stations');
     locationSearchTargets.push('Stops');
     locationSearchTargets.push('Explore-routes');
-    locationSearchTargets.push('Explore-blocks');
+    locationSearchTargets.push('Explore-districts');
     if (useCitybikes(config.vehicleRental?.networks, config)) {
       locationSearchTargets.push('VehicleRentalStations');
     }

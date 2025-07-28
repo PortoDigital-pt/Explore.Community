@@ -14,7 +14,7 @@ import {
 } from '../../util/path';
 
 export default config => {
-  const { routes, blocks } = config.optionalNavigationItems;
+  const { routes, districts } = config.optionalNavigationItems;
 
   return (
     <Route path="/">
@@ -521,15 +521,15 @@ export default config => {
           </Route>
         </Route>
       )}
-      {blocks && (
-        <Route path="blocks">
+      {districts && (
+        <Route path="districts">
           <Route path="/">
             {{
               content: (
                 <Route
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks-list" */ './list/blocks/page'
+                      /* webpackChunkName: "districts-list" */ './list/districts/page'
                     ).then(getDefault)
                   }
                   render={getComponentOrLoadingRenderer}
@@ -540,7 +540,7 @@ export default config => {
                   disableMapOnMobile={false}
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks-list-map" */ './list/blocks/pageMap'
+                      /* webpackChunkName: "districts-list-map" */ './list/districts/pageMap'
                     ).then(getDefault)
                   }
                   render={getComponentOrLoadingRenderer}
@@ -554,7 +554,7 @@ export default config => {
                 <Route
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks" */ './details/blocks/page'
+                      /* webpackChunkName: "districts" */ './details/districts/page'
                     ).then(getDefault)
                   }
                 />
@@ -564,7 +564,7 @@ export default config => {
                   disableMapOnMobile={false}
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks-map" */ './details/blocks/pageMap'
+                      /* webpackChunkName: "districts-map" */ './details/districts/pageMap'
                     ).then(getDefault)
                   }
                 />

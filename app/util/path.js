@@ -185,7 +185,7 @@ export const getStopRoutePath = searchObj => {
       id = searchObj.properties.id;
       break;
     case 'venue_groups':
-      path = '/blocks/';
+      path = '/districts/';
       id = searchObj.properties.id;
       break;
     case 'pois':

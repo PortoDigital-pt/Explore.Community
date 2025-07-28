@@ -7,7 +7,7 @@ import { isBrowser } from '../../../util/browser';
 import {
   isLayerEnabled,
   isExploreEnabled,
-  isBlocksEnabled,
+  isDistrictsEnabled,
   isRoutesEnabled
 } from '../../../util/mapLayerUtils';
 import {
@@ -90,15 +90,15 @@ class TileContainer {
           return isExploreEnabled(this.props.mapLayers);
         }
 
-        if (layerName === 'blocks') {
+        if (layerName === 'districts') {
           if (!this.props.ignoreMinZoom) {
             return (
               this.coords.z >= config.minZoomToShowOnMap &&
-              isBlocksEnabled(this.props.mapLayers)
+              isDistrictsEnabled(this.props.mapLayers)
             );
           }
 
-          return isBlocksEnabled(this.props.mapLayers);
+          return isDistrictsEnabled(this.props.mapLayers);
         }
 
         if (layerName === 'routes') {
@@ -263,13 +263,13 @@ class TileContainer {
           feature.layer === 'scooters' ||
           feature.layer === 'explore' ||
           feature.layer === 'taxis' ||
-          feature.layer === 'blocks' ||
+          feature.layer === 'districts' ||
           feature.layer === 'routes'
         ) {
           const zoom = this.coords.z;
           const iconStyles =
             this.props.fixedSizeIcon ||
-            feature.layer === 'blocks' ||
+            feature.layer === 'districts' ||
             feature.layer === 'routes'
               ? getFixedSizeIconStyle()
               : feature.layer === 'citybike' ||

@@ -9,14 +9,14 @@ import { drawFixedSizeIcon } from '../../../util/mapIconUtils';
 const isValidDataProvider = (providersString, currentProvider) =>
   providersString.split(',').includes(currentProvider);
 
-class Blocks {
+class Districts {
   constructor(tile, config, mapLayers) {
     this.tile = tile;
     this.config = config;
     this.mapLayers = mapLayers;
   }
 
-  static getName = () => 'blocks';
+  static getName = () => 'districts';
 
   getPromise() {
     fetch(
@@ -35,7 +35,7 @@ class Blocks {
           this.features = [];
 
           Object.values(vt.layers).forEach(layer => {
-            const type = 'blocks';
+            const type = 'districts';
 
             if (!isExploreFeatureEnabled(type, this.mapLayers)) {
               return;
@@ -46,7 +46,7 @@ class Blocks {
 
               if (
                 !isValidDataProvider(
-                  this.config.ngsi.dataProvider.blocks,
+                  this.config.ngsi.dataProvider.districts,
                   feature.properties.data_provider
                 )
               ) {
@@ -68,4 +68,4 @@ class Blocks {
   }
 }
 
-export default Blocks;
+export default Districts;

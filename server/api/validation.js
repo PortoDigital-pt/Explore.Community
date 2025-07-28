@@ -10,7 +10,7 @@ const coordinatesRegex =
 const languageRegex = /^(pt|en)$/;
 
 const commonListSchema = type => ({
-  block: {
+  district: {
     isString: true,
     optional: true
   },
@@ -68,7 +68,7 @@ export const eventListSchema = checkSchema(commonListSchema('events'), [
   'query'
 ]);
 
-export const blocksListSchema = checkSchema(commonListSchema(), ['query']);
+export const districtsListSchema = checkSchema(commonListSchema(), ['query']);
 export const routesListSchema = checkSchema(
   {
     ...commonListSchema(),

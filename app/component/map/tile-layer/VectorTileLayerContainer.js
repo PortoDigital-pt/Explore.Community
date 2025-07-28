@@ -10,7 +10,7 @@ import ParkAndRideForBikes from './ParkAndRideForBikes';
 import { mapLayerShape } from '../../../store/MapLayerStore';
 import ScooterRentalStations from './ScooterRentalStations';
 import Explore from './Explore';
-import Blocks from './Blocks';
+import Districts from './Districts';
 import Routes from './Routes';
 
 export default function VectorTileLayerContainer(props, { config }) {
@@ -46,8 +46,8 @@ export default function VectorTileLayerContainer(props, { config }) {
     layers.push(Routes);
   }
 
-  if (props.showBlocks) {
-    layers.push(Blocks);
+  if (props.showDistricts) {
+    layers.push(Districts);
   }
 
   return (
@@ -78,7 +78,7 @@ VectorTileLayerContainer.propTypes = {
   locationPopup: PropTypes.string,
   onSelectLocation: PropTypes.func,
   showExplore: PropTypes.bool,
-  showBlocks: PropTypes.bool,
+  showDistricts: PropTypes.bool,
   showRoutes: PropTypes.bool
 };
 
@@ -90,7 +90,7 @@ VectorTileLayerContainer.defaultProps = {
   onSelectLocation: undefined,
   locationPopup: undefined,
   showExplore: false,
-  showBlocks: false,
+  showDistricts: false,
   showRoutes: false
 };
 

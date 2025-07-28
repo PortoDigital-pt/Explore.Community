@@ -138,7 +138,7 @@ export default {
   // navbar items
   optionalNavigationItems: {
     routes: SHOW_ROUTES === 'true',
-    blocks: SHOW_BLOCKS === 'true',
+    districts: SHOW_BLOCKS === 'true',
     favourites: SHOW_FAVOURITES === 'true'
   },
 
@@ -433,7 +433,7 @@ export default {
       events: '#FEC8A7',
       accesspoints: '#493e90',
       taxis: '#212121',
-      blocks: '#493e90',
+      districts: '#493e90',
       routes: '#493e90'
     },
     itineraryDefault: '#493e90',
@@ -772,8 +772,8 @@ export default {
     routes: {
       'others-difficulty-easy': { pt: 'Fácil', en: 'Easy' }
     },
-    blocks: {
-      /* blocks don't have categories but are part of the layering system on which the filters have influence */
+    districts: {
+      /* districts don't have categories but are part of the layering system on which the filters have influence */
     }
   },
 

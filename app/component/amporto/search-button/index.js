@@ -31,7 +31,7 @@ const SearchButton = ({ lang }, { config, intl }) => {
           'Pois',
           'Events',
           'Explore-routes',
-          'Explore-blocks'
+          'Explore-districts'
         ]}
         id="searchButtonComponent"
         icon="search"
