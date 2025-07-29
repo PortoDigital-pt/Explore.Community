@@ -21,14 +21,23 @@ const OptionsButton = ({ favourite, onEdit, onDelete, intl }) => {
 
   return (
     <>
-      <button type="button" onClick={open} aria-label="options">
+      <button
+        className="options"
+        type="button"
+        onClick={event => {
+          event.stopPropagation();
+          open();
+        }}
+        aria-label="options"
+      >
         <Icon img="icon-more-vertical" viewBox="0 0 24 24" />
       </button>
       <FloatingMenu isOpen={isOpen} close={close}>
         <button
           type="button"
           className="floating-menu-item"
-          onClick={() => {
+          onClick={event => {
+            event.stopPropagation();
             onEdit();
             close();
           }}
@@ -43,7 +52,8 @@ const OptionsButton = ({ favourite, onEdit, onDelete, intl }) => {
             <button
               type="button"
               className="floating-menu-item"
-              onClick={() => {
+              onClick={event => {
+                event.stopPropagation();
                 onDelete();
                 close();
               }}
