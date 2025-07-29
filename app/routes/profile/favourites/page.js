@@ -1,5 +1,6 @@
 import React, { Suspense, useCallback, useMemo, useState } from 'react';
 import { connectToStores } from 'fluxible-addons-react';
+import { useRouter } from 'found';
 import { intlShape } from 'react-intl';
 import { func, string, arrayOf, shape } from 'prop-types';
 import { configShape } from '../../../util/shapes';
@@ -15,9 +16,27 @@ import { getPlaceIcon, MY_PLACES } from './util';
 import OptionsButton from './options-button';
 import FavouriteForm from './form';
 
+const TYPE_PAGE_MAP = {
+  pois: { path: 'pois', id: 'id' },
+  events: { path: 'events', id: 'id' },
+  taxiStation: { path: 'taxistations', id: 'stationId' },
+  scooterStation: { path: 'scooterstations', id: 'stationId' },
+  bikeStation: { path: 'bikestations', id: 'stationId' },
+  station: { path: 'browse/terminals', id: 'gtfsId' },
+  stop: { path: 'browse/stops', id: 'gtfsId' },
+  routes: { path: 'routes', id: 'id' },
+  districts: { path: 'districts', id: 'id' }
+};
+
 const Favourites = ({ lang, favourites }, { config, executeAction, intl }) => {
+  const { router } = useRouter();
   const { isOpen, open, close } = useModal();
   const [selectedFavourite, setSelectedFavourite] = useState(null);
+
+  const goToFavourite = useCallback(favourite => {
+    const { path, id } = TYPE_PAGE_MAP[favourite.type];
+    router.push(`/${path}/${encodeURIComponent(favourite[id])}`);
+  }, []);
 
   const home = favourites?.find(f => f.myPlace === 'home');
   const work = favourites?.find(f => f.myPlace === 'work');
@@ -97,7 +116,7 @@ const Favourites = ({ lang, favourites }, { config, executeAction, intl }) => {
           </button>
           <div className="favourites-list-divider" />
 
-          <div className="my-locals item">
+          <div className="item">
             <Icon
               img="icon-home-with-background"
               className="icon-my-locals-home"
@@ -121,7 +140,7 @@ const Favourites = ({ lang, favourites }, { config, executeAction, intl }) => {
             />
           </div>
 
-          <div className="my-locals item">
+          <div className="item">
             <Icon
               img="icon-work-with-background"
               className="icon-my-locals-home"
@@ -150,10 +169,19 @@ const Favourites = ({ lang, favourites }, { config, executeAction, intl }) => {
               <div className="favourites-list-divider" />
               {favouritesWithoutMyPlaces?.map(favourite => (
                 <div
+                  tabIndex={0}
+                  role="button"
+                  aria-label="go to favourite's page"
                   className="favourites-item item"
                   key={favourite.favouriteId}
+                  onClick={() => goToFavourite(favourite)}
+                  onKeyDown={e => {
+                    if (e.code === 'Enter' || e.nativeEvent.code === 'Enter') {
+                      goToFavourite(favourite);
+                    }
+                  }}
                 >
-                  <div className="my-locals item">
+                  <div className="item pointer">
                     <Icon
                       img={getPlaceIcon(favourite.type)}
                       className="icon-my-locals-home"

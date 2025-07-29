@@ -152,7 +152,9 @@ const Content = (
 
       {(poiData ?? selectedData.pois)?.length > 0 && (
         <div className="list">
-          <h3 className="list-title">{intl.messages['pois-districts-title']}</h3>
+          <h3 className="list-title">
+            {intl.messages['pois-districts-title']}
+          </h3>
           <div className="list-scroll">
             <NearByList
               type="pois"
@@ -167,7 +169,9 @@ const Content = (
 
       {(routeData ?? selectedData.routes)?.length > 0 && (
         <div className="list">
-          <h3 className="list-title">{intl.messages['routes-districts-title']}</h3>
+          <h3 className="list-title">
+            {intl.messages['routes-districts-title']}
+          </h3>
           <div className="list-scroll">
             <NearByList
               type="routes"
@@ -272,7 +276,9 @@ const MobileDetails = (
         </div>
         <div className="distance">
           {!!distanceToDistrict &&
-            `${intl.messages['at-distance']} ${showDistance(distanceToDistrict)}`}
+            `${intl.messages['at-distance']} ${showDistance(
+              distanceToDistrict
+            )}`}
         </div>
       </div>
 

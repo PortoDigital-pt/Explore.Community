@@ -5,7 +5,11 @@ import { Link } from 'found';
 import { graphql, createRefetchContainer } from 'react-relay';
 import VehicleRentalStation from '../VehicleRentalStation';
 import FavouriteVehicleRentalStationContainer from '../FavouriteVehicleRentalStationContainer';
-import { PREFIX_BIKESTATIONS, PREFIX_TAXISTATIONS, PREFIX_SCOOTERSTATIONS } from '../../util/path';
+import {
+  PREFIX_BIKESTATIONS,
+  PREFIX_TAXISTATIONS,
+  PREFIX_SCOOTERSTATIONS
+} from '../../util/path';
 import { isKeyboardSelectionEvent } from '../../util/browser';
 import { hasVehicleRentalCode } from '../../util/vehicleRentalUtils';
 import { getIdWithoutFeed } from '../../util/feedScopedIdUtils';
@@ -27,7 +31,7 @@ const networkFavouriteType = {
   taxis: 'taxiStation',
   smoove: 'bikeStation',
   scooters: 'scooterStation'
-}
+};
 
 const VehicleRentalStationNearYou = ({
   stop,
@@ -48,7 +52,7 @@ const VehicleRentalStationNearYou = ({
       );
     }
   }, [currentTime]);
- 
+
   return (
     <span role="listitem">
       <div className="stop-near-you-container">
@@ -63,7 +67,9 @@ const VehicleRentalStationNearYou = ({
                   e.stopPropagation();
                 }
               }}
-              to={`/browse/${networkPrefix[stop.rentalNetwork.networkId]}/${stop.stationId}`}
+              to={`/browse/${networkPrefix[stop.rentalNetwork.networkId]}/${
+                stop.stationId
+              }`}
             >
               <h3 className="stop-near-you-name">{stop.name}</h3>
             </Link>

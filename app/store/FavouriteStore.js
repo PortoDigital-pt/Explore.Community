@@ -23,7 +23,9 @@ import {
 // however, data is stored in old form for compatibility
 function mapFromStore(favourites) {
   return favourites?.map(favourite =>
-    favourite.type === 'bikeStation'
+    favourite.type === 'bikeStation' ||
+    favourite.type === 'taxiStation' ||
+    favourite.type === 'scooterStation'
       ? mapVehicleRentalFromStore(favourite)
       : favourite
   );
@@ -31,7 +33,9 @@ function mapFromStore(favourites) {
 
 function mapToStore(favourites) {
   return favourites?.map(favourite =>
-    favourite.type === 'bikeStation'
+    favourite.type === 'bikeStation' ||
+    favourite.type === 'taxiStation' ||
+    favourite.type === 'scooterStation'
       ? mapVehicleRentalToStore(favourite)
       : favourite
   );
@@ -176,7 +180,8 @@ export default class FavouriteStore extends Store {
 
   getVehicleRentalStations() {
     return this.favourites.filter(
-      favourite => favourite.type === 'bikeStation' || favourite.type === 'scooterStation'
+      favourite =>
+        favourite.type === 'bikeStation' || favourite.type === 'scooterStation'
     );
   }
 

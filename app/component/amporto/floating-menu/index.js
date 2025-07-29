@@ -6,7 +6,10 @@ const FloatingMenu = ({ isOpen, close, children }) =>
     <>
       <button
         className="floating-menu-overlay"
-        onClick={close}
+        onClick={event => {
+          event.stopPropagation();
+          close();
+        }}
         type="button"
         aria-label="close"
       />
