@@ -21,6 +21,7 @@ export const LOCAL_STORAGE_EMITTER_PATH = '/local-storage-emitter';
 export const EMBEDDED_SEARCH_PATH = '/search';
 export const PREFIX_RENTALVEHICLES = 'scooters';
 export const PREFIX_TAXISTATIONS = 'taxistations';
+export const PREFIX_SCOOTERSTATIONS = 'scooterstations';
 
 const PREFIX_PROFILE = 'profile';
 
@@ -184,7 +185,7 @@ export const getStopRoutePath = searchObj => {
       id = searchObj.properties.id;
       break;
     case 'venue_groups':
-      path = '/blocks/';
+      path = '/districts/';
       id = searchObj.properties.id;
       break;
     case 'pois':

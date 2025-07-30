@@ -9,20 +9,20 @@ import {
 import { PageContent as RoutesPageContent } from '../routes/page';
 import { MobileContent as RoutesMobilePageContent } from '../routes/mobile-content';
 import {
-  PageContent as BlocksPageContent,
-  Mobile as BlocksMobilePageContent
-} from '../blocks/page';
+  PageContent as DistrictsPageContent,
+  Mobile as DistrictsMobilePageContent
+} from '../districts/page';
 
 export const MOBILE_PAGE_CONTENT_TYPE_MAP = {
   pois: PoiMobilePageContent,
   events: EventMobilePageContent,
   routes: RoutesMobilePageContent,
-  blocks: BlocksMobilePageContent
+  districts: DistrictsMobilePageContent
 };
 
 export const PAGE_CONTENT_TYPE_MAP = {
   pois: PoiPageContent,
   events: EventsPageContent,
   routes: RoutesPageContent,
-  blocks: BlocksPageContent
+  districts: DistrictsPageContent
 };

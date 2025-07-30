@@ -77,6 +77,10 @@
         width: 100%;
         min-height: 40px;
         background: $background-default;
+        
+        &.pointer {
+          cursor: pointer;
+        }
 
         &:not(:first-child) {
           margin-top: 10px;
@@ -110,6 +114,11 @@
           .sub-title {
             @include typography-label-base;
           }
+        }
+
+        .options {
+          background-color: $grey-light-up;
+          border-radius: 4px;
         }
       }
 

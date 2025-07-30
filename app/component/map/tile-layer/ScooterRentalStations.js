@@ -9,7 +9,7 @@ import {
   drawCitybikeIcon,
   drawSmallVehicleRentalMarker
 } from '../../../util/mapIconUtils';
-import { showCitybikeNetwork } from '../../../util/modeUtils';
+import { showScooterNetwork } from '../../../util/modeUtils';
 
 import {
   getRentalNetworkConfig,
@@ -21,7 +21,7 @@ import { fetchWithLanguageAndSubscription } from '../../../util/fetchUtils';
 import { getLayerBaseUrl } from '../../../util/mapLayerUtils';
 
 const query = graphql`
-  query VehicleRentalStationsQuery($id: String!) {
+  query ScooterRentalStationsQuery($id: String!) {
     station: vehicleRentalStation(id: $id) {
       availableVehicles {
         total
@@ -33,7 +33,7 @@ const query = graphql`
 
 const REALTIME_REFETCH_FREQUENCY = 60000; // 60 seconds
 
-class VehicleRentalStations {
+class ScooterRentalStations {
   constructor(tile, config, mapLayers, relayEnvironment) {
     this.tile = tile;
     this.config = config;
@@ -219,7 +219,7 @@ class VehicleRentalStations {
       this.config.vehicleRental.networks[network].showRentalStations) &&
     (!this.tile.stopsToShow || this.tile.stopsToShow.includes(id)) &&
     !this.tile.objectsToHide.vehicleRentalStations.includes(id) &&
-    showCitybikeNetwork(this.config.vehicleRental.networks[network]);
+    showScooterNetwork(this.config.vehicleRental.networks[network]);
 
   cleanup = () => {
     this.lastAvailabilityMap.clear();
@@ -227,7 +227,7 @@ class VehicleRentalStations {
     this.canHaveStationUpdates = false;
   };
 
-  static getName = () => 'citybike';
+  static getName = () => 'scooters';
 }
 
-export default VehicleRentalStations;
+export default ScooterRentalStations;

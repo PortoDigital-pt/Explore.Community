@@ -8,12 +8,13 @@ import {
 import {
   PREFIX_BIKESTATIONS,
   PREFIX_TAXISTATIONS,
+  PREFIX_SCOOTERSTATIONS,
   PREFIX_TERMINALS,
   PREFIX_STOPS
 } from '../../util/path';
 
 export default config => {
-  const { routes, blocks } = config.optionalNavigationItems;
+  const { routes, districts } = config.optionalNavigationItems;
 
   return (
     <Route path="/">
@@ -172,6 +173,77 @@ export default config => {
                 ) {
                   vehicleRentalStation(id: $id) {
                     ...VehicleRentalStationMapContainer_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} isExplore error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          )
+        }}
+      </Route>
+      <Route path={`${PREFIX_SCOOTERSTATIONS}/:id`}>
+        {{
+          header: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "generic-heading" */ '../../component/GenericHeader'
+                ).then(getDefault)
+              }
+            />
+          ),
+          content: (
+            <Route
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-scooters" */ '../../component/ScooterRentalStationContent'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_routes_ScooterRentalStation_Query($id: String!) {
+                  vehicleRentalStation(id: $id) {
+                    ...ScooterRentalStationContent_vehicleRentalStation
+                  }
+                }
+              `}
+              render={({ Component, props, error, retry }) => {
+                if (Component && (props || error)) {
+                  return <Component {...props} isExplore error={error} />;
+                }
+                return getComponentOrLoadingRenderer({
+                  Component,
+                  props,
+                  error,
+                  retry
+                });
+              }}
+            />
+          ),
+          map: (
+            <Route
+              path="(.*)?"
+              getComponent={() =>
+                import(
+                  /* webpackChunkName: "explore-scooters" */ '../../component/ScooterRentalStationMapContainer'
+                ).then(getDefault)
+              }
+              query={graphql`
+                query explore_routes_ScooterRentalStationMap_Query(
+                  $id: String!
+                ) {
+                  vehicleRentalStation(id: $id) {
+                    ...ScooterRentalStationMapContainer_vehicleRentalStation
                   }
                 }
               `}
@@ -449,15 +521,15 @@ export default config => {
           </Route>
         </Route>
       )}
-      {blocks && (
-        <Route path="blocks">
+      {districts && (
+        <Route path="districts">
           <Route path="/">
             {{
               content: (
                 <Route
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks-list" */ './list/blocks/page'
+                      /* webpackChunkName: "districts-list" */ './list/districts/page'
                     ).then(getDefault)
                   }
                   render={getComponentOrLoadingRenderer}
@@ -468,7 +540,7 @@ export default config => {
                   disableMapOnMobile={false}
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks-list-map" */ './list/blocks/pageMap'
+                      /* webpackChunkName: "districts-list-map" */ './list/districts/pageMap'
                     ).then(getDefault)
                   }
                   render={getComponentOrLoadingRenderer}
@@ -482,7 +554,7 @@ export default config => {
                 <Route
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks" */ './details/blocks/page'
+                      /* webpackChunkName: "districts" */ './details/districts/page'
                     ).then(getDefault)
                   }
                 />
@@ -492,7 +564,7 @@ export default config => {
                   disableMapOnMobile={false}
                   getComponent={() =>
                     import(
-                      /* webpackChunkName: "blocks-map" */ './details/blocks/pageMap'
+                      /* webpackChunkName: "districts-map" */ './details/districts/pageMap'
                     ).then(getDefault)
                   }
                 />
