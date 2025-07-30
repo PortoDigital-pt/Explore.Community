@@ -29,7 +29,7 @@ before_script:
   - CONTAINER_RELEASE_DEV_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:dev" | tr '[:upper:]' '[:lower:]')
   - CONTAINER_RELEASE_QA_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:qa" | tr '[:upper:]' '[:lower:]')
   #- CONTAINER_RELEASE_PREPROD_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:PreProd" | tr '[:upper:]' '[:lower:]')
-  #- CONTAINER_RELEASE_PROD_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:Prod" | tr '[:upper:]' '[:lower:]')
+  - CONTAINER_RELEASE_PROD_IMAGE=$(echo "$NEXUS_DOCKER_REGISTRY/$CI_PROJECT_PATH:Prod" | tr '[:upper:]' '[:lower:]')
   - ( echo "$NEXUS_SUDO_PASSWORD" | docker login -u "$NEXUS_SUDO_USER" --password-stdin $NEXUS_DOCKER_REGISTRY ) || echo "docker command ignored"
   - ( echo "$DEVBOX01_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519 ) || echo "ssh key ignored"
   - chmod 600 ~/.ssh/id_ed25519 || echo "chmod command ignored"
@@ -87,6 +87,22 @@ build-qa:
   rules:
     - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "qa" && $PREPRODUCTION == "false" && $PRODUCTION == "false")
 
+
+build-prod:
+  stage: build
+  script:
+    - apk add --no-cache bash
+    - git clone $REPO_URL
+    - chmod +x ./explore-porto-resources/scripts/amporto-apply-resources.sh
+    - ./explore-porto-resources/scripts/amporto-apply-resources.sh
+    - echo "$APP_PROD" > .env
+    - docker build --pull --build-arg CONFIG=amporto -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+    - rm -rfv ./explore-porto-resources
+  rules:
+    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main-prod' && ($PREPRODUCTION != "true" || $PRODUCTION == "true")
+
+
 trivy:
   stage: testimage
   allow_failure: true
@@ -119,6 +135,15 @@ release-image-qa:
     - docker push $CONTAINER_RELEASE_QA_IMAGE
   rules:
     - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "qa" && $PREPRODUCTION == "false" && $PRODUCTION == "false")
+
+release-image-prod:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_PROD_IMAGE
+    - docker push $CONTAINER_RELEASE_PROD_IMAGE
+  rules:
+    - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "main-prod" && $PREPRODUCTION == "false" && $PRODUCTION == "true")
 
 deploy-development:
   stage: deploy
@@ -153,3 +178,19 @@ deploy-qa:
     - rm -rfv TMPDIR
   rules:
     - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'qa' && ($PREPRODUCTION != "true" || $PRODUCTION != "true")
+
+deploy-prod:
+  stage: deploy
+  variables:
+    SERVERS: 'production'
+  script:
+    - mkdir TMPDIR
+    - cd TMPDIR
+    - echo "$APP_PROD" > .env
+    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/deploy_prod.yml/raw?ref=main" > deploy_prod.yml'
+    - 'curl --header "PRIVATE-TOKEN: $DEPLOY_TOKEN" "$DEPLOY_ANSIBLE/hosts/raw?ref=main" > hosts'
+    - ansible-playbook ./deploy_prod.yml -i ./hosts -e group=$SERVERS -e NEXUS_USER=$NEXUS_USER -e NEXUS_PASSWORD=$NEXUS_PASSWORD -e PROJECT_IMAGE=$CONTAINER_RELEASE_PROD_IMAGE
+    - cd ..
+    - rm -rfv TMPDIR
+  rules:
+    - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "main-prod" && $PREPRODUCTION == "false" && $PRODUCTION == "true")
