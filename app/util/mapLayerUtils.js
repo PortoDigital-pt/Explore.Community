@@ -11,11 +11,11 @@ export const isExploreEnabled = mapLayers => {
 };
 
 /**
- * Checks if blocks map layer is enabled.
+ * Checks if districts map layer is enabled.
  *
  * @param {object} mapLayers The map layer configuration.
  */
-export const isBlocksEnabled = mapLayers => mapLayers?.blocks;
+export const isDistrictsEnabled = mapLayers => mapLayers?.districts;
 /**
  * Checks if routes map layer is enabled.
  *
@@ -99,8 +99,8 @@ export const isFeatureLayerEnabled = (
     return mapLayers.pois ?? mapLayers.events;
   }
 
-  if (layerName === 'blocks') {
-    return mapLayers.blocks;
+  if (layerName === 'districts') {
+    return mapLayers.districts;
   }
 
   if (layerName === 'routes') {

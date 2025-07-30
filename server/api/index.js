@@ -3,11 +3,11 @@ import {
   eventListSchema,
   detailSchema,
   routesListSchema,
-  blocksListSchema,
+  districtsListSchema,
   idSchema
 } from './validation';
 import { getRoutesDetail, getRoutesList } from './handlers/routes';
-import { getBlockDetail, getBlockList } from './handlers/blocks';
+import { getDistrictDetail, getDistrictList } from './handlers/districts';
 import { getPoiDetail, getPoiList } from './handlers/pois';
 import { getEventDetail, getEventList } from './handlers/events';
 import { setupCache, decorateRequest } from './util';
@@ -20,8 +20,8 @@ const cachedRoutes = {
   '/api/events': { handler: getEventList, schema: eventListSchema },
   '/api/routes': { handler: getRoutesList, schema: routesListSchema },
   '/api/routes/:id': { handler: getRoutesDetail, schema: detailSchema },
-  '/api/blocks': { handler: getBlockList, schema: blocksListSchema },
-  '/api/blocks/:id': { handler: getBlockDetail, schema: detailSchema }
+  '/api/districts': { handler: getDistrictList, schema: districtsListSchema },
+  '/api/districts/:id': { handler: getDistrictDetail, schema: detailSchema }
 };
 
 const routes = {

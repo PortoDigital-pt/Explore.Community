@@ -8,9 +8,9 @@ import Stops from './Stops';
 import ParkAndRideForCars from './ParkAndRideForCars';
 import ParkAndRideForBikes from './ParkAndRideForBikes';
 import { mapLayerShape } from '../../../store/MapLayerStore';
-import RentalVehicles from './RentalVehicles';
+import ScooterRentalStations from './ScooterRentalStations';
 import Explore from './Explore';
-import Blocks from './Blocks';
+import Districts from './Districts';
 import Routes from './Routes';
 
 export default function VectorTileLayerContainer(props, { config }) {
@@ -24,6 +24,10 @@ export default function VectorTileLayerContainer(props, { config }) {
     layers.push(TaxiRentalStations);
   }
 
+  if (props.mapLayers.scooters) {
+    layers.push(ScooterRentalStations);
+  }
+
   if (props.mapLayers.citybike) {
     layers.push(VehicleRentalStations);
   }
@@ -34,9 +38,7 @@ export default function VectorTileLayerContainer(props, { config }) {
   if (props.mapLayers.parkAndRideForBikes) {
     layers.push(ParkAndRideForBikes);
   }
-  if (props.mapLayers.scooter) {
-    layers.push(RentalVehicles);
-  }
+
   if (props.showExplore) {
     layers.push(Explore);
   }
@@ -44,8 +46,8 @@ export default function VectorTileLayerContainer(props, { config }) {
     layers.push(Routes);
   }
 
-  if (props.showBlocks) {
-    layers.push(Blocks);
+  if (props.showDistricts) {
+    layers.push(Districts);
   }
 
   return (
@@ -76,7 +78,7 @@ VectorTileLayerContainer.propTypes = {
   locationPopup: PropTypes.string,
   onSelectLocation: PropTypes.func,
   showExplore: PropTypes.bool,
-  showBlocks: PropTypes.bool,
+  showDistricts: PropTypes.bool,
   showRoutes: PropTypes.bool
 };
 
@@ -88,7 +90,7 @@ VectorTileLayerContainer.defaultProps = {
   onSelectLocation: undefined,
   locationPopup: undefined,
   showExplore: false,
-  showBlocks: false,
+  showDistricts: false,
   showRoutes: false
 };
 

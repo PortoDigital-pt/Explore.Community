@@ -38,7 +38,7 @@ const VehicleRentalAvailability = mapProps(
         <p className="sub-header-h4 availability-header">
           <FormattedMessage
             id={
-              type === 'scooter' ? 'scooter-availability' : 'bike-availability'
+              type === 'citybike' ? 'bike-availability' : `${type}-availability`
             }
             defaultMessage="Bikes available at the station right now"
           />

@@ -12,9 +12,10 @@ export const PLACE_ICONS = {
   events: 'icon-explore-icon_events_with_background',
   bikeStation: 'icon-icon_citybike',
   taxiStation: 'icon-icon_taxis',
+  scooterStation: 'icon-icon_scooters',
   pois: 'icon-explore-icon_pois_with_background',
   routes: 'icon-explore-icon_routes_with_background',
-  blocks: 'icon-explore-icon_blocks_with_background',
+  districts: 'icon-explore-icon_districts_with_background',
   unknown: 'icon-pin-map-with-background'
 };
 
@@ -31,10 +32,12 @@ export const FAVOURITE_REGULAR_ICONS = {
   station: 'icon-subway-regular',
   place: 'icon-pin-map-regular',
   events: 'icon-explore-icon_events_no_map',
-  bikeStation: 'icon-icon_scooter_no_map',
+  bikeStation: 'icon-icon_citybike_no_map',
+  taxiStation: 'icon-icon_taxis_no_map',
+  scooterStation: 'icon-icon_scooters_no_map',
   pois: 'icon-explore-icon_pois_no_map',
   routes: 'icon-routes',
-  blocks: 'icon-blocks',
+  districts: 'icon-districts',
   unknown: 'icon-pin-map-regular'
 };
 

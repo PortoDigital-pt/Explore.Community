@@ -10,7 +10,7 @@ const FILTERS_ICON_MAP = {
   pois: 'icon-camera',
   events: 'icon-events',
   routes: 'icon-routes-small',
-  blocks: 'icon-blocks'
+  districts: 'icon-districts'
 };
 
 const FilterBar = ({ filters, openModal, onClick }, { intl }) => {

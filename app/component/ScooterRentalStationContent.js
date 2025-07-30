@@ -16,12 +16,12 @@ import withBreakpoint from '../util/withBreakpoint';
 import { getRentalNetworkConfig } from '../util/vehicleRentalUtils';
 import { isBrowser } from '../util/browser';
 import { showDistance } from '../util/amporto/geo';
-import { PREFIX_BIKESTATIONS } from '../util/path';
+import { PREFIX_SCOOTERSTATIONS } from '../util/path';
 import { TransportMode } from '../constants';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';
 import { getItineraryPath } from '../routes/explore/details/routes/util';
 
-const VehicleRentalStationContent = (
+const ScooterRentalStationContent = (
   {
     vehicleRentalStation,
     breakpoint,
@@ -52,10 +52,12 @@ const VehicleRentalStationContent = (
 
   if (!vehicleRentalStation && !error) {
     if (isBrowser) {
-      router.replace(`${isExplore ? '/' : '/browse/'}${PREFIX_BIKESTATIONS}`);
+      router.replace(
+        `${isExplore ? '/' : '/browse/'}${PREFIX_SCOOTERSTATIONS}`
+      );
     } else {
       throw new RedirectException(
-        `${isExplore ? '/' : '/browse/'}${PREFIX_BIKESTATIONS}`
+        `${isExplore ? '/' : '/browse/'}${PREFIX_SCOOTERSTATIONS}`
       );
     }
     return null;
@@ -83,9 +85,9 @@ const VehicleRentalStationContent = (
     <div className="bike-station-page-container">
       <div className="rental-bike-header-container">
         <div className="row-bike">
-          <Icon img="icon-icon_citybike" viewBox="0 0 50 50" />
+          <Icon img="icon-icon_scooters" viewBox="0 0 50 50" />
 
-          <ParkOrStationHeader parkOrStation={vehicleRentalStation} />
+          <ParkOrStationHeader parkOrStation={vehicleRentalStation} scooters />
         </div>
 
         <div className="row-bike">
@@ -119,10 +121,10 @@ const VehicleRentalStationContent = (
       <div className="rental-bike-content-container">
         <div className="row-bike">
           <div className="rental-bike-content-item label">
-            <FormattedMessage id="citybike-available-bicycles" />
+            <FormattedMessage id="citybike-available-scooters" />
           </div>
           <div className="rental-bike-content-item value">
-            <span className="value-container">{vehiclesAvailable ?? 0}</span>
+            <span className="value-container">{vehiclesAvailable || 0}</span>
           </div>
         </div>
       </div>
@@ -191,7 +193,7 @@ const VehicleRentalStationContent = (
   );
 };
 
-VehicleRentalStationContent.propTypes = {
+ScooterRentalStationContent.propTypes = {
   vehicleRentalStation: vehicleRentalStationShape.isRequired,
   breakpoint: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
@@ -201,22 +203,22 @@ VehicleRentalStationContent.propTypes = {
   isExplore: PropTypes.bool
 };
 
-VehicleRentalStationContent.defaultProps = {
+ScooterRentalStationContent.defaultProps = {
   error: undefined
 };
 
-VehicleRentalStationContent.contextTypes = {
+ScooterRentalStationContent.contextTypes = {
   config: configShape.isRequired,
   intl: intlShape.isRequired,
   executeAction: PropTypes.func.isRequired
 };
 
-const VehicleRentalStationContentWithBreakpoint = withBreakpoint(
-  VehicleRentalStationContent
+const ScooterRentalStationContentWithBreakpoint = withBreakpoint(
+  ScooterRentalStationContent
 );
 
 const connectedComponent = connectToStores(
-  VehicleRentalStationContentWithBreakpoint,
+  ScooterRentalStationContentWithBreakpoint,
   ['PreferencesStore', 'PositionStore'],
   context => ({
     language: context.getStore('PreferencesStore').getLanguage(),
@@ -226,7 +228,7 @@ const connectedComponent = connectToStores(
 
 const containerComponent = createFragmentContainer(connectedComponent, {
   vehicleRentalStation: graphql`
-    fragment VehicleRentalStationContent_vehicleRentalStation on VehicleRentalStation {
+    fragment ScooterRentalStationContent_vehicleRentalStation on VehicleRentalStation {
       lat
       lon
       name
@@ -248,5 +250,5 @@ const containerComponent = createFragmentContainer(connectedComponent, {
 
 export {
   containerComponent as default,
-  VehicleRentalStationContentWithBreakpoint as Component
+  ScooterRentalStationContentWithBreakpoint as Component
 };

@@ -45,6 +45,14 @@ class TaxiRentalStations {
       14 * this.scaleratio * getMapIconScale(this.tile.coords.z);
     this.timeOfLastFetch = undefined;
     this.canHaveStationUpdates = true;
+
+    this.featuresMap = new Map(); // Internal map for efficient lookups
+    this.lastAvailabilityMap = new Map(); // stationId -> availability
+  }
+
+  // Expose features as an array for TileContainer compatibility
+  get features() {
+    return Array.from(this.featuresMap.values());
   }
 
   getPromise = lang => this.fetchAndDraw(lang);
@@ -69,8 +77,6 @@ class TaxiRentalStations {
           buf => {
             const vt = new VectorTile(new Protobuf(buf));
 
-            this.features = [];
-
             const layer =
               vt.layers.rentalStations || vt.layers.realtimeRentalStations;
 
@@ -78,27 +84,35 @@ class TaxiRentalStations {
               for (let i = 0, ref = layer.length - 1; i <= ref; i++) {
                 const feature = layer.feature(i);
                 [[feature.geom]] = feature.loadGeometry();
-                // Must filter out stations that are not shown as there can be a large amount
-                // of invisible rental stations, which are often accidentally clicked
+
                 if (
                   this.shouldShowStation(
                     feature.properties.id,
                     feature.properties.network
                   )
                 ) {
-                  this.features.push(pick(feature, ['geom', 'properties']));
+                  const { id, vehiclesAvailable } = feature.properties;
+                  const previousAvailability = this.lastAvailabilityMap.get(id);
+
+                  // drawing the first time and then evaluating the need for a rerendering by checking
+                  // if the availability has changed when station is updated
+                  if (
+                    previousAvailability === undefined ||
+                    previousAvailability !== vehiclesAvailable
+                  ) {
+                    feature.properties.draw = true;
+                    this.featuresMap.set(
+                      id,
+                      pick(feature, ['geom', 'properties'])
+                    );
+                    this.lastAvailabilityMap.set(id, vehiclesAvailable);
+                  }
                 }
               }
             }
 
-            if (this.features.length === 0) {
-              this.canHaveStationUpdates = false;
-            } else {
-              // if zoomed out and there is a highlighted station,
-              // this value will be later reset to true
-              this.canHaveStationUpdates = zoomedIn;
-              this.features.forEach(feature => this.draw(feature, zoomedIn));
-            }
+            this.canHaveStationUpdates = zoomedIn;
+            this.featuresMap.forEach(feature => this.draw(feature, zoomedIn));
           },
           err => console.log(err) // eslint-disable-line no-console
         );
@@ -110,7 +124,11 @@ class TaxiRentalStations {
   };
 
   draw = (feature, zoomedIn) => {
-    const { id, network, formFactors } = feature.properties;
+    const { id, network, formFactors, draw } = feature.properties;
+
+    if (!draw) {
+      return;
+    }
 
     const iconName = getRentalNetworkIcon(
       getRentalNetworkConfig(network, this.config)
@@ -123,8 +141,11 @@ class TaxiRentalStations {
       this.canHaveStationUpdates = true;
       this.drawHighlighted(feature, iconName);
     } else {
-      this.drawSmallMarker(feature.geom, formFactors);
+      this.drawSmallMarker(feature.geom, iconName, formFactors);
     }
+
+    feature.properties.draw = false;
+    this.featuresMap.set(id, feature);
   };
 
   drawLargeIcon = (
@@ -167,13 +188,17 @@ class TaxiRentalStations {
       .then(callback);
   };
 
-  drawSmallMarker = (geom, formFactor) => {
-    drawSmallVehicleRentalMarker(
-      this.tile,
-      geom,
-      this.config.colors.iconColors.taxis,
-      formFactor
-    );
+  drawSmallMarker = (geom, iconName, formFactor) => {
+    const citybikeIconColor =
+      iconName.includes('secondary') &&
+      this.config.colors.iconColors['mode-citybike-secondary']
+        ? this.config.colors.iconColors['mode-citybike-secondary']
+        : this.config.colors.iconColors['mode-citybike'];
+    const iconColor =
+      formFactor === 'SCOOTER'
+        ? this.config.colors.iconColors['mode-scooter']
+        : citybikeIconColor;
+    drawSmallVehicleRentalMarker(this.tile, geom, iconColor, formFactor);
   };
 
   onTimeChange = lang => {
@@ -195,6 +220,12 @@ class TaxiRentalStations {
     (!this.tile.stopsToShow || this.tile.stopsToShow.includes(id)) &&
     !this.tile.objectsToHide.vehicleRentalStations.includes(id) &&
     showTaxisNetwork(this.config.vehicleRental.networks[network]);
+
+  cleanup = () => {
+    this.lastAvailabilityMap.clear();
+    this.featuresMap.clear();
+    this.canHaveStationUpdates = false;
+  };
 
   static getName = () => 'taxis';
 }

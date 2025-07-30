@@ -7,14 +7,14 @@ import classname from 'classnames';
 import { locationShape, configShape } from '../../../../util/shapes';
 import ImageSlider from '../../../../component/amporto/image-slider';
 import Card from '../../../../component/amporto/card';
-import { blockShape } from './shape';
+import { districtShape } from './shape';
 import useListData from '../../../../hooks/useListData';
 import useModal from '../../../../hooks/useModal';
 import useExpandableDescription from '../../../../hooks/useExpandableDescription';
 import {
   getPoiList,
   getRoutesList,
-  getBlockById,
+  getDistrictById,
   getEventList
 } from '../../../../util/amporto/api';
 import { DetailsContentModal } from '../../common';
@@ -36,7 +36,7 @@ export const Mobile = ({ onDetails, selectedData, innerRef }) => (
         className="large-card"
         onClick={onDetails}
         data={selectedData}
-        type="blocks"
+        type="districts"
         showDescription
       />
     </div>
@@ -64,14 +64,14 @@ const Content = (
   const poiArgs = useMemo(
     () => ({
       language,
-      block: selectedData.id
+      district: selectedData.id
     }),
     [language, selectedData]
   );
   const routeArgs = useMemo(
     () => ({
       language,
-      block: selectedData.id
+      district: selectedData.id
     }),
     [language, selectedData]
   );
@@ -152,7 +152,9 @@ const Content = (
 
       {(poiData ?? selectedData.pois)?.length > 0 && (
         <div className="list">
-          <h3 className="list-title">{intl.messages['pois-blocks-title']}</h3>
+          <h3 className="list-title">
+            {intl.messages['pois-districts-title']}
+          </h3>
           <div className="list-scroll">
             <NearByList
               type="pois"
@@ -167,7 +169,9 @@ const Content = (
 
       {(routeData ?? selectedData.routes)?.length > 0 && (
         <div className="list">
-          <h3 className="list-title">{intl.messages['routes-blocks-title']}</h3>
+          <h3 className="list-title">
+            {intl.messages['routes-districts-title']}
+          </h3>
           <div className="list-scroll">
             <NearByList
               type="routes"
@@ -181,7 +185,7 @@ const Content = (
       )}
 
       <div className="list">
-        <h3 className="list-title">{`${intl.messages['events-blocks-title']} ${selectedData.name}`}</h3>
+        <h3 className="list-title">{`${intl.messages['events-districts-title']} ${selectedData.name}`}</h3>
         <div className="list-scroll">
           <NearByList
             type="events"
@@ -197,9 +201,9 @@ const Content = (
         className="start-trip-button padding"
         type="button"
         onClick={() => router.push(getItineraryPath(location, selectedData))}
-        aria-label={`${intl.messages['block-directions']} ${selectedData.name}`}
+        aria-label={`${intl.messages['district-directions']} ${selectedData.name}`}
       >
-        {`${intl.messages['block-directions']} ${selectedData.name}`}
+        {`${intl.messages['district-directions']} ${selectedData.name}`}
       </button>
 
       {isOpen && selected !== null && (
@@ -222,7 +226,7 @@ const Content = (
 };
 
 Content.propTypes = {
-  selectedData: blockShape.isRequired,
+  selectedData: districtShape.isRequired,
   language: string.isRequired,
   location: locationShape.isRequired
 };
@@ -250,7 +254,7 @@ const MobileDetails = (
     intl
   });
   const { router } = useRouter();
-  const distanceToBlock = useDistanceToTarget({
+  const distanceToDistrict = useDistanceToTarget({
     executeAction,
     location,
     targetPoint: selectedData
@@ -262,7 +266,7 @@ const MobileDetails = (
         <div className="top">
           <div className="title">
             <Icon
-              img="icon-explore-icon_blocks_with_background"
+              img="icon-explore-icon_districts_with_background"
               viewBox="0 0 50 50"
             />
             <h3>{selectedData.name}</h3>
@@ -271,8 +275,10 @@ const MobileDetails = (
           <FavouriteExplore data={selectedData} />
         </div>
         <div className="distance">
-          {!!distanceToBlock &&
-            `${intl.messages['at-distance']} ${showDistance(distanceToBlock)}`}
+          {!!distanceToDistrict &&
+            `${intl.messages['at-distance']} ${showDistance(
+              distanceToDistrict
+            )}`}
         </div>
       </div>
 
@@ -316,7 +322,7 @@ const MobileDetails = (
 
 MobileDetails.propTypes = {
   onDetails: func.isRequired,
-  selectedData: blockShape.isRequired,
+  selectedData: districtShape.isRequired,
   location: locationShape.isRequired,
   showShare: bool
 };
@@ -334,13 +340,13 @@ const MobileDetailsContent = connectToStores(
   })
 );
 
-const BlockDetailsPage = () => (
+const DistrictDetailsPage = () => (
   <Details
-    getDataById={getBlockById}
-    onErrorPath="/blocks"
+    getDataById={getDistrictById}
+    onErrorPath="/districts"
     PageContent={PageContent}
     MobileContent={MobileDetailsContent}
   />
 );
 
-export default BlockDetailsPage;
+export default DistrictDetailsPage;

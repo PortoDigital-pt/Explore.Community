@@ -23,6 +23,7 @@ import { getClientBreakpoint } from '../../../util/withBreakpoint';
 import {
   PREFIX_BIKESTATIONS,
   PREFIX_TAXISTATIONS,
+  PREFIX_SCOOTERSTATIONS,
   PREFIX_STOPS,
   PREFIX_TERMINALS,
   PREFIX_CARPARK,
@@ -139,6 +140,8 @@ class TileLayerContainer extends GridLayer {
   componentWillUnmount() {
     this.context.getStore('TimeStore').removeChangeListener(this.onTimeChange);
     this.leafletElement.off('click contextmenu', this.onClick);
+
+    this.cleanup?.();
   }
 
   onTimeChange = e => {
@@ -210,7 +213,7 @@ class TileLayerContainer extends GridLayer {
       if (
         selectableTargets.length === 1 &&
         (selectableTargets[0].layer === 'explore' ||
-          selectableTargets[0].layer === 'blocks' ||
+          selectableTargets[0].layer === 'districts' ||
           selectableTargets[0].layer === 'routes')
       ) {
         const [{ feature }] = selectableTargets;
@@ -230,6 +233,19 @@ class TileLayerContainer extends GridLayer {
           `${
             this.props.showExplore ? '/' : '/browse/'
           }${PREFIX_TAXISTATIONS}/${encodeURIComponent(
+            selectableTargets[0].feature.properties.id
+          )}`
+        );
+        return;
+      }
+      if (
+        selectableTargets.length === 1 &&
+        selectableTargets[0].layer === 'scooters'
+      ) {
+        this.context.router.push(
+          `${
+            this.props.showExplore ? '/' : '/browse/'
+          }${PREFIX_SCOOTERSTATIONS}/${encodeURIComponent(
             selectableTargets[0].feature.properties.id
           )}`
         );

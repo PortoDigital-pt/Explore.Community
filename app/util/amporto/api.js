@@ -37,17 +37,17 @@ export function getRoutesById({ id, query }, { signal }) {
   }).then(response => response.json());
 }
 
-export function getBlockList(query, { signal }) {
+export function getDistrictList(query, { signal }) {
   const auxQuery = { ...query };
   delete auxQuery.categories;
 
-  return retryFetch(`/api/blocks${buildQueryString(auxQuery)}`, 2, 200, {
+  return retryFetch(`/api/districts${buildQueryString(auxQuery)}`, 2, 200, {
     signal
   }).then(response => response.json());
 }
 
-export function getBlockById({ id, query }, { signal }) {
-  return retryFetch(`/api/blocks/${id}${buildQueryString(query)}`, 2, 200, {
+export function getDistrictById({ id, query }, { signal }) {
+  return retryFetch(`/api/districts/${id}${buildQueryString(query)}`, 2, 200, {
     signal
   }).then(response => response.json());
 }

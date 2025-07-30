@@ -13,6 +13,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'func-names': 'off',
     'no-multi-assign': 'off',
+    'no-param-reassign': 'off',
     'prefer-regex-literals': 'off',
     'no-unused-expressions': 'off',
     'no-else-return': 'warn',

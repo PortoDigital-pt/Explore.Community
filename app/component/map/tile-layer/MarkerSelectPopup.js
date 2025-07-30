@@ -11,7 +11,8 @@ import { popupColorShape } from '../../../util/shapes';
 import {
   PREFIX_BIKESTATIONS,
   PREFIX_RENTALVEHICLES,
-  PREFIX_TAXISTATIONS
+  PREFIX_TAXISTATIONS,
+  PREFIX_SCOOTERSTATIONS
 } from '../../../util/path';
 
 function MarkerSelectPopup(props, { intl }) {
@@ -35,7 +36,7 @@ function MarkerSelectPopup(props, { intl }) {
   const rows = props.options.map(option => {
     if (
       option.layer === 'explore' ||
-      option.layer === 'blocks' ||
+      option.layer === 'districts' ||
       option.layer === 'routes'
     ) {
       return (
@@ -76,6 +77,16 @@ function MarkerSelectPopup(props, { intl }) {
           {...option.feature.properties}
           key={`taxis:${option.feature.properties.id}`}
           prefix={PREFIX_TAXISTATIONS}
+          isExplore={props.isExplore}
+        />
+      );
+    }
+    if (option.layer === 'scooters') {
+      return (
+        <SelectVehicleRentalRow
+          {...option.feature.properties}
+          key={`scooters:${option.feature.properties.id}`}
+          prefix={PREFIX_SCOOTERSTATIONS}
           isExplore={props.isExplore}
         />
       );

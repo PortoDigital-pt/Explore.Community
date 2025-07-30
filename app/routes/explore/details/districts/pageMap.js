@@ -5,7 +5,7 @@ import { connectToStores } from 'fluxible-addons-react';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
 import Map from '../../../../component/map/MapContainer';
 import Loading from '../../../../component/Loading';
-import { getPoiList, getBlockById } from '../../../../util/amporto/api';
+import { getPoiList, getDistrictById } from '../../../../util/amporto/api';
 import { boundWithMinimumArea } from '../../../../util/geo-utils';
 import useListData from '../../../../hooks/useListData';
 import useSelectedData from '../../../../hooks/useSelectedData';
@@ -14,7 +14,7 @@ import { setupMapLayerStore } from '../../../../action/MapLayerActions';
 const getBounds = data =>
   boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
 
-const BlockDetailsPageMap = (
+const DistrictDetailsPageMap = (
   { language, mapLayers },
   { match, executeAction }
 ) => {
@@ -23,14 +23,14 @@ const BlockDetailsPageMap = (
   }, []);
 
   const args = useMemo(
-    () => ({ language, block: match.params.id }),
+    () => ({ language, district: match.params.id }),
     [language, match.params.id]
   );
 
   const { selectedData } = useSelectedData({
     id: match.params.id,
     language,
-    getDataById: getBlockById
+    getDataById: getDistrictById
   });
 
   const { data, error } = useListData({
@@ -60,18 +60,18 @@ const BlockDetailsPageMap = (
   );
 };
 
-BlockDetailsPageMap.contextTypes = {
+DistrictDetailsPageMap.contextTypes = {
   match: matchShape.isRequired,
   executeAction: func.isRequired
 };
 
-BlockDetailsPageMap.propTypes = {
+DistrictDetailsPageMap.propTypes = {
   language: string.isRequired,
   mapLayers: mapLayerShape.isRequired
 };
 
 export default connectToStores(
-  BlockDetailsPageMap,
+  DistrictDetailsPageMap,
   ['PreferencesStore', 'MapLayerStore'],
   ({ getStore }) => ({
     language: getStore('PreferencesStore').getLanguage(),

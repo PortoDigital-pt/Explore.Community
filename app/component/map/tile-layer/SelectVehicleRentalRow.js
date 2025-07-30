@@ -24,7 +24,13 @@ function SelectVehicleRentalRow(
   }${prefix}/${encodeURIComponent(id)}`;
   const address = desc || (
     <FormattedMessage
-      id={network === 'taxis' ? 'taxis-station' : 'citybike-station-no-id'}
+      id={
+        network === 'taxis'
+          ? 'taxis-station'
+          : network === 'scooters'
+            ? 'scooters-station'
+            : 'citybike-station-no-id'
+      }
     />
   );
 

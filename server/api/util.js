@@ -24,7 +24,7 @@ export const defaultRoutesQueryParams = {
   type: 'TouristTrip'
 };
 
-export const defaultBlocksQueryParams = {
+export const defaultDistrictsQueryParams = {
   ...defaultQueryParams,
   type: 'PointOfInterestGroup'
 };
@@ -130,7 +130,7 @@ export const buildNGSIQueryString = ({ filters, dataProvider, ...data }) => {
       return;
     }
 
-    if (key === 'block') {
+    if (key === 'district') {
       arrQuery.push(`districtGroups=='${value}'`);
       return;
     }

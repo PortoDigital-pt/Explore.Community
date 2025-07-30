@@ -34,13 +34,14 @@ class MapLayerStore extends Store {
     },
     vehicles: false,
     citybike: true,
+    scooters: true,
     taxis: true,
     geoJson: {},
 
     pois: null,
     events: null,
     routes: null,
-    blocks: null,
+    districts: null,
     accesspoints: null
   };
 
@@ -83,9 +84,9 @@ class MapLayerStore extends Store {
         {}
       )
     };
-    this.mapLayers.blocks = {
+    this.mapLayers.districts = {
       showAll: true,
-      ...Object.keys(this.config.filters.blocks).reduce(
+      ...Object.keys(this.config.filters.districts).reduce(
         (acc, key) => ({ ...acc, [key]: true }),
         {}
       )
@@ -96,18 +97,16 @@ class MapLayerStore extends Store {
       this.config,
       TransportMode.Citybike
     );
-    this.mapLayers.scooter =
-      this.config.transportModes.scooter?.showIfSelectedForRouting &&
-      showRentalVehiclesOfType(
-        this.config.vehicleRental?.networks,
-        this.config,
-        TransportMode.Scooter
-      );
+    this.mapLayers.scooters = showRentalVehiclesOfType(
+      this.config.vehicleRental?.networks,
+      this.config,
+      'scooters'
+    );
     if (this.config.hideMapLayersByDefault) {
       this.mapLayers.stop = Object.keys(this.mapLayers.stop).map(() => false);
 
       this.mapLayers.citybike = false;
-      this.mapLayers.scooter = false;
+      this.mapLayers.scooters = false;
     }
 
     setMapLayerSettings({ ...this.mapLayers });
@@ -151,13 +150,14 @@ class MapLayerStore extends Store {
       stop: {
         ...this.mapLayers.stop,
         citybike: this.mapLayers.citybike,
+        scooters: this.mapLayers.scooters,
         taxis: this.mapLayers.taxis,
         subway: this.mapLayers.terminal.subway
       },
       pois: this.mapLayers.pois,
       events: this.mapLayers.events,
       routes: this.mapLayers.routes,
-      blocks: this.mapLayers.blocks
+      districts: this.mapLayers.districts
     };
 
     if (!only) {
@@ -191,6 +191,7 @@ class MapLayerStore extends Store {
 
     if (mapLayers.stop) {
       this.mapLayers.citybike = mapLayers.stop.citybike;
+      this.mapLayers.scooters = mapLayers.stop.scooters;
       this.mapLayers.taxis = mapLayers.stop.taxis;
       this.mapLayers.terminal.subway = mapLayers.stop.subway;
     }
@@ -245,7 +246,7 @@ export const mapLayerShape = PropTypes.shape({
   vehicles: PropTypes.bool,
   // eslint-disable-next-line
   geoJson: PropTypes.object,
-  scooter: PropTypes.bool
+  scooters: PropTypes.bool
 });
 
 export default MapLayerStore;

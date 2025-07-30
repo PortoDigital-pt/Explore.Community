@@ -30,7 +30,9 @@ const getModeFromProps = props => {
   if (props.taxis) {
     return 'taxis';
   }
-
+  if (props.scooters) {
+    return 'scooters';
+  }
   if (props.parkType === PREFIX_BIKEPARK) {
     return 'parkAndRideForBikes';
   }
@@ -204,6 +206,8 @@ const StopPageMapWithStores = connectToStores(
       ml.force = ['scooter']; // show always
     } else if (props.taxis) {
       ml.force = ['taxis']; // show always
+    } else if (props.scooters) {
+      ml.force = ['scooters']; // show always
     } else {
       ml.force = ['terminal'];
     }
