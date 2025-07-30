@@ -11,7 +11,7 @@ const MAP_LAYERS_ICON = {
   pois: 'icon-explore-icon_pois_with_background',
   events: 'icon-explore-icon_events_with_background',
   routes: 'icon-explore-icon_routes_with_background',
-  blocks: 'icon-explore-icon_blocks_with_background'
+  districts: 'icon-explore-icon_districts_with_background'
 };
 
 const CategoryGroup = (

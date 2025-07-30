@@ -56,7 +56,7 @@ const ManageCookies = (
 
 ManageCookies.propTypes = {
   intl: intlShape.isRequired,
-  isOpen: func.isRequired,
+  isOpen: bool.isRequired,
   close: func.isRequired,
   hasCookies: bool.isRequired
 };

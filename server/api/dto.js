@@ -182,7 +182,7 @@ export const routesToDto = (route, language) => {
   };
 };
 
-export const blockToDto = (block, language) => {
+export const districtToDto = (district, language) => {
   const {
     id,
     category_lang,
@@ -193,10 +193,10 @@ export const blockToDto = (block, language) => {
     pointOfInterestRefs,
     eventRefs,
     tripRefs
-  } = block;
+  } = district;
 
   return {
-    type: 'blocks',
+    type: 'districts',
     id,
     category: extractValuesAndDecode(
       category_lang.value[language] || category_lang.value.pt
