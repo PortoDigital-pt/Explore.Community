@@ -15,7 +15,7 @@ variables:
   DOCKER_HOST: tcp://docker:2376
   DOCKER_TLS_CERTDIR: '/certs'
   PRODUCTION:
-    value: 'false' # Do not deploy to production by default
+    value: 'true' # Do not deploy to production by default
     description: "Change the deployment target. Change this variable to 'true' to deploy to production. Do not change this variable to 'rollback' unless needed (disaster recovery). Note: When you change this variable, the variable BUILD is disabled (the pipeline wont do a build, even if variable BUILD is set to true)."
   PREPRODUCTION:
     value: 'false' # Do not deploy to production by default
