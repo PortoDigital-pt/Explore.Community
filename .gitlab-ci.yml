@@ -100,7 +100,7 @@ build-prod:
     - docker push $CONTAINER_TEST_IMAGE
     - rm -rfv ./explore-porto-resources
   rules:
-    - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "main-prod" && $PREPRODUCTION == "false" && $PRODUCTION == "true")
+    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main-prod' && ($PREPRODUCTION != "true" || $PRODUCTION == "true")
 
 
 trivy:
@@ -193,4 +193,4 @@ deploy-prod:
     - cd ..
     - rm -rfv TMPDIR
   rules:
-    - if: ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true" || $CI_COMMIT_BRANCH == 'main-prod' && ($PREPRODUCTION != "true" || $PRODUCTION == "true")
+    - if: (($CI_COMMIT_TAG || $CI_COMMIT_BRANCH) && $HOTFIX == "true") || ($CI_COMMIT_BRANCH == "main-prod" && $PREPRODUCTION == "false" && $PRODUCTION == "true")
