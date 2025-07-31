@@ -61,7 +61,7 @@ const OnboardingPage = (
           onExploreDescription={intl.messages['onboarding-start-exploring']}
         />
         <div className="image">
-          <img src="/img/onboarding.jpg" alt="onboarding" />
+          <img src="/img/onboarding.webp" alt="onboarding" />
         </div>
       </div>
 
