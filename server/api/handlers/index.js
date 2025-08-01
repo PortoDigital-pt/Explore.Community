@@ -3,7 +3,13 @@ import { validationResult } from 'express-validator';
 import { getOffset, getInfinitePagination } from '../pagination';
 import { buildNGSIQueryString, customFetch } from '../util';
 
-export const getList = async (toDto, defaultQueryParams, request, response) => {
+export const getList = async (
+  toDto,
+  defaultQueryParams,
+  request,
+  response,
+  url = process.env.NGSI_URL
+) => {
   const validation = validationResult(request);
 
   if (!validation.isEmpty()) {
@@ -31,7 +37,7 @@ export const getList = async (toDto, defaultQueryParams, request, response) => {
   }
 
   const { data, total, status, text } = await customFetch(
-    `${process.env.NGSI_URL}?${buildNGSIQueryString({
+    `${url}?${buildNGSIQueryString({
       filters,
       dataProvider,
       coords: `${lat},${lon}`,

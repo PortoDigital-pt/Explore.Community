@@ -41,7 +41,8 @@ const commonListSchema = type => ({
     matches: {
       options: languageRegex,
       errorMessage: 'invalid language'
-    }
+    },
+    optional: true
   },
   categories: {
     customSanitizer: {
@@ -67,6 +68,8 @@ export const poiListSchema = checkSchema(commonListSchema('pois'), ['query']);
 export const eventListSchema = checkSchema(commonListSchema('events'), [
   'query'
 ]);
+
+export const weatherSchema = checkSchema(commonListSchema(), ['query']);
 
 export const districtsListSchema = checkSchema(commonListSchema(), ['query']);
 export const routesListSchema = checkSchema(
