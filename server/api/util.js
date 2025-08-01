@@ -29,6 +29,11 @@ export const defaultDistrictsQueryParams = {
   type: 'PointOfInterestGroup'
 };
 
+export const defaultWeatherQueryParams = {
+  ...defaultQueryParams,
+  type: 'WeatherObserved'
+};
+
 export const setupCache = (request, response, next) => {
   // setting cache to 1 hour
   response.set('Cache-Control', 'max-age=0, public');
