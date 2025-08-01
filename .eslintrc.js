@@ -40,6 +40,7 @@ module.exports = {
     'react/static-property-placement': 'off',
     'react/function-component-definition': 'off',
     'react/no-unstable-nested-components': 'off',
+    'react/no-array-index-key': 'off',
 
     // jsx-a11y
     'jsx-a11y/anchor-is-valid': [
