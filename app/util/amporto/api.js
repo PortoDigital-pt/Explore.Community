@@ -52,8 +52,8 @@ export function getDistrictById({ id, query }, { signal }) {
   }).then(response => response.json());
 }
 
-export function getSmooveById(id, { signal }) {
-  return retryFetch(`/api/smoove/${id}`, 2, 200, {
+export function getWeather(query, { signal }) {
+  return retryFetch(`/api/weather${buildQueryString(query)}`, 2, 200, {
     signal
   }).then(response => response.json());
 }

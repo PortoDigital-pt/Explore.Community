@@ -4,14 +4,14 @@ import {
   detailSchema,
   routesListSchema,
   districtsListSchema,
-  idSchema
+  weatherSchema
 } from './validation';
 import { getRoutesDetail, getRoutesList } from './handlers/routes';
 import { getDistrictDetail, getDistrictList } from './handlers/districts';
 import { getPoiDetail, getPoiList } from './handlers/pois';
 import { getEventDetail, getEventList } from './handlers/events';
 import { setupCache, decorateRequest } from './util';
-import { getSmooveDetail } from './handlers/smoove';
+import { getWeather } from './handlers/weather';
 
 const cachedRoutes = {
   '/api/pois/:id': { handler: getPoiDetail, schema: detailSchema },
@@ -25,7 +25,7 @@ const cachedRoutes = {
 };
 
 const routes = {
-  '/api/smoove/:id': { handler: getSmooveDetail, schema: idSchema }
+  '/api/weather': { handler: getWeather, schema: weatherSchema }
 };
 
 export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) => {
@@ -45,6 +45,16 @@ export const setupApiRoutes = (app, { filters, ngsi, defaultEndpoint }) => {
   );
 
   Object.entries(routes).forEach(([route, { handler, schema }]) =>
-    app.get(route, schema, handler)
+    app.get(
+      route,
+      (request, response, next) =>
+        decorateRequest(request, response, next, {
+          filters,
+          ngsi,
+          defaultEndpoint
+        }),
+      schema,
+      handler
+    )
   );
 };

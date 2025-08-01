@@ -32,7 +32,7 @@ const ICON_NAMES = {
 };
 
 export const getWeatherInfoFromResponse = (cityCode, response) => {
-  const [weatherResponse, radiationResponse] = response;
+  const [[sensor], weatherResponse, radiationResponse] = response;
 
   const todayFormatted = new Date().toLocaleDateString('en-CA');
   const weatherInfo = weatherResponse.data?.find(
@@ -46,6 +46,8 @@ export const getWeatherInfoFromResponse = (cityCode, response) => {
   );
 
   weatherInfo.uv = radiationInfo?.iUv;
+  weatherInfo.temperature = sensor?.temperature.value ?? weatherInfo.tMax;
+
   return weatherInfo;
 };
 
