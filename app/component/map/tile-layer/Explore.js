@@ -64,7 +64,8 @@ class Explore {
               const canBeDrawed =
                 !this.mapLayers.filter?.[type] ||
                 this.mapLayers.filter[type].includes(feature.properties.id);
-              const customSize = this.mapLayers.filter
+
+              const customSize = this.mapLayers.filter?.[type]
                 ? getFixedSizeIconStyle()
                 : null;
 

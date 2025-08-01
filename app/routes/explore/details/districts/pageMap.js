@@ -1,18 +1,13 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { string, func } from 'prop-types';
 import { matchShape } from 'found';
 import { connectToStores } from 'fluxible-addons-react';
 import { mapLayerShape } from '../../../../store/MapLayerStore';
 import Map from '../../../../component/map/MapContainer';
 import Loading from '../../../../component/Loading';
-import { getPoiList, getDistrictById } from '../../../../util/amporto/api';
-import { boundWithMinimumArea } from '../../../../util/geo-utils';
-import useListData from '../../../../hooks/useListData';
+import { getDistrictById } from '../../../../util/amporto/api';
 import useSelectedData from '../../../../hooks/useSelectedData';
 import { setupMapLayerStore } from '../../../../action/MapLayerActions';
-
-const getBounds = data =>
-  boundWithMinimumArea(data.map(({ lat, lon }) => [lat, lon]));
 
 const DistrictDetailsPageMap = (
   { language, mapLayers },
@@ -22,40 +17,30 @@ const DistrictDetailsPageMap = (
     executeAction(setupMapLayerStore);
   }, []);
 
-  const args = useMemo(
-    () => ({ language, district: match.params.id }),
-    [language, match.params.id]
-  );
-
-  const { selectedData } = useSelectedData({
+  const { selectedData, error } = useSelectedData({
     id: match.params.id,
     language,
     getDataById: getDistrictById
-  });
-
-  const { data, error } = useListData({
-    getData: getPoiList,
-    args
   });
 
   if (error) {
     return null;
   }
 
-  if (!data) {
+  if (!selectedData) {
     return <Loading />;
   }
 
   return (
     <Map
       className="flex-grow"
-      bounds={getBounds(data)}
       lat={selectedData?.lat}
       lon={selectedData?.lon}
       zoom={14}
-      mapLayers={{ filter: { pois: data.map(({ id }) => id) }, ...mapLayers }}
+      mapLayers={{ filter: { pois: selectedData.pois }, ...mapLayers }}
       fixedSizeIcon
       showExplore
+      ignoreMinZoom
     />
   );
 };
