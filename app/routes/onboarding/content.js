@@ -11,7 +11,11 @@ const parseBoldText = text => {
 
   return parts.map((part, index) => {
     const isBold = part.match(/\*\*(.*?)\*\*/);
-    return isBold ? <strong key={`${isBold[1]}-${index}`}>{isBold[1]}</strong> : part;
+    return isBold ? (
+      <strong key={`${isBold[1]}-${index}`}>{isBold[1]}</strong>
+    ) : (
+      part
+    );
   });
 };
 
@@ -23,7 +27,7 @@ export const Content = ({
   onExploreDescription
 }) => {
   const [page, setPage] = useState(0);
- 
+
   const tabs = useMemo(
     () =>
       Object.entries(pages).map(([key, { heading, paragraph }]) => (
@@ -34,7 +38,7 @@ export const Content = ({
       )),
     [pages, currentLanguage]
   );
-  
+
   return (
     <div className="content">
       <SwipeableTabs
