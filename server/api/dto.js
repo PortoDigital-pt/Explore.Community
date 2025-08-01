@@ -215,3 +215,5 @@ export const districtToDto = (district, language) => {
     routes: tripRefs.value
   };
 };
+
+export const weatherToDto = weather => weather.temperature.value;

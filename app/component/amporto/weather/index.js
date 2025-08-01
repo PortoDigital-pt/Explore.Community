@@ -1,40 +1,36 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState, useMemo } from 'react';
 import { bool, string } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { connectToStores } from 'fluxible-addons-react';
 import cx from 'classnames';
-import { configShape } from '../../../util/shapes';
-import { getJsons } from '../../../util/xhrPromise';
+import { locationShape, configShape } from '../../../util/shapes';
 import { getWeatherIconId, getWeatherInfoFromResponse } from './util';
 import Icon from '../../Icon';
 import useModal from '../../../hooks/useModal';
+import useListData from '../../../hooks/useListData';
+import { getWeather } from '../../../util/amporto/api';
 
 const CustomModal = lazy(() => import('@hsl-fi/modal'));
 
-const Weather = ({ lang, floating }, { config, intl }) => {
+const Weather = ({ lang, floating, location }, { config, intl }) => {
   const { isOpen, open, close } = useModal();
   const [weatherInfo, setWeatherInfo] = useState(null);
-  const { weatherApi, weatherCityCode } = config;
+  const { weatherCityCode } = config;
+
+  const args = useMemo(() => ({ limit: 1 }), []);
+
+  const { data } = useListData({
+    location,
+    coordinatesBounds: config.coordinatesBounds,
+    getData: getWeather,
+    args
+  });
 
   useEffect(() => {
-    if (weatherApi && weatherCityCode) {
-      const featchWeatherInfo = async () => {
-        try {
-          const result = await getJsons([
-            `${weatherApi}/cities/daily/${weatherCityCode}.json`,
-            `${weatherApi}/uv/uv.json`
-          ]);
-
-          setWeatherInfo(getWeatherInfoFromResponse(weatherCityCode, result));
-        } catch (err) {
-          // eslint-disable-next-line no-console
-          console.trace('Error retrieving weather info', err);
-        }
-      };
-
-      featchWeatherInfo();
+    if (data) {
+      setWeatherInfo(getWeatherInfoFromResponse(weatherCityCode, data));
     }
-  }, []);
+  }, [data]);
 
   return (
     weatherInfo && (
@@ -49,7 +45,7 @@ const Weather = ({ lang, floating }, { config, intl }) => {
             img={getWeatherIconId(weatherInfo.idWeatherType)}
             viewBox="0 0 24 24"
           />
-          <span className="max-temperature">{weatherInfo.tMax}°</span>
+          <span className="max-temperature">{weatherInfo.temperature}°</span>
         </button>
         {isOpen && (
           <Suspense fallback="">
@@ -72,7 +68,9 @@ const Weather = ({ lang, floating }, { config, intl }) => {
                     viewBox="0 0 24 24"
                   />
 
-                  <span className="temperature">{weatherInfo.tMax}°</span>
+                  <span className="temperature">
+                    {weatherInfo.temperature}°
+                  </span>
                 </div>
 
                 <div className="aditional-info-container">
@@ -124,9 +122,15 @@ Weather.contextTypes = {
 
 Weather.propTypes = {
   lang: string.isRequired,
-  floating: bool
+  floating: bool,
+  location: locationShape.isRequired,
 };
 
-export default connectToStores(Weather, ['PreferencesStore'], context => ({
-  lang: context.getStore('PreferencesStore').getLanguage()
-}));
+export default connectToStores(
+  Weather,
+  ['PreferencesStore', 'PositionStore'],
+  context => ({
+    lang: context.getStore('PreferencesStore').getLanguage(),
+    location: context.getStore('PositionStore').getLocationState()
+  })
+);
