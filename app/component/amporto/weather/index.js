@@ -123,7 +123,7 @@ Weather.contextTypes = {
 Weather.propTypes = {
   lang: string.isRequired,
   floating: bool,
-  location: locationShape.isRequired,
+  location: locationShape.isRequired
 };
 
 export default connectToStores(
