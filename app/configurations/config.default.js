@@ -727,6 +727,8 @@ export default {
   */
   cookiesDescription: {},
 
+  // list of svg logos in static/img/onboarding-logos to display in onboarding page
+  onboardingLogos: null,
   // onboarding pages
   /* e.g. override here or in your own config
   onboarding: {
