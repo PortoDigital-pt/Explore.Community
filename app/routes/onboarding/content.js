@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { objectOf, shape, string, bool, func } from 'prop-types';
+import { objectOf, shape, string, bool, func, arrayOf } from 'prop-types';
 import SwipeableTabs from '../../component/SwipeableTabs';
 
 const parseBoldText = text => {
@@ -24,7 +24,8 @@ export const Content = ({
   currentLanguage,
   onExplore,
   showOnExplore,
-  onExploreDescription
+  onExploreDescription,
+  logos
 }) => {
   const [page, setPage] = useState(0);
 
@@ -60,6 +61,19 @@ export const Content = ({
           {onExploreDescription}
         </button>
       )}
+
+      {logos?.length > 0 && (
+        <div className="logos">
+          {logos.map(name => (
+            <img
+              key={name}
+              src={`/img/onboarding-logos/${name}.svg`}
+              alt={name}
+              loading="eager"
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -75,5 +89,6 @@ Content.propTypes = {
   currentLanguage: string.isRequired,
   onExplore: func.isRequired,
   showOnExplore: bool.isRequired,
-  onExploreDescription: string.isRequired
+  onExploreDescription: string.isRequired,
+  logos: arrayOf([string])
 };

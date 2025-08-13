@@ -1,8 +1,5 @@
 import { validationResult } from 'express-validator';
-import {
-  defaultWeatherQueryParams,
-  buildNGSIQueryString
-} from '../util';
+import { defaultWeatherQueryParams, buildNGSIQueryString } from '../util';
 
 export const getWeather = async (request, response) => {
   const validation = validationResult(request);

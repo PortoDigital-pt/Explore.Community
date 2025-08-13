@@ -16,7 +16,7 @@ import Cookies from './cookies';
 
 const OnboardingPage = (
   { breakpoint, currentLanguage, firstAccess, onboarded, allowedCookies },
-  { config: { title, onboarding }, executeAction, intl }
+  { config: { title, onboarding, onboardingLogos }, executeAction, intl }
 ) => {
   const {
     match: { location },
@@ -59,6 +59,7 @@ const OnboardingPage = (
           onExplore={onStartExploring}
           showOnExplore={!onboarded}
           onExploreDescription={intl.messages['onboarding-start-exploring']}
+          logos={onboardingLogos}
         />
         <div className="image">
           <img src="/img/onboarding.webp" alt="onboarding" />
