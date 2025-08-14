@@ -56,10 +56,7 @@ class PreferencesStore extends Store {
 
     this.cookies.set('lang', language, {
       // Good up to one year
-      maxAge: 365 * 24 * 60 * 60,
-      path: '/',
-      secure: true,
-      sameSite: 'Strict'
+      maxAge: 365 * 24 * 60 * 60
     });
     this.language = language;
     this.emitChange();
@@ -68,10 +65,7 @@ class PreferencesStore extends Store {
   setOnboarded(onboarded) {
     this.cookies.set('onboarded', onboarded, {
       // Good up to one year
-      maxAge: 365 * 24 * 60 * 60,
-      path: '/',
-      secure: true,
-      sameSite: 'Strict'
+      maxAge: 365 * 24 * 60 * 60
     });
 
     this.onboarded = onboarded;
@@ -81,10 +75,7 @@ class PreferencesStore extends Store {
   setAllowedCookies(allowedCookies) {
     this.cookies.set('cookies', allowedCookies, {
       // Good up to one year
-      maxAge: 365 * 24 * 60 * 60,
-      path: '/',
-      secure: true,
-      sameSite: 'Strict'
+      maxAge: 365 * 24 * 60 * 60
     });
 
     this.allowedCookies = allowedCookies;
