@@ -1,5 +1,13 @@
-import React, { useState, useMemo } from 'react';
-import { objectOf, shape, string, bool, func, arrayOf } from 'prop-types';
+import React, { useMemo } from 'react';
+import {
+  objectOf,
+  shape,
+  string,
+  bool,
+  func,
+  arrayOf,
+  number
+} from 'prop-types';
 import SwipeableTabs from '../../component/SwipeableTabs';
 
 const parseBoldText = text => {
@@ -20,6 +28,8 @@ const parseBoldText = text => {
 };
 
 export const Content = ({
+  page,
+  onSwipe,
   pages,
   currentLanguage,
   onExplore,
@@ -27,8 +37,6 @@ export const Content = ({
   onExploreDescription,
   logos
 }) => {
-  const [page, setPage] = useState(0);
-
   const tabs = useMemo(
     () =>
       Object.entries(pages).map(([key, { heading, paragraph }]) => (
@@ -45,7 +53,7 @@ export const Content = ({
       <SwipeableTabs
         tabs={tabs}
         tabIndex={page}
-        onSwipe={page => setPage(page)}
+        onSwipe={onSwipe}
         classname="swipe-desktop-view"
         navigationOnBottom
         ariaFrom="swipe-onboarding"
@@ -79,6 +87,8 @@ export const Content = ({
 };
 
 Content.propTypes = {
+  page: number.isRequired,
+  onSwipe: func.isRequired,
   pages: objectOf(
     shape({
       heading: shape({ pt: string.isRequired, en: string.isRequired })
