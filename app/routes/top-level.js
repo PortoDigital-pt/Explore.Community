@@ -7,11 +7,11 @@ const TopLevelContainer = ({ onboarded, children }, { config }) => {
   if (config.onboarding === null) {
     return children;
   }
-
+/*
   if (!onboarded) {
     throw new RedirectException('/onboarding', 302);
   }
-
+*/
   return children;
 };
 
