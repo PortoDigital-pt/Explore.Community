@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { func, string, bool } from 'prop-types';
+import classnames from 'classnames';
 import useRouter from 'found/useRouter';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
@@ -16,12 +17,17 @@ import Cookies from './cookies';
 
 const OnboardingPage = (
   { breakpoint, currentLanguage, firstAccess, onboarded, allowedCookies },
-  { config: { title, onboarding, onboardingLogos }, executeAction, intl }
+  {
+    config: { title, onboarding, onboardingLogos, onboardingPictures },
+    executeAction,
+    intl
+  }
 ) => {
   const {
     match: { location },
     router
   } = useRouter();
+  const [page, setPage] = useState(0);
 
   const onStartExploring = useCallback(() => {
     executeAction(setOnboarded, true);
@@ -54,6 +60,8 @@ const OnboardingPage = (
       {breakpoint === 'small' && <LanguageSelect />}
       <div className="content-wrapper">
         <Content
+          page={page}
+          onSwipe={page => setPage(page)}
           pages={onboarding}
           currentLanguage={currentLanguage}
           onExplore={onStartExploring}
@@ -62,7 +70,19 @@ const OnboardingPage = (
           logos={onboardingLogos}
         />
         <div className="image">
-          <img src="/img/onboarding.webp" alt="onboarding" />
+          {onboardingPictures?.length > 0 ? (
+            onboardingPictures.map((name, index) => (
+              <img
+                key={name}
+                className={classnames({ hide: page !== index })}
+                src={`/img/onboarding-pictures/${name}.webp`}
+                alt={`onboarding-${name}`}
+                loading="eager"
+              />
+            ))
+          ) : (
+            <img src="/img/default-social-share.png" alt="onboarding" />
+          )}
         </div>
       </div>
 

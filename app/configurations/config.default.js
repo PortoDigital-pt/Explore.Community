@@ -727,6 +727,9 @@ export default {
   */
   cookiesDescription: {},
 
+  // list of webp pictures in static/img/onboarding-pictures to display in onboarding page
+  // You want to have a picture per onboarding page, named from 1 to x
+  onboardingPictures: null,
   // list of svg logos in static/img/onboarding-logos to display in onboarding page
   onboardingLogos: null,
   // onboarding pages

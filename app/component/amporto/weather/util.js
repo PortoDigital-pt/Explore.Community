@@ -46,7 +46,9 @@ export const getWeatherInfoFromResponse = (cityCode, response) => {
   );
 
   weatherInfo.uv = radiationInfo?.iUv;
-  weatherInfo.temperature = sensor?.temperature.value ?? weatherInfo.tMax;
+  weatherInfo.temperature = (
+    sensor?.temperature.value ?? Number.parseFloat(weatherInfo.tMax)
+  ).toFixed();
 
   return weatherInfo;
 };
