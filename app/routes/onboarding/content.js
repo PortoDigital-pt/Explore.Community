@@ -90,5 +90,5 @@ Content.propTypes = {
   onExplore: func.isRequired,
   showOnExplore: bool.isRequired,
   onExploreDescription: string.isRequired,
-  logos: arrayOf([string])
+  logos: arrayOf(string)
 };
