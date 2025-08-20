@@ -1,5 +1,5 @@
 import Store from 'fluxible/addons/BaseStore';
-import cloneDeep from 'lodash/cloneDeep';
+import cloneDeep from 'lodash/cloneDeep.js';
 import find from 'lodash/find';
 import isEqual from 'lodash/isEqual';
 import orderBy from 'lodash/orderBy';

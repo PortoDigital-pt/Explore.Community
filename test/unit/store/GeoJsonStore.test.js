@@ -1,5 +1,5 @@
 import fetchMock from 'fetch-mock';
-import cloneDeep from 'lodash/cloneDeep';
+import cloneDeep from 'lodash/cloneDeep.js';
 
 import GeoJsonStore, {
   MapJSON,

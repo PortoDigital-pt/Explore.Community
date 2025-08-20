@@ -3,7 +3,7 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import moment from 'moment';
-import cloneDeep from 'lodash/cloneDeep';
+import cloneDeep from 'lodash/cloneDeep.js';
 import routePatternOptionText from '.';
 
 const languages = ['fi', 'en', 'sv'];
