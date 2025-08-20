@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash/cloneDeep.js';
 import isEmpty from 'lodash/isEmpty';
 import Store from 'fluxible/addons/BaseStore';
 

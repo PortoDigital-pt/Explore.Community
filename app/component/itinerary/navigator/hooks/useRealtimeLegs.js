@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash/cloneDeep.js';
 import polyUtil from 'polyline-encoded';
 import { useCallback, useEffect, useState } from 'react';
 import { fetchQuery } from 'react-relay';
