@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash/cloneDeep.js';
+import { cloneDeep } from 'lodash';
 import get from 'lodash/get';
 import { getRouteMode } from './modeUtils';
 import { BIKEAVL_UNKNOWN } from './vehicleRentalUtils';

@@ -4,7 +4,7 @@
 /* eslint no-bitwise: ["error", { "allow": [">>"] }] */
 /* eslint-disable prefer-destructuring */
 
-import cloneDeep from 'lodash/cloneDeep.js';
+import { cloneDeep } from 'lodash';
 import moment from 'moment';
 
 export const DATE_FORMAT = 'YYYYMMDD';

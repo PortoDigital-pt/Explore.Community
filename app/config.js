@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import cloneDeep from 'lodash/cloneDeep.js';
+import { cloneDeep } from 'lodash';
 
 import defaultConfig from './configurations/config.default';
 import configMerger from './util/configMerger';
