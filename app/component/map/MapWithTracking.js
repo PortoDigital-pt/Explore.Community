@@ -5,7 +5,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 import getContext from 'recompose/getContext';
 import isEqual from 'lodash/isEqual';
-import cloneDeep from 'lodash/cloneDeep.js';
+import { cloneDeep } from 'lodash';
 import isEmpty from 'lodash/isEmpty';
 import { intlShape } from 'react-intl';
 import { mapLayerOptionsShape, configShape } from '../../util/shapes';

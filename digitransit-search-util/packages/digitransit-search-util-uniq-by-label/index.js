@@ -2,7 +2,7 @@ import uniqWith from 'lodash/uniqWith';
 import isEqual from 'lodash/isEqual';
 import memoize from 'lodash/memoize';
 import escapeRegExp from 'lodash/escapeRegExp';
-import cloneDeep from 'lodash/cloneDeep.js';
+import { cloneDeep } from 'lodash';
 
 /**
  * Location properties.
