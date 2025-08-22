@@ -1,25 +1,31 @@
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { number, string, func } from 'prop-types';
+import { createRefetchContainer, graphql } from 'react-relay';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import { intlShape } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import { routerShape, RedirectException } from 'found';
-import { stopShape, errorShape, locationShape } from '../util/shapes';
+import {
+  stopShape,
+  errorShape,
+  locationShape,
+  relayShape
+} from '../util/shapes';
 import Icon from './Icon';
-import withBreakpoint from '../util/withBreakpoint';
 import { isBrowser } from '../util/browser';
+import withBreakpoint from '../util/withBreakpoint';
 import { showDistance } from '../util/amporto/geo';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';
 import { getItineraryPath } from '../routes/explore/details/routes/util';
 import LazilyLoad, { importLazy } from './LazilyLoad';
 import ShareButton from './amporto/share-button';
+import DepartureListContainer from './DepartureListContainer';
 
 const modules = {
   FavouriteStopContainer: () => importLazy(import('./FavouriteStopContainer'))
 };
 
 const SimpleStopContent = (
-  { stop, language, breakpoint, router, error, location },
+  { stop, language, breakpoint, router, error, location, relay, currentTime },
   { intl, executeAction }
 ) => {
   const [client, setClient] = useState(false);
@@ -30,14 +36,14 @@ const SimpleStopContent = (
   });
 
   useEffect(() => {
-    // To prevent SSR from rendering something https://reactjs.org/docs/react-dom.html#hydrate
     setClient(true);
-  });
+  }, []);
 
-  // throw error in client side relay query fails
-  if (client && error && !stop) {
-    throw error.message;
-  }
+  useEffect(() => {
+    if (relay && currentTime) {
+      relay.refetch(oldVariables => ({ ...oldVariables, startTime: currentTime }));
+    }
+  }, [currentTime, relay]);
 
   if (!stop && !error) {
     if (isBrowser) {
@@ -116,57 +122,98 @@ const SimpleStopContent = (
           {intl.messages.details}
         </button>
       </div>
+
+      {stop.stoptimes?.length > 0 ? (
+        <DepartureListContainer
+          stoptimes={stop.stoptimes}
+          key="departures"
+          className="stop-page"
+          currentTime={currentTime}
+          showVehicles
+        />
+      ) : (
+        <div className="stop-no-departures-container">
+          <Icon img="icon-icon_station" />
+          <FormattedMessage id="no-departures" defaultMessage="No departures" />
+        </div>
+      )}
     </div>
   );
 };
 
 SimpleStopContent.propTypes = {
   stop: stopShape.isRequired,
-  language: PropTypes.string.isRequired,
-  breakpoint: PropTypes.string.isRequired,
+  language: string.isRequired,
+  breakpoint: string.isRequired,
   router: routerShape.isRequired,
   error: errorShape,
-  location: locationShape.isRequired
-};
-
-SimpleStopContent.defaultProps = {
-  error: undefined
+  location: locationShape.isRequired,
+  relay: relayShape.isRequired,
+  currentTime: number.isRequired
 };
 
 SimpleStopContent.contextTypes = {
   intl: intlShape.isRequired,
-  executeAction: PropTypes.func.isRequired
+  executeAction: func.isRequired
 };
 
-const SimpleStopContentWithBreakpoint = withBreakpoint(SimpleStopContent);
-
 const connectedComponent = connectToStores(
-  SimpleStopContentWithBreakpoint,
-  ['PreferencesStore', 'PositionStore'],
+  withBreakpoint(SimpleStopContent),
+  ['PreferencesStore', 'PositionStore', 'TimeStore'],
   context => ({
     language: context.getStore('PreferencesStore').getLanguage(),
-    location: context.getStore('PositionStore').getLocationState()
+    location: context.getStore('PositionStore').getLocationState(),
+    currentTime: context.getStore('TimeStore').getCurrentTime()
   })
 );
 
-const containerComponent = createFragmentContainer(connectedComponent, {
-  stop: graphql`
-    fragment SimpleStopContent_stop on Stop {
-      id
-      gtfsId
-      lat
-      lon
-      platformCode
-      name
-      code
-      desc
-      vehicleMode
-      locationType
+export default createRefetchContainer(
+  connectedComponent,
+  {
+    stop: graphql`
+      fragment SimpleStopContent_stop on Stop
+      @argumentDefinitions(
+        startTime: { type: "Long!", defaultValue: 0 }
+        timeRange: { type: "Int!", defaultValue: 864000 }
+        numberOfDepartures: { type: "Int!", defaultValue: 5 }
+      ) {
+        id
+        gtfsId
+        lat
+        lon
+        platformCode
+        name
+        code
+        desc
+        vehicleMode
+        locationType
+        url
+        stoptimes: stoptimesWithoutPatterns(
+          startTime: $startTime
+          timeRange: $timeRange
+          numberOfDepartures: $numberOfDepartures
+          omitCanceled: false
+        ) {
+          ...DepartureListContainer_stoptimes
+        }
+      }
+    `
+  },
+  graphql`
+    query SimpleStopContentQuery(
+      $id: String!
+      $startTime: Long!
+      $timeRange: Int!
+      $numberOfDepartures: Int!
+    ) {
+      stop(id: $id) {
+        ...SimpleStopContent_stop
+          @arguments(
+            startTime: $startTime
+            timeRange: $timeRange
+            numberOfDepartures: $numberOfDepartures
+          )
+      }
     }
   `
-});
-
-export {
-  containerComponent as default,
-  SimpleStopContentWithBreakpoint as Component
-};
+);
