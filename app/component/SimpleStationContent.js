@@ -1,25 +1,39 @@
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { number, string, func } from 'prop-types';
+import { createRefetchContainer, graphql } from 'react-relay';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import { intlShape } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import { routerShape, RedirectException } from 'found';
-import { stopShape, errorShape, locationShape } from '../util/shapes';
+import {
+  stopShape,
+  errorShape,
+  locationShape,
+  relayShape
+} from '../util/shapes';
 import Icon from './Icon';
-import withBreakpoint from '../util/withBreakpoint';
 import { isBrowser } from '../util/browser';
 import { showDistance } from '../util/amporto/geo';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';
 import { getItineraryPath } from '../routes/explore/details/routes/util';
 import LazilyLoad, { importLazy } from './LazilyLoad';
 import ShareButton from './amporto/share-button';
+import DepartureListContainer from './DepartureListContainer';
 
 const modules = {
   FavouriteStopContainer: () => importLazy(import('./FavouriteStopContainer'))
 };
 
 const SimpleStationContent = (
-  { station, language, breakpoint, router, error, location },
+  {
+    station,
+    language,
+    breakpoint,
+    router,
+    error,
+    location,
+    relay,
+    currentTime
+  },
   { intl, executeAction }
 ) => {
   const [client, setClient] = useState(false);
@@ -30,14 +44,14 @@ const SimpleStationContent = (
   });
 
   useEffect(() => {
-    // To prevent SSR from rendering something https://reactjs.org/docs/react-dom.html#hydrate
     setClient(true);
-  });
+  }, []);
 
-  // throw error in client side relay query fails
-  if (client && error && !station) {
-    throw error.message;
-  }
+  useEffect(() => {
+    if (relay && currentTime) {
+      relay.refetch(oldVariables => ({ ...oldVariables, startTime: currentTime }));
+    }
+  }, [currentTime, relay]);
 
   if (!station && !error) {
     if (isBrowser) {
@@ -47,7 +61,7 @@ const SimpleStationContent = (
     }
     return null;
   }
-
+ 
   return (
     <div className="bike-station-page-container">
       <div className="rental-bike-header-container">
@@ -107,57 +121,99 @@ const SimpleStationContent = (
           {intl.messages.details}
         </button>
       </div>
+
+      {station.stoptimes?.length > 0 ? (
+        <DepartureListContainer
+          mode="SUBWAY"
+          stoptimes={station.stoptimes}
+          key="departures"
+          className="stop-page"
+          currentTime={currentTime}
+          isTerminal
+        />
+      ) : (
+        <div className="stop-no-departures-container">
+          <Icon img="icon-icon_station" />
+          <FormattedMessage id="no-departures" defaultMessage="No departures" />
+        </div>
+      )}
     </div>
   );
 };
 
 SimpleStationContent.propTypes = {
   station: stopShape.isRequired,
-  language: PropTypes.string.isRequired,
-  breakpoint: PropTypes.string.isRequired,
+  language: string.isRequired,
+  breakpoint: string.isRequired,
   router: routerShape.isRequired,
   error: errorShape,
-  location: locationShape.isRequired
-};
-
-SimpleStationContent.defaultProps = {
-  error: undefined
+  location: locationShape.isRequired,
+  relay: relayShape.isRequired,
+  currentTime: number.isRequired
 };
 
 SimpleStationContent.contextTypes = {
   intl: intlShape.isRequired,
-  executeAction: PropTypes.func.isRequired
+  executeAction: func.isRequired
 };
 
-const SimpleStationContentWithBreakpoint = withBreakpoint(SimpleStationContent);
-
 const connectedComponent = connectToStores(
-  SimpleStationContentWithBreakpoint,
-  ['PreferencesStore', 'PositionStore'],
+  SimpleStationContent,
+  ['PreferencesStore', 'PositionStore', 'TimeStore'],
   context => ({
     language: context.getStore('PreferencesStore').getLanguage(),
-    location: context.getStore('PositionStore').getLocationState()
+    location: context.getStore('PositionStore').getLocationState(),
+    currentTime: context.getStore('TimeStore').getCurrentTime()
   })
 );
 
-const containerComponent = createFragmentContainer(connectedComponent, {
-  station: graphql`
-    fragment SimpleStationContent_station on Stop {
-      id
-      gtfsId
-      lat
-      lon
-      platformCode
-      name
-      code
-      desc
-      vehicleMode
-      locationType
+export default createRefetchContainer(
+  connectedComponent,
+   {
+    station: graphql`
+      fragment SimpleStationContent_station on Stop
+      @argumentDefinitions(
+        startTime: { type: "Long!", defaultValue: 0 }
+        timeRange: { type: "Int!", defaultValue: 43200 }
+        numberOfDepartures: { type: "Int!", defaultValue: 5 }
+      ) {
+        gtfsId
+        lat
+        lon
+        name
+        stops {
+          patterns {
+            route {
+              mode
+            }
+          }
+        }
+        stoptimes: stoptimesWithoutPatterns(
+          startTime: $startTime
+          timeRange: $timeRange
+          numberOfDepartures: $numberOfDepartures
+          omitCanceled: false
+        ) {
+          ...DepartureListContainer_stoptimes
+        }
+      }
+    `
+  },
+  graphql`
+    query SimpleStationContentContainerQuery(
+      $id: String!
+      $startTime: Long!
+      $timeRange: Int!
+      $numberOfDepartures: Int!
+    ) {
+      station(id: $id) {
+        ...SimpleStationContent_station
+          @arguments(
+            startTime: $startTime
+            timeRange: $timeRange
+            numberOfDepartures: $numberOfDepartures
+          )
+      }
     }
   `
-});
-
-export {
-  containerComponent as default,
-  SimpleStationContentWithBreakpoint as Component
-};
+);

@@ -241,7 +241,6 @@ class DepartureListContainer extends Component {
 
     const departureObjs = [];
     const { currentTime, limit, isTerminal, stoptimes } = this.props;
-
     let serviceDayCutoff = moment.unix(currentTime).startOf('day').unix();
     let dayCutoff = moment.unix(currentTime).startOf('day').unix();
     const departures = asDepartures(stoptimes)
