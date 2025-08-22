@@ -12,6 +12,7 @@ import {
 } from '../util/shapes';
 import Icon from './Icon';
 import { isBrowser } from '../util/browser';
+import withBreakpoint from '../util/withBreakpoint';
 import { showDistance } from '../util/amporto/geo';
 import useDistanceToTarget from '../hooks/useDistanceToTarget';
 import { getItineraryPath } from '../routes/explore/details/routes/util';
@@ -157,7 +158,7 @@ SimpleStopContent.contextTypes = {
 };
 
 const connectedComponent = connectToStores(
-  SimpleStopContent,
+  withBreakpoint(SimpleStopContent),
   ['PreferencesStore', 'PositionStore', 'TimeStore'],
   context => ({
     language: context.getStore('PreferencesStore').getLanguage(),
