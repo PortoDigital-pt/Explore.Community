@@ -44,10 +44,10 @@ function patternTextWithIcon(pattern) {
     }
     return (
       <>
-        {text.slice(0, i)}
+        <span>{text.slice(0, i)}</span>
         <Icon className="in-text-arrow" img="icon-icon_arrow-right-long" />
         <span className="sr-only">➔</span>
-        {text.slice(i + 1)}
+        <span>{text.slice(i + 1)}</span>
       </>
     );
   }
@@ -292,7 +292,9 @@ class RoutePatternSelect extends Component {
                   : null
               }
             >
-              {patternTextWithIcon(currentPattern)}
+              <div className="content">
+                {patternTextWithIcon(currentPattern)}
+              </div>
               {directionSwap && (
                 <Icon className="toggle-icon" img="icon-icon_direction-c" />
               )}
@@ -397,7 +399,9 @@ class RoutePatternSelect extends Component {
               return (
                 <>
                   <div className="input-display" aria-hidden="true">
-                    {patternTextWithIcon(currentPattern)}
+                    <div className="content">
+                      {patternTextWithIcon(currentPattern)}
+                    </div>
                     <Icon
                       className="dropdown-arrow"
                       img="icon-icon_arrow-collapse"

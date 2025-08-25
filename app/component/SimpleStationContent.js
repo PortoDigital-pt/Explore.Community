@@ -50,7 +50,10 @@ const SimpleStationContent = (
 
   useEffect(() => {
     if (relay && currentTime) {
-      relay.refetch(oldVariables => ({ ...oldVariables, startTime: currentTime }));
+      relay.refetch(oldVariables => ({
+        ...oldVariables,
+        startTime: currentTime
+      }));
     }
   }, [currentTime, relay]);
 
@@ -62,7 +65,7 @@ const SimpleStationContent = (
     }
     return null;
   }
- 
+
   return (
     <div className="bike-station-page-container">
       <div className="rental-bike-header-container">
@@ -170,7 +173,7 @@ const connectedComponent = connectToStores(
 
 export default createRefetchContainer(
   connectedComponent,
-   {
+  {
     station: graphql`
       fragment SimpleStationContent_station on Stop
       @argumentDefinitions(

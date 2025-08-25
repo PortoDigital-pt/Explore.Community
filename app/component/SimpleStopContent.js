@@ -41,7 +41,10 @@ const SimpleStopContent = (
 
   useEffect(() => {
     if (relay && currentTime) {
-      relay.refetch(oldVariables => ({ ...oldVariables, startTime: currentTime }));
+      relay.refetch(oldVariables => ({
+        ...oldVariables,
+        startTime: currentTime
+      }));
     }
   }, [currentTime, relay]);
 
