@@ -200,7 +200,7 @@ $margin-left-right: 21.3px;
   @include font-narrow-medium;
 
   background-color: $background-default;
-  margin: 0 0 0 2px;
+  margin: 0 0 0 0;
   padding: 0;
 
   .route-stop:last-child .route-stop-row_content-container {
@@ -433,6 +433,7 @@ $margin-left-right: 21.3px;
         flex-grow: 1;
         display: flex;
         min-width: 0;
+        max-width: 50%;
         font-size: 0.9375rem;
 
         .route-stop-name {
@@ -536,7 +537,7 @@ $margin-left-right: 21.3px;
             height: 14px;
             align-items: center;
             justify-content: flex-end;
-            padding: 0;
+            padding-right: 0.25em;
             margin: 0;
             line-height: 14px;
             min-width: 2.35rem;
@@ -547,8 +548,6 @@ $margin-left-right: 21.3px;
               height: 18px;
               line-height: 18px;
               min-width: unset;
-              width: 2rem;
-              margin-left: 9px;
             }
           }
 
@@ -1273,6 +1272,13 @@ $margin-left-right: 21.3px;
 
 .route-pattern-select {
   margin: 1px 0 18px 0;
+  display: flex;
+  min-width: 100%;
+
+  > label {
+    display: flex !important;
+    width: 100%;
+  }
 
   .route-pattern-toggle {
     border: 1px solid $grey-medium;
@@ -1280,13 +1286,35 @@ $margin-left-right: 21.3px;
     min-height: 40px;
     background: $background-default;
     border-radius: 8px;
-    display: block;
+    display: flex;
     font-size: 0.9375rem;
     line-height: 18px;
     letter-spacing: -0.03em;
-    padding: 13px 32px 13px 16px;
+    align-items: center;
     text-align: left;
     color: $grey-dark-down;
+    flex-wrap: wrap;
+
+    .content {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: flex-start;
+      width: calc(100% - 32px);
+      padding: 0 16px 0 16px;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      > span {
+        display: inline-block;
+        position: relative;
+        width: fit-content;
+
+        &.sr-only {
+          display: none;
+        }
+      }
+    }
 
     &:focus {
       outline: none;
@@ -1299,7 +1327,7 @@ $margin-left-right: 21.3px;
     .toggle-icon {
       color: $grey-dark-down;
       position: absolute;
-      right: 16px;
+      right: 8px;
       transform: rotate(90deg);
     }
   }
@@ -1326,13 +1354,14 @@ $margin-left-right: 21.3px;
   }
 
   .react-autosuggest__container {
-    width: 100%;
+    min-width: 100%;
     min-height: 40px;
     background: $background-default;
     border: 1px solid $grey-medium;
     border-radius: 8px;
     position: relative;
     height: 40px;
+    display: flex;
 
     &:focus-within {
       outline: none;
@@ -1343,14 +1372,42 @@ $margin-left-right: 21.3px;
     }
 
     .input-display {
+      display: flex;
+      min-width: 100%;
       position: relative;
       font-weight: $font-weight-book;
       font-size: 15px;
       line-height: 18px;
       letter-spacing: -0.03em;
-      padding: 10px 32px 13px 16px;
       color: $grey-dark-down;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+
+    .content {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: flex-start;
+      width: calc(100% - 32px);
+      padding: 0 16px 0 16px;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      > span {
+        display: inline-block;
+        position: relative;
+        width: fit-content;
+
+        &.sr-only {
+          display: none;
+        }
+      }
+     
     }
+  }
 
     .react-autosuggest__input {
       height: 0;
@@ -1691,6 +1748,10 @@ nav.top-bar .title .route-number {
 
       .time-cell-time-label {
         padding-left: 4px;
+        .time {
+          width: unset;
+          margin: 0;
+        }
 
         @include typography-label-base;
       }
@@ -1719,7 +1780,6 @@ nav.top-bar .title .route-number {
 
 .route-page-control-panel-container {
   min-height: 97px;
-  padding-bottom: 5px;
 
   &.hairiot {
     margin: 0 56px;
