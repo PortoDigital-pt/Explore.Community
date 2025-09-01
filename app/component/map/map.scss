@@ -1451,7 +1451,7 @@ div.leaflet-control-scale-line {
   height: 50px;
   width: 60%;
   border-radius: 8px;
-  bottom: 15%;
+  bottom: calc(12% + #{$mobile-navigation-bar-height});
   font-family: $button-font-family;
   font-size: 18px;
   font-weight: $font-weight-medium;
