@@ -30,7 +30,10 @@ const OnboardingPage = (
   const [page, setPage] = useState(0);
 
   const onStartExploring = useCallback(() => {
-    executeAction(setOnboarded, true);
+    executeAction(setOnboarded, {
+      onboarded: true,
+      createdAt: new Date().toISOString()
+    });
     // execute navigation in the next event loop tick - allowing time to process the store update.
     // this ensures onboarded store state updates before the Main component reads it on the next page.
     setTimeout(() => {

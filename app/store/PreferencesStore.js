@@ -62,11 +62,17 @@ class PreferencesStore extends Store {
     this.emitChange();
   }
 
-  setOnboarded(onboarded) {
+  setOnboarded({ onboarded, createdAt }) {
     this.cookies.set('onboarded', onboarded, {
       // Good up to one year
       maxAge: 365 * 24 * 60 * 60
     });
+    if (createdAt) {
+      this.cookies.set('onboarded-created-at', createdAt, {
+        // Good up to one year
+        maxAge: 365 * 24 * 60 * 60
+      });
+    }
 
     this.onboarded = onboarded;
     this.emitChange();

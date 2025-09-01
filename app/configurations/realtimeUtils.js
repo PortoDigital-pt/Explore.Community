@@ -87,6 +87,6 @@ const feedResolver = {
 };
 
 export default {
-  1: { ...feedResolver, mqttTopicResolver:  subwayMqttTopicResolver },
-  2: { ...feedResolver, mqttTopicResolver:  busMqttTopicResolver }
+  1: { ...feedResolver, mqttTopicResolver: subwayMqttTopicResolver },
+  2: { ...feedResolver, mqttTopicResolver: busMqttTopicResolver }
 };

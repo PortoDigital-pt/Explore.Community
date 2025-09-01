@@ -258,12 +258,23 @@ export default async function serve(req, res, next) {
           .setFirstAccess(req.cookies['first-access']);
       }
 
-      context
-        .getComponentContext()
-        .getStore('PreferencesStore')
-        .setOnboarded(
-          req.cookies.onboarded === 'true' || !!req.cookies['connect.sid']
-        );
+      if (
+        !req.cookies['onboarded-created-at'] ||
+        req.cookies['onboarded-created-at'] < config.onboardedCreatedAt
+      ) {
+        res.clearCookie('onboarded');
+        context
+          .getComponentContext()
+          .getStore('PreferencesStore')
+          .setOnboarded({ onboarded: false });
+      } else {
+        context
+          .getComponentContext()
+          .getStore('PreferencesStore')
+          .setOnboarded({
+            onboarded: req.cookies.onboarded === 'true'
+          });
+      }
     }
 
     context

@@ -56,7 +56,8 @@ const {
   REALTIME_PATCH,
   SHOW_WIFI,
   MATOMO_URL,
-  MATOMO_SITE_ID
+  MATOMO_SITE_ID,
+  ONBOARDED_CREATED_AT
 } = process.env;
 const hasAPISubscriptionQueryParameter =
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME && API_SUBSCRIPTION_TOKEN;
@@ -727,6 +728,8 @@ export default {
   */
   cookiesDescription: {},
 
+  // date used to reset the onboarded cookie -> if the cookie date is lower than this, it resets
+  onboardedCreatedAt: ONBOARDED_CREATED_AT,
   // list of webp pictures in static/img/onboarding-pictures to display in onboarding page
   // You want to have a picture per onboarding page, named from 1 to x
   onboardingPictures: null,
