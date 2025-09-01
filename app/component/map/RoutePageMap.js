@@ -142,6 +142,7 @@ class RoutePageMap extends React.Component {
         vehiclePosition={tripSelected ? { lat, lon } : null}
       />
     ];
+  
     if (isActiveDate(pattern)) {
       leafletObjs.push(
         <VehicleMarkerContainer
@@ -178,10 +179,10 @@ const RoutePageMapWithVehicles = connectToStores(
   ['RealTimeInformationStore', 'MapLayerStore'],
   ({ getStore }, { trip }) => {
     const mapLayers = getStore('MapLayerStore').getMapLayers({
-      notThese: ['stop', 'citybike', 'vehicles', 'scooter', 'taxis']
+      notThese: ['stop', 'citybike', 'vehicles', 'scooters', 'taxis']
     });
     const mapLayerOptions = getMapLayerOptions({
-      lockedMapLayers: ['vehicles', 'stop', 'citybike', 'scooter'],
+      lockedMapLayers: ['vehicles', 'stop', 'citybike', 'scooters'],
       selectedMapLayers: ['vehicles']
     });
     if (trip) {

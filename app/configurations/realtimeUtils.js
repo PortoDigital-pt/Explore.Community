@@ -4,10 +4,46 @@ function routeSelector(routePageProps) {
   const route = routePageProps.route.gtfsId.split(':');
   return route[1];
 }
+
 function vehicleNumberParser(vehicleNumber) {
   return vehicleNumber;
 }
-function mqttTopicResolver(
+
+function subwayMqttTopicResolver(
+  route,
+  direction,
+  tripStartTime,
+  headsign,
+  feedId,
+  tripId,
+  geoHash
+) {
+  return (
+    '/gtfsrt/vp/' +
+    feedId +
+    '/+/+/+/' +
+    route +
+    '/' +
+    direction +
+    '/' +
+    headsign +
+    '/' +
+    tripId +
+    '/+/' +
+    '+' + // remove trip start time
+    '/+/' +
+    geoHash[0] +
+    '/' +
+    geoHash[1] +
+    '/' +
+    geoHash[2] +
+    '/' +
+    geoHash[3] +
+    '/#'
+  );
+}
+
+function busMqttTopicResolver(
   route,
   direction,
   tripStartTime,
@@ -42,7 +78,6 @@ function mqttTopicResolver(
 }
 
 const feedResolver = {
-  mqttTopicResolver,
   mqtt: process.env.MQTT_WEBSOCKET_URL,
   credentials: { username: 'username', password: 'password' },
   gtfsrt: true,
@@ -52,6 +87,6 @@ const feedResolver = {
 };
 
 export default {
-  2: feedResolver,
-  1: feedResolver
+  1: { ...feedResolver, mqttTopicResolver:  subwayMqttTopicResolver },
+  2: { ...feedResolver, mqttTopicResolver:  busMqttTopicResolver }
 };
