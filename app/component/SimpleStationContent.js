@@ -37,16 +37,11 @@ const SimpleStationContent = (
   },
   { intl, executeAction }
 ) => {
-  const [client, setClient] = useState(false);
   const distanceToStop = useDistanceToTarget({
     executeAction,
     location,
     targetPoint: station
   });
-
-  useEffect(() => {
-    setClient(true);
-  }, []);
 
   useEffect(() => {
     if (relay && currentTime) {

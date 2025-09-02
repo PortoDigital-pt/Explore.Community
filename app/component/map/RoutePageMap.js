@@ -142,7 +142,7 @@ class RoutePageMap extends React.Component {
         vehiclePosition={tripSelected ? { lat, lon } : null}
       />
     ];
-  
+
     if (isActiveDate(pattern)) {
       leafletObjs.push(
         <VehicleMarkerContainer

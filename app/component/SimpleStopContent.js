@@ -28,16 +28,11 @@ const SimpleStopContent = (
   { stop, language, breakpoint, router, error, location, relay, currentTime },
   { intl, executeAction }
 ) => {
-  const [client, setClient] = useState(false);
   const distanceToStop = useDistanceToTarget({
     executeAction,
     location,
     targetPoint: stop
   });
-
-  useEffect(() => {
-    setClient(true);
-  }, []);
 
   useEffect(() => {
     if (relay && currentTime) {

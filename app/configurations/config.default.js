@@ -56,7 +56,8 @@ const {
   REALTIME_PATCH,
   SHOW_WIFI,
   MATOMO_URL,
-  MATOMO_SITE_ID
+  MATOMO_SITE_ID,
+  ONBOARDED_CREATED_AT
 } = process.env;
 const hasAPISubscriptionQueryParameter =
   API_SUBSCRIPTION_QUERY_PARAMETER_NAME && API_SUBSCRIPTION_TOKEN;
@@ -727,10 +728,12 @@ export default {
   */
   cookiesDescription: {},
 
+  // ISO string date used to reset the onboarded cookie -> if the cookie date is older than this, it resets
+  onboardedCreatedAt: ONBOARDED_CREATED_AT,
   // list of webp pictures in static/img/onboarding-pictures to display in onboarding page
-  // You want to have a picture per onboarding page, named from 1 to x
+  // You want to have a picture per onboarding page, named from 1 to x. e.g. ['1', '2', '3']
   onboardingPictures: null,
-  // list of svg logos in static/img/onboarding-logos to display in onboarding page
+  // list of svg logos in static/img/onboarding-logos to display in onboarding page. e.g. ['logo1', 'logo2', 'logo3']
   onboardingLogos: null,
   // onboarding pages
   /* e.g. override here or in your own config
@@ -787,7 +790,9 @@ export default {
   /* ngsi: {
     dataProvider: {
       pois: '',
-      events: ''
+      events: '',
+      routes: '',
+      districts: ''
     }
   }, */
   ngsi: {
