@@ -728,12 +728,12 @@ export default {
   */
   cookiesDescription: {},
 
-  // date used to reset the onboarded cookie -> if the cookie date is lower than this, it resets
+  // ISO string date used to reset the onboarded cookie -> if the cookie date is older than this, it resets
   onboardedCreatedAt: ONBOARDED_CREATED_AT,
   // list of webp pictures in static/img/onboarding-pictures to display in onboarding page
-  // You want to have a picture per onboarding page, named from 1 to x
+  // You want to have a picture per onboarding page, named from 1 to x. e.g. ['1', '2', '3']
   onboardingPictures: null,
-  // list of svg logos in static/img/onboarding-logos to display in onboarding page
+  // list of svg logos in static/img/onboarding-logos to display in onboarding page. e.g. ['logo1', 'logo2', 'logo3']
   onboardingLogos: null,
   // onboarding pages
   /* e.g. override here or in your own config
@@ -790,7 +790,9 @@ export default {
   /* ngsi: {
     dataProvider: {
       pois: '',
-      events: ''
+      events: '',
+      routes: '',
+      districts: ''
     }
   }, */
   ngsi: {
