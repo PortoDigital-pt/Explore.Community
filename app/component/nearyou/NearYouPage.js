@@ -394,7 +394,7 @@ class NearYouPage extends React.Component {
     const index = nearByStopModes.indexOf(mode);
     const { config } = this.context;
     const tabs = nearByStopModes.map(nearByStopMode => {
-      const renderSearch = this.props.renderSearch;
+      const renderSearch =this.props.renderSearch;
       const renderDisruptionBanner = nearByStopMode !== 'CITYBIKE';
       if (nearByStopMode === 'FAVORITE') {
         const noFavs = this.noFavorites();
