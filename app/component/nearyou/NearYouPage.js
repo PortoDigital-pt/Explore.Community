@@ -394,8 +394,7 @@ class NearYouPage extends React.Component {
     const index = nearByStopModes.indexOf(mode);
     const { config } = this.context;
     const tabs = nearByStopModes.map(nearByStopMode => {
-      const renderSearch =
-        nearByStopMode !== 'FERRY' && nearByStopMode !== 'FAVORITE';
+      const renderSearch = this.props.renderSearch;
       const renderDisruptionBanner = nearByStopMode !== 'CITYBIKE';
       if (nearByStopMode === 'FAVORITE') {
         const noFavs = this.noFavorites();
@@ -950,7 +949,7 @@ class NearYouPage extends React.Component {
 const NearYouPageWithBreakpoint = withBreakpoint(props => (
   <ReactRelayContext.Consumer>
     {({ environment }) => (
-      <NearYouPage {...props} relayEnvironment={environment} />
+      <NearYouPage {...props} renderSearch={false} relayEnvironment={environment} />
     )}
   </ReactRelayContext.Consumer>
 ));

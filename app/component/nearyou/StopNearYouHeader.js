@@ -7,6 +7,7 @@ import ZoneIcon from '../ZoneIcon';
 import PlatformNumber from '../PlatformNumber';
 import FavouriteStopContainer from '../FavouriteStopContainer';
 import { getZoneLabel } from '../../util/legUtils';
+import Icon from '../../component/Icon';
 
 const StopNearYouHeader = (
   { stop, desc, isStation, linkAddress },
@@ -14,6 +15,10 @@ const StopNearYouHeader = (
 ) => {
   return (
     <div className="stop-near-you-header-container">
+      <Icon
+        img={isStation ? 'icon-icon_subway_with_background' : 'icon-icon_bus_with_background'}
+        viewBox="0 0 50 50"
+      />
       <div className="stop-header-content">
         <Link
           onClick={e => {
@@ -40,11 +45,6 @@ const StopNearYouHeader = (
             )}
         </div>
       </div>
-      <FavouriteStopContainer
-        className="stop-favourite-container"
-        stop={stop}
-        isTerminal={isStation}
-      />
     </div>
   );
 };

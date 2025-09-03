@@ -153,7 +153,7 @@ export default function DepartureRow(
           long: shortName && shortName.length <= 6 && shortName.length >= 5
         })}
         style={{
-          backgroundColor: '#f5f5f5',
+          backgroundColor: `#${departure.trip.route.color}1A`,
           color: `#${departure.trip.route.color}`
         }}
       >

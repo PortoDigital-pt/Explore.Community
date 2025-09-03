@@ -64,7 +64,7 @@
   overflow: visible;
   display: flex;
   flex-direction: column;
-  padding: 0 60px 10px 60px;
+  padding: 10px;
   min-height: calc(50vh - 60px);
 
   .route-number {
@@ -214,7 +214,6 @@
   }
 
   .stop-near-you-container {
-    border: 1px solid #d9d9d9;
     border-radius: 10px;
     width: 100%;
     margin-bottom: 10px;
@@ -226,16 +225,30 @@
 
     .stop-near-you-header-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
+      column-gap: 5px;
+
+      .icon {
+        display: flex;
+        position:  relative;
+        width: 40px;
+        height: 40px;
+      }
 
       .stop-near-you-name {
-        font-size: 1.125rem;
         line-height: 24px;
-        letter-spacing: -0.4px;
         margin: 0;
+        font-size: $font-size-l;
+        font-weight: $font-weight-bold;
+        color: $grey-dark-down;
       }
 
       .stop-header-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 5px;
+
         a {
           text-decoration: none;
           color: #333;
@@ -247,15 +260,17 @@
         }
       }
 
-      padding: 14px 15px 1px 20px;
+      padding: 14px 15px 1px 15px;
 
       .stop-near-you-info {
         display: flex;
-        margin-bottom: 5px;
+        flex-direction: row;
+        column-gap: 2px;
 
         .route-stop-address-row {
           color: #666;
           font-weight: $font-weight-book;
+          margin: 0;
         }
 
         .card-code {
@@ -287,7 +302,7 @@
           height: 16px;
           padding: 0 4px;
           align-self: center;
-          margin-bottom: 2px;
+          margin: 0;
         }
 
         .zone-icon-container {
@@ -295,7 +310,7 @@
         }
 
         .circle {
-          padding: 0 3px 0 3px;
+          height: unset;
         }
       }
 
@@ -339,12 +354,9 @@
       border-spacing: 0;
     }
 
-    .departure-row:first-child {
-      border-top: 1px solid #ddd;
-    }
-
     .departure-row {
-      height: 40px;
+      height: 30px;
+      border-bottom: unset;
 
       .platform-cell {
         display: flex;
