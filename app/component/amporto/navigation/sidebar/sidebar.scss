@@ -48,9 +48,10 @@ button.menu {
   flex-direction: column;
   justify-content: flex-start;
   flex-grow: 1;
-  row-gap: 32px;
+  row-gap: 20px;
   padding: 24px 24px 24px 32px;
   background-color: $primary-color;
+  min-height: 568px;
   position: relative;
   width: 90%;
   height: 100%;
@@ -65,6 +66,10 @@ button.menu {
     width: 520px;
   }
 
+  @media (min-height: 670px) {
+    row-gap: 32px;
+  }
+
   .top {
     display: flex;
     position: relative;
@@ -73,7 +78,8 @@ button.menu {
 
     h1 {
       font-size: $font-size-heading-s;
-      line-height: 0;
+      margin: 0;
+      line-height: 28px;
       color: $primary-contrastText;
       font-weight: $font-weight-bold;
     }
@@ -92,7 +98,10 @@ button.menu {
     position: relative;
     display: flex;
     flex-direction: column;
-    row-gap: 16px;
+
+    @media (min-height: 670px) {
+      row-gap: 16px;
+    }
 
     button {
       width: 100%;
@@ -115,8 +124,10 @@ button.menu {
         font-size: $font-size-l;
       }
 
-      &:nth-last-child(-n + 3) {
-        margin-top: -10px;
+      @media (min-height: 670px) {
+        &:nth-last-child(-n + 3) {
+          margin-top: -10px;
+        }
       }
     }
 
@@ -126,8 +137,11 @@ button.menu {
       width: 100%;
       stroke-width: 1px;
       color: $neutral;
-      margin-top: -10px;
-      margin-bottom: 10px;
+
+      @media (min-height: 670px) {
+        margin-top: -10px;
+        margin-bottom: 10px;
+      } 
     }
   }
 
@@ -156,11 +170,15 @@ button.menu {
 
     hr {
       position: relative;
-      display: flex;
+      display: none;
       width: 100%;
       stroke-width: 1px;
       color: $neutral;
       margin-bottom: 10px;
+
+      @media (min-height: 580px) {
+        display: flex;
+      }
     }
   }
 }
