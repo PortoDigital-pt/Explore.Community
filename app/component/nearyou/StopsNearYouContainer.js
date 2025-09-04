@@ -231,7 +231,7 @@ class StopsNearYouContainer extends React.Component {
                     currentMode={this.props.match.params.mode}
                   />
                   <hr />
-                </> 
+                </>
               );
             }
           }

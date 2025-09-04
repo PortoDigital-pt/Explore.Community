@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'found';
 import { FormattedMessage, intlShape } from 'react-intl';
-import { Link } from 'found';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import Modal from '@hsl-fi/modal';
-import { stopShape, configShape, relayShape } from '../../util/shapes';
+import {
+  stopShape,
+  configShape,
+  relayShape,
+  locationShape
+} from '../../util/shapes';
 import { hasEntitiesOfType } from '../../util/alertUtils';
 import { PREFIX_STOPS, PREFIX_TERMINALS } from '../../util/path';
 import { AlertEntityType } from '../../constants';
@@ -12,14 +17,24 @@ import StopNearYouHeader from './StopNearYouHeader';
 import AlertBanner from '../AlertBanner';
 import StopNearYouDepartureRowContainer from './StopNearYouDepartureRowContainer';
 import CapacityModal from '../CapacityModal';
+import { showDistance } from '../../util/amporto/geo';
+import useDistanceToTarget from '../../hooks/useDistanceToTarget';
+import { getItineraryPath } from '../../routes/explore/details/routes/util';
 
 const StopNearYou = (
-  { stop, desc, stopId, currentTime, currentMode, relay },
-  { config, intl }
+  { stop, desc, stopId, currentTime, currentMode, relay, location },
+  { config, intl, executeAction }
 ) => {
   if (!stop.stoptimesWithoutPatterns) {
     return null;
   }
+  const { router } = useRouter();
+  const distanceToStop = useDistanceToTarget({
+    executeAction,
+    location,
+    targetPoint: stop
+  });
+
   const [capacityModalOpen, setCapacityModalOpen] = useState(false);
   const stopMode = stop.stoptimesWithoutPatterns[0]?.trip.route.mode;
   useEffect(() => {
@@ -54,7 +69,10 @@ const StopNearYou = (
           stop={stop}
           desc={description}
           isStation={isStation}
-          linkAddress={linkAddress}
+          distance={
+            !!distanceToStop &&
+            `${intl.messages['at-distance']} ${showDistance(distanceToStop)}`
+          }
         />
         <span className="sr-only">
           <FormattedMessage
@@ -92,19 +110,24 @@ const StopNearYou = (
               isStation={isStation && stopMode !== 'SUBWAY'}
               setCapacityModalOpen={() => setCapacityModalOpen(true)}
             />
-            <Link
-              className="stop-near-you-more-departures"
-              as="button"
-              onClick={e => {
-                e.stopPropagation();
-              }}
-              to={linkAddress}
-            >
-              <FormattedMessage
-                id="more-departures"
-                defaultMessage="More departures"
-              />
-            </Link>
+
+            <div className="buttons">
+              <button
+                type="button"
+                className="button-light"
+                aria-label={intl.messages.directions}
+                onClick={() => router.push(getItineraryPath(location, stop))}
+              >
+                {intl.messages.directions}
+              </button>
+              <button
+                type="button"
+                onClick={() => router.push(linkAddress)}
+                aria-label={intl.messages.details}
+              >
+                {intl.messages.details}
+              </button>
+            </div>
           </>
         )}
       </div>
@@ -125,12 +148,10 @@ const StopNearYou = (
 const connectedComponent = connectToStores(
   StopNearYou,
   ['TimeStore'],
-  (context, props) => {
-    return {
-      ...props,
-      currentTime: context.getStore('TimeStore').getCurrentTime()
-    };
-  }
+  context => ({
+    location: context.getStore('PositionStore').getLocationState(),
+    currentTime: context.getStore('TimeStore').getCurrentTime()
+  })
 );
 
 StopNearYou.propTypes = {
@@ -139,7 +160,8 @@ StopNearYou.propTypes = {
   currentTime: PropTypes.number.isRequired,
   currentMode: PropTypes.string.isRequired,
   desc: PropTypes.string,
-  relay: relayShape
+  relay: relayShape,
+  location: locationShape.isRequired
 };
 
 StopNearYou.defaultProps = {
@@ -150,7 +172,8 @@ StopNearYou.defaultProps = {
 
 StopNearYou.contextTypes = {
   config: configShape.isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 export default connectedComponent;

@@ -97,7 +97,8 @@ class NearYouPage extends React.Component {
     favouriteStationIds: PropTypes.arrayOf(PropTypes.string),
     favouriteVehicleStationIds: PropTypes.arrayOf(PropTypes.string),
     mapLayers: mapLayerShape.isRequired,
-    favouritesFetched: PropTypes.bool
+    favouritesFetched: PropTypes.bool,
+    renderSearch: PropTypes.bool
   };
 
   static defaultProps = {
@@ -394,7 +395,7 @@ class NearYouPage extends React.Component {
     const index = nearByStopModes.indexOf(mode);
     const { config } = this.context;
     const tabs = nearByStopModes.map(nearByStopMode => {
-      const renderSearch =this.props.renderSearch;
+      const { renderSearch } = this.props;
       const renderDisruptionBanner = nearByStopMode !== 'CITYBIKE';
       if (nearByStopMode === 'FAVORITE') {
         const noFavs = this.noFavorites();
@@ -949,7 +950,11 @@ class NearYouPage extends React.Component {
 const NearYouPageWithBreakpoint = withBreakpoint(props => (
   <ReactRelayContext.Consumer>
     {({ environment }) => (
-      <NearYouPage {...props} renderSearch={false} relayEnvironment={environment} />
+      <NearYouPage
+        {...props}
+        renderSearch={false}
+        relayEnvironment={environment}
+      />
     )}
   </ReactRelayContext.Consumer>
 ));
