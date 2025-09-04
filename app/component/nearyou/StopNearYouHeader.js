@@ -37,7 +37,7 @@ const StopNearYouHeader = ({ stop, desc, isStation, distance }, { config }) => {
             )}
         </div>
       </div>
-      {distance && <div>{distance}</div>}
+      {distance && <div className='distance'>{distance}</div>}
     </div>
   );
 };

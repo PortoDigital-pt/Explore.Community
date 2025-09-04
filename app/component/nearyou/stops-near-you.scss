@@ -266,8 +266,28 @@
 
     .stop-near-you-header-container {
       display: flex;
+      position: relative;
       justify-content: flex-start;
       column-gap: 5px;
+
+      .distance {
+        display: flex;
+        position: absolute;
+        height: 100%;
+        right: 0;
+        color: $primary-color;
+        line-height: 16px;
+        font-size: $font-size-base;
+        font-weight: $font-weight-regular;
+        min-height: 16px;
+        align-items: center;
+
+        @media (min-width: 900px) {
+          font-size: $font-size-l;
+          line-height: 18px;
+          min-height: 18px;
+        }
+      }
 
       .icon {
         display: flex;
