@@ -34,7 +34,6 @@ const StopNearYou = (
     location,
     targetPoint: stop
   });
-
   const [capacityModalOpen, setCapacityModalOpen] = useState(false);
   const stopMode = stop.stoptimesWithoutPatterns[0]?.trip.route.mode;
   useEffect(() => {

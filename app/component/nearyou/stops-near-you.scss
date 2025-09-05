@@ -66,6 +66,15 @@
   flex-direction: column;
   padding: 10px;
   min-height: calc(50vh - 60px);
+  align-items: center;
+
+  hr {
+    display: flex;
+    position: relative;
+    border: 0.2px solid #D8D8D8;
+    width: calc(100% - 30px);
+    margin: 0;
+  } 
 
   .route-number {
     .icon-container {

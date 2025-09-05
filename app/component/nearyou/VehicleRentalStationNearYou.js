@@ -51,7 +51,7 @@ const VehicleRentalStationNearYou = ({
         { force: true } // query variables stay the same between refetches
       );
     }
-  }, [currentTime]);
+  }, [currentTime, stop?.stationId]);
 
   return (
     <span role="listitem">

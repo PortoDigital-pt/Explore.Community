@@ -52,19 +52,35 @@ function StopsNearYouFavouritesContainer({
       })
   );
   stopList.sort((a, b) => a.distance - b.distance);
-  const stopElements = stopList.map(stop => {
+  const stopElements = stopList.map((stop, index, array) => {
     switch (stop.type) {
       case 'stop':
       case 'station':
-        return (
+        return index === array.length - 1 ? (
           <StopNearYouContainer
             key={stop.gtfsId}
             stop={stop}
             currentMode="FAVORITE"
           />
+        ) : (
+          <>
+            <StopNearYouContainer
+              key={stop.gtfsId}
+              stop={stop}
+              currentMode="FAVORITE"
+            />
+            <hr />
+          </> 
         );
       case 'vehicleRentalStation':
-        return <CityBikeStopNearYou key={stop.name} stop={stop} />;
+        return index === array.length - 1 ? (
+        <CityBikeStopNearYou key={stop.name} stop={stop} />
+        ) : (
+          <>
+            <CityBikeStopNearYou key={stop.name} stop={stop} />
+            <hr />
+          </> 
+        );
       default:
         return null;
     }
