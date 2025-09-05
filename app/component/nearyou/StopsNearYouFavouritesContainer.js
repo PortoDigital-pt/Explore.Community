@@ -70,16 +70,16 @@ function StopsNearYouFavouritesContainer({
               currentMode="FAVORITE"
             />
             <hr />
-          </> 
+          </>
         );
       case 'vehicleRentalStation':
         return index === array.length - 1 ? (
-        <CityBikeStopNearYou key={stop.name} stop={stop} />
+          <CityBikeStopNearYou key={stop.name} stop={stop} />
         ) : (
           <>
             <CityBikeStopNearYou key={stop.name} stop={stop} />
             <hr />
-          </> 
+          </>
         );
       default:
         return null;

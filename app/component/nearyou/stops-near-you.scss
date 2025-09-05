@@ -37,7 +37,6 @@
   padding: 15px 14px 22px;
   display: flex;
   height: 45px;
-  box-sizing: content-box;
 
   .availability-container {
     padding-left: 15px;
@@ -67,6 +66,12 @@
   padding: 10px;
   min-height: calc(50vh - 60px);
   align-items: center;
+
+  > span {
+    display: flex;
+    position: relative;
+    width: 100%;
+  }
 
   hr {
     display: flex;
@@ -228,6 +233,12 @@
     align-items: center;
     width: 100%;
 
+     > span {
+      display: flex;
+      position: relative;
+      width: 100%;
+    }
+
     hr {
         display: flex;
         position: relative;
@@ -244,6 +255,67 @@
     animation: fadeIn 0.7s;
     padding: 15px 0;
     row-gap: 15px;
+    flex-grow: 1;
+
+    .rental-bike-content-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    gap: 2px;
+
+    .row-bike {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      .rental-bike-content-item {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        flex-basis: 1;
+        margin: 0;
+
+        &.label {
+          flex-grow: 10;
+          justify-content: flex-start;
+          align-items: center;
+          color: $grey-dark-down;
+          font-family: $font-family;
+          font-size: $font-size-l;
+          font-weight: $font-weight-regular;
+
+          @media (min-width: 900px) {
+            font-size: 18px;
+          }
+        }
+
+        &.value {
+          flex-grow: 1;
+          justify-content: flex-end;
+          align-items: center;
+
+          span {
+            padding: 2px;
+            text-align: center;
+            max-width: 30px;
+            min-width: 30px;
+            background-color: #e6e6e6;
+            border-radius: 4px;
+            color: $grey-dark-down;
+            font-family: $font-family;
+            font-size: $font-size-l;
+            font-weight: $font-weight-regular;
+  
+            @media (min-width: 900px) {
+              font-size: 20px;
+              max-width: 40px;
+              min-width: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
 
     @media (min-width: 400px) {
        padding: 15px;

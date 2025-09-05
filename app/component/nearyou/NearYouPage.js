@@ -713,7 +713,7 @@ class NearYouPage extends React.Component {
         />
       );
     }
-   
+
     const filteredMapLayers = {
       ...this.props.mapLayers,
       citybike: mode === 'CITYBIKE',
@@ -722,7 +722,7 @@ class NearYouPage extends React.Component {
       terminal: { subway: mode === 'FAVORITE' || mode === 'SUBWAY' },
       citybikeOverrideMinZoom: mode === 'CITYBIKE'
     };
-  
+
     if (!this.context.config.map.showLayerSelector) {
       filteredMapLayers.stop = {};
       if (mode !== 'CITYBIKE') {

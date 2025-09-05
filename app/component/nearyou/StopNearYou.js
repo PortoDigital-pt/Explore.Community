@@ -146,7 +146,7 @@ const StopNearYou = (
 
 const connectedComponent = connectToStores(
   StopNearYou,
-  ['TimeStore'],
+  ['TimeStore', 'PositionStore'],
   context => ({
     location: context.getStore('PositionStore').getLocationState(),
     currentTime: context.getStore('TimeStore').getCurrentTime()

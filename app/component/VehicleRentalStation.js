@@ -1,61 +1,28 @@
 import React from 'react';
-import { configShape, vehicleRentalStationShape } from '../util/shapes';
-import VehicleRentalAvailability from './VehicleRentalAvailability';
-import Icon from './Icon';
-import {
-  getRentalNetworkIcon,
-  getRentalNetworkConfig,
-  getVehicleCapacity,
-  BIKEAVL_UNKNOWN,
-  BIKEAVL_WITHMAX
-} from '../util/vehicleRentalUtils';
+import { string } from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { vehicleRentalStationShape } from '../util/shapes';
 
-const VehicleRentalStation = ({ vehicleRentalStation }, { config }) => {
-  const vehicleCapacity = getVehicleCapacity(
-    config,
-    vehicleRentalStation.rentalNetwork.networkId
-  );
-  if (vehicleCapacity === BIKEAVL_UNKNOWN) {
-    return null;
-  }
-  let totalSpaces;
-  let fewAvailableCount;
-  let fewerAvailableCount;
-
-  if (vehicleCapacity === BIKEAVL_WITHMAX) {
-    totalSpaces =
-      vehicleRentalStation.capacity ||
-      vehicleRentalStation.availableVehicles.total +
-        vehicleRentalStation.availableSpaces.total;
-    fewAvailableCount = Math.floor(totalSpaces / 3);
-    fewerAvailableCount = Math.floor(totalSpaces / 6);
-  }
-  const disabled = !vehicleRentalStation.operative;
-  const networkConfig = getRentalNetworkConfig(
-    vehicleRentalStation.rentalNetwork.networkId,
-    config
-  );
-  const vehicleIcon = getRentalNetworkIcon(networkConfig, disabled);
+const VehicleRentalStation = ({ vehicleRentalStation, messageId }) => {
   return (
-    <div className="citybike-content-container">
-      <Icon img={vehicleIcon} viewBox="0 0 50 50" />
-      <VehicleRentalAvailability
-        disabled={disabled}
-        vehiclesAvailable={vehicleRentalStation.availableVehicles.total}
-        totalSpaces={totalSpaces}
-        fewAvailableCount={fewAvailableCount}
-        fewerAvailableCount={fewerAvailableCount}
-        useSpacesAvailable={vehicleCapacity === BIKEAVL_WITHMAX}
-        type={networkConfig.type}
-      />
+    <div className="rental-bike-content-container">
+      <div className="row-bike">
+        <div className="rental-bike-content-item label">
+          <FormattedMessage id={`citybike-available-${messageId}`} />
+        </div>
+        <div className="rental-bike-content-item value">
+          <span className="value-container">
+            {vehicleRentalStation.availableVehicles.total || 0}
+          </span>
+        </div>
+      </div>
     </div>
   );
 };
 
-VehicleRentalStation.contextTypes = {
-  config: configShape.isRequired
-};
 VehicleRentalStation.propTypes = {
-  vehicleRentalStation: vehicleRentalStationShape.isRequired
+  vehicleRentalStation: vehicleRentalStationShape.isRequired,
+  messageId: string.isRequired
 };
+
 export default VehicleRentalStation;
