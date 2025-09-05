@@ -296,7 +296,6 @@
   font-weight: normal;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid $grey-light-down;
 
   .time-cell {
     display: flex;
@@ -394,7 +393,11 @@
   }
 
   .headsign {
+    display: flex;
     color: #333;
+    text-decoration: underline;
+    height: 100%;
+    align-items: center;
   }
 
   .route-arrival {

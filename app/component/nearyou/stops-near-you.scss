@@ -171,13 +171,13 @@
   }
 
   .show-more-button {
-    margin: 0 6.25em 20px;
+    margin: 10px 6.25em 20px;
     font-weight: $font-weight-medium;
-    background-color: $white;
+    background-color: $background-default;
     color: $primary-color;
-    border: 1px solid #ddd;
+    border: 2px solid $primary-color;
     min-height: 28px;
-    border-radius: 16px;
+    border-radius: 8px;
     font-size: 0.9375rem;
   }
 
@@ -412,8 +412,7 @@
     }
 
     .departure-row {
-      height: 30px;
-      border-bottom: unset;
+      height: 35px;
 
       .platform-cell {
         display: flex;
@@ -440,6 +439,8 @@
       }
 
       .route-headsign {
+        display: flex;
+        align-items: center;
         font-family: $font-family-narrow;
         font-weight: $font-weight-book;
         color: #333;
@@ -611,7 +612,6 @@
   .stops-near-you-page {
     height: calc(100% - 20rem);
     padding: 5px 0.625em 0;
-    background-color: white;
     position: relative;
 
     .stops-near-you-container {
@@ -796,6 +796,24 @@
             stroke: #fff;
           }
         }
+      }
+    }
+  }
+}
+
+
+.ReactModalPortal {
+  button  {
+    &:hover {
+      transform: none !important;
+    }
+
+    > svg {
+      width: 20px !important;
+      height: 20px !important;
+
+      path {
+        fill: $primary-dark !important;
       }
     }
   }

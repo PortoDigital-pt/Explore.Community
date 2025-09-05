@@ -52,6 +52,7 @@ input[type='text'] {
     border-radius: 8px;
     border: 1px solid var(--grey-medium, #c8c8c8);
     background: var(--background-default, #fafafa);
+    margin: 0;
 
     &:focus {
       background: #fff;
@@ -176,7 +177,7 @@ input[type='text'] {
   }
 
   &.stop-route-station, &.favourite {
-    margin-top: -5px;
+    // TODO: remove margin top
 
     svg {
       width: 24px;
@@ -195,8 +196,8 @@ input[type='text'] {
   &.origin-stop-near-you {
     svg {
       fill: #888;
-      width: 16px;
-      height: 16px;
+      width: 24px; // TODO: change amporto remote
+      height: 24px; // TODO: change amporto remote
     }
   }
 }

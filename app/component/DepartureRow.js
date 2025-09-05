@@ -247,17 +247,6 @@ export default function DepartureRow(
           </span>
         </td>
       )}
-      <td className="right-arrow-cell">
-        {renderWithLink(
-          <span>
-            <Icon
-              img="icon-icon_arrow-collapse--right_new"
-              color={config.colors.primary}
-              className="departure-row-arrow-icon"
-            />
-          </span>
-        )}
-      </td>
     </tr>
   );
 }
