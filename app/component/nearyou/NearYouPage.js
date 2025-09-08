@@ -70,6 +70,7 @@ const DTAutoSuggestWithSearchContext = withSearchContext(DTAutoSuggest);
 function getModes(config) {
   const transportModes = getTransportModes(config);
   const nearYouModes = getNearYouModes(config);
+
   const modes = nearYouModes.length
     ? nearYouModes
     : Object.keys(transportModes).filter(

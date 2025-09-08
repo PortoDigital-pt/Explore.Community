@@ -49,6 +49,7 @@ const StopNearYou = (
   }, [currentTime, currentMode]);
   const description = desc || stop.desc;
   const isStation = stop.locationType === 'STATION';
+
   const { gtfsId } = stop;
   const urlEncodedGtfsId = gtfsId.replace('/', '%2F');
   const linkAddress = isStation

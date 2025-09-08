@@ -181,7 +181,9 @@ export default class FavouriteStore extends Store {
   getVehicleRentalStations() {
     return this.favourites.filter(
       favourite =>
-        favourite.type === 'bikeStation' || favourite.type === 'scooterStation'
+        favourite.type === 'bikeStation' ||
+        favourite.type === 'scooterStation' ||
+        favourite.type === 'taxiStation'
     );
   }
 

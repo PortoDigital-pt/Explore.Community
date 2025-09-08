@@ -237,7 +237,7 @@ class StopsNearYouContainer extends React.Component {
           }
           break;
         case 'VehicleRentalStation':
-          return (
+          return index === array.length - 1 ? (
             <CityBikeStopNearYou
               key={`${stop.stationId}`}
               stop={stop}
@@ -245,6 +245,17 @@ class StopsNearYouContainer extends React.Component {
               currentTime={this.props.currentTime}
               currentMode={this.props.match.params.mode}
             />
+          ) : (
+            <>
+              <CityBikeStopNearYou
+                key={`${stop.stationId}`}
+                stop={stop}
+                color={this.context.config.colors.primary}
+                currentTime={this.props.currentTime}
+                currentMode={this.props.match.params.mode}
+              />
+              <hr />
+            </>
           );
         default:
           return null;

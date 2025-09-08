@@ -185,7 +185,8 @@
   }
 
   .show-more-button {
-    margin: 10px 6.25em 20px;
+    width: calc(100% - 25px);
+    margin: 10px 0 20px 0;
     font-weight: $font-weight-medium;
     background-color: $background-default;
     color: $primary-color;
@@ -193,6 +194,7 @@
     min-height: 28px;
     border-radius: 8px;
     font-size: 0.9375rem;
+    padding: 8px 16px;
   }
 
   .nearest-stops-update-container {
