@@ -177,8 +177,6 @@ input[type='text'] {
   }
 
   &.stop-route-station, &.favourite {
-    // TODO: remove margin top
-
     svg {
       width: 24px;
       height: 24px;
@@ -196,8 +194,8 @@ input[type='text'] {
   &.origin-stop-near-you {
     svg {
       fill: #888;
-      width: 24px; // TODO: change amporto remote
-      height: 24px; // TODO: change amporto remote
+      width: 24px; 
+      height: 24px; 
     }
   }
 }

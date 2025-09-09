@@ -165,6 +165,8 @@ export default createRefetchContainer(
       fragment VehicleRentalStationNearYou_stop on VehicleRentalStation {
         stationId
         name
+        lat
+        lon
         availableVehicles {
           total
         }
