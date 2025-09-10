@@ -171,7 +171,7 @@
     </symbol>
     <symbol id="icon-icon_update" viewBox="0 0 20 20">
       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(-97.000000, -481.000000)" fill="#007AC9" fill-rule="nonzero">
+        <g transform="translate(-97.000000, -481.000000)" fill="currentColor" fill-rule="nonzero">
           <g transform="translate(78.000000, 476.000000)">
             <g transform="translate(19.000000, 5.000000)">
               <g transform="translate(3.000000, 3.000000)">

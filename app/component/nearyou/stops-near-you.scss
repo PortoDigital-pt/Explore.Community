@@ -614,6 +614,11 @@
     &.selected {
       border: none;
       background-color: $white;
+
+      .icon {
+        height: 0.8em;
+        width: 0.8em;
+      }
     }
   }
 
