@@ -60,8 +60,8 @@ export default function DepartureRow(
     );
     icon =
       alert.alertSeverityLevel !== 'INFO'
-        ? 'icon-icon_caution-white-excl-stroke'
-        : 'icon-icon_info';
+        ? 'icon-icon_caution_white_exclamation'
+        : 'icon-icon_service-alert';
     iconColor = alert.alertSeverityLevel !== 'INFO' ? '#DC0451' : '#888';
     backgroundShape =
       alert.alertSeverityLevel !== 'INFO' ? undefined : 'circle';
@@ -163,7 +163,17 @@ export default function DepartureRow(
               {nameOrIcon}
             </div>
             <span className="sr-only">{shortName?.toLowerCase()}</span>
-            {icon && (
+          </>,
+          true
+        )}
+      </td>
+      <td className={cx('route-headsign', departure.bottomRow ? 'bottom' : '')}>
+        {renderWithLink(
+          <>
+          <div className="headsign">
+            {headsign} {departure.bottomRow && departure.bottomRow}
+          </div>
+          {icon && (
               <>
                 <Icon
                   className={backgroundShape}
@@ -174,15 +184,7 @@ export default function DepartureRow(
                 {sr}
               </>
             )}
-          </>,
-          true
-        )}
-      </td>
-      <td className={cx('route-headsign', departure.bottomRow ? 'bottom' : '')}>
-        {renderWithLink(
-          <div className="headsign">
-            {headsign} {departure.bottomRow && departure.bottomRow}
-          </div>
+          </>
         )}
       </td>
       <td className="time-cell">

@@ -26,7 +26,7 @@ const StopNearYouHeader = ({ stop, desc, isStation, distance }, { config }) => {
           </span>
         </h2>
         <div className="stop-near-you-info">
-          <AddressRow desc={desc} code={stop.code} isTerminal={isStation} />
+          <AddressRow desc={desc} code={stop.code} />
           <PlatformNumber number={stop.platformCode} short />
           {config.zones.stops &&
             config.feedIds.includes(stop.gtfsId.split(':')[0]) && (

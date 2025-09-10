@@ -528,6 +528,7 @@
         font-weight: $font-weight-book;
         color: #333;
         flex: 1;
+        column-gap: 8px;
         overflow: hidden;
         white-space: nowrap;
         mask-image: linear-gradient(
