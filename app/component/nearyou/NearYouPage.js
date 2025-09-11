@@ -70,12 +70,19 @@ const DTAutoSuggestWithSearchContext = withSearchContext(DTAutoSuggest);
 function getModes(config) {
   const transportModes = getTransportModes(config);
   const nearYouModes = getNearYouModes(config);
+
   const modes = nearYouModes.length
     ? nearYouModes
     : Object.keys(transportModes).filter(
         mode => transportModes[mode].availableForSelection
       );
   return modes.map(nearYouMode => nearYouMode.toUpperCase());
+}
+
+function getIconName(mode, modeSet) {
+  return modeSet === 'default'
+    ? `mode-${mode.toLowerCase()}`
+    : `mode-${modeSet}-${mode.toLowerCase()}`;
 }
 
 class NearYouPage extends React.Component {
@@ -97,7 +104,8 @@ class NearYouPage extends React.Component {
     favouriteStationIds: PropTypes.arrayOf(PropTypes.string),
     favouriteVehicleStationIds: PropTypes.arrayOf(PropTypes.string),
     mapLayers: mapLayerShape.isRequired,
-    favouritesFetched: PropTypes.bool
+    favouritesFetched: PropTypes.bool,
+    renderSearch: PropTypes.bool
   };
 
   static defaultProps = {
@@ -391,11 +399,21 @@ class NearYouPage extends React.Component {
     const noFavorites = mode === 'FAVORITE' && this.noFavorites();
     const renderRefetchButton = centerOfMapChanged && !noFavorites;
     const nearByStopModes = this.modes;
+    const modeSet =
+      this.context.config.nearbyModeSet || this.context.config.iconModeSet;
+    const modeIconColors = this.context.config.colors.iconColors;
     const index = nearByStopModes.indexOf(mode);
     const { config } = this.context;
+
+    const icons = nearByStopModes.map(stopMode => (
+      <DTIcon
+        key={stopMode}
+        img={stopMode === 'FAVORITE' ? 'star' : getIconName(stopMode, modeSet)}
+        color={modeIconColors[`mode-${stopMode.toLowerCase()}`]}
+      />
+    ));
     const tabs = nearByStopModes.map(nearByStopMode => {
-      const renderSearch =
-        nearByStopMode !== 'FERRY' && nearByStopMode !== 'FAVORITE';
+      const { renderSearch } = this.props;
       const renderDisruptionBanner = nearByStopMode !== 'CITYBIKE';
       if (nearByStopMode === 'FAVORITE') {
         const noFavs = this.noFavorites();
@@ -641,6 +659,7 @@ class NearYouPage extends React.Component {
           tabIndex={index}
           onSwipe={this.onSwipe}
           tabs={tabs}
+          icons={icons}
           classname={
             this.props.breakpoint === 'large' ? 'swipe-desktop-view' : ''
           }
@@ -713,11 +732,16 @@ class NearYouPage extends React.Component {
         />
       );
     }
+
     const filteredMapLayers = {
       ...this.props.mapLayers,
       citybike: mode === 'CITYBIKE',
+      scooters: mode === 'CITYBIKE',
+      taxis: mode === 'CITYBIKE',
+      terminal: { subway: mode === 'FAVORITE' || mode === 'SUBWAY' },
       citybikeOverrideMinZoom: mode === 'CITYBIKE'
     };
+
     if (!this.context.config.map.showLayerSelector) {
       filteredMapLayers.stop = {};
       if (mode !== 'CITYBIKE') {
@@ -950,7 +974,11 @@ class NearYouPage extends React.Component {
 const NearYouPageWithBreakpoint = withBreakpoint(props => (
   <ReactRelayContext.Consumer>
     {({ environment }) => (
-      <NearYouPage {...props} relayEnvironment={environment} />
+      <NearYouPage
+        {...props}
+        renderSearch={false}
+        relayEnvironment={environment}
+      />
     )}
   </ReactRelayContext.Consumer>
 ));

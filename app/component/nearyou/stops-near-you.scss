@@ -3,6 +3,7 @@
   min-height: 20rem;
 }
 
+
 .stops-near-you-location-search {
   position: fixed;
   margin: 30px 30px 0 0;
@@ -37,7 +38,6 @@
   padding: 15px 14px 22px;
   display: flex;
   height: 45px;
-  box-sizing: content-box;
 
   .availability-container {
     padding-left: 15px;
@@ -64,8 +64,23 @@
   overflow: visible;
   display: flex;
   flex-direction: column;
-  padding: 0 60px 10px 60px;
+  padding: 10px;
   min-height: calc(50vh - 60px);
+  align-items: center;
+
+  > span {
+    display: flex;
+    position: relative;
+    width: 100%;
+  }
+
+  hr {
+    display: flex;
+    position: relative;
+    border: 0.2px solid #D8D8D8;
+    width: calc(100% - 30px);
+    margin: 0;
+  } 
 
   .route-number {
     .icon-container {
@@ -171,14 +186,16 @@
   }
 
   .show-more-button {
-    margin: 0 6.25em 20px;
+    width: calc(100% - 25px);
+    margin: 10px 0 20px 0;
     font-weight: $font-weight-medium;
-    background-color: $white;
+    background-color: $background-default;
     color: $primary-color;
-    border: 1px solid #ddd;
+    border: 2px solid $primary-color;
     min-height: 28px;
-    border-radius: 16px;
+    border-radius: 8px;
     font-size: 0.9375rem;
+    padding: 8px 16px;
   }
 
   .nearest-stops-update-container {
@@ -213,12 +230,119 @@
     }
   }
 
-  .stop-near-you-container {
-    border: 1px solid #d9d9d9;
-    border-radius: 10px;
+  .stops-near-you-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    margin-bottom: 10px;
+
+     > span {
+      display: flex;
+      position: relative;
+      width: 100%;
+    }
+
+    hr {
+        display: flex;
+        position: relative;
+        border: 0.2px solid #D8D8D8;
+        width: calc(100% - 30px);
+        margin: 0;
+    }
+  }
+
+  .stop-near-you-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     animation: fadeIn 0.7s;
+    padding: 15px 0;
+    row-gap: 15px;
+    flex-grow: 1;
+
+    .rental-bike-content-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    gap: 2px;
+
+    .row-bike {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      .rental-bike-content-item {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        flex-basis: 1;
+        margin: 0;
+
+        &.label {
+          flex-grow: 10;
+          justify-content: flex-start;
+          align-items: center;
+          color: $grey-dark-down;
+          font-family: $font-family;
+          font-size: $font-size-l;
+          font-weight: $font-weight-regular;
+
+          @media (min-width: 900px) {
+            font-size: 18px;
+          }
+        }
+
+        &.value {
+          flex-grow: 1;
+          justify-content: flex-end;
+          align-items: center;
+
+          span {
+            padding: 2px;
+            text-align: center;
+            max-width: 30px;
+            min-width: 30px;
+            background-color: #e6e6e6;
+            border-radius: 4px;
+            color: $grey-dark-down;
+            font-family: $font-family;
+            font-size: $font-size-l;
+            font-weight: $font-weight-regular;
+  
+            @media (min-width: 900px) {
+              font-size: 20px;
+              max-width: 40px;
+              min-width: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+    @media (min-width: 400px) {
+       padding: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      column-gap: 8px;
+      max-height: 41.50px;
+      width: 100%;
+
+      button {
+        @include contained-button;
+        flex-grow: 1;
+      }
+
+      .button-light {
+        @include outlined-button;
+        flex-grow: 1;
+      }
+    }
 
     .alert-container {
       margin: 0 14px 4px;
@@ -226,16 +350,50 @@
 
     .stop-near-you-header-container {
       display: flex;
-      justify-content: space-between;
+      position: relative;
+      justify-content: flex-start;
+      column-gap: 5px;
+
+      .distance {
+        display: flex;
+        position: absolute;
+        height: 100%;
+        right: 0;
+        color: $primary-color;
+        line-height: 16px;
+        font-size: $font-size-base;
+        font-weight: $font-weight-regular;
+        min-height: 16px;
+        align-items: center;
+
+        @media (min-width: 900px) {
+          font-size: $font-size-l;
+          line-height: 18px;
+          min-height: 18px;
+        }
+      }
+
+      .icon {
+        display: flex;
+        position:  relative;
+        width: 40px;
+        height: 40px;
+      }
 
       .stop-near-you-name {
-        font-size: 1.125rem;
         line-height: 24px;
-        letter-spacing: -0.4px;
         margin: 0;
+        font-size: $font-size-l;
+        font-weight: $font-weight-bold;
+        color: $grey-dark-down;
       }
 
       .stop-header-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 5px;
+
         a {
           text-decoration: none;
           color: #333;
@@ -247,15 +405,16 @@
         }
       }
 
-      padding: 14px 15px 1px 20px;
-
       .stop-near-you-info {
         display: flex;
-        margin-bottom: 5px;
+        flex-direction: row;
+        column-gap: 2px;
+        align-items: center;
 
         .route-stop-address-row {
           color: #666;
           font-weight: $font-weight-book;
+          margin: 0;
         }
 
         .card-code {
@@ -284,10 +443,9 @@
         }
 
         .itinerary-stop-code {
-          height: 16px;
           padding: 0 4px;
           align-self: center;
-          margin-bottom: 2px;
+          margin: 0;
         }
 
         .zone-icon-container {
@@ -295,7 +453,7 @@
         }
 
         .circle {
-          padding: 0 3px 0 3px;
+          height: unset;
         }
       }
 
@@ -322,7 +480,6 @@
   }
 
   .near-departures-container {
-    padding: 2px 15px 15px 15px;
     border-spacing: 0;
     margin: 0;
     width: 100%;
@@ -339,12 +496,8 @@
       border-spacing: 0;
     }
 
-    .departure-row:first-child {
-      border-top: 1px solid #ddd;
-    }
-
     .departure-row {
-      height: 40px;
+      height: 35px;
 
       .platform-cell {
         display: flex;
@@ -371,10 +524,13 @@
       }
 
       .route-headsign {
+        display: flex;
+        align-items: center;
         font-family: $font-family-narrow;
         font-weight: $font-weight-book;
         color: #333;
         flex: 1;
+        column-gap: 8px;
         overflow: hidden;
         white-space: nowrap;
         mask-image: linear-gradient(
@@ -384,6 +540,10 @@
           rgba(0, 0, 0, 1) 25px,
           rgba(0, 0, 0, 1)
         );
+
+        .icon-container {
+          display: flex;
+        }
       }
 
       .route-time {
@@ -461,6 +621,11 @@
     &.selected {
       border: none;
       background-color: $white;
+
+      .icon {
+        height: 0.8em;
+        width: 0.8em;
+      }
     }
   }
 
@@ -542,7 +707,6 @@
   .stops-near-you-page {
     height: calc(100% - 20rem);
     padding: 5px 0.625em 0;
-    background-color: white;
     position: relative;
 
     .stops-near-you-container {
@@ -728,6 +892,42 @@
           }
         }
       }
+    }
+  }
+}
+
+
+.ReactModalPortal {
+  button  {
+    &:hover {
+      transform: none !important;
+    }
+
+    > svg {
+      width: 20px !important;
+      height: 20px !important;
+
+      path {
+        fill: $primary-dark !important;
+      }
+    }
+  }
+}
+
+.swipe-tab-ball {
+  &.icons {
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    background-color: white;
+    border: solid 1px #d9d9d9;
+
+    &.selected {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border: solid 2px $primary-dark;
     }
   }
 }

@@ -1,24 +1,33 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import { Link } from 'found';
+import connectToStores from 'fluxible-addons-react/connectToStores';
+import { FormattedMessage, intlShape } from 'react-intl';
+import { useRouter } from 'found';
 import { graphql, createRefetchContainer } from 'react-relay';
 import VehicleRentalStation from '../VehicleRentalStation';
-import FavouriteVehicleRentalStationContainer from '../FavouriteVehicleRentalStationContainer';
 import {
   PREFIX_BIKESTATIONS,
   PREFIX_TAXISTATIONS,
   PREFIX_SCOOTERSTATIONS
 } from '../../util/path';
-import { isKeyboardSelectionEvent } from '../../util/browser';
 import { hasVehicleRentalCode } from '../../util/vehicleRentalUtils';
 import { getIdWithoutFeed } from '../../util/feedScopedIdUtils';
-import { relayShape } from '../../util/shapes';
+import { relayShape, locationShape } from '../../util/shapes';
+import Icon from '../Icon';
+import { showDistance } from '../../util/amporto/geo';
+import useDistanceToTarget from '../../hooks/useDistanceToTarget';
+import { getItineraryPath } from '../../routes/explore/details/routes/util';
 
 const networkPrefix = {
   taxis: PREFIX_TAXISTATIONS,
   smoove: PREFIX_BIKESTATIONS,
   scooters: PREFIX_SCOOTERSTATIONS
+};
+
+const networkIcon = {
+  taxis: 'taxis',
+  smoove: 'citybike',
+  scooters: 'scooters'
 };
 
 const networkMessage = {
@@ -27,18 +36,23 @@ const networkMessage = {
   scooters: 'scooters-station'
 };
 
-const networkFavouriteType = {
-  taxis: 'taxiStation',
-  smoove: 'bikeStation',
-  scooters: 'scooterStation'
+const networkTranslation = {
+  taxis: 'taxis',
+  smoove: 'bicycles',
+  scooters: 'scooters'
 };
 
-const VehicleRentalStationNearYou = ({
-  stop,
-  relay,
-  currentTime,
-  currentMode
-}) => {
+const VehicleRentalStationNearYou = (
+  { stop, relay, currentTime, currentMode, location },
+  { intl, executeAction }
+) => {
+  const { router } = useRouter();
+  const distanceToStop = useDistanceToTarget({
+    executeAction,
+    location,
+    targetPoint: stop
+  });
+
   useEffect(() => {
     const { stationId } = stop;
     if (currentMode === 'CITYBIKE') {
@@ -57,23 +71,12 @@ const VehicleRentalStationNearYou = ({
     <span role="listitem">
       <div className="stop-near-you-container">
         <div className="stop-near-you-header-container">
+          <Icon
+            img={`icon-icon_${networkIcon[stop.rentalNetwork.networkId]}`}
+            viewBox="0 0 50 50"
+          />
           <div className="stop-header-content">
-            <Link
-              onClick={e => {
-                e.stopPropagation();
-              }}
-              onKeyPress={e => {
-                if (isKeyboardSelectionEvent(e)) {
-                  e.stopPropagation();
-                }
-              }}
-              to={`/browse/${networkPrefix[stop.rentalNetwork.networkId]}/${
-                stop.stationId
-              }`}
-            >
-              <h3 className="stop-near-you-name">{stop.name}</h3>
-            </Link>
-            <div className="bike-station-code">
+            <div className="stop-near-you-name">
               <FormattedMessage
                 id={networkMessage[stop.rentalNetwork.networkId]}
                 values={{
@@ -84,13 +87,39 @@ const VehicleRentalStationNearYou = ({
               />
             </div>
           </div>
-          <FavouriteVehicleRentalStationContainer
-            vehicleRentalStation={stop}
-            className="bike-rental-favourite-container"
-            type={networkFavouriteType[stop.rentalNetwork.networkId]}
-          />
+          {!!distanceToStop && (
+            <div className="distance">{`${
+              intl.messages['at-distance']
+            } ${showDistance(distanceToStop)}`}</div>
+          )}
         </div>
-        <VehicleRentalStation vehicleRentalStation={stop} />
+        <VehicleRentalStation
+          vehicleRentalStation={stop}
+          messageId={networkTranslation[stop.rentalNetwork.networkId]}
+        />
+        <div className="buttons">
+          <button
+            type="button"
+            className="button-light"
+            aria-label={intl.messages.directions}
+            onClick={() => router.push(getItineraryPath(location, stop))}
+          >
+            {intl.messages.directions}
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              router.push(
+                `/browse/${networkPrefix[stop.rentalNetwork.networkId]}/${
+                  stop.stationId
+                }`
+              )
+            }
+            aria-label={intl.messages.details}
+          >
+            {intl.messages.details}
+          </button>
+        </div>
       </div>
     </span>
   );
@@ -113,7 +142,13 @@ VehicleRentalStationNearYou.propTypes = {
   }).isRequired,
   currentTime: PropTypes.number,
   currentMode: PropTypes.string,
-  relay: relayShape.isRequired
+  relay: relayShape.isRequired,
+  location: locationShape.isRequired
+};
+
+VehicleRentalStationNearYou.contextTypes = {
+  intl: intlShape.isRequired,
+  executeAction: PropTypes.func.isRequired
 };
 
 VehicleRentalStationNearYou.defaultProps = {
@@ -121,13 +156,17 @@ VehicleRentalStationNearYou.defaultProps = {
   currentMode: undefined
 };
 
-const containerComponent = createRefetchContainer(
-  VehicleRentalStationNearYou,
+export default createRefetchContainer(
+  connectToStores(VehicleRentalStationNearYou, ['PositionStore'], context => ({
+    location: context.getStore('PositionStore').getLocationState()
+  })),
   {
     stop: graphql`
       fragment VehicleRentalStationNearYou_stop on VehicleRentalStation {
         stationId
         name
+        lat
+        lon
         availableVehicles {
           total
         }
@@ -150,8 +189,3 @@ const containerComponent = createRefetchContainer(
     }
   `
 );
-
-export {
-  containerComponent as default,
-  VehicleRentalStationNearYou as Component
-};

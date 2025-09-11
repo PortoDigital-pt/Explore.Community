@@ -207,7 +207,7 @@ class StopsNearYouContainer extends React.Component {
       sortedPatterns.push(...stopPatterns.slice(5));
     }
 
-    const stops = sortedPatterns.map(({ node }) => {
+    const stops = sortedPatterns.map(({ node }, index, array) => {
       const stop = node.place;
       /* eslint-disable-next-line no-underscore-dangle */
       switch (stop.__typename) {
@@ -217,18 +217,27 @@ class StopsNearYouContainer extends React.Component {
             stop.stoptimesWithoutPatterns.length > 0
           ) {
             if (!this.props.prioritizedStops?.includes(stop.gtfsId)) {
-              return (
+              return index === array.length - 1 ? (
                 <StopNearYouContainer
                   key={`${stop.gtfsId}`}
                   stop={stop}
                   currentMode={this.props.match.params.mode}
                 />
+              ) : (
+                <>
+                  <StopNearYouContainer
+                    key={`${stop.gtfsId}`}
+                    stop={stop}
+                    currentMode={this.props.match.params.mode}
+                  />
+                  <hr />
+                </>
               );
             }
           }
           break;
         case 'VehicleRentalStation':
-          return (
+          return index === array.length - 1 ? (
             <CityBikeStopNearYou
               key={`${stop.stationId}`}
               stop={stop}
@@ -236,6 +245,17 @@ class StopsNearYouContainer extends React.Component {
               currentTime={this.props.currentTime}
               currentMode={this.props.match.params.mode}
             />
+          ) : (
+            <>
+              <CityBikeStopNearYou
+                key={`${stop.stationId}`}
+                stop={stop}
+                color={this.context.config.colors.primary}
+                currentTime={this.props.currentTime}
+                currentMode={this.props.match.params.mode}
+              />
+              <hr />
+            </>
           );
         default:
           return null;

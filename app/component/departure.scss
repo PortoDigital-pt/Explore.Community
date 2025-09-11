@@ -296,9 +296,55 @@
   font-weight: normal;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid $grey-light-down;
 
+  .time-cell {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 100px;
+
+    .new-stop-time-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 22px;
+      min-width: 60px;
+      background-color: #e6e6e6;
+      border-radius: 2px;
+      padding: 0 4px;
+
+      .time-cell-time-label {
+        padding-left: 4px;
+
+        @include typography-label-base;
+      }
+    }
+
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 24px;
+      max-height: 24px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+    .right-arrow-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 24px;
+      max-height: 24px;
+      padding: 0;
+      margin: 0;
+    }
+  
   td {
+    height: 100%;
     position: relative;
 
     a {
@@ -347,7 +393,11 @@
   }
 
   .headsign {
+    display: flex;
     color: #333;
+    text-decoration: underline;
+    height: 100%;
+    align-items: center;
   }
 
   .route-arrival {
@@ -409,11 +459,6 @@
         height: 1em;
         display: block;
         overflow: visible;
-
-        &.circle {
-          width: 0.75em;
-          height: 0.75em;
-        }
       }
     }
   }
