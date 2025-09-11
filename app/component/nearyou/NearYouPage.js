@@ -79,6 +79,12 @@ function getModes(config) {
   return modes.map(nearYouMode => nearYouMode.toUpperCase());
 }
 
+function getIconName(mode, modeSet) {
+  return modeSet === 'default'
+    ? `mode-${mode.toLowerCase()}`
+    : `mode-${modeSet}-${mode.toLowerCase()}`;
+}
+
 class NearYouPage extends React.Component {
   static contextTypes = {
     config: configShape.isRequired,
@@ -393,8 +399,19 @@ class NearYouPage extends React.Component {
     const noFavorites = mode === 'FAVORITE' && this.noFavorites();
     const renderRefetchButton = centerOfMapChanged && !noFavorites;
     const nearByStopModes = this.modes;
+    const modeSet =
+      this.context.config.nearbyModeSet || this.context.config.iconModeSet;
+    const modeIconColors = this.context.config.colors.iconColors;
     const index = nearByStopModes.indexOf(mode);
     const { config } = this.context;
+
+    const icons = nearByStopModes.map(stopMode => (
+      <DTIcon
+        key={stopMode}
+        img={stopMode === 'FAVORITE' ? 'star' : getIconName(stopMode, modeSet)}
+        color={modeIconColors[`mode-${stopMode.toLowerCase()}`]}
+      />
+    ));
     const tabs = nearByStopModes.map(nearByStopMode => {
       const { renderSearch } = this.props;
       const renderDisruptionBanner = nearByStopMode !== 'CITYBIKE';
@@ -642,6 +659,7 @@ class NearYouPage extends React.Component {
           tabIndex={index}
           onSwipe={this.onSwipe}
           tabs={tabs}
+          icons={icons}
           classname={
             this.props.breakpoint === 'large' ? 'swipe-desktop-view' : ''
           }

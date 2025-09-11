@@ -170,10 +170,10 @@ export default function DepartureRow(
       <td className={cx('route-headsign', departure.bottomRow ? 'bottom' : '')}>
         {renderWithLink(
           <>
-          <div className="headsign">
-            {headsign} {departure.bottomRow && departure.bottomRow}
-          </div>
-          {icon && (
+            <div className="headsign">
+              {headsign} {departure.bottomRow && departure.bottomRow}
+            </div>
+            {icon && (
               <>
                 <Icon
                   className={backgroundShape}

@@ -3,6 +3,7 @@
   min-height: 20rem;
 }
 
+
 .stops-near-you-location-search {
   position: fixed;
   margin: 30px 30px 0 0;
@@ -408,6 +409,7 @@
         display: flex;
         flex-direction: row;
         column-gap: 2px;
+        align-items: center;
 
         .route-stop-address-row {
           color: #666;
@@ -908,6 +910,24 @@
       path {
         fill: $primary-dark !important;
       }
+    }
+  }
+}
+
+.swipe-tab-ball {
+  &.icons {
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    background-color: white;
+    border: solid 1px #d9d9d9;
+
+    &.selected {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border: solid 2px $primary-dark;
     }
   }
 }

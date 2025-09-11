@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classnames from 'classnames';
 import ReactSwipe from 'react-swipe';
 import { intlShape } from 'react-intl';
 import cx from 'classnames';
@@ -67,6 +66,7 @@ export default class SwipeableTabs extends React.Component {
   static propTypes = {
     tabIndex: PropTypes.number.isRequired,
     tabs: PropTypes.arrayOf(PropTypes.node).isRequired,
+    icons: PropTypes.arrayOf(PropTypes.node),
     onSwipe: PropTypes.func.isRequired,
     hideArrows: PropTypes.bool,
     navigationOnBottom: PropTypes.bool,
@@ -155,11 +155,12 @@ export default class SwipeableTabs extends React.Component {
             }
           )}
           tabIndex={0}
-          className={classnames('swipe-tab-ball', {
+          className={cx('swipe-tab-ball', {
             selected: index === this.props.tabIndex,
             'decreasing-small': ball.smaller,
             decreasing: ball.small,
-            hidden: ball.hidden
+            hidden: ball.hidden,
+            icons: this.props.icons?.length > 0
           })}
           onClick={() => {
             this.props.onSwipe(index);
@@ -169,7 +170,9 @@ export default class SwipeableTabs extends React.Component {
               this.props.onSwipe(index);
             }
           }}
-        />
+        >
+          {this.props.icons?.[index] ?? null}
+        </div>
       );
     });
 
