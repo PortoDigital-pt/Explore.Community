@@ -26,6 +26,7 @@ const CategoryGroup = (
           title={intl.messages[`filter-${type}-title`]}
           iconId={MAP_LAYERS_ICON[type]}
           ariaLabel={intl.messages['settings-dropdown-open-label']}
+          startOpen={Object.keys(filters).length === 1}
         >
           <div className="accordion-category-list">
             <AccordionItem
