@@ -1,13 +1,13 @@
 import React, { useRef, useState, useCallback } from 'react';
 import classnames from 'classnames';
-import { node, string } from 'prop-types';
+import { node, string, bool } from 'prop-types';
 import Icon from '../../../Icon';
 
-const Accordion = ({ title, iconId, ariaLabel, children }) => {
-  const [active, setActive] = useState(false);
-  const [height, setHeight] = useState('0px');
+const Accordion = ({ title, iconId, ariaLabel, startOpen = false, children }) => {
   const content = useRef(null);
-
+  const [active, setActive] = useState(startOpen);
+  const [height, setHeight] = useState(startOpen ? `${content.current?.scrollHeight}px` : '0px');
+  
   const toggleAccordion = useCallback(() => {
     setActive(!active);
     setHeight(active ? '0px' : `${content.current.scrollHeight}px`);
@@ -47,7 +47,8 @@ Accordion.propTypes = {
   title: string.isRequired,
   iconId: string.isRequired,
   children: node.isRequired,
-  ariaLabel: string.isRequired
+  ariaLabel: string.isRequired,
+  startOpen: bool
 };
 
 export default Accordion;
