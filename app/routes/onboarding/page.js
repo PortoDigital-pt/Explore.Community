@@ -18,7 +18,13 @@ import Cookies from './cookies';
 const OnboardingPage = (
   { breakpoint, currentLanguage, firstAccess, onboarded, allowedCookies },
   {
-    config: { title, onboarding, onboardingLogos, onboardingPictures },
+    config: {
+      title,
+      onboarding,
+      onboardingLogos,
+      onboardingLogo,
+      onboardingPictures
+    },
     executeAction,
     intl
   }
@@ -70,7 +76,7 @@ const OnboardingPage = (
           onExplore={onStartExploring}
           showOnExplore={!onboarded}
           onExploreDescription={intl.messages['onboarding-start-exploring']}
-          logos={onboardingLogos}
+          logos={onboardingLogo ?? onboardingLogos}
         />
         <div className="image">
           {onboardingPictures?.length > 0 ? (

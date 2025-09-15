@@ -6,7 +6,8 @@ import {
   bool,
   func,
   arrayOf,
-  number
+  number,
+  oneOfType
 } from 'prop-types';
 import SwipeableTabs from '../../component/SwipeableTabs';
 
@@ -70,7 +71,7 @@ export const Content = ({
         </button>
       )}
 
-      {logos?.length > 0 && (
+      {Array.isArray(logos) ? (
         <div className="logos">
           {logos.map(name => (
             <img
@@ -80,6 +81,15 @@ export const Content = ({
               loading="eager"
             />
           ))}
+        </div>
+      ) : (
+        <div className="logo">
+          <img
+            key={logos}
+            src={`/img/${logos}.svg`}
+            alt={logos}
+            loading="eager"
+          />
         </div>
       )}
     </div>
@@ -100,5 +110,5 @@ Content.propTypes = {
   onExplore: func.isRequired,
   showOnExplore: bool.isRequired,
   onExploreDescription: string.isRequired,
-  logos: arrayOf(string)
+  logos: oneOfType([string, arrayOf(string)]).isRequired
 };

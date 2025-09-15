@@ -148,9 +148,21 @@
         gap: 30px 61px;
       }
 
-      .img {
+      img {
         display: flex;
         position: relative;
+      }
+    }
+
+    .logo {
+      width: 100%;
+      position: relative;
+      display: flex;
+
+      img {
+        display: flex;
+        position: relative;
+        width: 100%;
       }
     }
 

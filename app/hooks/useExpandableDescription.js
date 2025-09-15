@@ -20,7 +20,7 @@ const useExpandableDescription = ({ description, intl }) => {
             aria-label={intl.messages[expanded ? 'read-less' : 'read-more']}
           >
             {intl.messages[expanded ? 'read-less' : 'read-more']}
-             <Icon
+            <Icon
               img={`icon-chevron-${expanded ? 'up' : 'down'}`}
               viewBox="0 0 24 24"
               className="icon-suffix"
