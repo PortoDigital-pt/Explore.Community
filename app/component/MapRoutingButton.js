@@ -123,20 +123,6 @@ export default function MapRoutingButton(
             >
               <FormattedMessage id="as-origin" defaultMessage="Route to stop" />
             </button>
-            {config.viaPointsEnabled && (
-              <button
-                type="button"
-                className="map-routing-modal-button"
-                onClick={() => {
-                  onSelectLocation(stop, 'via');
-                }}
-              >
-                <FormattedMessage
-                  id="as-viapoint"
-                  defaultMessage="Route to stop"
-                />
-              </button>
-            )}
             <button
               type="button"
               className="map-routing-modal-button"

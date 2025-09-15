@@ -623,7 +623,7 @@ export default {
     itinerary: true
   },
 
-  viaPointsEnabled: false,
+  viaPointsEnabled: true,
 
   // Toggling this off shows the alert bodytext instead of the header
   showAlertHeader: true,
