@@ -735,6 +735,8 @@ export default {
   onboardingPictures: null,
   // list of svg logos in static/img/onboarding-logos to display in onboarding page. e.g. ['logo1', 'logo2', 'logo3']
   onboardingLogos: null,
+  // single svg icon to use in onboarding logo area 'logo-file-name' instead of several logos
+  onboardingLogo: null,
   // onboarding pages
   /* e.g. override here or in your own config
   onboarding: {

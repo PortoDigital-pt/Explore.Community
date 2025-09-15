@@ -3,11 +3,19 @@ import classnames from 'classnames';
 import { node, string, bool } from 'prop-types';
 import Icon from '../../../Icon';
 
-const Accordion = ({ title, iconId, ariaLabel, startOpen = false, children }) => {
+const Accordion = ({
+  title,
+  iconId,
+  ariaLabel,
+  startOpen = false,
+  children
+}) => {
   const content = useRef(null);
   const [active, setActive] = useState(startOpen);
-  const [height, setHeight] = useState(startOpen ? `${content.current?.scrollHeight}px` : '0px');
-  
+  const [height, setHeight] = useState(
+    startOpen ? `${content.current?.scrollHeight}px` : '0px'
+  );
+
   const toggleAccordion = useCallback(() => {
     setActive(!active);
     setHeight(active ? '0px' : `${content.current.scrollHeight}px`);

@@ -47,3 +47,4 @@ app/configurations/config.amporto.js
 sass/themes/amporto
 static/img/onboarding-logos/*
 static/img/onboarding-pictures/*
+static/img/onboarding-logo.svg
