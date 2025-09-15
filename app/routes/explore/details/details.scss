@@ -138,6 +138,7 @@
       gap: 5px;
 
       .read-more-button {
+        display: flex;
         cursor: pointer;
         background: none;
         border: none;
@@ -146,6 +147,20 @@
         font-weight: $font-weight-regular;
         text-underline-offset: 4px;
         text-decoration-thickness: 1px;
+        column-gap: 4px;
+
+        .icon-container {
+          display: flex;
+          
+          .icon {
+            display: flex;
+
+            &.icon-suffix {
+              width: 24px;
+              height: 24px;
+            }
+          }
+        }
       }
     }
 
