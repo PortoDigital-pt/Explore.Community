@@ -7,6 +7,7 @@ import ImageSlider from '../../../../../component/amporto/image-slider';
 import Icon from '../../../../../component/Icon';
 import { poiShape } from '../../pois/page';
 import useDistanceToTarget from '../../../../../hooks/useDistanceToTarget';
+import useExpandableDescription from '../../../../../hooks/useExpandableDescription';
 import { locationShape } from '../../../../../util/shapes';
 import { showDistance } from '../../../../../util/amporto/geo';
 
@@ -15,6 +16,10 @@ const Content = (
   { intl, executeAction }
 ) => {
   const isMobile = breakpoint !== 'large';
+  const ExpandableDescription = useExpandableDescription({
+    description: selectedData.description,
+    intl
+  });
 
   const distanceToPoi = useDistanceToTarget({
     executeAction,
@@ -54,7 +59,7 @@ const Content = (
         {selectedData.description && (
           <div className="description">
             <h3>{intl.messages.about}</h3>
-            <p>{selectedData.description}</p>
+            <ExpandableDescription />
           </div>
         )}
         {selectedData.calendar && (
