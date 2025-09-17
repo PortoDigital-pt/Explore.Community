@@ -14,7 +14,7 @@ import {
 
 export default function MapRoutingButton(
   { stop },
-  { intl, router, match, config }
+  { intl, router, match }
 ) {
   const [showModal, setShowModal] = useState(false);
   const [buttonText, setButtonText] = useState(null);
