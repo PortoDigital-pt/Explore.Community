@@ -63,34 +63,51 @@ class MapLayerStore extends Store {
   }
 
   setupMapLayerStore = () => {
-    this.mapLayers.pois = {
-      showAll: true,
-      ...Object.keys(this.config.filters.pois).reduce(
-        (acc, key) => ({ ...acc, [key]: true }),
-        {}
-      )
-    };
-    this.mapLayers.events = {
-      showAll: true,
-      ...Object.keys(this.config.filters.events).reduce(
-        (acc, key) => ({ ...acc, [key]: true }),
-        {}
-      )
-    };
-    this.mapLayers.routes = {
-      showAll: true,
-      ...Object.keys(this.config.filters.routes).reduce(
-        (acc, key) => ({ ...acc, [key]: true }),
-        {}
-      )
-    };
-    this.mapLayers.districts = {
-      showAll: true,
-      ...Object.keys(this.config.filters.districts).reduce(
-        (acc, key) => ({ ...acc, [key]: true }),
-        {}
-      )
-    };
+    if (this.config.ngsi.dataProvider.pois) {
+      this.mapLayers.pois = {
+        showAll: true,
+        ...Object.keys(this.config.filters.pois).reduce(
+          (acc, key) => ({ ...acc, [key]: true }),
+          {}
+        )
+      };
+    }
+
+    if (this.config.ngsi.dataProvider.events) {
+      this.mapLayers.events = {
+        showAll: true,
+        ...Object.keys(this.config.filters.events).reduce(
+          (acc, key) => ({ ...acc, [key]: true }),
+          {}
+        )
+      };
+    }
+
+    if (
+      this.config.optionalNavigationItems.routes &&
+      this.config.ngsi.dataProvider.routes
+    ) {
+      this.mapLayers.routes = {
+        showAll: true,
+        ...Object.keys(this.config.filters.routes).reduce(
+          (acc, key) => ({ ...acc, [key]: true }),
+          {}
+        )
+      };
+    }
+
+    if (
+      this.config.optionalNavigationItems.districts &&
+      this.config.ngsi.dataProvider.districts
+    ) {
+      this.mapLayers.districts = {
+        showAll: true,
+        ...Object.keys(this.config.filters.districts).reduce(
+          (acc, key) => ({ ...acc, [key]: true }),
+          {}
+        )
+      };
+    }
     this.mapLayers.accesspoints = { showAll: this.config.map.showWifi };
     this.mapLayers.citybike = showRentalVehiclesOfType(
       this.config.vehicleRental?.networks,

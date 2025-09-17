@@ -157,9 +157,8 @@ export default connectToStores(
     let categories = null;
 
     if (type) {
-      const { showAll, ...typeCategories } = getStore(
-        'MapLayerStore'
-      ).getFilterLayers({ only: type })[type];
+      const { showAll, ...typeCategories } =
+        getStore('MapLayerStore').getFilterLayers({ only: type })[type] ?? {};
       const selectedCategories = Object.entries(typeCategories)
         // eslint-disable-next-line no-unused-vars
         .filter(([_, selected]) => selected)

@@ -62,8 +62,12 @@ class ExplorePage extends React.Component {
       <div className="explore">
         <Filters />
         <PoisSection />
-        <RoutesSection />
-        <DistrictsSection />
+        {this.context.config.optionalNavigationItems.routes && (
+          <RoutesSection />
+        )}
+        {this.context.config.optionalNavigationItems.districts && (
+          <DistrictsSection />
+        )}
         <EventsSection />
       </div>
     );
