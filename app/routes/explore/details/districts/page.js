@@ -184,18 +184,20 @@ const Content = (
         </div>
       )}
 
-      <div className="list">
-        <h3 className="list-title">{`${intl.messages['events-districts-title']} ${selectedData.name}`}</h3>
-        <div className="list-scroll">
-          <NearByList
-            type="events"
-            cardType="large"
-            data={eventData}
-            open={open}
-            setSelected={setSelected}
-          />
+      {eventData.length > 0 && (
+        <div className="list">
+          <h3 className="list-title">{`${intl.messages['events-districts-title']} ${selectedData.name}`}</h3>
+          <div className="list-scroll">
+            <NearByList
+              type="events"
+              cardType="large"
+              data={eventData}
+              open={open}
+              setSelected={setSelected}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <button
         className="start-trip-button padding"

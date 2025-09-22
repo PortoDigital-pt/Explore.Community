@@ -304,8 +304,9 @@ const Content = ({ selectedData, language, location }, { intl, config }) => {
     args: nearEventsArgs
   });
 
-  const filterEventsData =
-    nearEventsData?.filter(event => event.id !== selectedData.id) ?? null;
+  const filterEventsData = nearEventsData?.filter(
+    event => event.id !== selectedData.id
+  );
 
   return (
     <>
@@ -338,18 +339,20 @@ const Content = ({ selectedData, language, location }, { intl, config }) => {
         </div>
       </div>
 
-      <div className="list">
-        <h3 className="list-title">{intl.messages['near-to-event-title']}</h3>
-        <div className="list-scroll">
-          <NearByList
-            type="events"
-            cardType="large"
-            data={filterEventsData}
-            open={open}
-            setSelected={setSelected}
-          />
+      {filterEventsData?.length > 0 && (
+        <div className="list">
+          <h3 className="list-title">{intl.messages['near-to-event-title']}</h3>
+          <div className="list-scroll">
+            <NearByList
+              type="events"
+              cardType="large"
+              data={filterEventsData}
+              open={open}
+              setSelected={setSelected}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="list">
         <h3 className="list-title">{intl.messages['near-here']}</h3>

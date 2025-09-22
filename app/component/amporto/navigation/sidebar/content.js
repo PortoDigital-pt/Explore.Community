@@ -10,6 +10,7 @@ import {
   COMMON_NAVIGATION_ITEMS_PATH_MAP,
   generateNavigationItemsConfig
 } from '../common';
+import { isKioskUA } from '../../../../util/amporto/ua';
 
 const NAVIGATION_PROFILE = 'profile';
 const NAVIGATION_ONBOARDING = 'onboarding';
@@ -78,66 +79,74 @@ const Content = (
               <span>{intl.messages[`nav-item-${item}`]}</span>
             </button>
           ))}
-          <hr />
-          <button
-            onClick={() => navigate(NAVIGATION_PROFILE)}
-            type="button"
-            aria-label={intl.messages[`nav-item-aria-${NAVIGATION_PROFILE}`]}
-          >
-            <Icon img={`icon-${NAVIGATION_PROFILE}`} viewBox="0 0 24 24" />
-            <span>{intl.messages[`nav-item-${NAVIGATION_PROFILE}`]}</span>
-          </button>
-          {onboarding && (
+          {!isKioskUA() && (
             <>
               <hr />
               <button
-                onClick={() => navigate(NAVIGATION_ONBOARDING)}
+                onClick={() => navigate(NAVIGATION_PROFILE)}
                 type="button"
-                aria-label={intl.formatMessage(
-                  { id: `nav-item-aria-${NAVIGATION_ONBOARDING}` },
-                  { app: title }
-                )}
+                aria-label={
+                  intl.messages[`nav-item-aria-${NAVIGATION_PROFILE}`]
+                }
               >
-                <Icon
-                  img={`icon-${NAVIGATION_ONBOARDING}`}
-                  viewBox="0 0 24 24"
-                />
-                <span>
-                  {intl.formatMessage(
-                    { id: `nav-item-${NAVIGATION_ONBOARDING}` },
-                    { app: title }
-                  )}
-                </span>
+                <Icon img={`icon-${NAVIGATION_PROFILE}`} viewBox="0 0 24 24" />
+                <span>{intl.messages[`nav-item-${NAVIGATION_PROFILE}`]}</span>
               </button>
+              {onboarding && (
+                <>
+                  <hr />
+                  <button
+                    onClick={() => navigate(NAVIGATION_ONBOARDING)}
+                    type="button"
+                    aria-label={intl.formatMessage(
+                      { id: `nav-item-aria-${NAVIGATION_ONBOARDING}` },
+                      { app: title }
+                    )}
+                  >
+                    <Icon
+                      img={`icon-${NAVIGATION_ONBOARDING}`}
+                      viewBox="0 0 24 24"
+                    />
+                    <span>
+                      {intl.formatMessage(
+                        { id: `nav-item-${NAVIGATION_ONBOARDING}` },
+                        { app: title }
+                      )}
+                    </span>
+                  </button>
+                </>
+              )}
             </>
           )}
         </nav>
       </>
-      {(privacyPolicyLink || cookiesPolicyLink) && (
-        <footer>
-          <hr />
-          {privacyPolicyLink && (
-            <a
-              target="_blank"
-              href={privacyPolicyLink}
-              rel="noreferrer"
-              aria-label={intl.messages['privacy-policy-aria']}
-            >
-              {intl.messages['privacy-policy']}
-            </a>
+      {isKioskUA()
+        ? null
+        : (privacyPolicyLink || cookiesPolicyLink) && (
+            <footer>
+              <hr />
+              {privacyPolicyLink && (
+                <a
+                  target="_blank"
+                  href={privacyPolicyLink}
+                  rel="noreferrer"
+                  aria-label={intl.messages['privacy-policy-aria']}
+                >
+                  {intl.messages['privacy-policy']}
+                </a>
+              )}
+              {cookiesPolicyLink && (
+                <a
+                  target="_blank"
+                  href={cookiesPolicyLink}
+                  rel="noreferrer"
+                  aria-label={intl.messages['cookies-policy-aria']}
+                >
+                  {intl.messages['cookies-policy']}
+                </a>
+              )}
+            </footer>
           )}
-          {cookiesPolicyLink && (
-            <a
-              target="_blank"
-              href={cookiesPolicyLink}
-              rel="noreferrer"
-              aria-label={intl.messages['cookies-policy-aria']}
-            >
-              {intl.messages['cookies-policy']}
-            </a>
-          )}
-        </footer>
-      )}
     </>
   );
 };

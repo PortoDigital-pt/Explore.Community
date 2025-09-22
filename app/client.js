@@ -55,6 +55,15 @@ window.debug = debug; // Allow _debug.enable('*') in browser console
 const { config } = window.state.context.plugins['extra-context-plugin'];
 const app = appCreator(config);
 
+function hideLinksOnKiosk() {
+  if (
+    !!process.env.KIOSK_UA_REGEX &&
+    new RegExp(process.env.KIOSK_UA_REGEX, 'i').test(navigator.userAgent)
+  ) {
+    document.documentElement.classList.add('hide-links');
+  }
+}
+
 const getParams = query => {
   if (!query) {
     return {};
@@ -72,6 +81,8 @@ const getParams = query => {
 };
 
 async function init() {
+  hideLinksOnKiosk();
+
   // Guard againist Samsung et.al. which are not properly polyfilled by polyfill-service
   if (typeof window.Intl === 'undefined') {
     const modules = [
