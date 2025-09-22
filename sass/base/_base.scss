@@ -302,3 +302,9 @@ header nav a,
 header nav button {
   margin: 0;
 }
+
+.hide-links {
+  a[href^="http"] {
+    display: none !important;
+  }
+}

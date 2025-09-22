@@ -12,10 +12,7 @@ import {
   PREFIX_ITINERARY_SUMMARY
 } from '../util/path';
 
-export default function MapRoutingButton(
-  { stop },
-  { intl, router, match }
-) {
+export default function MapRoutingButton({ stop }, { intl, router, match }) {
   const [showModal, setShowModal] = useState(false);
   const [buttonText, setButtonText] = useState(null);
   useEffect(() => {

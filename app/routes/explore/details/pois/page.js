@@ -32,6 +32,7 @@ import { DetailsContentModal } from '../../common';
 import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import { NearByList } from '../nearbyList';
 import { getItineraryPath } from '../routes/util';
+import { isKioskUA } from '../../../../util/amporto/ua';
 
 export const poiShape = shape({
   type: string.isRequired,
@@ -320,18 +321,20 @@ const Content = ({ selectedData, language, location }, { intl, config }) => {
               <p>{intl.messages[`tickets-${selectedData.priceRange}`]}</p>
             </div>
           )}
-          {selectedData.contacts?.url && (
-            <div>
-              <Icon img="icon-website" viewBox="0 0 16 16" />
-              <a
-                href={selectedData.contacts.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Website
-              </a>
-            </div>
-          )}
+          {isKioskUA()
+            ? null
+            : selectedData.contacts?.url && (
+                <div>
+                  <Icon img="icon-website" viewBox="0 0 16 16" />
+                  <a
+                    href={selectedData.contacts.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Website
+                  </a>
+                </div>
+              )}
           {selectedData.contacts?.telephone && (
             <div>
               <Icon img="icon-phone" viewBox="0 0 16 16" />

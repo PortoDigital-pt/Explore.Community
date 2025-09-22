@@ -1,4 +1,5 @@
 import React from 'react';
+import { isKioskUA } from './ua';
 
 export const parseConfigDescriptionTextWithLink = (text, link) => {
   if (!link || !/(\*link\*.*?\*link\*)/.test(text)) {
@@ -10,7 +11,9 @@ export const parseConfigDescriptionTextWithLink = (text, link) => {
   return parts.map(part => {
     const isLink = part.match(/\*link\*(.*?)\*link\*/);
 
-    return isLink ? (
+    return isLink && isKioskUA() ? (
+      isLink[1]
+    ) : isLink ? (
       <a href={link} target="_blank" key={isLink[1]} rel="noreferrer">
         {isLink[1]}
       </a>
