@@ -120,7 +120,7 @@ const Content = (
           )}
         </nav>
       </>
-      {isKioskUA
+      {isKioskUA()
         ? null
         : (privacyPolicyLink || cookiesPolicyLink) && (
             <footer>
