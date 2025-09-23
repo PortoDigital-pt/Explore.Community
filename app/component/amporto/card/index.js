@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import {
   string,
@@ -7,78 +7,69 @@ import {
   func,
   arrayOf,
   oneOfType,
-  bool
+  bool,
+  node
 } from 'prop-types';
 import FavouriteExplore from '../../FavouriteExploreContainer';
-import { PAGE_CONTENT_PIECES_TYPE_MAP } from '../../../routes/explore/details/page-content-resolver/pieces';
 
-const Card = ({ type, className, data, onClick, showDescription = false }) => {
-  const Details = useMemo(() => {
-    const Component = PAGE_CONTENT_PIECES_TYPE_MAP[type]?.details;
+const Card = ({
+  type,
+  className,
+  data,
+  onClick,
+  showDescription = false,
+  Details = null
+}) => (
+  <div
+    role="button"
+    tabIndex={0}
+    aria-label={data.name}
+    onKeyDown={e => {
+      if (e.code === 'Enter' || e.nativeEvent.code === 'Enter') {
+        onClick();
+      }
+    }}
+    className={classnames('card', className, type)}
+    onClick={onClick}
+  >
+    <div className="favourite-top">
+      <FavouriteExplore data={data} white={!!data.images} blue={!data.images} />
+    </div>
 
-    if (!Component) {
-      return null;
-    }
-
-    return () => <Component selectedData={data} />;
-  }, [type, data]);
-
-  return (
-    <div
-      role="button"
-      tabIndex={0}
-      aria-label={data.name}
-      onKeyDown={e => {
-        if (e.code === 'Enter' || e.nativeEvent.code === 'Enter') {
-          onClick();
-        }
-      }}
-      className={classnames('card', className, type)}
-      onClick={onClick}
-    >
-      <div className="favourite-top">
-        <FavouriteExplore
-          data={data}
-          white={!!data.images}
-          blue={!data.images}
-        />
+    {data.images && (
+      <div className="image-cover">
+        <img src={data.images[0]} alt={data.name} />
       </div>
+    )}
 
-      {data.images && (
-        <div className="image-cover">
-          <img src={data.images[0]} alt={data.name} />
+    <div className={classnames('card-content', type)}>
+      <div className={classnames('card-title', { smaller: !data.images })}>
+        <h3>{data.name}</h3>
+      </div>
+      {showDescription && data.description && (
+        <div className="description">
+          <span>{data.description}</span>
         </div>
       )}
-
-      <div className={classnames('card-content', type)}>
-        <div className={classnames('card-title', { smaller: !data.images })}>
-          <h3>{data.name}</h3>
+      {Details && (
+        <div className="details">
+          <Details selectedData={data} />
         </div>
-        {showDescription && data.description && (
-          <div className="description">
-            <span>{data.description}</span>
-          </div>
+      )}
+      <div className="categories">
+        {Array.isArray(data.category) ? (
+          data.category.map(category => (
+            <div key={category} className="category">
+              {category}
+            </div>
+          ))
+        ) : (
+          <div className="category">{data.category}</div>
         )}
-        {Details && (
-          <div className="details">
-            <Details />
-          </div>
-        )}
-        <div className="categories">
-          {Array.isArray(data.category) ? (
-            data.category.map(category => (
-              <div key={category} className="category">
-                {category}
-              </div>
-            ))
-          ) : (
-            <div className="category">{data.category}</div>
-          )}
-        </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 Card.propTypes = {
   type: string.isRequired,
@@ -94,7 +85,8 @@ Card.propTypes = {
     lon: number.isRequired,
     description: string
   }).isRequired,
-  showDescription: bool
+  showDescription: bool,
+  Details: node
 };
 
 export default Card;

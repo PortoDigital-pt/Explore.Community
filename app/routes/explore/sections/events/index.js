@@ -6,6 +6,7 @@ import { getEventList } from '../../../../util/amporto/api';
 import withBreakpoint from '../../../../util/withBreakpoint';
 import Section from '../section';
 import { configShape } from '../../../../util/shapes';
+import { EventContactDetails } from '../../details/events/page';
 
 const EventsSection = ({ language, breakpoint }, { config }) => {
   const Intro = useMemo(
@@ -32,6 +33,7 @@ const EventsSection = ({ language, breakpoint }, { config }) => {
       Intro={Intro}
       type="events"
       limit={breakpoint === 'large' ? 1 : 10}
+      CardDetails={EventContactDetails}
     />
   );
 };

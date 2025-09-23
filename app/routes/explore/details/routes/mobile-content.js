@@ -2,6 +2,7 @@ import React from 'react';
 import { func, shape } from 'prop-types';
 import Card from '../../../../component/amporto/card';
 import { routesShape } from './shape';
+import { RoutesDetails } from './detail';
 
 export const MobileContent = ({ onDetails, selectedData, innerRef }) => (
   <div className="mobile-view" ref={innerRef}>
@@ -13,6 +14,7 @@ export const MobileContent = ({ onDetails, selectedData, innerRef }) => (
         data={selectedData}
         type="routes"
         showDescription
+        Details={RoutesDetails}
       />
     </div>
   </div>

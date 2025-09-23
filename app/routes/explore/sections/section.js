@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { useRouter } from 'found';
-import { arrayOf, string, oneOf, func, bool, number } from 'prop-types';
+import { arrayOf, string, oneOf, func, bool, number, node } from 'prop-types';
 import { intlShape } from 'react-intl';
 import { locationShape, configShape } from '../../../util/shapes';
 import useListData from '../../../hooks/useListData';
@@ -27,7 +27,8 @@ const Section = (
     Intro,
     showDescription = false,
     requireCategories = true,
-    limit
+    limit,
+    CardDetails = null
   },
   { intl, config: { coordinatesBounds } }
 ) => {
@@ -93,6 +94,7 @@ const Section = (
                 data={item}
                 type={type}
                 showDescription={showDescription}
+                Details={CardDetails}
               />
             ))
           )}
@@ -147,7 +149,8 @@ Section.propTypes = {
   categories: arrayOf(string),
   showDescription: bool,
   requireCategories: bool,
-  limit: number.isRequired
+  limit: number.isRequired,
+  cardDetails: node
 };
 
 export default connectToStores(
