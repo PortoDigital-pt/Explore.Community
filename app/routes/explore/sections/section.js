@@ -150,7 +150,7 @@ Section.propTypes = {
   showDescription: bool,
   requireCategories: bool,
   limit: number.isRequired,
-  cardDetails: node
+  CardDetails: node
 };
 
 export default connectToStores(

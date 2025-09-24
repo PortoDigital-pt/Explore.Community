@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 2;
     top: 40px;
-    right: 24px;  
+    right: 24px;
   }
 
   &:active,
@@ -152,7 +152,8 @@
         }
       }
 
-      .wind-info, .radiation-info {
+      .wind-info,
+      .radiation-info {
         display: flex;
         position: relative;
         color: $primary-dark;

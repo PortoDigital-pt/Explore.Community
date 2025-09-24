@@ -151,7 +151,7 @@
 
         .icon-container {
           display: flex;
-          
+
           .icon {
             display: flex;
 
@@ -206,7 +206,6 @@
         padding: 2px;
         text-align: center;
         flex-grow: 3;
-
         font-family: $font-family;
         font-size: $font-size-s;
         font-style: normal;
@@ -233,7 +232,6 @@
       position: relative;
       justify-content: flex-start;
       margin-top: 10px;
-
       color: $grey-dark-down;
       font-family: $font-family;
       font-size: $font-size-base;
@@ -370,7 +368,6 @@
         color: $primary-main;
         text-align: center;
         margin: 30px 0 0 10px;
-
         font-family: $font-family;
         font-size: 14px;
         font-style: normal;
@@ -385,14 +382,14 @@
     }
   }
 
-    .start-trip-button {
-      @include contained-button;
-      
-      &.padding {
-        width: calc(100% - 48px);
-        margin: 0 24px;
-      }
+  .start-trip-button {
+    @include contained-button;
+
+    &.padding {
+      width: calc(100% - 48px);
+      margin: 0 24px;
     }
+  }
 
   .list {
     display: flex;
@@ -415,60 +412,60 @@
       }
     }
 
-      .list-scroll {
-        display: flex;
-        position: relative;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        scroll-snap-type: x mandatory;
-        column-gap: 10px;
+    .list-scroll {
+      display: flex;
+      position: relative;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      scroll-snap-type: x mandatory;
+      column-gap: 10px;
+      padding: 0 24px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      @media (min-width: 900px) {
         padding: 0 24px;
 
         &::-webkit-scrollbar {
-          display: none;
-        }
-         
-        @media (min-width: 900px) {
-          padding: 0 24px;
-
-          &::-webkit-scrollbar {
-            display: block;
-          }
-            
-          &::-webkit-scrollbar-track {
-            margin: 0 24px;
-          }
+          display: block;
         }
 
-        .small-card {
-          display: flex;
-          position: relative;
-          scroll-snap-align: center;
-          min-width: 200px;
-          max-width: 200px;
-          max-height: 190px;
-          min-height: 190px;
-          border-radius: $border-radius;
-          overflow: hidden;
-          box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
-        }
-
-        .large-card {
-          display: flex;
-          position: relative;
-          scroll-snap-align: center;
-          min-width: 312px;
-          max-width: 312px;
-          max-height: 296px;
-          min-height: 296px;
-          border-radius: $border-radius;
-          overflow: hidden;
-          box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+        &::-webkit-scrollbar-track {
+          margin: 0 24px;
         }
       }
+
+      .small-card {
+        display: flex;
+        position: relative;
+        scroll-snap-align: center;
+        min-width: 200px;
+        max-width: 200px;
+        max-height: 190px;
+        min-height: 190px;
+        border-radius: $border-radius;
+        overflow: hidden;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+      }
+
+      .large-card {
+        display: flex;
+        position: relative;
+        scroll-snap-align: center;
+        min-width: 312px;
+        max-width: 312px;
+        max-height: 296px;
+        min-height: 296px;
+        border-radius: $border-radius;
+        overflow: hidden;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+      }
+    }
   }
 
   .mobile-view {
@@ -717,7 +714,6 @@
         align-items: center;
         background-color: $primary-color;
         color: $primary-contrastText;
-
         flex-grow: 1;
 
         @media (min-width: 400px) {

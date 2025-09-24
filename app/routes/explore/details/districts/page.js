@@ -18,7 +18,6 @@ import {
   getEventList
 } from '../../../../util/amporto/api';
 import { DetailsContentModal } from '../../common';
-import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import Icon from '../../../../component/Icon';
 import Details from '../details';
 import { getItineraryPath } from '../routes/util';
@@ -27,6 +26,9 @@ import ShareButton from '../../../../component/amporto/share-button';
 import useDistanceToTarget from '../../../../hooks/useDistanceToTarget';
 import { showDistance } from '../../../../util/amporto/geo';
 import { NearByList } from '../nearbyList';
+import { PageContent as PoiPageContent } from '../pois/page';
+import { PageContent as EventsPageContent } from '../events/page';
+import { PageContent as RoutesPageContent } from '../routes/page';
 
 export const Mobile = ({ onDetails, selectedData, innerRef }) => (
   <div className="mobile-view" ref={innerRef}>
@@ -85,7 +87,8 @@ const Content = (
   );
 
   const ModalPageContent = useMemo(
-    () => PAGE_CONTENT_TYPE_MAP[selected?.type],
+    // eslint-disable-next-line no-use-before-define
+    () => MODAL_CONTENT_TYPE_MAP[selected?.type],
     [selected?.type]
   );
 
@@ -184,7 +187,7 @@ const Content = (
         </div>
       )}
 
-      {eventData.length > 0 && (
+      {eventData?.length > 0 && (
         <div className="list">
           <h3 className="list-title">{`${intl.messages['events-districts-title']} ${selectedData.name}`}</h3>
           <div className="list-scroll">
@@ -246,6 +249,12 @@ export const PageContent = connectToStores(
     location: getStore('PositionStore').getLocationState()
   })
 );
+
+const MODAL_CONTENT_TYPE_MAP = {
+  pois: PoiPageContent,
+  events: EventsPageContent,
+  routes: RoutesPageContent
+};
 
 const MobileDetails = (
   { location, onDetails, selectedData, showShare = false },

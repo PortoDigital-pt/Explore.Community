@@ -8,38 +8,38 @@
   align-items: center;
 
   .share {
+    display: flex;
+    position: relative;
+    padding: 0;
+    justify-content: center;
+    cursor: pointer;
+
+    .icon {
       display: flex;
       position: relative;
-      padding: 0;
-      justify-content: center;
-      cursor: pointer;
-    
-      .icon {
-          display: flex;
-          position: relative;
+      width: 30px;
+      height: 30px;
+
+      @media (min-width: 900px) {
+        width: 35px;
+        height: 35px;
+      }
+
+      &.share {
+        color: $background-default;
+        width: 27px;
+        height: 27px;
+
+        @media (min-width: 900px) {
           width: 30px;
           height: 30px;
-    
-          @media (min-width: 900px) {
-              width: 35px;
-              height: 35px;
-          }
-
-          &.share {
-            color: $background-default;
-            width: 27px;
-            height: 27px;
-
-            @media (min-width: 900px) {
-              width: 30px;
-              height: 30px;
-          }
-          }
-
-          &.share-with-background {
-            color: $primary-color;
-          }
+        }
       }
+
+      &.share-with-background {
+        color: $primary-color;
+      }
+    }
   }
 
   .description {
@@ -51,7 +51,7 @@
     font-size: $font-size-label;
 
     @media (min-width: 900px) {
-        font-size: $font-size-s;
+      font-size: $font-size-s;
     }
   }
 }

@@ -23,9 +23,9 @@ import { NearByList } from '../nearbyList';
 import useListData from '../../../../hooks/useListData';
 import useModal from '../../../../hooks/useModal';
 import { DetailsContentModal } from '../../common';
-import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import { eventShape } from './shape';
 import { getItineraryPath } from '../routes/util';
+import { PageContent as PoiPageContent } from '../pois/page';
 
 const DateSection = ({ startDate, endDate }) => {
   const start = moment(startDate);
@@ -254,7 +254,8 @@ const Content = ({ selectedData, language, location }, { intl, config }) => {
   );
 
   const ModalPageContent = useMemo(
-    () => PAGE_CONTENT_TYPE_MAP[selected?.type],
+    // eslint-disable-next-line no-use-before-define
+    () => MODAL_CONTENT_TYPE_MAP[selected?.type],
     [selected?.type]
   );
 
@@ -414,6 +415,11 @@ export const PageContent = connectToStores(
     location: getStore('PositionStore').getLocationState()
   })
 );
+
+const MODAL_CONTENT_TYPE_MAP = {
+  events: PageContent,
+  poist: PoiPageContent
+};
 
 const EventDetailsPage = () => (
   <Details

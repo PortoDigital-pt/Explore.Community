@@ -154,7 +154,7 @@ input[type='text'] {
   svg {
     width: 24px;
     height: 24px;
-    
+
     path {
       //fill: $primary-color;
     }
@@ -176,7 +176,8 @@ input[type='text'] {
     }
   }
 
-  &.stop-route-station, &.favourite {
+  &.stop-route-station,
+  &.favourite {
     svg {
       width: 24px;
       height: 24px;
@@ -194,8 +195,8 @@ input[type='text'] {
   &.origin-stop-near-you {
     svg {
       fill: #888;
-      width: 24px; 
-      height: 24px; 
+      width: 24px;
+      height: 24px;
     }
   }
 }

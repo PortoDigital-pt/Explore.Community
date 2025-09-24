@@ -29,10 +29,10 @@ import useExpandableDescription from '../../../../hooks/useExpandableDescription
 import useListData from '../../../../hooks/useListData';
 import useModal from '../../../../hooks/useModal';
 import { DetailsContentModal } from '../../common';
-import { PAGE_CONTENT_TYPE_MAP } from '../page-content-resolver/page-content';
 import { NearByList } from '../nearbyList';
 import { getItineraryPath } from '../routes/util';
 import { isKioskUA } from '../../../../util/amporto/ua';
+import { PageContent as RoutesPageContent } from '../routes/page';
 
 export const poiShape = shape({
   type: string.isRequired,
@@ -245,7 +245,8 @@ const Content = ({ selectedData, language, location }, { intl, config }) => {
   );
 
   const ModalPageContent = useMemo(
-    () => PAGE_CONTENT_TYPE_MAP[selected?.type],
+    // eslint-disable-next-line no-use-before-define
+    () => MODAL_CONTENT_TYPE_MAP[selected?.type],
     [selected?.type]
   );
 
@@ -346,18 +347,20 @@ const Content = ({ selectedData, language, location }, { intl, config }) => {
         </div>
       </div>
 
-      <div className="list">
-        <h3 className="list-title">{intl.messages['near-here']}</h3>
-        <div className="list-scroll">
-          <NearByList
-            type="pois"
-            cardType="small"
-            data={filterPoiData}
-            open={open}
-            setSelected={setSelected}
-          />
+      {filterPoiData?.length > 0 && (
+        <div className="list">
+          <h3 className="list-title">{intl.messages['near-here']}</h3>
+          <div className="list-scroll">
+            <NearByList
+              type="pois"
+              cardType="small"
+              data={filterPoiData}
+              open={open}
+              setSelected={setSelected}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {nearbyRoutesData?.length > 0 && (
         <div className="list">
@@ -421,6 +424,11 @@ export const PageContent = connectToStores(
     location: getStore('PositionStore').getLocationState()
   })
 );
+
+const MODAL_CONTENT_TYPE_MAP = {
+  pois: PageContent,
+  routes: RoutesPageContent
+};
 
 const PoiDetailsPage = () => (
   <Details
