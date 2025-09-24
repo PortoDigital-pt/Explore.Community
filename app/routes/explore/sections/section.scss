@@ -81,7 +81,7 @@
           min-height: 190px;
           border-radius: $border-radius;
           overflow: hidden;
-          box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.16);
 
           @media (min-width: 900px) {
             width: calc(50% - 5px);
@@ -99,7 +99,7 @@
           min-height: 296px;
           border-radius: $border-radius;
           overflow: hidden;
-          box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.16);
 
           @media (min-width: 900px) {
             min-width: 100%;

@@ -63,6 +63,7 @@
 
         .create-label {
           @include typography-body-s-bold;
+
           font-size: 0.9999rem;
         }
       }
@@ -108,6 +109,7 @@
 
           .title {
             @include typography-body-s-bold;
+
             font-size: 0.9999rem;
           }
 

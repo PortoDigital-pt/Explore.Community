@@ -239,9 +239,7 @@ div.leaflet-marker-icon.via {
 
 div.leaflet-marker-icon.poi {
   color: $primary-main;
-}
-
-div.leaflet-marker-icon.poi {
+  
   > span {
     > svg.icon {
       height: 20px;

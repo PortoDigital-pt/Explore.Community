@@ -334,11 +334,13 @@
 
       button {
         @include contained-button;
+
         flex-grow: 1;
       }
 
       .button-light {
         @include outlined-button;
+
         flex-grow: 1;
       }
     }
