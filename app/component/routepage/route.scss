@@ -1385,29 +1385,27 @@ $margin-left-right: 21.3px;
       flex-direction: row;
       flex-wrap: wrap;
 
-
-    .content {
-      display: flex;
-      position: relative;
-      align-items: center;
-      justify-content: flex-start;
-      width: calc(100% - 32px);
-      padding: 0 16px 0 16px;
-      flex-direction: row;
-      flex-wrap: wrap;
-
-      > span {
-        display: inline-block;
+      .content {
+        display: flex;
         position: relative;
-        width: fit-content;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - 32px);
+        padding: 0 16px 0 16px;
+        flex-direction: row;
+        flex-wrap: wrap;
 
-        &.sr-only {
-          display: none;
+        > span {
+          display: inline-block;
+          position: relative;
+          width: fit-content;
+
+          &.sr-only {
+            display: none;
+          }
         }
       }
-     
     }
-  }
 
     .react-autosuggest__input {
       height: 0;
@@ -1748,6 +1746,7 @@ nav.top-bar .title .route-number {
 
       .time-cell-time-label {
         padding-left: 4px;
+
         .time {
           width: unset;
           margin: 0;

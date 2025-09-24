@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 2;
     top: 40px;
-    right: 24px;  
+    right: 24px;
   }
 
   &:active,
@@ -60,7 +60,6 @@
   flex-grow: 1;
   flex-direction: column;
   justify-content: flex-start;
-
   border-radius: 8px;
   background-color: $white;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
@@ -78,7 +77,6 @@
       position: relative;
       color: $primary-dark;
       text-align: center;
-
       font-family: $font-family;
       font-size: $font-size-l;
       font-style: normal;
@@ -152,7 +150,8 @@
         }
       }
 
-      .wind-info, .radiation-info {
+      .wind-info,
+      .radiation-info {
         display: flex;
         position: relative;
         color: $primary-dark;

@@ -3,6 +3,7 @@ import { string } from 'prop-types';
 import { getRoutesList } from '../../../../util/amporto/api';
 import withBreakpoint from '../../../../util/withBreakpoint';
 import Section from '../section';
+import { RoutesDetails } from '../../details/routes/detail';
 
 const RoutesSection = ({ breakpoint }) => (
   <Section
@@ -15,6 +16,7 @@ const RoutesSection = ({ breakpoint }) => (
     type="routes"
     showDescription
     limit={breakpoint === 'large' ? 1 : 10}
+    CardDetails={RoutesDetails}
   />
 );
 

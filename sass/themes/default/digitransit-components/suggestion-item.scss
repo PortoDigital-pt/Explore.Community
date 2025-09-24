@@ -60,7 +60,7 @@ li:last-child > div.suggestion-item-container.mobile {
     width: 100%;
     flex-direction: column;
     position: relative;
-   
+
     .suggestion-name {
       text-wrap: nowrap;
       overflow: hidden;
@@ -76,7 +76,6 @@ li:last-child > div.suggestion-item-container.mobile {
       @include min-width(tablet) {
         font-size: 13px !important;
         letter-spacing: -0.43px;
-       
       }
 
       @media screen and (min-width: 767px) {

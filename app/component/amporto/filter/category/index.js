@@ -20,6 +20,7 @@ const CategoryGroup = (
 ) => (
   <div className="accordion-group-container">
     {Object.entries(filters)
+      // eslint-disable-next-line no-unused-vars
       .filter(([_, filter]) => !!filter)
       .map(([type, { showAll, ...categories }]) =>
         Object.keys(categories).length === 0 ? null : (

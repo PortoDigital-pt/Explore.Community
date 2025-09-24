@@ -3,7 +3,6 @@
   min-height: 20rem;
 }
 
-
 .stops-near-you-location-search {
   position: fixed;
   margin: 30px 30px 0 0;
@@ -77,10 +76,10 @@
   hr {
     display: flex;
     position: relative;
-    border: 0.2px solid #D8D8D8;
+    border: 0.2px solid #d8d8d8;
     width: calc(100% - 30px);
     margin: 0;
-  } 
+  }
 
   .route-number {
     .icon-container {
@@ -236,18 +235,18 @@
     align-items: center;
     width: 100%;
 
-     > span {
+    > span {
       display: flex;
       position: relative;
       width: 100%;
     }
 
     hr {
-        display: flex;
-        position: relative;
-        border: 0.2px solid #D8D8D8;
-        width: calc(100% - 30px);
-        margin: 0;
+      display: flex;
+      position: relative;
+      border: 0.2px solid #d8d8d8;
+      width: calc(100% - 30px);
+      margin: 0;
     }
   }
 
@@ -261,67 +260,67 @@
     flex-grow: 1;
 
     .rental-bike-content-container {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: flex-start;
-    gap: 2px;
-
-    .row-bike {
       display: flex;
-      flex-flow: row wrap;
-      align-items: center;
+      flex-flow: column wrap;
+      justify-content: flex-start;
+      gap: 2px;
 
-      .rental-bike-content-item {
+      .row-bike {
         display: flex;
-        width: 40px;
-        height: 40px;
-        flex-basis: 1;
-        margin: 0;
+        flex-flow: row wrap;
+        align-items: center;
 
-        &.label {
-          flex-grow: 10;
-          justify-content: flex-start;
-          align-items: center;
-          color: $grey-dark-down;
-          font-family: $font-family;
-          font-size: $font-size-l;
-          font-weight: $font-weight-regular;
+        .rental-bike-content-item {
+          display: flex;
+          width: 40px;
+          height: 40px;
+          flex-basis: 1;
+          margin: 0;
 
-          @media (min-width: 900px) {
-            font-size: 18px;
-          }
-        }
-
-        &.value {
-          flex-grow: 1;
-          justify-content: flex-end;
-          align-items: center;
-
-          span {
-            padding: 2px;
-            text-align: center;
-            max-width: 30px;
-            min-width: 30px;
-            background-color: #e6e6e6;
-            border-radius: 4px;
+          &.label {
+            flex-grow: 10;
+            justify-content: flex-start;
+            align-items: center;
             color: $grey-dark-down;
             font-family: $font-family;
             font-size: $font-size-l;
             font-weight: $font-weight-regular;
-  
+
             @media (min-width: 900px) {
-              font-size: 20px;
-              max-width: 40px;
-              min-width: 40px;
+              font-size: 18px;
+            }
+          }
+
+          &.value {
+            flex-grow: 1;
+            justify-content: flex-end;
+            align-items: center;
+
+            span {
+              padding: 2px;
+              text-align: center;
+              max-width: 30px;
+              min-width: 30px;
+              background-color: #e6e6e6;
+              border-radius: 4px;
+              color: $grey-dark-down;
+              font-family: $font-family;
+              font-size: $font-size-l;
+              font-weight: $font-weight-regular;
+
+              @media (min-width: 900px) {
+                font-size: 20px;
+                max-width: 40px;
+                min-width: 40px;
+              }
             }
           }
         }
       }
     }
-  }
 
     @media (min-width: 400px) {
-       padding: 15px;
+      padding: 15px;
     }
 
     .buttons {
@@ -330,16 +329,18 @@
       flex-direction: row;
       justify-content: center;
       column-gap: 8px;
-      max-height: 41.50px;
+      max-height: 41.5px;
       width: 100%;
 
       button {
         @include contained-button;
+
         flex-grow: 1;
       }
 
       .button-light {
         @include outlined-button;
+
         flex-grow: 1;
       }
     }
@@ -375,7 +376,7 @@
 
       .icon {
         display: flex;
-        position:  relative;
+        position: relative;
         width: 40px;
         height: 40px;
       }
@@ -896,17 +897,13 @@
   }
 }
 
-
 .ReactModalPortal {
-  button  {
+  button {
     &:hover {
       transform: none !important;
     }
 
     > svg {
-      width: 20px !important;
-      height: 20px !important;
-
       path {
         fill: $primary-dark !important;
       }

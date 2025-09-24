@@ -182,7 +182,6 @@ $content-background-color: $background-color;
 
   .icon {
     font-size: 2em;
-    // color: $top-navigation-icon-color;
     color: $primary-main;
 
     &.caution-topbar {
@@ -662,7 +661,6 @@ section.content {
         flex-direction: column;
         flex-grow: 1;
         flex-shrink: 0;
-        
 
         @media print {
           display: inline;

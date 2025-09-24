@@ -131,69 +131,69 @@
       justify-content: flex-start;
       column-gap: 10px;
 
-        .icon {
-          display: flex;
-          position:  relative;
-          width: 30px;
-          height: 30px;
+      .icon {
+        display: flex;
+        position: relative;
+        width: 30px;
+        height: 30px;
 
-          @media (min-width: 900px) {
-            width: 40px;
-            height: 40px;
+        @media (min-width: 900px) {
+          width: 40px;
+          height: 40px;
         }
-        }
+      }
 
-        .rental-bike {
+      .rental-bike {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+
+        .rental-bike-header-item {
           display: flex;
           position: relative;
-          justify-content: space-between;
-          align-items: center;
-          flex-grow: 1;
+          gap: 5px;
 
-          .rental-bike-header-item {
+          &.title {
             display: flex;
             position: relative;
-            gap: 5px;
+            flex-grow: 1;
+            color: $primary-color;
+            font-family: $font-family;
+            font-size: 18px;
+            font-weight: $font-weight-bold;
 
-            &.title {
-              display: flex;
-              position: relative;
-              flex-grow: 1;
-              color: $primary-color;
-              font-family: $font-family;
-              font-size: 18px;
-              font-weight: $font-weight-bold;
-    
-              @media (min-width: 900px) {
-                font-size: 20px;
-              }
+            @media (min-width: 900px) {
+              font-size: 20px;
             }
+          }
 
-            .share-and-favorite {
-              display: flex;
-              position: relative;
-              align-items: center;
-            }
+          .share-and-favorite {
+            display: flex;
+            position: relative;
+            align-items: center;
+          }
 
-            &.distance {
-              display: flex;
-              position: relative;
-              color: $primary-color;
-              line-height: 16px;
-              font-size: $font-size-s;
-              font-weight: $font-weight-regular;
-              padding-left: 40px;
-              min-height: 16px;
+          &.distance {
+            display: flex;
+            position: relative;
+            color: $primary-color;
+            line-height: 16px;
+            font-size: $font-size-s;
+            font-weight: $font-weight-regular;
+            padding-left: 40px;
+            min-height: 16px;
 
-              @media (min-width: 900px) {
-                font-size: $font-size-l;
-                padding-left: 50px;
-                line-height: 18px;
-                min-height: 18px;
-              }
+            @media (min-width: 900px) {
+              font-size: $font-size-l;
+              padding-left: 50px;
+              line-height: 18px;
+              min-height: 18px;
             }
           }
         }
+      }
     }
   }
 
@@ -245,7 +245,7 @@
             font-family: $font-family;
             font-size: $font-size-l;
             font-weight: $font-weight-regular;
-  
+
             @media (min-width: 900px) {
               font-size: 20px;
               max-width: 40px;
@@ -256,18 +256,19 @@
       }
     }
   }
-  
+
   .buttons {
     display: flex;
     position: relative;
     flex-direction: row;
     justify-content: center;
     column-gap: 8px;
-    max-height: 41.50px;
+    max-height: 41.5px;
     width: 100%;
 
     button {
       @include contained-button;
+
       flex-grow: 1;
 
       @media (min-width: 400px) {
@@ -277,6 +278,7 @@
 
     .button-light {
       @include outlined-button;
+
       flex-grow: 1;
 
       @media (min-width: 400px) {

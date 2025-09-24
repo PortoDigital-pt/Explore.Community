@@ -16,6 +16,7 @@ const FILTERS_ICON_MAP = {
 const FilterBar = ({ filters, openModal, onClick }, { intl }) => {
   const ButtonFilters = useMemo(() => {
     const Component = Object.entries(filters)
+      // eslint-disable-next-line no-unused-vars
       .filter(([_, filter]) => !!filter)
       .map(([type, { showAll, ...values }]) => {
         if (Object.keys(values).length === 0) {
