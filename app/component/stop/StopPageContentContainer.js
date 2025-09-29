@@ -108,7 +108,7 @@ class StopPageContent extends React.Component {
           <DepartureListContainer
             stoptimes={stoptimes}
             key="departures"
-            className="stop-page momentum-scroll"
+            className="stop-page"
             infiniteScroll
             currentTime={this.props.currentTime}
             showVehicles
