@@ -418,7 +418,7 @@ export const PageContent = connectToStores(
 
 const MODAL_CONTENT_TYPE_MAP = {
   events: PageContent,
-  poist: PoiPageContent
+  pois: PoiPageContent
 };
 
 const EventDetailsPage = () => (
