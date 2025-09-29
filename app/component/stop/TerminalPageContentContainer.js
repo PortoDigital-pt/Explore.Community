@@ -77,39 +77,10 @@ class TerminalPageContent extends React.Component {
         </div>
       );
     }
-    const isStreetTrafficTerminal = () =>
-      stopsWithPatterns.some(stop => stop.patterns[0].route.mode === 'BUS');
+
     return (
       <ScrollableWrapper>
         <div className="stop-page-departure-wrapper stop-scroll-container">
-          <div
-            className="departure-list-header row padding-vertical-normal"
-            aria-hidden="true"
-          >
-            <span className="route-number-header">
-              <FormattedMessage id="route" defaultMessage="Route" />
-            </span>
-            <span className="route-destination-header">
-              <FormattedMessage id="destination" defaultMessage="Destination" />
-            </span>
-            <span className="time-header">
-              <FormattedMessage id="leaving-at" defaultMessage="Leaves" />
-            </span>
-            <span className="track-header">
-              <FormattedMessage
-                id={
-                  mode === 'BUS' || isStreetTrafficTerminal()
-                    ? 'platform'
-                    : 'track'
-                }
-                defaultMessage={
-                  mode === 'BUS' || isStreetTrafficTerminal()
-                    ? 'Platform'
-                    : 'Track'
-                }
-              />
-            </span>
-          </div>
           <DepartureListContainer
             stoptimes={stoptimes}
             mode={mode}

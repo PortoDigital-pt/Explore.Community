@@ -527,6 +527,7 @@
       .route-headsign {
         display: flex;
         align-items: center;
+        flex-direction: row;
         font-family: $font-family-narrow;
         font-weight: $font-weight-book;
         color: #333;

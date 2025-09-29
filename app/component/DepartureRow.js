@@ -215,7 +215,7 @@ export default function DepartureRow(
           </>
         )}
       </td>
-      {showPlatformCode && (
+      {showPlatformCode && departure.stop?.platformCode && (
         <td className="platform-cell">
           {renderWithLink(
             <div

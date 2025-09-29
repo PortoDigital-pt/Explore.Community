@@ -239,7 +239,7 @@ div.leaflet-marker-icon.via {
 
 div.leaflet-marker-icon.poi {
   color: $primary-main;
-  
+
   > span {
     > svg.icon {
       height: 20px;
@@ -359,7 +359,7 @@ div.leaflet-marker-icon.vehicle-icon {
     right: 0;
     margin: auto;
     width: fit-content;
-    top: 100px;
+    top: 60px;
   }
 
   .map-routing-button-icon {
