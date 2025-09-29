@@ -570,7 +570,7 @@ export default {
   */
   defaultEndpoint: {},
 
-  defaultMapZoom: 17,
+  defaultMapZoom: 14,
 
   availableRouteTimetables: {},
 
