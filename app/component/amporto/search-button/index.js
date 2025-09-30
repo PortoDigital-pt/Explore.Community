@@ -49,7 +49,6 @@ const SearchButton = ({ lang }, { config, intl }) => {
         favouriteContext
         buttonMode
         mobileSearchPrefixIconId="search"
-        eventSource={config.eventSource}
       />
     </div>
   );

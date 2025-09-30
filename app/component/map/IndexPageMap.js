@@ -34,7 +34,7 @@ function IndexPageMap(
     newFocus = destination;
   } else if (!match.params.from && !match.params.to) {
     // use default location only if url does not include location
-    const isValid = isValidLocation(location, config.coordinatesBounds); 
+    const isValid = isValidLocation(location, config.coordinatesBounds);
     newFocus = isValid ? location : config.defaultEndpoint;
     zoom = isValid ? zoom : config.defaultMapZoom;
   }
@@ -83,7 +83,7 @@ function IndexPageMap(
       executeAction(storeDestination, item);
     }
   };
-  
+
   return (
     <MapWithTracking
       {...mwtProps}

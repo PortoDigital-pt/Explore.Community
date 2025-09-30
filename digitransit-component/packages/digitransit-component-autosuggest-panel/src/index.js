@@ -263,7 +263,6 @@ class DTAutosuggestPanel extends React.Component {
     showViapointControl: PropTypes.bool,
     showSlackControl: PropTypes.bool,
     mobileSearchPrefixIconId: PropTypes.string,
-    eventSource: PropTypes.string,
     useAllFavourites: PropTypes.bool
   };
 
@@ -302,7 +301,6 @@ class DTAutosuggestPanel extends React.Component {
     showViapointControl: false,
     showSlackControl: false,
     mobileSearchPrefixIconId: undefined,
-    eventSource: undefined,
     useAllFavourites: false
   };
 
@@ -500,7 +498,6 @@ class DTAutosuggestPanel extends React.Component {
             showScroll={this.props.showScroll}
             isEmbedded={this.props.isEmbedded}
             mobileSearchPrefixIconId={this.props.mobileSearchPrefixIconId}
-            eventSource={this.props.eventSource}
             useAllFavourites={this.props.useAllFavourites}
           />
           {(showSwapControl || showViapointControl) && (
@@ -594,7 +591,6 @@ class DTAutosuggestPanel extends React.Component {
                       mobileSearchPrefixIconId={
                         this.props.mobileSearchPrefixIconId
                       }
-                      eventSource={this.props.eventSource}
                       useAllFavourites={this.props.useAllFavourites}
                     />
                   </div>
@@ -703,7 +699,6 @@ class DTAutosuggestPanel extends React.Component {
             showScroll={this.props.showScroll}
             isEmbedded={this.props.isEmbedded}
             mobileSearchPrefixIconId={this.props.mobileSearchPrefixIconId}
-            eventSource={this.props.eventSource}
             useAllFavourites={this.props.useAllFavourites}
           />
           {(showSwapControl || showViapointControl) && (

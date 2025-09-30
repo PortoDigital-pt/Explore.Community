@@ -28,7 +28,7 @@ const {
   APP_TITLE,
   INDEX_PATH = '',
   SHOW_ROUTES,
-  SHOW_BLOCKS,
+  SHOW_DISTRICTS,
   SHOW_FAVOURITES,
   BOUNDING_BOX,
   MAP_ATTRIBUTION,
@@ -52,7 +52,10 @@ const {
   WEATHER_API = 'https://api.ipma.pt/open-data/forecast/meteorology',
   WEATHER_CITY_CODE,
   SHOW_PROFILE_NOTIFICATION,
-  EVENT_SOURCE,
+  EVENTS_PELIAS_SOURCE,
+  POIS_PELIAS_SOURCE,
+  ROUTES_PELIAS_SOURCE,
+  DISTRICTS_PELIAS_SOURCE,
   REALTIME_PATCH,
   SHOW_WIFI,
   MATOMO_URL,
@@ -139,7 +142,7 @@ export default {
   // navbar items
   optionalNavigationItems: {
     routes: SHOW_ROUTES === 'true',
-    districts: SHOW_BLOCKS === 'true',
+    districts: SHOW_DISTRICTS === 'true',
     favourites: SHOW_FAVOURITES === 'true'
   },
 
@@ -827,5 +830,9 @@ export default {
     showNotification: SHOW_PROFILE_NOTIFICATION === 'true',
     showAuthenticationInfo: ALLOW_LOGIN === 'true'
   },
-  eventSource: EVENT_SOURCE
+
+  eventsPeliasSource: EVENTS_PELIAS_SOURCE,
+  poisPeliasSource: POIS_PELIAS_SOURCE,
+  routesPeliasSource: ROUTES_PELIAS_SOURCE,
+  districtsPeliasSource: DISTRICTS_PELIAS_SOURCE
 };
