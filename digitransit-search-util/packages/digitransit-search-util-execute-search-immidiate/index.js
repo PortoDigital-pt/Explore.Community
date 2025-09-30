@@ -240,7 +240,6 @@ export async function getSearchResults(
   callback,
   pathOpts,
   refPoint,
-  eventSource,
   useAllFavourites
 ) {
   const {
@@ -268,7 +267,11 @@ export async function getSearchResults(
     geocodingSearchParams,
     geocodingSources,
     getFutureRoutes,
-    cityBikeNetworks
+    cityBikeNetworks,
+    eventsPeliasSource,
+    poisPeliasSource,
+    routesPeliasSource,
+    districtsPeliasSource
   } = searchContext;
 
   // if no targets are provided, search them all.
@@ -416,29 +419,32 @@ export async function getSearchResults(
 
       searchComponents.push(favouriteExplore);
     }
-    if (allSources || sources.includes('History')) {
-      // TODO
-    }
 
     if (targets.includes('Events')) {
-      if (eventSource) {
-        exploreSources.push(eventSource);
+      if (eventsPeliasSource) {
+        exploreSources.push(eventsPeliasSource);
       }
       exploreLayers.push('events');
     }
 
     if (targets.includes('Pois')) {
-      exploreSources.push('custom');
+      if (poisPeliasSource) {
+        exploreSources.push(poisPeliasSource);
+      }
       exploreLayers.push('venue');
     }
 
     if (targets.includes('Explore-routes')) {
-      exploreSources.push('explore_porto');
+      if (routesPeliasSource) {
+        exploreSources.push(routesPeliasSource);
+      }
       exploreLayers.push('tourist_trips');
     }
 
     if (targets.includes('Explore-districts')) {
-      exploreSources.push('visit_porto');
+      if (districtsPeliasSource) {
+        exploreSources.push(districtsPeliasSource);
+      }
       exploreLayers.push('venue_groups');
     }
 
@@ -663,7 +669,6 @@ export const executeSearch = (
   callback,
   pathOpts,
   refPoint,
-  eventSource,
   useAllFavourites
 ) => {
   callback(null); // This means 'we are searching'
@@ -678,7 +683,6 @@ export const executeSearch = (
     callback,
     pathOpts,
     refPoint,
-    eventSource,
     useAllFavourites
   );
 };

@@ -24,7 +24,7 @@ const PageMap = (
   } else if (destination.lat) {
     newFocus = destination;
   } else if (!match.params.from && !match.params.to) {
-    const isValid = isValidLocation(location, config.coordinatesBounds); 
+    const isValid = isValidLocation(location, config.coordinatesBounds);
     newFocus = isValid ? location : config.defaultEndpoint;
     zoom = isValid ? zoom : config.defaultMapZoom;
   }

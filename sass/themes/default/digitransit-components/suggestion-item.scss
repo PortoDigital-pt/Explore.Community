@@ -57,7 +57,8 @@ li:last-child > div.suggestion-item-container.mobile {
 
   .suggestion-result {
     display: flex;
-    width: 100%;
+    width: calc(100% - 24px - 26px);
+    max-width: calc(100% - 24px - 26px);
     flex-direction: column;
     position: relative;
 
@@ -65,7 +66,7 @@ li:last-child > div.suggestion-item-container.mobile {
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: calc(100% - 27px - 40px);
+      width: calc(100% - 10%);
       margin: 0;
       font-weight: $font-weight-book;
       color: $grey-dark-down;
@@ -106,7 +107,7 @@ li:last-child > div.suggestion-item-container.mobile {
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: calc(100% - 27px - 40px);
+      width: calc(100% - 10%);
       margin: 0;
       color: $grey-dark-down;
       font-size: 12px !important;

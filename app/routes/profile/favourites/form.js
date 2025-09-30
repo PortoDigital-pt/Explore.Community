@@ -78,7 +78,6 @@ const FavouriteForm = ({ onSave, favourite, config, intl, lang }) => {
         modeSet={config.iconModeSet}
         favouriteContext
         mobileSearchPrefixIconId="search"
-        eventSource={config.eventSource}
       />
 
       <label className="favourite-label-name">
