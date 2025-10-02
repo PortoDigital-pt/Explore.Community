@@ -3,21 +3,6 @@
 Appearance and behavior of digitransit-ui can be customized by:
 - Creating a custom config file to a path `app/configurations/config.<theme>.js`
 - Optionally adding custom style definitions to `sass/themes/<theme>` folder
-- If dynamic theme mapping to the new theme is desired, the new theme must be added to the
-theme map found in `app/configurations/config.default.js`
-
-Check the existing themes such as 'oulu' for details. There is a npm script for initializing all three steps above
-with a single command:
-
-- `npm run add-theme <name> '#RRGGBB' <optional navbar logo>`
-
-After running the command, the created skeleton files can be edited further.
-
-
-## Dynamic theme mapping
-
-The UI can change the theme per request. This happens by defining how host names are mapped to theme names. See config.default.js
-for details.
 
 
 ## Themes in development mode
