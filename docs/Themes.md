@@ -1,8 +1,11 @@
 # Custom themes and configurations
 
-Appearance and behavior of digitransit-ui can be customized by:
-- Creating a custom config file to a path `app/configurations/config.<theme>.js`
-- Optionally adding custom style definitions to `sass/themes/<theme>` folder
+Appearance and behavior of digitransit-ui - Explore.Communities can be customized by:
+- Optionally creating a custom config file to a path `app/configurations/config.<theme>.js`. Leave CONFIG variable empty to use the default configuration.
+- Optionally adding custom style definitions to `sass/themes/<theme>` folder. Leave CONFIG variable empty to use the default theme.
+- If you do add a custom configuration and theme, they both need to share the same name. e.g. Your configuration would be `config.example.js` and your custom styles theme would be in a folder called `example`, following the same structure as the default one.
+- Your custom configuration will be merged with the default one.
+- You need to add both `defaultEndpoint` and `ngsi.dataProvider` properties to the default config or your own custom one. These are mandatory and the only extra steps you need to run your app. Refer to `app/configurations/config.default.js` for more information.
 
 
 ## Themes in development mode
