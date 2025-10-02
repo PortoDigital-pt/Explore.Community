@@ -74,9 +74,9 @@ export default function intializeSearchContext(context, searchContext) {
   searchContext.clearOldSearches = clearOldSearches;
   searchContext.getFutureRoutes = getFutureRoutes;
   searchContext.saveFutureRoute = saveFutureRoute;
-  searchContext.clearFutureRoutes = clearFutureRoutes,
-  searchContext.eventsPeliasSource = config.eventsPeliasSource,
-  searchContext.poisPeliasSource = config.poisPeliasSource,
-  searchContext.routesPeliasSource = config.routesPeliasSource,
-  searchContext.districtsPeliasSource = config.districtsPeliasSource
+  searchContext.clearFutureRoutes = clearFutureRoutes;
+  searchContext.eventsPeliasSource = config.eventsPeliasSource;
+  searchContext.poisPeliasSource = config.poisPeliasSource;
+  searchContext.routesPeliasSource = config.routesPeliasSource;
+  searchContext.districtsPeliasSource = config.districtsPeliasSource;
 }

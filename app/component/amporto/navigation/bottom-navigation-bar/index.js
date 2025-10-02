@@ -12,6 +12,7 @@ import {
   COMMON_NAVIGATION_ITEMS_PATH_MAP,
   generateNavigationItemsConfig
 } from '../common';
+import { isKioskUA } from '../../../../util/amporto/ua';
 
 const NAVIGATION_ITEMS = {
   ...COMMON_NAVIGATION_ITEMS,
@@ -53,7 +54,15 @@ const BottomNavigationBar = (
   );
   const navigationItems = useMemo(
     () =>
-      generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS),
+      Object.entries(
+        generateNavigationItemsConfig(optionalNavigationItems, NAVIGATION_ITEMS)
+      ).reduce(
+        (acc, [key, value]) =>
+          value === NAVIGATION_ITEMS.FAVOURITES && isKioskUA()
+            ? acc
+            : { ...acc, [key]: value },
+        {}
+      ),
     [optionalNavigationItems]
   );
 

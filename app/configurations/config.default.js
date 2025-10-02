@@ -34,7 +34,6 @@ const {
   MAP_ATTRIBUTION,
   FEED_IDS = '1,2',
   SEARCH_SOURCES = 'oa,osm,custom',
-  PELIAS_LAYER = 'address,stop,venue',
   MINIMAL_REGEXP = '.+',
   AVAILABLE_LANGUAGES = 'pt,en',
   DEFAULT_LANGUAGE = 'pt',
@@ -190,7 +189,7 @@ export default {
     usePeliasStops: false,
     mapPeliasModality: false,
     peliasMapping: {},
-    peliasLayer: PELIAS_LAYER.split(','),
+    peliasLayer: null,
     peliasLocalization: null,
     minimalRegexp: new RegExp(MINIMAL_REGEXP)
   },
@@ -564,7 +563,7 @@ export default {
   modePolygons: {},
 
   // Default origin endpoint to use when user is outside of area
-  /* e.g. override here or in your own config!
+  /* e.g. override here or in your own config - mandatory to work out of the box
     defaultEndpoint: {
       address: 'Porto - Portugal',
       lat: 41.14858,
@@ -738,10 +737,10 @@ export default {
   onboardingPictures: null,
   // list of svg logos in static/img/onboarding-logos to display in onboarding page. e.g. ['logo1', 'logo2', 'logo3']
   onboardingLogos: null,
-  // single svg icon to use in onboarding logo area 'logo-file-name' instead of several logos
+  // single svg icon to use in onboarding logo area 'logo-file-name' instead of many individual logos
   onboardingLogo: null,
   // onboarding pages
-  /* e.g. override here or in your own config
+  /* e.g. override here or in your own config - **word** -> means that 'word' will be rendered in bold.
   onboarding: {
     page1: {
       heading: {
@@ -791,14 +790,14 @@ export default {
   },
 
   // data providers used in NGSI queries and in map Tiles filtering
-  // override here or in your own config!
+  // override here or in your own config - mandatory to work out of the box
   /* ngsi: {
-    dataProvider: {
-      pois: '',
-      events: '',
-      routes: '',
-      districts: ''
-    }
+      dataProvider: {
+        pois: '',
+        events: '',
+        routes: '',
+        districts: ''
+      }
   }, */
   ngsi: {
     dataProvider: {}
