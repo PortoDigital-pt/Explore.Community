@@ -2,6 +2,8 @@
 import { formatCalendar } from './date';
 import { getPrice } from './price';
 
+const PLACEHOLDER_IMAGE_SRC = '/img/placeholder.webp';
+
 const decode = value => decodeURIComponent(value);
 
 const extractValuesAndDecode = values => {
@@ -40,7 +42,6 @@ const extractValuesAndDecode = values => {
   }, {});
 };
 
-// todo - remove ?s when the data is ok
 export const poiToDto = (poi, language) => {
   const {
     id,
@@ -83,7 +84,9 @@ export const poiToDto = (poi, language) => {
     calendar: formatCalendar(calendar?.value, language),
     districts: extractValuesAndDecode(districtGroups?.value),
     images: extractValuesAndDecode(
-      extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
+      extraImages?.value?.length === 0
+        ? [image?.value || PLACEHOLDER_IMAGE_SRC]
+        : extraImages?.value
     ),
     item
   };
@@ -127,7 +130,7 @@ export const eventToDto = (event, language) => {
     name: extractValuesAndDecode(
       name_lang.value[language] || name_lang.value.pt
     ),
-    images: extractValuesAndDecode([contentURL.value])
+    images: extractValuesAndDecode([contentURL?.value || PLACEHOLDER_IMAGE_SRC])
   };
 };
 
@@ -173,7 +176,9 @@ export const routesToDto = (route, language) => {
       name_lang.value[language] || name_lang.value.pt
     ),
     images: extractValuesAndDecode(
-      extraImages?.value?.length === 0 ? [image?.value] : extraImages?.value
+      extraImages?.value?.length === 0
+        ? [image?.value || PLACEHOLDER_IMAGE_SRC]
+        : extraImages?.value
     ),
     pois: formattedPois(pois, language),
     difficulty,
@@ -209,7 +214,7 @@ export const districtToDto = (district, language) => {
     name: extractValuesAndDecode(
       name_lang.value[language] || name_lang.value.pt
     ),
-    images: extractValuesAndDecode([image?.value]),
+    images: extractValuesAndDecode([image?.value || PLACEHOLDER_IMAGE_SRC]),
     pois: pointOfInterestRefs.value,
     events: eventRefs.value,
     routes: tripRefs.value

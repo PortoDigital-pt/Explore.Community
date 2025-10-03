@@ -46,7 +46,7 @@ import ModeRail from './assets/mode_rail.svg';
 import ModeTram from './assets/amporto/tram.svg';
 import ModeFerry from './assets/mode_ferry.svg';
 import ModeAirplane from './assets/mode_airplane.svg';
-import ModeDigiBikeRentalStation from './assets/amporto/citybike.svg';
+import ModeDigiRentalStation from './assets/amporto/rentalVehicles.svg';
 import ModeDigiFunicular from './assets/mode_digi_funicular.svg';
 import FutureRoute from './assets/icon-route.svg';
 import Position from './assets/position.svg';
@@ -130,12 +130,12 @@ const IconMap = style => {
     'mode-tram': <ModeTram style={style} />,
     'mode-subway': <Subway style={style} />,
     'mode-ferry': <ModeFerry style={style} />,
-    'mode-citybike': <ModeDigiBikeRentalStation style={style} />,
+    'mode-citybike': <ModeDigiRentalStation style={style} />,
     'mode-digitransit-bus': <ModeBus style={style} />,
     'mode-digitransit-rail': <SearchRailStationDigitransit style={style} />,
     'mode-digitransit-ferry': <SearchFerryDigitransit style={style} />,
     'mode-digitransit-tram': <ModeTram style={style} />,
-    'mode-digitransit-citybike': <ModeDigiBikeRentalStation style={style} />,
+    'mode-digitransit-citybike': <ModeDigiRentalStation style={style} />,
     'mode-digitransit-airplane': <ModeAirplane style={style} />,
     'mode-digitransit-subway': <Subway style={style} />,
     'mode-digitransit-funicular': <ModeDigiFunicular style={style} />,
