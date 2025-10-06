@@ -33,10 +33,10 @@ function IndexPageMap(
   } else if (destination.lat) {
     newFocus = destination;
   } else if (!match.params.from && !match.params.to) {
-    // use default location only if url does not include location
-    const isValid = isValidLocation(location, config.coordinatesBounds);
-    newFocus = isValid ? location : config.defaultEndpoint;
-    zoom = isValid ? zoom : config.defaultMapZoom;
+    newFocus = isValidLocation(location, config.coordinatesBounds)
+      ? location
+      : config.defaultEndpoint;
+    zoom = location?.hasLocation ? zoom : config.defaultMapZoom;
   }
 
   if (!sameLocations(focus, newFocus) && newFocus.lat) {

@@ -81,7 +81,8 @@ export default class Map extends React.Component {
     // eslint-disable-next-line
     geoJson: PropTypes.object,
     mapLayers: mapLayerShape,
-    breakpoint: PropTypes.string
+    breakpoint: PropTypes.string,
+    hasLocation: PropTypes.bool
   };
 
   static defaultProps = {
@@ -208,7 +209,9 @@ export default class Map extends React.Component {
       geoJson,
       mapLayers,
       bottomPadding,
-      mapLayerRef
+      mapLayerRef,
+      hasLocation,
+      breakpoint
     } = this.props;
     const { config } = this.context;
     const naviProps = {}; // these define map center and zoom
@@ -223,8 +226,10 @@ export default class Map extends React.Component {
       naviProps.bounds = boundWithMinimumArea(this.props.bounds); // validate
     } else if (lat && lon) {
       if (this.boundsOptions?.paddingBottomRight !== undefined) {
+        const z =
+          breakpoint !== 'large' ? (hasLocation ? zoom + 1 : zoom + 2) : null;
         // bounds fitting can take account the wanted padding, so convert to bounds
-        naviProps.bounds = boundWithMinimumArea([[lat, lon]], zoom);
+        naviProps.bounds = boundWithMinimumArea([[lat, lon]], z ?? zoom);
       } else {
         naviProps.center = [lat, lon];
         if (zoom) {

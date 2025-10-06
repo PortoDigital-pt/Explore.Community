@@ -337,6 +337,7 @@ class MapWithTrackingStateHandler extends React.Component {
           leafletMapRef={this.setMapElementRef}
           mapRef={this.setMap}
           breakpoint={this.props.breakpoint}
+          hasLocation={this.props.position.hasLocation}
           bottomButtons={
             <div className={btnClassName}>
               {config.map.showLayerSelector && (
