@@ -1,8 +1,9 @@
 import React, { useMemo, useCallback } from 'react';
 import { useRouter } from 'found';
-import { func } from 'prop-types';
+import connectToStores from 'fluxible-addons-react/connectToStores';
+import { func, shape } from 'prop-types';
 import { intlShape } from 'react-intl';
-import { configShape } from '../../../../util/shapes';
+import { configShape, userShape } from '../../../../util/shapes';
 import Icon from '../../../Icon';
 import LanguageSelect from '../../language';
 import {
@@ -22,7 +23,7 @@ const NAVIGATION_ITEMS_PATH_MAP = {
 };
 
 const Content = (
-  { onClose },
+  { onClose, user },
   {
     config: {
       title,
@@ -90,7 +91,10 @@ const Content = (
                 }
               >
                 <Icon img={`icon-${NAVIGATION_PROFILE}`} viewBox="0 0 24 24" />
-                <span>{intl.messages[`nav-item-${NAVIGATION_PROFILE}`]}</span>
+                <span>
+                  {user?.name ||
+                    intl.messages[`nav-item-${NAVIGATION_PROFILE}`]}
+                </span>
               </button>
               {onboarding && (
                 <>
@@ -152,7 +156,8 @@ const Content = (
 };
 
 Content.propTypes = {
-  onClose: func.isRequired
+  onClose: func.isRequired,
+  user: shape(userShape)
 };
 
 Content.contextTypes = {
@@ -160,4 +165,8 @@ Content.contextTypes = {
   intl: intlShape.isRequired
 };
 
-export default Content;
+const ConnectedContent = connectToStores(Content, ['UserStore'], context => ({
+  user: context.getStore('UserStore').getUser()
+}));
+
+export default ConnectedContent;
