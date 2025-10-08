@@ -157,7 +157,7 @@ const Content = (
 
 Content.propTypes = {
   onClose: func.isRequired,
-  user: shape(userShape).isRequired
+  user: shape(userShape)
 };
 
 Content.contextTypes = {
