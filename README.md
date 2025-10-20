@@ -1,6 +1,7 @@
 ## Digitransit
 [Digitransit-ui](https://digitransit.fi/en/) is a mobile friendly user interface built to work with Digitransit platform.
 
+## DigitTransit
 
 ## Demos
 - [Explore Porto](https://explore.porto.pt/)
