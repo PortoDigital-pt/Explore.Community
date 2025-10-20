@@ -48,3 +48,4 @@ sass/themes/amporto
 static/img/onboarding-logos/*
 static/img/onboarding-pictures/*
 static/img/onboarding-logo.svg
+.gitlab-ci.yml

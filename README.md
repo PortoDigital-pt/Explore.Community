@@ -1,31 +1,9 @@
-[![Build](https://github.com/hsldevcom/digitransit-ui/workflows/Process%20v2%20push%20or%20pr/badge.svg?branch=v2)](https://github.com/HSLdevcom/digitransit-ui/actions)
+## Digitransit
+[Digitransit-ui](https://digitransit.fi/en/) is a mobile friendly user interface built to work with Digitransit platform.
 
-
-Digitransit-ui is a mobile friendly User interface built to work with Digitransit platform
-
-## Licensing
-
-The source code of the platform is dual-licensed under the EUPL v1.2 and AGPLv3 licenses.
-
-## Issues
-
-Our main issue tracking is handled in [https://digitransit.atlassian.net](https://digitransit.atlassian.net)
-However, we also monitor this repository's issues and import them to Jira. You can create issues in GitHub.
 
 ## Demos
-
-- [https://reittiopas.hsl.fi - Helsinki city area demo](https://reittiopas.hsl.fi/)
-- [https://opas.matka.fi/ - National demo](https://opas.matka.fi/)
-
-## Testing
-
-Digitransit-ui is tested to work on the latest and the second latest major versions of Firefox, Chromium and Safari.
-
-- Continuous Integration: [https://github.com/HSLdevcom/digitransit-ui/actions](https://github.com/HSLdevcom/digitransit-ui/actions)
-
-Visual tests are run with jest and playwright.
-
-More information about [testing](docs/Tests.md).
+- [Explore Porto](https://explore.porto.pt/)
 
 
 ## Documentation
