@@ -15,7 +15,7 @@ You also need a C compiler:
 - Windows: for example MSVC 2013 Express
 
 ### WSL
-To use Windows Subsystem for Linux in digitransit-ui development you may need to do at least the following
+To use Windows Subsystem for Linux in development you may need to do at least the following
 1. Add the following to your `/etc/hosts`. This is because the project uses ipv6 compliant `::1` instead of ipv4 style `0.0.0.0`:
 ```
 ::1     ip6-localhost ip6-loopback localhost
@@ -80,7 +80,7 @@ Husky (npm-package) is used for setting up the git hooks (`.git/hooks/`) that wi
 Look up 'husky' in `package.json` to see the details.
 
 ## Configuration application
-Digitransit ui can be configured in multiple ways. You can
+Explore.Community can be configured in multiple ways. You can
 - Change between National and Regional versions using `CONFIG` parameter
   - Alternatively, use `BASE_CONFIG` if server is supposed to serve multiple configurations which have same base configuration. It is used server side at start up and request's host specific config based on `host` or `x-forwarded-host` header is merged into it before returning config to client.
 - Switch API backend using `API_URL` parameter
