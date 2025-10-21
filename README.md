@@ -5,8 +5,19 @@ The Explore.Community is designed to integrate and visualize the urban assets of
 
 For more information, check our [wiki](https://github.com/PortoDigital-pt/Explore.Community/wiki/Welcome-to-the-Explore.Community!). To follow updates from the community, visit our [website].
 
-## Implementing in your Community 
-#### Implementation Steps:
+## Dependencies
+
+* OpenTripPlaner instance
+* Pelias geocoder instance
+* Compatible Mapbox vector tiles server instance
+* NGSIv2 Context Broker instance
+* Source for base map
+* Digitransit MQTT broker instance for realtime vehicle position
+* OpenIDConnect Authentication platform (only needed if you will use authentication; example: keycloak)
+* MongoDB instance version 6.0.20 Community (only needed if you will use authentication)
+* Redis instance version 7.4.2 (only needed if you will use authentication)
+
+## Implementing in your Community, steps:
 * Check the [documentation](#docs) files
 * Clone the github project
 * Follow the [installation](docs/Installation.md) guide
