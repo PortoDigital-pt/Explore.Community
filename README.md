@@ -1,13 +1,23 @@
-## Digitransit
-[Digitransit-ui](https://digitransit.fi/en/) is a mobile friendly user interface built to work with Digitransit platform.
+## Explore.Community
+Explore.Community is an open-source digital platform based on the [Digitransit platform](https://digitransit.fi/en/). 
 
-## DigitTransit
+The Explore.Community is designed to integrate and visualize the urban assets of a territory in a coherent and user-friendly way. It consolidates data and information related to mobility, public services, cultural resources, and community facilities within a single digital environment.
+
+For more information, check our [wiki](https://github.com/PortoDigital-pt/Explore.Community/wiki/Welcome-to-the-Explore.Community!). To follow updates from the community, visit our [website].
+
+## Implementing in your Community 
+#### Implementation Steps:
+* Check the [documentation](#docs) files
+* Clone the github project
+* Follow the [installation](docs/Installation.md) guide
+* Review the [themes](docs/Themes.md) guide, to understand the configuration files and options
+* Customize it according to your needs and preferences.
 
 ## Demos
 - [Explore Porto](https://explore.porto.pt/)
 
 
-## Documentation
+## <a name="docs"></a>Documentation
 
 - [Terms](docs/Terms.md)
 - [Architecture](docs/Architecture.md)
